@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.PercentilesBucketAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/pipeline.ts#L203-L205">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PercentilesBucketAggregation extends PipelineAggregationBase implements AggregationVariant {
 	private final List<Double> percents;
@@ -47,7 +54,7 @@ public class PercentilesBucketAggregation extends PipelineAggregationBase implem
 	private PercentilesBucketAggregation(Builder builder) {
 		super(builder);
 
-		this.percents = ModelTypeHelper.unmodifiable(builder.percents);
+		this.percents = ApiTypeHelper.unmodifiable(builder.percents);
 
 	}
 
@@ -73,7 +80,7 @@ public class PercentilesBucketAggregation extends PipelineAggregationBase implem
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.percents)) {
+		if (ApiTypeHelper.isDefined(this.percents)) {
 			generator.writeKey("percents");
 			generator.writeStartArray();
 			for (Double item0 : this.percents) {
@@ -91,6 +98,7 @@ public class PercentilesBucketAggregation extends PipelineAggregationBase implem
 	/**
 	 * Builder for {@link PercentilesBucketAggregation}.
 	 */
+
 	public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PercentilesBucketAggregation> {
@@ -100,11 +108,9 @@ public class PercentilesBucketAggregation extends PipelineAggregationBase implem
 		/**
 		 * API name: {@code percents}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>percents</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>percents</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>percents</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder percents(List<Double> list) {
 			this.percents = _listAddAll(this.percents, list);

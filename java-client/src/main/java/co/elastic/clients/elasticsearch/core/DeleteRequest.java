@@ -35,7 +35,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -48,6 +48,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.delete.Request
+
+/**
+ * Removes a document from the index.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/delete/DeleteRequest.ts#L35-L56">API
+ *      specification</a>
+ */
 
 public class DeleteRequest extends RequestBase {
 	private final String id;
@@ -85,10 +93,10 @@ public class DeleteRequest extends RequestBase {
 
 	private DeleteRequest(Builder builder) {
 
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.ifPrimaryTerm = builder.ifPrimaryTerm;
 		this.ifSeqNo = builder.ifSeqNo;
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.refresh = builder.refresh;
 		this.routing = builder.routing;
 		this.timeout = builder.timeout;
@@ -225,6 +233,7 @@ public class DeleteRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteRequest> {
 		private String id;
 

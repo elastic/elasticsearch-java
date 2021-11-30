@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.RequestCacheStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/Stats.ts#L176-L182">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RequestCacheStats implements JsonpSerializable {
 	private final long evictions;
@@ -57,11 +64,11 @@ public class RequestCacheStats implements JsonpSerializable {
 
 	private RequestCacheStats(Builder builder) {
 
-		this.evictions = ModelTypeHelper.requireNonNull(builder.evictions, this, "evictions");
-		this.hitCount = ModelTypeHelper.requireNonNull(builder.hitCount, this, "hitCount");
+		this.evictions = ApiTypeHelper.requireNonNull(builder.evictions, this, "evictions");
+		this.hitCount = ApiTypeHelper.requireNonNull(builder.hitCount, this, "hitCount");
 		this.memorySize = builder.memorySize;
-		this.memorySizeInBytes = ModelTypeHelper.requireNonNull(builder.memorySizeInBytes, this, "memorySizeInBytes");
-		this.missCount = ModelTypeHelper.requireNonNull(builder.missCount, this, "missCount");
+		this.memorySizeInBytes = ApiTypeHelper.requireNonNull(builder.memorySizeInBytes, this, "memorySizeInBytes");
+		this.missCount = ApiTypeHelper.requireNonNull(builder.missCount, this, "missCount");
 
 	}
 
@@ -140,6 +147,7 @@ public class RequestCacheStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link RequestCacheStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RequestCacheStats> {
 		private Long evictions;
 

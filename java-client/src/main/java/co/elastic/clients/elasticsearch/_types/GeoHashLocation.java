@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.GeoHashLocation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/Geo.ts#L112-L114">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GeoHashLocation implements JsonpSerializable {
 	private final String geohash;
@@ -47,7 +54,7 @@ public class GeoHashLocation implements JsonpSerializable {
 
 	private GeoHashLocation(Builder builder) {
 
-		this.geohash = ModelTypeHelper.requireNonNull(builder.geohash, this, "geohash");
+		this.geohash = ApiTypeHelper.requireNonNull(builder.geohash, this, "geohash");
 
 	}
 
@@ -83,6 +90,7 @@ public class GeoHashLocation implements JsonpSerializable {
 	/**
 	 * Builder for {@link GeoHashLocation}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GeoHashLocation> {
 		private String geohash;
 

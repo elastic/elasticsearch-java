@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.NestedSortValue
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/sort.ts#L29-L34">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NestedSortValue implements JsonpSerializable {
 	@Nullable
@@ -61,7 +68,7 @@ public class NestedSortValue implements JsonpSerializable {
 		this.filter = builder.filter;
 		this.maxChildren = builder.maxChildren;
 		this.nested = builder.nested;
-		this.path = ModelTypeHelper.requireNonNull(builder.path, this, "path");
+		this.path = ApiTypeHelper.requireNonNull(builder.path, this, "path");
 
 	}
 
@@ -136,6 +143,7 @@ public class NestedSortValue implements JsonpSerializable {
 	/**
 	 * Builder for {@link NestedSortValue}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NestedSortValue> {
 		@Nullable
 		private Query filter;

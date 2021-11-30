@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_datafeeds.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/get_datafeeds/MlGetDatafeedsResponse.ts#L23-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetDatafeedsResponse implements JsonpSerializable {
 	private final long count;
@@ -50,8 +57,8 @@ public class GetDatafeedsResponse implements JsonpSerializable {
 
 	private GetDatafeedsResponse(Builder builder) {
 
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
-		this.datafeeds = ModelTypeHelper.unmodifiableRequired(builder.datafeeds, this, "datafeeds");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.datafeeds = ApiTypeHelper.unmodifiableRequired(builder.datafeeds, this, "datafeeds");
 
 	}
 
@@ -87,7 +94,7 @@ public class GetDatafeedsResponse implements JsonpSerializable {
 		generator.writeKey("count");
 		generator.write(this.count);
 
-		if (ModelTypeHelper.isDefined(this.datafeeds)) {
+		if (ApiTypeHelper.isDefined(this.datafeeds)) {
 			generator.writeKey("datafeeds");
 			generator.writeStartArray();
 			for (Datafeed item0 : this.datafeeds) {
@@ -105,6 +112,7 @@ public class GetDatafeedsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetDatafeedsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetDatafeedsResponse> {
 		private Long count;
 
@@ -121,11 +129,9 @@ public class GetDatafeedsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code datafeeds}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>datafeeds</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>datafeeds</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>datafeeds</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder datafeeds(List<Datafeed> list) {
 			this.datafeeds = _listAddAll(this.datafeeds, list);

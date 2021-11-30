@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.TrainedModelConfigInput
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/TrainedModel.ts#L90-L93">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TrainedModelConfigInput implements JsonpSerializable {
 	private final List<String> fieldNames;
@@ -48,7 +55,7 @@ public class TrainedModelConfigInput implements JsonpSerializable {
 
 	private TrainedModelConfigInput(Builder builder) {
 
-		this.fieldNames = ModelTypeHelper.unmodifiableRequired(builder.fieldNames, this, "fieldNames");
+		this.fieldNames = ApiTypeHelper.unmodifiableRequired(builder.fieldNames, this, "fieldNames");
 
 	}
 
@@ -76,7 +83,7 @@ public class TrainedModelConfigInput implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.fieldNames)) {
+		if (ApiTypeHelper.isDefined(this.fieldNames)) {
 			generator.writeKey("field_names");
 			generator.writeStartArray();
 			for (String item0 : this.fieldNames) {
@@ -94,6 +101,7 @@ public class TrainedModelConfigInput implements JsonpSerializable {
 	/**
 	 * Builder for {@link TrainedModelConfigInput}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TrainedModelConfigInput> {
 		private List<String> fieldNames;
 
@@ -102,11 +110,9 @@ public class TrainedModelConfigInput implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code field_names}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>fieldNames</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>fieldNames</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>fieldNames</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder fieldNames(List<String> list) {
 			this.fieldNames = _listAddAll(this.fieldNames, list);

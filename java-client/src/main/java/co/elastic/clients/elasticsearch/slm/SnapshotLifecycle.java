@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: slm._types.SnapshotLifecycle
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/slm/_types/SnapshotLifecycle.ts#L32-L43">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SnapshotLifecycle implements JsonpSerializable {
 	@Nullable
@@ -75,14 +82,13 @@ public class SnapshotLifecycle implements JsonpSerializable {
 		this.lastFailure = builder.lastFailure;
 		this.lastSuccess = builder.lastSuccess;
 		this.modifiedDate = builder.modifiedDate;
-		this.modifiedDateMillis = ModelTypeHelper.requireNonNull(builder.modifiedDateMillis, this,
-				"modifiedDateMillis");
+		this.modifiedDateMillis = ApiTypeHelper.requireNonNull(builder.modifiedDateMillis, this, "modifiedDateMillis");
 		this.nextExecution = builder.nextExecution;
-		this.nextExecutionMillis = ModelTypeHelper.requireNonNull(builder.nextExecutionMillis, this,
+		this.nextExecutionMillis = ApiTypeHelper.requireNonNull(builder.nextExecutionMillis, this,
 				"nextExecutionMillis");
-		this.policy = ModelTypeHelper.requireNonNull(builder.policy, this, "policy");
-		this.version = ModelTypeHelper.requireNonNull(builder.version, this, "version");
-		this.stats = ModelTypeHelper.requireNonNull(builder.stats, this, "stats");
+		this.policy = ApiTypeHelper.requireNonNull(builder.policy, this, "policy");
+		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
+		this.stats = ApiTypeHelper.requireNonNull(builder.stats, this, "stats");
 
 	}
 
@@ -223,6 +229,7 @@ public class SnapshotLifecycle implements JsonpSerializable {
 	/**
 	 * Builder for {@link SnapshotLifecycle}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SnapshotLifecycle> {
 		@Nullable
 		private InProgress inProgress;

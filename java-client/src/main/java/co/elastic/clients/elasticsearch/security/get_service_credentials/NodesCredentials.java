@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_service_credentials.NodesCredentials
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/security/get_service_credentials/types.ts#L23-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodesCredentials implements JsonpSerializable {
 	private final NodeStatistics nodes;
@@ -51,8 +58,8 @@ public class NodesCredentials implements JsonpSerializable {
 
 	private NodesCredentials(Builder builder) {
 
-		this.nodes = ModelTypeHelper.requireNonNull(builder.nodes, this, "nodes");
-		this.fileTokens = ModelTypeHelper.unmodifiableRequired(builder.fileTokens, this, "fileTokens");
+		this.nodes = ApiTypeHelper.requireNonNull(builder.nodes, this, "nodes");
+		this.fileTokens = ApiTypeHelper.unmodifiableRequired(builder.fileTokens, this, "fileTokens");
 
 	}
 
@@ -93,7 +100,7 @@ public class NodesCredentials implements JsonpSerializable {
 		generator.writeKey("_nodes");
 		this.nodes.serialize(generator, mapper);
 
-		if (ModelTypeHelper.isDefined(this.fileTokens)) {
+		if (ApiTypeHelper.isDefined(this.fileTokens)) {
 			generator.writeKey("file_tokens");
 			generator.writeStartObject();
 			for (Map.Entry<String, NodesCredentialsFileToken> item0 : this.fileTokens.entrySet()) {
@@ -112,6 +119,7 @@ public class NodesCredentials implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodesCredentials}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodesCredentials> {
 		private NodeStatistics nodes;
 
@@ -143,11 +151,9 @@ public class NodesCredentials implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code file_tokens}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>fileTokens</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>fileTokens</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>fileTokens</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder fileTokens(Map<String, NodesCredentialsFileToken> map) {
 			this.fileTokens = _mapPutAll(this.fileTokens, map);

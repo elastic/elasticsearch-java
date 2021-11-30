@@ -40,7 +40,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -56,6 +56,18 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: ml.update_datafeed.Request
+
+/**
+ * Updates the properties of a datafeed. You must stop and start the datafeed
+ * for the changes to be applied. When Elasticsearch security features are
+ * enabled, your datafeed remembers which roles the user who updated it had at
+ * the time of the update and runs the query using those same roles. If you
+ * provide secondary authorization headers, those credentials are used instead.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/update_datafeed/MlUpdateDatafeedRequest.ts#L31-L161">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializable {
 	private final Map<String, Aggregation> aggregations;
@@ -107,22 +119,22 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 
 	private UpdateDatafeedRequest(Builder builder) {
 
-		this.aggregations = ModelTypeHelper.unmodifiable(builder.aggregations);
+		this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);
 		this.allowNoIndices = builder.allowNoIndices;
 		this.chunkingConfig = builder.chunkingConfig;
-		this.datafeedId = ModelTypeHelper.requireNonNull(builder.datafeedId, this, "datafeedId");
+		this.datafeedId = ApiTypeHelper.requireNonNull(builder.datafeedId, this, "datafeedId");
 		this.delayedDataCheckConfig = builder.delayedDataCheckConfig;
-		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
+		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.frequency = builder.frequency;
 		this.ignoreThrottled = builder.ignoreThrottled;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
-		this.indices = ModelTypeHelper.unmodifiable(builder.indices);
+		this.indices = ApiTypeHelper.unmodifiable(builder.indices);
 		this.indicesOptions = builder.indicesOptions;
 		this.maxEmptySearches = builder.maxEmptySearches;
 		this.query = builder.query;
 		this.queryDelay = builder.queryDelay;
-		this.runtimeMappings = ModelTypeHelper.unmodifiable(builder.runtimeMappings);
-		this.scriptFields = ModelTypeHelper.unmodifiable(builder.scriptFields);
+		this.runtimeMappings = ApiTypeHelper.unmodifiable(builder.runtimeMappings);
+		this.scriptFields = ApiTypeHelper.unmodifiable(builder.scriptFields);
 		this.scrollSize = builder.scrollSize;
 
 	}
@@ -237,7 +249,10 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 	 * frozen.
 	 * <p>
 	 * API name: {@code ignore_throttled}
+	 * 
+	 * @deprecated 7.16.0
 	 */
+	@Deprecated
 	@Nullable
 	public final Boolean ignoreThrottled() {
 		return this.ignoreThrottled;
@@ -366,7 +381,7 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.aggregations)) {
+		if (ApiTypeHelper.isDefined(this.aggregations)) {
 			generator.writeKey("aggregations");
 			generator.writeStartObject();
 			for (Map.Entry<String, Aggregation> item0 : this.aggregations.entrySet()) {
@@ -392,7 +407,7 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 			this.frequency.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.indices)) {
+		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartArray();
 			for (String item0 : this.indices) {
@@ -422,7 +437,7 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 			this.queryDelay.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.runtimeMappings)) {
+		if (ApiTypeHelper.isDefined(this.runtimeMappings)) {
 			generator.writeKey("runtime_mappings");
 			generator.writeStartObject();
 			for (Map.Entry<String, RuntimeField> item0 : this.runtimeMappings.entrySet()) {
@@ -433,7 +448,7 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.scriptFields)) {
+		if (ApiTypeHelper.isDefined(this.scriptFields)) {
 			generator.writeKey("script_fields");
 			generator.writeStartObject();
 			for (Map.Entry<String, ScriptField> item0 : this.scriptFields.entrySet()) {
@@ -457,6 +472,7 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Builder for {@link UpdateDatafeedRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UpdateDatafeedRequest> {
 		@Nullable
 		private Map<String, Aggregation> aggregations;
@@ -514,11 +530,9 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code aggregations}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>aggregations</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>aggregations</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>aggregations</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder aggregations(Map<String, Aggregation> map) {
 			this.aggregations = _mapPutAll(this.aggregations, map);
@@ -650,11 +664,9 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>expandWildcards</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder expandWildcards(List<ExpandWildcard> list) {
 			this.expandWildcards = _listAddAll(this.expandWildcards, list);
@@ -722,7 +734,10 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 		 * frozen.
 		 * <p>
 		 * API name: {@code ignore_throttled}
+		 * 
+		 * @deprecated 7.16.0
 		 */
+		@Deprecated
 		public final Builder ignoreThrottled(@Nullable Boolean value) {
 			this.ignoreThrottled = value;
 			return this;
@@ -745,11 +760,9 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code indices}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>indices</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>indices</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder indices(List<String> list) {
 			this.indices = _listAddAll(this.indices, list);
@@ -874,11 +887,9 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code runtime_mappings}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>runtimeMappings</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>runtimeMappings</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>runtimeMappings</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder runtimeMappings(Map<String, RuntimeField> map) {
 			this.runtimeMappings = _mapPutAll(this.runtimeMappings, map);
@@ -916,11 +927,9 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code script_fields}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>scriptFields</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>scriptFields</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>scriptFields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder scriptFields(Map<String, ScriptField> map) {
 			this.scriptFields = _mapPutAll(this.scriptFields, map);
@@ -1046,7 +1055,7 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (ModelTypeHelper.isDefined(request.expandWildcards)) {
+				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}

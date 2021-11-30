@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.disk_usage.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/disk_usage/IndicesDiskUsageResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DiskUsageResponse implements JsonpSerializable {
 	private final JsonData valueBody;
@@ -47,7 +54,7 @@ public class DiskUsageResponse implements JsonpSerializable {
 
 	private DiskUsageResponse(Builder builder) {
 
-		this.valueBody = ModelTypeHelper.requireNonNull(builder.valueBody, this, "valueBody");
+		this.valueBody = ApiTypeHelper.requireNonNull(builder.valueBody, this, "valueBody");
 
 	}
 
@@ -77,6 +84,7 @@ public class DiskUsageResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link DiskUsageResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DiskUsageResponse> {
 		private JsonData valueBody;
 

@@ -37,6 +37,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.ScoreSort
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/sort.ts#L54-L56">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ScoreSort implements SortOptionsVariant, JsonpSerializable {
 	@Nullable
@@ -93,6 +100,7 @@ public class ScoreSort implements SortOptionsVariant, JsonpSerializable {
 	/**
 	 * Builder for {@link ScoreSort}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ScoreSort> {
 		@Nullable
 		private SortOrder order;

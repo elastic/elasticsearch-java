@@ -33,7 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -48,6 +48,14 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_mapping.Request
+
+/**
+ * Returns mappings for one or more indices.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/get_mapping/IndicesGetMappingRequest.ts#L24-L41">API
+ *      specification</a>
+ */
 
 public class GetMappingRequest extends RequestBase {
 	@Nullable
@@ -74,10 +82,10 @@ public class GetMappingRequest extends RequestBase {
 	private GetMappingRequest(Builder builder) {
 
 		this.allowNoIndices = builder.allowNoIndices;
-		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
+		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.includeTypeName = builder.includeTypeName;
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
+		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.local = builder.local;
 		this.masterTimeout = builder.masterTimeout;
 
@@ -163,6 +171,7 @@ public class GetMappingRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetMappingRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetMappingRequest> {
 		@Nullable
 		private Boolean allowNoIndices;
@@ -203,11 +212,9 @@ public class GetMappingRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>expandWildcards</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder expandWildcards(List<ExpandWildcard> list) {
 			this.expandWildcards = _listAddAll(this.expandWildcards, list);
@@ -251,11 +258,9 @@ public class GetMappingRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>index</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>index</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder index(List<String> list) {
 			this.index = _listAddAll(this.index, list);
@@ -337,7 +342,7 @@ public class GetMappingRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (ModelTypeHelper.isDefined(request.index()))
+				if (ApiTypeHelper.isDefined(request.index()))
 					propsSet |= _index;
 
 				if (propsSet == 0) {
@@ -365,7 +370,7 @@ public class GetMappingRequest extends RequestBase {
 				if (request.includeTypeName != null) {
 					params.put("include_type_name", String.valueOf(request.includeTypeName));
 				}
-				if (ModelTypeHelper.isDefined(request.expandWildcards)) {
+				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}

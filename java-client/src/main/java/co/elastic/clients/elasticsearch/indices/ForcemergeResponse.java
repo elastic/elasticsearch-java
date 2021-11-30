@@ -34,6 +34,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: indices.forcemerge.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/forcemerge/IndicesForceMergeResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ForcemergeResponse extends ShardsOperationResponseBase {
 	// ---------------------------------------------------------------------------------------------
@@ -52,6 +59,7 @@ public class ForcemergeResponse extends ShardsOperationResponseBase {
 	/**
 	 * Builder for {@link ForcemergeResponse}.
 	 */
+
 	public static class Builder extends ShardsOperationResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ForcemergeResponse> {

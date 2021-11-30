@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -46,6 +46,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.update_by_query.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/update_by_query/UpdateByQueryResponse.ts#L25-L42">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class UpdateByQueryResponse implements JsonpSerializable {
 	@Nullable
@@ -94,7 +101,7 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 	private UpdateByQueryResponse(Builder builder) {
 
 		this.batches = builder.batches;
-		this.failures = ModelTypeHelper.unmodifiable(builder.failures);
+		this.failures = ApiTypeHelper.unmodifiable(builder.failures);
 		this.noops = builder.noops;
 		this.deleted = builder.deleted;
 		this.requestsPerSecond = builder.requestsPerSecond;
@@ -241,7 +248,7 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 			generator.write(this.batches);
 
 		}
-		if (ModelTypeHelper.isDefined(this.failures)) {
+		if (ApiTypeHelper.isDefined(this.failures)) {
 			generator.writeKey("failures");
 			generator.writeStartArray();
 			for (BulkIndexByScrollFailure item0 : this.failures) {
@@ -319,6 +326,7 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link UpdateByQueryResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UpdateByQueryResponse> {
 		@Nullable
 		private Long batches;
@@ -373,11 +381,9 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code failures}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>failures</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>failures</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>failures</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder failures(List<BulkIndexByScrollFailure> list) {
 			this.failures = _listAddAll(this.failures, list);

@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,6 +37,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.PatternReplaceTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/analysis/token_filters.ts#L282-L287">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PatternReplaceTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final String flags;
@@ -50,9 +57,9 @@ public class PatternReplaceTokenFilter extends TokenFilterBase implements TokenF
 	private PatternReplaceTokenFilter(Builder builder) {
 		super(builder);
 
-		this.flags = ModelTypeHelper.requireNonNull(builder.flags, this, "flags");
-		this.pattern = ModelTypeHelper.requireNonNull(builder.pattern, this, "pattern");
-		this.replacement = ModelTypeHelper.requireNonNull(builder.replacement, this, "replacement");
+		this.flags = ApiTypeHelper.requireNonNull(builder.flags, this, "flags");
+		this.pattern = ApiTypeHelper.requireNonNull(builder.pattern, this, "pattern");
+		this.replacement = ApiTypeHelper.requireNonNull(builder.replacement, this, "replacement");
 
 	}
 
@@ -109,6 +116,7 @@ public class PatternReplaceTokenFilter extends TokenFilterBase implements TokenF
 	/**
 	 * Builder for {@link PatternReplaceTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PatternReplaceTokenFilter> {

@@ -34,7 +34,7 @@ import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -49,6 +49,13 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: _global.knn_search.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/knn_search/KnnSearchResponse.ts#L26-L54">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class KnnSearchResponse<TDocument> implements JsonpSerializable {
 	private final long took;
@@ -71,11 +78,11 @@ public class KnnSearchResponse<TDocument> implements JsonpSerializable {
 
 	private KnnSearchResponse(Builder<TDocument> builder) {
 
-		this.took = ModelTypeHelper.requireNonNull(builder.took, this, "took");
-		this.timedOut = ModelTypeHelper.requireNonNull(builder.timedOut, this, "timedOut");
-		this.shards = ModelTypeHelper.requireNonNull(builder.shards, this, "shards");
-		this.hits = ModelTypeHelper.requireNonNull(builder.hits, this, "hits");
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
+		this.took = ApiTypeHelper.requireNonNull(builder.took, this, "took");
+		this.timedOut = ApiTypeHelper.requireNonNull(builder.timedOut, this, "timedOut");
+		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
+		this.hits = ApiTypeHelper.requireNonNull(builder.hits, this, "hits");
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 		this.maxScore = builder.maxScore;
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
@@ -167,7 +174,7 @@ public class KnnSearchResponse<TDocument> implements JsonpSerializable {
 		generator.writeKey("hits");
 		this.hits.serialize(generator, mapper);
 
-		if (ModelTypeHelper.isDefined(this.fields)) {
+		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.fields.entrySet()) {
@@ -191,6 +198,7 @@ public class KnnSearchResponse<TDocument> implements JsonpSerializable {
 	/**
 	 * Builder for {@link KnnSearchResponse}.
 	 */
+
 	public static class Builder<TDocument> extends ObjectBuilderBase
 			implements
 				ObjectBuilder<KnnSearchResponse<TDocument>> {
@@ -277,11 +285,9 @@ public class KnnSearchResponse<TDocument> implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code fields}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>fields</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>fields</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>fields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder<TDocument> fields(Map<String, JsonData> map) {
 			this.fields = _mapPutAll(this.fields, map);
@@ -337,7 +343,7 @@ public class KnnSearchResponse<TDocument> implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for KnnSearchResponse
+	 * Create a JSON deserializer for KnnSearchResponse
 	 */
 	public static <TDocument> JsonpDeserializer<KnnSearchResponse<TDocument>> createKnnSearchResponseDeserializer(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {

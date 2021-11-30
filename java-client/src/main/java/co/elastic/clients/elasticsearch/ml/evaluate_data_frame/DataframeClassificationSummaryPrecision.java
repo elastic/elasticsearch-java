@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.DataframeClassificationSummaryPrecision
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/evaluate_data_frame/types.ts#L60-L63">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeClassificationSummaryPrecision implements JsonpSerializable {
 	private final List<DataframeEvaluationClass> classes;
@@ -50,8 +57,8 @@ public class DataframeClassificationSummaryPrecision implements JsonpSerializabl
 
 	private DataframeClassificationSummaryPrecision(Builder builder) {
 
-		this.classes = ModelTypeHelper.unmodifiableRequired(builder.classes, this, "classes");
-		this.avgPrecision = ModelTypeHelper.requireNonNull(builder.avgPrecision, this, "avgPrecision");
+		this.classes = ApiTypeHelper.unmodifiableRequired(builder.classes, this, "classes");
+		this.avgPrecision = ApiTypeHelper.requireNonNull(builder.avgPrecision, this, "avgPrecision");
 
 	}
 
@@ -85,7 +92,7 @@ public class DataframeClassificationSummaryPrecision implements JsonpSerializabl
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.classes)) {
+		if (ApiTypeHelper.isDefined(this.classes)) {
 			generator.writeKey("classes");
 			generator.writeStartArray();
 			for (DataframeEvaluationClass item0 : this.classes) {
@@ -105,6 +112,7 @@ public class DataframeClassificationSummaryPrecision implements JsonpSerializabl
 	/**
 	 * Builder for {@link DataframeClassificationSummaryPrecision}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase
 			implements
 				ObjectBuilder<DataframeClassificationSummaryPrecision> {
@@ -115,11 +123,9 @@ public class DataframeClassificationSummaryPrecision implements JsonpSerializabl
 		/**
 		 * Required - API name: {@code classes}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>classes</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>classes</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>classes</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder classes(List<DataframeEvaluationClass> list) {
 			this.classes = _listAddAll(this.classes, list);

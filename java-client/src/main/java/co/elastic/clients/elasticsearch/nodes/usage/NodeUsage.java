@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.usage.NodeUsage
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/nodes/usage/types.ts#L25-L30">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeUsage implements JsonpSerializable {
 	private final Map<String, Integer> restActions;
@@ -56,10 +63,10 @@ public class NodeUsage implements JsonpSerializable {
 
 	private NodeUsage(Builder builder) {
 
-		this.restActions = ModelTypeHelper.unmodifiableRequired(builder.restActions, this, "restActions");
-		this.since = ModelTypeHelper.requireNonNull(builder.since, this, "since");
-		this.timestamp = ModelTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
-		this.aggregations = ModelTypeHelper.unmodifiableRequired(builder.aggregations, this, "aggregations");
+		this.restActions = ApiTypeHelper.unmodifiableRequired(builder.restActions, this, "restActions");
+		this.since = ApiTypeHelper.requireNonNull(builder.since, this, "since");
+		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+		this.aggregations = ApiTypeHelper.unmodifiableRequired(builder.aggregations, this, "aggregations");
 
 	}
 
@@ -106,7 +113,7 @@ public class NodeUsage implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.restActions)) {
+		if (ApiTypeHelper.isDefined(this.restActions)) {
 			generator.writeKey("rest_actions");
 			generator.writeStartObject();
 			for (Map.Entry<String, Integer> item0 : this.restActions.entrySet()) {
@@ -123,7 +130,7 @@ public class NodeUsage implements JsonpSerializable {
 		generator.writeKey("timestamp");
 		generator.write(this.timestamp);
 
-		if (ModelTypeHelper.isDefined(this.aggregations)) {
+		if (ApiTypeHelper.isDefined(this.aggregations)) {
 			generator.writeKey("aggregations");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.aggregations.entrySet()) {
@@ -142,6 +149,7 @@ public class NodeUsage implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeUsage}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeUsage> {
 		private Map<String, Integer> restActions;
 
@@ -154,11 +162,9 @@ public class NodeUsage implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code rest_actions}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>restActions</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>restActions</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>restActions</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder restActions(Map<String, Integer> map) {
 			this.restActions = _mapPutAll(this.restActions, map);
@@ -194,11 +200,9 @@ public class NodeUsage implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code aggregations}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>aggregations</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>aggregations</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>aggregations</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder aggregations(Map<String, JsonData> map) {
 			this.aggregations = _mapPutAll(this.aggregations, map);

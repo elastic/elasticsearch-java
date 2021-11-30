@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
@@ -42,10 +42,19 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.SmoothingModelContainer
-// union type: Container[]
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/search/_types/suggester.ts#L193-L200">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SmoothingModel implements TaggedUnion<SmoothingModel.Kind, Object>, JsonpSerializable {
 
+	/**
+	 * {@link SmoothingModel} variant kinds.
+	 */
 	/**
 	 * {@link SmoothingModel} variant kinds.
 	 */
@@ -86,15 +95,15 @@ public class SmoothingModel implements TaggedUnion<SmoothingModel.Kind, Object>,
 
 	public SmoothingModel(SmoothingModelVariant value) {
 
-		this._kind = ModelTypeHelper.requireNonNull(value._smoothingModelKind(), this, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(value._smoothingModelKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
 	private SmoothingModel(Builder builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 

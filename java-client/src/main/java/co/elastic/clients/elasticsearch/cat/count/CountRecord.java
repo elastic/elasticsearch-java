@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.count.CountRecord
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cat/count/types.ts#L22-L38">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CountRecord implements JsonpSerializable {
 	@Nullable
@@ -127,6 +134,7 @@ public class CountRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link CountRecord}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CountRecord> {
 		@Nullable
 		private String epoch;

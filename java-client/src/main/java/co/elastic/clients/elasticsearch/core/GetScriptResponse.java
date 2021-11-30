@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.get_script.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/get_script/GetScriptResponse.ts#L23-L29">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetScriptResponse implements JsonpSerializable {
 	private final String id;
@@ -54,8 +61,8 @@ public class GetScriptResponse implements JsonpSerializable {
 
 	private GetScriptResponse(Builder builder) {
 
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
-		this.found = ModelTypeHelper.requireNonNull(builder.found, this, "found");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found");
 		this.script = builder.script;
 
 	}
@@ -116,6 +123,7 @@ public class GetScriptResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetScriptResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetScriptResponse> {
 		private String id;
 

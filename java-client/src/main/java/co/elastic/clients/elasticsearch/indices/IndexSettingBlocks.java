@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexSettingBlocks
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/_types/IndexSettings.ts#L275-L281">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IndexSettingBlocks implements JsonpSerializable {
 	@Nullable
@@ -155,6 +162,7 @@ public class IndexSettingBlocks implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexSettingBlocks}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexSettingBlocks> {
 		@Nullable
 		private Boolean readOnly;

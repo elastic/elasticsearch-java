@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.SimpleAnalyzer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/analysis/analyzers.ts#L83-L86">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SimpleAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	@Nullable
@@ -97,6 +104,7 @@ public class SimpleAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	/**
 	 * Builder for {@link SimpleAnalyzer}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SimpleAnalyzer> {
 		@Nullable
 		private String version;

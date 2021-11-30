@@ -33,7 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -46,6 +46,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model_definition_part.Request
+
+/**
+ * Creates part of a trained model definition.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/put_trained_model_definition_part/MlPutTrainedModelDefinitionPartRequest.ts#L24-L57">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutTrainedModelDefinitionPartRequest extends RequestBase implements JsonpSerializable {
 	private final String definition;
@@ -62,12 +70,12 @@ public class PutTrainedModelDefinitionPartRequest extends RequestBase implements
 
 	private PutTrainedModelDefinitionPartRequest(Builder builder) {
 
-		this.definition = ModelTypeHelper.requireNonNull(builder.definition, this, "definition");
-		this.modelId = ModelTypeHelper.requireNonNull(builder.modelId, this, "modelId");
-		this.part = ModelTypeHelper.requireNonNull(builder.part, this, "part");
-		this.totalDefinitionLength = ModelTypeHelper.requireNonNull(builder.totalDefinitionLength, this,
+		this.definition = ApiTypeHelper.requireNonNull(builder.definition, this, "definition");
+		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
+		this.part = ApiTypeHelper.requireNonNull(builder.part, this, "part");
+		this.totalDefinitionLength = ApiTypeHelper.requireNonNull(builder.totalDefinitionLength, this,
 				"totalDefinitionLength");
-		this.totalParts = ModelTypeHelper.requireNonNull(builder.totalParts, this, "totalParts");
+		this.totalParts = ApiTypeHelper.requireNonNull(builder.totalParts, this, "totalParts");
 
 	}
 
@@ -154,6 +162,7 @@ public class PutTrainedModelDefinitionPartRequest extends RequestBase implements
 	/**
 	 * Builder for {@link PutTrainedModelDefinitionPartRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase
 			implements
 				ObjectBuilder<PutTrainedModelDefinitionPartRequest> {

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TopMetricsAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/metric.ts#L177-L181">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TopMetricsAggregation extends MetricAggregationBase implements AggregationVariant {
 	private final List<TopMetricsValue> metrics;
@@ -53,9 +60,9 @@ public class TopMetricsAggregation extends MetricAggregationBase implements Aggr
 	private TopMetricsAggregation(Builder builder) {
 		super(builder);
 
-		this.metrics = ModelTypeHelper.unmodifiable(builder.metrics);
+		this.metrics = ApiTypeHelper.unmodifiable(builder.metrics);
 		this.size = builder.size;
-		this.sort = ModelTypeHelper.unmodifiable(builder.sort);
+		this.sort = ApiTypeHelper.unmodifiable(builder.sort);
 
 	}
 
@@ -96,7 +103,7 @@ public class TopMetricsAggregation extends MetricAggregationBase implements Aggr
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.metrics)) {
+		if (ApiTypeHelper.isDefined(this.metrics)) {
 			generator.writeKey("metrics");
 			generator.writeStartArray();
 			for (TopMetricsValue item0 : this.metrics) {
@@ -111,7 +118,7 @@ public class TopMetricsAggregation extends MetricAggregationBase implements Aggr
 			generator.write(this.size);
 
 		}
-		if (ModelTypeHelper.isDefined(this.sort)) {
+		if (ApiTypeHelper.isDefined(this.sort)) {
 			generator.writeKey("sort");
 			generator.writeStartArray();
 			for (SortOptions item0 : this.sort) {
@@ -129,6 +136,7 @@ public class TopMetricsAggregation extends MetricAggregationBase implements Aggr
 	/**
 	 * Builder for {@link TopMetricsAggregation}.
 	 */
+
 	public static class Builder extends MetricAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<TopMetricsAggregation> {
@@ -144,11 +152,9 @@ public class TopMetricsAggregation extends MetricAggregationBase implements Aggr
 		/**
 		 * API name: {@code metrics}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>metrics</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>metrics</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>metrics</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder metrics(List<TopMetricsValue> list) {
 			this.metrics = _listAddAll(this.metrics, list);
@@ -185,11 +191,9 @@ public class TopMetricsAggregation extends MetricAggregationBase implements Aggr
 		/**
 		 * API name: {@code sort}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>sort</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>sort</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>sort</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder sort(List<SortOptions> list) {
 			this.sort = _listAddAll(this.sort, list);

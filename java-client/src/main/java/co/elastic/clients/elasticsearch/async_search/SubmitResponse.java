@@ -35,6 +35,13 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 // typedef: async_search.submit.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/async_search/submit/AsyncSearchSubmitResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SubmitResponse<TDocument> extends AsyncSearchDocumentResponseBase<TDocument> {
 	// ---------------------------------------------------------------------------------------------
@@ -54,6 +61,7 @@ public class SubmitResponse<TDocument> extends AsyncSearchDocumentResponseBase<T
 	/**
 	 * Builder for {@link SubmitResponse}.
 	 */
+
 	public static class Builder<TDocument>
 			extends
 				AsyncSearchDocumentResponseBase.AbstractBuilder<TDocument, Builder<TDocument>>
@@ -80,7 +88,7 @@ public class SubmitResponse<TDocument> extends AsyncSearchDocumentResponseBase<T
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for SubmitResponse
+	 * Create a JSON deserializer for SubmitResponse
 	 */
 	public static <TDocument> JsonpDeserializer<SubmitResponse<TDocument>> createSubmitResponseDeserializer(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {

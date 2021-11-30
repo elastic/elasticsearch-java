@@ -35,6 +35,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.NormalizeAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/pipeline.ts#L189-L191">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NormalizeAggregation extends PipelineAggregationBase implements AggregationVariant {
 	@Nullable
@@ -84,6 +91,7 @@ public class NormalizeAggregation extends PipelineAggregationBase implements Agg
 	/**
 	 * Builder for {@link NormalizeAggregation}.
 	 */
+
 	public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<NormalizeAggregation> {

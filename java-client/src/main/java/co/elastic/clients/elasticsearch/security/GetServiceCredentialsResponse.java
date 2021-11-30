@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,6 +43,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_service_credentials.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/security/get_service_credentials/GetServiceCredentialsResponse.ts#L25-L33">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetServiceCredentialsResponse implements JsonpSerializable {
 	private final String serviceAccount;
@@ -57,10 +64,10 @@ public class GetServiceCredentialsResponse implements JsonpSerializable {
 
 	private GetServiceCredentialsResponse(Builder builder) {
 
-		this.serviceAccount = ModelTypeHelper.requireNonNull(builder.serviceAccount, this, "serviceAccount");
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
-		this.tokens = ModelTypeHelper.unmodifiableRequired(builder.tokens, this, "tokens");
-		this.nodesCredentials = ModelTypeHelper.requireNonNull(builder.nodesCredentials, this, "nodesCredentials");
+		this.serviceAccount = ApiTypeHelper.requireNonNull(builder.serviceAccount, this, "serviceAccount");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.tokens = ApiTypeHelper.unmodifiableRequired(builder.tokens, this, "tokens");
+		this.nodesCredentials = ApiTypeHelper.requireNonNull(builder.nodesCredentials, this, "nodesCredentials");
 
 	}
 
@@ -116,7 +123,7 @@ public class GetServiceCredentialsResponse implements JsonpSerializable {
 		generator.writeKey("count");
 		generator.write(this.count);
 
-		if (ModelTypeHelper.isDefined(this.tokens)) {
+		if (ApiTypeHelper.isDefined(this.tokens)) {
 			generator.writeKey("tokens");
 			generator.writeStartObject();
 			for (Map.Entry<String, Map<String, JsonData>> item0 : this.tokens.entrySet()) {
@@ -145,6 +152,7 @@ public class GetServiceCredentialsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetServiceCredentialsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetServiceCredentialsResponse> {
 		private String serviceAccount;
 
@@ -173,11 +181,9 @@ public class GetServiceCredentialsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code tokens}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>tokens</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>tokens</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>tokens</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder tokens(Map<String, Map<String, JsonData>> map) {
 			this.tokens = _mapPutAll(this.tokens, map);

@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Realm
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/xpack/usage/types.ts#L378-L387">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Realm extends Base {
 	private final List<String> name;
@@ -63,14 +70,14 @@ public class Realm extends Base {
 	private Realm(Builder builder) {
 		super(builder);
 
-		this.name = ModelTypeHelper.unmodifiable(builder.name);
-		this.order = ModelTypeHelper.unmodifiable(builder.order);
-		this.size = ModelTypeHelper.unmodifiable(builder.size);
-		this.cache = ModelTypeHelper.unmodifiable(builder.cache);
-		this.hasAuthorizationRealms = ModelTypeHelper.unmodifiable(builder.hasAuthorizationRealms);
-		this.hasDefaultUsernamePattern = ModelTypeHelper.unmodifiable(builder.hasDefaultUsernamePattern);
-		this.hasTruststore = ModelTypeHelper.unmodifiable(builder.hasTruststore);
-		this.isAuthenticationDelegated = ModelTypeHelper.unmodifiable(builder.isAuthenticationDelegated);
+		this.name = ApiTypeHelper.unmodifiable(builder.name);
+		this.order = ApiTypeHelper.unmodifiable(builder.order);
+		this.size = ApiTypeHelper.unmodifiable(builder.size);
+		this.cache = ApiTypeHelper.unmodifiable(builder.cache);
+		this.hasAuthorizationRealms = ApiTypeHelper.unmodifiable(builder.hasAuthorizationRealms);
+		this.hasDefaultUsernamePattern = ApiTypeHelper.unmodifiable(builder.hasDefaultUsernamePattern);
+		this.hasTruststore = ApiTypeHelper.unmodifiable(builder.hasTruststore);
+		this.isAuthenticationDelegated = ApiTypeHelper.unmodifiable(builder.isAuthenticationDelegated);
 
 	}
 
@@ -137,7 +144,7 @@ public class Realm extends Base {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.name)) {
+		if (ApiTypeHelper.isDefined(this.name)) {
 			generator.writeKey("name");
 			generator.writeStartArray();
 			for (String item0 : this.name) {
@@ -147,7 +154,7 @@ public class Realm extends Base {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.order)) {
+		if (ApiTypeHelper.isDefined(this.order)) {
 			generator.writeKey("order");
 			generator.writeStartArray();
 			for (Long item0 : this.order) {
@@ -157,7 +164,7 @@ public class Realm extends Base {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.size)) {
+		if (ApiTypeHelper.isDefined(this.size)) {
 			generator.writeKey("size");
 			generator.writeStartArray();
 			for (Long item0 : this.size) {
@@ -167,7 +174,7 @@ public class Realm extends Base {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.cache)) {
+		if (ApiTypeHelper.isDefined(this.cache)) {
 			generator.writeKey("cache");
 			generator.writeStartArray();
 			for (RealmCache item0 : this.cache) {
@@ -177,7 +184,7 @@ public class Realm extends Base {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.hasAuthorizationRealms)) {
+		if (ApiTypeHelper.isDefined(this.hasAuthorizationRealms)) {
 			generator.writeKey("has_authorization_realms");
 			generator.writeStartArray();
 			for (Boolean item0 : this.hasAuthorizationRealms) {
@@ -187,7 +194,7 @@ public class Realm extends Base {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.hasDefaultUsernamePattern)) {
+		if (ApiTypeHelper.isDefined(this.hasDefaultUsernamePattern)) {
 			generator.writeKey("has_default_username_pattern");
 			generator.writeStartArray();
 			for (Boolean item0 : this.hasDefaultUsernamePattern) {
@@ -197,7 +204,7 @@ public class Realm extends Base {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.hasTruststore)) {
+		if (ApiTypeHelper.isDefined(this.hasTruststore)) {
 			generator.writeKey("has_truststore");
 			generator.writeStartArray();
 			for (Boolean item0 : this.hasTruststore) {
@@ -207,7 +214,7 @@ public class Realm extends Base {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.isAuthenticationDelegated)) {
+		if (ApiTypeHelper.isDefined(this.isAuthenticationDelegated)) {
 			generator.writeKey("is_authentication_delegated");
 			generator.writeStartArray();
 			for (Boolean item0 : this.isAuthenticationDelegated) {
@@ -225,6 +232,7 @@ public class Realm extends Base {
 	/**
 	 * Builder for {@link Realm}.
 	 */
+
 	public static class Builder extends Base.AbstractBuilder<Builder> implements ObjectBuilder<Realm> {
 		@Nullable
 		private List<String> name;
@@ -253,11 +261,9 @@ public class Realm extends Base {
 		/**
 		 * API name: {@code name}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>name</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>name</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>name</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder name(List<String> list) {
 			this.name = _listAddAll(this.name, list);
@@ -277,11 +283,9 @@ public class Realm extends Base {
 		/**
 		 * API name: {@code order}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>order</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>order</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>order</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder order(List<Long> list) {
 			this.order = _listAddAll(this.order, list);
@@ -301,11 +305,9 @@ public class Realm extends Base {
 		/**
 		 * API name: {@code size}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>size</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>size</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>size</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder size(List<Long> list) {
 			this.size = _listAddAll(this.size, list);
@@ -325,11 +327,9 @@ public class Realm extends Base {
 		/**
 		 * API name: {@code cache}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>cache</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>cache</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>cache</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder cache(List<RealmCache> list) {
 			this.cache = _listAddAll(this.cache, list);
@@ -359,11 +359,9 @@ public class Realm extends Base {
 		 * API name: {@code has_authorization_realms}
 		 * <p>
 		 * Adds all elements of <code>list</code> to
-		 * <code>hasAuthorizationRealms</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>hasAuthorizationRealms</code> to <code>null</code>.
+		 * <code>hasAuthorizationRealms</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder hasAuthorizationRealms(List<Boolean> list) {
 			this.hasAuthorizationRealms = _listAddAll(this.hasAuthorizationRealms, list);
@@ -384,11 +382,9 @@ public class Realm extends Base {
 		 * API name: {@code has_default_username_pattern}
 		 * <p>
 		 * Adds all elements of <code>list</code> to
-		 * <code>hasDefaultUsernamePattern</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>hasDefaultUsernamePattern</code> to <code>null</code>.
+		 * <code>hasDefaultUsernamePattern</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder hasDefaultUsernamePattern(List<Boolean> list) {
 			this.hasDefaultUsernamePattern = _listAddAll(this.hasDefaultUsernamePattern, list);
@@ -408,11 +404,9 @@ public class Realm extends Base {
 		/**
 		 * API name: {@code has_truststore}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>hasTruststore</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>hasTruststore</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>hasTruststore</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder hasTruststore(List<Boolean> list) {
 			this.hasTruststore = _listAddAll(this.hasTruststore, list);
@@ -433,11 +427,9 @@ public class Realm extends Base {
 		 * API name: {@code is_authentication_delegated}
 		 * <p>
 		 * Adds all elements of <code>list</code> to
-		 * <code>isAuthenticationDelegated</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>isAuthenticationDelegated</code> to <code>null</code>.
+		 * <code>isAuthenticationDelegated</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder isAuthenticationDelegated(List<Boolean> list) {
 			this.isAuthenticationDelegated = _listAddAll(this.isAuthenticationDelegated, list);

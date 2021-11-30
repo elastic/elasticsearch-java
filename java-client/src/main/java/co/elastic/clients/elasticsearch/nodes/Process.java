@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.Process
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/nodes/_types/Stats.ts#L200-L205">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Process implements JsonpSerializable {
 	private final Cpu cpu;
@@ -54,11 +61,11 @@ public class Process implements JsonpSerializable {
 
 	private Process(Builder builder) {
 
-		this.cpu = ModelTypeHelper.requireNonNull(builder.cpu, this, "cpu");
-		this.mem = ModelTypeHelper.requireNonNull(builder.mem, this, "mem");
-		this.openFileDescriptors = ModelTypeHelper.requireNonNull(builder.openFileDescriptors, this,
+		this.cpu = ApiTypeHelper.requireNonNull(builder.cpu, this, "cpu");
+		this.mem = ApiTypeHelper.requireNonNull(builder.mem, this, "mem");
+		this.openFileDescriptors = ApiTypeHelper.requireNonNull(builder.openFileDescriptors, this,
 				"openFileDescriptors");
-		this.timestamp = ModelTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
 
 	}
 
@@ -124,6 +131,7 @@ public class Process implements JsonpSerializable {
 	/**
 	 * Builder for {@link Process}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Process> {
 		private Cpu cpu;
 

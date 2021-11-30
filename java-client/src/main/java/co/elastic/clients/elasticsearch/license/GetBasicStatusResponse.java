@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: license.get_basic_status.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/license/get_basic_status/GetBasicLicenseStatusResponse.ts#L20-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetBasicStatusResponse implements JsonpSerializable {
 	private final boolean eligibleToStartBasic;
@@ -46,7 +53,7 @@ public class GetBasicStatusResponse implements JsonpSerializable {
 
 	private GetBasicStatusResponse(Builder builder) {
 
-		this.eligibleToStartBasic = ModelTypeHelper.requireNonNull(builder.eligibleToStartBasic, this,
+		this.eligibleToStartBasic = ApiTypeHelper.requireNonNull(builder.eligibleToStartBasic, this,
 				"eligibleToStartBasic");
 
 	}
@@ -83,6 +90,7 @@ public class GetBasicStatusResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetBasicStatusResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetBasicStatusResponse> {
 		private Boolean eligibleToStartBasic;
 

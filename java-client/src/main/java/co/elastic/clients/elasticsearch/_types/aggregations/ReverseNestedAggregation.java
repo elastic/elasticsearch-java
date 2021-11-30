@@ -36,6 +36,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ReverseNestedAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/bucket.ts#L277-L279">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ReverseNestedAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
@@ -86,6 +93,7 @@ public class ReverseNestedAggregation extends BucketAggregationBase implements A
 	/**
 	 * Builder for {@link ReverseNestedAggregation}.
 	 */
+
 	public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ReverseNestedAggregation> {

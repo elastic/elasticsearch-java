@@ -32,7 +32,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,6 +43,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform.update_transform.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/transform/update_transform/UpdateTransformResponse.ts#L26-L40">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class UpdateTransformResponse implements JsonpSerializable {
 	private final long createTime;
@@ -70,16 +77,16 @@ public class UpdateTransformResponse implements JsonpSerializable {
 
 	private UpdateTransformResponse(Builder builder) {
 
-		this.createTime = ModelTypeHelper.requireNonNull(builder.createTime, this, "createTime");
-		this.description = ModelTypeHelper.requireNonNull(builder.description, this, "description");
-		this.dest = ModelTypeHelper.requireNonNull(builder.dest, this, "dest");
-		this.frequency = ModelTypeHelper.requireNonNull(builder.frequency, this, "frequency");
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
-		this.pivot = ModelTypeHelper.requireNonNull(builder.pivot, this, "pivot");
-		this.settings = ModelTypeHelper.requireNonNull(builder.settings, this, "settings");
-		this.source = ModelTypeHelper.requireNonNull(builder.source, this, "source");
+		this.createTime = ApiTypeHelper.requireNonNull(builder.createTime, this, "createTime");
+		this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
+		this.dest = ApiTypeHelper.requireNonNull(builder.dest, this, "dest");
+		this.frequency = ApiTypeHelper.requireNonNull(builder.frequency, this, "frequency");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.pivot = ApiTypeHelper.requireNonNull(builder.pivot, this, "pivot");
+		this.settings = ApiTypeHelper.requireNonNull(builder.settings, this, "settings");
+		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
 		this.sync = builder.sync;
-		this.version = ModelTypeHelper.requireNonNull(builder.version, this, "version");
+		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
 
 	}
 
@@ -208,6 +215,7 @@ public class UpdateTransformResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link UpdateTransformResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UpdateTransformResponse> {
 		private Long createTime;
 

@@ -39,7 +39,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -53,6 +53,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.put_component_template.Request
+
+/**
+ * Creates or updates a component template
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cluster/put_component_template/ClusterPutComponentTemplateRequest.ts#L29-L53">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutComponentTemplateRequest extends RequestBase implements JsonpSerializable {
 	private final Map<String, JsonData> meta;
@@ -82,14 +90,14 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 
 	private PutComponentTemplateRequest(Builder builder) {
 
-		this.meta = ModelTypeHelper.unmodifiable(builder.meta);
-		this.aliases = ModelTypeHelper.unmodifiable(builder.aliases);
+		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
+		this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
 		this.create = builder.create;
 		this.mappings = builder.mappings;
 		this.masterTimeout = builder.masterTimeout;
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.settings = builder.settings;
-		this.template = ModelTypeHelper.requireNonNull(builder.template, this, "template");
+		this.template = ApiTypeHelper.requireNonNull(builder.template, this, "template");
 		this.version = builder.version;
 
 	}
@@ -184,7 +192,7 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.meta)) {
+		if (ApiTypeHelper.isDefined(this.meta)) {
 			generator.writeKey("_meta");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
@@ -195,7 +203,7 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.aliases)) {
+		if (ApiTypeHelper.isDefined(this.aliases)) {
 			generator.writeKey("aliases");
 			generator.writeStartObject();
 			for (Map.Entry<String, AliasDefinition> item0 : this.aliases.entrySet()) {
@@ -232,6 +240,7 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 	/**
 	 * Builder for {@link PutComponentTemplateRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutComponentTemplateRequest> {
 		@Nullable
 		private Map<String, JsonData> meta;
@@ -261,11 +270,9 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 		/**
 		 * API name: {@code _meta}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>meta</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>meta</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>meta</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder meta(Map<String, JsonData> map) {
 			this.meta = _mapPutAll(this.meta, map);
@@ -285,11 +292,9 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 		/**
 		 * API name: {@code aliases}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>aliases</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>aliases</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>aliases</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder aliases(Map<String, AliasDefinition> map) {
 			this.aliases = _mapPutAll(this.aliases, map);

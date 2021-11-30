@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.analyze.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/analyze/IndicesAnalyzeResponse.ts#L22-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AnalyzeResponse implements JsonpSerializable {
 	@Nullable
@@ -53,7 +60,7 @@ public class AnalyzeResponse implements JsonpSerializable {
 	private AnalyzeResponse(Builder builder) {
 
 		this.detail = builder.detail;
-		this.tokens = ModelTypeHelper.unmodifiable(builder.tokens);
+		this.tokens = ApiTypeHelper.unmodifiable(builder.tokens);
 
 	}
 
@@ -92,7 +99,7 @@ public class AnalyzeResponse implements JsonpSerializable {
 			this.detail.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.tokens)) {
+		if (ApiTypeHelper.isDefined(this.tokens)) {
 			generator.writeKey("tokens");
 			generator.writeStartArray();
 			for (AnalyzeToken item0 : this.tokens) {
@@ -110,6 +117,7 @@ public class AnalyzeResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link AnalyzeResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AnalyzeResponse> {
 		@Nullable
 		private AnalyzeDetail detail;
@@ -135,11 +143,9 @@ public class AnalyzeResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code tokens}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>tokens</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>tokens</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>tokens</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder tokens(List<AnalyzeToken> list) {
 			this.tokens = _listAddAll(this.tokens, list);

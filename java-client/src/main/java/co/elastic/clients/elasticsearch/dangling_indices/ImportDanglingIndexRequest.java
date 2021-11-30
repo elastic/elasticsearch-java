@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -45,6 +45,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: dangling_indices.import_dangling_index.Request
+
+/**
+ * Imports the specified dangling index
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/dangling_indices/import_dangling_index/ImportDanglingIndexRequest.ts#L24-L38">API
+ *      specification</a>
+ */
 
 public class ImportDanglingIndexRequest extends RequestBase {
 	private final boolean acceptDataLoss;
@@ -61,8 +69,8 @@ public class ImportDanglingIndexRequest extends RequestBase {
 
 	private ImportDanglingIndexRequest(Builder builder) {
 
-		this.acceptDataLoss = ModelTypeHelper.requireNonNull(builder.acceptDataLoss, this, "acceptDataLoss");
-		this.indexUuid = ModelTypeHelper.requireNonNull(builder.indexUuid, this, "indexUuid");
+		this.acceptDataLoss = ApiTypeHelper.requireNonNull(builder.acceptDataLoss, this, "acceptDataLoss");
+		this.indexUuid = ApiTypeHelper.requireNonNull(builder.indexUuid, this, "indexUuid");
 		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;
 
@@ -115,6 +123,7 @@ public class ImportDanglingIndexRequest extends RequestBase {
 	/**
 	 * Builder for {@link ImportDanglingIndexRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ImportDanglingIndexRequest> {
 		private Boolean acceptDataLoss;
 

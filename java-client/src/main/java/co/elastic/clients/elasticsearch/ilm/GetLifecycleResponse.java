@@ -36,6 +36,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: ilm.get_lifecycle.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ilm/get_lifecycle/GetLifecycleResponse.ts#L23-L23">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetLifecycleResponse extends DictionaryResponse<String, Lifecycle> {
 	// ---------------------------------------------------------------------------------------------
@@ -54,6 +61,7 @@ public class GetLifecycleResponse extends DictionaryResponse<String, Lifecycle> 
 	/**
 	 * Builder for {@link GetLifecycleResponse}.
 	 */
+
 	public static class Builder extends DictionaryResponse.AbstractBuilder<String, Lifecycle, Builder>
 			implements
 				ObjectBuilder<GetLifecycleResponse> {

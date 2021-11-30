@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -37,6 +37,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.SimpleMovingAverageAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/pipeline.ts#L134-L137">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SimpleMovingAverageAggregation extends MovingAverageAggregationBase
 		implements
@@ -48,7 +55,7 @@ public class SimpleMovingAverageAggregation extends MovingAverageAggregationBase
 	private SimpleMovingAverageAggregation(Builder builder) {
 		super(builder);
 
-		this.settings = ModelTypeHelper.requireNonNull(builder.settings, this, "settings");
+		this.settings = ApiTypeHelper.requireNonNull(builder.settings, this, "settings");
 
 	}
 
@@ -86,6 +93,7 @@ public class SimpleMovingAverageAggregation extends MovingAverageAggregationBase
 	/**
 	 * Builder for {@link SimpleMovingAverageAggregation}.
 	 */
+
 	public static class Builder extends MovingAverageAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<SimpleMovingAverageAggregation> {

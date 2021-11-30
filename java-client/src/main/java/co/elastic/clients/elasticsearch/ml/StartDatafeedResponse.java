@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.start_datafeed.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/start_datafeed/MlStartDatafeedResponse.ts#L22-L34">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class StartDatafeedResponse implements JsonpSerializable {
 	private final List<String> node;
@@ -51,8 +58,8 @@ public class StartDatafeedResponse implements JsonpSerializable {
 
 	private StartDatafeedResponse(Builder builder) {
 
-		this.node = ModelTypeHelper.unmodifiableRequired(builder.node, this, "node");
-		this.started = ModelTypeHelper.requireNonNull(builder.started, this, "started");
+		this.node = ApiTypeHelper.unmodifiableRequired(builder.node, this, "node");
+		this.started = ApiTypeHelper.requireNonNull(builder.started, this, "started");
 
 	}
 
@@ -92,7 +99,7 @@ public class StartDatafeedResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.node)) {
+		if (ApiTypeHelper.isDefined(this.node)) {
 			generator.writeKey("node");
 			generator.writeStartArray();
 			for (String item0 : this.node) {
@@ -112,6 +119,7 @@ public class StartDatafeedResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link StartDatafeedResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StartDatafeedResponse> {
 		private List<String> node;
 
@@ -124,11 +132,9 @@ public class StartDatafeedResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code node}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>node</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>node</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>node</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder node(List<String> list) {
 			this.node = _listAddAll(this.node, list);

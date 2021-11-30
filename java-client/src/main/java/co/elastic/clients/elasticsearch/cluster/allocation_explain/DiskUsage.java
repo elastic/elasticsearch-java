@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.DiskUsage
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cluster/allocation_explain/types.ts#L62-L69">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DiskUsage implements JsonpSerializable {
 	private final String path;
@@ -59,12 +66,12 @@ public class DiskUsage implements JsonpSerializable {
 
 	private DiskUsage(Builder builder) {
 
-		this.path = ModelTypeHelper.requireNonNull(builder.path, this, "path");
-		this.totalBytes = ModelTypeHelper.requireNonNull(builder.totalBytes, this, "totalBytes");
-		this.usedBytes = ModelTypeHelper.requireNonNull(builder.usedBytes, this, "usedBytes");
-		this.freeBytes = ModelTypeHelper.requireNonNull(builder.freeBytes, this, "freeBytes");
-		this.freeDiskPercent = ModelTypeHelper.requireNonNull(builder.freeDiskPercent, this, "freeDiskPercent");
-		this.usedDiskPercent = ModelTypeHelper.requireNonNull(builder.usedDiskPercent, this, "usedDiskPercent");
+		this.path = ApiTypeHelper.requireNonNull(builder.path, this, "path");
+		this.totalBytes = ApiTypeHelper.requireNonNull(builder.totalBytes, this, "totalBytes");
+		this.usedBytes = ApiTypeHelper.requireNonNull(builder.usedBytes, this, "usedBytes");
+		this.freeBytes = ApiTypeHelper.requireNonNull(builder.freeBytes, this, "freeBytes");
+		this.freeDiskPercent = ApiTypeHelper.requireNonNull(builder.freeDiskPercent, this, "freeDiskPercent");
+		this.usedDiskPercent = ApiTypeHelper.requireNonNull(builder.usedDiskPercent, this, "usedDiskPercent");
 
 	}
 
@@ -150,6 +157,7 @@ public class DiskUsage implements JsonpSerializable {
 	/**
 	 * Builder for {@link DiskUsage}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DiskUsage> {
 		private String path;
 

@@ -35,7 +35,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -48,6 +48,16 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.terms_enum.Request
+
+/**
+ * The terms enum API can be used to discover terms in the index that begin with
+ * the provided string. It is designed for low-latency look-ups used in
+ * auto-complete scenarios.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/terms_enum/TermsEnumRequest.ts#L26-L65">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -77,8 +87,8 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 	private TermsEnumRequest(Builder builder) {
 
 		this.caseInsensitive = builder.caseInsensitive;
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.indexFilter = builder.indexFilter;
 		this.searchAfter = builder.searchAfter;
 		this.size = builder.size;
@@ -226,6 +236,7 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link TermsEnumRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TermsEnumRequest> {
 		@Nullable
 		private Boolean caseInsensitive;

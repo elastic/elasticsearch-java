@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.MultiplexerTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/analysis/token_filters.ts#L258-L262">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MultiplexerTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final List<String> filters;
@@ -50,8 +57,8 @@ public class MultiplexerTokenFilter extends TokenFilterBase implements TokenFilt
 	private MultiplexerTokenFilter(Builder builder) {
 		super(builder);
 
-		this.filters = ModelTypeHelper.unmodifiableRequired(builder.filters, this, "filters");
-		this.preserveOriginal = ModelTypeHelper.requireNonNull(builder.preserveOriginal, this, "preserveOriginal");
+		this.filters = ApiTypeHelper.unmodifiableRequired(builder.filters, this, "filters");
+		this.preserveOriginal = ApiTypeHelper.requireNonNull(builder.preserveOriginal, this, "preserveOriginal");
 
 	}
 
@@ -85,7 +92,7 @@ public class MultiplexerTokenFilter extends TokenFilterBase implements TokenFilt
 
 		generator.write("type", "multiplexer");
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.filters)) {
+		if (ApiTypeHelper.isDefined(this.filters)) {
 			generator.writeKey("filters");
 			generator.writeStartArray();
 			for (String item0 : this.filters) {
@@ -105,6 +112,7 @@ public class MultiplexerTokenFilter extends TokenFilterBase implements TokenFilt
 	/**
 	 * Builder for {@link MultiplexerTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<MultiplexerTokenFilter> {
@@ -115,11 +123,9 @@ public class MultiplexerTokenFilter extends TokenFilterBase implements TokenFilt
 		/**
 		 * Required - API name: {@code filters}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>filters</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>filters</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>filters</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder filters(List<String> list) {
 			this.filters = _listAddAll(this.filters, list);

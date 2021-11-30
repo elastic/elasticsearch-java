@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.IntervalsMatch
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/query_dsl/fulltext.ts#L99-L108">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IntervalsMatch implements IntervalsQueryVariant, IntervalsVariant, JsonpSerializable {
 	@Nullable
@@ -67,7 +74,7 @@ public class IntervalsMatch implements IntervalsQueryVariant, IntervalsVariant, 
 		this.analyzer = builder.analyzer;
 		this.maxGaps = builder.maxGaps;
 		this.ordered = builder.ordered;
-		this.query = ModelTypeHelper.requireNonNull(builder.query, this, "query");
+		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 		this.useField = builder.useField;
 		this.filter = builder.filter;
 
@@ -187,6 +194,7 @@ public class IntervalsMatch implements IntervalsQueryVariant, IntervalsVariant, 
 	/**
 	 * Builder for {@link IntervalsMatch}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IntervalsMatch> {
 		@Nullable
 		private String analyzer;

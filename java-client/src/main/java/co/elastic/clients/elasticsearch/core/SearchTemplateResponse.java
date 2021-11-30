@@ -33,7 +33,7 @@ import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -45,6 +45,13 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: _global.search_template.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/search_template/SearchTemplateResponse.ts#L24-L31">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SearchTemplateResponse<TDocument> implements JsonpSerializable {
 	private final ShardStatistics shards;
@@ -62,10 +69,10 @@ public class SearchTemplateResponse<TDocument> implements JsonpSerializable {
 
 	private SearchTemplateResponse(Builder<TDocument> builder) {
 
-		this.shards = ModelTypeHelper.requireNonNull(builder.shards, this, "shards");
-		this.timedOut = ModelTypeHelper.requireNonNull(builder.timedOut, this, "timedOut");
-		this.took = ModelTypeHelper.requireNonNull(builder.took, this, "took");
-		this.hits = ModelTypeHelper.requireNonNull(builder.hits, this, "hits");
+		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
+		this.timedOut = ApiTypeHelper.requireNonNull(builder.timedOut, this, "timedOut");
+		this.took = ApiTypeHelper.requireNonNull(builder.took, this, "took");
+		this.hits = ApiTypeHelper.requireNonNull(builder.hits, this, "hits");
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}
@@ -133,6 +140,7 @@ public class SearchTemplateResponse<TDocument> implements JsonpSerializable {
 	/**
 	 * Builder for {@link SearchTemplateResponse}.
 	 */
+
 	public static class Builder<TDocument> extends ObjectBuilderBase
 			implements
 				ObjectBuilder<SearchTemplateResponse<TDocument>> {
@@ -219,7 +227,7 @@ public class SearchTemplateResponse<TDocument> implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for SearchTemplateResponse
+	 * Create a JSON deserializer for SearchTemplateResponse
 	 */
 	public static <TDocument> JsonpDeserializer<SearchTemplateResponse<TDocument>> createSearchTemplateResponseDeserializer(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {

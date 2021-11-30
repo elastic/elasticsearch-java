@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.PagerDutyActionEventResult
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/watcher/_types/Actions.ts#L62-L67">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PagerDutyActionEventResult implements JsonpSerializable {
 	private final PagerDutyEvent event;
@@ -53,10 +60,10 @@ public class PagerDutyActionEventResult implements JsonpSerializable {
 
 	private PagerDutyActionEventResult(Builder builder) {
 
-		this.event = ModelTypeHelper.requireNonNull(builder.event, this, "event");
-		this.reason = ModelTypeHelper.requireNonNull(builder.reason, this, "reason");
-		this.request = ModelTypeHelper.requireNonNull(builder.request, this, "request");
-		this.response = ModelTypeHelper.requireNonNull(builder.response, this, "response");
+		this.event = ApiTypeHelper.requireNonNull(builder.event, this, "event");
+		this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
+		this.request = ApiTypeHelper.requireNonNull(builder.request, this, "request");
+		this.response = ApiTypeHelper.requireNonNull(builder.response, this, "response");
 
 	}
 
@@ -122,6 +129,7 @@ public class PagerDutyActionEventResult implements JsonpSerializable {
 	/**
 	 * Builder for {@link PagerDutyActionEventResult}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PagerDutyActionEventResult> {
 		private PagerDutyEvent event;
 

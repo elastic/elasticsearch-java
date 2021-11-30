@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.TimeOfMonth
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/watcher/_types/Schedule.ts#L111-L114">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TimeOfMonth implements JsonpSerializable {
 	private final List<String> at;
@@ -51,8 +58,8 @@ public class TimeOfMonth implements JsonpSerializable {
 
 	private TimeOfMonth(Builder builder) {
 
-		this.at = ModelTypeHelper.unmodifiableRequired(builder.at, this, "at");
-		this.on = ModelTypeHelper.unmodifiableRequired(builder.on, this, "on");
+		this.at = ApiTypeHelper.unmodifiableRequired(builder.at, this, "at");
+		this.on = ApiTypeHelper.unmodifiableRequired(builder.on, this, "on");
 
 	}
 
@@ -85,7 +92,7 @@ public class TimeOfMonth implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.at)) {
+		if (ApiTypeHelper.isDefined(this.at)) {
 			generator.writeKey("at");
 			generator.writeStartArray();
 			for (String item0 : this.at) {
@@ -95,7 +102,7 @@ public class TimeOfMonth implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.on)) {
+		if (ApiTypeHelper.isDefined(this.on)) {
 			generator.writeKey("on");
 			generator.writeStartArray();
 			for (Integer item0 : this.on) {
@@ -113,6 +120,7 @@ public class TimeOfMonth implements JsonpSerializable {
 	/**
 	 * Builder for {@link TimeOfMonth}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TimeOfMonth> {
 		private List<String> at;
 
@@ -121,11 +129,9 @@ public class TimeOfMonth implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code at}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>at</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset <code>at</code>
-		 * to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>at</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder at(List<String> list) {
 			this.at = _listAddAll(this.at, list);
@@ -145,11 +151,9 @@ public class TimeOfMonth implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code on}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>on</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset <code>on</code>
-		 * to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>on</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder on(List<Integer> list) {
 			this.on = _listAddAll(this.on, list);

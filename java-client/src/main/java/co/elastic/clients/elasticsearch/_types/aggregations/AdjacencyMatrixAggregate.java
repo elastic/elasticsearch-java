@@ -33,6 +33,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.aggregations.AdjacencyMatrixAggregate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/Aggregate.ts#L538-L540">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AdjacencyMatrixAggregate extends MultiBucketAggregateBase<AdjacencyMatrixBucket>
 		implements
@@ -61,6 +68,7 @@ public class AdjacencyMatrixAggregate extends MultiBucketAggregateBase<Adjacency
 	/**
 	 * Builder for {@link AdjacencyMatrixAggregate}.
 	 */
+
 	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<AdjacencyMatrixBucket, Builder>
 			implements
 				ObjectBuilder<AdjacencyMatrixAggregate> {

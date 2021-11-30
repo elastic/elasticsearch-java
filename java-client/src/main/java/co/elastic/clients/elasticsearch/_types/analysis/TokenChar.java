@@ -27,6 +27,12 @@ import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/analysis/tokenizers.ts#L46-L53">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public enum TokenChar implements JsonEnum {
 	Letter("letter"),

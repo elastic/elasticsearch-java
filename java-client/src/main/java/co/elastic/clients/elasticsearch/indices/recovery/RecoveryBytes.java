@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.recovery.RecoveryBytes
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/recovery/types.ts#L33-L43">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RecoveryBytes implements JsonpSerializable {
 	private final String percent;
@@ -68,15 +75,15 @@ public class RecoveryBytes implements JsonpSerializable {
 
 	private RecoveryBytes(Builder builder) {
 
-		this.percent = ModelTypeHelper.requireNonNull(builder.percent, this, "percent");
+		this.percent = ApiTypeHelper.requireNonNull(builder.percent, this, "percent");
 		this.recovered = builder.recovered;
-		this.recoveredInBytes = ModelTypeHelper.requireNonNull(builder.recoveredInBytes, this, "recoveredInBytes");
+		this.recoveredInBytes = ApiTypeHelper.requireNonNull(builder.recoveredInBytes, this, "recoveredInBytes");
 		this.recoveredFromSnapshot = builder.recoveredFromSnapshot;
 		this.recoveredFromSnapshotInBytes = builder.recoveredFromSnapshotInBytes;
 		this.reused = builder.reused;
-		this.reusedInBytes = ModelTypeHelper.requireNonNull(builder.reusedInBytes, this, "reusedInBytes");
+		this.reusedInBytes = ApiTypeHelper.requireNonNull(builder.reusedInBytes, this, "reusedInBytes");
 		this.total = builder.total;
-		this.totalInBytes = ModelTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes");
+		this.totalInBytes = ApiTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes");
 
 	}
 
@@ -207,6 +214,7 @@ public class RecoveryBytes implements JsonpSerializable {
 	/**
 	 * Builder for {@link RecoveryBytes}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RecoveryBytes> {
 		private String percent;
 

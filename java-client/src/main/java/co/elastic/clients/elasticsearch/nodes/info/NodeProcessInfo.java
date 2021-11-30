@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: nodes.info.NodeProcessInfo
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/nodes/info/types.ts#L376-L383">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeProcessInfo implements JsonpSerializable {
 	private final long id;
@@ -51,9 +58,9 @@ public class NodeProcessInfo implements JsonpSerializable {
 
 	private NodeProcessInfo(Builder builder) {
 
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
-		this.mlockall = ModelTypeHelper.requireNonNull(builder.mlockall, this, "mlockall");
-		this.refreshIntervalInMillis = ModelTypeHelper.requireNonNull(builder.refreshIntervalInMillis, this,
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.mlockall = ApiTypeHelper.requireNonNull(builder.mlockall, this, "mlockall");
+		this.refreshIntervalInMillis = ApiTypeHelper.requireNonNull(builder.refreshIntervalInMillis, this,
 				"refreshIntervalInMillis");
 
 	}
@@ -117,6 +124,7 @@ public class NodeProcessInfo implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeProcessInfo}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeProcessInfo> {
 		private Long id;
 

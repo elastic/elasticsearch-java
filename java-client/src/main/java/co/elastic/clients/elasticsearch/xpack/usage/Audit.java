@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Audit
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/xpack/usage/types.ts#L63-L65">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Audit extends FeatureToggle {
 	private final List<String> outputs;
@@ -47,7 +54,7 @@ public class Audit extends FeatureToggle {
 	private Audit(Builder builder) {
 		super(builder);
 
-		this.outputs = ModelTypeHelper.unmodifiable(builder.outputs);
+		this.outputs = ApiTypeHelper.unmodifiable(builder.outputs);
 
 	}
 
@@ -65,7 +72,7 @@ public class Audit extends FeatureToggle {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.outputs)) {
+		if (ApiTypeHelper.isDefined(this.outputs)) {
 			generator.writeKey("outputs");
 			generator.writeStartArray();
 			for (String item0 : this.outputs) {
@@ -83,6 +90,7 @@ public class Audit extends FeatureToggle {
 	/**
 	 * Builder for {@link Audit}.
 	 */
+
 	public static class Builder extends FeatureToggle.AbstractBuilder<Builder> implements ObjectBuilder<Audit> {
 		@Nullable
 		private List<String> outputs;
@@ -90,11 +98,9 @@ public class Audit extends FeatureToggle {
 		/**
 		 * API name: {@code outputs}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>outputs</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>outputs</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>outputs</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder outputs(List<String> list) {
 			this.outputs = _listAddAll(this.outputs, list);

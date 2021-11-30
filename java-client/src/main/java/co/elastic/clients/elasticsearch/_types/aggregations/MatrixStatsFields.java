@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MatrixStatsFields
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/Aggregate.ts#L702-L711">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MatrixStatsFields implements JsonpSerializable {
 	private final String name;
@@ -64,14 +71,14 @@ public class MatrixStatsFields implements JsonpSerializable {
 
 	private MatrixStatsFields(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
-		this.mean = ModelTypeHelper.requireNonNull(builder.mean, this, "mean");
-		this.variance = ModelTypeHelper.requireNonNull(builder.variance, this, "variance");
-		this.skewness = ModelTypeHelper.requireNonNull(builder.skewness, this, "skewness");
-		this.kurtosis = ModelTypeHelper.requireNonNull(builder.kurtosis, this, "kurtosis");
-		this.covariance = ModelTypeHelper.unmodifiableRequired(builder.covariance, this, "covariance");
-		this.correlation = ModelTypeHelper.unmodifiableRequired(builder.correlation, this, "correlation");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.mean = ApiTypeHelper.requireNonNull(builder.mean, this, "mean");
+		this.variance = ApiTypeHelper.requireNonNull(builder.variance, this, "variance");
+		this.skewness = ApiTypeHelper.requireNonNull(builder.skewness, this, "skewness");
+		this.kurtosis = ApiTypeHelper.requireNonNull(builder.kurtosis, this, "kurtosis");
+		this.covariance = ApiTypeHelper.unmodifiableRequired(builder.covariance, this, "covariance");
+		this.correlation = ApiTypeHelper.unmodifiableRequired(builder.correlation, this, "correlation");
 
 	}
 
@@ -164,7 +171,7 @@ public class MatrixStatsFields implements JsonpSerializable {
 		generator.writeKey("kurtosis");
 		generator.write(this.kurtosis);
 
-		if (ModelTypeHelper.isDefined(this.covariance)) {
+		if (ApiTypeHelper.isDefined(this.covariance)) {
 			generator.writeKey("covariance");
 			generator.writeStartObject();
 			for (Map.Entry<String, Double> item0 : this.covariance.entrySet()) {
@@ -175,7 +182,7 @@ public class MatrixStatsFields implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.correlation)) {
+		if (ApiTypeHelper.isDefined(this.correlation)) {
 			generator.writeKey("correlation");
 			generator.writeStartObject();
 			for (Map.Entry<String, Double> item0 : this.correlation.entrySet()) {
@@ -194,6 +201,7 @@ public class MatrixStatsFields implements JsonpSerializable {
 	/**
 	 * Builder for {@link MatrixStatsFields}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MatrixStatsFields> {
 		private String name;
 
@@ -262,11 +270,9 @@ public class MatrixStatsFields implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code covariance}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>covariance</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>covariance</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>covariance</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder covariance(Map<String, Double> map) {
 			this.covariance = _mapPutAll(this.covariance, map);
@@ -286,11 +292,9 @@ public class MatrixStatsFields implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code correlation}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>correlation</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>correlation</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>correlation</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder correlation(Map<String, Double> map) {
 			this.correlation = _mapPutAll(this.correlation, map);

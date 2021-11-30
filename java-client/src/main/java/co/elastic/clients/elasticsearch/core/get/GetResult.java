@@ -32,7 +32,7 @@ import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -45,6 +45,13 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: _global.get.GetResult
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/get/types.ts#L31-L43">API
+ *      specification</a>
+ */
 
 public class GetResult<TDocument> implements JsonpSerializable {
 	private final String index;
@@ -80,10 +87,10 @@ public class GetResult<TDocument> implements JsonpSerializable {
 
 	protected GetResult(AbstractBuilder<TDocument, ?> builder) {
 
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
-		this.found = ModelTypeHelper.requireNonNull(builder.found, this, "found");
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
+		this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.primaryTerm = builder.primaryTerm;
 		this.routing = builder.routing;
 		this.seqNo = builder.seqNo;
@@ -156,7 +163,10 @@ public class GetResult<TDocument> implements JsonpSerializable {
 
 	/**
 	 * API name: {@code _type}
+	 * 
+	 * @deprecated 7.0.0
 	 */
+	@Deprecated
 	@Nullable
 	public final String type() {
 		return this.type;
@@ -184,7 +194,7 @@ public class GetResult<TDocument> implements JsonpSerializable {
 		generator.writeKey("_index");
 		generator.write(this.index);
 
-		if (ModelTypeHelper.isDefined(this.fields)) {
+		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.fields.entrySet()) {
@@ -239,6 +249,7 @@ public class GetResult<TDocument> implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetResult}.
 	 */
+
 	public static class Builder<TDocument> extends GetResult.AbstractBuilder<TDocument, Builder<TDocument>>
 			implements
 				ObjectBuilder<GetResult<TDocument>> {
@@ -304,11 +315,9 @@ public class GetResult<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code fields}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>fields</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>fields</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>fields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final BuilderT fields(Map<String, JsonData> map) {
 			this.fields = _mapPutAll(this.fields, map);
@@ -375,7 +384,10 @@ public class GetResult<TDocument> implements JsonpSerializable {
 
 		/**
 		 * API name: {@code _type}
+		 * 
+		 * @deprecated 7.0.0
 		 */
+		@Deprecated
 		public final BuilderT type(@Nullable String value) {
 			this.type = value;
 			return self();
@@ -405,7 +417,7 @@ public class GetResult<TDocument> implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for GetResult
+	 * Create a JSON deserializer for GetResult
 	 */
 	public static <TDocument> JsonpDeserializer<GetResult<TDocument>> createGetResultDeserializer(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {

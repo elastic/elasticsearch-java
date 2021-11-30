@@ -33,6 +33,13 @@ import java.util.Objects;
 
 // typedef: indices.exists_type.Response
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/exists_type/IndicesExistsTypeResponse.ts#L22-L24">API
+ *      specification</a>
+ */
+
 public class ExistsTypeResponse {
 	public ExistsTypeResponse() {
 	}

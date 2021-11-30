@@ -32,7 +32,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.info.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/info/MlInfoResponse.ts#L22-L29">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MlInfoResponse implements JsonpSerializable {
 	private final Defaults defaults;
@@ -56,10 +63,10 @@ public class MlInfoResponse implements JsonpSerializable {
 
 	private MlInfoResponse(Builder builder) {
 
-		this.defaults = ModelTypeHelper.requireNonNull(builder.defaults, this, "defaults");
-		this.limits = ModelTypeHelper.requireNonNull(builder.limits, this, "limits");
-		this.upgradeMode = ModelTypeHelper.requireNonNull(builder.upgradeMode, this, "upgradeMode");
-		this.nativeCode = ModelTypeHelper.requireNonNull(builder.nativeCode, this, "nativeCode");
+		this.defaults = ApiTypeHelper.requireNonNull(builder.defaults, this, "defaults");
+		this.limits = ApiTypeHelper.requireNonNull(builder.limits, this, "limits");
+		this.upgradeMode = ApiTypeHelper.requireNonNull(builder.upgradeMode, this, "upgradeMode");
+		this.nativeCode = ApiTypeHelper.requireNonNull(builder.nativeCode, this, "nativeCode");
 
 	}
 
@@ -125,6 +132,7 @@ public class MlInfoResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link MlInfoResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MlInfoResponse> {
 		private Defaults defaults;
 

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.update_aliases.RemoveAction
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/update_aliases/types.ts#L44-L51">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RemoveAction implements ActionVariant, JsonpSerializable {
 	@Nullable
@@ -61,9 +68,9 @@ public class RemoveAction implements ActionVariant, JsonpSerializable {
 	private RemoveAction(Builder builder) {
 
 		this.alias = builder.alias;
-		this.aliases = ModelTypeHelper.unmodifiable(builder.aliases);
+		this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
 		this.index = builder.index;
-		this.indices = ModelTypeHelper.unmodifiable(builder.indices);
+		this.indices = ApiTypeHelper.unmodifiable(builder.indices);
 		this.mustExist = builder.mustExist;
 
 	}
@@ -134,7 +141,7 @@ public class RemoveAction implements ActionVariant, JsonpSerializable {
 			generator.write(this.alias);
 
 		}
-		if (ModelTypeHelper.isDefined(this.aliases)) {
+		if (ApiTypeHelper.isDefined(this.aliases)) {
 			generator.writeKey("aliases");
 			generator.writeStartArray();
 			for (String item0 : this.aliases) {
@@ -149,7 +156,7 @@ public class RemoveAction implements ActionVariant, JsonpSerializable {
 			generator.write(this.index);
 
 		}
-		if (ModelTypeHelper.isDefined(this.indices)) {
+		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartArray();
 			for (String item0 : this.indices) {
@@ -172,6 +179,7 @@ public class RemoveAction implements ActionVariant, JsonpSerializable {
 	/**
 	 * Builder for {@link RemoveAction}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RemoveAction> {
 		@Nullable
 		private String alias;
@@ -199,11 +207,9 @@ public class RemoveAction implements ActionVariant, JsonpSerializable {
 		/**
 		 * API name: {@code aliases}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>aliases</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>aliases</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>aliases</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder aliases(List<String> list) {
 			this.aliases = _listAddAll(this.aliases, list);
@@ -231,11 +237,9 @@ public class RemoveAction implements ActionVariant, JsonpSerializable {
 		/**
 		 * API name: {@code indices}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>indices</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>indices</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder indices(List<String> list) {
 			this.indices = _listAddAll(this.indices, list);

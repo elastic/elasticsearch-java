@@ -32,7 +32,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -45,6 +45,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TopHitsAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/metric.ts#L162-L175">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TopHitsAggregation extends MetricAggregationBase implements AggregationVariant {
 	private final List<String> docvalueFields;
@@ -84,15 +91,15 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 	private TopHitsAggregation(Builder builder) {
 		super(builder);
 
-		this.docvalueFields = ModelTypeHelper.unmodifiable(builder.docvalueFields);
+		this.docvalueFields = ApiTypeHelper.unmodifiable(builder.docvalueFields);
 		this.explain = builder.explain;
 		this.from = builder.from;
 		this.highlight = builder.highlight;
-		this.scriptFields = ModelTypeHelper.unmodifiable(builder.scriptFields);
+		this.scriptFields = ApiTypeHelper.unmodifiable(builder.scriptFields);
 		this.size = builder.size;
-		this.sort = ModelTypeHelper.unmodifiable(builder.sort);
+		this.sort = ApiTypeHelper.unmodifiable(builder.sort);
 		this.source = builder.source;
-		this.storedFields = ModelTypeHelper.unmodifiable(builder.storedFields);
+		this.storedFields = ApiTypeHelper.unmodifiable(builder.storedFields);
 		this.trackScores = builder.trackScores;
 		this.version = builder.version;
 		this.seqNoPrimaryTerm = builder.seqNoPrimaryTerm;
@@ -206,7 +213,7 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.docvalueFields)) {
+		if (ApiTypeHelper.isDefined(this.docvalueFields)) {
 			generator.writeKey("docvalue_fields");
 			generator.writeStartArray();
 			for (String item0 : this.docvalueFields) {
@@ -231,7 +238,7 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 			this.highlight.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.scriptFields)) {
+		if (ApiTypeHelper.isDefined(this.scriptFields)) {
 			generator.writeKey("script_fields");
 			generator.writeStartObject();
 			for (Map.Entry<String, ScriptField> item0 : this.scriptFields.entrySet()) {
@@ -247,7 +254,7 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 			generator.write(this.size);
 
 		}
-		if (ModelTypeHelper.isDefined(this.sort)) {
+		if (ApiTypeHelper.isDefined(this.sort)) {
 			generator.writeKey("sort");
 			generator.writeStartArray();
 			for (SortOptions item0 : this.sort) {
@@ -262,7 +269,7 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 			this.source.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.storedFields)) {
+		if (ApiTypeHelper.isDefined(this.storedFields)) {
 			generator.writeKey("stored_fields");
 			generator.writeStartArray();
 			for (String item0 : this.storedFields) {
@@ -295,6 +302,7 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 	/**
 	 * Builder for {@link TopHitsAggregation}.
 	 */
+
 	public static class Builder extends MetricAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<TopHitsAggregation> {
@@ -337,11 +345,9 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 		/**
 		 * API name: {@code docvalue_fields}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>docvalueFields</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>docvalueFields</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>docvalueFields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder docvalueFields(List<String> list) {
 			this.docvalueFields = _listAddAll(this.docvalueFields, list);
@@ -392,11 +398,9 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 		/**
 		 * API name: {@code script_fields}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>scriptFields</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>scriptFields</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>scriptFields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder scriptFields(Map<String, ScriptField> map) {
 			this.scriptFields = _mapPutAll(this.scriptFields, map);
@@ -433,11 +437,9 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 		/**
 		 * API name: {@code sort}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>sort</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>sort</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>sort</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder sort(List<SortOptions> list) {
 			this.sort = _listAddAll(this.sort, list);
@@ -481,11 +483,9 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 		/**
 		 * API name: {@code stored_fields}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>storedFields</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>storedFields</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>storedFields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder storedFields(List<String> list) {
 			this.storedFields = _listAddAll(this.storedFields, list);

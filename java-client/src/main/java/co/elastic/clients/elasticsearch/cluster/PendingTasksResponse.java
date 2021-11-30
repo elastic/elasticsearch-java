@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.pending_tasks.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cluster/pending_tasks/ClusterPendingTasksResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PendingTasksResponse implements JsonpSerializable {
 	private final List<PendingTask> tasks;
@@ -48,7 +55,7 @@ public class PendingTasksResponse implements JsonpSerializable {
 
 	private PendingTasksResponse(Builder builder) {
 
-		this.tasks = ModelTypeHelper.unmodifiableRequired(builder.tasks, this, "tasks");
+		this.tasks = ApiTypeHelper.unmodifiableRequired(builder.tasks, this, "tasks");
 
 	}
 
@@ -74,7 +81,7 @@ public class PendingTasksResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.tasks)) {
+		if (ApiTypeHelper.isDefined(this.tasks)) {
 			generator.writeKey("tasks");
 			generator.writeStartArray();
 			for (PendingTask item0 : this.tasks) {
@@ -92,17 +99,16 @@ public class PendingTasksResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link PendingTasksResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PendingTasksResponse> {
 		private List<PendingTask> tasks;
 
 		/**
 		 * Required - API name: {@code tasks}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>tasks</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>tasks</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>tasks</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder tasks(List<PendingTask> list) {
 			this.tasks = _listAddAll(this.tasks, list);

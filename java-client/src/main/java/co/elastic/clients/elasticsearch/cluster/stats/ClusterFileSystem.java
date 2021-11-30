@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: cluster.stats.ClusterFileSystem
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cluster/stats/types.ts#L33-L37">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ClusterFileSystem implements JsonpSerializable {
 	private final long availableInBytes;
@@ -50,9 +57,9 @@ public class ClusterFileSystem implements JsonpSerializable {
 
 	private ClusterFileSystem(Builder builder) {
 
-		this.availableInBytes = ModelTypeHelper.requireNonNull(builder.availableInBytes, this, "availableInBytes");
-		this.freeInBytes = ModelTypeHelper.requireNonNull(builder.freeInBytes, this, "freeInBytes");
-		this.totalInBytes = ModelTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes");
+		this.availableInBytes = ApiTypeHelper.requireNonNull(builder.availableInBytes, this, "availableInBytes");
+		this.freeInBytes = ApiTypeHelper.requireNonNull(builder.freeInBytes, this, "freeInBytes");
+		this.totalInBytes = ApiTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes");
 
 	}
 
@@ -108,6 +115,7 @@ public class ClusterFileSystem implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClusterFileSystem}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterFileSystem> {
 		private Long availableInBytes;
 

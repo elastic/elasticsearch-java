@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.explain.ExplanationDetail
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/explain/types.ts#L28-L32">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ExplanationDetail implements JsonpSerializable {
 	private final String description;
@@ -53,9 +60,9 @@ public class ExplanationDetail implements JsonpSerializable {
 
 	private ExplanationDetail(Builder builder) {
 
-		this.description = ModelTypeHelper.requireNonNull(builder.description, this, "description");
-		this.details = ModelTypeHelper.unmodifiable(builder.details);
-		this.value = ModelTypeHelper.requireNonNull(builder.value, this, "value");
+		this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
+		this.details = ApiTypeHelper.unmodifiable(builder.details);
+		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
 
 	}
 
@@ -98,7 +105,7 @@ public class ExplanationDetail implements JsonpSerializable {
 		generator.writeKey("description");
 		generator.write(this.description);
 
-		if (ModelTypeHelper.isDefined(this.details)) {
+		if (ApiTypeHelper.isDefined(this.details)) {
 			generator.writeKey("details");
 			generator.writeStartArray();
 			for (ExplanationDetail item0 : this.details) {
@@ -118,6 +125,7 @@ public class ExplanationDetail implements JsonpSerializable {
 	/**
 	 * Builder for {@link ExplanationDetail}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExplanationDetail> {
 		private String description;
 
@@ -137,11 +145,9 @@ public class ExplanationDetail implements JsonpSerializable {
 		/**
 		 * API name: {@code details}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>details</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>details</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>details</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder details(List<ExplanationDetail> list) {
 			this.details = _listAddAll(this.details, list);

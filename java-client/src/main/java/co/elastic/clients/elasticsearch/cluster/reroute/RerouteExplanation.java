@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.RerouteExplanation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cluster/reroute/types.ts#L94-L98">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RerouteExplanation implements JsonpSerializable {
 	private final String command;
@@ -52,9 +59,9 @@ public class RerouteExplanation implements JsonpSerializable {
 
 	private RerouteExplanation(Builder builder) {
 
-		this.command = ModelTypeHelper.requireNonNull(builder.command, this, "command");
-		this.decisions = ModelTypeHelper.unmodifiableRequired(builder.decisions, this, "decisions");
-		this.parameters = ModelTypeHelper.requireNonNull(builder.parameters, this, "parameters");
+		this.command = ApiTypeHelper.requireNonNull(builder.command, this, "command");
+		this.decisions = ApiTypeHelper.unmodifiableRequired(builder.decisions, this, "decisions");
+		this.parameters = ApiTypeHelper.requireNonNull(builder.parameters, this, "parameters");
 
 	}
 
@@ -97,7 +104,7 @@ public class RerouteExplanation implements JsonpSerializable {
 		generator.writeKey("command");
 		generator.write(this.command);
 
-		if (ModelTypeHelper.isDefined(this.decisions)) {
+		if (ApiTypeHelper.isDefined(this.decisions)) {
 			generator.writeKey("decisions");
 			generator.writeStartArray();
 			for (RerouteDecision item0 : this.decisions) {
@@ -117,6 +124,7 @@ public class RerouteExplanation implements JsonpSerializable {
 	/**
 	 * Builder for {@link RerouteExplanation}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RerouteExplanation> {
 		private String command;
 
@@ -135,11 +143,9 @@ public class RerouteExplanation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code decisions}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>decisions</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>decisions</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>decisions</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder decisions(List<RerouteDecision> list) {
 			this.decisions = _listAddAll(this.decisions, list);

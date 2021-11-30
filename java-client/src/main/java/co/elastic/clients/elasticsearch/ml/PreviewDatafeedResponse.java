@@ -32,7 +32,7 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,6 +43,13 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: ml.preview_datafeed.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/preview_datafeed/MlPreviewDatafeedResponse.ts#L20-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PreviewDatafeedResponse<TDocument> implements JsonpSerializable {
 	private final List<TDocument> data;
@@ -54,7 +61,7 @@ public class PreviewDatafeedResponse<TDocument> implements JsonpSerializable {
 
 	private PreviewDatafeedResponse(Builder<TDocument> builder) {
 
-		this.data = ModelTypeHelper.unmodifiableRequired(builder.data, this, "data");
+		this.data = ApiTypeHelper.unmodifiableRequired(builder.data, this, "data");
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}
@@ -82,7 +89,7 @@ public class PreviewDatafeedResponse<TDocument> implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.data)) {
+		if (ApiTypeHelper.isDefined(this.data)) {
 			generator.writeKey("data");
 			generator.writeStartArray();
 			for (TDocument item0 : this.data) {
@@ -100,6 +107,7 @@ public class PreviewDatafeedResponse<TDocument> implements JsonpSerializable {
 	/**
 	 * Builder for {@link PreviewDatafeedResponse}.
 	 */
+
 	public static class Builder<TDocument> extends ObjectBuilderBase
 			implements
 				ObjectBuilder<PreviewDatafeedResponse<TDocument>> {
@@ -111,11 +119,9 @@ public class PreviewDatafeedResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code data}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>data</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>data</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>data</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder<TDocument> data(List<TDocument> list) {
 			this.data = _listAddAll(this.data, list);
@@ -157,7 +163,7 @@ public class PreviewDatafeedResponse<TDocument> implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for PreviewDatafeedResponse
+	 * Create a JSON deserializer for PreviewDatafeedResponse
 	 */
 	public static <TDocument> JsonpDeserializer<PreviewDatafeedResponse<TDocument>> createPreviewDatafeedResponseDeserializer(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {

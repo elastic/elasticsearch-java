@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.shrink.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/shrink/IndicesShrinkResponse.ts#L23-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ShrinkResponse extends AcknowledgedResponseBase {
 	private final boolean shardsAcknowledged;
@@ -50,9 +57,8 @@ public class ShrinkResponse extends AcknowledgedResponseBase {
 	private ShrinkResponse(Builder builder) {
 		super(builder);
 
-		this.shardsAcknowledged = ModelTypeHelper.requireNonNull(builder.shardsAcknowledged, this,
-				"shardsAcknowledged");
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.shardsAcknowledged = ApiTypeHelper.requireNonNull(builder.shardsAcknowledged, this, "shardsAcknowledged");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 
 	}
 
@@ -90,6 +96,7 @@ public class ShrinkResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link ShrinkResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ShrinkResponse> {

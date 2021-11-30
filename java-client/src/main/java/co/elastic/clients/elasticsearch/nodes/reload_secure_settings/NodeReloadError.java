@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.reload_secure_settings.NodeReloadError
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/nodes/reload_secure_settings/types.ts#L24-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeReloadError implements JsonpSerializable {
 	private final String name;
@@ -51,7 +58,7 @@ public class NodeReloadError implements JsonpSerializable {
 
 	private NodeReloadError(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.reloadException = builder.reloadException;
 
 	}
@@ -102,6 +109,7 @@ public class NodeReloadError implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeReloadError}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeReloadError> {
 		private String name;
 

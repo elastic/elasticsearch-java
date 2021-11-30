@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.DataframeClassificationSummaryMulticlassConfusionMatrix
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/evaluate_data_frame/types.ts#L79-L82">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeClassificationSummaryMulticlassConfusionMatrix implements JsonpSerializable {
 	private final List<ConfusionMatrixItem> confusionMatrix;
@@ -50,8 +57,8 @@ public class DataframeClassificationSummaryMulticlassConfusionMatrix implements 
 
 	private DataframeClassificationSummaryMulticlassConfusionMatrix(Builder builder) {
 
-		this.confusionMatrix = ModelTypeHelper.unmodifiableRequired(builder.confusionMatrix, this, "confusionMatrix");
-		this.otherActualClassCount = ModelTypeHelper.requireNonNull(builder.otherActualClassCount, this,
+		this.confusionMatrix = ApiTypeHelper.unmodifiableRequired(builder.confusionMatrix, this, "confusionMatrix");
+		this.otherActualClassCount = ApiTypeHelper.requireNonNull(builder.otherActualClassCount, this,
 				"otherActualClassCount");
 
 	}
@@ -86,7 +93,7 @@ public class DataframeClassificationSummaryMulticlassConfusionMatrix implements 
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.confusionMatrix)) {
+		if (ApiTypeHelper.isDefined(this.confusionMatrix)) {
 			generator.writeKey("confusion_matrix");
 			generator.writeStartArray();
 			for (ConfusionMatrixItem item0 : this.confusionMatrix) {
@@ -106,6 +113,7 @@ public class DataframeClassificationSummaryMulticlassConfusionMatrix implements 
 	/**
 	 * Builder for {@link DataframeClassificationSummaryMulticlassConfusionMatrix}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase
 			implements
 				ObjectBuilder<DataframeClassificationSummaryMulticlassConfusionMatrix> {
@@ -116,11 +124,9 @@ public class DataframeClassificationSummaryMulticlassConfusionMatrix implements 
 		/**
 		 * Required - API name: {@code confusion_matrix}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>confusionMatrix</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>confusionMatrix</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>confusionMatrix</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder confusionMatrix(List<ConfusionMatrixItem> list) {
 			this.confusionMatrix = _listAddAll(this.confusionMatrix, list);

@@ -34,7 +34,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -48,6 +48,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest.simulate.Request
+
+/**
+ * Allows to simulate a pipeline with example documents.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ingest/simulate/SimulatePipelineRequest.ts#L25-L41">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SimulateRequest extends RequestBase implements JsonpSerializable {
 	private final List<Document> docs;
@@ -65,7 +73,7 @@ public class SimulateRequest extends RequestBase implements JsonpSerializable {
 
 	private SimulateRequest(Builder builder) {
 
-		this.docs = ModelTypeHelper.unmodifiable(builder.docs);
+		this.docs = ApiTypeHelper.unmodifiable(builder.docs);
 		this.id = builder.id;
 		this.pipeline = builder.pipeline;
 		this.verbose = builder.verbose;
@@ -122,7 +130,7 @@ public class SimulateRequest extends RequestBase implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.docs)) {
+		if (ApiTypeHelper.isDefined(this.docs)) {
 			generator.writeKey("docs");
 			generator.writeStartArray();
 			for (Document item0 : this.docs) {
@@ -145,6 +153,7 @@ public class SimulateRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link SimulateRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SimulateRequest> {
 		@Nullable
 		private List<Document> docs;
@@ -161,11 +170,9 @@ public class SimulateRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code docs}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>docs</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>docs</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>docs</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder docs(List<Document> list) {
 			this.docs = _listAddAll(this.docs, list);

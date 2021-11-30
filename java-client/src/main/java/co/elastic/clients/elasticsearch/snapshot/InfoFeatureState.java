@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot._types.InfoFeatureState
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/snapshot/_types/SnapshotInfoFeatureState.ts#L22-L25">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class InfoFeatureState implements JsonpSerializable {
 	private final String featureName;
@@ -50,8 +57,8 @@ public class InfoFeatureState implements JsonpSerializable {
 
 	private InfoFeatureState(Builder builder) {
 
-		this.featureName = ModelTypeHelper.requireNonNull(builder.featureName, this, "featureName");
-		this.indices = ModelTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
+		this.featureName = ApiTypeHelper.requireNonNull(builder.featureName, this, "featureName");
+		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
 
 	}
 
@@ -87,7 +94,7 @@ public class InfoFeatureState implements JsonpSerializable {
 		generator.writeKey("feature_name");
 		generator.write(this.featureName);
 
-		if (ModelTypeHelper.isDefined(this.indices)) {
+		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartArray();
 			for (String item0 : this.indices) {
@@ -105,6 +112,7 @@ public class InfoFeatureState implements JsonpSerializable {
 	/**
 	 * Builder for {@link InfoFeatureState}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<InfoFeatureState> {
 		private String featureName;
 
@@ -121,11 +129,9 @@ public class InfoFeatureState implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code indices}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>indices</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>indices</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder indices(List<String> list) {
 			this.indices = _listAddAll(this.indices, list);

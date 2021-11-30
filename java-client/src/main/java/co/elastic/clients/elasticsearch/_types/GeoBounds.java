@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.UnionDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
@@ -41,7 +41,20 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.GeoBounds
-// union type: Union[]
+
+/**
+ * A geo bounding box. It can be represented in various ways:
+ * <ul>
+ * <li>as 4 top/bottom/left/right coordinates</li>
+ * <li>as 2 top_left / bottom_right points</li>
+ * <li>as 2 top_right / bottom_left points</li>
+ * <li>as a WKT bounding box</li>
+ * </ul>
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/Geo.ts#L116-L129">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GeoBounds implements TaggedUnion<GeoBounds.Kind, Object>, JsonpSerializable {
 
@@ -70,8 +83,8 @@ public class GeoBounds implements TaggedUnion<GeoBounds.Kind, Object>, JsonpSeri
 
 	private GeoBounds(Builder builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 

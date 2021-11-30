@@ -36,6 +36,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: cluster.remote_info.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cluster/remote_info/ClusterRemoteInfoResponse.ts#L24-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RemoteInfoResponse extends DictionaryResponse<String, ClusterRemoteInfo> {
 	// ---------------------------------------------------------------------------------------------
@@ -54,6 +61,7 @@ public class RemoteInfoResponse extends DictionaryResponse<String, ClusterRemote
 	/**
 	 * Builder for {@link RemoteInfoResponse}.
 	 */
+
 	public static class Builder extends DictionaryResponse.AbstractBuilder<String, ClusterRemoteInfo, Builder>
 			implements
 				ObjectBuilder<RemoteInfoResponse> {

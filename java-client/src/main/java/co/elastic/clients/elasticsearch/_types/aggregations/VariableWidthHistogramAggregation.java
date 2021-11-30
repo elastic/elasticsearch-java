@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.VariableWidthHistogramAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/bucket.ts#L386-L391">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class VariableWidthHistogramAggregation implements AggregationVariant, JsonpSerializable {
 	@Nullable
@@ -148,6 +155,7 @@ public class VariableWidthHistogramAggregation implements AggregationVariant, Js
 	/**
 	 * Builder for {@link VariableWidthHistogramAggregation}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<VariableWidthHistogramAggregation> {
 		@Nullable
 		private String field;

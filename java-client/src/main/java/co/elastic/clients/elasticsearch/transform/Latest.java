@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform._types.Latest
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/transform/_types/Transform.ts#L44-L49">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Latest implements JsonpSerializable {
 	private final String sort;
@@ -50,8 +57,8 @@ public class Latest implements JsonpSerializable {
 
 	private Latest(Builder builder) {
 
-		this.sort = ModelTypeHelper.requireNonNull(builder.sort, this, "sort");
-		this.uniqueKey = ModelTypeHelper.unmodifiableRequired(builder.uniqueKey, this, "uniqueKey");
+		this.sort = ApiTypeHelper.requireNonNull(builder.sort, this, "sort");
+		this.uniqueKey = ApiTypeHelper.unmodifiableRequired(builder.uniqueKey, this, "uniqueKey");
 
 	}
 
@@ -93,7 +100,7 @@ public class Latest implements JsonpSerializable {
 		generator.writeKey("sort");
 		generator.write(this.sort);
 
-		if (ModelTypeHelper.isDefined(this.uniqueKey)) {
+		if (ApiTypeHelper.isDefined(this.uniqueKey)) {
 			generator.writeKey("unique_key");
 			generator.writeStartArray();
 			for (String item0 : this.uniqueKey) {
@@ -111,6 +118,7 @@ public class Latest implements JsonpSerializable {
 	/**
 	 * Builder for {@link Latest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Latest> {
 		private String sort;
 
@@ -133,11 +141,9 @@ public class Latest implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code unique_key}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>uniqueKey</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>uniqueKey</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>uniqueKey</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder uniqueKey(List<String> list) {
 			this.uniqueKey = _listAddAll(this.uniqueKey, list);

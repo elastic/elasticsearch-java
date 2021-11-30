@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: tasks.get.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/tasks/get/GetTaskResponse.ts#L24-L31">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetTasksResponse implements JsonpSerializable {
 	private final boolean completed;
@@ -56,8 +63,8 @@ public class GetTasksResponse implements JsonpSerializable {
 
 	private GetTasksResponse(Builder builder) {
 
-		this.completed = ModelTypeHelper.requireNonNull(builder.completed, this, "completed");
-		this.task = ModelTypeHelper.requireNonNull(builder.task, this, "task");
+		this.completed = ApiTypeHelper.requireNonNull(builder.completed, this, "completed");
+		this.task = ApiTypeHelper.requireNonNull(builder.task, this, "task");
 		this.response = builder.response;
 		this.error = builder.error;
 
@@ -132,6 +139,7 @@ public class GetTasksResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetTasksResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetTasksResponse> {
 		private Boolean completed;
 

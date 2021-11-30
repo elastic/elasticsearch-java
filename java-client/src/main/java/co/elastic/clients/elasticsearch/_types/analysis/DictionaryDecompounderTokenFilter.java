@@ -34,6 +34,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.analysis.DictionaryDecompounderTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/analysis/token_filters.ts#L53-L55">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DictionaryDecompounderTokenFilter extends CompoundWordTokenFilterBase
 		implements
@@ -70,6 +77,7 @@ public class DictionaryDecompounderTokenFilter extends CompoundWordTokenFilterBa
 	/**
 	 * Builder for {@link DictionaryDecompounderTokenFilter}.
 	 */
+
 	public static class Builder extends CompoundWordTokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DictionaryDecompounderTokenFilter> {

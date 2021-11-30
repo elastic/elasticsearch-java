@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.FetchProfileDebug
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/search/_types/profile.ts#L156-L159">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FetchProfileDebug implements JsonpSerializable {
 	private final List<String> storedFields;
@@ -52,7 +59,7 @@ public class FetchProfileDebug implements JsonpSerializable {
 
 	private FetchProfileDebug(Builder builder) {
 
-		this.storedFields = ModelTypeHelper.unmodifiable(builder.storedFields);
+		this.storedFields = ApiTypeHelper.unmodifiable(builder.storedFields);
 		this.fastPath = builder.fastPath;
 
 	}
@@ -87,7 +94,7 @@ public class FetchProfileDebug implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.storedFields)) {
+		if (ApiTypeHelper.isDefined(this.storedFields)) {
 			generator.writeKey("stored_fields");
 			generator.writeStartArray();
 			for (String item0 : this.storedFields) {
@@ -110,6 +117,7 @@ public class FetchProfileDebug implements JsonpSerializable {
 	/**
 	 * Builder for {@link FetchProfileDebug}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FetchProfileDebug> {
 		@Nullable
 		private List<String> storedFields;
@@ -120,11 +128,9 @@ public class FetchProfileDebug implements JsonpSerializable {
 		/**
 		 * API name: {@code stored_fields}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>storedFields</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>storedFields</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>storedFields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder storedFields(List<String> list) {
 			this.storedFields = _listAddAll(this.storedFields, list);

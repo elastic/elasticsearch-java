@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,6 +43,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterNodes
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cluster/stats/types.ts#L193-L218">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ClusterNodes implements JsonpSerializable {
 	private final ClusterNodeCount count;
@@ -71,17 +78,17 @@ public class ClusterNodes implements JsonpSerializable {
 
 	private ClusterNodes(Builder builder) {
 
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
-		this.discoveryTypes = ModelTypeHelper.unmodifiableRequired(builder.discoveryTypes, this, "discoveryTypes");
-		this.fs = ModelTypeHelper.requireNonNull(builder.fs, this, "fs");
-		this.ingest = ModelTypeHelper.requireNonNull(builder.ingest, this, "ingest");
-		this.jvm = ModelTypeHelper.requireNonNull(builder.jvm, this, "jvm");
-		this.networkTypes = ModelTypeHelper.requireNonNull(builder.networkTypes, this, "networkTypes");
-		this.os = ModelTypeHelper.requireNonNull(builder.os, this, "os");
-		this.packagingTypes = ModelTypeHelper.unmodifiableRequired(builder.packagingTypes, this, "packagingTypes");
-		this.plugins = ModelTypeHelper.unmodifiableRequired(builder.plugins, this, "plugins");
-		this.process = ModelTypeHelper.requireNonNull(builder.process, this, "process");
-		this.versions = ModelTypeHelper.unmodifiableRequired(builder.versions, this, "versions");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.discoveryTypes = ApiTypeHelper.unmodifiableRequired(builder.discoveryTypes, this, "discoveryTypes");
+		this.fs = ApiTypeHelper.requireNonNull(builder.fs, this, "fs");
+		this.ingest = ApiTypeHelper.requireNonNull(builder.ingest, this, "ingest");
+		this.jvm = ApiTypeHelper.requireNonNull(builder.jvm, this, "jvm");
+		this.networkTypes = ApiTypeHelper.requireNonNull(builder.networkTypes, this, "networkTypes");
+		this.os = ApiTypeHelper.requireNonNull(builder.os, this, "os");
+		this.packagingTypes = ApiTypeHelper.unmodifiableRequired(builder.packagingTypes, this, "packagingTypes");
+		this.plugins = ApiTypeHelper.unmodifiableRequired(builder.plugins, this, "plugins");
+		this.process = ApiTypeHelper.requireNonNull(builder.process, this, "process");
+		this.versions = ApiTypeHelper.unmodifiableRequired(builder.versions, this, "versions");
 
 	}
 
@@ -206,7 +213,7 @@ public class ClusterNodes implements JsonpSerializable {
 		generator.writeKey("count");
 		this.count.serialize(generator, mapper);
 
-		if (ModelTypeHelper.isDefined(this.discoveryTypes)) {
+		if (ApiTypeHelper.isDefined(this.discoveryTypes)) {
 			generator.writeKey("discovery_types");
 			generator.writeStartObject();
 			for (Map.Entry<String, Integer> item0 : this.discoveryTypes.entrySet()) {
@@ -232,7 +239,7 @@ public class ClusterNodes implements JsonpSerializable {
 		generator.writeKey("os");
 		this.os.serialize(generator, mapper);
 
-		if (ModelTypeHelper.isDefined(this.packagingTypes)) {
+		if (ApiTypeHelper.isDefined(this.packagingTypes)) {
 			generator.writeKey("packaging_types");
 			generator.writeStartArray();
 			for (NodePackagingType item0 : this.packagingTypes) {
@@ -242,7 +249,7 @@ public class ClusterNodes implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.plugins)) {
+		if (ApiTypeHelper.isDefined(this.plugins)) {
 			generator.writeKey("plugins");
 			generator.writeStartArray();
 			for (PluginStats item0 : this.plugins) {
@@ -255,7 +262,7 @@ public class ClusterNodes implements JsonpSerializable {
 		generator.writeKey("process");
 		this.process.serialize(generator, mapper);
 
-		if (ModelTypeHelper.isDefined(this.versions)) {
+		if (ApiTypeHelper.isDefined(this.versions)) {
 			generator.writeKey("versions");
 			generator.writeStartArray();
 			for (String item0 : this.versions) {
@@ -273,6 +280,7 @@ public class ClusterNodes implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClusterNodes}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterNodes> {
 		private ClusterNodeCount count;
 
@@ -321,11 +329,9 @@ public class ClusterNodes implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code discovery_types}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>discoveryTypes</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>discoveryTypes</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>discoveryTypes</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder discoveryTypes(Map<String, Integer> map) {
 			this.discoveryTypes = _mapPutAll(this.discoveryTypes, map);
@@ -449,11 +455,9 @@ public class ClusterNodes implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code packaging_types}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>packagingTypes</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>packagingTypes</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>packagingTypes</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder packagingTypes(List<NodePackagingType> list) {
 			this.packagingTypes = _listAddAll(this.packagingTypes, list);
@@ -491,11 +495,9 @@ public class ClusterNodes implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code plugins}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>plugins</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>plugins</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>plugins</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder plugins(List<PluginStats> list) {
 			this.plugins = _listAddAll(this.plugins, list);
@@ -551,11 +553,9 @@ public class ClusterNodes implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code versions}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>versions</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>versions</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>versions</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder versions(List<String> list) {
 			this.versions = _listAddAll(this.versions, list);

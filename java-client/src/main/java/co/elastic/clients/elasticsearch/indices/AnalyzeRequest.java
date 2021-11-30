@@ -36,7 +36,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -49,6 +49,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.analyze.Request
+
+/**
+ * Performs the analysis process on a text and return the tokens breakdown of
+ * the text.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/analyze/IndicesAnalyzeRequest.ts#L27-L47">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -82,14 +91,14 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 	private AnalyzeRequest(Builder builder) {
 
 		this.analyzer = builder.analyzer;
-		this.attributes = ModelTypeHelper.unmodifiable(builder.attributes);
-		this.charFilter = ModelTypeHelper.unmodifiable(builder.charFilter);
+		this.attributes = ApiTypeHelper.unmodifiable(builder.attributes);
+		this.charFilter = ApiTypeHelper.unmodifiable(builder.charFilter);
 		this.explain = builder.explain;
 		this.field = builder.field;
-		this.filter = ModelTypeHelper.unmodifiable(builder.filter);
+		this.filter = ApiTypeHelper.unmodifiable(builder.filter);
 		this.index = builder.index;
 		this.normalizer = builder.normalizer;
-		this.text = ModelTypeHelper.unmodifiable(builder.text);
+		this.text = ApiTypeHelper.unmodifiable(builder.text);
 		this.tokenizer = builder.tokenizer;
 
 	}
@@ -192,7 +201,7 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 			generator.write(this.analyzer);
 
 		}
-		if (ModelTypeHelper.isDefined(this.attributes)) {
+		if (ApiTypeHelper.isDefined(this.attributes)) {
 			generator.writeKey("attributes");
 			generator.writeStartArray();
 			for (String item0 : this.attributes) {
@@ -202,7 +211,7 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.charFilter)) {
+		if (ApiTypeHelper.isDefined(this.charFilter)) {
 			generator.writeKey("char_filter");
 			generator.writeStartArray();
 			for (CharFilter item0 : this.charFilter) {
@@ -222,7 +231,7 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 			generator.write(this.field);
 
 		}
-		if (ModelTypeHelper.isDefined(this.filter)) {
+		if (ApiTypeHelper.isDefined(this.filter)) {
 			generator.writeKey("filter");
 			generator.writeStartArray();
 			for (TokenFilter item0 : this.filter) {
@@ -237,7 +246,7 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 			generator.write(this.normalizer);
 
 		}
-		if (ModelTypeHelper.isDefined(this.text)) {
+		if (ApiTypeHelper.isDefined(this.text)) {
 			generator.writeKey("text");
 			generator.writeStartArray();
 			for (String item0 : this.text) {
@@ -260,6 +269,7 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link AnalyzeRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AnalyzeRequest> {
 		@Nullable
 		private String analyzer;
@@ -302,11 +312,9 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code attributes}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>attributes</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>attributes</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>attributes</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder attributes(List<String> list) {
 			this.attributes = _listAddAll(this.attributes, list);
@@ -326,11 +334,9 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code char_filter}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>charFilter</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>charFilter</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>charFilter</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder charFilter(List<CharFilter> list) {
 			this.charFilter = _listAddAll(this.charFilter, list);
@@ -375,11 +381,9 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code filter}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>filter</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>filter</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>filter</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder filter(List<TokenFilter> list) {
 			this.filter = _listAddAll(this.filter, list);
@@ -426,11 +430,9 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code text}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>text</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>text</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>text</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder text(List<String> list) {
 			this.text = _listAddAll(this.text, list);

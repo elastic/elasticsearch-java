@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform._types.TimeSync
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/transform/_types/Transform.ts#L128-L133">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TimeSync implements SyncVariant, JsonpSerializable {
 	@Nullable
@@ -52,7 +59,7 @@ public class TimeSync implements SyncVariant, JsonpSerializable {
 	private TimeSync(Builder builder) {
 
 		this.delay = builder.delay;
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
 	}
 
@@ -114,6 +121,7 @@ public class TimeSync implements SyncVariant, JsonpSerializable {
 	/**
 	 * Builder for {@link TimeSync}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TimeSync> {
 		@Nullable
 		private Time delay;

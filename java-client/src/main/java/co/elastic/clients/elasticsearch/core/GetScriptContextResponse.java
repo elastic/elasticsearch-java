@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.get_script_context.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/get_script_context/GetScriptContextResponse.ts#L22-L26">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetScriptContextResponse implements JsonpSerializable {
 	private final List<Context> contexts;
@@ -48,7 +55,7 @@ public class GetScriptContextResponse implements JsonpSerializable {
 
 	private GetScriptContextResponse(Builder builder) {
 
-		this.contexts = ModelTypeHelper.unmodifiableRequired(builder.contexts, this, "contexts");
+		this.contexts = ApiTypeHelper.unmodifiableRequired(builder.contexts, this, "contexts");
 
 	}
 
@@ -74,7 +81,7 @@ public class GetScriptContextResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.contexts)) {
+		if (ApiTypeHelper.isDefined(this.contexts)) {
 			generator.writeKey("contexts");
 			generator.writeStartArray();
 			for (Context item0 : this.contexts) {
@@ -92,17 +99,16 @@ public class GetScriptContextResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetScriptContextResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetScriptContextResponse> {
 		private List<Context> contexts;
 
 		/**
 		 * Required - API name: {@code contexts}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>contexts</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>contexts</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>contexts</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder contexts(List<Context> list) {
 			this.contexts = _listAddAll(this.contexts, list);

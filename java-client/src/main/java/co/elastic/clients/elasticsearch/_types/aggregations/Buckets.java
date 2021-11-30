@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.UnionDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
@@ -46,7 +46,16 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.Buckets
-// union type: Union[]
+
+/**
+ * Aggregation buckets. By default they are returned as an array, but if the
+ * aggregation has keys configured for the different buckets, the result is a
+ * dictionary.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/Aggregate.ts#L300-L309">API
+ *      specification</a>
+ */
 
 public class Buckets<TBucket> implements TaggedUnion<Buckets.Kind, Object>, JsonpSerializable {
 
@@ -77,8 +86,8 @@ public class Buckets<TBucket> implements TaggedUnion<Buckets.Kind, Object>, Json
 
 	private Buckets(Builder<TBucket> builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 

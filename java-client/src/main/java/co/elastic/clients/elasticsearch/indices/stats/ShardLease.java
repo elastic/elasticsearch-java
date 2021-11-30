@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.stats.ShardLease
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/stats/types.ts#L109-L114">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ShardLease implements JsonpSerializable {
 	private final String id;
@@ -54,10 +61,10 @@ public class ShardLease implements JsonpSerializable {
 
 	private ShardLease(Builder builder) {
 
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
-		this.retainingSeqNo = ModelTypeHelper.requireNonNull(builder.retainingSeqNo, this, "retainingSeqNo");
-		this.timestamp = ModelTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
-		this.source = ModelTypeHelper.requireNonNull(builder.source, this, "source");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.retainingSeqNo = ApiTypeHelper.requireNonNull(builder.retainingSeqNo, this, "retainingSeqNo");
+		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
 
 	}
 
@@ -123,6 +130,7 @@ public class ShardLease implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardLease}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardLease> {
 		private String id;
 

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.AllocationStore
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cluster/allocation_explain/types.ts#L39-L46">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AllocationStore implements JsonpSerializable {
 	private final String allocationId;
@@ -59,13 +66,13 @@ public class AllocationStore implements JsonpSerializable {
 
 	private AllocationStore(Builder builder) {
 
-		this.allocationId = ModelTypeHelper.requireNonNull(builder.allocationId, this, "allocationId");
-		this.found = ModelTypeHelper.requireNonNull(builder.found, this, "found");
-		this.inSync = ModelTypeHelper.requireNonNull(builder.inSync, this, "inSync");
-		this.matchingSizeInBytes = ModelTypeHelper.requireNonNull(builder.matchingSizeInBytes, this,
+		this.allocationId = ApiTypeHelper.requireNonNull(builder.allocationId, this, "allocationId");
+		this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found");
+		this.inSync = ApiTypeHelper.requireNonNull(builder.inSync, this, "inSync");
+		this.matchingSizeInBytes = ApiTypeHelper.requireNonNull(builder.matchingSizeInBytes, this,
 				"matchingSizeInBytes");
-		this.matchingSyncId = ModelTypeHelper.requireNonNull(builder.matchingSyncId, this, "matchingSyncId");
-		this.storeException = ModelTypeHelper.requireNonNull(builder.storeException, this, "storeException");
+		this.matchingSyncId = ApiTypeHelper.requireNonNull(builder.matchingSyncId, this, "matchingSyncId");
+		this.storeException = ApiTypeHelper.requireNonNull(builder.storeException, this, "storeException");
 
 	}
 
@@ -151,6 +158,7 @@ public class AllocationStore implements JsonpSerializable {
 	/**
 	 * Builder for {@link AllocationStore}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AllocationStore> {
 		private String allocationId;
 

@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -47,6 +47,14 @@ import javax.annotation.Nullable;
 
 // typedef: watcher.stats.Request
 
+/**
+ * Retrieves the current Watcher metrics.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/watcher/stats/WatcherStatsRequest.ts#L23-L46">API
+ *      specification</a>
+ */
+
 public class WatcherStatsRequest extends RequestBase {
 	@Nullable
 	private final Boolean emitStacktraces;
@@ -58,7 +66,7 @@ public class WatcherStatsRequest extends RequestBase {
 	private WatcherStatsRequest(Builder builder) {
 
 		this.emitStacktraces = builder.emitStacktraces;
-		this.metric = ModelTypeHelper.unmodifiable(builder.metric);
+		this.metric = ApiTypeHelper.unmodifiable(builder.metric);
 
 	}
 
@@ -90,6 +98,7 @@ public class WatcherStatsRequest extends RequestBase {
 	/**
 	 * Builder for {@link WatcherStatsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WatcherStatsRequest> {
 		@Nullable
 		private Boolean emitStacktraces;
@@ -112,11 +121,9 @@ public class WatcherStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code metric}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>metric</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>metric</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>metric</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder metric(List<WatcherMetric> list) {
 			this.metric = _listAddAll(this.metric, list);
@@ -168,7 +175,7 @@ public class WatcherStatsRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (ModelTypeHelper.isDefined(request.metric()))
+				if (ApiTypeHelper.isDefined(request.metric()))
 					propsSet |= _metric;
 
 				if (propsSet == 0) {

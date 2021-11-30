@@ -42,6 +42,14 @@ import javax.annotation.Nullable;
 
 // typedef: security.get_service_accounts.Request
 
+/**
+ * Retrieves information about service accounts.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/security/get_service_accounts/GetServiceAccountsRequest.ts#L23-L33">API
+ *      specification</a>
+ */
+
 public class GetServiceAccountsRequest extends RequestBase {
 	@Nullable
 	private final String namespace;
@@ -87,6 +95,7 @@ public class GetServiceAccountsRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetServiceAccountsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetServiceAccountsRequest> {
 		@Nullable
 		private String namespace;

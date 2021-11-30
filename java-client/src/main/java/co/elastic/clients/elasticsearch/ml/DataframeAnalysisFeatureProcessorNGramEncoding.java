@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisFeatureProcessorNGramEncoding
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/DataframeAnalytics.ts#L273-L285">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeAnalysisFeatureProcessorNGramEncoding
 		implements
@@ -68,9 +75,9 @@ public class DataframeAnalysisFeatureProcessorNGramEncoding
 	private DataframeAnalysisFeatureProcessorNGramEncoding(Builder builder) {
 
 		this.featurePrefix = builder.featurePrefix;
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.length = builder.length;
-		this.nGrams = ModelTypeHelper.unmodifiableRequired(builder.nGrams, this, "nGrams");
+		this.nGrams = ApiTypeHelper.unmodifiableRequired(builder.nGrams, this, "nGrams");
 		this.start = builder.start;
 		this.custom = builder.custom;
 
@@ -172,7 +179,7 @@ public class DataframeAnalysisFeatureProcessorNGramEncoding
 			generator.write(this.length);
 
 		}
-		if (ModelTypeHelper.isDefined(this.nGrams)) {
+		if (ApiTypeHelper.isDefined(this.nGrams)) {
 			generator.writeKey("n_grams");
 			generator.writeStartArray();
 			for (Integer item0 : this.nGrams) {
@@ -200,6 +207,7 @@ public class DataframeAnalysisFeatureProcessorNGramEncoding
 	/**
 	 * Builder for {@link DataframeAnalysisFeatureProcessorNGramEncoding}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase
 			implements
 				ObjectBuilder<DataframeAnalysisFeatureProcessorNGramEncoding> {
@@ -256,11 +264,9 @@ public class DataframeAnalysisFeatureProcessorNGramEncoding
 		 * <p>
 		 * API name: {@code n_grams}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>nGrams</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>nGrams</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>nGrams</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder nGrams(List<Integer> list) {
 			this.nGrams = _listAddAll(this.nGrams, list);

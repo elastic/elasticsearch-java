@@ -34,6 +34,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _global.create.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/create/CreateResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CreateResponse extends WriteResponseBase {
 	// ---------------------------------------------------------------------------------------------
@@ -52,6 +59,7 @@ public class CreateResponse extends WriteResponseBase {
 	/**
 	 * Builder for {@link CreateResponse}.
 	 */
+
 	public static class Builder extends WriteResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<CreateResponse> {

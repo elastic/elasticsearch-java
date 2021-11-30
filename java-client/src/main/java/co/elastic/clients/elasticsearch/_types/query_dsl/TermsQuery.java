@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,6 +37,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.TermsQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/query_dsl/term.ts#L123-L125">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TermsQuery extends QueryBase implements QueryVariant {
 	private final String field;
@@ -47,8 +54,8 @@ public class TermsQuery extends QueryBase implements QueryVariant {
 
 	private TermsQuery(Builder builder) {
 		super(builder);
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
-		this.terms = ModelTypeHelper.requireNonNull(builder.terms, this, "terms");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.terms = ApiTypeHelper.requireNonNull(builder.terms, this, "terms");
 
 	}
 
@@ -91,6 +98,7 @@ public class TermsQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link TermsQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<TermsQuery> {
 		private String field;
 

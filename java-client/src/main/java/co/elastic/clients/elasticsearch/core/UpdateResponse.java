@@ -40,6 +40,13 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: _global.update.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/update/UpdateResponse.ts#L23-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class UpdateResponse<TDocument> extends WriteResponseBase {
 	@Nullable
@@ -87,6 +94,7 @@ public class UpdateResponse<TDocument> extends WriteResponseBase {
 	/**
 	 * Builder for {@link UpdateResponse}.
 	 */
+
 	public static class Builder<TDocument> extends WriteResponseBase.AbstractBuilder<Builder<TDocument>>
 			implements
 				ObjectBuilder<UpdateResponse<TDocument>> {
@@ -142,7 +150,7 @@ public class UpdateResponse<TDocument> extends WriteResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for UpdateResponse
+	 * Create a JSON deserializer for UpdateResponse
 	 */
 	public static <TDocument> JsonpDeserializer<UpdateResponse<TDocument>> createUpdateResponseDeserializer(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {

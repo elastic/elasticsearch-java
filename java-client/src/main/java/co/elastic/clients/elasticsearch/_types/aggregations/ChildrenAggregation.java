@@ -36,6 +36,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ChildrenAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/bucket.ts#L72-L74">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ChildrenAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
@@ -86,6 +93,7 @@ public class ChildrenAggregation extends BucketAggregationBase implements Aggreg
 	/**
 	 * Builder for {@link ChildrenAggregation}.
 	 */
+
 	public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ChildrenAggregation> {

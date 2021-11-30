@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GeoLinePoint
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/metric.ts#L84-L86">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GeoLinePoint implements JsonpSerializable {
 	private final String field;
@@ -47,7 +54,7 @@ public class GeoLinePoint implements JsonpSerializable {
 
 	private GeoLinePoint(Builder builder) {
 
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
 	}
 
@@ -83,6 +90,7 @@ public class GeoLinePoint implements JsonpSerializable {
 	/**
 	 * Builder for {@link GeoLinePoint}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GeoLinePoint> {
 		private String field;
 

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoScript
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/nodes/info/types.ts#L266-L269">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeInfoScript implements JsonpSerializable {
 	private final String allowedTypes;
@@ -49,8 +56,8 @@ public class NodeInfoScript implements JsonpSerializable {
 
 	private NodeInfoScript(Builder builder) {
 
-		this.allowedTypes = ModelTypeHelper.requireNonNull(builder.allowedTypes, this, "allowedTypes");
-		this.disableMaxCompilationsRate = ModelTypeHelper.requireNonNull(builder.disableMaxCompilationsRate, this,
+		this.allowedTypes = ApiTypeHelper.requireNonNull(builder.allowedTypes, this, "allowedTypes");
+		this.disableMaxCompilationsRate = ApiTypeHelper.requireNonNull(builder.disableMaxCompilationsRate, this,
 				"disableMaxCompilationsRate");
 
 	}
@@ -97,6 +104,7 @@ public class NodeInfoScript implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoScript}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoScript> {
 		private String allowedTypes;
 

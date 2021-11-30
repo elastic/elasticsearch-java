@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -47,6 +47,14 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.get_repository.Request
+
+/**
+ * Returns information about a repository.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/snapshot/get_repository/SnapshotGetRepositoryRequest.ts#L24-L38">API
+ *      specification</a>
+ */
 
 public class GetRepositoryRequest extends RequestBase {
 	@Nullable
@@ -63,7 +71,7 @@ public class GetRepositoryRequest extends RequestBase {
 
 		this.local = builder.local;
 		this.masterTimeout = builder.masterTimeout;
-		this.name = ModelTypeHelper.unmodifiable(builder.name);
+		this.name = ApiTypeHelper.unmodifiable(builder.name);
 
 	}
 
@@ -106,6 +114,7 @@ public class GetRepositoryRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetRepositoryRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetRepositoryRequest> {
 		@Nullable
 		private Boolean local;
@@ -151,11 +160,9 @@ public class GetRepositoryRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code repository}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>name</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>name</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>name</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder name(List<String> list) {
 			this.name = _listAddAll(this.name, list);
@@ -207,7 +214,7 @@ public class GetRepositoryRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (ModelTypeHelper.isDefined(request.name()))
+				if (ApiTypeHelper.isDefined(request.name()))
 					propsSet |= _name;
 
 				if (propsSet == 0) {

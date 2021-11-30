@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ArrayPercentilesItem
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/Aggregate.ts#L146-L150">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ArrayPercentilesItem implements JsonpSerializable {
 	private final String key;
@@ -53,8 +60,8 @@ public class ArrayPercentilesItem implements JsonpSerializable {
 
 	private ArrayPercentilesItem(Builder builder) {
 
-		this.key = ModelTypeHelper.requireNonNull(builder.key, this, "key");
-		this.value = ModelTypeHelper.requireNonNull(builder.value, this, "value");
+		this.key = ApiTypeHelper.requireNonNull(builder.key, this, "key");
+		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
 		this.valueAsString = builder.valueAsString;
 
 	}
@@ -115,6 +122,7 @@ public class ArrayPercentilesItem implements JsonpSerializable {
 	/**
 	 * Builder for {@link ArrayPercentilesItem}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ArrayPercentilesItem> {
 		private String key;
 

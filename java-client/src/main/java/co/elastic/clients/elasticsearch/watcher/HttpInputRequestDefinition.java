@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.HttpInputRequestDefinition
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/watcher/_types/Input.ts#L74-L88">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class HttpInputRequestDefinition implements JsonpSerializable {
 	@Nullable
@@ -88,10 +95,10 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 		this.auth = builder.auth;
 		this.body = builder.body;
 		this.connectionTimeout = builder.connectionTimeout;
-		this.headers = ModelTypeHelper.unmodifiable(builder.headers);
+		this.headers = ApiTypeHelper.unmodifiable(builder.headers);
 		this.host = builder.host;
 		this.method = builder.method;
-		this.params = ModelTypeHelper.unmodifiable(builder.params);
+		this.params = ApiTypeHelper.unmodifiable(builder.params);
 		this.path = builder.path;
 		this.port = builder.port;
 		this.proxy = builder.proxy;
@@ -229,7 +236,7 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 			this.connectionTimeout.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.headers)) {
+		if (ApiTypeHelper.isDefined(this.headers)) {
 			generator.writeKey("headers");
 			generator.writeStartObject();
 			for (Map.Entry<String, String> item0 : this.headers.entrySet()) {
@@ -249,7 +256,7 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 			generator.writeKey("method");
 			this.method.serialize(generator, mapper);
 		}
-		if (ModelTypeHelper.isDefined(this.params)) {
+		if (ApiTypeHelper.isDefined(this.params)) {
 			generator.writeKey("params");
 			generator.writeStartObject();
 			for (Map.Entry<String, String> item0 : this.params.entrySet()) {
@@ -297,6 +304,7 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 	/**
 	 * Builder for {@link HttpInputRequestDefinition}.
 	 */
+
 	public static class Builder extends HttpInputRequestDefinition.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<HttpInputRequestDefinition> {
@@ -402,11 +410,9 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code headers}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>headers</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>headers</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>headers</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final BuilderT headers(Map<String, String> map) {
 			this.headers = _mapPutAll(this.headers, map);
@@ -442,11 +448,9 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code params}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>params</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>params</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>params</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final BuilderT params(Map<String, String> map) {
 			this.params = _mapPutAll(this.params, map);

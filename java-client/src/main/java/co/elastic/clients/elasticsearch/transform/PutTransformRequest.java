@@ -36,7 +36,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -49,6 +49,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform.put_transform.Request
+
+/**
+ * Instantiates a transform.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/transform/put_transform/PutTransformRequest.ts#L32-L69">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutTransformRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -87,15 +95,15 @@ public class PutTransformRequest extends RequestBase implements JsonpSerializabl
 
 		this.deferValidation = builder.deferValidation;
 		this.description = builder.description;
-		this.dest = ModelTypeHelper.requireNonNull(builder.dest, this, "dest");
+		this.dest = ApiTypeHelper.requireNonNull(builder.dest, this, "dest");
 		this.frequency = builder.frequency;
 		this.latest = builder.latest;
 		this.pivot = builder.pivot;
 		this.retentionPolicy = builder.retentionPolicy;
 		this.settings = builder.settings;
-		this.source = ModelTypeHelper.requireNonNull(builder.source, this, "source");
+		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
 		this.sync = builder.sync;
-		this.transformId = ModelTypeHelper.requireNonNull(builder.transformId, this, "transformId");
+		this.transformId = ApiTypeHelper.requireNonNull(builder.transformId, this, "transformId");
 
 	}
 
@@ -279,6 +287,7 @@ public class PutTransformRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Builder for {@link PutTransformRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutTransformRequest> {
 		@Nullable
 		private Boolean deferValidation;

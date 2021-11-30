@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,6 +37,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.InferenceAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/pipeline.ts#L73-L76">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class InferenceAggregation extends PipelineAggregationBase implements AggregationVariant {
 	private final String modelId;
@@ -49,7 +56,7 @@ public class InferenceAggregation extends PipelineAggregationBase implements Agg
 	private InferenceAggregation(Builder builder) {
 		super(builder);
 
-		this.modelId = ModelTypeHelper.requireNonNull(builder.modelId, this, "modelId");
+		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
 		this.inferenceConfig = builder.inferenceConfig;
 
 	}
@@ -100,6 +107,7 @@ public class InferenceAggregation extends PipelineAggregationBase implements Agg
 	/**
 	 * Builder for {@link InferenceAggregation}.
 	 */
+
 	public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<InferenceAggregation> {

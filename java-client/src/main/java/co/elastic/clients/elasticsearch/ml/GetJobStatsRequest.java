@@ -44,6 +44,14 @@ import javax.annotation.Nullable;
 
 // typedef: ml.get_job_stats.Request
 
+/**
+ * Retrieves usage information for anomaly detection jobs.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/get_job_stats/MlGetJobStatsRequest.ts#L23-L56">API
+ *      specification</a>
+ */
+
 public class GetJobStatsRequest extends RequestBase {
 	@Nullable
 	private final Boolean allowNoMatch;
@@ -102,6 +110,7 @@ public class GetJobStatsRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetJobStatsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetJobStatsRequest> {
 		@Nullable
 		private Boolean allowNoMatch;

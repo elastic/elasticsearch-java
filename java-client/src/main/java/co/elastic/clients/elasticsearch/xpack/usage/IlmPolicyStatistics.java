@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.IlmPolicyStatistics
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/xpack/usage/types.ts#L143-L146">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IlmPolicyStatistics implements JsonpSerializable {
 	private final int indicesManaged;
@@ -50,8 +57,8 @@ public class IlmPolicyStatistics implements JsonpSerializable {
 
 	private IlmPolicyStatistics(Builder builder) {
 
-		this.indicesManaged = ModelTypeHelper.requireNonNull(builder.indicesManaged, this, "indicesManaged");
-		this.phases = ModelTypeHelper.requireNonNull(builder.phases, this, "phases");
+		this.indicesManaged = ApiTypeHelper.requireNonNull(builder.indicesManaged, this, "indicesManaged");
+		this.phases = ApiTypeHelper.requireNonNull(builder.phases, this, "phases");
 
 	}
 
@@ -97,6 +104,7 @@ public class IlmPolicyStatistics implements JsonpSerializable {
 	/**
 	 * Builder for {@link IlmPolicyStatistics}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IlmPolicyStatistics> {
 		private Integer indicesManaged;
 

@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -45,6 +45,14 @@ import javax.annotation.Nullable;
 
 // typedef: security.clear_api_key_cache.Request
 
+/**
+ * Clear a subset or all entries from the API key cache.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/security/clear_api_key_cache/SecurityClearApiKeyCacheRequest.ts#L23-L32">API
+ *      specification</a>
+ */
+
 public class ClearApiKeyCacheRequest extends RequestBase {
 	private final List<String> ids;
 
@@ -52,7 +60,7 @@ public class ClearApiKeyCacheRequest extends RequestBase {
 
 	private ClearApiKeyCacheRequest(Builder builder) {
 
-		this.ids = ModelTypeHelper.unmodifiableRequired(builder.ids, this, "ids");
+		this.ids = ApiTypeHelper.unmodifiableRequired(builder.ids, this, "ids");
 
 	}
 
@@ -74,6 +82,7 @@ public class ClearApiKeyCacheRequest extends RequestBase {
 	/**
 	 * Builder for {@link ClearApiKeyCacheRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClearApiKeyCacheRequest> {
 		private List<String> ids;
 
@@ -82,11 +91,9 @@ public class ClearApiKeyCacheRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code ids}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>ids</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>ids</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>ids</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder ids(List<String> list) {
 			this.ids = _listAddAll(this.ids, list);

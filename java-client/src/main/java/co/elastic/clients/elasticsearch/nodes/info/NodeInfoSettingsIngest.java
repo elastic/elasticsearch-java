@@ -37,6 +37,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoSettingsIngest
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/nodes/info/types.ts#L85-L120">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeInfoSettingsIngest implements JsonpSerializable {
 	@Nullable
@@ -647,6 +654,7 @@ public class NodeInfoSettingsIngest implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoSettingsIngest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoSettingsIngest> {
 		@Nullable
 		private NodeInfoIngestInfo attachment;

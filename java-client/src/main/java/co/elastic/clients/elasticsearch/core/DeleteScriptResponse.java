@@ -34,6 +34,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _global.delete_script.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/delete_script/DeleteScriptResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DeleteScriptResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
@@ -52,6 +59,7 @@ public class DeleteScriptResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link DeleteScriptResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeleteScriptResponse> {

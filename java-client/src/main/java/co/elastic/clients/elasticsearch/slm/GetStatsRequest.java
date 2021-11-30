@@ -38,6 +38,15 @@ import java.util.Objects;
 
 // typedef: slm.get_stats.Request
 
+/**
+ * Returns global and policy-level statistics about actions taken by snapshot
+ * lifecycle management.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/slm/get_stats/GetSnapshotLifecycleStatsRequest.ts#L22-L27">API
+ *      specification</a>
+ */
+
 public class GetStatsRequest extends RequestBase {
 	public GetStatsRequest() {
 	}

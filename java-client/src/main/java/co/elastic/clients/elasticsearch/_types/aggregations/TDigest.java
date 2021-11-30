@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TDigest
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/metric.ts#L114-L116">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TDigest implements JsonpSerializable {
 	@Nullable
@@ -87,6 +94,7 @@ public class TDigest implements JsonpSerializable {
 	/**
 	 * Builder for {@link TDigest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TDigest> {
 		@Nullable
 		private Integer compression;

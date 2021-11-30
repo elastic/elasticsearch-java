@@ -34,7 +34,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -46,6 +46,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: slm.put_lifecycle.Request
+
+/**
+ * Creates or updates a snapshot lifecycle policy.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/slm/put_lifecycle/PutSnapshotLifecycleRequest.ts#L26-L72">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutLifecycleRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -78,7 +86,7 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 		this.config = builder.config;
 		this.masterTimeout = builder.masterTimeout;
 		this.name = builder.name;
-		this.policyId = ModelTypeHelper.requireNonNull(builder.policyId, this, "policyId");
+		this.policyId = ApiTypeHelper.requireNonNull(builder.policyId, this, "policyId");
 		this.repository = builder.repository;
 		this.retention = builder.retention;
 		this.schedule = builder.schedule;
@@ -220,6 +228,7 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Builder for {@link PutLifecycleRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutLifecycleRequest> {
 		@Nullable
 		private SlmConfiguration config;

@@ -37,6 +37,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.InferenceConfig
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ingest/_types/Processors.ts#L243-L245">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class InferenceConfig implements JsonpSerializable {
 	@Nullable
@@ -86,6 +93,7 @@ public class InferenceConfig implements JsonpSerializable {
 	/**
 	 * Builder for {@link InferenceConfig}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<InferenceConfig> {
 		@Nullable
 		private InferenceConfigRegression regression;

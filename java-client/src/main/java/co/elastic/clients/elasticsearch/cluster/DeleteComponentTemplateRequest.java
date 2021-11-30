@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -44,6 +44,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.delete_component_template.Request
+
+/**
+ * Deletes a component template
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cluster/delete_component_template/ClusterDeleteComponentTemplateRequest.ts#L24-L39">API
+ *      specification</a>
+ */
 
 public class DeleteComponentTemplateRequest extends RequestBase {
 	@Nullable
@@ -59,7 +67,7 @@ public class DeleteComponentTemplateRequest extends RequestBase {
 	private DeleteComponentTemplateRequest(Builder builder) {
 
 		this.masterTimeout = builder.masterTimeout;
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.timeout = builder.timeout;
 
 	}
@@ -103,6 +111,7 @@ public class DeleteComponentTemplateRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteComponentTemplateRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteComponentTemplateRequest> {
 		@Nullable
 		private Time masterTimeout;

@@ -27,6 +27,12 @@ import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/_types/NumericFielddataFormat.ts#L20-L23">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public enum NumericFielddataFormat implements JsonEnum {
 	Array("array"),

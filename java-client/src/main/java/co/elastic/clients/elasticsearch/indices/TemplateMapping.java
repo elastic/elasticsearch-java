@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -45,6 +45,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.TemplateMapping
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/_types/TemplateMapping.ts#L27-L34">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TemplateMapping implements JsonpSerializable {
 	private final Map<String, Alias> aliases;
@@ -64,11 +71,11 @@ public class TemplateMapping implements JsonpSerializable {
 
 	private TemplateMapping(Builder builder) {
 
-		this.aliases = ModelTypeHelper.unmodifiableRequired(builder.aliases, this, "aliases");
-		this.indexPatterns = ModelTypeHelper.unmodifiableRequired(builder.indexPatterns, this, "indexPatterns");
-		this.mappings = ModelTypeHelper.requireNonNull(builder.mappings, this, "mappings");
-		this.order = ModelTypeHelper.requireNonNull(builder.order, this, "order");
-		this.settings = ModelTypeHelper.unmodifiableRequired(builder.settings, this, "settings");
+		this.aliases = ApiTypeHelper.unmodifiableRequired(builder.aliases, this, "aliases");
+		this.indexPatterns = ApiTypeHelper.unmodifiableRequired(builder.indexPatterns, this, "indexPatterns");
+		this.mappings = ApiTypeHelper.requireNonNull(builder.mappings, this, "mappings");
+		this.order = ApiTypeHelper.requireNonNull(builder.order, this, "order");
+		this.settings = ApiTypeHelper.unmodifiableRequired(builder.settings, this, "settings");
 		this.version = builder.version;
 
 	}
@@ -131,7 +138,7 @@ public class TemplateMapping implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.aliases)) {
+		if (ApiTypeHelper.isDefined(this.aliases)) {
 			generator.writeKey("aliases");
 			generator.writeStartObject();
 			for (Map.Entry<String, Alias> item0 : this.aliases.entrySet()) {
@@ -142,7 +149,7 @@ public class TemplateMapping implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.indexPatterns)) {
+		if (ApiTypeHelper.isDefined(this.indexPatterns)) {
 			generator.writeKey("index_patterns");
 			generator.writeStartArray();
 			for (String item0 : this.indexPatterns) {
@@ -158,7 +165,7 @@ public class TemplateMapping implements JsonpSerializable {
 		generator.writeKey("order");
 		generator.write(this.order);
 
-		if (ModelTypeHelper.isDefined(this.settings)) {
+		if (ApiTypeHelper.isDefined(this.settings)) {
 			generator.writeKey("settings");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.settings.entrySet()) {
@@ -182,6 +189,7 @@ public class TemplateMapping implements JsonpSerializable {
 	/**
 	 * Builder for {@link TemplateMapping}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TemplateMapping> {
 		private Map<String, Alias> aliases;
 
@@ -199,11 +207,9 @@ public class TemplateMapping implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code aliases}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>aliases</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>aliases</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>aliases</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder aliases(Map<String, Alias> map) {
 			this.aliases = _mapPutAll(this.aliases, map);
@@ -232,11 +238,9 @@ public class TemplateMapping implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index_patterns}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>indexPatterns</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>indexPatterns</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>indexPatterns</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder indexPatterns(List<String> list) {
 			this.indexPatterns = _listAddAll(this.indexPatterns, list);
@@ -279,11 +283,9 @@ public class TemplateMapping implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code settings}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>settings</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>settings</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>settings</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder settings(Map<String, JsonData> map) {
 			this.settings = _mapPutAll(this.settings, map);

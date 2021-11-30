@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cluster/reroute/ClusterRerouteResponse.ts#L23-L33">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RerouteResponse implements JsonpSerializable {
 	private final List<RerouteExplanation> explanations;
@@ -51,8 +58,8 @@ public class RerouteResponse implements JsonpSerializable {
 
 	private RerouteResponse(Builder builder) {
 
-		this.explanations = ModelTypeHelper.unmodifiable(builder.explanations);
-		this.state = ModelTypeHelper.requireNonNull(builder.state, this, "state");
+		this.explanations = ApiTypeHelper.unmodifiable(builder.explanations);
+		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
 
 	}
 
@@ -89,7 +96,7 @@ public class RerouteResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.explanations)) {
+		if (ApiTypeHelper.isDefined(this.explanations)) {
 			generator.writeKey("explanations");
 			generator.writeStartArray();
 			for (RerouteExplanation item0 : this.explanations) {
@@ -109,6 +116,7 @@ public class RerouteResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link RerouteResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RerouteResponse> {
 		@Nullable
 		private List<RerouteExplanation> explanations;
@@ -118,11 +126,9 @@ public class RerouteResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code explanations}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>explanations</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>explanations</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>explanations</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder explanations(List<RerouteExplanation> list) {
 			this.explanations = _listAddAll(this.explanations, list);

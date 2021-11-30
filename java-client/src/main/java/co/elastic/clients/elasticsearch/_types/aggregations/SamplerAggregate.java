@@ -33,6 +33,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.aggregations.SamplerAggregate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/Aggregate.ts#L476-L477">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SamplerAggregate extends SingleBucketAggregateBase implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -59,6 +66,7 @@ public class SamplerAggregate extends SingleBucketAggregateBase implements Aggre
 	/**
 	 * Builder for {@link SamplerAggregate}.
 	 */
+
 	public static class Builder extends SingleBucketAggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<SamplerAggregate> {

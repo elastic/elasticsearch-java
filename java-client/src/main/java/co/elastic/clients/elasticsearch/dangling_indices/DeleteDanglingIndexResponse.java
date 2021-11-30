@@ -34,6 +34,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: dangling_indices.delete_dangling_index.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/dangling_indices/delete_dangling_index/DeleteDanglingIndexResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DeleteDanglingIndexResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
@@ -52,6 +59,7 @@ public class DeleteDanglingIndexResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link DeleteDanglingIndexResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeleteDanglingIndexResponse> {

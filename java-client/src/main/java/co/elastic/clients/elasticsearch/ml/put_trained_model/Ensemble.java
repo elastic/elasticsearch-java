@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.Ensemble
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/put_trained_model/types.ts#L93-L99">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Ensemble implements JsonpSerializable {
 	@Nullable
@@ -59,10 +66,10 @@ public class Ensemble implements JsonpSerializable {
 	private Ensemble(Builder builder) {
 
 		this.aggregateOutput = builder.aggregateOutput;
-		this.classificationLabels = ModelTypeHelper.unmodifiable(builder.classificationLabels);
-		this.featureNames = ModelTypeHelper.unmodifiable(builder.featureNames);
+		this.classificationLabels = ApiTypeHelper.unmodifiable(builder.classificationLabels);
+		this.featureNames = ApiTypeHelper.unmodifiable(builder.featureNames);
 		this.targetType = builder.targetType;
-		this.trainedModels = ModelTypeHelper.unmodifiableRequired(builder.trainedModels, this, "trainedModels");
+		this.trainedModels = ApiTypeHelper.unmodifiableRequired(builder.trainedModels, this, "trainedModels");
 
 	}
 
@@ -123,7 +130,7 @@ public class Ensemble implements JsonpSerializable {
 			this.aggregateOutput.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.classificationLabels)) {
+		if (ApiTypeHelper.isDefined(this.classificationLabels)) {
 			generator.writeKey("classification_labels");
 			generator.writeStartArray();
 			for (String item0 : this.classificationLabels) {
@@ -133,7 +140,7 @@ public class Ensemble implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.featureNames)) {
+		if (ApiTypeHelper.isDefined(this.featureNames)) {
 			generator.writeKey("feature_names");
 			generator.writeStartArray();
 			for (String item0 : this.featureNames) {
@@ -148,7 +155,7 @@ public class Ensemble implements JsonpSerializable {
 			generator.write(this.targetType);
 
 		}
-		if (ModelTypeHelper.isDefined(this.trainedModels)) {
+		if (ApiTypeHelper.isDefined(this.trainedModels)) {
 			generator.writeKey("trained_models");
 			generator.writeStartArray();
 			for (TrainedModel item0 : this.trainedModels) {
@@ -166,6 +173,7 @@ public class Ensemble implements JsonpSerializable {
 	/**
 	 * Builder for {@link Ensemble}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Ensemble> {
 		@Nullable
 		private AggregateOutput aggregateOutput;
@@ -200,10 +208,8 @@ public class Ensemble implements JsonpSerializable {
 		 * API name: {@code classification_labels}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>classificationLabels</code>.
-		 * Use <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>classificationLabels</code> to <code>null</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder classificationLabels(List<String> list) {
 			this.classificationLabels = _listAddAll(this.classificationLabels, list);
@@ -223,11 +229,9 @@ public class Ensemble implements JsonpSerializable {
 		/**
 		 * API name: {@code feature_names}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>featureNames</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>featureNames</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>featureNames</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder featureNames(List<String> list) {
 			this.featureNames = _listAddAll(this.featureNames, list);
@@ -255,11 +259,9 @@ public class Ensemble implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code trained_models}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>trainedModels</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>trainedModels</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>trainedModels</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder trainedModels(List<TrainedModel> list) {
 			this.trainedModels = _listAddAll(this.trainedModels, list);

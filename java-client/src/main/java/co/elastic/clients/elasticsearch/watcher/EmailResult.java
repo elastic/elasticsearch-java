@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.EmailResult
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/watcher/_types/Actions.ts#L144-L148">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class EmailResult implements JsonpSerializable {
 	@Nullable
@@ -54,7 +61,7 @@ public class EmailResult implements JsonpSerializable {
 	private EmailResult(Builder builder) {
 
 		this.account = builder.account;
-		this.message = ModelTypeHelper.requireNonNull(builder.message, this, "message");
+		this.message = ApiTypeHelper.requireNonNull(builder.message, this, "message");
 		this.reason = builder.reason;
 
 	}
@@ -118,6 +125,7 @@ public class EmailResult implements JsonpSerializable {
 	/**
 	 * Builder for {@link EmailResult}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<EmailResult> {
 		@Nullable
 		private String account;

@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.RankEvalRequestItem
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/rank_eval/types.ts#L98-L109">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RankEvalRequestItem implements JsonpSerializable {
 	private final String id;
@@ -60,11 +67,11 @@ public class RankEvalRequestItem implements JsonpSerializable {
 
 	private RankEvalRequestItem(Builder builder) {
 
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.request = builder.request;
-		this.ratings = ModelTypeHelper.unmodifiableRequired(builder.ratings, this, "ratings");
+		this.ratings = ApiTypeHelper.unmodifiableRequired(builder.ratings, this, "ratings");
 		this.templateId = builder.templateId;
-		this.params = ModelTypeHelper.unmodifiable(builder.params);
+		this.params = ApiTypeHelper.unmodifiable(builder.params);
 
 	}
 
@@ -138,7 +145,7 @@ public class RankEvalRequestItem implements JsonpSerializable {
 			this.request.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.ratings)) {
+		if (ApiTypeHelper.isDefined(this.ratings)) {
 			generator.writeKey("ratings");
 			generator.writeStartArray();
 			for (DocumentRating item0 : this.ratings) {
@@ -153,7 +160,7 @@ public class RankEvalRequestItem implements JsonpSerializable {
 			generator.write(this.templateId);
 
 		}
-		if (ModelTypeHelper.isDefined(this.params)) {
+		if (ApiTypeHelper.isDefined(this.params)) {
 			generator.writeKey("params");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.params.entrySet()) {
@@ -172,6 +179,7 @@ public class RankEvalRequestItem implements JsonpSerializable {
 	/**
 	 * Builder for {@link RankEvalRequestItem}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RankEvalRequestItem> {
 		private String id;
 
@@ -220,11 +228,9 @@ public class RankEvalRequestItem implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code ratings}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>ratings</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>ratings</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>ratings</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder ratings(List<DocumentRating> list) {
 			this.ratings = _listAddAll(this.ratings, list);
@@ -269,11 +275,9 @@ public class RankEvalRequestItem implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code params}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>params</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>params</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>params</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder params(Map<String, JsonData> map) {
 			this.params = _mapPutAll(this.params, map);

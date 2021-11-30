@@ -45,6 +45,14 @@ import javax.annotation.Nullable;
 
 // typedef: transform.get_transform.Request
 
+/**
+ * Retrieves configuration information for transforms.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/transform/get_transform/GetTransformRequest.ts#L24-L39">API
+ *      specification</a>
+ */
+
 public class GetTransformRequest extends RequestBase {
 	@Nullable
 	private final Boolean allowNoMatch;
@@ -134,6 +142,7 @@ public class GetTransformRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetTransformRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetTransformRequest> {
 		@Nullable
 		private Boolean allowNoMatch;

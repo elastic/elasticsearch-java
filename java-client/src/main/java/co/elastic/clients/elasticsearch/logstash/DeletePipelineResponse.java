@@ -33,6 +33,13 @@ import java.util.Objects;
 
 // typedef: logstash.delete_pipeline.Response
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/logstash/delete_pipeline/LogstashDeletePipelineResponse.ts#L22-L24">API
+ *      specification</a>
+ */
+
 public class DeletePipelineResponse {
 	public DeletePipelineResponse() {
 	}

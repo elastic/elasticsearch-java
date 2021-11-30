@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoSettingsTransport
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/nodes/info/types.ts#L190-L194">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeInfoSettingsTransport implements JsonpSerializable {
 	private final NodeInfoSettingsTransportType type;
@@ -53,7 +60,7 @@ public class NodeInfoSettingsTransport implements JsonpSerializable {
 
 	private NodeInfoSettingsTransport(Builder builder) {
 
-		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 		this.typeDefault = builder.typeDefault;
 		this.features = builder.features;
 
@@ -118,6 +125,7 @@ public class NodeInfoSettingsTransport implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoSettingsTransport}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoSettingsTransport> {
 		private NodeInfoSettingsTransportType type;
 

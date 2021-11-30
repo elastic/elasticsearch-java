@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
@@ -41,13 +41,22 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MovingAverageAggregation
-// union type: InternalTag[tag=model]
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/pipeline.ts#L115-L121">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MovingAverageAggregation
 		implements
 			TaggedUnion<MovingAverageAggregation.Kind, MovingAverageAggregationVariant>,
 			JsonpSerializable {
 
+	/**
+	 * {@link MovingAverageAggregation} variant kinds.
+	 */
 	/**
 	 * {@link MovingAverageAggregation} variant kinds.
 	 */
@@ -92,15 +101,15 @@ public class MovingAverageAggregation
 
 	public MovingAverageAggregation(MovingAverageAggregationVariant value) {
 
-		this._kind = ModelTypeHelper.requireNonNull(value._movingAverageAggregationKind(), this, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(value._movingAverageAggregationKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
 	private MovingAverageAggregation(Builder builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.mapping.TextIndexPrefixes
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/mapping/core.ts#L251-L254">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TextIndexPrefixes implements JsonpSerializable {
 	private final int maxChars;
@@ -48,8 +55,8 @@ public class TextIndexPrefixes implements JsonpSerializable {
 
 	private TextIndexPrefixes(Builder builder) {
 
-		this.maxChars = ModelTypeHelper.requireNonNull(builder.maxChars, this, "maxChars");
-		this.minChars = ModelTypeHelper.requireNonNull(builder.minChars, this, "minChars");
+		this.maxChars = ApiTypeHelper.requireNonNull(builder.maxChars, this, "maxChars");
+		this.minChars = ApiTypeHelper.requireNonNull(builder.minChars, this, "minChars");
 
 	}
 
@@ -95,6 +102,7 @@ public class TextIndexPrefixes implements JsonpSerializable {
 	/**
 	 * Builder for {@link TextIndexPrefixes}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TextIndexPrefixes> {
 		private Integer maxChars;
 

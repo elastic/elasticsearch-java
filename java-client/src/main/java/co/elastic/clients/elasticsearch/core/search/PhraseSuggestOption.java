@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.PhraseSuggestOption
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/search/_types/suggester.ts#L84-L88">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PhraseSuggestOption implements JsonpSerializable {
 	private final String text;
@@ -52,9 +59,9 @@ public class PhraseSuggestOption implements JsonpSerializable {
 
 	private PhraseSuggestOption(Builder builder) {
 
-		this.text = ModelTypeHelper.requireNonNull(builder.text, this, "text");
-		this.highlighted = ModelTypeHelper.requireNonNull(builder.highlighted, this, "highlighted");
-		this.score = ModelTypeHelper.requireNonNull(builder.score, this, "score");
+		this.text = ApiTypeHelper.requireNonNull(builder.text, this, "text");
+		this.highlighted = ApiTypeHelper.requireNonNull(builder.highlighted, this, "highlighted");
+		this.score = ApiTypeHelper.requireNonNull(builder.score, this, "score");
 
 	}
 
@@ -110,6 +117,7 @@ public class PhraseSuggestOption implements JsonpSerializable {
 	/**
 	 * Builder for {@link PhraseSuggestOption}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PhraseSuggestOption> {
 		private String text;
 

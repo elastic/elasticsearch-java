@@ -33,6 +33,15 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.aggregations.LongTermsAggregate
+
+/**
+ * Result of a <code>terms</code> aggregation when the field is some kind of
+ * whole number like a integer, long, or a date.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/Aggregate.ts#L383-L388">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class LongTermsAggregate extends TermsAggregateBase<LongTermsBucket> implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -59,6 +68,7 @@ public class LongTermsAggregate extends TermsAggregateBase<LongTermsBucket> impl
 	/**
 	 * Builder for {@link LongTermsAggregate}.
 	 */
+
 	public static class Builder extends TermsAggregateBase.AbstractBuilder<LongTermsBucket, Builder>
 			implements
 				ObjectBuilder<LongTermsAggregate> {

@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -45,6 +45,14 @@ import javax.annotation.Nullable;
 
 // typedef: _global.reindex_rethrottle.Request
 
+/**
+ * Changes the number of requests per second for a particular Reindex operation.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/reindex_rethrottle/ReindexRethrottleRequest.ts#L24-L36">API
+ *      specification</a>
+ */
+
 public class ReindexRethrottleRequest extends RequestBase {
 	@Nullable
 	private final Long requestsPerSecond;
@@ -56,7 +64,7 @@ public class ReindexRethrottleRequest extends RequestBase {
 	private ReindexRethrottleRequest(Builder builder) {
 
 		this.requestsPerSecond = builder.requestsPerSecond;
-		this.taskId = ModelTypeHelper.requireNonNull(builder.taskId, this, "taskId");
+		this.taskId = ApiTypeHelper.requireNonNull(builder.taskId, this, "taskId");
 
 	}
 
@@ -89,6 +97,7 @@ public class ReindexRethrottleRequest extends RequestBase {
 	/**
 	 * Builder for {@link ReindexRethrottleRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ReindexRethrottleRequest> {
 		@Nullable
 		private Long requestsPerSecond;

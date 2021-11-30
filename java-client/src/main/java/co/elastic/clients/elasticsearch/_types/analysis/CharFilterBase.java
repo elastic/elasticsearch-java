@@ -38,6 +38,13 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.CharFilterBase
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/analysis/char_filters.ts#L24-L26">API
+ *      specification</a>
+ */
+
 public abstract class CharFilterBase implements JsonpSerializable {
 	@Nullable
 	private final String version;

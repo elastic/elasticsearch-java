@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: autoscaling.get_autoscaling_capacity.AutoscalingDeciders
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/autoscaling/get_autoscaling_capacity/GetAutoscalingCapacityResponse.ts#L31-L36">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AutoscalingDeciders implements JsonpSerializable {
 	private final AutoscalingCapacity requiredCapacity;
@@ -55,10 +62,10 @@ public class AutoscalingDeciders implements JsonpSerializable {
 
 	private AutoscalingDeciders(Builder builder) {
 
-		this.requiredCapacity = ModelTypeHelper.requireNonNull(builder.requiredCapacity, this, "requiredCapacity");
-		this.currentCapacity = ModelTypeHelper.requireNonNull(builder.currentCapacity, this, "currentCapacity");
-		this.currentNodes = ModelTypeHelper.unmodifiableRequired(builder.currentNodes, this, "currentNodes");
-		this.deciders = ModelTypeHelper.unmodifiableRequired(builder.deciders, this, "deciders");
+		this.requiredCapacity = ApiTypeHelper.requireNonNull(builder.requiredCapacity, this, "requiredCapacity");
+		this.currentCapacity = ApiTypeHelper.requireNonNull(builder.currentCapacity, this, "currentCapacity");
+		this.currentNodes = ApiTypeHelper.unmodifiableRequired(builder.currentNodes, this, "currentNodes");
+		this.deciders = ApiTypeHelper.unmodifiableRequired(builder.deciders, this, "deciders");
 
 	}
 
@@ -111,7 +118,7 @@ public class AutoscalingDeciders implements JsonpSerializable {
 		generator.writeKey("current_capacity");
 		this.currentCapacity.serialize(generator, mapper);
 
-		if (ModelTypeHelper.isDefined(this.currentNodes)) {
+		if (ApiTypeHelper.isDefined(this.currentNodes)) {
 			generator.writeKey("current_nodes");
 			generator.writeStartArray();
 			for (AutoscalingNode item0 : this.currentNodes) {
@@ -121,7 +128,7 @@ public class AutoscalingDeciders implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.deciders)) {
+		if (ApiTypeHelper.isDefined(this.deciders)) {
 			generator.writeKey("deciders");
 			generator.writeStartObject();
 			for (Map.Entry<String, AutoscalingDecider> item0 : this.deciders.entrySet()) {
@@ -140,6 +147,7 @@ public class AutoscalingDeciders implements JsonpSerializable {
 	/**
 	 * Builder for {@link AutoscalingDeciders}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AutoscalingDeciders> {
 		private AutoscalingCapacity requiredCapacity;
 
@@ -184,11 +192,9 @@ public class AutoscalingDeciders implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code current_nodes}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>currentNodes</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>currentNodes</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>currentNodes</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder currentNodes(List<AutoscalingNode> list) {
 			this.currentNodes = _listAddAll(this.currentNodes, list);
@@ -217,11 +223,9 @@ public class AutoscalingDeciders implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code deciders}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>deciders</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>deciders</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>deciders</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder deciders(Map<String, AutoscalingDecider> map) {
 			this.deciders = _mapPutAll(this.deciders, map);

@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.FieldSort
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/sort.ts#L43-L52">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FieldSort implements JsonpSerializable {
 	// Single key dictionary
@@ -70,7 +77,7 @@ public class FieldSort implements JsonpSerializable {
 
 	private FieldSort(Builder builder) {
 
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
 		this.missing = builder.missing;
 		this.mode = builder.mode;
@@ -202,6 +209,7 @@ public class FieldSort implements JsonpSerializable {
 	/**
 	 * Builder for {@link FieldSort}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldSort> {
 		private String field;
 

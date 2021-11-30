@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,6 +43,17 @@ import javax.annotation.Nullable;
 
 // typedef: ml.delete_model_snapshot.Request
 
+/**
+ * Deletes an existing model snapshot. You cannot delete the active model
+ * snapshot. To delete that snapshot, first revert to a different one. To
+ * identify the active model snapshot, refer to the
+ * <code>model_snapshot_id</code> in the results from the get jobs API.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/delete_model_snapshot/MlDeleteModelSnapshotRequest.ts#L23-L44">API
+ *      specification</a>
+ */
+
 public class DeleteModelSnapshotRequest extends RequestBase {
 	private final String jobId;
 
@@ -52,8 +63,8 @@ public class DeleteModelSnapshotRequest extends RequestBase {
 
 	private DeleteModelSnapshotRequest(Builder builder) {
 
-		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
-		this.snapshotId = ModelTypeHelper.requireNonNull(builder.snapshotId, this, "snapshotId");
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.snapshotId = ApiTypeHelper.requireNonNull(builder.snapshotId, this, "snapshotId");
 
 	}
 
@@ -84,6 +95,7 @@ public class DeleteModelSnapshotRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteModelSnapshotRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteModelSnapshotRequest> {
 		private String jobId;
 

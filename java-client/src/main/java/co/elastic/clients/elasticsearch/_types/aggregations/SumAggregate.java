@@ -33,6 +33,15 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.aggregations.SumAggregate
+
+/**
+ * Sum aggregation result. <code>value</code> is always present and is zero if
+ * there were no values to process.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/Aggregate.ts#L189-L193">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SumAggregate extends SingleMetricAggregateBase implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -59,6 +68,7 @@ public class SumAggregate extends SingleMetricAggregateBase implements Aggregate
 	/**
 	 * Builder for {@link SumAggregate}.
 	 */
+
 	public static class Builder extends SingleMetricAggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<SumAggregate> {

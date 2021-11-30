@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.info.BuildInformation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/xpack/info/types.ts#L24-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class BuildInformation implements JsonpSerializable {
 	private final String date;
@@ -49,8 +56,8 @@ public class BuildInformation implements JsonpSerializable {
 
 	private BuildInformation(Builder builder) {
 
-		this.date = ModelTypeHelper.requireNonNull(builder.date, this, "date");
-		this.hash = ModelTypeHelper.requireNonNull(builder.hash, this, "hash");
+		this.date = ApiTypeHelper.requireNonNull(builder.date, this, "date");
+		this.hash = ApiTypeHelper.requireNonNull(builder.hash, this, "hash");
 
 	}
 
@@ -96,6 +103,7 @@ public class BuildInformation implements JsonpSerializable {
 	/**
 	 * Builder for {@link BuildInformation}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<BuildInformation> {
 		private String date;
 

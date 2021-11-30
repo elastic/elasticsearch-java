@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr.follow_info.FollowerIndex
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ccr/follow_info/types.ts#L22-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FollowerIndex implements JsonpSerializable {
 	private final String followerIndex;
@@ -56,11 +63,11 @@ public class FollowerIndex implements JsonpSerializable {
 
 	private FollowerIndex(Builder builder) {
 
-		this.followerIndex = ModelTypeHelper.requireNonNull(builder.followerIndex, this, "followerIndex");
-		this.leaderIndex = ModelTypeHelper.requireNonNull(builder.leaderIndex, this, "leaderIndex");
+		this.followerIndex = ApiTypeHelper.requireNonNull(builder.followerIndex, this, "followerIndex");
+		this.leaderIndex = ApiTypeHelper.requireNonNull(builder.leaderIndex, this, "leaderIndex");
 		this.parameters = builder.parameters;
-		this.remoteCluster = ModelTypeHelper.requireNonNull(builder.remoteCluster, this, "remoteCluster");
-		this.status = ModelTypeHelper.requireNonNull(builder.status, this, "status");
+		this.remoteCluster = ApiTypeHelper.requireNonNull(builder.remoteCluster, this, "remoteCluster");
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 
 	}
 
@@ -139,6 +146,7 @@ public class FollowerIndex implements JsonpSerializable {
 	/**
 	 * Builder for {@link FollowerIndex}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FollowerIndex> {
 		private String followerIndex;
 

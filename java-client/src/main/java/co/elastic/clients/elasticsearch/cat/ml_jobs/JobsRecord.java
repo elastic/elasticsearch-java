@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.ml_jobs.JobsRecord
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cat/ml_jobs/types.ts#L24-L325">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class JobsRecord implements JsonpSerializable {
 	@Nullable
@@ -1210,6 +1217,7 @@ public class JobsRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link JobsRecord}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<JobsRecord> {
 		@Nullable
 		private String id;

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoAction
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/nodes/info/types.ts#L166-L168">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeInfoAction implements JsonpSerializable {
 	private final String destructiveRequiresName;
@@ -47,7 +54,7 @@ public class NodeInfoAction implements JsonpSerializable {
 
 	private NodeInfoAction(Builder builder) {
 
-		this.destructiveRequiresName = ModelTypeHelper.requireNonNull(builder.destructiveRequiresName, this,
+		this.destructiveRequiresName = ApiTypeHelper.requireNonNull(builder.destructiveRequiresName, this,
 				"destructiveRequiresName");
 
 	}
@@ -84,6 +91,7 @@ public class NodeInfoAction implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoAction}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoAction> {
 		private String destructiveRequiresName;
 

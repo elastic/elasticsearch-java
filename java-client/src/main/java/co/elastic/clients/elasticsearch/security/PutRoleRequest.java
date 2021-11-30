@@ -36,7 +36,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -49,6 +49,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.put_role.Request
+
+/**
+ * Adds and updates roles in the native realm.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/security/put_role/SecurityPutRoleRequest.ts#L31-L74">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 	private final List<ApplicationPrivileges> applications;
@@ -75,14 +83,14 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 
 	private PutRoleRequest(Builder builder) {
 
-		this.applications = ModelTypeHelper.unmodifiable(builder.applications);
-		this.cluster = ModelTypeHelper.unmodifiable(builder.cluster);
-		this.global = ModelTypeHelper.unmodifiable(builder.global);
-		this.indices = ModelTypeHelper.unmodifiable(builder.indices);
-		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.applications = ApiTypeHelper.unmodifiable(builder.applications);
+		this.cluster = ApiTypeHelper.unmodifiable(builder.cluster);
+		this.global = ApiTypeHelper.unmodifiable(builder.global);
+		this.indices = ApiTypeHelper.unmodifiable(builder.indices);
+		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.refresh = builder.refresh;
-		this.runAs = ModelTypeHelper.unmodifiable(builder.runAs);
+		this.runAs = ApiTypeHelper.unmodifiable(builder.runAs);
 		this.transientMetadata = builder.transientMetadata;
 
 	}
@@ -197,7 +205,7 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.applications)) {
+		if (ApiTypeHelper.isDefined(this.applications)) {
 			generator.writeKey("applications");
 			generator.writeStartArray();
 			for (ApplicationPrivileges item0 : this.applications) {
@@ -207,7 +215,7 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.cluster)) {
+		if (ApiTypeHelper.isDefined(this.cluster)) {
 			generator.writeKey("cluster");
 			generator.writeStartArray();
 			for (ClusterPrivilege item0 : this.cluster) {
@@ -216,7 +224,7 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.global)) {
+		if (ApiTypeHelper.isDefined(this.global)) {
 			generator.writeKey("global");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.global.entrySet()) {
@@ -227,7 +235,7 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.indices)) {
+		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartArray();
 			for (IndicesPrivileges item0 : this.indices) {
@@ -237,7 +245,7 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.metadata)) {
+		if (ApiTypeHelper.isDefined(this.metadata)) {
 			generator.writeKey("metadata");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
@@ -248,7 +256,7 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.runAs)) {
+		if (ApiTypeHelper.isDefined(this.runAs)) {
 			generator.writeKey("run_as");
 			generator.writeStartArray();
 			for (String item0 : this.runAs) {
@@ -271,6 +279,7 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link PutRoleRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutRoleRequest> {
 		@Nullable
 		private List<ApplicationPrivileges> applications;
@@ -303,11 +312,9 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code applications}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>applications</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>applications</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>applications</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder applications(List<ApplicationPrivileges> list) {
 			this.applications = _listAddAll(this.applications, list);
@@ -344,11 +351,9 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code cluster}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>cluster</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>cluster</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>cluster</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder cluster(List<ClusterPrivilege> list) {
 			this.cluster = _listAddAll(this.cluster, list);
@@ -375,11 +380,9 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code global}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>global</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>global</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>global</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder global(Map<String, JsonData> map) {
 			this.global = _mapPutAll(this.global, map);
@@ -405,11 +408,9 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code indices}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>indices</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>indices</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder indices(List<IndicesPrivileges> list) {
 			this.indices = _listAddAll(this.indices, list);
@@ -445,11 +446,9 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code metadata}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>metadata</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>metadata</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>metadata</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder metadata(Map<String, JsonData> map) {
 			this.metadata = _mapPutAll(this.metadata, map);
@@ -497,11 +496,9 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code run_as}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>runAs</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>runAs</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>runAs</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder runAs(List<String> list) {
 			this.runAs = _listAddAll(this.runAs, list);

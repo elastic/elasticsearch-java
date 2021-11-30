@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.HttpInput
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/watcher/_types/Input.ts#L45-L50">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class HttpInput implements InputVariant, JsonpSerializable {
 	@Nullable
@@ -58,7 +65,7 @@ public class HttpInput implements InputVariant, JsonpSerializable {
 	private HttpInput(Builder builder) {
 
 		this.http = builder.http;
-		this.extract = ModelTypeHelper.unmodifiable(builder.extract);
+		this.extract = ApiTypeHelper.unmodifiable(builder.extract);
 		this.request = builder.request;
 		this.responseContentType = builder.responseContentType;
 
@@ -123,7 +130,7 @@ public class HttpInput implements InputVariant, JsonpSerializable {
 			this.http.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.extract)) {
+		if (ApiTypeHelper.isDefined(this.extract)) {
 			generator.writeKey("extract");
 			generator.writeStartArray();
 			for (String item0 : this.extract) {
@@ -150,6 +157,7 @@ public class HttpInput implements InputVariant, JsonpSerializable {
 	/**
 	 * Builder for {@link HttpInput}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HttpInput> {
 		@Nullable
 		private HttpInput http;
@@ -181,11 +189,9 @@ public class HttpInput implements InputVariant, JsonpSerializable {
 		/**
 		 * API name: {@code extract}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>extract</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>extract</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>extract</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder extract(List<String> list) {
 			this.extract = _listAddAll(this.extract, list);

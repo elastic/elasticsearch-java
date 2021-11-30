@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.reindex_rethrottle.ReindexStatus
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/reindex_rethrottle/types.ts#L30-L42">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ReindexStatus implements JsonpSerializable {
 	private final long batches;
@@ -69,18 +76,18 @@ public class ReindexStatus implements JsonpSerializable {
 
 	private ReindexStatus(Builder builder) {
 
-		this.batches = ModelTypeHelper.requireNonNull(builder.batches, this, "batches");
-		this.created = ModelTypeHelper.requireNonNull(builder.created, this, "created");
-		this.deleted = ModelTypeHelper.requireNonNull(builder.deleted, this, "deleted");
-		this.noops = ModelTypeHelper.requireNonNull(builder.noops, this, "noops");
-		this.requestsPerSecond = ModelTypeHelper.requireNonNull(builder.requestsPerSecond, this, "requestsPerSecond");
-		this.retries = ModelTypeHelper.requireNonNull(builder.retries, this, "retries");
-		this.throttledMillis = ModelTypeHelper.requireNonNull(builder.throttledMillis, this, "throttledMillis");
-		this.throttledUntilMillis = ModelTypeHelper.requireNonNull(builder.throttledUntilMillis, this,
+		this.batches = ApiTypeHelper.requireNonNull(builder.batches, this, "batches");
+		this.created = ApiTypeHelper.requireNonNull(builder.created, this, "created");
+		this.deleted = ApiTypeHelper.requireNonNull(builder.deleted, this, "deleted");
+		this.noops = ApiTypeHelper.requireNonNull(builder.noops, this, "noops");
+		this.requestsPerSecond = ApiTypeHelper.requireNonNull(builder.requestsPerSecond, this, "requestsPerSecond");
+		this.retries = ApiTypeHelper.requireNonNull(builder.retries, this, "retries");
+		this.throttledMillis = ApiTypeHelper.requireNonNull(builder.throttledMillis, this, "throttledMillis");
+		this.throttledUntilMillis = ApiTypeHelper.requireNonNull(builder.throttledUntilMillis, this,
 				"throttledUntilMillis");
-		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
-		this.updated = ModelTypeHelper.requireNonNull(builder.updated, this, "updated");
-		this.versionConflicts = ModelTypeHelper.requireNonNull(builder.versionConflicts, this, "versionConflicts");
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+		this.updated = ApiTypeHelper.requireNonNull(builder.updated, this, "updated");
+		this.versionConflicts = ApiTypeHelper.requireNonNull(builder.versionConflicts, this, "versionConflicts");
 
 	}
 
@@ -216,6 +223,7 @@ public class ReindexStatus implements JsonpSerializable {
 	/**
 	 * Builder for {@link ReindexStatus}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ReindexStatus> {
 		private Long batches;
 

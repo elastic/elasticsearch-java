@@ -34,6 +34,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: ml.delete_filter.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/delete_filter/MlDeleteFilterResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DeleteFilterResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
@@ -52,6 +59,7 @@ public class DeleteFilterResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link DeleteFilterResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeleteFilterResponse> {

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.flush_job.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/flush_job/MlFlushJobResponse.ts#L22-L31">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FlushJobResponse implements JsonpSerializable {
 	private final boolean flushed;
@@ -51,7 +58,7 @@ public class FlushJobResponse implements JsonpSerializable {
 
 	private FlushJobResponse(Builder builder) {
 
-		this.flushed = ModelTypeHelper.requireNonNull(builder.flushed, this, "flushed");
+		this.flushed = ApiTypeHelper.requireNonNull(builder.flushed, this, "flushed");
 		this.lastFinalizedBucketEnd = builder.lastFinalizedBucketEnd;
 
 	}
@@ -105,6 +112,7 @@ public class FlushJobResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link FlushJobResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FlushJobResponse> {
 		private Boolean flushed;
 

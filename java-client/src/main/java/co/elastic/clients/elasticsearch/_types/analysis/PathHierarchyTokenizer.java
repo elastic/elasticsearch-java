@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.PathHierarchyTokenizer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/analysis/tokenizers.ts#L88-L95">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PathHierarchyTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
 	private final int bufferSize;
@@ -56,11 +63,11 @@ public class PathHierarchyTokenizer extends TokenizerBase implements TokenizerDe
 	private PathHierarchyTokenizer(Builder builder) {
 		super(builder);
 
-		this.bufferSize = ModelTypeHelper.requireNonNull(builder.bufferSize, this, "bufferSize");
-		this.delimiter = ModelTypeHelper.requireNonNull(builder.delimiter, this, "delimiter");
-		this.replacement = ModelTypeHelper.requireNonNull(builder.replacement, this, "replacement");
-		this.reverse = ModelTypeHelper.requireNonNull(builder.reverse, this, "reverse");
-		this.skip = ModelTypeHelper.requireNonNull(builder.skip, this, "skip");
+		this.bufferSize = ApiTypeHelper.requireNonNull(builder.bufferSize, this, "bufferSize");
+		this.delimiter = ApiTypeHelper.requireNonNull(builder.delimiter, this, "delimiter");
+		this.replacement = ApiTypeHelper.requireNonNull(builder.replacement, this, "replacement");
+		this.reverse = ApiTypeHelper.requireNonNull(builder.reverse, this, "reverse");
+		this.skip = ApiTypeHelper.requireNonNull(builder.skip, this, "skip");
 
 	}
 
@@ -137,6 +144,7 @@ public class PathHierarchyTokenizer extends TokenizerBase implements TokenizerDe
 	/**
 	 * Builder for {@link PathHierarchyTokenizer}.
 	 */
+
 	public static class Builder extends TokenizerBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PathHierarchyTokenizer> {

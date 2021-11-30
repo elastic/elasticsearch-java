@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,6 +43,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.reindex_rethrottle.ReindexTask
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/reindex_rethrottle/types.ts#L44-L55">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ReindexTask implements JsonpSerializable {
 	private final String action;
@@ -69,17 +76,16 @@ public class ReindexTask implements JsonpSerializable {
 
 	private ReindexTask(Builder builder) {
 
-		this.action = ModelTypeHelper.requireNonNull(builder.action, this, "action");
-		this.cancellable = ModelTypeHelper.requireNonNull(builder.cancellable, this, "cancellable");
-		this.description = ModelTypeHelper.requireNonNull(builder.description, this, "description");
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
-		this.node = ModelTypeHelper.requireNonNull(builder.node, this, "node");
-		this.runningTimeInNanos = ModelTypeHelper.requireNonNull(builder.runningTimeInNanos, this,
-				"runningTimeInNanos");
-		this.startTimeInMillis = ModelTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
-		this.status = ModelTypeHelper.requireNonNull(builder.status, this, "status");
-		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
-		this.headers = ModelTypeHelper.unmodifiableRequired(builder.headers, this, "headers");
+		this.action = ApiTypeHelper.requireNonNull(builder.action, this, "action");
+		this.cancellable = ApiTypeHelper.requireNonNull(builder.cancellable, this, "cancellable");
+		this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
+		this.runningTimeInNanos = ApiTypeHelper.requireNonNull(builder.runningTimeInNanos, this, "runningTimeInNanos");
+		this.startTimeInMillis = ApiTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.headers = ApiTypeHelper.unmodifiableRequired(builder.headers, this, "headers");
 
 	}
 
@@ -195,7 +201,7 @@ public class ReindexTask implements JsonpSerializable {
 		generator.writeKey("type");
 		generator.write(this.type);
 
-		if (ModelTypeHelper.isDefined(this.headers)) {
+		if (ApiTypeHelper.isDefined(this.headers)) {
 			generator.writeKey("headers");
 			generator.writeStartObject();
 			for (Map.Entry<String, List<String>> item0 : this.headers.entrySet()) {
@@ -221,6 +227,7 @@ public class ReindexTask implements JsonpSerializable {
 	/**
 	 * Builder for {@link ReindexTask}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ReindexTask> {
 		private String action;
 
@@ -324,11 +331,9 @@ public class ReindexTask implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code headers}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>headers</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>headers</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>headers</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder headers(Map<String, List<String>> map) {
 			this.headers = _mapPutAll(this.headers, map);

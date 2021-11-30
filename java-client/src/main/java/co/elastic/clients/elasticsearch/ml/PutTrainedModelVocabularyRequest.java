@@ -33,7 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -45,6 +45,17 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model_vocabulary.Request
+
+/**
+ * Creates a trained model vocabulary. This API is supported only for natural
+ * language processing (NLP) models. The vocabulary is stored in the index as
+ * described in <code>inference_config.*.vocabulary</code> of the trained model
+ * definition.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/put_trained_model_vocabulary/MlPutTrainedModelVocabularyRequest.ts#L23-L45">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutTrainedModelVocabularyRequest extends RequestBase implements JsonpSerializable {
 	private final String modelId;
@@ -55,8 +66,8 @@ public class PutTrainedModelVocabularyRequest extends RequestBase implements Jso
 
 	private PutTrainedModelVocabularyRequest(Builder builder) {
 
-		this.modelId = ModelTypeHelper.requireNonNull(builder.modelId, this, "modelId");
-		this.vocabulary = ModelTypeHelper.unmodifiableRequired(builder.vocabulary, this, "vocabulary");
+		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
+		this.vocabulary = ApiTypeHelper.unmodifiableRequired(builder.vocabulary, this, "vocabulary");
 
 	}
 
@@ -94,7 +105,7 @@ public class PutTrainedModelVocabularyRequest extends RequestBase implements Jso
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.vocabulary)) {
+		if (ApiTypeHelper.isDefined(this.vocabulary)) {
 			generator.writeKey("vocabulary");
 			generator.writeStartArray();
 			for (String item0 : this.vocabulary) {
@@ -112,6 +123,7 @@ public class PutTrainedModelVocabularyRequest extends RequestBase implements Jso
 	/**
 	 * Builder for {@link PutTrainedModelVocabularyRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutTrainedModelVocabularyRequest> {
 		private String modelId;
 
@@ -132,11 +144,9 @@ public class PutTrainedModelVocabularyRequest extends RequestBase implements Jso
 		 * <p>
 		 * API name: {@code vocabulary}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>vocabulary</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>vocabulary</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>vocabulary</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder vocabulary(List<String> list) {
 			this.vocabulary = _listAddAll(this.vocabulary, list);

@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisOutlierDetection
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/DataframeAnalytics.ts#L102-L131">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeAnalysisOutlierDetection implements DataframeAnalysisVariant, JsonpSerializable {
 	@Nullable
@@ -209,6 +216,7 @@ public class DataframeAnalysisOutlierDetection implements DataframeAnalysisVaria
 	/**
 	 * Builder for {@link DataframeAnalysisOutlierDetection}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframeAnalysisOutlierDetection> {
 		@Nullable
 		private Boolean computeFeatureInfluence;

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.EqlFeatures
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/xpack/usage/types.ts#L89-L97">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class EqlFeatures implements JsonpSerializable {
 	private final Number join;
@@ -59,13 +66,13 @@ public class EqlFeatures implements JsonpSerializable {
 
 	private EqlFeatures(Builder builder) {
 
-		this.join = ModelTypeHelper.requireNonNull(builder.join, this, "join");
-		this.joins = ModelTypeHelper.requireNonNull(builder.joins, this, "joins");
-		this.keys = ModelTypeHelper.requireNonNull(builder.keys, this, "keys");
-		this.event = ModelTypeHelper.requireNonNull(builder.event, this, "event");
-		this.pipes = ModelTypeHelper.requireNonNull(builder.pipes, this, "pipes");
-		this.sequence = ModelTypeHelper.requireNonNull(builder.sequence, this, "sequence");
-		this.sequences = ModelTypeHelper.requireNonNull(builder.sequences, this, "sequences");
+		this.join = ApiTypeHelper.requireNonNull(builder.join, this, "join");
+		this.joins = ApiTypeHelper.requireNonNull(builder.joins, this, "joins");
+		this.keys = ApiTypeHelper.requireNonNull(builder.keys, this, "keys");
+		this.event = ApiTypeHelper.requireNonNull(builder.event, this, "event");
+		this.pipes = ApiTypeHelper.requireNonNull(builder.pipes, this, "pipes");
+		this.sequence = ApiTypeHelper.requireNonNull(builder.sequence, this, "sequence");
+		this.sequences = ApiTypeHelper.requireNonNull(builder.sequences, this, "sequences");
 
 	}
 
@@ -161,6 +168,7 @@ public class EqlFeatures implements JsonpSerializable {
 	/**
 	 * Builder for {@link EqlFeatures}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<EqlFeatures> {
 		private Number join;
 

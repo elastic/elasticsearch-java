@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ExecutionResultInput
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/watcher/_types/Execution.ts#L86-L90">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ExecutionResultInput implements JsonpSerializable {
 	private final Map<String, JsonData> payload;
@@ -53,9 +60,9 @@ public class ExecutionResultInput implements JsonpSerializable {
 
 	private ExecutionResultInput(Builder builder) {
 
-		this.payload = ModelTypeHelper.unmodifiableRequired(builder.payload, this, "payload");
-		this.status = ModelTypeHelper.requireNonNull(builder.status, this, "status");
-		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
+		this.payload = ApiTypeHelper.unmodifiableRequired(builder.payload, this, "payload");
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 
@@ -95,7 +102,7 @@ public class ExecutionResultInput implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.payload)) {
+		if (ApiTypeHelper.isDefined(this.payload)) {
 			generator.writeKey("payload");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.payload.entrySet()) {
@@ -118,6 +125,7 @@ public class ExecutionResultInput implements JsonpSerializable {
 	/**
 	 * Builder for {@link ExecutionResultInput}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExecutionResultInput> {
 		private Map<String, JsonData> payload;
 
@@ -128,11 +136,9 @@ public class ExecutionResultInput implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code payload}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>payload</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>payload</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>payload</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder payload(Map<String, JsonData> map) {
 			this.payload = _mapPutAll(this.payload, map);

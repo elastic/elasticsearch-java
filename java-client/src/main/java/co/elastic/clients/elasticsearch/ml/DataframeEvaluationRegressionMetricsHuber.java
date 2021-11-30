@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationRegressionMetricsHuber
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/DataframeEvaluation.ts#L117-L120">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeEvaluationRegressionMetricsHuber implements JsonpSerializable {
 	@Nullable
@@ -92,6 +99,7 @@ public class DataframeEvaluationRegressionMetricsHuber implements JsonpSerializa
 	/**
 	 * Builder for {@link DataframeEvaluationRegressionMetricsHuber}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase
 			implements
 				ObjectBuilder<DataframeEvaluationRegressionMetricsHuber> {

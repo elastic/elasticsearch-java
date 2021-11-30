@@ -40,6 +40,14 @@ import java.util.Objects;
 
 // typedef: _global.ping.Request
 
+/**
+ * Returns whether the cluster is running.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/ping/PingRequest.ts#L22-L27">API
+ *      specification</a>
+ */
+
 public class PingRequest extends RequestBase {
 	public PingRequest() {
 	}

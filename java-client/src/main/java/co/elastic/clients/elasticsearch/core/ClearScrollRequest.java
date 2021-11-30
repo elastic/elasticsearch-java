@@ -33,7 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -45,6 +45,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.clear_scroll.Request
+
+/**
+ * Explicitly clears the search context for a scroll.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/clear_scroll/ClearScrollRequest.ts#L23-L35">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ClearScrollRequest extends RequestBase implements JsonpSerializable {
 	private final List<String> scrollId;
@@ -53,7 +61,7 @@ public class ClearScrollRequest extends RequestBase implements JsonpSerializable
 
 	private ClearScrollRequest(Builder builder) {
 
-		this.scrollId = ModelTypeHelper.unmodifiable(builder.scrollId);
+		this.scrollId = ApiTypeHelper.unmodifiable(builder.scrollId);
 
 	}
 
@@ -79,7 +87,7 @@ public class ClearScrollRequest extends RequestBase implements JsonpSerializable
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.scrollId)) {
+		if (ApiTypeHelper.isDefined(this.scrollId)) {
 			generator.writeKey("scroll_id");
 			generator.writeStartArray();
 			for (String item0 : this.scrollId) {
@@ -97,6 +105,7 @@ public class ClearScrollRequest extends RequestBase implements JsonpSerializable
 	/**
 	 * Builder for {@link ClearScrollRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClearScrollRequest> {
 		@Nullable
 		private List<String> scrollId;
@@ -104,11 +113,9 @@ public class ClearScrollRequest extends RequestBase implements JsonpSerializable
 		/**
 		 * API name: {@code scroll_id}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>scrollId</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>scrollId</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>scrollId</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder scrollId(List<String> list) {
 			this.scrollId = _listAddAll(this.scrollId, list);

@@ -34,6 +34,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.mapping.PercolatorProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/mapping/core.ts#L219-L221">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PercolatorProperty extends PropertyBase implements PropertyVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -67,6 +74,7 @@ public class PercolatorProperty extends PropertyBase implements PropertyVariant 
 	/**
 	 * Builder for {@link PercolatorProperty}.
 	 */
+
 	public static class Builder extends PropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PercolatorProperty> {

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: shutdown.get_node.NodeShutdownStatus
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/shutdown/get_node/ShutdownGetNodeResponse.ts#L29-L38">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeShutdownStatus implements JsonpSerializable {
 	private final String nodeId;
@@ -61,15 +68,15 @@ public class NodeShutdownStatus implements JsonpSerializable {
 
 	private NodeShutdownStatus(Builder builder) {
 
-		this.nodeId = ModelTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
-		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
-		this.reason = ModelTypeHelper.requireNonNull(builder.reason, this, "reason");
-		this.shutdownStartedmillis = ModelTypeHelper.requireNonNull(builder.shutdownStartedmillis, this,
+		this.nodeId = ApiTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
+		this.shutdownStartedmillis = ApiTypeHelper.requireNonNull(builder.shutdownStartedmillis, this,
 				"shutdownStartedmillis");
-		this.status = ModelTypeHelper.requireNonNull(builder.status, this, "status");
-		this.shardMigration = ModelTypeHelper.requireNonNull(builder.shardMigration, this, "shardMigration");
-		this.persistentTasks = ModelTypeHelper.requireNonNull(builder.persistentTasks, this, "persistentTasks");
-		this.plugins = ModelTypeHelper.requireNonNull(builder.plugins, this, "plugins");
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
+		this.shardMigration = ApiTypeHelper.requireNonNull(builder.shardMigration, this, "shardMigration");
+		this.persistentTasks = ApiTypeHelper.requireNonNull(builder.persistentTasks, this, "persistentTasks");
+		this.plugins = ApiTypeHelper.requireNonNull(builder.plugins, this, "plugins");
 
 	}
 
@@ -173,6 +180,7 @@ public class NodeShutdownStatus implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeShutdownStatus}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeShutdownStatus> {
 		private String nodeId;
 

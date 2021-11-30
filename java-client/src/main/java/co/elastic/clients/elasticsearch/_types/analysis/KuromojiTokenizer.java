@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.KuromojiTokenizer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/analysis/kuromoji-plugin.ts#L58-L67">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class KuromojiTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
 	@Nullable
@@ -67,11 +74,11 @@ public class KuromojiTokenizer extends TokenizerBase implements TokenizerDefinit
 		super(builder);
 
 		this.discardPunctuation = builder.discardPunctuation;
-		this.mode = ModelTypeHelper.requireNonNull(builder.mode, this, "mode");
+		this.mode = ApiTypeHelper.requireNonNull(builder.mode, this, "mode");
 		this.nbestCost = builder.nbestCost;
 		this.nbestExamples = builder.nbestExamples;
 		this.userDictionary = builder.userDictionary;
-		this.userDictionaryRules = ModelTypeHelper.unmodifiable(builder.userDictionaryRules);
+		this.userDictionaryRules = ApiTypeHelper.unmodifiable(builder.userDictionaryRules);
 		this.discardCompoundToken = builder.discardCompoundToken;
 
 	}
@@ -168,7 +175,7 @@ public class KuromojiTokenizer extends TokenizerBase implements TokenizerDefinit
 			generator.write(this.userDictionary);
 
 		}
-		if (ModelTypeHelper.isDefined(this.userDictionaryRules)) {
+		if (ApiTypeHelper.isDefined(this.userDictionaryRules)) {
 			generator.writeKey("user_dictionary_rules");
 			generator.writeStartArray();
 			for (String item0 : this.userDictionaryRules) {
@@ -191,6 +198,7 @@ public class KuromojiTokenizer extends TokenizerBase implements TokenizerDefinit
 	/**
 	 * Builder for {@link KuromojiTokenizer}.
 	 */
+
 	public static class Builder extends TokenizerBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<KuromojiTokenizer> {
@@ -258,10 +266,8 @@ public class KuromojiTokenizer extends TokenizerBase implements TokenizerDefinit
 		 * API name: {@code user_dictionary_rules}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>userDictionaryRules</code>.
-		 * Use <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>userDictionaryRules</code> to <code>null</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder userDictionaryRules(List<String> list) {
 			this.userDictionaryRules = _listAddAll(this.userDictionaryRules, list);

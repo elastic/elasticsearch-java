@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.reindex_rethrottle.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/reindex_rethrottle/ReindexRethrottleResponse.ts#L23-L25">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ReindexRethrottleResponse implements JsonpSerializable {
 	private final Map<String, ReindexNode> nodes;
@@ -49,7 +56,7 @@ public class ReindexRethrottleResponse implements JsonpSerializable {
 
 	private ReindexRethrottleResponse(Builder builder) {
 
-		this.nodes = ModelTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
+		this.nodes = ApiTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
 
 	}
 
@@ -75,7 +82,7 @@ public class ReindexRethrottleResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.nodes)) {
+		if (ApiTypeHelper.isDefined(this.nodes)) {
 			generator.writeKey("nodes");
 			generator.writeStartObject();
 			for (Map.Entry<String, ReindexNode> item0 : this.nodes.entrySet()) {
@@ -94,17 +101,16 @@ public class ReindexRethrottleResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link ReindexRethrottleResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ReindexRethrottleResponse> {
 		private Map<String, ReindexNode> nodes;
 
 		/**
 		 * Required - API name: {@code nodes}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>nodes</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>nodes</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>nodes</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder nodes(Map<String, ReindexNode> map) {
 			this.nodes = _mapPutAll(this.nodes, map);

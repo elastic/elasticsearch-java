@@ -44,6 +44,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_token.Request
+
+/**
+ * Creates a bearer token for access without requiring basic authentication.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/security/get_token/GetUserAccessTokenRequest.ts#L25-L39">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetTokenRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -177,6 +185,7 @@ public class GetTokenRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetTokenRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetTokenRequest> {
 		@Nullable
 		private AccessTokenGrantType grantType;

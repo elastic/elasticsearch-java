@@ -43,6 +43,14 @@ import javax.annotation.Nullable;
 
 // typedef: cat.nodes.Request
 
+/**
+ * Returns basic statistics about performance of cluster nodes.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cat/nodes/CatNodesRequest.ts#L23-L33">API
+ *      specification</a>
+ */
+
 public class NodesRequest extends CatRequestBase {
 	@Nullable
 	private final Bytes bytes;
@@ -88,6 +96,7 @@ public class NodesRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link NodesRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodesRequest> {
 		@Nullable
 		private Bytes bytes;

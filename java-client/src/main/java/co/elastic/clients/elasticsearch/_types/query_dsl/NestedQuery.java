@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.NestedQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/query_dsl/joining.ts#L63-L71">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NestedQuery extends QueryBase implements QueryVariant {
 	@Nullable
@@ -61,8 +68,8 @@ public class NestedQuery extends QueryBase implements QueryVariant {
 
 		this.ignoreUnmapped = builder.ignoreUnmapped;
 		this.innerHits = builder.innerHits;
-		this.path = ModelTypeHelper.requireNonNull(builder.path, this, "path");
-		this.query = ModelTypeHelper.requireNonNull(builder.query, this, "query");
+		this.path = ApiTypeHelper.requireNonNull(builder.path, this, "path");
+		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 		this.scoreMode = builder.scoreMode;
 
 	}
@@ -148,6 +155,7 @@ public class NestedQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link NestedQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<NestedQuery> {
 		@Nullable
 		private Boolean ignoreUnmapped;

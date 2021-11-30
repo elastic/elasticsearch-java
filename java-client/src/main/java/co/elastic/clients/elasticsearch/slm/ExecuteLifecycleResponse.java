@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: slm.execute_lifecycle.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/slm/execute_lifecycle/ExecuteSnapshotLifecycleResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ExecuteLifecycleResponse implements JsonpSerializable {
 	private final String snapshotName;
@@ -47,7 +54,7 @@ public class ExecuteLifecycleResponse implements JsonpSerializable {
 
 	private ExecuteLifecycleResponse(Builder builder) {
 
-		this.snapshotName = ModelTypeHelper.requireNonNull(builder.snapshotName, this, "snapshotName");
+		this.snapshotName = ApiTypeHelper.requireNonNull(builder.snapshotName, this, "snapshotName");
 
 	}
 
@@ -83,6 +90,7 @@ public class ExecuteLifecycleResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link ExecuteLifecycleResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExecuteLifecycleResponse> {
 		private String snapshotName;
 

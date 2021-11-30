@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: license.post.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/license/post/PostLicenseResponse.ts#L23-L29">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PostResponse implements JsonpSerializable {
 	@Nullable
@@ -54,8 +61,8 @@ public class PostResponse implements JsonpSerializable {
 	private PostResponse(Builder builder) {
 
 		this.acknowledge = builder.acknowledge;
-		this.acknowledged = ModelTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged");
-		this.licenseStatus = ModelTypeHelper.requireNonNull(builder.licenseStatus, this, "licenseStatus");
+		this.acknowledged = ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged");
+		this.licenseStatus = ApiTypeHelper.requireNonNull(builder.licenseStatus, this, "licenseStatus");
 
 	}
 
@@ -114,6 +121,7 @@ public class PostResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link PostResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PostResponse> {
 		@Nullable
 		private Acknowledgement acknowledge;

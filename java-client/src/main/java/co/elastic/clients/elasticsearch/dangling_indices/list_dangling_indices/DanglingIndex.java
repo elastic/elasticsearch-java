@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: dangling_indices.list_dangling_indices.DanglingIndex
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/dangling_indices/list_dangling_indices/ListDanglingIndicesResponse.ts#L29-L34">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DanglingIndex implements JsonpSerializable {
 	private final String indexName;
@@ -54,11 +61,10 @@ public class DanglingIndex implements JsonpSerializable {
 
 	private DanglingIndex(Builder builder) {
 
-		this.indexName = ModelTypeHelper.requireNonNull(builder.indexName, this, "indexName");
-		this.indexUuid = ModelTypeHelper.requireNonNull(builder.indexUuid, this, "indexUuid");
-		this.creationDateMillis = ModelTypeHelper.requireNonNull(builder.creationDateMillis, this,
-				"creationDateMillis");
-		this.nodeIds = ModelTypeHelper.unmodifiableRequired(builder.nodeIds, this, "nodeIds");
+		this.indexName = ApiTypeHelper.requireNonNull(builder.indexName, this, "indexName");
+		this.indexUuid = ApiTypeHelper.requireNonNull(builder.indexUuid, this, "indexUuid");
+		this.creationDateMillis = ApiTypeHelper.requireNonNull(builder.creationDateMillis, this, "creationDateMillis");
+		this.nodeIds = ApiTypeHelper.unmodifiableRequired(builder.nodeIds, this, "nodeIds");
 
 	}
 
@@ -114,7 +120,7 @@ public class DanglingIndex implements JsonpSerializable {
 		generator.writeKey("creation_date_millis");
 		generator.write(this.creationDateMillis);
 
-		if (ModelTypeHelper.isDefined(this.nodeIds)) {
+		if (ApiTypeHelper.isDefined(this.nodeIds)) {
 			generator.writeKey("node_ids");
 			generator.writeStartArray();
 			for (String item0 : this.nodeIds) {
@@ -132,6 +138,7 @@ public class DanglingIndex implements JsonpSerializable {
 	/**
 	 * Builder for {@link DanglingIndex}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DanglingIndex> {
 		private String indexName;
 
@@ -168,11 +175,9 @@ public class DanglingIndex implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code node_ids}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>nodeIds</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>nodeIds</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>nodeIds</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder nodeIds(List<String> list) {
 			this.nodeIds = _listAddAll(this.nodeIds, list);

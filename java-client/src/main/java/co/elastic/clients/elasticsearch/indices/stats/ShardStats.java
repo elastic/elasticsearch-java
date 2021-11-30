@@ -45,7 +45,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -54,6 +54,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.stats.ShardStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/stats/types.ts#L162-L187">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ShardStats implements JsonpSerializable {
 	private final ShardCommit commit;
@@ -107,29 +114,29 @@ public class ShardStats implements JsonpSerializable {
 
 	private ShardStats(Builder builder) {
 
-		this.commit = ModelTypeHelper.requireNonNull(builder.commit, this, "commit");
-		this.completion = ModelTypeHelper.requireNonNull(builder.completion, this, "completion");
-		this.docs = ModelTypeHelper.requireNonNull(builder.docs, this, "docs");
-		this.fielddata = ModelTypeHelper.requireNonNull(builder.fielddata, this, "fielddata");
-		this.flush = ModelTypeHelper.requireNonNull(builder.flush, this, "flush");
-		this.get = ModelTypeHelper.requireNonNull(builder.get, this, "get");
-		this.indexing = ModelTypeHelper.requireNonNull(builder.indexing, this, "indexing");
-		this.merges = ModelTypeHelper.requireNonNull(builder.merges, this, "merges");
-		this.shardPath = ModelTypeHelper.requireNonNull(builder.shardPath, this, "shardPath");
-		this.queryCache = ModelTypeHelper.requireNonNull(builder.queryCache, this, "queryCache");
-		this.recovery = ModelTypeHelper.requireNonNull(builder.recovery, this, "recovery");
-		this.refresh = ModelTypeHelper.requireNonNull(builder.refresh, this, "refresh");
-		this.requestCache = ModelTypeHelper.requireNonNull(builder.requestCache, this, "requestCache");
-		this.retentionLeases = ModelTypeHelper.requireNonNull(builder.retentionLeases, this, "retentionLeases");
-		this.routing = ModelTypeHelper.requireNonNull(builder.routing, this, "routing");
-		this.search = ModelTypeHelper.requireNonNull(builder.search, this, "search");
-		this.segments = ModelTypeHelper.requireNonNull(builder.segments, this, "segments");
-		this.seqNo = ModelTypeHelper.requireNonNull(builder.seqNo, this, "seqNo");
-		this.store = ModelTypeHelper.requireNonNull(builder.store, this, "store");
-		this.translog = ModelTypeHelper.requireNonNull(builder.translog, this, "translog");
-		this.warmer = ModelTypeHelper.requireNonNull(builder.warmer, this, "warmer");
+		this.commit = ApiTypeHelper.requireNonNull(builder.commit, this, "commit");
+		this.completion = ApiTypeHelper.requireNonNull(builder.completion, this, "completion");
+		this.docs = ApiTypeHelper.requireNonNull(builder.docs, this, "docs");
+		this.fielddata = ApiTypeHelper.requireNonNull(builder.fielddata, this, "fielddata");
+		this.flush = ApiTypeHelper.requireNonNull(builder.flush, this, "flush");
+		this.get = ApiTypeHelper.requireNonNull(builder.get, this, "get");
+		this.indexing = ApiTypeHelper.requireNonNull(builder.indexing, this, "indexing");
+		this.merges = ApiTypeHelper.requireNonNull(builder.merges, this, "merges");
+		this.shardPath = ApiTypeHelper.requireNonNull(builder.shardPath, this, "shardPath");
+		this.queryCache = ApiTypeHelper.requireNonNull(builder.queryCache, this, "queryCache");
+		this.recovery = ApiTypeHelper.requireNonNull(builder.recovery, this, "recovery");
+		this.refresh = ApiTypeHelper.requireNonNull(builder.refresh, this, "refresh");
+		this.requestCache = ApiTypeHelper.requireNonNull(builder.requestCache, this, "requestCache");
+		this.retentionLeases = ApiTypeHelper.requireNonNull(builder.retentionLeases, this, "retentionLeases");
+		this.routing = ApiTypeHelper.requireNonNull(builder.routing, this, "routing");
+		this.search = ApiTypeHelper.requireNonNull(builder.search, this, "search");
+		this.segments = ApiTypeHelper.requireNonNull(builder.segments, this, "segments");
+		this.seqNo = ApiTypeHelper.requireNonNull(builder.seqNo, this, "seqNo");
+		this.store = ApiTypeHelper.requireNonNull(builder.store, this, "store");
+		this.translog = ApiTypeHelper.requireNonNull(builder.translog, this, "translog");
+		this.warmer = ApiTypeHelper.requireNonNull(builder.warmer, this, "warmer");
 		this.bulk = builder.bulk;
-		this.shards = ModelTypeHelper.requireNonNull(builder.shards, this, "shards");
+		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
 
 	}
 
@@ -388,6 +395,7 @@ public class ShardStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardStats> {
 		private ShardCommit commit;
 

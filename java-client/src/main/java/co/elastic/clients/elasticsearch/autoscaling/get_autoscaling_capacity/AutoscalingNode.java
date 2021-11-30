@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: autoscaling.get_autoscaling_capacity.AutoscalingNode
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/autoscaling/get_autoscaling_capacity/GetAutoscalingCapacityResponse.ts#L48-L50">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AutoscalingNode implements JsonpSerializable {
 	private final String name;
@@ -47,7 +54,7 @@ public class AutoscalingNode implements JsonpSerializable {
 
 	private AutoscalingNode(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
@@ -83,6 +90,7 @@ public class AutoscalingNode implements JsonpSerializable {
 	/**
 	 * Builder for {@link AutoscalingNode}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AutoscalingNode> {
 		private String name;
 

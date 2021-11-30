@@ -35,7 +35,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -50,6 +50,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.update_job.Request
+
+/**
+ * Updates certain properties of an anomaly detection job.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/update_job/MlUpdateJobRequest.ts#L33-L137">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -99,13 +107,13 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 		this.allowLazyOpen = builder.allowLazyOpen;
 		this.analysisLimits = builder.analysisLimits;
 		this.backgroundPersistInterval = builder.backgroundPersistInterval;
-		this.categorizationFilters = ModelTypeHelper.unmodifiable(builder.categorizationFilters);
-		this.customSettings = ModelTypeHelper.unmodifiable(builder.customSettings);
+		this.categorizationFilters = ApiTypeHelper.unmodifiable(builder.categorizationFilters);
+		this.customSettings = ApiTypeHelper.unmodifiable(builder.customSettings);
 		this.dailyModelSnapshotRetentionAfterDays = builder.dailyModelSnapshotRetentionAfterDays;
 		this.description = builder.description;
-		this.detectors = ModelTypeHelper.unmodifiable(builder.detectors);
-		this.groups = ModelTypeHelper.unmodifiable(builder.groups);
-		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.detectors = ApiTypeHelper.unmodifiable(builder.detectors);
+		this.groups = ApiTypeHelper.unmodifiable(builder.groups);
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.modelPlotConfig = builder.modelPlotConfig;
 		this.modelSnapshotRetentionDays = builder.modelSnapshotRetentionDays;
 		this.perPartitionCategorization = builder.perPartitionCategorization;
@@ -314,7 +322,7 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 			this.backgroundPersistInterval.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.categorizationFilters)) {
+		if (ApiTypeHelper.isDefined(this.categorizationFilters)) {
 			generator.writeKey("categorization_filters");
 			generator.writeStartArray();
 			for (String item0 : this.categorizationFilters) {
@@ -324,7 +332,7 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.customSettings)) {
+		if (ApiTypeHelper.isDefined(this.customSettings)) {
 			generator.writeKey("custom_settings");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.customSettings.entrySet()) {
@@ -345,7 +353,7 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 			generator.write(this.description);
 
 		}
-		if (ModelTypeHelper.isDefined(this.detectors)) {
+		if (ApiTypeHelper.isDefined(this.detectors)) {
 			generator.writeKey("detectors");
 			generator.writeStartArray();
 			for (Detector item0 : this.detectors) {
@@ -355,7 +363,7 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.groups)) {
+		if (ApiTypeHelper.isDefined(this.groups)) {
 			generator.writeKey("groups");
 			generator.writeStartArray();
 			for (String item0 : this.groups) {
@@ -398,6 +406,7 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link UpdateJobRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UpdateJobRequest> {
 		@Nullable
 		private Boolean allowLazyOpen;
@@ -512,10 +521,8 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code categorization_filters}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>categorizationFilters</code>.
-		 * Use <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>categorizationFilters</code> to <code>null</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder categorizationFilters(List<String> list) {
 			this.categorizationFilters = _listAddAll(this.categorizationFilters, list);
@@ -539,11 +546,9 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code custom_settings}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>customSettings</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>customSettings</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>customSettings</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder customSettings(Map<String, JsonData> map) {
 			this.customSettings = _mapPutAll(this.customSettings, map);
@@ -595,11 +600,9 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code detectors}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>detectors</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>detectors</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>detectors</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder detectors(List<Detector> list) {
 			this.detectors = _listAddAll(this.detectors, list);
@@ -634,11 +637,9 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code groups}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>groups</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>groups</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>groups</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder groups(List<String> list) {
 			this.groups = _listAddAll(this.groups, list);

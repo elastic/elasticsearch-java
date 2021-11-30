@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.segments.ShardSegmentRouting
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/segments/types.ts#L41-L45">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ShardSegmentRouting implements JsonpSerializable {
 	private final String node;
@@ -52,9 +59,9 @@ public class ShardSegmentRouting implements JsonpSerializable {
 
 	private ShardSegmentRouting(Builder builder) {
 
-		this.node = ModelTypeHelper.requireNonNull(builder.node, this, "node");
-		this.primary = ModelTypeHelper.requireNonNull(builder.primary, this, "primary");
-		this.state = ModelTypeHelper.requireNonNull(builder.state, this, "state");
+		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
+		this.primary = ApiTypeHelper.requireNonNull(builder.primary, this, "primary");
+		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
 
 	}
 
@@ -110,6 +117,7 @@ public class ShardSegmentRouting implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardSegmentRouting}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardSegmentRouting> {
 		private String node;
 

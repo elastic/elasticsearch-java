@@ -36,6 +36,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: indices.recovery.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/recovery/IndicesRecoveryResponse.ts#L24-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RecoveryResponse extends DictionaryResponse<String, RecoveryStatus> {
 	// ---------------------------------------------------------------------------------------------
@@ -54,6 +61,7 @@ public class RecoveryResponse extends DictionaryResponse<String, RecoveryStatus>
 	/**
 	 * Builder for {@link RecoveryResponse}.
 	 */
+
 	public static class Builder extends DictionaryResponse.AbstractBuilder<String, RecoveryStatus, Builder>
 			implements
 				ObjectBuilder<RecoveryResponse> {

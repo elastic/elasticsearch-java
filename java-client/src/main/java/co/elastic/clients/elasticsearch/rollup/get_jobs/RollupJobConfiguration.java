@@ -32,7 +32,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -44,6 +44,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.get_jobs.RollupJobConfiguration
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/rollup/get_jobs/types.ts#L34-L43">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RollupJobConfiguration implements JsonpSerializable {
 	private final String cron;
@@ -66,14 +73,14 @@ public class RollupJobConfiguration implements JsonpSerializable {
 
 	private RollupJobConfiguration(Builder builder) {
 
-		this.cron = ModelTypeHelper.requireNonNull(builder.cron, this, "cron");
-		this.groups = ModelTypeHelper.requireNonNull(builder.groups, this, "groups");
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
-		this.indexPattern = ModelTypeHelper.requireNonNull(builder.indexPattern, this, "indexPattern");
-		this.metrics = ModelTypeHelper.unmodifiableRequired(builder.metrics, this, "metrics");
-		this.pageSize = ModelTypeHelper.requireNonNull(builder.pageSize, this, "pageSize");
-		this.rollupIndex = ModelTypeHelper.requireNonNull(builder.rollupIndex, this, "rollupIndex");
-		this.timeout = ModelTypeHelper.requireNonNull(builder.timeout, this, "timeout");
+		this.cron = ApiTypeHelper.requireNonNull(builder.cron, this, "cron");
+		this.groups = ApiTypeHelper.requireNonNull(builder.groups, this, "groups");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.indexPattern = ApiTypeHelper.requireNonNull(builder.indexPattern, this, "indexPattern");
+		this.metrics = ApiTypeHelper.unmodifiableRequired(builder.metrics, this, "metrics");
+		this.pageSize = ApiTypeHelper.requireNonNull(builder.pageSize, this, "pageSize");
+		this.rollupIndex = ApiTypeHelper.requireNonNull(builder.rollupIndex, this, "rollupIndex");
+		this.timeout = ApiTypeHelper.requireNonNull(builder.timeout, this, "timeout");
 
 	}
 
@@ -160,7 +167,7 @@ public class RollupJobConfiguration implements JsonpSerializable {
 		generator.writeKey("index_pattern");
 		generator.write(this.indexPattern);
 
-		if (ModelTypeHelper.isDefined(this.metrics)) {
+		if (ApiTypeHelper.isDefined(this.metrics)) {
 			generator.writeKey("metrics");
 			generator.writeStartArray();
 			for (FieldMetric item0 : this.metrics) {
@@ -186,6 +193,7 @@ public class RollupJobConfiguration implements JsonpSerializable {
 	/**
 	 * Builder for {@link RollupJobConfiguration}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RollupJobConfiguration> {
 		private String cron;
 
@@ -245,11 +253,9 @@ public class RollupJobConfiguration implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code metrics}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>metrics</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>metrics</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>metrics</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder metrics(List<FieldMetric> list) {
 			this.metrics = _listAddAll(this.metrics, list);

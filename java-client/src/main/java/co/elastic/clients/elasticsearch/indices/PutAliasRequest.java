@@ -35,7 +35,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -50,6 +50,14 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: indices.put_alias.Request
+
+/**
+ * Creates or updates an alias.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/put_alias/IndicesPutAliasRequest.ts#L25-L46">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -82,11 +90,11 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 	private PutAliasRequest(Builder builder) {
 
 		this.filter = builder.filter;
-		this.index = ModelTypeHelper.unmodifiableRequired(builder.index, this, "index");
+		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
 		this.indexRouting = builder.indexRouting;
 		this.isWriteIndex = builder.isWriteIndex;
 		this.masterTimeout = builder.masterTimeout;
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.routing = builder.routing;
 		this.searchRouting = builder.searchRouting;
 		this.timeout = builder.timeout;
@@ -221,6 +229,7 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link PutAliasRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutAliasRequest> {
 		@Nullable
 		private Query filter;
@@ -269,11 +278,9 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>index</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>index</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder index(List<String> list) {
 			this.index = _listAddAll(this.index, list);

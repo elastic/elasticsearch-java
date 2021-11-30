@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: nodes._types.Http
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/nodes/_types/Stats.ts#L133-L136">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Http implements JsonpSerializable {
 	private final int currentOpen;
@@ -49,8 +56,8 @@ public class Http implements JsonpSerializable {
 
 	private Http(Builder builder) {
 
-		this.currentOpen = ModelTypeHelper.requireNonNull(builder.currentOpen, this, "currentOpen");
-		this.totalOpened = ModelTypeHelper.requireNonNull(builder.totalOpened, this, "totalOpened");
+		this.currentOpen = ApiTypeHelper.requireNonNull(builder.currentOpen, this, "currentOpen");
+		this.totalOpened = ApiTypeHelper.requireNonNull(builder.totalOpened, this, "totalOpened");
 
 	}
 
@@ -96,6 +103,7 @@ public class Http implements JsonpSerializable {
 	/**
 	 * Builder for {@link Http}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Http> {
 		private Integer currentOpen;
 

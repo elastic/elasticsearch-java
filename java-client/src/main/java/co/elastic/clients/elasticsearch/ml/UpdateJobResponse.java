@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -44,6 +44,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.update_job.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/update_job/MlUpdateJobResponse.ts#L29-L53">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class UpdateJobResponse implements JsonpSerializable {
 	private final boolean allowLazyOpen;
@@ -100,28 +107,28 @@ public class UpdateJobResponse implements JsonpSerializable {
 
 	private UpdateJobResponse(Builder builder) {
 
-		this.allowLazyOpen = ModelTypeHelper.requireNonNull(builder.allowLazyOpen, this, "allowLazyOpen");
-		this.analysisConfig = ModelTypeHelper.requireNonNull(builder.analysisConfig, this, "analysisConfig");
-		this.analysisLimits = ModelTypeHelper.requireNonNull(builder.analysisLimits, this, "analysisLimits");
+		this.allowLazyOpen = ApiTypeHelper.requireNonNull(builder.allowLazyOpen, this, "allowLazyOpen");
+		this.analysisConfig = ApiTypeHelper.requireNonNull(builder.analysisConfig, this, "analysisConfig");
+		this.analysisLimits = ApiTypeHelper.requireNonNull(builder.analysisLimits, this, "analysisLimits");
 		this.backgroundPersistInterval = builder.backgroundPersistInterval;
-		this.createTime = ModelTypeHelper.requireNonNull(builder.createTime, this, "createTime");
+		this.createTime = ApiTypeHelper.requireNonNull(builder.createTime, this, "createTime");
 		this.finishedTime = builder.finishedTime;
-		this.customSettings = ModelTypeHelper.unmodifiable(builder.customSettings);
-		this.dailyModelSnapshotRetentionAfterDays = ModelTypeHelper.requireNonNull(
+		this.customSettings = ApiTypeHelper.unmodifiable(builder.customSettings);
+		this.dailyModelSnapshotRetentionAfterDays = ApiTypeHelper.requireNonNull(
 				builder.dailyModelSnapshotRetentionAfterDays, this, "dailyModelSnapshotRetentionAfterDays");
-		this.dataDescription = ModelTypeHelper.requireNonNull(builder.dataDescription, this, "dataDescription");
+		this.dataDescription = ApiTypeHelper.requireNonNull(builder.dataDescription, this, "dataDescription");
 		this.datafeedConfig = builder.datafeedConfig;
 		this.description = builder.description;
-		this.groups = ModelTypeHelper.unmodifiable(builder.groups);
-		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
-		this.jobType = ModelTypeHelper.requireNonNull(builder.jobType, this, "jobType");
-		this.jobVersion = ModelTypeHelper.requireNonNull(builder.jobVersion, this, "jobVersion");
+		this.groups = ApiTypeHelper.unmodifiable(builder.groups);
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.jobType = ApiTypeHelper.requireNonNull(builder.jobType, this, "jobType");
+		this.jobVersion = ApiTypeHelper.requireNonNull(builder.jobVersion, this, "jobVersion");
 		this.modelPlotConfig = builder.modelPlotConfig;
 		this.modelSnapshotId = builder.modelSnapshotId;
-		this.modelSnapshotRetentionDays = ModelTypeHelper.requireNonNull(builder.modelSnapshotRetentionDays, this,
+		this.modelSnapshotRetentionDays = ApiTypeHelper.requireNonNull(builder.modelSnapshotRetentionDays, this,
 				"modelSnapshotRetentionDays");
 		this.renormalizationWindowDays = builder.renormalizationWindowDays;
-		this.resultsIndexName = ModelTypeHelper.requireNonNull(builder.resultsIndexName, this, "resultsIndexName");
+		this.resultsIndexName = ApiTypeHelper.requireNonNull(builder.resultsIndexName, this, "resultsIndexName");
 		this.resultsRetentionDays = builder.resultsRetentionDays;
 
 	}
@@ -318,7 +325,7 @@ public class UpdateJobResponse implements JsonpSerializable {
 			generator.write(this.finishedTime);
 
 		}
-		if (ModelTypeHelper.isDefined(this.customSettings)) {
+		if (ApiTypeHelper.isDefined(this.customSettings)) {
 			generator.writeKey("custom_settings");
 			generator.writeStartObject();
 			for (Map.Entry<String, String> item0 : this.customSettings.entrySet()) {
@@ -345,7 +352,7 @@ public class UpdateJobResponse implements JsonpSerializable {
 			generator.write(this.description);
 
 		}
-		if (ModelTypeHelper.isDefined(this.groups)) {
+		if (ApiTypeHelper.isDefined(this.groups)) {
 			generator.writeKey("groups");
 			generator.writeStartArray();
 			for (String item0 : this.groups) {
@@ -398,6 +405,7 @@ public class UpdateJobResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link UpdateJobResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UpdateJobResponse> {
 		private Boolean allowLazyOpen;
 
@@ -524,11 +532,9 @@ public class UpdateJobResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code custom_settings}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>customSettings</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>customSettings</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>customSettings</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder customSettings(Map<String, String> map) {
 			this.customSettings = _mapPutAll(this.customSettings, map);
@@ -594,11 +600,9 @@ public class UpdateJobResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code groups}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>groups</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>groups</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>groups</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder groups(List<String> list) {
 			this.groups = _listAddAll(this.groups, list);

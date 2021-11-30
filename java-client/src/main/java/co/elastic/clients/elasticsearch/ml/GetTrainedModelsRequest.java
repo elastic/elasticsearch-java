@@ -45,6 +45,14 @@ import javax.annotation.Nullable;
 
 // typedef: ml.get_trained_models.Request
 
+/**
+ * Retrieves configuration information for a trained model.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/get_trained_models/MlGetTrainedModelRequest.ts#L25-L87">API
+ *      specification</a>
+ */
+
 public class GetTrainedModelsRequest extends RequestBase {
 	@Nullable
 	private final Boolean allowNoMatch;
@@ -187,6 +195,7 @@ public class GetTrainedModelsRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetTrainedModelsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetTrainedModelsRequest> {
 		@Nullable
 		private Boolean allowNoMatch;

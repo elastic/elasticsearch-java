@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.IntervalsAllOf
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/query_dsl/fulltext.ts#L49-L56">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IntervalsAllOf implements IntervalsQueryVariant, IntervalsVariant, JsonpSerializable {
 	private final List<Intervals> intervals;
@@ -58,7 +65,7 @@ public class IntervalsAllOf implements IntervalsQueryVariant, IntervalsVariant, 
 
 	private IntervalsAllOf(Builder builder) {
 
-		this.intervals = ModelTypeHelper.unmodifiableRequired(builder.intervals, this, "intervals");
+		this.intervals = ApiTypeHelper.unmodifiableRequired(builder.intervals, this, "intervals");
 		this.maxGaps = builder.maxGaps;
 		this.ordered = builder.ordered;
 		this.filter = builder.filter;
@@ -127,7 +134,7 @@ public class IntervalsAllOf implements IntervalsQueryVariant, IntervalsVariant, 
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.intervals)) {
+		if (ApiTypeHelper.isDefined(this.intervals)) {
 			generator.writeKey("intervals");
 			generator.writeStartArray();
 			for (Intervals item0 : this.intervals) {
@@ -160,6 +167,7 @@ public class IntervalsAllOf implements IntervalsQueryVariant, IntervalsVariant, 
 	/**
 	 * Builder for {@link IntervalsAllOf}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IntervalsAllOf> {
 		private List<Intervals> intervals;
 
@@ -175,11 +183,9 @@ public class IntervalsAllOf implements IntervalsQueryVariant, IntervalsVariant, 
 		/**
 		 * Required - API name: {@code intervals}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>intervals</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>intervals</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>intervals</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder intervals(List<Intervals> list) {
 			this.intervals = _listAddAll(this.intervals, list);

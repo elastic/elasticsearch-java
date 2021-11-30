@@ -36,6 +36,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.ObjectProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/mapping/complex.ts#L45-L48">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ObjectProperty extends CorePropertyBase implements PropertyVariant {
 	@Nullable
@@ -87,6 +94,7 @@ public class ObjectProperty extends CorePropertyBase implements PropertyVariant 
 	/**
 	 * Builder for {@link ObjectProperty}.
 	 */
+
 	public static class Builder extends CorePropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ObjectProperty> {

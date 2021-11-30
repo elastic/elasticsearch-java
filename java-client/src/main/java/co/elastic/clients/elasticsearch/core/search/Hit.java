@@ -33,7 +33,7 @@ import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -48,6 +48,13 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.Hit
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/search/_types/hits.ts#L41-L64">API
+ *      specification</a>
+ */
 
 public class Hit<TDocument> implements JsonpSerializable {
 	private final String index;
@@ -106,17 +113,17 @@ public class Hit<TDocument> implements JsonpSerializable {
 
 	private Hit(Builder<TDocument> builder) {
 
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.score = builder.score;
 		this.type = builder.type;
 		this.explanation = builder.explanation;
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
-		this.highlight = ModelTypeHelper.unmodifiable(builder.highlight);
-		this.innerHits = ModelTypeHelper.unmodifiable(builder.innerHits);
-		this.matchedQueries = ModelTypeHelper.unmodifiable(builder.matchedQueries);
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
+		this.highlight = ApiTypeHelper.unmodifiable(builder.highlight);
+		this.innerHits = ApiTypeHelper.unmodifiable(builder.innerHits);
+		this.matchedQueries = ApiTypeHelper.unmodifiable(builder.matchedQueries);
 		this.nested = builder.nested;
-		this.ignored = ModelTypeHelper.unmodifiable(builder.ignored);
+		this.ignored = ApiTypeHelper.unmodifiable(builder.ignored);
 		this.shard = builder.shard;
 		this.node = builder.node;
 		this.routing = builder.routing;
@@ -124,7 +131,7 @@ public class Hit<TDocument> implements JsonpSerializable {
 		this.seqNo = builder.seqNo;
 		this.primaryTerm = builder.primaryTerm;
 		this.version = builder.version;
-		this.sort = ModelTypeHelper.unmodifiable(builder.sort);
+		this.sort = ApiTypeHelper.unmodifiable(builder.sort);
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}
@@ -309,7 +316,7 @@ public class Hit<TDocument> implements JsonpSerializable {
 			this.explanation.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.fields)) {
+		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.fields.entrySet()) {
@@ -320,7 +327,7 @@ public class Hit<TDocument> implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.highlight)) {
+		if (ApiTypeHelper.isDefined(this.highlight)) {
 			generator.writeKey("highlight");
 			generator.writeStartObject();
 			for (Map.Entry<String, List<String>> item0 : this.highlight.entrySet()) {
@@ -338,7 +345,7 @@ public class Hit<TDocument> implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.innerHits)) {
+		if (ApiTypeHelper.isDefined(this.innerHits)) {
 			generator.writeKey("inner_hits");
 			generator.writeStartObject();
 			for (Map.Entry<String, InnerHitsResult> item0 : this.innerHits.entrySet()) {
@@ -349,7 +356,7 @@ public class Hit<TDocument> implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.matchedQueries)) {
+		if (ApiTypeHelper.isDefined(this.matchedQueries)) {
 			generator.writeKey("matched_queries");
 			generator.writeStartArray();
 			for (String item0 : this.matchedQueries) {
@@ -364,7 +371,7 @@ public class Hit<TDocument> implements JsonpSerializable {
 			this.nested.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.ignored)) {
+		if (ApiTypeHelper.isDefined(this.ignored)) {
 			generator.writeKey("_ignored");
 			generator.writeStartArray();
 			for (String item0 : this.ignored) {
@@ -409,7 +416,7 @@ public class Hit<TDocument> implements JsonpSerializable {
 			generator.write(this.version);
 
 		}
-		if (ModelTypeHelper.isDefined(this.sort)) {
+		if (ApiTypeHelper.isDefined(this.sort)) {
 			generator.writeKey("sort");
 			generator.writeStartArray();
 			for (String item0 : this.sort) {
@@ -427,6 +434,7 @@ public class Hit<TDocument> implements JsonpSerializable {
 	/**
 	 * Builder for {@link Hit}.
 	 */
+
 	public static class Builder<TDocument> extends ObjectBuilderBase implements ObjectBuilder<Hit<TDocument>> {
 		private String index;
 
@@ -536,11 +544,9 @@ public class Hit<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code fields}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>fields</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>fields</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>fields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder<TDocument> fields(Map<String, JsonData> map) {
 			this.fields = _mapPutAll(this.fields, map);
@@ -560,11 +566,9 @@ public class Hit<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code highlight}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>highlight</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>highlight</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>highlight</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder<TDocument> highlight(Map<String, List<String>> map) {
 			this.highlight = _mapPutAll(this.highlight, map);
@@ -584,11 +588,9 @@ public class Hit<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code inner_hits}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>innerHits</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>innerHits</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>innerHits</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder<TDocument> innerHits(Map<String, InnerHitsResult> map) {
 			this.innerHits = _mapPutAll(this.innerHits, map);
@@ -618,11 +620,9 @@ public class Hit<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code matched_queries}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>matchedQueries</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>matchedQueries</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>matchedQueries</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder<TDocument> matchedQueries(List<String> list) {
 			this.matchedQueries = _listAddAll(this.matchedQueries, list);
@@ -657,11 +657,9 @@ public class Hit<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code _ignored}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>ignored</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>ignored</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>ignored</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder<TDocument> ignored(List<String> list) {
 			this.ignored = _listAddAll(this.ignored, list);
@@ -737,11 +735,9 @@ public class Hit<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code sort}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>sort</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>sort</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>sort</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder<TDocument> sort(List<String> list) {
 			this.sort = _listAddAll(this.sort, list);
@@ -783,7 +779,7 @@ public class Hit<TDocument> implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for Hit
+	 * Create a JSON deserializer for Hit
 	 */
 	public static <TDocument> JsonpDeserializer<Hit<TDocument>> createHitDeserializer(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {

@@ -27,6 +27,12 @@ import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/watcher/_types/Execution.ts#L37-L46">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public enum ExecutionStatus implements JsonEnum {
 	AwaitsExecution("awaits_execution"),

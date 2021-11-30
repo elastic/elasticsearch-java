@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -44,6 +44,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.MoreLikeThisQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/query_dsl/specialized.ts#L63-L90">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 	@Nullable
@@ -106,9 +113,9 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		this.analyzer = builder.analyzer;
 		this.boostTerms = builder.boostTerms;
 		this.failOnUnsupportedField = builder.failOnUnsupportedField;
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 		this.include = builder.include;
-		this.like = ModelTypeHelper.unmodifiableRequired(builder.like, this, "like");
+		this.like = ApiTypeHelper.unmodifiableRequired(builder.like, this, "like");
 		this.maxDocFreq = builder.maxDocFreq;
 		this.maxQueryTerms = builder.maxQueryTerms;
 		this.maxWordLength = builder.maxWordLength;
@@ -116,10 +123,10 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		this.minimumShouldMatch = builder.minimumShouldMatch;
 		this.minTermFreq = builder.minTermFreq;
 		this.minWordLength = builder.minWordLength;
-		this.perFieldAnalyzer = ModelTypeHelper.unmodifiable(builder.perFieldAnalyzer);
+		this.perFieldAnalyzer = ApiTypeHelper.unmodifiable(builder.perFieldAnalyzer);
 		this.routing = builder.routing;
-		this.stopWords = ModelTypeHelper.unmodifiable(builder.stopWords);
-		this.unlike = ModelTypeHelper.unmodifiable(builder.unlike);
+		this.stopWords = ApiTypeHelper.unmodifiable(builder.stopWords);
+		this.unlike = ApiTypeHelper.unmodifiable(builder.unlike);
 		this.version = builder.version;
 		this.versionType = builder.versionType;
 
@@ -302,7 +309,7 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 			generator.write(this.failOnUnsupportedField);
 
 		}
-		if (ModelTypeHelper.isDefined(this.fields)) {
+		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartArray();
 			for (String item0 : this.fields) {
@@ -317,7 +324,7 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 			generator.write(this.include);
 
 		}
-		if (ModelTypeHelper.isDefined(this.like)) {
+		if (ApiTypeHelper.isDefined(this.like)) {
 			generator.writeKey("like");
 			generator.writeStartArray();
 			for (Like item0 : this.like) {
@@ -362,7 +369,7 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 			generator.write(this.minWordLength);
 
 		}
-		if (ModelTypeHelper.isDefined(this.perFieldAnalyzer)) {
+		if (ApiTypeHelper.isDefined(this.perFieldAnalyzer)) {
 			generator.writeKey("per_field_analyzer");
 			generator.writeStartObject();
 			for (Map.Entry<String, String> item0 : this.perFieldAnalyzer.entrySet()) {
@@ -378,7 +385,7 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 			generator.write(this.routing);
 
 		}
-		if (ModelTypeHelper.isDefined(this.stopWords)) {
+		if (ApiTypeHelper.isDefined(this.stopWords)) {
 			generator.writeKey("stop_words");
 			generator.writeStartArray();
 			for (String item0 : this.stopWords) {
@@ -388,7 +395,7 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.unlike)) {
+		if (ApiTypeHelper.isDefined(this.unlike)) {
 			generator.writeKey("unlike");
 			generator.writeStartArray();
 			for (Like item0 : this.unlike) {
@@ -415,6 +422,7 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link MoreLikeThisQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<MoreLikeThisQuery> {
 		@Nullable
 		private String analyzer;
@@ -499,11 +507,9 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code fields}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>fields</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>fields</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>fields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder fields(List<String> list) {
 			this.fields = _listAddAll(this.fields, list);
@@ -531,11 +537,9 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - API name: {@code like}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>like</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>like</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>like</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder like(List<Like> list) {
 			this.like = _listAddAll(this.like, list);
@@ -620,11 +624,9 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code per_field_analyzer}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>perFieldAnalyzer</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>perFieldAnalyzer</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>perFieldAnalyzer</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder perFieldAnalyzer(Map<String, String> map) {
 			this.perFieldAnalyzer = _mapPutAll(this.perFieldAnalyzer, map);
@@ -652,11 +654,9 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code stop_words}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>stopWords</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>stopWords</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>stopWords</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder stopWords(List<String> list) {
 			this.stopWords = _listAddAll(this.stopWords, list);
@@ -676,11 +676,9 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code unlike}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>unlike</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>unlike</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>unlike</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder unlike(List<Like> list) {
 			this.unlike = _listAddAll(this.unlike, list);

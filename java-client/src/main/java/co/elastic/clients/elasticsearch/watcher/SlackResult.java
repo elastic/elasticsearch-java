@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.SlackResult
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/watcher/_types/Actions.ts#L75-L78">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SlackResult implements JsonpSerializable {
 	@Nullable
@@ -51,7 +58,7 @@ public class SlackResult implements JsonpSerializable {
 	private SlackResult(Builder builder) {
 
 		this.account = builder.account;
-		this.message = ModelTypeHelper.requireNonNull(builder.message, this, "message");
+		this.message = ApiTypeHelper.requireNonNull(builder.message, this, "message");
 
 	}
 
@@ -100,6 +107,7 @@ public class SlackResult implements JsonpSerializable {
 	/**
 	 * Builder for {@link SlackResult}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SlackResult> {
 		@Nullable
 		private String account;

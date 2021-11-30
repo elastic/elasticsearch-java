@@ -35,7 +35,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -50,6 +50,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.put_index_template.Request
+
+/**
+ * Creates or updates an index template.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/put_index_template/IndicesPutIndexTemplateRequest.ts#L35-L55">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutIndexTemplateRequest extends RequestBase implements JsonpSerializable {
 	private final Map<String, JsonData> meta;
@@ -76,11 +84,11 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 
 	private PutIndexTemplateRequest(Builder builder) {
 
-		this.meta = ModelTypeHelper.unmodifiable(builder.meta);
-		this.composedOf = ModelTypeHelper.unmodifiable(builder.composedOf);
+		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
+		this.composedOf = ApiTypeHelper.unmodifiable(builder.composedOf);
 		this.dataStream = builder.dataStream;
-		this.indexPatterns = ModelTypeHelper.unmodifiable(builder.indexPatterns);
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.indexPatterns = ApiTypeHelper.unmodifiable(builder.indexPatterns);
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.priority = builder.priority;
 		this.template = builder.template;
 		this.version = builder.version;
@@ -164,7 +172,7 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.meta)) {
+		if (ApiTypeHelper.isDefined(this.meta)) {
 			generator.writeKey("_meta");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
@@ -175,7 +183,7 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.composedOf)) {
+		if (ApiTypeHelper.isDefined(this.composedOf)) {
 			generator.writeKey("composed_of");
 			generator.writeStartArray();
 			for (String item0 : this.composedOf) {
@@ -190,7 +198,7 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 			this.dataStream.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.indexPatterns)) {
+		if (ApiTypeHelper.isDefined(this.indexPatterns)) {
 			generator.writeKey("index_patterns");
 			generator.writeStartArray();
 			for (String item0 : this.indexPatterns) {
@@ -223,6 +231,7 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 	/**
 	 * Builder for {@link PutIndexTemplateRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutIndexTemplateRequest> {
 		@Nullable
 		private Map<String, JsonData> meta;
@@ -250,11 +259,9 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 		/**
 		 * API name: {@code _meta}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>meta</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>meta</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>meta</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder meta(Map<String, JsonData> map) {
 			this.meta = _mapPutAll(this.meta, map);
@@ -274,11 +281,9 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 		/**
 		 * API name: {@code composed_of}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>composedOf</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>composedOf</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>composedOf</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder composedOf(List<String> list) {
 			this.composedOf = _listAddAll(this.composedOf, list);
@@ -313,11 +318,9 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 		/**
 		 * API name: {@code index_patterns}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>indexPatterns</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>indexPatterns</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>indexPatterns</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder indexPatterns(List<String> list) {
 			this.indexPatterns = _listAddAll(this.indexPatterns, list);

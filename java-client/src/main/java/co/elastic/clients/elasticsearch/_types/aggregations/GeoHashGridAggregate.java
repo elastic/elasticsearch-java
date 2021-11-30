@@ -33,6 +33,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.aggregations.GeoHashGridAggregate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/Aggregate.ts#L481-L483">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GeoHashGridAggregate extends MultiBucketAggregateBase<GeoHashGridBucket> implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -59,6 +66,7 @@ public class GeoHashGridAggregate extends MultiBucketAggregateBase<GeoHashGridBu
 	/**
 	 * Builder for {@link GeoHashGridAggregate}.
 	 */
+
 	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<GeoHashGridBucket, Builder>
 			implements
 				ObjectBuilder<GeoHashGridAggregate> {

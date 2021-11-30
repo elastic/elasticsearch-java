@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.GeoShapeQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/query_dsl/geo.ts#L86-L91">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GeoShapeQuery extends QueryBase implements QueryVariant {
 	private final String field;
@@ -51,8 +58,8 @@ public class GeoShapeQuery extends QueryBase implements QueryVariant {
 
 	private GeoShapeQuery(Builder builder) {
 		super(builder);
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
-		this.shape = ModelTypeHelper.requireNonNull(builder.shape, this, "shape");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.shape = ApiTypeHelper.requireNonNull(builder.shape, this, "shape");
 
 		this.ignoreUnmapped = builder.ignoreUnmapped;
 
@@ -110,6 +117,7 @@ public class GeoShapeQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link GeoShapeQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<GeoShapeQuery> {
 		private String field;
 

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.create_service_token.Token
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/security/create_service_token/types.ts#L22-L25">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Token implements JsonpSerializable {
 	private final String name;
@@ -49,8 +56,8 @@ public class Token implements JsonpSerializable {
 
 	private Token(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
-		this.value = ModelTypeHelper.requireNonNull(builder.value, this, "value");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
 
 	}
 
@@ -96,6 +103,7 @@ public class Token implements JsonpSerializable {
 	/**
 	 * Builder for {@link Token}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Token> {
 		private String name;
 

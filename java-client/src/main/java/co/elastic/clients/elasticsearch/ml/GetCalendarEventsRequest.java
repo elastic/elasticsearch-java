@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -44,6 +44,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_calendar_events.Request
+
+/**
+ * Retrieves information about the scheduled events in calendars.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/get_calendar_events/MlGetCalendarEventsRequest.ts#L25-L53">API
+ *      specification</a>
+ */
 
 public class GetCalendarEventsRequest extends RequestBase {
 	private final String calendarId;
@@ -67,7 +75,7 @@ public class GetCalendarEventsRequest extends RequestBase {
 
 	private GetCalendarEventsRequest(Builder builder) {
 
-		this.calendarId = ModelTypeHelper.requireNonNull(builder.calendarId, this, "calendarId");
+		this.calendarId = ApiTypeHelper.requireNonNull(builder.calendarId, this, "calendarId");
 		this.end = builder.end;
 		this.from = builder.from;
 		this.jobId = builder.jobId;
@@ -149,6 +157,7 @@ public class GetCalendarEventsRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetCalendarEventsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetCalendarEventsRequest> {
 		private String calendarId;
 

@@ -27,6 +27,12 @@ import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/analysis/icu-plugin.ts#L77-L80">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public enum IcuNormalizationMode implements JsonEnum {
 	Decompose("decompose"),

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm._types.Policy
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ilm/_types/Policy.ts#L23-L26">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IlmPolicy implements JsonpSerializable {
 	private final Phases phases;
@@ -50,7 +57,7 @@ public class IlmPolicy implements JsonpSerializable {
 
 	private IlmPolicy(Builder builder) {
 
-		this.phases = ModelTypeHelper.requireNonNull(builder.phases, this, "phases");
+		this.phases = ApiTypeHelper.requireNonNull(builder.phases, this, "phases");
 		this.name = builder.name;
 
 	}
@@ -101,6 +108,7 @@ public class IlmPolicy implements JsonpSerializable {
 	/**
 	 * Builder for {@link IlmPolicy}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IlmPolicy> {
 		private Phases phases;
 

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.JobTimingStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/Job.ts#L104-L113">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class JobTimingStats implements JsonpSerializable {
 	private final double averageBucketProcessingTimeMs;
@@ -63,20 +70,20 @@ public class JobTimingStats implements JsonpSerializable {
 
 	private JobTimingStats(Builder builder) {
 
-		this.averageBucketProcessingTimeMs = ModelTypeHelper.requireNonNull(builder.averageBucketProcessingTimeMs, this,
+		this.averageBucketProcessingTimeMs = ApiTypeHelper.requireNonNull(builder.averageBucketProcessingTimeMs, this,
 				"averageBucketProcessingTimeMs");
-		this.bucketCount = ModelTypeHelper.requireNonNull(builder.bucketCount, this, "bucketCount");
-		this.exponentialAverageBucketProcessingTimeMs = ModelTypeHelper.requireNonNull(
+		this.bucketCount = ApiTypeHelper.requireNonNull(builder.bucketCount, this, "bucketCount");
+		this.exponentialAverageBucketProcessingTimeMs = ApiTypeHelper.requireNonNull(
 				builder.exponentialAverageBucketProcessingTimeMs, this, "exponentialAverageBucketProcessingTimeMs");
-		this.exponentialAverageBucketProcessingTimePerHourMs = ModelTypeHelper.requireNonNull(
+		this.exponentialAverageBucketProcessingTimePerHourMs = ApiTypeHelper.requireNonNull(
 				builder.exponentialAverageBucketProcessingTimePerHourMs, this,
 				"exponentialAverageBucketProcessingTimePerHourMs");
-		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
-		this.totalBucketProcessingTimeMs = ModelTypeHelper.requireNonNull(builder.totalBucketProcessingTimeMs, this,
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.totalBucketProcessingTimeMs = ApiTypeHelper.requireNonNull(builder.totalBucketProcessingTimeMs, this,
 				"totalBucketProcessingTimeMs");
-		this.maximumBucketProcessingTimeMs = ModelTypeHelper.requireNonNull(builder.maximumBucketProcessingTimeMs, this,
+		this.maximumBucketProcessingTimeMs = ApiTypeHelper.requireNonNull(builder.maximumBucketProcessingTimeMs, this,
 				"maximumBucketProcessingTimeMs");
-		this.minimumBucketProcessingTimeMs = ModelTypeHelper.requireNonNull(builder.minimumBucketProcessingTimeMs, this,
+		this.minimumBucketProcessingTimeMs = ApiTypeHelper.requireNonNull(builder.minimumBucketProcessingTimeMs, this,
 				"minimumBucketProcessingTimeMs");
 
 	}
@@ -184,6 +191,7 @@ public class JobTimingStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link JobTimingStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<JobTimingStats> {
 		private Double averageBucketProcessingTimeMs;
 

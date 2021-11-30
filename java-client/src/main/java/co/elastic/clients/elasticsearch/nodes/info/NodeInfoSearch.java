@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoSearch
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/nodes/info/types.ts#L271-L273">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeInfoSearch implements JsonpSerializable {
 	private final NodeInfoSearchRemote remote;
@@ -46,7 +53,7 @@ public class NodeInfoSearch implements JsonpSerializable {
 
 	private NodeInfoSearch(Builder builder) {
 
-		this.remote = ModelTypeHelper.requireNonNull(builder.remote, this, "remote");
+		this.remote = ApiTypeHelper.requireNonNull(builder.remote, this, "remote");
 
 	}
 
@@ -82,6 +89,7 @@ public class NodeInfoSearch implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoSearch}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoSearch> {
 		private NodeInfoSearchRemote remote;
 

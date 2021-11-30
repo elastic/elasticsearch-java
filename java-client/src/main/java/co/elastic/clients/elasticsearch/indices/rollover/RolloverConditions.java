@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.rollover.RolloverConditions
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/rollover/types.ts#L26-L31">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RolloverConditions implements JsonpSerializable {
 	@Nullable
@@ -140,6 +147,7 @@ public class RolloverConditions implements JsonpSerializable {
 	/**
 	 * Builder for {@link RolloverConditions}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RolloverConditions> {
 		@Nullable
 		private Time maxAge;

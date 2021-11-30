@@ -43,6 +43,14 @@ import javax.annotation.Nullable;
 
 // typedef: ilm.start.Request
 
+/**
+ * Start the index lifecycle management (ILM) plugin.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ilm/start/StartIlmRequest.ts#L23-L33">API
+ *      specification</a>
+ */
+
 public class StartIlmRequest extends RequestBase {
 	@Nullable
 	private final Time masterTimeout;
@@ -84,6 +92,7 @@ public class StartIlmRequest extends RequestBase {
 	/**
 	 * Builder for {@link StartIlmRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StartIlmRequest> {
 		@Nullable
 		private Time masterTimeout;

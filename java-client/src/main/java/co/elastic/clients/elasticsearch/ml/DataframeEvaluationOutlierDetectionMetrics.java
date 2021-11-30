@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationOutlierDetectionMetrics
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/DataframeEvaluation.ts#L80-L83">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeEvaluationOutlierDetectionMetrics extends DataframeEvaluationMetrics {
 	private final Map<String, JsonData> confusionMatrix;
@@ -48,7 +55,7 @@ public class DataframeEvaluationOutlierDetectionMetrics extends DataframeEvaluat
 	private DataframeEvaluationOutlierDetectionMetrics(Builder builder) {
 		super(builder);
 
-		this.confusionMatrix = ModelTypeHelper.unmodifiable(builder.confusionMatrix);
+		this.confusionMatrix = ApiTypeHelper.unmodifiable(builder.confusionMatrix);
 
 	}
 
@@ -69,7 +76,7 @@ public class DataframeEvaluationOutlierDetectionMetrics extends DataframeEvaluat
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.confusionMatrix)) {
+		if (ApiTypeHelper.isDefined(this.confusionMatrix)) {
 			generator.writeKey("confusion_matrix");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.confusionMatrix.entrySet()) {
@@ -88,6 +95,7 @@ public class DataframeEvaluationOutlierDetectionMetrics extends DataframeEvaluat
 	/**
 	 * Builder for {@link DataframeEvaluationOutlierDetectionMetrics}.
 	 */
+
 	public static class Builder extends DataframeEvaluationMetrics.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DataframeEvaluationOutlierDetectionMetrics> {
@@ -99,11 +107,9 @@ public class DataframeEvaluationOutlierDetectionMetrics extends DataframeEvaluat
 		 * <p>
 		 * API name: {@code confusion_matrix}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>confusionMatrix</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>confusionMatrix</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>confusionMatrix</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder confusionMatrix(Map<String, JsonData> map) {
 			this.confusionMatrix = _mapPutAll(this.confusionMatrix, map);

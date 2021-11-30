@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.termvectors.TermVector
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/termvectors/types.ts#L23-L26">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TermVector implements JsonpSerializable {
 	private final FieldStatistics fieldStatistics;
@@ -50,8 +57,8 @@ public class TermVector implements JsonpSerializable {
 
 	private TermVector(Builder builder) {
 
-		this.fieldStatistics = ModelTypeHelper.requireNonNull(builder.fieldStatistics, this, "fieldStatistics");
-		this.terms = ModelTypeHelper.unmodifiableRequired(builder.terms, this, "terms");
+		this.fieldStatistics = ApiTypeHelper.requireNonNull(builder.fieldStatistics, this, "fieldStatistics");
+		this.terms = ApiTypeHelper.unmodifiableRequired(builder.terms, this, "terms");
 
 	}
 
@@ -87,7 +94,7 @@ public class TermVector implements JsonpSerializable {
 		generator.writeKey("field_statistics");
 		this.fieldStatistics.serialize(generator, mapper);
 
-		if (ModelTypeHelper.isDefined(this.terms)) {
+		if (ApiTypeHelper.isDefined(this.terms)) {
 			generator.writeKey("terms");
 			generator.writeStartObject();
 			for (Map.Entry<String, Term> item0 : this.terms.entrySet()) {
@@ -106,6 +113,7 @@ public class TermVector implements JsonpSerializable {
 	/**
 	 * Builder for {@link TermVector}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TermVector> {
 		private FieldStatistics fieldStatistics;
 
@@ -129,11 +137,9 @@ public class TermVector implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code terms}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>terms</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>terms</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>terms</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder terms(Map<String, Term> map) {
 			this.terms = _mapPutAll(this.terms, map);

@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.ml_data_frame_analytics.DataFrameAnalyticsRecord
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cat/ml_data_frame_analytics/types.ts#L22-L102">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataFrameAnalyticsRecord implements JsonpSerializable {
 	@Nullable
@@ -374,6 +381,7 @@ public class DataFrameAnalyticsRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link DataFrameAnalyticsRecord}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataFrameAnalyticsRecord> {
 		@Nullable
 		private String id;

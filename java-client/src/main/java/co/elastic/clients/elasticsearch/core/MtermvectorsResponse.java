@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.mtermvectors.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/mtermvectors/MultiTermVectorsResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MtermvectorsResponse implements JsonpSerializable {
 	private final List<MultiTermVectorsResult> docs;
@@ -48,7 +55,7 @@ public class MtermvectorsResponse implements JsonpSerializable {
 
 	private MtermvectorsResponse(Builder builder) {
 
-		this.docs = ModelTypeHelper.unmodifiableRequired(builder.docs, this, "docs");
+		this.docs = ApiTypeHelper.unmodifiableRequired(builder.docs, this, "docs");
 
 	}
 
@@ -74,7 +81,7 @@ public class MtermvectorsResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.docs)) {
+		if (ApiTypeHelper.isDefined(this.docs)) {
 			generator.writeKey("docs");
 			generator.writeStartArray();
 			for (MultiTermVectorsResult item0 : this.docs) {
@@ -92,17 +99,16 @@ public class MtermvectorsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link MtermvectorsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MtermvectorsResponse> {
 		private List<MultiTermVectorsResult> docs;
 
 		/**
 		 * Required - API name: {@code docs}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>docs</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>docs</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>docs</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder docs(List<MultiTermVectorsResult> list) {
 			this.docs = _listAddAll(this.docs, list);

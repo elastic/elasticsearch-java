@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.SuggestFuzziness
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/search/_types/suggester.ts#L106-L112">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SuggestFuzziness implements JsonpSerializable {
 	private final String fuzziness;
@@ -57,11 +64,11 @@ public class SuggestFuzziness implements JsonpSerializable {
 
 	private SuggestFuzziness(Builder builder) {
 
-		this.fuzziness = ModelTypeHelper.requireNonNull(builder.fuzziness, this, "fuzziness");
-		this.minLength = ModelTypeHelper.requireNonNull(builder.minLength, this, "minLength");
-		this.prefixLength = ModelTypeHelper.requireNonNull(builder.prefixLength, this, "prefixLength");
-		this.transpositions = ModelTypeHelper.requireNonNull(builder.transpositions, this, "transpositions");
-		this.unicodeAware = ModelTypeHelper.requireNonNull(builder.unicodeAware, this, "unicodeAware");
+		this.fuzziness = ApiTypeHelper.requireNonNull(builder.fuzziness, this, "fuzziness");
+		this.minLength = ApiTypeHelper.requireNonNull(builder.minLength, this, "minLength");
+		this.prefixLength = ApiTypeHelper.requireNonNull(builder.prefixLength, this, "prefixLength");
+		this.transpositions = ApiTypeHelper.requireNonNull(builder.transpositions, this, "transpositions");
+		this.unicodeAware = ApiTypeHelper.requireNonNull(builder.unicodeAware, this, "unicodeAware");
 
 	}
 
@@ -137,6 +144,7 @@ public class SuggestFuzziness implements JsonpSerializable {
 	/**
 	 * Builder for {@link SuggestFuzziness}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SuggestFuzziness> {
 		private String fuzziness;
 

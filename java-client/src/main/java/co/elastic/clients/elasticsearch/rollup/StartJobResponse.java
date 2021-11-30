@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: rollup.start_job.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/rollup/start_job/StartRollupJobResponse.ts#L20-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class StartJobResponse implements JsonpSerializable {
 	private final boolean started;
@@ -46,7 +53,7 @@ public class StartJobResponse implements JsonpSerializable {
 
 	private StartJobResponse(Builder builder) {
 
-		this.started = ModelTypeHelper.requireNonNull(builder.started, this, "started");
+		this.started = ApiTypeHelper.requireNonNull(builder.started, this, "started");
 
 	}
 
@@ -82,6 +89,7 @@ public class StartJobResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link StartJobResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StartJobResponse> {
 		private Boolean started;
 

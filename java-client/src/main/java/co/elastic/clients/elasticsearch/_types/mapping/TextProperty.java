@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.TextProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/mapping/core.ts#L256-L272">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TextProperty extends CorePropertyBase implements PropertyVariant {
 	@Nullable
@@ -310,6 +317,7 @@ public class TextProperty extends CorePropertyBase implements PropertyVariant {
 	/**
 	 * Builder for {@link TextProperty}.
 	 */
+
 	public static class Builder extends CorePropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<TextProperty> {

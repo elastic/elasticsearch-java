@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.AggregationRange
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/bucket.ts#L261-L265">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AggregationRange implements JsonpSerializable {
 	@Nullable
@@ -121,6 +128,7 @@ public class AggregationRange implements JsonpSerializable {
 	/**
 	 * Builder for {@link AggregationRange}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AggregationRange> {
 		@Nullable
 		private String from;

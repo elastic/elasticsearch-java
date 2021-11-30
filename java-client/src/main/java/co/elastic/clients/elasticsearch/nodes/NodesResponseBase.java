@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import javax.annotation.Nullable;
 
 // typedef: nodes._types.NodesResponseBase
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/nodes/_types/NodesResponseBase.ts#L22-L29">API
+ *      specification</a>
+ */
+
 public abstract class NodesResponseBase implements JsonpSerializable {
 	private final NodeStatistics nodeStats;
 
@@ -47,7 +54,7 @@ public abstract class NodesResponseBase implements JsonpSerializable {
 
 	protected NodesResponseBase(AbstractBuilder<?> builder) {
 
-		this.nodeStats = ModelTypeHelper.requireNonNull(builder.nodeStats, this, "nodeStats");
+		this.nodeStats = ApiTypeHelper.requireNonNull(builder.nodeStats, this, "nodeStats");
 
 	}
 

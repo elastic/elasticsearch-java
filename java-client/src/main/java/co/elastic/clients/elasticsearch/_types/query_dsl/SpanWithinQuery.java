@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -36,6 +36,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SpanWithinQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/query_dsl/span.ts#L74-L77">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SpanWithinQuery extends QueryBase implements SpanQueryVariant, QueryVariant {
 	private final SpanQuery big;
@@ -47,8 +54,8 @@ public class SpanWithinQuery extends QueryBase implements SpanQueryVariant, Quer
 	private SpanWithinQuery(Builder builder) {
 		super(builder);
 
-		this.big = ModelTypeHelper.requireNonNull(builder.big, this, "big");
-		this.little = ModelTypeHelper.requireNonNull(builder.little, this, "little");
+		this.big = ApiTypeHelper.requireNonNull(builder.big, this, "big");
+		this.little = ApiTypeHelper.requireNonNull(builder.little, this, "little");
 
 	}
 
@@ -102,6 +109,7 @@ public class SpanWithinQuery extends QueryBase implements SpanQueryVariant, Quer
 	/**
 	 * Builder for {@link SpanWithinQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<SpanWithinQuery> {
 		private SpanQuery big;
 

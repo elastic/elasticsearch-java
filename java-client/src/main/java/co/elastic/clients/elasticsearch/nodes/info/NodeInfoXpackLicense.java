@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoXpackLicense
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/nodes/info/types.ts#L258-L260">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeInfoXpackLicense implements JsonpSerializable {
 	private final NodeInfoXpackLicenseType selfGenerated;
@@ -46,7 +53,7 @@ public class NodeInfoXpackLicense implements JsonpSerializable {
 
 	private NodeInfoXpackLicense(Builder builder) {
 
-		this.selfGenerated = ModelTypeHelper.requireNonNull(builder.selfGenerated, this, "selfGenerated");
+		this.selfGenerated = ApiTypeHelper.requireNonNull(builder.selfGenerated, this, "selfGenerated");
 
 	}
 
@@ -82,6 +89,7 @@ public class NodeInfoXpackLicense implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoXpackLicense}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoXpackLicense> {
 		private NodeInfoXpackLicenseType selfGenerated;
 

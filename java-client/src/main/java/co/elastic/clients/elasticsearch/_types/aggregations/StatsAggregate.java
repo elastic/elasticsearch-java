@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
@@ -38,6 +38,16 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.StatsAggregate
+
+/**
+ * Statistics aggregation result. <code>min</code>, <code>max</code> and
+ * <code>avg</code> are missing if there were no values to process
+ * (<code>count</code> is zero).
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/Aggregate.ts#L226-L241">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class StatsAggregate extends AggregateBase implements AggregateVariant {
 	private final long count;
@@ -67,11 +77,11 @@ public class StatsAggregate extends AggregateBase implements AggregateVariant {
 	protected StatsAggregate(AbstractBuilder<?> builder) {
 		super(builder);
 
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
-		this.min = ModelTypeHelper.requireNonNull(builder.min, this, "min");
-		this.max = ModelTypeHelper.requireNonNull(builder.max, this, "max");
-		this.avg = ModelTypeHelper.requireNonNull(builder.avg, this, "avg");
-		this.sum = ModelTypeHelper.requireNonNull(builder.sum, this, "sum");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.min = ApiTypeHelper.requireNonNull(builder.min, this, "min");
+		this.max = ApiTypeHelper.requireNonNull(builder.max, this, "max");
+		this.avg = ApiTypeHelper.requireNonNull(builder.avg, this, "avg");
+		this.sum = ApiTypeHelper.requireNonNull(builder.sum, this, "sum");
 		this.minAsString = builder.minAsString;
 		this.maxAsString = builder.maxAsString;
 		this.avgAsString = builder.avgAsString;
@@ -200,6 +210,7 @@ public class StatsAggregate extends AggregateBase implements AggregateVariant {
 	/**
 	 * Builder for {@link StatsAggregate}.
 	 */
+
 	public static class Builder extends StatsAggregate.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<StatsAggregate> {

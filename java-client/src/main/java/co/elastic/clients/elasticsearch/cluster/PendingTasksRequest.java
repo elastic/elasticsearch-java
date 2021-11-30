@@ -44,6 +44,15 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.pending_tasks.Request
 
+/**
+ * Returns a list of any cluster-level changes (e.g. create index, update
+ * mapping, allocate or fail shard) which have not yet been executed.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cluster/pending_tasks/ClusterPendingTasksRequest.ts#L23-L34">API
+ *      specification</a>
+ */
+
 public class PendingTasksRequest extends RequestBase {
 	@Nullable
 	private final Boolean local;
@@ -90,6 +99,7 @@ public class PendingTasksRequest extends RequestBase {
 	/**
 	 * Builder for {@link PendingTasksRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PendingTasksRequest> {
 		@Nullable
 		private Boolean local;

@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.TrainedModelStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/TrainedModel.ts#L28-L40">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TrainedModelStats implements JsonpSerializable {
 	private final String modelId;
@@ -57,10 +64,10 @@ public class TrainedModelStats implements JsonpSerializable {
 
 	private TrainedModelStats(Builder builder) {
 
-		this.modelId = ModelTypeHelper.requireNonNull(builder.modelId, this, "modelId");
-		this.pipelineCount = ModelTypeHelper.requireNonNull(builder.pipelineCount, this, "pipelineCount");
+		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
+		this.pipelineCount = ApiTypeHelper.requireNonNull(builder.pipelineCount, this, "pipelineCount");
 		this.inferenceStats = builder.inferenceStats;
-		this.ingest = ModelTypeHelper.unmodifiable(builder.ingest);
+		this.ingest = ApiTypeHelper.unmodifiable(builder.ingest);
 
 	}
 
@@ -129,7 +136,7 @@ public class TrainedModelStats implements JsonpSerializable {
 			this.inferenceStats.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.ingest)) {
+		if (ApiTypeHelper.isDefined(this.ingest)) {
 			generator.writeKey("ingest");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.ingest.entrySet()) {
@@ -148,6 +155,7 @@ public class TrainedModelStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link TrainedModelStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TrainedModelStats> {
 		private String modelId;
 
@@ -206,11 +214,9 @@ public class TrainedModelStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code ingest}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>ingest</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>ingest</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>ingest</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder ingest(Map<String, JsonData> map) {
 			this.ingest = _mapPutAll(this.ingest, map);

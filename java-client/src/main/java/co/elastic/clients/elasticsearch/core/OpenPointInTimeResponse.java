@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.open_point_in_time.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/open_point_in_time/OpenPointInTimeResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class OpenPointInTimeResponse implements JsonpSerializable {
 	private final String id;
@@ -47,7 +54,7 @@ public class OpenPointInTimeResponse implements JsonpSerializable {
 
 	private OpenPointInTimeResponse(Builder builder) {
 
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 
 	}
 
@@ -83,6 +90,7 @@ public class OpenPointInTimeResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link OpenPointInTimeResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<OpenPointInTimeResponse> {
 		private String id;
 

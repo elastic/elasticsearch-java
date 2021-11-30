@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.SearchInput
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/watcher/_types/Input.ts#L114-L118">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SearchInput implements InputVariant, JsonpSerializable {
 	private final List<String> extract;
@@ -54,8 +61,8 @@ public class SearchInput implements InputVariant, JsonpSerializable {
 
 	private SearchInput(Builder builder) {
 
-		this.extract = ModelTypeHelper.unmodifiable(builder.extract);
-		this.request = ModelTypeHelper.requireNonNull(builder.request, this, "request");
+		this.extract = ApiTypeHelper.unmodifiable(builder.extract);
+		this.request = ApiTypeHelper.requireNonNull(builder.request, this, "request");
 		this.timeout = builder.timeout;
 
 	}
@@ -105,7 +112,7 @@ public class SearchInput implements InputVariant, JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.extract)) {
+		if (ApiTypeHelper.isDefined(this.extract)) {
 			generator.writeKey("extract");
 			generator.writeStartArray();
 			for (String item0 : this.extract) {
@@ -131,6 +138,7 @@ public class SearchInput implements InputVariant, JsonpSerializable {
 	/**
 	 * Builder for {@link SearchInput}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SearchInput> {
 		@Nullable
 		private List<String> extract;
@@ -143,11 +151,9 @@ public class SearchInput implements InputVariant, JsonpSerializable {
 		/**
 		 * API name: {@code extract}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>extract</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>extract</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>extract</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder extract(List<String> list) {
 			this.extract = _listAddAll(this.extract, list);

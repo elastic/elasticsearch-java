@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.close.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/close/CloseIndexResponse.ts#L25-L30">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CloseIndexResponse extends AcknowledgedResponseBase {
 	private final Map<String, CloseIndexResult> indices;
@@ -52,9 +59,8 @@ public class CloseIndexResponse extends AcknowledgedResponseBase {
 	private CloseIndexResponse(Builder builder) {
 		super(builder);
 
-		this.indices = ModelTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
-		this.shardsAcknowledged = ModelTypeHelper.requireNonNull(builder.shardsAcknowledged, this,
-				"shardsAcknowledged");
+		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
+		this.shardsAcknowledged = ApiTypeHelper.requireNonNull(builder.shardsAcknowledged, this, "shardsAcknowledged");
 
 	}
 
@@ -79,7 +85,7 @@ public class CloseIndexResponse extends AcknowledgedResponseBase {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.indices)) {
+		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartObject();
 			for (Map.Entry<String, CloseIndexResult> item0 : this.indices.entrySet()) {
@@ -100,6 +106,7 @@ public class CloseIndexResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link CloseIndexResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<CloseIndexResponse> {
@@ -110,11 +117,9 @@ public class CloseIndexResponse extends AcknowledgedResponseBase {
 		/**
 		 * Required - API name: {@code indices}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>indices</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>indices</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>indices</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder indices(Map<String, CloseIndexResult> map) {
 			this.indices = _mapPutAll(this.indices, map);

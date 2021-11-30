@@ -42,6 +42,15 @@ import javax.annotation.Nullable;
 
 // typedef: rollup.get_rollup_caps.Request
 
+/**
+ * Returns the capabilities of any rollup jobs that have been configured for a
+ * specific index or index pattern.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/rollup/get_rollup_caps/GetRollupCapabilitiesRequest.ts#L23-L32">API
+ *      specification</a>
+ */
+
 public class GetRollupCapsRequest extends RequestBase {
 	@Nullable
 	private final String id;
@@ -74,6 +83,7 @@ public class GetRollupCapsRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetRollupCapsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetRollupCapsRequest> {
 		@Nullable
 		private String id;

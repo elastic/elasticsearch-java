@@ -34,7 +34,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -46,6 +46,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.clone.Request
+
+/**
+ * Clones indices from one snapshot into another snapshot in the same
+ * repository.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/snapshot/clone/SnapshotCloneRequest.ts#L24-L42">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CloneSnapshotRequest extends RequestBase implements JsonpSerializable {
 	private final String indices;
@@ -66,11 +75,11 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 
 	private CloneSnapshotRequest(Builder builder) {
 
-		this.indices = ModelTypeHelper.requireNonNull(builder.indices, this, "indices");
+		this.indices = ApiTypeHelper.requireNonNull(builder.indices, this, "indices");
 		this.masterTimeout = builder.masterTimeout;
-		this.repository = ModelTypeHelper.requireNonNull(builder.repository, this, "repository");
-		this.snapshot = ModelTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
-		this.targetSnapshot = ModelTypeHelper.requireNonNull(builder.targetSnapshot, this, "targetSnapshot");
+		this.repository = ApiTypeHelper.requireNonNull(builder.repository, this, "repository");
+		this.snapshot = ApiTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
+		this.targetSnapshot = ApiTypeHelper.requireNonNull(builder.targetSnapshot, this, "targetSnapshot");
 		this.timeout = builder.timeout;
 
 	}
@@ -152,6 +161,7 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Builder for {@link CloneSnapshotRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CloneSnapshotRequest> {
 		private String indices;
 

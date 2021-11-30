@@ -36,7 +36,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -50,6 +50,14 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: _global.knn_search.Request
+
+/**
+ * Performs a kNN search.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/knn_search/KnnSearchRequest.ts#L26-L71">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -73,12 +81,12 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 	private KnnSearchRequest(Builder builder) {
 
 		this.source = builder.source;
-		this.docvalueFields = ModelTypeHelper.unmodifiable(builder.docvalueFields);
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
-		this.index = ModelTypeHelper.unmodifiableRequired(builder.index, this, "index");
-		this.knn = ModelTypeHelper.requireNonNull(builder.knn, this, "knn");
+		this.docvalueFields = ApiTypeHelper.unmodifiable(builder.docvalueFields);
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
+		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
+		this.knn = ApiTypeHelper.requireNonNull(builder.knn, this, "knn");
 		this.routing = builder.routing;
-		this.storedFields = ModelTypeHelper.unmodifiable(builder.storedFields);
+		this.storedFields = ApiTypeHelper.unmodifiable(builder.storedFields);
 
 	}
 
@@ -174,7 +182,7 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 			this.source.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.docvalueFields)) {
+		if (ApiTypeHelper.isDefined(this.docvalueFields)) {
 			generator.writeKey("docvalue_fields");
 			generator.writeStartArray();
 			for (FieldAndFormat item0 : this.docvalueFields) {
@@ -184,7 +192,7 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.fields)) {
+		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartArray();
 			for (String item0 : this.fields) {
@@ -197,7 +205,7 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 		generator.writeKey("knn");
 		this.knn.serialize(generator, mapper);
 
-		if (ModelTypeHelper.isDefined(this.storedFields)) {
+		if (ApiTypeHelper.isDefined(this.storedFields)) {
 			generator.writeKey("stored_fields");
 			generator.writeStartArray();
 			for (String item0 : this.storedFields) {
@@ -215,6 +223,7 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link KnnSearchRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<KnnSearchRequest> {
 		@Nullable
 		private SourceConfig source;
@@ -262,11 +271,9 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code docvalue_fields}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>docvalueFields</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>docvalueFields</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>docvalueFields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder docvalueFields(List<FieldAndFormat> list) {
 			this.docvalueFields = _listAddAll(this.docvalueFields, list);
@@ -304,11 +311,9 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code fields}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>fields</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>fields</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>fields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder fields(List<String> list) {
 			this.fields = _listAddAll(this.fields, list);
@@ -334,11 +339,9 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>index</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>index</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder index(List<String> list) {
 			this.index = _listAddAll(this.index, list);
@@ -395,11 +398,9 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code stored_fields}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>storedFields</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>storedFields</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>storedFields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder storedFields(List<String> list) {
 			this.storedFields = _listAddAll(this.storedFields, list);

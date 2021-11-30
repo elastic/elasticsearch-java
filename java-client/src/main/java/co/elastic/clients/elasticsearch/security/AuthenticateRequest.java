@@ -38,6 +38,15 @@ import java.util.Objects;
 
 // typedef: security.authenticate.Request
 
+/**
+ * Enables you to submit a request with a basic auth header to authenticate a
+ * user and retrieve information about the authenticated user.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/security/authenticate/SecurityAuthenticateRequest.ts#L22-L28">API
+ *      specification</a>
+ */
+
 public class AuthenticateRequest extends RequestBase {
 	public AuthenticateRequest() {
 	}

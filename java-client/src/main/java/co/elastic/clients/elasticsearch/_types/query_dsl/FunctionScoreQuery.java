@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.FunctionScoreQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/query_dsl/compound.ts#L52-L59">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FunctionScoreQuery extends QueryBase implements QueryVariant {
 	@Nullable
@@ -63,7 +70,7 @@ public class FunctionScoreQuery extends QueryBase implements QueryVariant {
 		super(builder);
 
 		this.boostMode = builder.boostMode;
-		this.functions = ModelTypeHelper.unmodifiable(builder.functions);
+		this.functions = ApiTypeHelper.unmodifiable(builder.functions);
 		this.maxBoost = builder.maxBoost;
 		this.minScore = builder.minScore;
 		this.query = builder.query;
@@ -137,7 +144,7 @@ public class FunctionScoreQuery extends QueryBase implements QueryVariant {
 			generator.writeKey("boost_mode");
 			this.boostMode.serialize(generator, mapper);
 		}
-		if (ModelTypeHelper.isDefined(this.functions)) {
+		if (ApiTypeHelper.isDefined(this.functions)) {
 			generator.writeKey("functions");
 			generator.writeStartArray();
 			for (FunctionScore item0 : this.functions) {
@@ -174,6 +181,7 @@ public class FunctionScoreQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link FunctionScoreQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<FunctionScoreQuery> {
@@ -206,11 +214,9 @@ public class FunctionScoreQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code functions}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>functions</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>functions</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>functions</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder functions(List<FunctionScore> list) {
 			this.functions = _listAddAll(this.functions, list);

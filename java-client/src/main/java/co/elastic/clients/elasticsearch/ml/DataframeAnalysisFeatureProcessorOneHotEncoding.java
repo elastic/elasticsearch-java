@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisFeatureProcessorOneHotEncoding
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/DataframeAnalytics.ts#L287-L292">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeAnalysisFeatureProcessorOneHotEncoding
 		implements
@@ -52,8 +59,8 @@ public class DataframeAnalysisFeatureProcessorOneHotEncoding
 
 	private DataframeAnalysisFeatureProcessorOneHotEncoding(Builder builder) {
 
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
-		this.hotMap = ModelTypeHelper.requireNonNull(builder.hotMap, this, "hotMap");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.hotMap = ApiTypeHelper.requireNonNull(builder.hotMap, this, "hotMap");
 
 	}
 
@@ -112,6 +119,7 @@ public class DataframeAnalysisFeatureProcessorOneHotEncoding
 	/**
 	 * Builder for {@link DataframeAnalysisFeatureProcessorOneHotEncoding}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase
 			implements
 				ObjectBuilder<DataframeAnalysisFeatureProcessorOneHotEncoding> {

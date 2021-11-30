@@ -33,6 +33,13 @@ import java.util.Objects;
 
 // typedef: indices.simulate_index_template.Response
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/simulate_index_template/IndicesSimulateIndexTemplateResponse.ts#L20-L22">API
+ *      specification</a>
+ */
+
 public class SimulateIndexTemplateResponse {
 	public SimulateIndexTemplateResponse() {
 	}

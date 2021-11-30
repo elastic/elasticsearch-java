@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.RankEvalHitItem
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/rank_eval/types.ts#L136-L139">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RankEvalHitItem implements JsonpSerializable {
 	private final RankEvalHit hit;
@@ -50,7 +57,7 @@ public class RankEvalHitItem implements JsonpSerializable {
 
 	private RankEvalHitItem(Builder builder) {
 
-		this.hit = ModelTypeHelper.requireNonNull(builder.hit, this, "hit");
+		this.hit = ApiTypeHelper.requireNonNull(builder.hit, this, "hit");
 		this.rating = builder.rating;
 
 	}
@@ -101,6 +108,7 @@ public class RankEvalHitItem implements JsonpSerializable {
 	/**
 	 * Builder for {@link RankEvalHitItem}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RankEvalHitItem> {
 		private RankEvalHit hit;
 

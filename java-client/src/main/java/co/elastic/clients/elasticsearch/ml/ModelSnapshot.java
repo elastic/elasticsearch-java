@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.ModelSnapshot
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/Model.ts#L24-L45">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ModelSnapshot implements JsonpSerializable {
 	@Nullable
@@ -70,17 +77,17 @@ public class ModelSnapshot implements JsonpSerializable {
 	private ModelSnapshot(Builder builder) {
 
 		this.description = builder.description;
-		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
-		this.latestRecordTimeStamp = ModelTypeHelper.requireNonNull(builder.latestRecordTimeStamp, this,
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.latestRecordTimeStamp = ApiTypeHelper.requireNonNull(builder.latestRecordTimeStamp, this,
 				"latestRecordTimeStamp");
-		this.latestResultTimeStamp = ModelTypeHelper.requireNonNull(builder.latestResultTimeStamp, this,
+		this.latestResultTimeStamp = ApiTypeHelper.requireNonNull(builder.latestResultTimeStamp, this,
 				"latestResultTimeStamp");
-		this.minVersion = ModelTypeHelper.requireNonNull(builder.minVersion, this, "minVersion");
-		this.modelSizeStats = ModelTypeHelper.requireNonNull(builder.modelSizeStats, this, "modelSizeStats");
-		this.retain = ModelTypeHelper.requireNonNull(builder.retain, this, "retain");
-		this.snapshotDocCount = ModelTypeHelper.requireNonNull(builder.snapshotDocCount, this, "snapshotDocCount");
-		this.snapshotId = ModelTypeHelper.requireNonNull(builder.snapshotId, this, "snapshotId");
-		this.timestamp = ModelTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+		this.minVersion = ApiTypeHelper.requireNonNull(builder.minVersion, this, "minVersion");
+		this.modelSizeStats = ApiTypeHelper.requireNonNull(builder.modelSizeStats, this, "modelSizeStats");
+		this.retain = ApiTypeHelper.requireNonNull(builder.retain, this, "retain");
+		this.snapshotDocCount = ApiTypeHelper.requireNonNull(builder.snapshotDocCount, this, "snapshotDocCount");
+		this.snapshotId = ApiTypeHelper.requireNonNull(builder.snapshotId, this, "snapshotId");
+		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
 
 	}
 
@@ -234,6 +241,7 @@ public class ModelSnapshot implements JsonpSerializable {
 	/**
 	 * Builder for {@link ModelSnapshot}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ModelSnapshot> {
 		@Nullable
 		private String description;

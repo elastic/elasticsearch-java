@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,6 +43,15 @@ import javax.annotation.Nullable;
 
 // typedef: rollup.get_rollup_index_caps.Request
 
+/**
+ * Returns the rollup capabilities of all jobs inside of a rollup index (e.g.
+ * the index where rollup data is stored).
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/rollup/get_rollup_index_caps/GetRollupIndexCapabilitiesRequest.ts#L23-L32">API
+ *      specification</a>
+ */
+
 public class GetRollupIndexCapsRequest extends RequestBase {
 	private final String index;
 
@@ -50,7 +59,7 @@ public class GetRollupIndexCapsRequest extends RequestBase {
 
 	private GetRollupIndexCapsRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 
 	}
 
@@ -73,6 +82,7 @@ public class GetRollupIndexCapsRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetRollupIndexCapsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetRollupIndexCapsRequest> {
 		private String index;
 

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,17 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.IndicesOptions
+
+/**
+ * Controls how to deal with unavailable concrete indices (closed or missing),
+ * how wildcard expressions are expanded to actual indices (all, closed or open
+ * indices) and how to deal with wildcard expressions that resolve to no
+ * indices.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/common.ts#L288-L315">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IndicesOptions implements JsonpSerializable {
 	@Nullable
@@ -58,7 +69,7 @@ public class IndicesOptions implements JsonpSerializable {
 	private IndicesOptions(Builder builder) {
 
 		this.allowNoIndices = builder.allowNoIndices;
-		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
+		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.ignoreThrottled = builder.ignoreThrottled;
 
@@ -130,7 +141,7 @@ public class IndicesOptions implements JsonpSerializable {
 			generator.write(this.allowNoIndices);
 
 		}
-		if (ModelTypeHelper.isDefined(this.expandWildcards)) {
+		if (ApiTypeHelper.isDefined(this.expandWildcards)) {
 			generator.writeKey("expand_wildcards");
 			generator.writeStartArray();
 			for (ExpandWildcard item0 : this.expandWildcards) {
@@ -157,6 +168,7 @@ public class IndicesOptions implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndicesOptions}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndicesOptions> {
 		@Nullable
 		private Boolean allowNoIndices;
@@ -192,11 +204,9 @@ public class IndicesOptions implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>expandWildcards</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder expandWildcards(List<ExpandWildcard> list) {
 			this.expandWildcards = _listAddAll(this.expandWildcards, list);

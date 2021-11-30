@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,6 +43,14 @@ import javax.annotation.Nullable;
 
 // typedef: ccr.resume_auto_follow_pattern.Request
 
+/**
+ * Resumes an auto-follow pattern that has been paused
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ccr/resume_auto_follow_pattern/ResumeAutoFollowPatternRequest.ts#L23-L32">API
+ *      specification</a>
+ */
+
 public class ResumeAutoFollowPatternRequest extends RequestBase {
 	private final String name;
 
@@ -50,7 +58,7 @@ public class ResumeAutoFollowPatternRequest extends RequestBase {
 
 	private ResumeAutoFollowPatternRequest(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
@@ -74,6 +82,7 @@ public class ResumeAutoFollowPatternRequest extends RequestBase {
 	/**
 	 * Builder for {@link ResumeAutoFollowPatternRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ResumeAutoFollowPatternRequest> {
 		private String name;
 

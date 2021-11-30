@@ -34,6 +34,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.analysis.LowercaseTokenizer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/analysis/tokenizers.ts#L70-L72">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class LowercaseTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -67,6 +74,7 @@ public class LowercaseTokenizer extends TokenizerBase implements TokenizerDefini
 	/**
 	 * Builder for {@link LowercaseTokenizer}.
 	 */
+
 	public static class Builder extends TokenizerBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<LowercaseTokenizer> {

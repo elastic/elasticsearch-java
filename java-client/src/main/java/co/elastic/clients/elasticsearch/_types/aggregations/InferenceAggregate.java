@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.InferenceAggregate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/Aggregate.ts#L596-L607">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class InferenceAggregate extends AggregateBase implements AggregateVariant {
 	private final Map<String, JsonData> data;
@@ -60,11 +67,11 @@ public class InferenceAggregate extends AggregateBase implements AggregateVarian
 
 	private InferenceAggregate(Builder builder) {
 		super(builder);
-		this.data = ModelTypeHelper.unmodifiable(builder.data);
+		this.data = ApiTypeHelper.unmodifiable(builder.data);
 
 		this.value = builder.value;
-		this.featureImportance = ModelTypeHelper.unmodifiable(builder.featureImportance);
-		this.topClasses = ModelTypeHelper.unmodifiable(builder.topClasses);
+		this.featureImportance = ApiTypeHelper.unmodifiable(builder.featureImportance);
+		this.topClasses = ApiTypeHelper.unmodifiable(builder.topClasses);
 		this.warning = builder.warning;
 
 	}
@@ -132,7 +139,7 @@ public class InferenceAggregate extends AggregateBase implements AggregateVarian
 			this.value.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.featureImportance)) {
+		if (ApiTypeHelper.isDefined(this.featureImportance)) {
 			generator.writeKey("feature_importance");
 			generator.writeStartArray();
 			for (InferenceFeatureImportance item0 : this.featureImportance) {
@@ -142,7 +149,7 @@ public class InferenceAggregate extends AggregateBase implements AggregateVarian
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.topClasses)) {
+		if (ApiTypeHelper.isDefined(this.topClasses)) {
 			generator.writeKey("top_classes");
 			generator.writeStartArray();
 			for (InferenceTopClassEntry item0 : this.topClasses) {
@@ -165,6 +172,7 @@ public class InferenceAggregate extends AggregateBase implements AggregateVarian
 	/**
 	 * Builder for {@link InferenceAggregate}.
 	 */
+
 	public static class Builder extends AggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<InferenceAggregate> {
@@ -174,11 +182,9 @@ public class InferenceAggregate extends AggregateBase implements AggregateVarian
 		/**
 		 * Additional data
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>data</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>data</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>data</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder data(Map<String, JsonData> map) {
 			this.data = _mapPutAll(this.data, map);
@@ -225,11 +231,9 @@ public class InferenceAggregate extends AggregateBase implements AggregateVarian
 		/**
 		 * API name: {@code feature_importance}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>featureImportance</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>featureImportance</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>featureImportance</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder featureImportance(List<InferenceFeatureImportance> list) {
 			this.featureImportance = _listAddAll(this.featureImportance, list);
@@ -259,11 +263,9 @@ public class InferenceAggregate extends AggregateBase implements AggregateVarian
 		/**
 		 * API name: {@code top_classes}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>topClasses</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>topClasses</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>topClasses</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder topClasses(List<InferenceTopClassEntry> list) {
 			this.topClasses = _listAddAll(this.topClasses, list);

@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -45,6 +45,14 @@ import javax.annotation.Nullable;
 
 // typedef: logstash.get_pipeline.Request
 
+/**
+ * Retrieves Logstash Pipelines used by Central Management
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/logstash/get_pipeline/LogstashGetPipelineRequest.ts#L23-L32">API
+ *      specification</a>
+ */
+
 public class GetPipelineRequest extends RequestBase {
 	private final List<String> id;
 
@@ -52,7 +60,7 @@ public class GetPipelineRequest extends RequestBase {
 
 	private GetPipelineRequest(Builder builder) {
 
-		this.id = ModelTypeHelper.unmodifiableRequired(builder.id, this, "id");
+		this.id = ApiTypeHelper.unmodifiableRequired(builder.id, this, "id");
 
 	}
 
@@ -74,6 +82,7 @@ public class GetPipelineRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetPipelineRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetPipelineRequest> {
 		private List<String> id;
 
@@ -82,11 +91,9 @@ public class GetPipelineRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code id}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>id</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset <code>id</code>
-		 * to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>id</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder id(List<String> list) {
 			this.id = _listAddAll(this.id, list);

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoRepositories
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/nodes/info/types.ts#L154-L156">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeInfoRepositories implements JsonpSerializable {
 	private final NodeInfoRepositoriesUrl url;
@@ -46,7 +53,7 @@ public class NodeInfoRepositories implements JsonpSerializable {
 
 	private NodeInfoRepositories(Builder builder) {
 
-		this.url = ModelTypeHelper.requireNonNull(builder.url, this, "url");
+		this.url = ApiTypeHelper.requireNonNull(builder.url, this, "url");
 
 	}
 
@@ -82,6 +89,7 @@ public class NodeInfoRepositories implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoRepositories}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoRepositories> {
 		private NodeInfoRepositoriesUrl url;
 

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,6 +43,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysis
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/DataframeAnalytics.ts#L133-L212">API
+ *      specification</a>
+ */
 
 public abstract class DataframeAnalysisBase implements JsonpSerializable {
 	@Nullable
@@ -102,13 +109,13 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 	protected DataframeAnalysisBase(AbstractBuilder<?> builder) {
 
 		this.alpha = builder.alpha;
-		this.dependentVariable = ModelTypeHelper.requireNonNull(builder.dependentVariable, this, "dependentVariable");
+		this.dependentVariable = ApiTypeHelper.requireNonNull(builder.dependentVariable, this, "dependentVariable");
 		this.downsampleFactor = builder.downsampleFactor;
 		this.earlyStoppingEnabled = builder.earlyStoppingEnabled;
 		this.eta = builder.eta;
 		this.etaGrowthRatePerTree = builder.etaGrowthRatePerTree;
 		this.featureBagFraction = builder.featureBagFraction;
-		this.featureProcessors = ModelTypeHelper.unmodifiable(builder.featureProcessors);
+		this.featureProcessors = ApiTypeHelper.unmodifiable(builder.featureProcessors);
 		this.gamma = builder.gamma;
 		this.lambda = builder.lambda;
 		this.maxOptimizationRoundsPerHyperparameter = builder.maxOptimizationRoundsPerHyperparameter;
@@ -424,7 +431,7 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 			generator.write(this.featureBagFraction);
 
 		}
-		if (ModelTypeHelper.isDefined(this.featureProcessors)) {
+		if (ApiTypeHelper.isDefined(this.featureProcessors)) {
 			generator.writeKey("feature_processors");
 			generator.writeStartArray();
 			for (DataframeAnalysisFeatureProcessor item0 : this.featureProcessors) {
@@ -659,11 +666,9 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code feature_processors}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>featureProcessors</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>featureProcessors</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>featureProcessors</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final BuilderT featureProcessors(List<DataframeAnalysisFeatureProcessor> list) {
 			this.featureProcessors = _listAddAll(this.featureProcessors, list);

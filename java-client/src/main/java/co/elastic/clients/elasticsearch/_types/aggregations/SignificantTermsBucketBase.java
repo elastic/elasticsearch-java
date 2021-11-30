@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
@@ -36,6 +36,13 @@ import java.lang.Long;
 import java.util.Objects;
 
 // typedef: _types.aggregations.SignificantTermsBucketBase
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/Aggregate.ts#L548-L551">API
+ *      specification</a>
+ */
 
 public abstract class SignificantTermsBucketBase extends MultiBucketBase {
 	private final double score;
@@ -47,8 +54,8 @@ public abstract class SignificantTermsBucketBase extends MultiBucketBase {
 	protected SignificantTermsBucketBase(AbstractBuilder<?> builder) {
 		super(builder);
 
-		this.score = ModelTypeHelper.requireNonNull(builder.score, this, "score");
-		this.bgCount = ModelTypeHelper.requireNonNull(builder.bgCount, this, "bgCount");
+		this.score = ApiTypeHelper.requireNonNull(builder.score, this, "score");
+		this.bgCount = ApiTypeHelper.requireNonNull(builder.bgCount, this, "bgCount");
 
 	}
 

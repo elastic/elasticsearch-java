@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: tasks.list.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/tasks/list/ListTasksResponse.ts#L25-L31">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ListResponse implements JsonpSerializable {
 	private final List<ErrorCause> nodeFailures;
@@ -54,9 +61,9 @@ public class ListResponse implements JsonpSerializable {
 
 	protected ListResponse(AbstractBuilder<?> builder) {
 
-		this.nodeFailures = ModelTypeHelper.unmodifiable(builder.nodeFailures);
-		this.nodes = ModelTypeHelper.unmodifiable(builder.nodes);
-		this.tasks = ModelTypeHelper.unmodifiable(builder.tasks);
+		this.nodeFailures = ApiTypeHelper.unmodifiable(builder.nodeFailures);
+		this.nodes = ApiTypeHelper.unmodifiable(builder.nodes);
+		this.tasks = ApiTypeHelper.unmodifiable(builder.tasks);
 
 	}
 
@@ -92,7 +99,7 @@ public class ListResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.nodeFailures)) {
+		if (ApiTypeHelper.isDefined(this.nodeFailures)) {
 			generator.writeKey("node_failures");
 			generator.writeStartArray();
 			for (ErrorCause item0 : this.nodeFailures) {
@@ -102,7 +109,7 @@ public class ListResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.nodes)) {
+		if (ApiTypeHelper.isDefined(this.nodes)) {
 			generator.writeKey("nodes");
 			generator.writeStartObject();
 			for (Map.Entry<String, TaskExecutingNode> item0 : this.nodes.entrySet()) {
@@ -113,7 +120,7 @@ public class ListResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.tasks)) {
+		if (ApiTypeHelper.isDefined(this.tasks)) {
 			generator.writeKey("tasks");
 			generator.writeStartObject();
 			for (Map.Entry<String, Info> item0 : this.tasks.entrySet()) {
@@ -132,6 +139,7 @@ public class ListResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link ListResponse}.
 	 */
+
 	public static class Builder extends ListResponse.AbstractBuilder<Builder> implements ObjectBuilder<ListResponse> {
 		@Override
 		protected Builder self() {
@@ -166,11 +174,9 @@ public class ListResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code node_failures}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>nodeFailures</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>nodeFailures</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>nodeFailures</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final BuilderT nodeFailures(List<ErrorCause> list) {
 			this.nodeFailures = _listAddAll(this.nodeFailures, list);
@@ -199,11 +205,9 @@ public class ListResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code nodes}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>nodes</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>nodes</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>nodes</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final BuilderT nodes(Map<String, TaskExecutingNode> map) {
 			this.nodes = _mapPutAll(this.nodes, map);
@@ -233,11 +237,9 @@ public class ListResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code tasks}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>tasks</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>tasks</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>tasks</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final BuilderT tasks(Map<String, Info> map) {
 			this.tasks = _mapPutAll(this.tasks, map);

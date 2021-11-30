@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
@@ -43,10 +43,19 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.IntervalsFilter
-// union type: Container[]
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/query_dsl/fulltext.ts#L74-L86">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IntervalsFilter implements TaggedUnion<IntervalsFilter.Kind, Object>, JsonpSerializable {
 
+	/**
+	 * {@link IntervalsFilter} variant kinds.
+	 */
 	/**
 	 * {@link IntervalsFilter} variant kinds.
 	 */
@@ -99,15 +108,15 @@ public class IntervalsFilter implements TaggedUnion<IntervalsFilter.Kind, Object
 
 	public IntervalsFilter(IntervalsFilterVariant value) {
 
-		this._kind = ModelTypeHelper.requireNonNull(value._intervalsFilterKind(), this, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(value._intervalsFilterKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
 	private IntervalsFilter(Builder builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 

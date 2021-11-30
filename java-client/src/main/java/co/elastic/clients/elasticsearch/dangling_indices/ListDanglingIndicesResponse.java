@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: dangling_indices.list_dangling_indices.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/dangling_indices/list_dangling_indices/ListDanglingIndicesResponse.ts#L23-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ListDanglingIndicesResponse implements JsonpSerializable {
 	private final List<DanglingIndex> danglingIndices;
@@ -48,7 +55,7 @@ public class ListDanglingIndicesResponse implements JsonpSerializable {
 
 	private ListDanglingIndicesResponse(Builder builder) {
 
-		this.danglingIndices = ModelTypeHelper.unmodifiableRequired(builder.danglingIndices, this, "danglingIndices");
+		this.danglingIndices = ApiTypeHelper.unmodifiableRequired(builder.danglingIndices, this, "danglingIndices");
 
 	}
 
@@ -74,7 +81,7 @@ public class ListDanglingIndicesResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.danglingIndices)) {
+		if (ApiTypeHelper.isDefined(this.danglingIndices)) {
 			generator.writeKey("dangling_indices");
 			generator.writeStartArray();
 			for (DanglingIndex item0 : this.danglingIndices) {
@@ -92,17 +99,16 @@ public class ListDanglingIndicesResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link ListDanglingIndicesResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ListDanglingIndicesResponse> {
 		private List<DanglingIndex> danglingIndices;
 
 		/**
 		 * Required - API name: {@code dangling_indices}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>danglingIndices</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>danglingIndices</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>danglingIndices</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder danglingIndices(List<DanglingIndex> list) {
 			this.danglingIndices = _listAddAll(this.danglingIndices, list);

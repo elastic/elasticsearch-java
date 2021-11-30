@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: migration.deprecations.Deprecation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/migration/deprecations/types.ts#L29-L35">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Deprecation implements JsonpSerializable {
 	private final String details;
@@ -53,10 +60,10 @@ public class Deprecation implements JsonpSerializable {
 
 	private Deprecation(Builder builder) {
 
-		this.details = ModelTypeHelper.requireNonNull(builder.details, this, "details");
-		this.level = ModelTypeHelper.requireNonNull(builder.level, this, "level");
-		this.message = ModelTypeHelper.requireNonNull(builder.message, this, "message");
-		this.url = ModelTypeHelper.requireNonNull(builder.url, this, "url");
+		this.details = ApiTypeHelper.requireNonNull(builder.details, this, "details");
+		this.level = ApiTypeHelper.requireNonNull(builder.level, this, "level");
+		this.message = ApiTypeHelper.requireNonNull(builder.message, this, "message");
+		this.url = ApiTypeHelper.requireNonNull(builder.url, this, "url");
 
 	}
 
@@ -123,6 +130,7 @@ public class Deprecation implements JsonpSerializable {
 	/**
 	 * Builder for {@link Deprecation}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Deprecation> {
 		private String details;
 

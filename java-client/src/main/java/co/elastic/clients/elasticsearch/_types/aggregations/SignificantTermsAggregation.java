@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.SignificantTermsAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/bucket.ts#L305-L320">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SignificantTermsAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
@@ -95,7 +102,7 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 		this.executionHint = builder.executionHint;
 		this.field = builder.field;
 		this.gnd = builder.gnd;
-		this.include = ModelTypeHelper.unmodifiable(builder.include);
+		this.include = ApiTypeHelper.unmodifiable(builder.include);
 		this.minDocCount = builder.minDocCount;
 		this.mutualInformation = builder.mutualInformation;
 		this.percentage = builder.percentage;
@@ -261,7 +268,7 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 			this.gnd.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.include)) {
+		if (ApiTypeHelper.isDefined(this.include)) {
 			generator.writeKey("include");
 			generator.writeStartArray();
 			for (String item0 : this.include) {
@@ -314,6 +321,7 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 	/**
 	 * Builder for {@link SignificantTermsAggregation}.
 	 */
+
 	public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<SignificantTermsAggregation> {
@@ -439,11 +447,9 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 		/**
 		 * API name: {@code include}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>include</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>include</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>include</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder include(List<String> list) {
 			this.include = _listAddAll(this.include, list);

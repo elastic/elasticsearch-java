@@ -33,6 +33,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.aggregations.TopMetricsAggregate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/Aggregate.ts#L661-L662">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TopMetricsAggregate extends MultiBucketAggregateBase<TopMetricsBucket> implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -59,6 +66,7 @@ public class TopMetricsAggregate extends MultiBucketAggregateBase<TopMetricsBuck
 	/**
 	 * Builder for {@link TopMetricsAggregate}.
 	 */
+
 	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<TopMetricsBucket, Builder>
 			implements
 				ObjectBuilder<TopMetricsAggregate> {

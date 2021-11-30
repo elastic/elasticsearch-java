@@ -33,6 +33,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.aggregations.AvgAggregate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/Aggregate.ts#L195-L196">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AvgAggregate extends SingleMetricAggregateBase implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -59,6 +66,7 @@ public class AvgAggregate extends SingleMetricAggregateBase implements Aggregate
 	/**
 	 * Builder for {@link AvgAggregate}.
 	 */
+
 	public static class Builder extends SingleMetricAggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<AvgAggregate> {

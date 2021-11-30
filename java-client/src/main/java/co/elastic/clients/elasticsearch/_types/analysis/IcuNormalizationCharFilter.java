@@ -35,6 +35,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.IcuNormalizationCharFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/analysis/icu-plugin.ts#L40-L44">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IcuNormalizationCharFilter extends CharFilterBase implements CharFilterDefinitionVariant {
 	@Nullable
@@ -101,6 +108,7 @@ public class IcuNormalizationCharFilter extends CharFilterBase implements CharFi
 	/**
 	 * Builder for {@link IcuNormalizationCharFilter}.
 	 */
+
 	public static class Builder extends CharFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<IcuNormalizationCharFilter> {

@@ -39,6 +39,13 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.ScoreFunctionBase
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/query_dsl/compound.ts#L61-L64">API
+ *      specification</a>
+ */
+
 public abstract class ScoreFunctionBase implements JsonpSerializable {
 	@Nullable
 	private final Query filter;

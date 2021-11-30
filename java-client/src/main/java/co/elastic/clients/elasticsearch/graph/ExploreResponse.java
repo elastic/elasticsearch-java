@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: graph.explore.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/graph/explore/GraphExploreResponse.ts#L25-L33">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ExploreResponse implements JsonpSerializable {
 	private final List<Connection> connections;
@@ -58,11 +65,11 @@ public class ExploreResponse implements JsonpSerializable {
 
 	private ExploreResponse(Builder builder) {
 
-		this.connections = ModelTypeHelper.unmodifiableRequired(builder.connections, this, "connections");
-		this.failures = ModelTypeHelper.unmodifiableRequired(builder.failures, this, "failures");
-		this.timedOut = ModelTypeHelper.requireNonNull(builder.timedOut, this, "timedOut");
-		this.took = ModelTypeHelper.requireNonNull(builder.took, this, "took");
-		this.vertices = ModelTypeHelper.unmodifiableRequired(builder.vertices, this, "vertices");
+		this.connections = ApiTypeHelper.unmodifiableRequired(builder.connections, this, "connections");
+		this.failures = ApiTypeHelper.unmodifiableRequired(builder.failures, this, "failures");
+		this.timedOut = ApiTypeHelper.requireNonNull(builder.timedOut, this, "timedOut");
+		this.took = ApiTypeHelper.requireNonNull(builder.took, this, "took");
+		this.vertices = ApiTypeHelper.unmodifiableRequired(builder.vertices, this, "vertices");
 
 	}
 
@@ -116,7 +123,7 @@ public class ExploreResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.connections)) {
+		if (ApiTypeHelper.isDefined(this.connections)) {
 			generator.writeKey("connections");
 			generator.writeStartArray();
 			for (Connection item0 : this.connections) {
@@ -126,7 +133,7 @@ public class ExploreResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.failures)) {
+		if (ApiTypeHelper.isDefined(this.failures)) {
 			generator.writeKey("failures");
 			generator.writeStartArray();
 			for (ShardFailure item0 : this.failures) {
@@ -142,7 +149,7 @@ public class ExploreResponse implements JsonpSerializable {
 		generator.writeKey("took");
 		generator.write(this.took);
 
-		if (ModelTypeHelper.isDefined(this.vertices)) {
+		if (ApiTypeHelper.isDefined(this.vertices)) {
 			generator.writeKey("vertices");
 			generator.writeStartArray();
 			for (Vertex item0 : this.vertices) {
@@ -160,6 +167,7 @@ public class ExploreResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link ExploreResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExploreResponse> {
 		private List<Connection> connections;
 
@@ -174,11 +182,9 @@ public class ExploreResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code connections}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>connections</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>connections</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>connections</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder connections(List<Connection> list) {
 			this.connections = _listAddAll(this.connections, list);
@@ -207,11 +213,9 @@ public class ExploreResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code failures}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>failures</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>failures</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>failures</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder failures(List<ShardFailure> list) {
 			this.failures = _listAddAll(this.failures, list);
@@ -256,11 +260,9 @@ public class ExploreResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code vertices}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>vertices</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>vertices</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>vertices</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder vertices(List<Vertex> list) {
 			this.vertices = _listAddAll(this.vertices, list);

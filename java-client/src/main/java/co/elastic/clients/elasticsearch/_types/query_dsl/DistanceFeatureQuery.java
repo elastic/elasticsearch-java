@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.DistanceFeatureQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/query_dsl/specialized.ts#L41-L45">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DistanceFeatureQuery extends QueryBase implements QueryVariant {
 	private final JsonData origin;
@@ -51,9 +58,9 @@ public class DistanceFeatureQuery extends QueryBase implements QueryVariant {
 	private DistanceFeatureQuery(Builder builder) {
 		super(builder);
 
-		this.origin = ModelTypeHelper.requireNonNull(builder.origin, this, "origin");
-		this.pivot = ModelTypeHelper.requireNonNull(builder.pivot, this, "pivot");
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.origin = ApiTypeHelper.requireNonNull(builder.origin, this, "origin");
+		this.pivot = ApiTypeHelper.requireNonNull(builder.pivot, this, "pivot");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
 	}
 
@@ -109,6 +116,7 @@ public class DistanceFeatureQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link DistanceFeatureQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DistanceFeatureQuery> {

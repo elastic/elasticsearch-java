@@ -34,7 +34,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.BooleanEndpoint;
 import co.elastic.clients.transport.endpoints.BooleanResponse;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -49,6 +49,14 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.post_voting_config_exclusions.Request
 
+/**
+ * Updates the cluster voting config exclusions by node ids or node names.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cluster/post_voting_config_exclusions/ClusterPostVotingConfigExclusionsRequest.ts#L24-L50">API
+ *      specification</a>
+ */
+
 public class PostVotingConfigExclusionsRequest extends RequestBase {
 	private final List<String> nodeIds;
 
@@ -61,8 +69,8 @@ public class PostVotingConfigExclusionsRequest extends RequestBase {
 
 	private PostVotingConfigExclusionsRequest(Builder builder) {
 
-		this.nodeIds = ModelTypeHelper.unmodifiable(builder.nodeIds);
-		this.nodeNames = ModelTypeHelper.unmodifiable(builder.nodeNames);
+		this.nodeIds = ApiTypeHelper.unmodifiable(builder.nodeIds);
+		this.nodeNames = ApiTypeHelper.unmodifiable(builder.nodeNames);
 		this.timeout = builder.timeout;
 
 	}
@@ -110,6 +118,7 @@ public class PostVotingConfigExclusionsRequest extends RequestBase {
 	/**
 	 * Builder for {@link PostVotingConfigExclusionsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PostVotingConfigExclusionsRequest> {
 		@Nullable
 		private List<String> nodeIds;
@@ -126,11 +135,9 @@ public class PostVotingConfigExclusionsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code node_ids}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>nodeIds</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>nodeIds</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>nodeIds</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder nodeIds(List<String> list) {
 			this.nodeIds = _listAddAll(this.nodeIds, list);
@@ -156,11 +163,9 @@ public class PostVotingConfigExclusionsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code node_names}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>nodeNames</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>nodeNames</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>nodeNames</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder nodeNames(List<String> list) {
 			this.nodeNames = _listAddAll(this.nodeNames, list);
@@ -241,10 +246,10 @@ public class PostVotingConfigExclusionsRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (ModelTypeHelper.isDefined(request.nodeNames)) {
+				if (ApiTypeHelper.isDefined(request.nodeNames)) {
 					params.put("node_names", request.nodeNames.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
-				if (ModelTypeHelper.isDefined(request.nodeIds)) {
+				if (ApiTypeHelper.isDefined(request.nodeIds)) {
 					params.put("node_ids", request.nodeIds.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.timeout != null) {

@@ -35,7 +35,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -51,6 +51,14 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: _global.mtermvectors.Request
+
+/**
+ * Returns multiple termvectors in one request.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/mtermvectors/MultiTermVectorsRequest.ts#L31-L58">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MtermvectorsRequest extends RequestBase implements JsonpSerializable {
 	private final List<MultiTermVectorsOperation> docs;
@@ -96,10 +104,10 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 
 	private MtermvectorsRequest(Builder builder) {
 
-		this.docs = ModelTypeHelper.unmodifiable(builder.docs);
+		this.docs = ApiTypeHelper.unmodifiable(builder.docs);
 		this.fieldStatistics = builder.fieldStatistics;
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
-		this.ids = ModelTypeHelper.unmodifiable(builder.ids);
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
+		this.ids = ApiTypeHelper.unmodifiable(builder.ids);
 		this.index = builder.index;
 		this.offsets = builder.offsets;
 		this.payloads = builder.payloads;
@@ -276,7 +284,7 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.docs)) {
+		if (ApiTypeHelper.isDefined(this.docs)) {
 			generator.writeKey("docs");
 			generator.writeStartArray();
 			for (MultiTermVectorsOperation item0 : this.docs) {
@@ -286,7 +294,7 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.ids)) {
+		if (ApiTypeHelper.isDefined(this.ids)) {
 			generator.writeKey("ids");
 			generator.writeStartArray();
 			for (String item0 : this.ids) {
@@ -304,6 +312,7 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Builder for {@link MtermvectorsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MtermvectorsRequest> {
 		@Nullable
 		private List<MultiTermVectorsOperation> docs;
@@ -350,11 +359,9 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code docs}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>docs</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>docs</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>docs</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder docs(List<MultiTermVectorsOperation> list) {
 			this.docs = _listAddAll(this.docs, list);
@@ -399,11 +406,9 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code fields}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>fields</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>fields</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>fields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder fields(List<String> list) {
 			this.fields = _listAddAll(this.fields, list);
@@ -426,11 +431,9 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code ids}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>ids</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>ids</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>ids</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder ids(List<String> list) {
 			this.ids = _listAddAll(this.ids, list);
@@ -656,7 +659,7 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 				if (request.fieldStatistics != null) {
 					params.put("field_statistics", String.valueOf(request.fieldStatistics));
 				}
-				if (ModelTypeHelper.isDefined(request.fields)) {
+				if (ApiTypeHelper.isDefined(request.fields)) {
 					params.put("fields", request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.version != null) {

@@ -35,7 +35,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -48,6 +48,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.simulate_template.Request
+
+/**
+ * Simulate resolving the given template name or body
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/simulate_template/IndicesSimulateTemplateRequest.ts#L25-L49">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SimulateTemplateRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -68,7 +76,7 @@ public class SimulateTemplateRequest extends RequestBase implements JsonpSeriali
 		this.create = builder.create;
 		this.masterTimeout = builder.masterTimeout;
 		this.name = builder.name;
-		this.template = ModelTypeHelper.requireNonNull(builder.template, this, "template");
+		this.template = ApiTypeHelper.requireNonNull(builder.template, this, "template");
 
 	}
 
@@ -134,6 +142,7 @@ public class SimulateTemplateRequest extends RequestBase implements JsonpSeriali
 	/**
 	 * Builder for {@link SimulateTemplateRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SimulateTemplateRequest> {
 		@Nullable
 		private Boolean create;

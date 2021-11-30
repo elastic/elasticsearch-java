@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.HoltLinearModelSettings
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/pipeline.ts#L158-L161">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class HoltLinearModelSettings implements JsonpSerializable {
 	@Nullable
@@ -104,6 +111,7 @@ public class HoltLinearModelSettings implements JsonpSerializable {
 	/**
 	 * Builder for {@link HoltLinearModelSettings}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HoltLinearModelSettings> {
 		@Nullable
 		private Float alpha;

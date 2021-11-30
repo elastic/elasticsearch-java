@@ -45,6 +45,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.scripts_painless_execute.Request
+
+/**
+ * Allows an arbitrary script to be executed and a result to be returned
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/scripts_painless_execute/ExecutePainlessScriptRequest.ts#L24-L35">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ScriptsPainlessExecuteRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -128,6 +136,7 @@ public class ScriptsPainlessExecuteRequest extends RequestBase implements JsonpS
 	/**
 	 * Builder for {@link ScriptsPainlessExecuteRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ScriptsPainlessExecuteRequest> {
 		@Nullable
 		private String context;

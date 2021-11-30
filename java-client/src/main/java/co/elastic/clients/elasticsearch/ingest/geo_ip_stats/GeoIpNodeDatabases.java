@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest.geo_ip_stats.GeoIpNodeDatabases
+
+/**
+ * Downloaded databases for the node. The field key is the node ID.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ingest/geo_ip_stats/types.ts#L36-L42">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GeoIpNodeDatabases implements JsonpSerializable {
 	private final List<GeoIpNodeDatabaseName> databases;
@@ -50,8 +58,8 @@ public class GeoIpNodeDatabases implements JsonpSerializable {
 
 	private GeoIpNodeDatabases(Builder builder) {
 
-		this.databases = ModelTypeHelper.unmodifiableRequired(builder.databases, this, "databases");
-		this.filesInTemp = ModelTypeHelper.unmodifiableRequired(builder.filesInTemp, this, "filesInTemp");
+		this.databases = ApiTypeHelper.unmodifiableRequired(builder.databases, this, "databases");
+		this.filesInTemp = ApiTypeHelper.unmodifiableRequired(builder.filesInTemp, this, "filesInTemp");
 
 	}
 
@@ -90,7 +98,7 @@ public class GeoIpNodeDatabases implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.databases)) {
+		if (ApiTypeHelper.isDefined(this.databases)) {
 			generator.writeKey("databases");
 			generator.writeStartArray();
 			for (GeoIpNodeDatabaseName item0 : this.databases) {
@@ -100,7 +108,7 @@ public class GeoIpNodeDatabases implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.filesInTemp)) {
+		if (ApiTypeHelper.isDefined(this.filesInTemp)) {
 			generator.writeKey("files_in_temp");
 			generator.writeStartArray();
 			for (String item0 : this.filesInTemp) {
@@ -118,6 +126,7 @@ public class GeoIpNodeDatabases implements JsonpSerializable {
 	/**
 	 * Builder for {@link GeoIpNodeDatabases}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GeoIpNodeDatabases> {
 		private List<GeoIpNodeDatabaseName> databases;
 
@@ -128,11 +137,9 @@ public class GeoIpNodeDatabases implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code databases}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>databases</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>databases</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>databases</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder databases(List<GeoIpNodeDatabaseName> list) {
 			this.databases = _listAddAll(this.databases, list);
@@ -170,11 +177,9 @@ public class GeoIpNodeDatabases implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code files_in_temp}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>filesInTemp</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>filesInTemp</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>filesInTemp</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder filesInTemp(List<String> list) {
 			this.filesInTemp = _listAddAll(this.filesInTemp, list);

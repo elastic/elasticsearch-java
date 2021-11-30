@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -36,6 +36,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.analysis.LengthTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/analysis/token_filters.ts#L241-L245">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class LengthTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final int max;
@@ -47,8 +54,8 @@ public class LengthTokenFilter extends TokenFilterBase implements TokenFilterDef
 	private LengthTokenFilter(Builder builder) {
 		super(builder);
 
-		this.max = ModelTypeHelper.requireNonNull(builder.max, this, "max");
-		this.min = ModelTypeHelper.requireNonNull(builder.min, this, "min");
+		this.max = ApiTypeHelper.requireNonNull(builder.max, this, "max");
+		this.min = ApiTypeHelper.requireNonNull(builder.min, this, "min");
 
 	}
 
@@ -95,6 +102,7 @@ public class LengthTokenFilter extends TokenFilterBase implements TokenFilterDef
 	/**
 	 * Builder for {@link LengthTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<LengthTokenFilter> {

@@ -34,6 +34,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: ml.delete_trained_model_alias.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/delete_trained_model_alias/MlDeleteTrainedModelAliasResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DeleteTrainedModelAliasResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +60,7 @@ public class DeleteTrainedModelAliasResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link DeleteTrainedModelAliasResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeleteTrainedModelAliasResponse> {

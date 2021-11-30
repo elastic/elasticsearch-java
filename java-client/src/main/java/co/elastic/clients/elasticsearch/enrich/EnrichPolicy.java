@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: enrich._types.Policy
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/enrich/_types/Policy.ts#L31-L37">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class EnrichPolicy implements JsonpSerializable {
 	private final List<String> enrichFields;
@@ -58,9 +65,9 @@ public class EnrichPolicy implements JsonpSerializable {
 
 	private EnrichPolicy(Builder builder) {
 
-		this.enrichFields = ModelTypeHelper.unmodifiableRequired(builder.enrichFields, this, "enrichFields");
-		this.indices = ModelTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
-		this.matchField = ModelTypeHelper.requireNonNull(builder.matchField, this, "matchField");
+		this.enrichFields = ApiTypeHelper.unmodifiableRequired(builder.enrichFields, this, "enrichFields");
+		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
+		this.matchField = ApiTypeHelper.requireNonNull(builder.matchField, this, "matchField");
 		this.query = builder.query;
 		this.name = builder.name;
 
@@ -118,7 +125,7 @@ public class EnrichPolicy implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.enrichFields)) {
+		if (ApiTypeHelper.isDefined(this.enrichFields)) {
 			generator.writeKey("enrich_fields");
 			generator.writeStartArray();
 			for (String item0 : this.enrichFields) {
@@ -128,7 +135,7 @@ public class EnrichPolicy implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.indices)) {
+		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartArray();
 			for (String item0 : this.indices) {
@@ -159,6 +166,7 @@ public class EnrichPolicy implements JsonpSerializable {
 	/**
 	 * Builder for {@link EnrichPolicy}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<EnrichPolicy> {
 		private List<String> enrichFields;
 
@@ -175,11 +183,9 @@ public class EnrichPolicy implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code enrich_fields}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>enrichFields</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>enrichFields</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>enrichFields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder enrichFields(List<String> list) {
 			this.enrichFields = _listAddAll(this.enrichFields, list);
@@ -199,11 +205,9 @@ public class EnrichPolicy implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code indices}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>indices</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>indices</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder indices(List<String> list) {
 			this.indices = _listAddAll(this.indices, list);

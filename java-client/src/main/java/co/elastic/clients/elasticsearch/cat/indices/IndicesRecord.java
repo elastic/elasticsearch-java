@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.indices.IndicesRecord
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cat/indices/types.ts#L20-L801">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IndicesRecord implements JsonpSerializable {
 	@Nullable
@@ -2751,6 +2758,7 @@ public class IndicesRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndicesRecord}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndicesRecord> {
 		@Nullable
 		private String health;

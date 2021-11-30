@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.StemmerOverrideTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/analysis/token_filters.ts#L311-L315">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class StemmerOverrideTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final List<String> rules;
@@ -50,7 +57,7 @@ public class StemmerOverrideTokenFilter extends TokenFilterBase implements Token
 	private StemmerOverrideTokenFilter(Builder builder) {
 		super(builder);
 
-		this.rules = ModelTypeHelper.unmodifiable(builder.rules);
+		this.rules = ApiTypeHelper.unmodifiable(builder.rules);
 		this.rulesPath = builder.rulesPath;
 
 	}
@@ -86,7 +93,7 @@ public class StemmerOverrideTokenFilter extends TokenFilterBase implements Token
 
 		generator.write("type", "stemmer_override");
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.rules)) {
+		if (ApiTypeHelper.isDefined(this.rules)) {
 			generator.writeKey("rules");
 			generator.writeStartArray();
 			for (String item0 : this.rules) {
@@ -109,6 +116,7 @@ public class StemmerOverrideTokenFilter extends TokenFilterBase implements Token
 	/**
 	 * Builder for {@link StemmerOverrideTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<StemmerOverrideTokenFilter> {
@@ -121,11 +129,9 @@ public class StemmerOverrideTokenFilter extends TokenFilterBase implements Token
 		/**
 		 * API name: {@code rules}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>rules</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>rules</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>rules</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder rules(List<String> list) {
 			this.rules = _listAddAll(this.rules, list);

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.ShardFailure
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/Errors.ts#L50-L56">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ShardFailure implements JsonpSerializable {
 	@Nullable
@@ -61,8 +68,8 @@ public class ShardFailure implements JsonpSerializable {
 
 		this.index = builder.index;
 		this.node = builder.node;
-		this.reason = ModelTypeHelper.requireNonNull(builder.reason, this, "reason");
-		this.shard = ModelTypeHelper.requireNonNull(builder.shard, this, "shard");
+		this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
+		this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard");
 		this.status = builder.status;
 
 	}
@@ -149,6 +156,7 @@ public class ShardFailure implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardFailure}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardFailure> {
 		@Nullable
 		private String index;

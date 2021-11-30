@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -45,6 +45,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform.get_transform_stats.Request
+
+/**
+ * Retrieves usage information for transforms.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/transform/get_transform_stats/GetTransformStatsRequest.ts#L24-L38">API
+ *      specification</a>
+ */
 
 public class GetTransformStatsRequest extends RequestBase {
 	@Nullable
@@ -65,7 +73,7 @@ public class GetTransformStatsRequest extends RequestBase {
 		this.allowNoMatch = builder.allowNoMatch;
 		this.from = builder.from;
 		this.size = builder.size;
-		this.transformId = ModelTypeHelper.requireNonNull(builder.transformId, this, "transformId");
+		this.transformId = ApiTypeHelper.requireNonNull(builder.transformId, this, "transformId");
 
 	}
 
@@ -119,6 +127,7 @@ public class GetTransformStatsRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetTransformStatsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetTransformStatsRequest> {
 		@Nullable
 		private Boolean allowNoMatch;

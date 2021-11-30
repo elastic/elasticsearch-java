@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.EqlFeaturesPipes
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/xpack/usage/types.ts#L115-L118">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class EqlFeaturesPipes implements JsonpSerializable {
 	private final Number pipeTail;
@@ -49,8 +56,8 @@ public class EqlFeaturesPipes implements JsonpSerializable {
 
 	private EqlFeaturesPipes(Builder builder) {
 
-		this.pipeTail = ModelTypeHelper.requireNonNull(builder.pipeTail, this, "pipeTail");
-		this.pipeHead = ModelTypeHelper.requireNonNull(builder.pipeHead, this, "pipeHead");
+		this.pipeTail = ApiTypeHelper.requireNonNull(builder.pipeTail, this, "pipeTail");
+		this.pipeHead = ApiTypeHelper.requireNonNull(builder.pipeHead, this, "pipeHead");
 
 	}
 
@@ -96,6 +103,7 @@ public class EqlFeaturesPipes implements JsonpSerializable {
 	/**
 	 * Builder for {@link EqlFeaturesPipes}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<EqlFeaturesPipes> {
 		private Number pipeTail;
 

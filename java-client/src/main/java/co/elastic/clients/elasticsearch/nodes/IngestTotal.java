@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.IngestTotal
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/nodes/_types/Stats.ts#L54-L60">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IngestTotal implements JsonpSerializable {
 	private final long count;
@@ -56,11 +63,11 @@ public class IngestTotal implements JsonpSerializable {
 
 	private IngestTotal(Builder builder) {
 
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
-		this.current = ModelTypeHelper.requireNonNull(builder.current, this, "current");
-		this.failed = ModelTypeHelper.requireNonNull(builder.failed, this, "failed");
-		this.processors = ModelTypeHelper.unmodifiableRequired(builder.processors, this, "processors");
-		this.timeInMillis = ModelTypeHelper.requireNonNull(builder.timeInMillis, this, "timeInMillis");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.current = ApiTypeHelper.requireNonNull(builder.current, this, "current");
+		this.failed = ApiTypeHelper.requireNonNull(builder.failed, this, "failed");
+		this.processors = ApiTypeHelper.unmodifiableRequired(builder.processors, this, "processors");
+		this.timeInMillis = ApiTypeHelper.requireNonNull(builder.timeInMillis, this, "timeInMillis");
 
 	}
 
@@ -123,7 +130,7 @@ public class IngestTotal implements JsonpSerializable {
 		generator.writeKey("failed");
 		generator.write(this.failed);
 
-		if (ModelTypeHelper.isDefined(this.processors)) {
+		if (ApiTypeHelper.isDefined(this.processors)) {
 			generator.writeKey("processors");
 			generator.writeStartArray();
 			for (KeyedProcessor item0 : this.processors) {
@@ -143,6 +150,7 @@ public class IngestTotal implements JsonpSerializable {
 	/**
 	 * Builder for {@link IngestTotal}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IngestTotal> {
 		private Long count;
 
@@ -181,11 +189,9 @@ public class IngestTotal implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code processors}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>processors</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>processors</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>processors</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder processors(List<KeyedProcessor> list) {
 			this.processors = _listAddAll(this.processors, list);

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.IndexResult
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/watcher/_types/Actions.ts#L171-L173">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IndexResult implements JsonpSerializable {
 	private final IndexResultSummary response;
@@ -46,7 +53,7 @@ public class IndexResult implements JsonpSerializable {
 
 	private IndexResult(Builder builder) {
 
-		this.response = ModelTypeHelper.requireNonNull(builder.response, this, "response");
+		this.response = ApiTypeHelper.requireNonNull(builder.response, this, "response");
 
 	}
 
@@ -82,6 +89,7 @@ public class IndexResult implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexResult}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexResult> {
 		private IndexResultSummary response;
 

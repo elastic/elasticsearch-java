@@ -1437,6 +1437,41 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 				GetTrainedModelsStatsRequest._ENDPOINT, this.transportOptions);
 	}
 
+	// ----- Endpoint: ml.infer_trained_model_deployment
+
+	/**
+	 * Evaluate a trained model.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/infer-trained-model-deployment.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public InferTrainedModelDeploymentResponse inferTrainedModelDeployment(InferTrainedModelDeploymentRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<InferTrainedModelDeploymentRequest, InferTrainedModelDeploymentResponse, ErrorResponse> endpoint = (JsonEndpoint<InferTrainedModelDeploymentRequest, InferTrainedModelDeploymentResponse, ErrorResponse>) InferTrainedModelDeploymentRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Evaluate a trained model.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link InferTrainedModelDeploymentRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/infer-trained-model-deployment.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final InferTrainedModelDeploymentResponse inferTrainedModelDeployment(
+			Function<InferTrainedModelDeploymentRequest.Builder, ObjectBuilder<InferTrainedModelDeploymentRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return inferTrainedModelDeployment(fn.apply(new InferTrainedModelDeploymentRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: ml.info
 
 	/**
@@ -2173,6 +2208,41 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 		return startDatafeed(fn.apply(new StartDatafeedRequest.Builder()).build());
 	}
 
+	// ----- Endpoint: ml.start_trained_model_deployment
+
+	/**
+	 * Start a trained model deployment.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/start-trained-model-deployment.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public StartTrainedModelDeploymentResponse startTrainedModelDeployment(StartTrainedModelDeploymentRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<StartTrainedModelDeploymentRequest, StartTrainedModelDeploymentResponse, ErrorResponse> endpoint = (JsonEndpoint<StartTrainedModelDeploymentRequest, StartTrainedModelDeploymentResponse, ErrorResponse>) StartTrainedModelDeploymentRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Start a trained model deployment.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link StartTrainedModelDeploymentRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/start-trained-model-deployment.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final StartTrainedModelDeploymentResponse startTrainedModelDeployment(
+			Function<StartTrainedModelDeploymentRequest.Builder, ObjectBuilder<StartTrainedModelDeploymentRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return startTrainedModelDeployment(fn.apply(new StartTrainedModelDeploymentRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: ml.stop_data_frame_analytics
 
 	/**
@@ -2240,6 +2310,41 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 			Function<StopDatafeedRequest.Builder, ObjectBuilder<StopDatafeedRequest>> fn)
 			throws IOException, ElasticsearchException {
 		return stopDatafeed(fn.apply(new StopDatafeedRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: ml.stop_trained_model_deployment
+
+	/**
+	 * Stop a trained model deployment.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/stop-trained-model-deployment.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public StopTrainedModelDeploymentResponse stopTrainedModelDeployment(StopTrainedModelDeploymentRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<StopTrainedModelDeploymentRequest, StopTrainedModelDeploymentResponse, ErrorResponse> endpoint = (JsonEndpoint<StopTrainedModelDeploymentRequest, StopTrainedModelDeploymentResponse, ErrorResponse>) StopTrainedModelDeploymentRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Stop a trained model deployment.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link StopTrainedModelDeploymentRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/stop-trained-model-deployment.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final StopTrainedModelDeploymentResponse stopTrainedModelDeployment(
+			Function<StopTrainedModelDeploymentRequest.Builder, ObjectBuilder<StopTrainedModelDeploymentRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return stopTrainedModelDeployment(fn.apply(new StopTrainedModelDeploymentRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.update_data_frame_analytics

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.update_filter.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/update_filter/MlUpdateFilterResponse.ts#L22-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class UpdateFilterResponse implements JsonpSerializable {
 	private final String description;
@@ -52,9 +59,9 @@ public class UpdateFilterResponse implements JsonpSerializable {
 
 	private UpdateFilterResponse(Builder builder) {
 
-		this.description = ModelTypeHelper.requireNonNull(builder.description, this, "description");
-		this.filterId = ModelTypeHelper.requireNonNull(builder.filterId, this, "filterId");
-		this.items = ModelTypeHelper.unmodifiableRequired(builder.items, this, "items");
+		this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
+		this.filterId = ApiTypeHelper.requireNonNull(builder.filterId, this, "filterId");
+		this.items = ApiTypeHelper.unmodifiableRequired(builder.items, this, "items");
 
 	}
 
@@ -100,7 +107,7 @@ public class UpdateFilterResponse implements JsonpSerializable {
 		generator.writeKey("filter_id");
 		generator.write(this.filterId);
 
-		if (ModelTypeHelper.isDefined(this.items)) {
+		if (ApiTypeHelper.isDefined(this.items)) {
 			generator.writeKey("items");
 			generator.writeStartArray();
 			for (String item0 : this.items) {
@@ -118,6 +125,7 @@ public class UpdateFilterResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link UpdateFilterResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UpdateFilterResponse> {
 		private String description;
 
@@ -144,11 +152,9 @@ public class UpdateFilterResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code items}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>items</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>items</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>items</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder items(List<String> list) {
 			this.items = _listAddAll(this.items, list);

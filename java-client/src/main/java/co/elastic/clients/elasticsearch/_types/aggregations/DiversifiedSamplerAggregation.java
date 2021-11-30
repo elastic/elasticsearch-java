@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.DiversifiedSamplerAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/bucket.ts#L150-L156">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DiversifiedSamplerAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
@@ -155,6 +162,7 @@ public class DiversifiedSamplerAggregation extends BucketAggregationBase impleme
 	/**
 	 * Builder for {@link DiversifiedSamplerAggregation}.
 	 */
+
 	public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DiversifiedSamplerAggregation> {

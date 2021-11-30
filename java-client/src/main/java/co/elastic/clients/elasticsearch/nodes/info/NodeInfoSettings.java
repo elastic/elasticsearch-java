@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoSettings
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/nodes/info/types.ts#L67-L83">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeInfoSettings implements JsonpSerializable {
 	private final NodeInfoSettingsCluster cluster;
@@ -83,16 +90,16 @@ public class NodeInfoSettings implements JsonpSerializable {
 
 	private NodeInfoSettings(Builder builder) {
 
-		this.cluster = ModelTypeHelper.requireNonNull(builder.cluster, this, "cluster");
-		this.node = ModelTypeHelper.requireNonNull(builder.node, this, "node");
-		this.path = ModelTypeHelper.requireNonNull(builder.path, this, "path");
+		this.cluster = ApiTypeHelper.requireNonNull(builder.cluster, this, "cluster");
+		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
+		this.path = ApiTypeHelper.requireNonNull(builder.path, this, "path");
 		this.repositories = builder.repositories;
 		this.discovery = builder.discovery;
 		this.action = builder.action;
-		this.client = ModelTypeHelper.requireNonNull(builder.client, this, "client");
-		this.http = ModelTypeHelper.requireNonNull(builder.http, this, "http");
+		this.client = ApiTypeHelper.requireNonNull(builder.client, this, "client");
+		this.http = ApiTypeHelper.requireNonNull(builder.http, this, "http");
 		this.bootstrap = builder.bootstrap;
-		this.transport = ModelTypeHelper.requireNonNull(builder.transport, this, "transport");
+		this.transport = ApiTypeHelper.requireNonNull(builder.transport, this, "transport");
 		this.network = builder.network;
 		this.xpack = builder.xpack;
 		this.script = builder.script;
@@ -301,6 +308,7 @@ public class NodeInfoSettings implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoSettings}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoSettings> {
 		private NodeInfoSettingsCluster cluster;
 

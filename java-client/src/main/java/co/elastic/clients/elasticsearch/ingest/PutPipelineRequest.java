@@ -35,7 +35,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -49,6 +49,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest.put_pipeline.Request
+
+/**
+ * Creates or updates a pipeline.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ingest/put_pipeline/PutPipelineRequest.ts#L25-L70">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutPipelineRequest extends RequestBase implements JsonpSerializable {
 	private final Map<String, JsonData> meta;
@@ -75,12 +83,12 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 
 	private PutPipelineRequest(Builder builder) {
 
-		this.meta = ModelTypeHelper.unmodifiable(builder.meta);
+		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 		this.description = builder.description;
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.masterTimeout = builder.masterTimeout;
-		this.onFailure = ModelTypeHelper.unmodifiable(builder.onFailure);
-		this.processors = ModelTypeHelper.unmodifiable(builder.processors);
+		this.onFailure = ApiTypeHelper.unmodifiable(builder.onFailure);
+		this.processors = ApiTypeHelper.unmodifiable(builder.processors);
 		this.timeout = builder.timeout;
 		this.version = builder.version;
 
@@ -188,7 +196,7 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.meta)) {
+		if (ApiTypeHelper.isDefined(this.meta)) {
 			generator.writeKey("_meta");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
@@ -204,7 +212,7 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 			generator.write(this.description);
 
 		}
-		if (ModelTypeHelper.isDefined(this.onFailure)) {
+		if (ApiTypeHelper.isDefined(this.onFailure)) {
 			generator.writeKey("on_failure");
 			generator.writeStartArray();
 			for (Processor item0 : this.onFailure) {
@@ -214,7 +222,7 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.processors)) {
+		if (ApiTypeHelper.isDefined(this.processors)) {
 			generator.writeKey("processors");
 			generator.writeStartArray();
 			for (Processor item0 : this.processors) {
@@ -237,6 +245,7 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 	/**
 	 * Builder for {@link PutPipelineRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutPipelineRequest> {
 		@Nullable
 		private Map<String, JsonData> meta;
@@ -267,11 +276,9 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 		 * <p>
 		 * API name: {@code _meta}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>meta</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>meta</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>meta</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder meta(Map<String, JsonData> map) {
 			this.meta = _mapPutAll(this.meta, map);
@@ -342,11 +349,9 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 		 * <p>
 		 * API name: {@code on_failure}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>onFailure</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>onFailure</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>onFailure</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder onFailure(List<Processor> list) {
 			this.onFailure = _listAddAll(this.onFailure, list);
@@ -392,11 +397,9 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 		 * <p>
 		 * API name: {@code processors}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>processors</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>processors</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>processors</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder processors(List<Processor> list) {
 			this.processors = _listAddAll(this.processors, list);

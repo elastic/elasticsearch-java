@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.NodeStatistics
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/Node.ts#L28-L36">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeStatistics implements JsonpSerializable {
 	private final List<ErrorCause> failures;
@@ -54,10 +61,10 @@ public class NodeStatistics implements JsonpSerializable {
 
 	private NodeStatistics(Builder builder) {
 
-		this.failures = ModelTypeHelper.unmodifiable(builder.failures);
-		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
-		this.successful = ModelTypeHelper.requireNonNull(builder.successful, this, "successful");
-		this.failed = ModelTypeHelper.requireNonNull(builder.failed, this, "failed");
+		this.failures = ApiTypeHelper.unmodifiable(builder.failures);
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+		this.successful = ApiTypeHelper.requireNonNull(builder.successful, this, "successful");
+		this.failed = ApiTypeHelper.requireNonNull(builder.failed, this, "failed");
 
 	}
 
@@ -112,7 +119,7 @@ public class NodeStatistics implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.failures)) {
+		if (ApiTypeHelper.isDefined(this.failures)) {
 			generator.writeKey("failures");
 			generator.writeStartArray();
 			for (ErrorCause item0 : this.failures) {
@@ -138,6 +145,7 @@ public class NodeStatistics implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeStatistics}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeStatistics> {
 		@Nullable
 		private List<ErrorCause> failures;
@@ -151,11 +159,9 @@ public class NodeStatistics implements JsonpSerializable {
 		/**
 		 * API name: {@code failures}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>failures</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>failures</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>failures</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder failures(List<ErrorCause> list) {
 			this.failures = _listAddAll(this.failures, list);

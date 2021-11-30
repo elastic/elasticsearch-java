@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.PhraseSuggester
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/search/_types/suggester.ts#L160-L174">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVariant {
 	@Nullable
@@ -88,7 +95,7 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 
 		this.collate = builder.collate;
 		this.confidence = builder.confidence;
-		this.directGenerator = ModelTypeHelper.unmodifiable(builder.directGenerator);
+		this.directGenerator = ApiTypeHelper.unmodifiable(builder.directGenerator);
 		this.forceUnigrams = builder.forceUnigrams;
 		this.gramSize = builder.gramSize;
 		this.highlight = builder.highlight;
@@ -230,7 +237,7 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 			generator.write(this.confidence);
 
 		}
-		if (ModelTypeHelper.isDefined(this.directGenerator)) {
+		if (ApiTypeHelper.isDefined(this.directGenerator)) {
 			generator.writeKey("direct_generator");
 			generator.writeStartArray();
 			for (DirectGenerator item0 : this.directGenerator) {
@@ -298,6 +305,7 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 	/**
 	 * Builder for {@link PhraseSuggester}.
 	 */
+
 	public static class Builder extends SuggesterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PhraseSuggester> {
@@ -366,11 +374,9 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 		/**
 		 * API name: {@code direct_generator}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>directGenerator</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>directGenerator</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>directGenerator</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder directGenerator(List<DirectGenerator> list) {
 			this.directGenerator = _listAddAll(this.directGenerator, list);

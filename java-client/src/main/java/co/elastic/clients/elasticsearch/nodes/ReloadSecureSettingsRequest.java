@@ -34,7 +34,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -48,6 +48,14 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: nodes.reload_secure_settings.Request
+
+/**
+ * Reloads secure settings.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/nodes/reload_secure_settings/ReloadSecureSettingsRequest.ts#L24-L39">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ReloadSecureSettingsRequest extends RequestBase implements JsonpSerializable {
 	private final List<String> nodeId;
@@ -62,7 +70,7 @@ public class ReloadSecureSettingsRequest extends RequestBase implements JsonpSer
 
 	private ReloadSecureSettingsRequest(Builder builder) {
 
-		this.nodeId = ModelTypeHelper.unmodifiable(builder.nodeId);
+		this.nodeId = ApiTypeHelper.unmodifiable(builder.nodeId);
 		this.secureSettingsPassword = builder.secureSettingsPassword;
 		this.timeout = builder.timeout;
 
@@ -124,6 +132,7 @@ public class ReloadSecureSettingsRequest extends RequestBase implements JsonpSer
 	/**
 	 * Builder for {@link ReloadSecureSettingsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ReloadSecureSettingsRequest> {
 		@Nullable
 		private List<String> nodeId;
@@ -140,11 +149,9 @@ public class ReloadSecureSettingsRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code node_id}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>nodeId</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>nodeId</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>nodeId</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder nodeId(List<String> list) {
 			this.nodeId = _listAddAll(this.nodeId, list);
@@ -239,7 +246,7 @@ public class ReloadSecureSettingsRequest extends RequestBase implements JsonpSer
 
 				int propsSet = 0;
 
-				if (ModelTypeHelper.isDefined(request.nodeId()))
+				if (ApiTypeHelper.isDefined(request.nodeId()))
 					propsSet |= _nodeId;
 
 				if (propsSet == 0) {

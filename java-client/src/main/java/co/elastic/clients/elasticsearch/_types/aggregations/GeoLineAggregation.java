@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GeoLineAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/metric.ts#L72-L78">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GeoLineAggregation implements AggregationVariant, JsonpSerializable {
 	private final GeoLinePoint point;
@@ -60,8 +67,8 @@ public class GeoLineAggregation implements AggregationVariant, JsonpSerializable
 
 	private GeoLineAggregation(Builder builder) {
 
-		this.point = ModelTypeHelper.requireNonNull(builder.point, this, "point");
-		this.sort = ModelTypeHelper.requireNonNull(builder.sort, this, "sort");
+		this.point = ApiTypeHelper.requireNonNull(builder.point, this, "point");
+		this.sort = ApiTypeHelper.requireNonNull(builder.sort, this, "sort");
 		this.includeSort = builder.includeSort;
 		this.sortOrder = builder.sortOrder;
 		this.size = builder.size;
@@ -157,6 +164,7 @@ public class GeoLineAggregation implements AggregationVariant, JsonpSerializable
 	/**
 	 * Builder for {@link GeoLineAggregation}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GeoLineAggregation> {
 		private GeoLinePoint point;
 

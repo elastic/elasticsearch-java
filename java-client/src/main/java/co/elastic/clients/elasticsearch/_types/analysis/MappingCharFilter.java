@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.MappingCharFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/analysis/char_filters.ts#L44-L48">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MappingCharFilter extends CharFilterBase implements CharFilterDefinitionVariant {
 	private final List<String> mappings;
@@ -50,7 +57,7 @@ public class MappingCharFilter extends CharFilterBase implements CharFilterDefin
 	private MappingCharFilter(Builder builder) {
 		super(builder);
 
-		this.mappings = ModelTypeHelper.unmodifiableRequired(builder.mappings, this, "mappings");
+		this.mappings = ApiTypeHelper.unmodifiableRequired(builder.mappings, this, "mappings");
 		this.mappingsPath = builder.mappingsPath;
 
 	}
@@ -86,7 +93,7 @@ public class MappingCharFilter extends CharFilterBase implements CharFilterDefin
 
 		generator.write("type", "mapping");
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.mappings)) {
+		if (ApiTypeHelper.isDefined(this.mappings)) {
 			generator.writeKey("mappings");
 			generator.writeStartArray();
 			for (String item0 : this.mappings) {
@@ -109,6 +116,7 @@ public class MappingCharFilter extends CharFilterBase implements CharFilterDefin
 	/**
 	 * Builder for {@link MappingCharFilter}.
 	 */
+
 	public static class Builder extends CharFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<MappingCharFilter> {
@@ -120,11 +128,9 @@ public class MappingCharFilter extends CharFilterBase implements CharFilterDefin
 		/**
 		 * Required - API name: {@code mappings}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>mappings</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>mappings</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>mappings</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder mappings(List<String> list) {
 			this.mappings = _listAddAll(this.mappings, list);

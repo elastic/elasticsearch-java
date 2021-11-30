@@ -27,6 +27,12 @@ import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/analysis/kuromoji-plugin.ts#L52-L56">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public enum KuromojiTokenizationMode implements JsonEnum {
 	Normal("normal"),

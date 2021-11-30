@@ -36,6 +36,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GeoBoundsAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/metric.ts#L63-L65">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GeoBoundsAggregation extends MetricAggregationBase implements AggregationVariant {
 	@Nullable
@@ -86,6 +93,7 @@ public class GeoBoundsAggregation extends MetricAggregationBase implements Aggre
 	/**
 	 * Builder for {@link GeoBoundsAggregation}.
 	 */
+
 	public static class Builder extends MetricAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<GeoBoundsAggregation> {

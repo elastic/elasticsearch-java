@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.EqlFeaturesSequences
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/xpack/usage/types.ts#L120-L127">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class EqlFeaturesSequences implements JsonpSerializable {
 	private final Number sequenceQueriesThree;
@@ -57,16 +64,15 @@ public class EqlFeaturesSequences implements JsonpSerializable {
 
 	private EqlFeaturesSequences(Builder builder) {
 
-		this.sequenceQueriesThree = ModelTypeHelper.requireNonNull(builder.sequenceQueriesThree, this,
+		this.sequenceQueriesThree = ApiTypeHelper.requireNonNull(builder.sequenceQueriesThree, this,
 				"sequenceQueriesThree");
-		this.sequenceQueriesFour = ModelTypeHelper.requireNonNull(builder.sequenceQueriesFour, this,
+		this.sequenceQueriesFour = ApiTypeHelper.requireNonNull(builder.sequenceQueriesFour, this,
 				"sequenceQueriesFour");
-		this.sequenceQueriesTwo = ModelTypeHelper.requireNonNull(builder.sequenceQueriesTwo, this,
-				"sequenceQueriesTwo");
-		this.sequenceUntil = ModelTypeHelper.requireNonNull(builder.sequenceUntil, this, "sequenceUntil");
-		this.sequenceQueriesFiveOrMore = ModelTypeHelper.requireNonNull(builder.sequenceQueriesFiveOrMore, this,
+		this.sequenceQueriesTwo = ApiTypeHelper.requireNonNull(builder.sequenceQueriesTwo, this, "sequenceQueriesTwo");
+		this.sequenceUntil = ApiTypeHelper.requireNonNull(builder.sequenceUntil, this, "sequenceUntil");
+		this.sequenceQueriesFiveOrMore = ApiTypeHelper.requireNonNull(builder.sequenceQueriesFiveOrMore, this,
 				"sequenceQueriesFiveOrMore");
-		this.sequenceMaxspan = ModelTypeHelper.requireNonNull(builder.sequenceMaxspan, this, "sequenceMaxspan");
+		this.sequenceMaxspan = ApiTypeHelper.requireNonNull(builder.sequenceMaxspan, this, "sequenceMaxspan");
 
 	}
 
@@ -152,6 +158,7 @@ public class EqlFeaturesSequences implements JsonpSerializable {
 	/**
 	 * Builder for {@link EqlFeaturesSequences}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<EqlFeaturesSequences> {
 		private Number sequenceQueriesThree;
 

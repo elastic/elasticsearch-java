@@ -33,6 +33,13 @@ import java.util.Objects;
 
 // typedef: security.disable_user.Response
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/security/disable_user/SecurityDisableUserResponse.ts#L20-L22">API
+ *      specification</a>
+ */
+
 public class DisableUserResponse {
 	public DisableUserResponse() {
 	}

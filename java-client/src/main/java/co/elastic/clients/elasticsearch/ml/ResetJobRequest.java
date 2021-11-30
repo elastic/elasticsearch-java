@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -45,6 +45,17 @@ import javax.annotation.Nullable;
 
 // typedef: ml.reset_job.Request
 
+/**
+ * Resets an existing anomaly detection job. All model state and results are
+ * deleted. The job is ready to start over as if it had just been created. It is
+ * not currently possible to reset multiple jobs using wildcards or a comma
+ * separated list.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/reset_job/MlResetJobRequest.ts#L23-L49">API
+ *      specification</a>
+ */
+
 public class ResetJobRequest extends RequestBase {
 	private final String jobId;
 
@@ -55,7 +66,7 @@ public class ResetJobRequest extends RequestBase {
 
 	private ResetJobRequest(Builder builder) {
 
-		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.waitForCompletion = builder.waitForCompletion;
 
 	}
@@ -88,6 +99,7 @@ public class ResetJobRequest extends RequestBase {
 	/**
 	 * Builder for {@link ResetJobRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ResetJobRequest> {
 		private String jobId;
 

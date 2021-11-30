@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -47,6 +47,14 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_template.Request
+
+/**
+ * Returns an index template.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/get_template/IndicesGetTemplateRequest.ts#L24-L39">API
+ *      specification</a>
+ */
 
 public class GetTemplateRequest extends RequestBase {
 	@Nullable
@@ -71,7 +79,7 @@ public class GetTemplateRequest extends RequestBase {
 		this.includeTypeName = builder.includeTypeName;
 		this.local = builder.local;
 		this.masterTimeout = builder.masterTimeout;
-		this.name = ModelTypeHelper.unmodifiable(builder.name);
+		this.name = ApiTypeHelper.unmodifiable(builder.name);
 
 	}
 
@@ -132,6 +140,7 @@ public class GetTemplateRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetTemplateRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetTemplateRequest> {
 		@Nullable
 		private Boolean flatSettings;
@@ -201,11 +210,9 @@ public class GetTemplateRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code name}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>name</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>name</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>name</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder name(List<String> list) {
 			this.name = _listAddAll(this.name, list);
@@ -257,7 +264,7 @@ public class GetTemplateRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (ModelTypeHelper.isDefined(request.name()))
+				if (ApiTypeHelper.isDefined(request.name()))
 					propsSet |= _name;
 
 				if (propsSet == 0) {

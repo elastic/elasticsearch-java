@@ -34,6 +34,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.analysis.TrimTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/analysis/token_filters.ts#L322-L324">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TrimTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -67,6 +74,7 @@ public class TrimTokenFilter extends TokenFilterBase implements TokenFilterDefin
 	/**
 	 * Builder for {@link TrimTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<TrimTokenFilter> {

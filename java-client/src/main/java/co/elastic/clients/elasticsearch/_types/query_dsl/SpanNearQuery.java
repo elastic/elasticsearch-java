@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SpanNearQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/query_dsl/span.ts#L49-L53">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SpanNearQuery extends QueryBase implements SpanQueryVariant, QueryVariant {
 	private final List<SpanQuery> clauses;
@@ -54,7 +61,7 @@ public class SpanNearQuery extends QueryBase implements SpanQueryVariant, QueryV
 	private SpanNearQuery(Builder builder) {
 		super(builder);
 
-		this.clauses = ModelTypeHelper.unmodifiableRequired(builder.clauses, this, "clauses");
+		this.clauses = ApiTypeHelper.unmodifiableRequired(builder.clauses, this, "clauses");
 		this.inOrder = builder.inOrder;
 		this.slop = builder.slop;
 
@@ -106,7 +113,7 @@ public class SpanNearQuery extends QueryBase implements SpanQueryVariant, QueryV
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.clauses)) {
+		if (ApiTypeHelper.isDefined(this.clauses)) {
 			generator.writeKey("clauses");
 			generator.writeStartArray();
 			for (SpanQuery item0 : this.clauses) {
@@ -134,6 +141,7 @@ public class SpanNearQuery extends QueryBase implements SpanQueryVariant, QueryV
 	/**
 	 * Builder for {@link SpanNearQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<SpanNearQuery> {
 		private List<SpanQuery> clauses;
 
@@ -146,11 +154,9 @@ public class SpanNearQuery extends QueryBase implements SpanQueryVariant, QueryV
 		/**
 		 * Required - API name: {@code clauses}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>clauses</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>clauses</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>clauses</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder clauses(List<SpanQuery> list) {
 			this.clauses = _listAddAll(this.clauses, list);

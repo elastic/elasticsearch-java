@@ -37,6 +37,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.PointProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/mapping/geo.ts#L62-L67">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PointProperty extends DocValuesPropertyBase implements PropertyVariant {
 	@Nullable
@@ -122,6 +129,7 @@ public class PointProperty extends DocValuesPropertyBase implements PropertyVari
 	/**
 	 * Builder for {@link PointProperty}.
 	 */
+
 	public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PointProperty> {

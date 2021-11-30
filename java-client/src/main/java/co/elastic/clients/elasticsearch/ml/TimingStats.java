@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.TimingStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/DataframeAnalytics.ts#L416-L421">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TimingStats implements JsonpSerializable {
 	private final int elapsedTime;
@@ -50,7 +57,7 @@ public class TimingStats implements JsonpSerializable {
 
 	private TimingStats(Builder builder) {
 
-		this.elapsedTime = ModelTypeHelper.requireNonNull(builder.elapsedTime, this, "elapsedTime");
+		this.elapsedTime = ApiTypeHelper.requireNonNull(builder.elapsedTime, this, "elapsedTime");
 		this.iterationTime = builder.iterationTime;
 
 	}
@@ -105,6 +112,7 @@ public class TimingStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link TimingStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TimingStats> {
 		private Integer elapsedTime;
 

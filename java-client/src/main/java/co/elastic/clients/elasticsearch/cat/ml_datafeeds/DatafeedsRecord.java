@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.ml_datafeeds.DatafeedsRecord
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cat/ml_datafeeds/types.ts#L22-L83">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DatafeedsRecord implements JsonpSerializable {
 	@Nullable
@@ -298,6 +305,7 @@ public class DatafeedsRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link DatafeedsRecord}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DatafeedsRecord> {
 		@Nullable
 		private String id;

@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationMetrics
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/DataframeEvaluation.ts#L64-L71">API
+ *      specification</a>
+ */
 
 public abstract class DataframeEvaluationMetrics implements JsonpSerializable {
 	@Nullable
@@ -55,8 +62,8 @@ public abstract class DataframeEvaluationMetrics implements JsonpSerializable {
 	protected DataframeEvaluationMetrics(AbstractBuilder<?> builder) {
 
 		this.aucRoc = builder.aucRoc;
-		this.precision = ModelTypeHelper.unmodifiable(builder.precision);
-		this.recall = ModelTypeHelper.unmodifiable(builder.recall);
+		this.precision = ApiTypeHelper.unmodifiable(builder.precision);
+		this.recall = ApiTypeHelper.unmodifiable(builder.recall);
 
 	}
 
@@ -106,7 +113,7 @@ public abstract class DataframeEvaluationMetrics implements JsonpSerializable {
 			this.aucRoc.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.precision)) {
+		if (ApiTypeHelper.isDefined(this.precision)) {
 			generator.writeKey("precision");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.precision.entrySet()) {
@@ -117,7 +124,7 @@ public abstract class DataframeEvaluationMetrics implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.recall)) {
+		if (ApiTypeHelper.isDefined(this.recall)) {
 			generator.writeKey("recall");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.recall.entrySet()) {
@@ -172,11 +179,9 @@ public abstract class DataframeEvaluationMetrics implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code precision}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>precision</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>precision</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>precision</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final BuilderT precision(Map<String, JsonData> map) {
 			this.precision = _mapPutAll(this.precision, map);
@@ -200,11 +205,9 @@ public abstract class DataframeEvaluationMetrics implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code recall}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>recall</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>recall</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>recall</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final BuilderT recall(Map<String, JsonData> map) {
 			this.recall = _mapPutAll(this.recall, map);

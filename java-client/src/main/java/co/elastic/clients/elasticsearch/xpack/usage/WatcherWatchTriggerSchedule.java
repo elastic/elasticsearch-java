@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -36,6 +36,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.WatcherWatchTriggerSchedule
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/xpack/usage/types.ts#L427-L430">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class WatcherWatchTriggerSchedule extends Counter {
 	private final Counter cron;
@@ -47,8 +54,8 @@ public class WatcherWatchTriggerSchedule extends Counter {
 	private WatcherWatchTriggerSchedule(Builder builder) {
 		super(builder);
 
-		this.cron = ModelTypeHelper.requireNonNull(builder.cron, this, "cron");
-		this.all = ModelTypeHelper.requireNonNull(builder.all, this, "all");
+		this.cron = ApiTypeHelper.requireNonNull(builder.cron, this, "cron");
+		this.all = ApiTypeHelper.requireNonNull(builder.all, this, "all");
 
 	}
 
@@ -86,6 +93,7 @@ public class WatcherWatchTriggerSchedule extends Counter {
 	/**
 	 * Builder for {@link WatcherWatchTriggerSchedule}.
 	 */
+
 	public static class Builder extends Counter.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<WatcherWatchTriggerSchedule> {

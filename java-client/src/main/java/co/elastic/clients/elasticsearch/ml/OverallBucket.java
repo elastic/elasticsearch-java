@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -44,6 +44,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.OverallBucket
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/Bucket.ts#L114-L127">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class OverallBucket implements JsonpSerializable {
 	private final long bucketSpan;
@@ -62,12 +69,12 @@ public class OverallBucket implements JsonpSerializable {
 
 	private OverallBucket(Builder builder) {
 
-		this.bucketSpan = ModelTypeHelper.requireNonNull(builder.bucketSpan, this, "bucketSpan");
-		this.isInterim = ModelTypeHelper.requireNonNull(builder.isInterim, this, "isInterim");
-		this.jobs = ModelTypeHelper.unmodifiableRequired(builder.jobs, this, "jobs");
-		this.overallScore = ModelTypeHelper.requireNonNull(builder.overallScore, this, "overallScore");
-		this.resultType = ModelTypeHelper.requireNonNull(builder.resultType, this, "resultType");
-		this.timestamp = ModelTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+		this.bucketSpan = ApiTypeHelper.requireNonNull(builder.bucketSpan, this, "bucketSpan");
+		this.isInterim = ApiTypeHelper.requireNonNull(builder.isInterim, this, "isInterim");
+		this.jobs = ApiTypeHelper.unmodifiableRequired(builder.jobs, this, "jobs");
+		this.overallScore = ApiTypeHelper.requireNonNull(builder.overallScore, this, "overallScore");
+		this.resultType = ApiTypeHelper.requireNonNull(builder.resultType, this, "resultType");
+		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
 
 	}
 
@@ -149,7 +156,7 @@ public class OverallBucket implements JsonpSerializable {
 		generator.writeKey("is_interim");
 		generator.write(this.isInterim);
 
-		if (ModelTypeHelper.isDefined(this.jobs)) {
+		if (ApiTypeHelper.isDefined(this.jobs)) {
 			generator.writeKey("jobs");
 			generator.writeStartArray();
 			for (OverallBucketJob item0 : this.jobs) {
@@ -175,6 +182,7 @@ public class OverallBucket implements JsonpSerializable {
 	/**
 	 * Builder for {@link OverallBucket}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<OverallBucket> {
 		private Long bucketSpan;
 
@@ -215,11 +223,9 @@ public class OverallBucket implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code jobs}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>jobs</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>jobs</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>jobs</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder jobs(List<OverallBucketJob> list) {
 			this.jobs = _listAddAll(this.jobs, list);

@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.AggregateMetricDoubleProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/mapping/complex.ts#L58-L62">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AggregateMetricDoubleProperty extends PropertyBase implements PropertyVariant {
 	private final String defaultMetric;
@@ -49,8 +56,8 @@ public class AggregateMetricDoubleProperty extends PropertyBase implements Prope
 	private AggregateMetricDoubleProperty(Builder builder) {
 		super(builder);
 
-		this.defaultMetric = ModelTypeHelper.requireNonNull(builder.defaultMetric, this, "defaultMetric");
-		this.metrics = ModelTypeHelper.unmodifiableRequired(builder.metrics, this, "metrics");
+		this.defaultMetric = ApiTypeHelper.requireNonNull(builder.defaultMetric, this, "defaultMetric");
+		this.metrics = ApiTypeHelper.unmodifiableRequired(builder.metrics, this, "metrics");
 
 	}
 
@@ -87,7 +94,7 @@ public class AggregateMetricDoubleProperty extends PropertyBase implements Prope
 		generator.writeKey("default_metric");
 		generator.write(this.defaultMetric);
 
-		if (ModelTypeHelper.isDefined(this.metrics)) {
+		if (ApiTypeHelper.isDefined(this.metrics)) {
 			generator.writeKey("metrics");
 			generator.writeStartArray();
 			for (String item0 : this.metrics) {
@@ -105,6 +112,7 @@ public class AggregateMetricDoubleProperty extends PropertyBase implements Prope
 	/**
 	 * Builder for {@link AggregateMetricDoubleProperty}.
 	 */
+
 	public static class Builder extends PropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<AggregateMetricDoubleProperty> {
@@ -123,11 +131,9 @@ public class AggregateMetricDoubleProperty extends PropertyBase implements Prope
 		/**
 		 * Required - API name: {@code metrics}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>metrics</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>metrics</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>metrics</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder metrics(List<String> list) {
 			this.metrics = _listAddAll(this.metrics, list);

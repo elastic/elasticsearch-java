@@ -37,6 +37,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.ScaledFloatNumberProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/mapping/core.ts#L201-L206">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ScaledFloatNumberProperty extends NumberPropertyBase implements PropertyVariant {
 	@Nullable
@@ -122,6 +129,7 @@ public class ScaledFloatNumberProperty extends NumberPropertyBase implements Pro
 	/**
 	 * Builder for {@link ScaledFloatNumberProperty}.
 	 */
+
 	public static class Builder extends NumberPropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ScaledFloatNumberProperty> {

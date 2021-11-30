@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_role.RoleTemplate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/security/get_role/types.ts#L47-L50">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RoleTemplate implements JsonpSerializable {
 	@Nullable
@@ -51,7 +58,7 @@ public class RoleTemplate implements JsonpSerializable {
 	private RoleTemplate(Builder builder) {
 
 		this.format = builder.format;
-		this.template = ModelTypeHelper.requireNonNull(builder.template, this, "template");
+		this.template = ApiTypeHelper.requireNonNull(builder.template, this, "template");
 
 	}
 
@@ -99,6 +106,7 @@ public class RoleTemplate implements JsonpSerializable {
 	/**
 	 * Builder for {@link RoleTemplate}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RoleTemplate> {
 		@Nullable
 		private TemplateFormat format;

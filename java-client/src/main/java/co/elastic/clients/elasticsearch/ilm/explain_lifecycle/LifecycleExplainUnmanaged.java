@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm.explain_lifecycle.LifecycleExplainUnmanaged
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ilm/explain_lifecycle/types.ts#L45-L48">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class LifecycleExplainUnmanaged implements LifecycleExplainVariant, JsonpSerializable {
 	private final String index;
@@ -47,7 +54,7 @@ public class LifecycleExplainUnmanaged implements LifecycleExplainVariant, Jsonp
 
 	private LifecycleExplainUnmanaged(Builder builder) {
 
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 
 	}
 
@@ -93,6 +100,7 @@ public class LifecycleExplainUnmanaged implements LifecycleExplainVariant, Jsonp
 	/**
 	 * Builder for {@link LifecycleExplainUnmanaged}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<LifecycleExplainUnmanaged> {
 		private String index;
 

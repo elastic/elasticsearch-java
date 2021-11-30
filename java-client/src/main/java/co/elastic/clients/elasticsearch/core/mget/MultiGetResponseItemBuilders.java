@@ -33,7 +33,7 @@ public class MultiGetResponseItemBuilders {
 	}
 
 	/**
-	 * Creates a builder for the {@link GetResult<TDocument> result}
+	 * Creates a builder for the {@link GetResult result}
 	 * {@code MultiGetResponseItem} variant.
 	 */
 	public static <TDocument> GetResult.Builder<TDocument> result() {

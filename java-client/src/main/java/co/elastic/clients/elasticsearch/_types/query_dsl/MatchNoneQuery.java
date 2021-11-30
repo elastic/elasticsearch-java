@@ -33,6 +33,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.query_dsl.MatchNoneQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/query_dsl/MatchNoneQuery.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MatchNoneQuery extends QueryBase implements QueryVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -59,6 +66,7 @@ public class MatchNoneQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link MatchNoneQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<MatchNoneQuery> {
 		@Override
 		protected Builder self() {

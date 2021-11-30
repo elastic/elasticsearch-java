@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexSegmentSort
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/_types/IndexSegmentSort.ts#L22-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IndexSegmentSort implements JsonpSerializable {
 	private final List<String> field;
@@ -54,10 +61,10 @@ public class IndexSegmentSort implements JsonpSerializable {
 
 	private IndexSegmentSort(Builder builder) {
 
-		this.field = ModelTypeHelper.unmodifiableRequired(builder.field, this, "field");
-		this.order = ModelTypeHelper.unmodifiableRequired(builder.order, this, "order");
-		this.mode = ModelTypeHelper.unmodifiable(builder.mode);
-		this.missing = ModelTypeHelper.unmodifiable(builder.missing);
+		this.field = ApiTypeHelper.unmodifiableRequired(builder.field, this, "field");
+		this.order = ApiTypeHelper.unmodifiableRequired(builder.order, this, "order");
+		this.mode = ApiTypeHelper.unmodifiable(builder.mode);
+		this.missing = ApiTypeHelper.unmodifiable(builder.missing);
 
 	}
 
@@ -104,7 +111,7 @@ public class IndexSegmentSort implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.field)) {
+		if (ApiTypeHelper.isDefined(this.field)) {
 			generator.writeKey("field");
 			generator.writeStartArray();
 			for (String item0 : this.field) {
@@ -114,7 +121,7 @@ public class IndexSegmentSort implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.order)) {
+		if (ApiTypeHelper.isDefined(this.order)) {
 			generator.writeKey("order");
 			generator.writeStartArray();
 			for (SegmentSortOrder item0 : this.order) {
@@ -123,7 +130,7 @@ public class IndexSegmentSort implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.mode)) {
+		if (ApiTypeHelper.isDefined(this.mode)) {
 			generator.writeKey("mode");
 			generator.writeStartArray();
 			for (SegmentSortMode item0 : this.mode) {
@@ -132,7 +139,7 @@ public class IndexSegmentSort implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.missing)) {
+		if (ApiTypeHelper.isDefined(this.missing)) {
 			generator.writeKey("missing");
 			generator.writeStartArray();
 			for (SegmentSortMissing item0 : this.missing) {
@@ -149,6 +156,7 @@ public class IndexSegmentSort implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexSegmentSort}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexSegmentSort> {
 		private List<String> field;
 
@@ -163,11 +171,9 @@ public class IndexSegmentSort implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code field}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>field</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>field</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>field</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder field(List<String> list) {
 			this.field = _listAddAll(this.field, list);
@@ -187,11 +193,9 @@ public class IndexSegmentSort implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code order}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>order</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>order</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>order</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder order(List<SegmentSortOrder> list) {
 			this.order = _listAddAll(this.order, list);
@@ -211,11 +215,9 @@ public class IndexSegmentSort implements JsonpSerializable {
 		/**
 		 * API name: {@code mode}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>mode</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>mode</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>mode</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder mode(List<SegmentSortMode> list) {
 			this.mode = _listAddAll(this.mode, list);
@@ -235,11 +237,9 @@ public class IndexSegmentSort implements JsonpSerializable {
 		/**
 		 * API name: {@code missing}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>missing</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>missing</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>missing</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder missing(List<SegmentSortMissing> list) {
 			this.missing = _listAddAll(this.missing, list);

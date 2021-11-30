@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _global.clear_scroll.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/clear_scroll/ClearScrollResponse.ts#L22-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ClearScrollResponse implements JsonpSerializable {
 	private final boolean succeeded;
@@ -49,8 +56,8 @@ public class ClearScrollResponse implements JsonpSerializable {
 
 	private ClearScrollResponse(Builder builder) {
 
-		this.succeeded = ModelTypeHelper.requireNonNull(builder.succeeded, this, "succeeded");
-		this.numFreed = ModelTypeHelper.requireNonNull(builder.numFreed, this, "numFreed");
+		this.succeeded = ApiTypeHelper.requireNonNull(builder.succeeded, this, "succeeded");
+		this.numFreed = ApiTypeHelper.requireNonNull(builder.numFreed, this, "numFreed");
 
 	}
 
@@ -96,6 +103,7 @@ public class ClearScrollResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClearScrollResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClearScrollResponse> {
 		private Boolean succeeded;
 

@@ -33,7 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -46,6 +46,16 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_data_frame_analytics.Request
+
+/**
+ * Instantiates a data frame analytics job. This API creates a data frame
+ * analytics job that performs an analysis on the source indices and stores the
+ * outcome in a destination index.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/put_data_frame_analytics/MlPutDataFrameAnalyticsRequest.ts#L30-L130">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -76,14 +86,14 @@ public class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSe
 	private PutDataFrameAnalyticsRequest(Builder builder) {
 
 		this.allowLazyStart = builder.allowLazyStart;
-		this.analysis = ModelTypeHelper.requireNonNull(builder.analysis, this, "analysis");
+		this.analysis = ApiTypeHelper.requireNonNull(builder.analysis, this, "analysis");
 		this.analyzedFields = builder.analyzedFields;
 		this.description = builder.description;
-		this.dest = ModelTypeHelper.requireNonNull(builder.dest, this, "dest");
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.dest = ApiTypeHelper.requireNonNull(builder.dest, this, "dest");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.maxNumThreads = builder.maxNumThreads;
 		this.modelMemoryLimit = builder.modelMemoryLimit;
-		this.source = ModelTypeHelper.requireNonNull(builder.source, this, "source");
+		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
 
 	}
 
@@ -275,6 +285,7 @@ public class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSe
 	/**
 	 * Builder for {@link PutDataFrameAnalyticsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutDataFrameAnalyticsRequest> {
 		@Nullable
 		private Boolean allowLazyStart;

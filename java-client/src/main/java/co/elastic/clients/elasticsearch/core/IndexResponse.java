@@ -34,6 +34,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _global.index.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/index/IndexResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IndexResponse extends WriteResponseBase {
 	// ---------------------------------------------------------------------------------------------
@@ -52,6 +59,7 @@ public class IndexResponse extends WriteResponseBase {
 	/**
 	 * Builder for {@link IndexResponse}.
 	 */
+
 	public static class Builder extends WriteResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<IndexResponse> {

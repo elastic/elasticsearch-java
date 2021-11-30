@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationClassificationMetrics
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/DataframeEvaluation.ts#L73-L78">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeEvaluationClassificationMetrics extends DataframeEvaluationMetrics {
 	private final Map<String, JsonData> accuracy;
@@ -50,8 +57,8 @@ public class DataframeEvaluationClassificationMetrics extends DataframeEvaluatio
 	private DataframeEvaluationClassificationMetrics(Builder builder) {
 		super(builder);
 
-		this.accuracy = ModelTypeHelper.unmodifiable(builder.accuracy);
-		this.multiclassConfusionMatrix = ModelTypeHelper.unmodifiable(builder.multiclassConfusionMatrix);
+		this.accuracy = ApiTypeHelper.unmodifiable(builder.accuracy);
+		this.multiclassConfusionMatrix = ApiTypeHelper.unmodifiable(builder.multiclassConfusionMatrix);
 
 	}
 
@@ -81,7 +88,7 @@ public class DataframeEvaluationClassificationMetrics extends DataframeEvaluatio
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.accuracy)) {
+		if (ApiTypeHelper.isDefined(this.accuracy)) {
 			generator.writeKey("accuracy");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.accuracy.entrySet()) {
@@ -92,7 +99,7 @@ public class DataframeEvaluationClassificationMetrics extends DataframeEvaluatio
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.multiclassConfusionMatrix)) {
+		if (ApiTypeHelper.isDefined(this.multiclassConfusionMatrix)) {
 			generator.writeKey("multiclass_confusion_matrix");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.multiclassConfusionMatrix.entrySet()) {
@@ -111,6 +118,7 @@ public class DataframeEvaluationClassificationMetrics extends DataframeEvaluatio
 	/**
 	 * Builder for {@link DataframeEvaluationClassificationMetrics}.
 	 */
+
 	public static class Builder extends DataframeEvaluationMetrics.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DataframeEvaluationClassificationMetrics> {
@@ -125,11 +133,9 @@ public class DataframeEvaluationClassificationMetrics extends DataframeEvaluatio
 		 * <p>
 		 * API name: {@code accuracy}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>accuracy</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>accuracy</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>accuracy</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder accuracy(Map<String, JsonData> map) {
 			this.accuracy = _mapPutAll(this.accuracy, map);
@@ -154,11 +160,9 @@ public class DataframeEvaluationClassificationMetrics extends DataframeEvaluatio
 		 * API name: {@code multiclass_confusion_matrix}
 		 * <p>
 		 * Adds all entries of <code>map</code> to
-		 * <code>multiclassConfusionMatrix</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>multiclassConfusionMatrix</code> to <code>null</code>.
+		 * <code>multiclassConfusionMatrix</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder multiclassConfusionMatrix(Map<String, JsonData> map) {
 			this.multiclassConfusionMatrix = _mapPutAll(this.multiclassConfusionMatrix, map);

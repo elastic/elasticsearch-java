@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ssl.certificates.CertificateInformation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ssl/certificates/types.ts#L22-L30">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CertificateInformation implements JsonpSerializable {
 	@Nullable
@@ -62,12 +69,12 @@ public class CertificateInformation implements JsonpSerializable {
 	private CertificateInformation(Builder builder) {
 
 		this.alias = builder.alias;
-		this.expiry = ModelTypeHelper.requireNonNull(builder.expiry, this, "expiry");
-		this.format = ModelTypeHelper.requireNonNull(builder.format, this, "format");
-		this.hasPrivateKey = ModelTypeHelper.requireNonNull(builder.hasPrivateKey, this, "hasPrivateKey");
-		this.path = ModelTypeHelper.requireNonNull(builder.path, this, "path");
-		this.serialNumber = ModelTypeHelper.requireNonNull(builder.serialNumber, this, "serialNumber");
-		this.subjectDn = ModelTypeHelper.requireNonNull(builder.subjectDn, this, "subjectDn");
+		this.expiry = ApiTypeHelper.requireNonNull(builder.expiry, this, "expiry");
+		this.format = ApiTypeHelper.requireNonNull(builder.format, this, "format");
+		this.hasPrivateKey = ApiTypeHelper.requireNonNull(builder.hasPrivateKey, this, "hasPrivateKey");
+		this.path = ApiTypeHelper.requireNonNull(builder.path, this, "path");
+		this.serialNumber = ApiTypeHelper.requireNonNull(builder.serialNumber, this, "serialNumber");
+		this.subjectDn = ApiTypeHelper.requireNonNull(builder.subjectDn, this, "subjectDn");
 
 	}
 
@@ -166,6 +173,7 @@ public class CertificateInformation implements JsonpSerializable {
 	/**
 	 * Builder for {@link CertificateInformation}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CertificateInformation> {
 		@Nullable
 		private String alias;

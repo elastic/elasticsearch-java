@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr.get_auto_follow_pattern.AutoFollowPattern
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ccr/get_auto_follow_pattern/types.ts#L23-L26">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AutoFollowPattern implements JsonpSerializable {
 	private final String name;
@@ -49,8 +56,8 @@ public class AutoFollowPattern implements JsonpSerializable {
 
 	private AutoFollowPattern(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
-		this.pattern = ModelTypeHelper.requireNonNull(builder.pattern, this, "pattern");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.pattern = ApiTypeHelper.requireNonNull(builder.pattern, this, "pattern");
 
 	}
 
@@ -96,6 +103,7 @@ public class AutoFollowPattern implements JsonpSerializable {
 	/**
 	 * Builder for {@link AutoFollowPattern}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AutoFollowPattern> {
 		private String name;
 

@@ -36,6 +36,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.BucketSelectorAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/pipeline.ts#L52-L54">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class BucketSelectorAggregation extends PipelineAggregationBase implements AggregationVariant {
 	@Nullable
@@ -86,6 +93,7 @@ public class BucketSelectorAggregation extends PipelineAggregationBase implement
 	/**
 	 * Builder for {@link BucketSelectorAggregation}.
 	 */
+
 	public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<BucketSelectorAggregation> {

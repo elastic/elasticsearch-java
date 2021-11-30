@@ -38,6 +38,16 @@ import java.util.Objects;
 
 // typedef: cluster.remote_info.Request
 
+/**
+ * The cluster remote info API allows you to retrieve all of the configured
+ * remote cluster information. It returns connection and endpoint information
+ * keyed by the configured remote cluster alias.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cluster/remote_info/ClusterRemoteInfoRequest.ts#L23-L31">API
+ *      specification</a>
+ */
+
 public class RemoteInfoRequest extends RequestBase {
 	public RemoteInfoRequest() {
 	}

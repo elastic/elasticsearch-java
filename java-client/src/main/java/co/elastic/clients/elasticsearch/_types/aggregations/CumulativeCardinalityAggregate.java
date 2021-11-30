@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
@@ -38,6 +38,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.CumulativeCardinalityAggregate
+
+/**
+ * Result of the <code>cumulative_cardinality</code> aggregation
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/Aggregate.ts#L686-L694">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CumulativeCardinalityAggregate extends AggregateBase implements AggregateVariant {
 	private final long value;
@@ -50,7 +58,7 @@ public class CumulativeCardinalityAggregate extends AggregateBase implements Agg
 	private CumulativeCardinalityAggregate(Builder builder) {
 		super(builder);
 
-		this.value = ModelTypeHelper.requireNonNull(builder.value, this, "value");
+		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
 		this.valueAsString = builder.valueAsString;
 
 	}
@@ -102,6 +110,7 @@ public class CumulativeCardinalityAggregate extends AggregateBase implements Agg
 	/**
 	 * Builder for {@link CumulativeCardinalityAggregate}.
 	 */
+
 	public static class Builder extends AggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<CumulativeCardinalityAggregate> {

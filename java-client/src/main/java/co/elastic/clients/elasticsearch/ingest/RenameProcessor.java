@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.RenameProcessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ingest/_types/Processors.ts#L292-L296">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RenameProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
@@ -52,9 +59,9 @@ public class RenameProcessor extends ProcessorBase implements ProcessorVariant {
 	private RenameProcessor(Builder builder) {
 		super(builder);
 
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.ignoreMissing = builder.ignoreMissing;
-		this.targetField = ModelTypeHelper.requireNonNull(builder.targetField, this, "targetField");
+		this.targetField = ApiTypeHelper.requireNonNull(builder.targetField, this, "targetField");
 
 	}
 
@@ -113,6 +120,7 @@ public class RenameProcessor extends ProcessorBase implements ProcessorVariant {
 	/**
 	 * Builder for {@link RenameProcessor}.
 	 */
+
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<RenameProcessor> {

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.SimulatedActions
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/watcher/_types/Action.ts#L68-L72">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SimulatedActions implements JsonpSerializable {
 	private final List<String> actions;
@@ -53,9 +60,9 @@ public class SimulatedActions implements JsonpSerializable {
 
 	private SimulatedActions(Builder builder) {
 
-		this.actions = ModelTypeHelper.unmodifiableRequired(builder.actions, this, "actions");
-		this.all = ModelTypeHelper.requireNonNull(builder.all, this, "all");
-		this.useAll = ModelTypeHelper.requireNonNull(builder.useAll, this, "useAll");
+		this.actions = ApiTypeHelper.unmodifiableRequired(builder.actions, this, "actions");
+		this.all = ApiTypeHelper.requireNonNull(builder.all, this, "all");
+		this.useAll = ApiTypeHelper.requireNonNull(builder.useAll, this, "useAll");
 
 	}
 
@@ -95,7 +102,7 @@ public class SimulatedActions implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.actions)) {
+		if (ApiTypeHelper.isDefined(this.actions)) {
 			generator.writeKey("actions");
 			generator.writeStartArray();
 			for (String item0 : this.actions) {
@@ -118,6 +125,7 @@ public class SimulatedActions implements JsonpSerializable {
 	/**
 	 * Builder for {@link SimulatedActions}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SimulatedActions> {
 		private List<String> actions;
 
@@ -128,11 +136,9 @@ public class SimulatedActions implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code actions}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>actions</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>actions</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>actions</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder actions(List<String> list) {
 			this.actions = _listAddAll(this.actions, list);

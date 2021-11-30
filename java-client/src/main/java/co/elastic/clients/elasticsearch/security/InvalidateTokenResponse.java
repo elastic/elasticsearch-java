@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.invalidate_token.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/security/invalidate_token/SecurityInvalidateTokenResponse.ts#L23-L30">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class InvalidateTokenResponse implements JsonpSerializable {
 	private final long errorCount;
@@ -55,10 +62,10 @@ public class InvalidateTokenResponse implements JsonpSerializable {
 
 	private InvalidateTokenResponse(Builder builder) {
 
-		this.errorCount = ModelTypeHelper.requireNonNull(builder.errorCount, this, "errorCount");
-		this.errorDetails = ModelTypeHelper.unmodifiable(builder.errorDetails);
-		this.invalidatedTokens = ModelTypeHelper.requireNonNull(builder.invalidatedTokens, this, "invalidatedTokens");
-		this.previouslyInvalidatedTokens = ModelTypeHelper.requireNonNull(builder.previouslyInvalidatedTokens, this,
+		this.errorCount = ApiTypeHelper.requireNonNull(builder.errorCount, this, "errorCount");
+		this.errorDetails = ApiTypeHelper.unmodifiable(builder.errorDetails);
+		this.invalidatedTokens = ApiTypeHelper.requireNonNull(builder.invalidatedTokens, this, "invalidatedTokens");
+		this.previouslyInvalidatedTokens = ApiTypeHelper.requireNonNull(builder.previouslyInvalidatedTokens, this,
 				"previouslyInvalidatedTokens");
 
 	}
@@ -109,7 +116,7 @@ public class InvalidateTokenResponse implements JsonpSerializable {
 		generator.writeKey("error_count");
 		generator.write(this.errorCount);
 
-		if (ModelTypeHelper.isDefined(this.errorDetails)) {
+		if (ApiTypeHelper.isDefined(this.errorDetails)) {
 			generator.writeKey("error_details");
 			generator.writeStartArray();
 			for (ErrorCause item0 : this.errorDetails) {
@@ -132,6 +139,7 @@ public class InvalidateTokenResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link InvalidateTokenResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<InvalidateTokenResponse> {
 		private Long errorCount;
 
@@ -153,11 +161,9 @@ public class InvalidateTokenResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code error_details}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>errorDetails</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>errorDetails</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>errorDetails</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder errorDetails(List<ErrorCause> list) {
 			this.errorDetails = _listAddAll(this.errorDetails, list);

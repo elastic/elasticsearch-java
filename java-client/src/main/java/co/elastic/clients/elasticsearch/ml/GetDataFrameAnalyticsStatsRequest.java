@@ -45,6 +45,14 @@ import javax.annotation.Nullable;
 
 // typedef: ml.get_data_frame_analytics_stats.Request
 
+/**
+ * Retrieves usage information for data frame analytics jobs.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/get_data_frame_analytics_stats/MlGetDataFrameAnalyticsStatsRequest.ts#L24-L72">API
+ *      specification</a>
+ */
+
 public class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 	@Nullable
 	private final Boolean allowNoMatch;
@@ -147,6 +155,7 @@ public class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetDataFrameAnalyticsStatsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetDataFrameAnalyticsStatsRequest> {
 		@Nullable
 		private Boolean allowNoMatch;

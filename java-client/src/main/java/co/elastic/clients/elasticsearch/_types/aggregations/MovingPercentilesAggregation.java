@@ -37,6 +37,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MovingPercentilesAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/pipeline.ts#L183-L187">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MovingPercentilesAggregation extends PipelineAggregationBase implements AggregationVariant {
 	@Nullable
@@ -121,6 +128,7 @@ public class MovingPercentilesAggregation extends PipelineAggregationBase implem
 	/**
 	 * Builder for {@link MovingPercentilesAggregation}.
 	 */
+
 	public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<MovingPercentilesAggregation> {

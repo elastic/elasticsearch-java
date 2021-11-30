@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -44,6 +44,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.LikeDocument
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/query_dsl/specialized.ts#L92-L103">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class LikeDocument implements JsonpSerializable {
 	@Nullable
@@ -76,11 +83,11 @@ public class LikeDocument implements JsonpSerializable {
 	private LikeDocument(Builder builder) {
 
 		this.doc = builder.doc;
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 		this.id = builder.id;
 		this.type = builder.type;
 		this.index = builder.index;
-		this.perFieldAnalyzer = ModelTypeHelper.unmodifiable(builder.perFieldAnalyzer);
+		this.perFieldAnalyzer = ApiTypeHelper.unmodifiable(builder.perFieldAnalyzer);
 		this.routing = builder.routing;
 		this.version = builder.version;
 		this.versionType = builder.versionType;
@@ -177,7 +184,7 @@ public class LikeDocument implements JsonpSerializable {
 			this.doc.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.fields)) {
+		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartArray();
 			for (String item0 : this.fields) {
@@ -202,7 +209,7 @@ public class LikeDocument implements JsonpSerializable {
 			generator.write(this.index);
 
 		}
-		if (ModelTypeHelper.isDefined(this.perFieldAnalyzer)) {
+		if (ApiTypeHelper.isDefined(this.perFieldAnalyzer)) {
 			generator.writeKey("per_field_analyzer");
 			generator.writeStartObject();
 			for (Map.Entry<String, String> item0 : this.perFieldAnalyzer.entrySet()) {
@@ -235,6 +242,7 @@ public class LikeDocument implements JsonpSerializable {
 	/**
 	 * Builder for {@link LikeDocument}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<LikeDocument> {
 		@Nullable
 		private JsonData doc;
@@ -274,11 +282,9 @@ public class LikeDocument implements JsonpSerializable {
 		/**
 		 * API name: {@code fields}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>fields</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>fields</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>fields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder fields(List<String> list) {
 			this.fields = _listAddAll(this.fields, list);
@@ -322,11 +328,9 @@ public class LikeDocument implements JsonpSerializable {
 		/**
 		 * API name: {@code per_field_analyzer}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>perFieldAnalyzer</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>perFieldAnalyzer</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>perFieldAnalyzer</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder perFieldAnalyzer(Map<String, String> map) {
 			this.perFieldAnalyzer = _mapPutAll(this.perFieldAnalyzer, map);

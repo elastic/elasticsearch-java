@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -37,6 +37,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: async_search._types.AsyncSearchDocumentResponseBase
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/async_search/_types/AsyncSearchResponseBase.ts#L31-L35">API
+ *      specification</a>
+ */
 
 public abstract class AsyncSearchDocumentResponseBase<TDocument> extends AsyncSearchResponseBase {
 	private final AsyncSearch<TDocument> response;
@@ -49,7 +56,7 @@ public abstract class AsyncSearchDocumentResponseBase<TDocument> extends AsyncSe
 	protected AsyncSearchDocumentResponseBase(AbstractBuilder<TDocument, ?> builder) {
 		super(builder);
 
-		this.response = ModelTypeHelper.requireNonNull(builder.response, this, "response");
+		this.response = ApiTypeHelper.requireNonNull(builder.response, this, "response");
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}

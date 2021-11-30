@@ -33,6 +33,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.aggregations.AverageBucketAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/pipeline.ts#L46-L46">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AverageBucketAggregation extends PipelineAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -59,6 +66,7 @@ public class AverageBucketAggregation extends PipelineAggregationBase implements
 	/**
 	 * Builder for {@link AverageBucketAggregation}.
 	 */
+
 	public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<AverageBucketAggregation> {

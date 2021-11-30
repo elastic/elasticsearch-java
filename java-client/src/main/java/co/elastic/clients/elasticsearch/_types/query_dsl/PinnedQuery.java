@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
@@ -43,7 +43,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.PinnedQuery
-// union type: Container[]
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/query_dsl/specialized.ts#L124-L132">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PinnedQuery extends QueryBase
 		implements
@@ -51,6 +57,9 @@ public class PinnedQuery extends QueryBase
 			QueryVariant,
 			JsonpSerializable {
 
+	/**
+	 * {@link PinnedQuery} variant kinds.
+	 */
 	/**
 	 * {@link PinnedQuery} variant kinds.
 	 */
@@ -100,10 +109,10 @@ public class PinnedQuery extends QueryBase
 	private PinnedQuery(Builder builder) {
 		super(builder);
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
-		this.organic = ModelTypeHelper.requireNonNull(builder.organic, this, "organic");
+		this.organic = ApiTypeHelper.requireNonNull(builder.organic, this, "organic");
 
 	}
 

@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.CompletionProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/mapping/specialized.ts#L28-L36">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CompletionProperty extends DocValuesPropertyBase implements PropertyVariant {
 	@Nullable
@@ -65,7 +72,7 @@ public class CompletionProperty extends DocValuesPropertyBase implements Propert
 		super(builder);
 
 		this.analyzer = builder.analyzer;
-		this.contexts = ModelTypeHelper.unmodifiable(builder.contexts);
+		this.contexts = ApiTypeHelper.unmodifiable(builder.contexts);
 		this.maxInputLength = builder.maxInputLength;
 		this.preservePositionIncrements = builder.preservePositionIncrements;
 		this.preserveSeparators = builder.preserveSeparators;
@@ -141,7 +148,7 @@ public class CompletionProperty extends DocValuesPropertyBase implements Propert
 			generator.write(this.analyzer);
 
 		}
-		if (ModelTypeHelper.isDefined(this.contexts)) {
+		if (ApiTypeHelper.isDefined(this.contexts)) {
 			generator.writeKey("contexts");
 			generator.writeStartArray();
 			for (SuggestContext item0 : this.contexts) {
@@ -179,6 +186,7 @@ public class CompletionProperty extends DocValuesPropertyBase implements Propert
 	/**
 	 * Builder for {@link CompletionProperty}.
 	 */
+
 	public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<CompletionProperty> {
@@ -211,11 +219,9 @@ public class CompletionProperty extends DocValuesPropertyBase implements Propert
 		/**
 		 * API name: {@code contexts}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>contexts</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>contexts</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>contexts</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder contexts(List<SuggestContext> list) {
 			this.contexts = _listAddAll(this.contexts, list);

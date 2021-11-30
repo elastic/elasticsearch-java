@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -36,6 +36,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: nodes._types.ExtendedMemoryStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/nodes/_types/Stats.ts#L128-L131">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ExtendedMemoryStats extends MemoryStats {
 	private final int freePercent;
@@ -47,8 +54,8 @@ public class ExtendedMemoryStats extends MemoryStats {
 	private ExtendedMemoryStats(Builder builder) {
 		super(builder);
 
-		this.freePercent = ModelTypeHelper.requireNonNull(builder.freePercent, this, "freePercent");
-		this.usedPercent = ModelTypeHelper.requireNonNull(builder.usedPercent, this, "usedPercent");
+		this.freePercent = ApiTypeHelper.requireNonNull(builder.freePercent, this, "freePercent");
+		this.usedPercent = ApiTypeHelper.requireNonNull(builder.usedPercent, this, "usedPercent");
 
 	}
 
@@ -86,6 +93,7 @@ public class ExtendedMemoryStats extends MemoryStats {
 	/**
 	 * Builder for {@link ExtendedMemoryStats}.
 	 */
+
 	public static class Builder extends MemoryStats.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ExtendedMemoryStats> {

@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.HitsMetadata
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/search/_types/hits.ts#L66-L71">API
+ *      specification</a>
+ */
 
 public class HitsMetadata<T> implements JsonpSerializable {
 	private final TotalHits total;
@@ -58,8 +65,8 @@ public class HitsMetadata<T> implements JsonpSerializable {
 
 	private HitsMetadata(Builder<T> builder) {
 
-		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
-		this.hits = ModelTypeHelper.unmodifiableRequired(builder.hits, this, "hits");
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+		this.hits = ApiTypeHelper.unmodifiableRequired(builder.hits, this, "hits");
 		this.maxScore = builder.maxScore;
 		this.tSerializer = builder.tSerializer;
 
@@ -105,7 +112,7 @@ public class HitsMetadata<T> implements JsonpSerializable {
 		generator.writeKey("total");
 		this.total.serialize(generator, mapper);
 
-		if (ModelTypeHelper.isDefined(this.hits)) {
+		if (ApiTypeHelper.isDefined(this.hits)) {
 			generator.writeKey("hits");
 			generator.writeStartArray();
 			for (Hit<T> item0 : this.hits) {
@@ -128,6 +135,7 @@ public class HitsMetadata<T> implements JsonpSerializable {
 	/**
 	 * Builder for {@link HitsMetadata}.
 	 */
+
 	public static class Builder<T> extends ObjectBuilderBase implements ObjectBuilder<HitsMetadata<T>> {
 		private TotalHits total;
 
@@ -157,11 +165,9 @@ public class HitsMetadata<T> implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code hits}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>hits</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>hits</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>hits</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder<T> hits(List<Hit<T>> list) {
 			this.hits = _listAddAll(this.hits, list);
@@ -220,7 +226,7 @@ public class HitsMetadata<T> implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for HitsMetadata
+	 * Create a JSON deserializer for HitsMetadata
 	 */
 	public static <T> JsonpDeserializer<HitsMetadata<T>> createHitsMetadataDeserializer(
 			JsonpDeserializer<T> tDeserializer) {

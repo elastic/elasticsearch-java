@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.PluginStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/Stats.ts#L136-L147">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PluginStats implements JsonpSerializable {
 	private final String classname;
@@ -67,18 +74,18 @@ public class PluginStats implements JsonpSerializable {
 
 	private PluginStats(Builder builder) {
 
-		this.classname = ModelTypeHelper.requireNonNull(builder.classname, this, "classname");
-		this.description = ModelTypeHelper.requireNonNull(builder.description, this, "description");
-		this.elasticsearchVersion = ModelTypeHelper.requireNonNull(builder.elasticsearchVersion, this,
+		this.classname = ApiTypeHelper.requireNonNull(builder.classname, this, "classname");
+		this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
+		this.elasticsearchVersion = ApiTypeHelper.requireNonNull(builder.elasticsearchVersion, this,
 				"elasticsearchVersion");
-		this.extendedPlugins = ModelTypeHelper.unmodifiableRequired(builder.extendedPlugins, this, "extendedPlugins");
-		this.hasNativeController = ModelTypeHelper.requireNonNull(builder.hasNativeController, this,
+		this.extendedPlugins = ApiTypeHelper.unmodifiableRequired(builder.extendedPlugins, this, "extendedPlugins");
+		this.hasNativeController = ApiTypeHelper.requireNonNull(builder.hasNativeController, this,
 				"hasNativeController");
-		this.javaVersion = ModelTypeHelper.requireNonNull(builder.javaVersion, this, "javaVersion");
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
-		this.version = ModelTypeHelper.requireNonNull(builder.version, this, "version");
-		this.licensed = ModelTypeHelper.requireNonNull(builder.licensed, this, "licensed");
-		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
+		this.javaVersion = ApiTypeHelper.requireNonNull(builder.javaVersion, this, "javaVersion");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
+		this.licensed = ApiTypeHelper.requireNonNull(builder.licensed, this, "licensed");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 
@@ -176,7 +183,7 @@ public class PluginStats implements JsonpSerializable {
 		generator.writeKey("elasticsearch_version");
 		generator.write(this.elasticsearchVersion);
 
-		if (ModelTypeHelper.isDefined(this.extendedPlugins)) {
+		if (ApiTypeHelper.isDefined(this.extendedPlugins)) {
 			generator.writeKey("extended_plugins");
 			generator.writeStartArray();
 			for (String item0 : this.extendedPlugins) {
@@ -211,6 +218,7 @@ public class PluginStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link PluginStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PluginStats> {
 		private String classname;
 
@@ -259,11 +267,9 @@ public class PluginStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code extended_plugins}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>extendedPlugins</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>extendedPlugins</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>extendedPlugins</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder extendedPlugins(List<String> list) {
 			this.extendedPlugins = _listAddAll(this.extendedPlugins, list);

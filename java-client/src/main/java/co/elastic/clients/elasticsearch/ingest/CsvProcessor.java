@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.CsvProcessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ingest/_types/Processors.ts#L152-L161">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CsvProcessor extends ProcessorBase implements ProcessorVariant {
 	private final JsonData emptyValue;
@@ -67,14 +74,14 @@ public class CsvProcessor extends ProcessorBase implements ProcessorVariant {
 	private CsvProcessor(Builder builder) {
 		super(builder);
 
-		this.emptyValue = ModelTypeHelper.requireNonNull(builder.emptyValue, this, "emptyValue");
+		this.emptyValue = ApiTypeHelper.requireNonNull(builder.emptyValue, this, "emptyValue");
 		this.description = builder.description;
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.ignoreMissing = builder.ignoreMissing;
 		this.quote = builder.quote;
 		this.separator = builder.separator;
-		this.targetFields = ModelTypeHelper.unmodifiableRequired(builder.targetFields, this, "targetFields");
-		this.trim = ModelTypeHelper.requireNonNull(builder.trim, this, "trim");
+		this.targetFields = ApiTypeHelper.unmodifiableRequired(builder.targetFields, this, "targetFields");
+		this.trim = ApiTypeHelper.requireNonNull(builder.trim, this, "trim");
 
 	}
 
@@ -179,7 +186,7 @@ public class CsvProcessor extends ProcessorBase implements ProcessorVariant {
 			generator.write(this.separator);
 
 		}
-		if (ModelTypeHelper.isDefined(this.targetFields)) {
+		if (ApiTypeHelper.isDefined(this.targetFields)) {
 			generator.writeKey("target_fields");
 			generator.writeStartArray();
 			for (String item0 : this.targetFields) {
@@ -199,6 +206,7 @@ public class CsvProcessor extends ProcessorBase implements ProcessorVariant {
 	/**
 	 * Builder for {@link CsvProcessor}.
 	 */
+
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder> implements ObjectBuilder<CsvProcessor> {
 		private JsonData emptyValue;
 
@@ -271,11 +279,9 @@ public class CsvProcessor extends ProcessorBase implements ProcessorVariant {
 		/**
 		 * Required - API name: {@code target_fields}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>targetFields</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>targetFields</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>targetFields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder targetFields(List<String> list) {
 			this.targetFields = _listAddAll(this.targetFields, list);

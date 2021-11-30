@@ -44,6 +44,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.validate.Request
+
+/**
+ * Validates an anomaly detection job.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/validate/MlValidateJobRequest.ts#L27-L44">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ValidateRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -212,6 +220,7 @@ public class ValidateRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link ValidateRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ValidateRequest> {
 		@Nullable
 		private AnalysisConfig analysisConfig;

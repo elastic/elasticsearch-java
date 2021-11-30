@@ -32,7 +32,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -44,6 +44,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search_shards.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/search_shards/SearchShardsResponse.ts#L25-L31">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SearchShardsResponse implements JsonpSerializable {
 	private final Map<String, NodeAttributes> nodes;
@@ -56,9 +63,9 @@ public class SearchShardsResponse implements JsonpSerializable {
 
 	private SearchShardsResponse(Builder builder) {
 
-		this.nodes = ModelTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
-		this.shards = ModelTypeHelper.unmodifiableRequired(builder.shards, this, "shards");
-		this.indices = ModelTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
+		this.nodes = ApiTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
+		this.shards = ApiTypeHelper.unmodifiableRequired(builder.shards, this, "shards");
+		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
 
 	}
 
@@ -98,7 +105,7 @@ public class SearchShardsResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.nodes)) {
+		if (ApiTypeHelper.isDefined(this.nodes)) {
 			generator.writeKey("nodes");
 			generator.writeStartObject();
 			for (Map.Entry<String, NodeAttributes> item0 : this.nodes.entrySet()) {
@@ -109,7 +116,7 @@ public class SearchShardsResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.shards)) {
+		if (ApiTypeHelper.isDefined(this.shards)) {
 			generator.writeKey("shards");
 			generator.writeStartArray();
 			for (List<NodeShard> item0 : this.shards) {
@@ -126,7 +133,7 @@ public class SearchShardsResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.indices)) {
+		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartObject();
 			for (Map.Entry<String, ShardStoreIndex> item0 : this.indices.entrySet()) {
@@ -145,6 +152,7 @@ public class SearchShardsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link SearchShardsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SearchShardsResponse> {
 		private Map<String, NodeAttributes> nodes;
 
@@ -155,11 +163,9 @@ public class SearchShardsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code nodes}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>nodes</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>nodes</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>nodes</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder nodes(Map<String, NodeAttributes> map) {
 			this.nodes = _mapPutAll(this.nodes, map);
@@ -188,11 +194,9 @@ public class SearchShardsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code shards}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>shards</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>shards</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>shards</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder shards(List<List<NodeShard>> list) {
 			this.shards = _listAddAll(this.shards, list);
@@ -212,11 +216,9 @@ public class SearchShardsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code indices}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>indices</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>indices</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>indices</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder indices(Map<String, ShardStoreIndex> map) {
 			this.indices = _mapPutAll(this.indices, map);

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.WktGeoBounds
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/Geo.ts#L131-L133">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class WktGeoBounds implements JsonpSerializable {
 	private final String wkt;
@@ -47,7 +54,7 @@ public class WktGeoBounds implements JsonpSerializable {
 
 	private WktGeoBounds(Builder builder) {
 
-		this.wkt = ModelTypeHelper.requireNonNull(builder.wkt, this, "wkt");
+		this.wkt = ApiTypeHelper.requireNonNull(builder.wkt, this, "wkt");
 
 	}
 
@@ -83,6 +90,7 @@ public class WktGeoBounds implements JsonpSerializable {
 	/**
 	 * Builder for {@link WktGeoBounds}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WktGeoBounds> {
 		private String wkt;
 

@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.fielddata.FielddataRecord
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cat/fielddata/types.ts#L20-L48">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FielddataRecord implements JsonpSerializable {
 	@Nullable
@@ -184,6 +191,7 @@ public class FielddataRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link FielddataRecord}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FielddataRecord> {
 		@Nullable
 		private String id;

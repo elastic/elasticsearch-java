@@ -38,6 +38,14 @@ import java.util.Objects;
 
 // typedef: cat.nodeattrs.Request
 
+/**
+ * Returns information about custom node attributes.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cat/nodeattrs/CatNodeAttributesRequest.ts#L22-L27">API
+ *      specification</a>
+ */
+
 public class NodeattrsRequest extends CatRequestBase {
 	public NodeattrsRequest() {
 	}

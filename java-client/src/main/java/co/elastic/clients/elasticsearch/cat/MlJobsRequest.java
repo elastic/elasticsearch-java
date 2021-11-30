@@ -45,6 +45,18 @@ import javax.annotation.Nullable;
 
 // typedef: cat.ml_jobs.Request
 
+/**
+ * Returns configuration and usage information for anomaly detection jobs. This
+ * API returns a maximum of 10,000 jobs. If the Elasticsearch security features
+ * are enabled, you must have <code>monitor_ml</code>, <code>monitor</code>,
+ * <code>manage_ml</code>, or <code>manage</code> cluster privileges to use this
+ * API.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cat/ml_jobs/CatJobsRequest.ts#L24-L64">API
+ *      specification</a>
+ */
+
 public class MlJobsRequest extends CatRequestBase {
 	@Nullable
 	private final Boolean allowNoMatch;
@@ -129,6 +141,7 @@ public class MlJobsRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link MlJobsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MlJobsRequest> {
 		@Nullable
 		private Boolean allowNoMatch;

@@ -27,6 +27,12 @@ import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/stats/types.ts#L145-L150">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public enum ShardRoutingState implements JsonEnum {
 	Unassigned("UNASSIGNED"),

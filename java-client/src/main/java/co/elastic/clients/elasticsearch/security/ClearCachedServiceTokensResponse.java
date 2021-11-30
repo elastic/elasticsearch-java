@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.clear_cached_service_tokens.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/security/clear_cached_service_tokens/ClearCachedServiceTokensResponse.ts#L25-L32">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ClearCachedServiceTokensResponse implements JsonpSerializable {
 	private final NodeStatistics nodeStats;
@@ -53,9 +60,9 @@ public class ClearCachedServiceTokensResponse implements JsonpSerializable {
 
 	private ClearCachedServiceTokensResponse(Builder builder) {
 
-		this.nodeStats = ModelTypeHelper.requireNonNull(builder.nodeStats, this, "nodeStats");
-		this.clusterName = ModelTypeHelper.requireNonNull(builder.clusterName, this, "clusterName");
-		this.nodes = ModelTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
+		this.nodeStats = ApiTypeHelper.requireNonNull(builder.nodeStats, this, "nodeStats");
+		this.clusterName = ApiTypeHelper.requireNonNull(builder.clusterName, this, "clusterName");
+		this.nodes = ApiTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
 
 	}
 
@@ -102,7 +109,7 @@ public class ClearCachedServiceTokensResponse implements JsonpSerializable {
 		generator.writeKey("cluster_name");
 		generator.write(this.clusterName);
 
-		if (ModelTypeHelper.isDefined(this.nodes)) {
+		if (ApiTypeHelper.isDefined(this.nodes)) {
 			generator.writeKey("nodes");
 			generator.writeStartObject();
 			for (Map.Entry<String, ClusterNode> item0 : this.nodes.entrySet()) {
@@ -121,6 +128,7 @@ public class ClearCachedServiceTokensResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClearCachedServiceTokensResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClearCachedServiceTokensResponse> {
 		private NodeStatistics nodeStats;
 
@@ -154,11 +162,9 @@ public class ClearCachedServiceTokensResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code nodes}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>nodes</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>nodes</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>nodes</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder nodes(Map<String, ClusterNode> map) {
 			this.nodes = _mapPutAll(this.nodes, map);

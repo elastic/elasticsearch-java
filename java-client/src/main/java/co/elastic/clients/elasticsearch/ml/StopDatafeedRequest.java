@@ -34,7 +34,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -46,6 +46,16 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.stop_datafeed.Request
+
+/**
+ * Stops one or more datafeeds. A datafeed that is stopped ceases to retrieve
+ * data from Elasticsearch. A datafeed can be started and stopped multiple times
+ * throughout its lifecycle.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/stop_datafeed/MlStopDatafeedRequest.ts#L24-L78">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class StopDatafeedRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -64,7 +74,7 @@ public class StopDatafeedRequest extends RequestBase implements JsonpSerializabl
 	private StopDatafeedRequest(Builder builder) {
 
 		this.allowNoMatch = builder.allowNoMatch;
-		this.datafeedId = ModelTypeHelper.requireNonNull(builder.datafeedId, this, "datafeedId");
+		this.datafeedId = ApiTypeHelper.requireNonNull(builder.datafeedId, this, "datafeedId");
 		this.force = builder.force;
 		this.timeout = builder.timeout;
 
@@ -150,6 +160,7 @@ public class StopDatafeedRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Builder for {@link StopDatafeedRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StopDatafeedRequest> {
 		@Nullable
 		private Boolean allowNoMatch;

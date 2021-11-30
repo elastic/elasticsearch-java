@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest.simulate.Document
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ingest/simulate/types.ts#L39-L43">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Document implements JsonpSerializable {
 	@Nullable
@@ -56,7 +63,7 @@ public class Document implements JsonpSerializable {
 
 		this.id = builder.id;
 		this.index = builder.index;
-		this.source = ModelTypeHelper.requireNonNull(builder.source, this, "source");
+		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
 
 	}
 
@@ -118,6 +125,7 @@ public class Document implements JsonpSerializable {
 	/**
 	 * Builder for {@link Document}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Document> {
 		@Nullable
 		private String id;

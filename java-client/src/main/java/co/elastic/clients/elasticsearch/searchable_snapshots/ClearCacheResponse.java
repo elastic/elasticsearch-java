@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: searchable_snapshots.clear_cache.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/searchable_snapshots/clear_cache/SearchableSnapshotsClearCacheResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ClearCacheResponse implements JsonpSerializable {
 	private final JsonData valueBody;
@@ -47,7 +54,7 @@ public class ClearCacheResponse implements JsonpSerializable {
 
 	private ClearCacheResponse(Builder builder) {
 
-		this.valueBody = ModelTypeHelper.requireNonNull(builder.valueBody, this, "valueBody");
+		this.valueBody = ApiTypeHelper.requireNonNull(builder.valueBody, this, "valueBody");
 
 	}
 
@@ -77,6 +84,7 @@ public class ClearCacheResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClearCacheResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClearCacheResponse> {
 		private JsonData valueBody;
 

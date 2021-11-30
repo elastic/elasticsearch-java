@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -45,6 +45,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.Job
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/Job.ts#L46-L70">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Job implements JsonpSerializable {
 	private final boolean allowLazyOpen;
@@ -109,30 +116,30 @@ public class Job implements JsonpSerializable {
 
 	private Job(Builder builder) {
 
-		this.allowLazyOpen = ModelTypeHelper.requireNonNull(builder.allowLazyOpen, this, "allowLazyOpen");
-		this.analysisConfig = ModelTypeHelper.requireNonNull(builder.analysisConfig, this, "analysisConfig");
+		this.allowLazyOpen = ApiTypeHelper.requireNonNull(builder.allowLazyOpen, this, "allowLazyOpen");
+		this.analysisConfig = ApiTypeHelper.requireNonNull(builder.analysisConfig, this, "analysisConfig");
 		this.analysisLimits = builder.analysisLimits;
-		this.backgroundPersistInterval = ModelTypeHelper.requireNonNull(builder.backgroundPersistInterval, this,
+		this.backgroundPersistInterval = ApiTypeHelper.requireNonNull(builder.backgroundPersistInterval, this,
 				"backgroundPersistInterval");
 		this.blocked = builder.blocked;
-		this.createTime = ModelTypeHelper.requireNonNull(builder.createTime, this, "createTime");
+		this.createTime = ApiTypeHelper.requireNonNull(builder.createTime, this, "createTime");
 		this.customSettings = builder.customSettings;
 		this.dailyModelSnapshotRetentionAfterDays = builder.dailyModelSnapshotRetentionAfterDays;
-		this.dataDescription = ModelTypeHelper.requireNonNull(builder.dataDescription, this, "dataDescription");
+		this.dataDescription = ApiTypeHelper.requireNonNull(builder.dataDescription, this, "dataDescription");
 		this.datafeedConfig = builder.datafeedConfig;
 		this.deleting = builder.deleting;
 		this.description = builder.description;
 		this.finishedTime = builder.finishedTime;
-		this.groups = ModelTypeHelper.unmodifiable(builder.groups);
-		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
-		this.jobType = ModelTypeHelper.requireNonNull(builder.jobType, this, "jobType");
-		this.jobVersion = ModelTypeHelper.requireNonNull(builder.jobVersion, this, "jobVersion");
+		this.groups = ApiTypeHelper.unmodifiable(builder.groups);
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.jobType = ApiTypeHelper.requireNonNull(builder.jobType, this, "jobType");
+		this.jobVersion = ApiTypeHelper.requireNonNull(builder.jobVersion, this, "jobVersion");
 		this.modelPlotConfig = builder.modelPlotConfig;
 		this.modelSnapshotId = builder.modelSnapshotId;
-		this.modelSnapshotRetentionDays = ModelTypeHelper.requireNonNull(builder.modelSnapshotRetentionDays, this,
+		this.modelSnapshotRetentionDays = ApiTypeHelper.requireNonNull(builder.modelSnapshotRetentionDays, this,
 				"modelSnapshotRetentionDays");
 		this.renormalizationWindowDays = builder.renormalizationWindowDays;
-		this.resultsIndexName = ModelTypeHelper.requireNonNull(builder.resultsIndexName, this, "resultsIndexName");
+		this.resultsIndexName = ApiTypeHelper.requireNonNull(builder.resultsIndexName, this, "resultsIndexName");
 		this.resultsRetentionDays = builder.resultsRetentionDays;
 
 	}
@@ -380,7 +387,7 @@ public class Job implements JsonpSerializable {
 			generator.write(this.finishedTime);
 
 		}
-		if (ModelTypeHelper.isDefined(this.groups)) {
+		if (ApiTypeHelper.isDefined(this.groups)) {
 			generator.writeKey("groups");
 			generator.writeStartArray();
 			for (String item0 : this.groups) {
@@ -433,6 +440,7 @@ public class Job implements JsonpSerializable {
 	/**
 	 * Builder for {@link Job}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Job> {
 		private Boolean allowLazyOpen;
 
@@ -642,11 +650,9 @@ public class Job implements JsonpSerializable {
 		/**
 		 * API name: {@code groups}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>groups</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>groups</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>groups</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder groups(List<String> list) {
 			this.groups = _listAddAll(this.groups, list);

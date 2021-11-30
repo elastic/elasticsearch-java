@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.LatLonGeoLocation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/Geo.ts#L107-L110">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class LatLonGeoLocation implements JsonpSerializable {
 	private final double lat;
@@ -48,8 +55,8 @@ public class LatLonGeoLocation implements JsonpSerializable {
 
 	private LatLonGeoLocation(Builder builder) {
 
-		this.lat = ModelTypeHelper.requireNonNull(builder.lat, this, "lat");
-		this.lon = ModelTypeHelper.requireNonNull(builder.lon, this, "lon");
+		this.lat = ApiTypeHelper.requireNonNull(builder.lat, this, "lat");
+		this.lon = ApiTypeHelper.requireNonNull(builder.lon, this, "lon");
 
 	}
 
@@ -95,6 +102,7 @@ public class LatLonGeoLocation implements JsonpSerializable {
 	/**
 	 * Builder for {@link LatLonGeoLocation}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<LatLonGeoLocation> {
 		private Double lat;
 

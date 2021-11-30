@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.FieldTypes
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cluster/stats/types.ts#L100-L106">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FieldTypes implements JsonpSerializable {
 	private final String name;
@@ -55,9 +62,9 @@ public class FieldTypes implements JsonpSerializable {
 
 	private FieldTypes(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
-		this.indexCount = ModelTypeHelper.requireNonNull(builder.indexCount, this, "indexCount");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.indexCount = ApiTypeHelper.requireNonNull(builder.indexCount, this, "indexCount");
 		this.scriptCount = builder.scriptCount;
 
 	}
@@ -128,6 +135,7 @@ public class FieldTypes implements JsonpSerializable {
 	/**
 	 * Builder for {@link FieldTypes}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldTypes> {
 		private String name;
 

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.SuggestContext
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/mapping/specialized.ts#L38-L43">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SuggestContext implements JsonpSerializable {
 	private final String name;
@@ -55,9 +62,9 @@ public class SuggestContext implements JsonpSerializable {
 
 	private SuggestContext(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.path = builder.path;
-		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 		this.precision = builder.precision;
 
 	}
@@ -131,6 +138,7 @@ public class SuggestContext implements JsonpSerializable {
 	/**
 	 * Builder for {@link SuggestContext}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SuggestContext> {
 		private String name;
 

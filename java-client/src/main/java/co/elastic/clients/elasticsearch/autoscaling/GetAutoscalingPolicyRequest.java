@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,6 +43,15 @@ import javax.annotation.Nullable;
 
 // typedef: autoscaling.get_autoscaling_policy.Request
 
+/**
+ * Retrieves an autoscaling policy. Designed for indirect use by ECE/ESS and
+ * ECK. Direct use is not supported.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/autoscaling/get_autoscaling_policy/GetAutoscalingPolicyRequest.ts#L23-L32">API
+ *      specification</a>
+ */
+
 public class GetAutoscalingPolicyRequest extends RequestBase {
 	private final String name;
 
@@ -50,7 +59,7 @@ public class GetAutoscalingPolicyRequest extends RequestBase {
 
 	private GetAutoscalingPolicyRequest(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
@@ -72,6 +81,7 @@ public class GetAutoscalingPolicyRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetAutoscalingPolicyRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetAutoscalingPolicyRequest> {
 		private String name;
 

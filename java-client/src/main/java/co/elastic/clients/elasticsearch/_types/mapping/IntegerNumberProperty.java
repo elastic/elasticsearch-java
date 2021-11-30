@@ -36,6 +36,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.IntegerNumberProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/mapping/core.ts#L176-L179">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IntegerNumberProperty extends StandardNumberProperty implements PropertyVariant {
 	@Nullable
@@ -87,6 +94,7 @@ public class IntegerNumberProperty extends StandardNumberProperty implements Pro
 	/**
 	 * Builder for {@link IntegerNumberProperty}.
 	 */
+
 	public static class Builder extends StandardNumberProperty.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<IntegerNumberProperty> {

@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,6 +43,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/rank_eval/RankEvalResponse.ts#L26-L34">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RankEvalResponse implements JsonpSerializable {
 	private final double metricScore;
@@ -55,9 +62,9 @@ public class RankEvalResponse implements JsonpSerializable {
 
 	private RankEvalResponse(Builder builder) {
 
-		this.metricScore = ModelTypeHelper.requireNonNull(builder.metricScore, this, "metricScore");
-		this.details = ModelTypeHelper.unmodifiableRequired(builder.details, this, "details");
-		this.failures = ModelTypeHelper.unmodifiableRequired(builder.failures, this, "failures");
+		this.metricScore = ApiTypeHelper.requireNonNull(builder.metricScore, this, "metricScore");
+		this.details = ApiTypeHelper.unmodifiableRequired(builder.details, this, "details");
+		this.failures = ApiTypeHelper.unmodifiableRequired(builder.failures, this, "failures");
 
 	}
 
@@ -105,7 +112,7 @@ public class RankEvalResponse implements JsonpSerializable {
 		generator.writeKey("metric_score");
 		generator.write(this.metricScore);
 
-		if (ModelTypeHelper.isDefined(this.details)) {
+		if (ApiTypeHelper.isDefined(this.details)) {
 			generator.writeKey("details");
 			generator.writeStartObject();
 			for (Map.Entry<String, RankEvalMetricDetail> item0 : this.details.entrySet()) {
@@ -116,7 +123,7 @@ public class RankEvalResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.failures)) {
+		if (ApiTypeHelper.isDefined(this.failures)) {
 			generator.writeKey("failures");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.failures.entrySet()) {
@@ -135,6 +142,7 @@ public class RankEvalResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link RankEvalResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RankEvalResponse> {
 		private Double metricScore;
 
@@ -158,11 +166,9 @@ public class RankEvalResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code details}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>details</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>details</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>details</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder details(Map<String, RankEvalMetricDetail> map) {
 			this.details = _mapPutAll(this.details, map);
@@ -198,11 +204,9 @@ public class RankEvalResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code failures}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>failures</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>failures</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>failures</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder failures(Map<String, JsonData> map) {
 			this.failures = _mapPutAll(this.failures, map);

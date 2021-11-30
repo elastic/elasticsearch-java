@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeOperatingSystemInfo
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/nodes/info/types.ts#L357-L374">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeOperatingSystemInfo implements JsonpSerializable {
 	private final String arch;
@@ -70,15 +77,15 @@ public class NodeOperatingSystemInfo implements JsonpSerializable {
 
 	private NodeOperatingSystemInfo(Builder builder) {
 
-		this.arch = ModelTypeHelper.requireNonNull(builder.arch, this, "arch");
-		this.availableProcessors = ModelTypeHelper.requireNonNull(builder.availableProcessors, this,
+		this.arch = ApiTypeHelper.requireNonNull(builder.arch, this, "arch");
+		this.availableProcessors = ApiTypeHelper.requireNonNull(builder.availableProcessors, this,
 				"availableProcessors");
 		this.allocatedProcessors = builder.allocatedProcessors;
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
-		this.prettyName = ModelTypeHelper.requireNonNull(builder.prettyName, this, "prettyName");
-		this.refreshIntervalInMillis = ModelTypeHelper.requireNonNull(builder.refreshIntervalInMillis, this,
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.prettyName = ApiTypeHelper.requireNonNull(builder.prettyName, this, "prettyName");
+		this.refreshIntervalInMillis = ApiTypeHelper.requireNonNull(builder.refreshIntervalInMillis, this,
 				"refreshIntervalInMillis");
-		this.version = ModelTypeHelper.requireNonNull(builder.version, this, "version");
+		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
 		this.cpu = builder.cpu;
 		this.mem = builder.mem;
 		this.swap = builder.swap;
@@ -234,6 +241,7 @@ public class NodeOperatingSystemInfo implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeOperatingSystemInfo}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeOperatingSystemInfo> {
 		private String arch;
 

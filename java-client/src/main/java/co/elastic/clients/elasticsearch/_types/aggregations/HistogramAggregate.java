@@ -33,6 +33,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.aggregations.HistogramAggregate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/Aggregate.ts#L324-L325">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class HistogramAggregate extends MultiBucketAggregateBase<HistogramBucket> implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -59,6 +66,7 @@ public class HistogramAggregate extends MultiBucketAggregateBase<HistogramBucket
 	/**
 	 * Builder for {@link HistogramAggregate}.
 	 */
+
 	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<HistogramBucket, Builder>
 			implements
 				ObjectBuilder<HistogramAggregate> {

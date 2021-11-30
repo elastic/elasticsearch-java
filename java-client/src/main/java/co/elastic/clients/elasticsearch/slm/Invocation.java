@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: slm._types.Invocation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/slm/_types/SnapshotLifecycle.ts#L132-L135">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Invocation implements JsonpSerializable {
 	private final String snapshotName;
@@ -49,8 +56,8 @@ public class Invocation implements JsonpSerializable {
 
 	private Invocation(Builder builder) {
 
-		this.snapshotName = ModelTypeHelper.requireNonNull(builder.snapshotName, this, "snapshotName");
-		this.time = ModelTypeHelper.requireNonNull(builder.time, this, "time");
+		this.snapshotName = ApiTypeHelper.requireNonNull(builder.snapshotName, this, "snapshotName");
+		this.time = ApiTypeHelper.requireNonNull(builder.time, this, "time");
 
 	}
 
@@ -96,6 +103,7 @@ public class Invocation implements JsonpSerializable {
 	/**
 	 * Builder for {@link Invocation}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Invocation> {
 		private String snapshotName;
 

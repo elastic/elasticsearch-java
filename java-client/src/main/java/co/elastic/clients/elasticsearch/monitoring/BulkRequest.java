@@ -35,7 +35,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -49,6 +49,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: monitoring.bulk.Request
+
+/**
+ * Used by the monitoring features to send monitoring data.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/monitoring/bulk/BulkMonitoringRequest.ts#L24-L57">API
+ *      specification</a>
+ */
 
 public class BulkRequest extends RequestBase implements NdJsonpSerializable, JsonpSerializable {
 	private final String interval;
@@ -66,11 +74,11 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 
 	private BulkRequest(Builder builder) {
 
-		this.interval = ModelTypeHelper.requireNonNull(builder.interval, this, "interval");
-		this.systemApiVersion = ModelTypeHelper.requireNonNull(builder.systemApiVersion, this, "systemApiVersion");
-		this.systemId = ModelTypeHelper.requireNonNull(builder.systemId, this, "systemId");
+		this.interval = ApiTypeHelper.requireNonNull(builder.interval, this, "interval");
+		this.systemApiVersion = ApiTypeHelper.requireNonNull(builder.systemApiVersion, this, "systemApiVersion");
+		this.systemId = ApiTypeHelper.requireNonNull(builder.systemId, this, "systemId");
 		this.type = builder.type;
-		this.operations = ModelTypeHelper.unmodifiableRequired(builder.operations, this, "operations");
+		this.operations = ApiTypeHelper.unmodifiableRequired(builder.operations, this, "operations");
 
 	}
 
@@ -113,7 +121,10 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 	 * Default document type for items which don't provide one
 	 * <p>
 	 * API name: {@code type}
+	 * 
+	 * @deprecated 7.0.0
 	 */
+	@Deprecated
 	@Nullable
 	public final String type() {
 		return this.type;
@@ -146,6 +157,7 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 	/**
 	 * Builder for {@link BulkRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<BulkRequest> {
 		private String interval;
 
@@ -192,7 +204,10 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		 * Default document type for items which don't provide one
 		 * <p>
 		 * API name: {@code type}
+		 * 
+		 * @deprecated 7.0.0
 		 */
+		@Deprecated
 		public final Builder type(@Nullable String value) {
 			this.type = value;
 			return this;
@@ -203,11 +218,9 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		 * <p>
 		 * API name: {@code _value_body}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>operations</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>operations</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>operations</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder operations(List<BulkOperation> list) {
 			this.operations = _listAddAll(this.operations, list);

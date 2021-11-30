@@ -38,6 +38,13 @@ import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.RankEvalMetricBase
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/rank_eval/types.ts#L26-L32">API
+ *      specification</a>
+ */
+
 public abstract class RankEvalMetricBase implements JsonpSerializable {
 	@Nullable
 	private final Integer k;

@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm._types.Phase
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ilm/_types/Phase.ts#L25-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Phase implements JsonpSerializable {
 	@Nullable
@@ -105,6 +112,7 @@ public class Phase implements JsonpSerializable {
 	/**
 	 * Builder for {@link Phase}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Phase> {
 		@Nullable
 		private JsonData actions;

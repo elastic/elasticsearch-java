@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.count.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/count/CountResponse.ts#L23-L25">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CountResponse implements JsonpSerializable {
 	private final long count;
@@ -50,8 +57,8 @@ public class CountResponse implements JsonpSerializable {
 
 	private CountResponse(Builder builder) {
 
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
-		this.shards = ModelTypeHelper.requireNonNull(builder.shards, this, "shards");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
 
 	}
 
@@ -97,6 +104,7 @@ public class CountResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link CountResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CountResponse> {
 		private Long count;
 

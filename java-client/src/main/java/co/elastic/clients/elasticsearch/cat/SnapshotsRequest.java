@@ -30,7 +30,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -46,6 +46,14 @@ import javax.annotation.Nullable;
 
 // typedef: cat.snapshots.Request
 
+/**
+ * Returns all snapshots in a specific repository.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cat/snapshots/CatSnapshotsRequest.ts#L23-L35">API
+ *      specification</a>
+ */
+
 public class SnapshotsRequest extends CatRequestBase {
 	@Nullable
 	private final Boolean ignoreUnavailable;
@@ -57,7 +65,7 @@ public class SnapshotsRequest extends CatRequestBase {
 	private SnapshotsRequest(Builder builder) {
 
 		this.ignoreUnavailable = builder.ignoreUnavailable;
-		this.repository = ModelTypeHelper.unmodifiable(builder.repository);
+		this.repository = ApiTypeHelper.unmodifiable(builder.repository);
 
 	}
 
@@ -89,6 +97,7 @@ public class SnapshotsRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link SnapshotsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SnapshotsRequest> {
 		@Nullable
 		private Boolean ignoreUnavailable;
@@ -111,11 +120,9 @@ public class SnapshotsRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code repository}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>repository</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>repository</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>repository</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder repository(List<String> list) {
 			this.repository = _listAddAll(this.repository, list);
@@ -167,7 +174,7 @@ public class SnapshotsRequest extends CatRequestBase {
 
 				int propsSet = 0;
 
-				if (ModelTypeHelper.isDefined(request.repository()))
+				if (ApiTypeHelper.isDefined(request.repository()))
 					propsSet |= _repository;
 
 				if (propsSet == 0) {

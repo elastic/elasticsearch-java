@@ -33,6 +33,15 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.aggregations.GeoDistanceAggregate
+
+/**
+ * Result of a <code>geo_distance</code> aggregation. The unit for
+ * <code>from</code> and <code>to</code> is meters by default.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/Aggregate.ts#L516-L520">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GeoDistanceAggregate extends RangeAggregate implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -59,6 +68,7 @@ public class GeoDistanceAggregate extends RangeAggregate implements AggregateVar
 	/**
 	 * Builder for {@link GeoDistanceAggregate}.
 	 */
+
 	public static class Builder extends RangeAggregate.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<GeoDistanceAggregate> {

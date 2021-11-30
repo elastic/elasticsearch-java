@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import javax.annotation.Nullable;
 
 // typedef: _types.ShardsOperationResponseBase
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/Base.ts#L85-L87">API
+ *      specification</a>
+ */
+
 public abstract class ShardsOperationResponseBase implements JsonpSerializable {
 	private final ShardStatistics shards;
 
@@ -46,7 +53,7 @@ public abstract class ShardsOperationResponseBase implements JsonpSerializable {
 
 	protected ShardsOperationResponseBase(AbstractBuilder<?> builder) {
 
-		this.shards = ModelTypeHelper.requireNonNull(builder.shards, this, "shards");
+		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
 
 	}
 

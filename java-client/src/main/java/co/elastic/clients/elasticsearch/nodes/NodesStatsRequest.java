@@ -33,7 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -48,6 +48,14 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: nodes.stats.Request
+
+/**
+ * Returns statistical information about nodes in the cluster.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/nodes/stats/NodesStatsRequest.ts#L24-L68">API
+ *      specification</a>
+ */
 
 public class NodesStatsRequest extends RequestBase {
 	private final List<String> completionFields;
@@ -86,19 +94,19 @@ public class NodesStatsRequest extends RequestBase {
 
 	private NodesStatsRequest(Builder builder) {
 
-		this.completionFields = ModelTypeHelper.unmodifiable(builder.completionFields);
-		this.fielddataFields = ModelTypeHelper.unmodifiable(builder.fielddataFields);
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
+		this.completionFields = ApiTypeHelper.unmodifiable(builder.completionFields);
+		this.fielddataFields = ApiTypeHelper.unmodifiable(builder.fielddataFields);
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 		this.groups = builder.groups;
 		this.includeSegmentFileSizes = builder.includeSegmentFileSizes;
 		this.includeUnloadedSegments = builder.includeUnloadedSegments;
-		this.indexMetric = ModelTypeHelper.unmodifiable(builder.indexMetric);
+		this.indexMetric = ApiTypeHelper.unmodifiable(builder.indexMetric);
 		this.level = builder.level;
 		this.masterTimeout = builder.masterTimeout;
-		this.metric = ModelTypeHelper.unmodifiable(builder.metric);
-		this.nodeId = ModelTypeHelper.unmodifiable(builder.nodeId);
+		this.metric = ApiTypeHelper.unmodifiable(builder.metric);
+		this.nodeId = ApiTypeHelper.unmodifiable(builder.nodeId);
 		this.timeout = builder.timeout;
-		this.types = ModelTypeHelper.unmodifiable(builder.types);
+		this.types = ApiTypeHelper.unmodifiable(builder.types);
 
 	}
 
@@ -243,6 +251,7 @@ public class NodesStatsRequest extends RequestBase {
 	/**
 	 * Builder for {@link NodesStatsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodesStatsRequest> {
 		@Nullable
 		private List<String> completionFields;
@@ -289,11 +298,9 @@ public class NodesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code completion_fields}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>completionFields</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>completionFields</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>completionFields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder completionFields(List<String> list) {
 			this.completionFields = _listAddAll(this.completionFields, list);
@@ -319,11 +326,9 @@ public class NodesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code fielddata_fields}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>fielddataFields</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>fielddataFields</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>fielddataFields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder fielddataFields(List<String> list) {
 			this.fielddataFields = _listAddAll(this.fielddataFields, list);
@@ -349,11 +354,9 @@ public class NodesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code fields}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>fields</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>fields</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>fields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder fields(List<String> list) {
 			this.fields = _listAddAll(this.fields, list);
@@ -411,11 +414,9 @@ public class NodesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code index_metric}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>indexMetric</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>indexMetric</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>indexMetric</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder indexMetric(List<String> list) {
 			this.indexMetric = _listAddAll(this.indexMetric, list);
@@ -472,11 +473,9 @@ public class NodesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code metric}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>metric</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>metric</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>metric</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder metric(List<String> list) {
 			this.metric = _listAddAll(this.metric, list);
@@ -500,11 +499,9 @@ public class NodesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code node_id}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>nodeId</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>nodeId</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>nodeId</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder nodeId(List<String> list) {
 			this.nodeId = _listAddAll(this.nodeId, list);
@@ -549,11 +546,9 @@ public class NodesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code types}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>types</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>types</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>types</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder types(List<String> list) {
 			this.types = _listAddAll(this.types, list);
@@ -607,11 +602,11 @@ public class NodesStatsRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (ModelTypeHelper.isDefined(request.metric()))
+				if (ApiTypeHelper.isDefined(request.metric()))
 					propsSet |= _metric;
-				if (ModelTypeHelper.isDefined(request.indexMetric()))
+				if (ApiTypeHelper.isDefined(request.indexMetric()))
 					propsSet |= _indexMetric;
-				if (ModelTypeHelper.isDefined(request.nodeId()))
+				if (ApiTypeHelper.isDefined(request.nodeId()))
 					propsSet |= _nodeId;
 
 				if (propsSet == 0) {
@@ -687,17 +682,17 @@ public class NodesStatsRequest extends RequestBase {
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
-				if (ModelTypeHelper.isDefined(request.types)) {
+				if (ApiTypeHelper.isDefined(request.types)) {
 					params.put("types", request.types.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.level != null) {
 					params.put("level", request.level.jsonValue());
 				}
-				if (ModelTypeHelper.isDefined(request.completionFields)) {
+				if (ApiTypeHelper.isDefined(request.completionFields)) {
 					params.put("completion_fields",
 							request.completionFields.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
-				if (ModelTypeHelper.isDefined(request.fielddataFields)) {
+				if (ApiTypeHelper.isDefined(request.fielddataFields)) {
 					params.put("fielddata_fields",
 							request.fielddataFields.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
@@ -707,7 +702,7 @@ public class NodesStatsRequest extends RequestBase {
 				if (request.includeUnloadedSegments != null) {
 					params.put("include_unloaded_segments", String.valueOf(request.includeUnloadedSegments));
 				}
-				if (ModelTypeHelper.isDefined(request.fields)) {
+				if (ApiTypeHelper.isDefined(request.fields)) {
 					params.put("fields", request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.includeSegmentFileSizes != null) {

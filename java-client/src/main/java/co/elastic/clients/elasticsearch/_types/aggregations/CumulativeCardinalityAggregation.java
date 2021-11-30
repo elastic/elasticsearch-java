@@ -33,6 +33,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.aggregations.CumulativeCardinalityAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/pipeline.ts#L63-L63">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CumulativeCardinalityAggregation extends PipelineAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -60,6 +67,7 @@ public class CumulativeCardinalityAggregation extends PipelineAggregationBase im
 	/**
 	 * Builder for {@link CumulativeCardinalityAggregation}.
 	 */
+
 	public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<CumulativeCardinalityAggregation> {

@@ -43,6 +43,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.invalidate_token.Request
+
+/**
+ * Invalidates one or more access tokens or refresh tokens.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/security/invalidate_token/SecurityInvalidateTokenRequest.ts#L23-L35">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class InvalidateTokenRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -143,6 +151,7 @@ public class InvalidateTokenRequest extends RequestBase implements JsonpSerializ
 	/**
 	 * Builder for {@link InvalidateTokenRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<InvalidateTokenRequest> {
 		@Nullable
 		private String realmName;

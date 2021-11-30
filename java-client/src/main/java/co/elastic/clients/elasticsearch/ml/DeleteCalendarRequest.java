@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,6 +43,14 @@ import javax.annotation.Nullable;
 
 // typedef: ml.delete_calendar.Request
 
+/**
+ * Removes all scheduled events from a calendar, then deletes it.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/delete_calendar/MlDeleteCalendarRequest.ts#L23-L35">API
+ *      specification</a>
+ */
+
 public class DeleteCalendarRequest extends RequestBase {
 	private final String calendarId;
 
@@ -50,7 +58,7 @@ public class DeleteCalendarRequest extends RequestBase {
 
 	private DeleteCalendarRequest(Builder builder) {
 
-		this.calendarId = ModelTypeHelper.requireNonNull(builder.calendarId, this, "calendarId");
+		this.calendarId = ApiTypeHelper.requireNonNull(builder.calendarId, this, "calendarId");
 
 	}
 
@@ -72,6 +80,7 @@ public class DeleteCalendarRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteCalendarRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteCalendarRequest> {
 		private String calendarId;
 

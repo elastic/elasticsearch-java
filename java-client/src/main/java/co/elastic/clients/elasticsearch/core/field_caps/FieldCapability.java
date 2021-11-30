@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.field_caps.FieldCapability
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/field_caps/types.ts#L23-L32">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FieldCapability implements JsonpSerializable {
 	private final boolean aggregatable;
@@ -65,13 +72,13 @@ public class FieldCapability implements JsonpSerializable {
 
 	private FieldCapability(Builder builder) {
 
-		this.aggregatable = ModelTypeHelper.requireNonNull(builder.aggregatable, this, "aggregatable");
-		this.indices = ModelTypeHelper.unmodifiable(builder.indices);
-		this.meta = ModelTypeHelper.unmodifiable(builder.meta);
-		this.nonAggregatableIndices = ModelTypeHelper.unmodifiable(builder.nonAggregatableIndices);
-		this.nonSearchableIndices = ModelTypeHelper.unmodifiable(builder.nonSearchableIndices);
-		this.searchable = ModelTypeHelper.requireNonNull(builder.searchable, this, "searchable");
-		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
+		this.aggregatable = ApiTypeHelper.requireNonNull(builder.aggregatable, this, "aggregatable");
+		this.indices = ApiTypeHelper.unmodifiable(builder.indices);
+		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
+		this.nonAggregatableIndices = ApiTypeHelper.unmodifiable(builder.nonAggregatableIndices);
+		this.nonSearchableIndices = ApiTypeHelper.unmodifiable(builder.nonSearchableIndices);
+		this.searchable = ApiTypeHelper.requireNonNull(builder.searchable, this, "searchable");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 		this.metadataField = builder.metadataField;
 
 	}
@@ -151,7 +158,7 @@ public class FieldCapability implements JsonpSerializable {
 		generator.writeKey("aggregatable");
 		generator.write(this.aggregatable);
 
-		if (ModelTypeHelper.isDefined(this.indices)) {
+		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartArray();
 			for (String item0 : this.indices) {
@@ -161,7 +168,7 @@ public class FieldCapability implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.meta)) {
+		if (ApiTypeHelper.isDefined(this.meta)) {
 			generator.writeKey("meta");
 			generator.writeStartObject();
 			for (Map.Entry<String, List<String>> item0 : this.meta.entrySet()) {
@@ -179,7 +186,7 @@ public class FieldCapability implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.nonAggregatableIndices)) {
+		if (ApiTypeHelper.isDefined(this.nonAggregatableIndices)) {
 			generator.writeKey("non_aggregatable_indices");
 			generator.writeStartArray();
 			for (String item0 : this.nonAggregatableIndices) {
@@ -189,7 +196,7 @@ public class FieldCapability implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.nonSearchableIndices)) {
+		if (ApiTypeHelper.isDefined(this.nonSearchableIndices)) {
 			generator.writeKey("non_searchable_indices");
 			generator.writeStartArray();
 			for (String item0 : this.nonSearchableIndices) {
@@ -218,6 +225,7 @@ public class FieldCapability implements JsonpSerializable {
 	/**
 	 * Builder for {@link FieldCapability}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldCapability> {
 		private Boolean aggregatable;
 
@@ -251,11 +259,9 @@ public class FieldCapability implements JsonpSerializable {
 		/**
 		 * API name: {@code indices}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>indices</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>indices</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder indices(List<String> list) {
 			this.indices = _listAddAll(this.indices, list);
@@ -275,11 +281,9 @@ public class FieldCapability implements JsonpSerializable {
 		/**
 		 * API name: {@code meta}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>meta</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>meta</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>meta</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder meta(Map<String, List<String>> map) {
 			this.meta = _mapPutAll(this.meta, map);
@@ -300,11 +304,9 @@ public class FieldCapability implements JsonpSerializable {
 		 * API name: {@code non_aggregatable_indices}
 		 * <p>
 		 * Adds all elements of <code>list</code> to
-		 * <code>nonAggregatableIndices</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>nonAggregatableIndices</code> to <code>null</code>.
+		 * <code>nonAggregatableIndices</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder nonAggregatableIndices(List<String> list) {
 			this.nonAggregatableIndices = _listAddAll(this.nonAggregatableIndices, list);
@@ -325,10 +327,8 @@ public class FieldCapability implements JsonpSerializable {
 		 * API name: {@code non_searchable_indices}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>nonSearchableIndices</code>.
-		 * Use <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>nonSearchableIndices</code> to <code>null</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder nonSearchableIndices(List<String> list) {
 			this.nonSearchableIndices = _listAddAll(this.nonSearchableIndices, list);

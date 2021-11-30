@@ -33,7 +33,7 @@ public class MultiSearchResponseItemBuilders {
 	}
 
 	/**
-	 * Creates a builder for the {@link MultiSearchItem<TDocument> result}
+	 * Creates a builder for the {@link MultiSearchItem result}
 	 * {@code MultiSearchResponseItem} variant.
 	 */
 	public static <TDocument> MultiSearchItem.Builder<TDocument> result() {

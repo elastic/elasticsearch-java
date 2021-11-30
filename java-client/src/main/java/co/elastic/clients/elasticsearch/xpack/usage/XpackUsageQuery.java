@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Query
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/xpack/usage/types.ts#L214-L219">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class XpackUsageQuery implements JsonpSerializable {
 	@Nullable
@@ -138,6 +145,7 @@ public class XpackUsageQuery implements JsonpSerializable {
 	/**
 	 * Builder for {@link XpackUsageQuery}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<XpackUsageQuery> {
 		@Nullable
 		private Integer count;

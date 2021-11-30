@@ -38,6 +38,13 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.TokenFilterBase
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/analysis/token_filters.ts#L39-L41">API
+ *      specification</a>
+ */
+
 public abstract class TokenFilterBase implements JsonpSerializable {
 	@Nullable
 	private final String version;

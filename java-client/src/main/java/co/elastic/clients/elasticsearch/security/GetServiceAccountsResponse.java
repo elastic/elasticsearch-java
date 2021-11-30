@@ -36,6 +36,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: security.get_service_accounts.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/security/get_service_accounts/GetServiceAccountsResponse.ts#L23-L26">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetServiceAccountsResponse extends DictionaryResponse<String, RoleDescriptorWrapper> {
 	// ---------------------------------------------------------------------------------------------
@@ -54,6 +61,7 @@ public class GetServiceAccountsResponse extends DictionaryResponse<String, RoleD
 	/**
 	 * Builder for {@link GetServiceAccountsResponse}.
 	 */
+
 	public static class Builder extends DictionaryResponse.AbstractBuilder<String, RoleDescriptorWrapper, Builder>
 			implements
 				ObjectBuilder<GetServiceAccountsResponse> {

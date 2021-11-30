@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.PhraseSuggestCollate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/search/_types/suggester.ts#L149-L153">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PhraseSuggestCollate implements JsonpSerializable {
 	private final Map<String, JsonData> params;
@@ -55,9 +62,9 @@ public class PhraseSuggestCollate implements JsonpSerializable {
 
 	private PhraseSuggestCollate(Builder builder) {
 
-		this.params = ModelTypeHelper.unmodifiable(builder.params);
+		this.params = ApiTypeHelper.unmodifiable(builder.params);
 		this.prune = builder.prune;
-		this.query = ModelTypeHelper.requireNonNull(builder.query, this, "query");
+		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 
 	}
 
@@ -98,7 +105,7 @@ public class PhraseSuggestCollate implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.params)) {
+		if (ApiTypeHelper.isDefined(this.params)) {
 			generator.writeKey("params");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.params.entrySet()) {
@@ -124,6 +131,7 @@ public class PhraseSuggestCollate implements JsonpSerializable {
 	/**
 	 * Builder for {@link PhraseSuggestCollate}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PhraseSuggestCollate> {
 		@Nullable
 		private Map<String, JsonData> params;
@@ -136,11 +144,9 @@ public class PhraseSuggestCollate implements JsonpSerializable {
 		/**
 		 * API name: {@code params}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>params</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>params</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>params</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder params(Map<String, JsonData> map) {
 			this.params = _mapPutAll(this.params, map);

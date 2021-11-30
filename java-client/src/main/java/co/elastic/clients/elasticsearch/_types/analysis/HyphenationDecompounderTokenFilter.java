@@ -34,6 +34,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.analysis.HyphenationDecompounderTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/analysis/token_filters.ts#L57-L59">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class HyphenationDecompounderTokenFilter extends CompoundWordTokenFilterBase
 		implements
@@ -70,6 +77,7 @@ public class HyphenationDecompounderTokenFilter extends CompoundWordTokenFilterB
 	/**
 	 * Builder for {@link HyphenationDecompounderTokenFilter}.
 	 */
+
 	public static class Builder extends CompoundWordTokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<HyphenationDecompounderTokenFilter> {

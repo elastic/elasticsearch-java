@@ -44,6 +44,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.preview_data_frame_analytics.Request
+
+/**
+ * Previews the extracted features used by a data frame analytics config.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/preview_data_frame_analytics/MlPreviewDataFrameAnalyticsRequest.ts#L24-L47">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PreviewDataFrameAnalyticsRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -112,6 +120,7 @@ public class PreviewDataFrameAnalyticsRequest extends RequestBase implements Jso
 	/**
 	 * Builder for {@link PreviewDataFrameAnalyticsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PreviewDataFrameAnalyticsRequest> {
 		@Nullable
 		private DataframePreviewConfig config;

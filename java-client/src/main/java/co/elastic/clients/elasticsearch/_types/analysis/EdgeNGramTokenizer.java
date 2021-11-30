@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.EdgeNGramTokenizer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/analysis/tokenizers.ts#L30-L36">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class EdgeNGramTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
 	@Nullable
@@ -56,9 +63,9 @@ public class EdgeNGramTokenizer extends TokenizerBase implements TokenizerDefini
 		super(builder);
 
 		this.customTokenChars = builder.customTokenChars;
-		this.maxGram = ModelTypeHelper.requireNonNull(builder.maxGram, this, "maxGram");
-		this.minGram = ModelTypeHelper.requireNonNull(builder.minGram, this, "minGram");
-		this.tokenChars = ModelTypeHelper.unmodifiableRequired(builder.tokenChars, this, "tokenChars");
+		this.maxGram = ApiTypeHelper.requireNonNull(builder.maxGram, this, "maxGram");
+		this.minGram = ApiTypeHelper.requireNonNull(builder.minGram, this, "minGram");
+		this.tokenChars = ApiTypeHelper.unmodifiableRequired(builder.tokenChars, this, "tokenChars");
 
 	}
 
@@ -118,7 +125,7 @@ public class EdgeNGramTokenizer extends TokenizerBase implements TokenizerDefini
 		generator.writeKey("min_gram");
 		generator.write(this.minGram);
 
-		if (ModelTypeHelper.isDefined(this.tokenChars)) {
+		if (ApiTypeHelper.isDefined(this.tokenChars)) {
 			generator.writeKey("token_chars");
 			generator.writeStartArray();
 			for (TokenChar item0 : this.tokenChars) {
@@ -135,6 +142,7 @@ public class EdgeNGramTokenizer extends TokenizerBase implements TokenizerDefini
 	/**
 	 * Builder for {@link EdgeNGramTokenizer}.
 	 */
+
 	public static class Builder extends TokenizerBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<EdgeNGramTokenizer> {
@@ -174,11 +182,9 @@ public class EdgeNGramTokenizer extends TokenizerBase implements TokenizerDefini
 		/**
 		 * Required - API name: {@code token_chars}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>tokenChars</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>tokenChars</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>tokenChars</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder tokenChars(List<TokenChar> list) {
 			this.tokenChars = _listAddAll(this.tokenChars, list);

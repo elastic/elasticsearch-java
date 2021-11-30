@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.LoggingResult
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/watcher/_types/Actions.ts#L192-L194">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class LoggingResult implements JsonpSerializable {
 	private final String loggedText;
@@ -47,7 +54,7 @@ public class LoggingResult implements JsonpSerializable {
 
 	private LoggingResult(Builder builder) {
 
-		this.loggedText = ModelTypeHelper.requireNonNull(builder.loggedText, this, "loggedText");
+		this.loggedText = ApiTypeHelper.requireNonNull(builder.loggedText, this, "loggedText");
 
 	}
 
@@ -83,6 +90,7 @@ public class LoggingResult implements JsonpSerializable {
 	/**
 	 * Builder for {@link LoggingResult}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<LoggingResult> {
 		private String loggedText;
 

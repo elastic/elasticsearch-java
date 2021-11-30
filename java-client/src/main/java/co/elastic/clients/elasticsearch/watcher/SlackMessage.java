@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.SlackMessage
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/watcher/_types/Actions.ts#L109-L116">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SlackMessage implements JsonpSerializable {
 	private final List<SlackAttachment> attachments;
@@ -60,12 +67,12 @@ public class SlackMessage implements JsonpSerializable {
 
 	private SlackMessage(Builder builder) {
 
-		this.attachments = ModelTypeHelper.unmodifiableRequired(builder.attachments, this, "attachments");
+		this.attachments = ApiTypeHelper.unmodifiableRequired(builder.attachments, this, "attachments");
 		this.dynamicAttachments = builder.dynamicAttachments;
-		this.from = ModelTypeHelper.requireNonNull(builder.from, this, "from");
+		this.from = ApiTypeHelper.requireNonNull(builder.from, this, "from");
 		this.icon = builder.icon;
-		this.text = ModelTypeHelper.requireNonNull(builder.text, this, "text");
-		this.to = ModelTypeHelper.unmodifiableRequired(builder.to, this, "to");
+		this.text = ApiTypeHelper.requireNonNull(builder.text, this, "text");
+		this.to = ApiTypeHelper.unmodifiableRequired(builder.to, this, "to");
 
 	}
 
@@ -128,7 +135,7 @@ public class SlackMessage implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.attachments)) {
+		if (ApiTypeHelper.isDefined(this.attachments)) {
 			generator.writeKey("attachments");
 			generator.writeStartArray();
 			for (SlackAttachment item0 : this.attachments) {
@@ -154,7 +161,7 @@ public class SlackMessage implements JsonpSerializable {
 		generator.writeKey("text");
 		generator.write(this.text);
 
-		if (ModelTypeHelper.isDefined(this.to)) {
+		if (ApiTypeHelper.isDefined(this.to)) {
 			generator.writeKey("to");
 			generator.writeStartArray();
 			for (String item0 : this.to) {
@@ -172,6 +179,7 @@ public class SlackMessage implements JsonpSerializable {
 	/**
 	 * Builder for {@link SlackMessage}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SlackMessage> {
 		private List<SlackAttachment> attachments;
 
@@ -190,11 +198,9 @@ public class SlackMessage implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code attachments}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>attachments</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>attachments</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>attachments</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder attachments(List<SlackAttachment> list) {
 			this.attachments = _listAddAll(this.attachments, list);
@@ -263,11 +269,9 @@ public class SlackMessage implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code to}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>to</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset <code>to</code>
-		 * to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>to</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder to(List<String> list) {
 			this.to = _listAddAll(this.to, list);

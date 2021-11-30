@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.IndexingStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/Stats.ts#L100-L115">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IndexingStats implements JsonpSerializable {
 	private final long indexCurrent;
@@ -79,22 +86,21 @@ public class IndexingStats implements JsonpSerializable {
 
 	private IndexingStats(Builder builder) {
 
-		this.indexCurrent = ModelTypeHelper.requireNonNull(builder.indexCurrent, this, "indexCurrent");
-		this.deleteCurrent = ModelTypeHelper.requireNonNull(builder.deleteCurrent, this, "deleteCurrent");
+		this.indexCurrent = ApiTypeHelper.requireNonNull(builder.indexCurrent, this, "indexCurrent");
+		this.deleteCurrent = ApiTypeHelper.requireNonNull(builder.deleteCurrent, this, "deleteCurrent");
 		this.deleteTime = builder.deleteTime;
-		this.deleteTimeInMillis = ModelTypeHelper.requireNonNull(builder.deleteTimeInMillis, this,
-				"deleteTimeInMillis");
-		this.deleteTotal = ModelTypeHelper.requireNonNull(builder.deleteTotal, this, "deleteTotal");
-		this.isThrottled = ModelTypeHelper.requireNonNull(builder.isThrottled, this, "isThrottled");
-		this.noopUpdateTotal = ModelTypeHelper.requireNonNull(builder.noopUpdateTotal, this, "noopUpdateTotal");
+		this.deleteTimeInMillis = ApiTypeHelper.requireNonNull(builder.deleteTimeInMillis, this, "deleteTimeInMillis");
+		this.deleteTotal = ApiTypeHelper.requireNonNull(builder.deleteTotal, this, "deleteTotal");
+		this.isThrottled = ApiTypeHelper.requireNonNull(builder.isThrottled, this, "isThrottled");
+		this.noopUpdateTotal = ApiTypeHelper.requireNonNull(builder.noopUpdateTotal, this, "noopUpdateTotal");
 		this.throttleTime = builder.throttleTime;
-		this.throttleTimeInMillis = ModelTypeHelper.requireNonNull(builder.throttleTimeInMillis, this,
+		this.throttleTimeInMillis = ApiTypeHelper.requireNonNull(builder.throttleTimeInMillis, this,
 				"throttleTimeInMillis");
 		this.indexTime = builder.indexTime;
-		this.indexTimeInMillis = ModelTypeHelper.requireNonNull(builder.indexTimeInMillis, this, "indexTimeInMillis");
-		this.indexTotal = ModelTypeHelper.requireNonNull(builder.indexTotal, this, "indexTotal");
-		this.indexFailed = ModelTypeHelper.requireNonNull(builder.indexFailed, this, "indexFailed");
-		this.types = ModelTypeHelper.unmodifiable(builder.types);
+		this.indexTimeInMillis = ApiTypeHelper.requireNonNull(builder.indexTimeInMillis, this, "indexTimeInMillis");
+		this.indexTotal = ApiTypeHelper.requireNonNull(builder.indexTotal, this, "indexTotal");
+		this.indexFailed = ApiTypeHelper.requireNonNull(builder.indexFailed, this, "indexFailed");
+		this.types = ApiTypeHelper.unmodifiable(builder.types);
 
 	}
 
@@ -259,7 +265,7 @@ public class IndexingStats implements JsonpSerializable {
 		generator.writeKey("index_failed");
 		generator.write(this.indexFailed);
 
-		if (ModelTypeHelper.isDefined(this.types)) {
+		if (ApiTypeHelper.isDefined(this.types)) {
 			generator.writeKey("types");
 			generator.writeStartObject();
 			for (Map.Entry<String, IndexingStats> item0 : this.types.entrySet()) {
@@ -278,6 +284,7 @@ public class IndexingStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexingStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexingStats> {
 		private Long indexCurrent;
 
@@ -418,11 +425,9 @@ public class IndexingStats implements JsonpSerializable {
 		/**
 		 * API name: {@code types}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>types</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>types</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>types</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder types(Map<String, IndexingStats> map) {
 			this.types = _mapPutAll(this.types, map);

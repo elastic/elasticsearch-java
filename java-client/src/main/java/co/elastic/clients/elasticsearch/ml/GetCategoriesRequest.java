@@ -33,7 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -46,6 +46,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_categories.Request
+
+/**
+ * Retrieves anomaly detection job results for one or more categories.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/get_categories/MlGetCategoriesRequest.ts#L25-L65">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetCategoriesRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -71,7 +79,7 @@ public class GetCategoriesRequest extends RequestBase implements JsonpSerializab
 
 		this.categoryId = builder.categoryId;
 		this.from = builder.from;
-		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.page = builder.page;
 		this.partitionFieldValue = builder.partitionFieldValue;
 		this.size = builder.size;
@@ -167,6 +175,7 @@ public class GetCategoriesRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Builder for {@link GetCategoriesRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetCategoriesRequest> {
 		@Nullable
 		private String categoryId;

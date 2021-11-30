@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.Ingest
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/nodes/_types/Stats.ts#L49-L52">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Ingest implements JsonpSerializable {
 	private final Map<String, IngestTotal> pipelines;
@@ -50,8 +57,8 @@ public class Ingest implements JsonpSerializable {
 
 	private Ingest(Builder builder) {
 
-		this.pipelines = ModelTypeHelper.unmodifiableRequired(builder.pipelines, this, "pipelines");
-		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
+		this.pipelines = ApiTypeHelper.unmodifiableRequired(builder.pipelines, this, "pipelines");
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
 
 	}
 
@@ -84,7 +91,7 @@ public class Ingest implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.pipelines)) {
+		if (ApiTypeHelper.isDefined(this.pipelines)) {
 			generator.writeKey("pipelines");
 			generator.writeStartObject();
 			for (Map.Entry<String, IngestTotal> item0 : this.pipelines.entrySet()) {
@@ -105,6 +112,7 @@ public class Ingest implements JsonpSerializable {
 	/**
 	 * Builder for {@link Ingest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Ingest> {
 		private Map<String, IngestTotal> pipelines;
 
@@ -113,11 +121,9 @@ public class Ingest implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code pipelines}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>pipelines</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>pipelines</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>pipelines</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder pipelines(Map<String, IngestTotal> map) {
 			this.pipelines = _mapPutAll(this.pipelines, map);

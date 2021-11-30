@@ -34,6 +34,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.mapping.IpRangeProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/mapping/range.ts#L54-L56">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IpRangeProperty extends RangePropertyBase implements PropertyVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -67,6 +74,7 @@ public class IpRangeProperty extends RangePropertyBase implements PropertyVarian
 	/**
 	 * Builder for {@link IpRangeProperty}.
 	 */
+
 	public static class Builder extends RangePropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<IpRangeProperty> {

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.AllJobs
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/xpack/usage/types.ts#L316-L322">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AllJobs implements JsonpSerializable {
 	private final int count;
@@ -57,11 +64,11 @@ public class AllJobs implements JsonpSerializable {
 
 	private AllJobs(Builder builder) {
 
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
-		this.detectors = ModelTypeHelper.unmodifiableRequired(builder.detectors, this, "detectors");
-		this.createdBy = ModelTypeHelper.unmodifiableRequired(builder.createdBy, this, "createdBy");
-		this.modelSize = ModelTypeHelper.unmodifiableRequired(builder.modelSize, this, "modelSize");
-		this.forecasts = ModelTypeHelper.unmodifiableRequired(builder.forecasts, this, "forecasts");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.detectors = ApiTypeHelper.unmodifiableRequired(builder.detectors, this, "detectors");
+		this.createdBy = ApiTypeHelper.unmodifiableRequired(builder.createdBy, this, "createdBy");
+		this.modelSize = ApiTypeHelper.unmodifiableRequired(builder.modelSize, this, "modelSize");
+		this.forecasts = ApiTypeHelper.unmodifiableRequired(builder.forecasts, this, "forecasts");
 
 	}
 
@@ -118,7 +125,7 @@ public class AllJobs implements JsonpSerializable {
 		generator.writeKey("count");
 		generator.write(this.count);
 
-		if (ModelTypeHelper.isDefined(this.detectors)) {
+		if (ApiTypeHelper.isDefined(this.detectors)) {
 			generator.writeKey("detectors");
 			generator.writeStartObject();
 			for (Map.Entry<String, Integer> item0 : this.detectors.entrySet()) {
@@ -129,7 +136,7 @@ public class AllJobs implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.createdBy)) {
+		if (ApiTypeHelper.isDefined(this.createdBy)) {
 			generator.writeKey("created_by");
 			generator.writeStartObject();
 			for (Map.Entry<String, String> item0 : this.createdBy.entrySet()) {
@@ -140,7 +147,7 @@ public class AllJobs implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.modelSize)) {
+		if (ApiTypeHelper.isDefined(this.modelSize)) {
 			generator.writeKey("model_size");
 			generator.writeStartObject();
 			for (Map.Entry<String, Integer> item0 : this.modelSize.entrySet()) {
@@ -151,7 +158,7 @@ public class AllJobs implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.forecasts)) {
+		if (ApiTypeHelper.isDefined(this.forecasts)) {
 			generator.writeKey("forecasts");
 			generator.writeStartObject();
 			for (Map.Entry<String, Integer> item0 : this.forecasts.entrySet()) {
@@ -170,6 +177,7 @@ public class AllJobs implements JsonpSerializable {
 	/**
 	 * Builder for {@link AllJobs}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AllJobs> {
 		private Integer count;
 
@@ -192,11 +200,9 @@ public class AllJobs implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code detectors}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>detectors</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>detectors</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>detectors</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder detectors(Map<String, Integer> map) {
 			this.detectors = _mapPutAll(this.detectors, map);
@@ -216,11 +222,9 @@ public class AllJobs implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code created_by}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>createdBy</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>createdBy</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>createdBy</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder createdBy(Map<String, String> map) {
 			this.createdBy = _mapPutAll(this.createdBy, map);
@@ -240,11 +244,9 @@ public class AllJobs implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code model_size}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>modelSize</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>modelSize</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>modelSize</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder modelSize(Map<String, Integer> map) {
 			this.modelSize = _mapPutAll(this.modelSize, map);
@@ -264,11 +266,9 @@ public class AllJobs implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code forecasts}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>forecasts</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>forecasts</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>forecasts</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder forecasts(Map<String, Integer> map) {
 			this.forecasts = _mapPutAll(this.forecasts, map);

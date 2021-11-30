@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,6 +43,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.TypeMapping
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/mapping/TypeMapping.ts#L34-L53">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TypeMapping implements JsonpSerializable {
 	@Nullable
@@ -92,17 +99,17 @@ public class TypeMapping implements JsonpSerializable {
 		this.allField = builder.allField;
 		this.dateDetection = builder.dateDetection;
 		this.dynamic = builder.dynamic;
-		this.dynamicDateFormats = ModelTypeHelper.unmodifiable(builder.dynamicDateFormats);
-		this.dynamicTemplates = ModelTypeHelper.unmodifiable(builder.dynamicTemplates);
+		this.dynamicDateFormats = ApiTypeHelper.unmodifiable(builder.dynamicDateFormats);
+		this.dynamicTemplates = ApiTypeHelper.unmodifiable(builder.dynamicTemplates);
 		this.fieldNames = builder.fieldNames;
 		this.indexField = builder.indexField;
-		this.meta = ModelTypeHelper.unmodifiable(builder.meta);
+		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 		this.numericDetection = builder.numericDetection;
-		this.properties = ModelTypeHelper.unmodifiable(builder.properties);
+		this.properties = ApiTypeHelper.unmodifiable(builder.properties);
 		this.routing = builder.routing;
 		this.size = builder.size;
 		this.source = builder.source;
-		this.runtime = ModelTypeHelper.unmodifiable(builder.runtime);
+		this.runtime = ApiTypeHelper.unmodifiable(builder.runtime);
 		this.enabled = builder.enabled;
 
 	}
@@ -251,7 +258,7 @@ public class TypeMapping implements JsonpSerializable {
 			generator.writeKey("dynamic");
 			this.dynamic.serialize(generator, mapper);
 		}
-		if (ModelTypeHelper.isDefined(this.dynamicDateFormats)) {
+		if (ApiTypeHelper.isDefined(this.dynamicDateFormats)) {
 			generator.writeKey("dynamic_date_formats");
 			generator.writeStartArray();
 			for (String item0 : this.dynamicDateFormats) {
@@ -261,7 +268,7 @@ public class TypeMapping implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.dynamicTemplates)) {
+		if (ApiTypeHelper.isDefined(this.dynamicTemplates)) {
 			generator.writeKey("dynamic_templates");
 			generator.writeStartArray();
 			for (Map<String, DynamicTemplate> item0 : this.dynamicTemplates) {
@@ -289,7 +296,7 @@ public class TypeMapping implements JsonpSerializable {
 			this.indexField.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.meta)) {
+		if (ApiTypeHelper.isDefined(this.meta)) {
 			generator.writeKey("_meta");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
@@ -305,7 +312,7 @@ public class TypeMapping implements JsonpSerializable {
 			generator.write(this.numericDetection);
 
 		}
-		if (ModelTypeHelper.isDefined(this.properties)) {
+		if (ApiTypeHelper.isDefined(this.properties)) {
 			generator.writeKey("properties");
 			generator.writeStartObject();
 			for (Map.Entry<String, Property> item0 : this.properties.entrySet()) {
@@ -331,7 +338,7 @@ public class TypeMapping implements JsonpSerializable {
 			this.source.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.runtime)) {
+		if (ApiTypeHelper.isDefined(this.runtime)) {
 			generator.writeKey("runtime");
 			generator.writeStartObject();
 			for (Map.Entry<String, RuntimeField> item0 : this.runtime.entrySet()) {
@@ -355,6 +362,7 @@ public class TypeMapping implements JsonpSerializable {
 	/**
 	 * Builder for {@link TypeMapping}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TypeMapping> {
 		@Nullable
 		private AllField allField;
@@ -436,10 +444,8 @@ public class TypeMapping implements JsonpSerializable {
 		 * API name: {@code dynamic_date_formats}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>dynamicDateFormats</code>.
-		 * Use <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>dynamicDateFormats</code> to <code>null</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder dynamicDateFormats(List<String> list) {
 			this.dynamicDateFormats = _listAddAll(this.dynamicDateFormats, list);
@@ -459,11 +465,9 @@ public class TypeMapping implements JsonpSerializable {
 		/**
 		 * API name: {@code dynamic_templates}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>dynamicTemplates</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>dynamicTemplates</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>dynamicTemplates</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder dynamicTemplates(List<Map<String, DynamicTemplate>> list) {
 			this.dynamicTemplates = _listAddAll(this.dynamicTemplates, list);
@@ -514,11 +518,9 @@ public class TypeMapping implements JsonpSerializable {
 		/**
 		 * API name: {@code _meta}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>meta</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>meta</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>meta</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder meta(Map<String, JsonData> map) {
 			this.meta = _mapPutAll(this.meta, map);
@@ -546,11 +548,9 @@ public class TypeMapping implements JsonpSerializable {
 		/**
 		 * API name: {@code properties}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>properties</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>properties</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>properties</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder properties(Map<String, Property> map) {
 			this.properties = _mapPutAll(this.properties, map);
@@ -624,11 +624,9 @@ public class TypeMapping implements JsonpSerializable {
 		/**
 		 * API name: {@code runtime}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>runtime</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>runtime</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>runtime</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder runtime(Map<String, RuntimeField> map) {
 			this.runtime = _mapPutAll(this.runtime, map);

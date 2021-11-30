@@ -34,6 +34,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.analysis.KStemTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/analysis/token_filters.ts#L237-L239">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class KStemTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -67,6 +74,7 @@ public class KStemTokenFilter extends TokenFilterBase implements TokenFilterDefi
 	/**
 	 * Builder for {@link KStemTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<KStemTokenFilter> {

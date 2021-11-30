@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Sql
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/xpack/usage/types.ts#L347-L350">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Sql extends Base {
 	private final Map<String, Integer> features;
@@ -50,8 +57,8 @@ public class Sql extends Base {
 	private Sql(Builder builder) {
 		super(builder);
 
-		this.features = ModelTypeHelper.unmodifiableRequired(builder.features, this, "features");
-		this.queries = ModelTypeHelper.unmodifiableRequired(builder.queries, this, "queries");
+		this.features = ApiTypeHelper.unmodifiableRequired(builder.features, this, "features");
+		this.queries = ApiTypeHelper.unmodifiableRequired(builder.queries, this, "queries");
 
 	}
 
@@ -76,7 +83,7 @@ public class Sql extends Base {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.features)) {
+		if (ApiTypeHelper.isDefined(this.features)) {
 			generator.writeKey("features");
 			generator.writeStartObject();
 			for (Map.Entry<String, Integer> item0 : this.features.entrySet()) {
@@ -87,7 +94,7 @@ public class Sql extends Base {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.queries)) {
+		if (ApiTypeHelper.isDefined(this.queries)) {
 			generator.writeKey("queries");
 			generator.writeStartObject();
 			for (Map.Entry<String, XpackUsageQuery> item0 : this.queries.entrySet()) {
@@ -106,6 +113,7 @@ public class Sql extends Base {
 	/**
 	 * Builder for {@link Sql}.
 	 */
+
 	public static class Builder extends Base.AbstractBuilder<Builder> implements ObjectBuilder<Sql> {
 		private Map<String, Integer> features;
 
@@ -114,11 +122,9 @@ public class Sql extends Base {
 		/**
 		 * Required - API name: {@code features}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>features</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>features</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>features</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder features(Map<String, Integer> map) {
 			this.features = _mapPutAll(this.features, map);
@@ -138,11 +144,9 @@ public class Sql extends Base {
 		/**
 		 * Required - API name: {@code queries}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>queries</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>queries</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>queries</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder queries(Map<String, XpackUsageQuery> map) {
 			this.queries = _mapPutAll(this.queries, map);

@@ -27,6 +27,12 @@ import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/query_dsl/abstractions.ts#L199-L202">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public enum CombinedFieldsZeroTerms implements JsonEnum {
 	None("none"),

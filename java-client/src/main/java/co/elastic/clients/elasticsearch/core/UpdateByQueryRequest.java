@@ -43,7 +43,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -59,6 +59,15 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: _global.update_by_query.Request
+
+/**
+ * Performs an update on every document in the index without changing the
+ * source, for example to pick up a mapping change.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/update_by_query/UpdateByQueryRequest.ts#L38-L89">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class UpdateByQueryRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -174,18 +183,18 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	private UpdateByQueryRequest(Builder builder) {
 
 		this.source = builder.source;
-		this.sourceExcludes = ModelTypeHelper.unmodifiable(builder.sourceExcludes);
-		this.sourceIncludes = ModelTypeHelper.unmodifiable(builder.sourceIncludes);
+		this.sourceExcludes = ApiTypeHelper.unmodifiable(builder.sourceExcludes);
+		this.sourceIncludes = ApiTypeHelper.unmodifiable(builder.sourceIncludes);
 		this.allowNoIndices = builder.allowNoIndices;
 		this.analyzeWildcard = builder.analyzeWildcard;
 		this.analyzer = builder.analyzer;
 		this.conflicts = builder.conflicts;
 		this.defaultOperator = builder.defaultOperator;
 		this.df = builder.df;
-		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
+		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.from = builder.from;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
-		this.index = ModelTypeHelper.unmodifiableRequired(builder.index, this, "index");
+		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
 		this.lenient = builder.lenient;
 		this.maxDocs = builder.maxDocs;
 		this.pipeline = builder.pipeline;
@@ -203,8 +212,8 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		this.size = builder.size;
 		this.slice = builder.slice;
 		this.slices = builder.slices;
-		this.sort = ModelTypeHelper.unmodifiable(builder.sort);
-		this.stats = ModelTypeHelper.unmodifiable(builder.stats);
+		this.sort = ApiTypeHelper.unmodifiable(builder.sort);
+		this.stats = ApiTypeHelper.unmodifiable(builder.stats);
 		this.terminateAfter = builder.terminateAfter;
 		this.timeout = builder.timeout;
 		this.version = builder.version;
@@ -645,6 +654,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Builder for {@link UpdateByQueryRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UpdateByQueryRequest> {
 		@Nullable
 		private SourceConfigParam source;
@@ -785,11 +795,9 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code _source_excludes}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>sourceExcludes</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>sourceExcludes</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>sourceExcludes</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder sourceExcludes(List<String> list) {
 			this.sourceExcludes = _listAddAll(this.sourceExcludes, list);
@@ -813,11 +821,9 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code _source_includes}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>sourceIncludes</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>sourceIncludes</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>sourceIncludes</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder sourceIncludes(List<String> list) {
 			this.sourceIncludes = _listAddAll(this.sourceIncludes, list);
@@ -904,11 +910,9 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>expandWildcards</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder expandWildcards(List<ExpandWildcard> list) {
 			this.expandWildcards = _listAddAll(this.expandWildcards, list);
@@ -955,11 +959,9 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>index</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>index</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder index(List<String> list) {
 			this.index = _listAddAll(this.index, list);
@@ -1190,11 +1192,9 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code sort}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>sort</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>sort</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>sort</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder sort(List<String> list) {
 			this.sort = _listAddAll(this.sort, list);
@@ -1218,11 +1218,9 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code stats}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>stats</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>stats</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>stats</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder stats(List<String> list) {
 			this.stats = _listAddAll(this.stats, list);
@@ -1427,7 +1425,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
 				}
-				if (ModelTypeHelper.isDefined(request.stats)) {
+				if (ApiTypeHelper.isDefined(request.stats)) {
 					params.put("stats", request.stats.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.allowNoIndices != null) {
@@ -1439,7 +1437,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 				if (request.from != null) {
 					params.put("from", String.valueOf(request.from));
 				}
-				if (ModelTypeHelper.isDefined(request.expandWildcards)) {
+				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
@@ -1464,7 +1462,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 				if (request.refresh != null) {
 					params.put("refresh", String.valueOf(request.refresh));
 				}
-				if (ModelTypeHelper.isDefined(request.sort)) {
+				if (ApiTypeHelper.isDefined(request.sort)) {
 					params.put("sort", request.sort.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.searchType != null) {
@@ -1488,14 +1486,14 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 				if (request.source != null) {
 					params.put("_source", request.source._toJsonString());
 				}
-				if (ModelTypeHelper.isDefined(request.sourceExcludes)) {
+				if (ApiTypeHelper.isDefined(request.sourceExcludes)) {
 					params.put("_source_excludes",
 							request.sourceExcludes.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.requestCache != null) {
 					params.put("request_cache", String.valueOf(request.requestCache));
 				}
-				if (ModelTypeHelper.isDefined(request.sourceIncludes)) {
+				if (ApiTypeHelper.isDefined(request.sourceIncludes)) {
 					params.put("_source_includes",
 							request.sourceIncludes.stream().map(v -> v).collect(Collectors.joining(",")));
 				}

@@ -40,6 +40,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform._types.Settings
+
+/**
+ * The source of the data for the transform.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/transform/_types/Transform.ts#L83-L101">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Settings implements JsonpSerializable {
 	@Nullable
@@ -136,6 +144,7 @@ public class Settings implements JsonpSerializable {
 	/**
 	 * Builder for {@link Settings}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Settings> {
 		@Nullable
 		private Boolean datesAsEpochMillis;

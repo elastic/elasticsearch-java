@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: slm._types.Statistics
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/slm/_types/SnapshotLifecycle.ts#L45-L68">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Statistics implements JsonpSerializable {
 	@Nullable
@@ -241,6 +248,7 @@ public class Statistics implements JsonpSerializable {
 	/**
 	 * Builder for {@link Statistics}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Statistics> {
 		@Nullable
 		private String retentionDeletionTime;

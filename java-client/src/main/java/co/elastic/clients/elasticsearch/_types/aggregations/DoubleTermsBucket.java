@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.DoubleTermsBucket
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/Aggregate.ts#L402-L405">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DoubleTermsBucket extends TermsBucketBase {
 	private final double key;
@@ -50,7 +57,7 @@ public class DoubleTermsBucket extends TermsBucketBase {
 	private DoubleTermsBucket(Builder builder) {
 		super(builder);
 
-		this.key = ModelTypeHelper.requireNonNull(builder.key, this, "key");
+		this.key = ApiTypeHelper.requireNonNull(builder.key, this, "key");
 		this.keyAsString = builder.keyAsString;
 
 	}
@@ -93,6 +100,7 @@ public class DoubleTermsBucket extends TermsBucketBase {
 	/**
 	 * Builder for {@link DoubleTermsBucket}.
 	 */
+
 	public static class Builder extends TermsBucketBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DoubleTermsBucket> {

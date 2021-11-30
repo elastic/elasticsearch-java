@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,6 +43,14 @@ import javax.annotation.Nullable;
 
 // typedef: ml.delete_calendar_job.Request
 
+/**
+ * Deletes anomaly detection jobs from a calendar.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/delete_calendar_job/MlDeleteCalendarJobRequest.ts#L23-L37">API
+ *      specification</a>
+ */
+
 public class DeleteCalendarJobRequest extends RequestBase {
 	private final String calendarId;
 
@@ -52,8 +60,8 @@ public class DeleteCalendarJobRequest extends RequestBase {
 
 	private DeleteCalendarJobRequest(Builder builder) {
 
-		this.calendarId = ModelTypeHelper.requireNonNull(builder.calendarId, this, "calendarId");
-		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.calendarId = ApiTypeHelper.requireNonNull(builder.calendarId, this, "calendarId");
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 
 	}
 
@@ -85,6 +93,7 @@ public class DeleteCalendarJobRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteCalendarJobRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteCalendarJobRequest> {
 		private String calendarId;
 

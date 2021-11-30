@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: searchable_snapshots.mount.MountedSnapshot
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/searchable_snapshots/mount/types.ts#L23-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MountedSnapshot implements JsonpSerializable {
 	private final String snapshot;
@@ -53,9 +60,9 @@ public class MountedSnapshot implements JsonpSerializable {
 
 	private MountedSnapshot(Builder builder) {
 
-		this.snapshot = ModelTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
-		this.indices = ModelTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
-		this.shards = ModelTypeHelper.requireNonNull(builder.shards, this, "shards");
+		this.snapshot = ApiTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
+		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
+		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
 
 	}
 
@@ -98,7 +105,7 @@ public class MountedSnapshot implements JsonpSerializable {
 		generator.writeKey("snapshot");
 		generator.write(this.snapshot);
 
-		if (ModelTypeHelper.isDefined(this.indices)) {
+		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartArray();
 			for (String item0 : this.indices) {
@@ -118,6 +125,7 @@ public class MountedSnapshot implements JsonpSerializable {
 	/**
 	 * Builder for {@link MountedSnapshot}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MountedSnapshot> {
 		private String snapshot;
 
@@ -136,11 +144,9 @@ public class MountedSnapshot implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code indices}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>indices</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>indices</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder indices(List<String> list) {
 			this.indices = _listAddAll(this.indices, list);

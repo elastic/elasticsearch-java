@@ -36,6 +36,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.WhitespaceTokenizer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/analysis/tokenizers.ts#L114-L117">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class WhitespaceTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
 	@Nullable
@@ -87,6 +94,7 @@ public class WhitespaceTokenizer extends TokenizerBase implements TokenizerDefin
 	/**
 	 * Builder for {@link WhitespaceTokenizer}.
 	 */
+
 	public static class Builder extends TokenizerBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<WhitespaceTokenizer> {

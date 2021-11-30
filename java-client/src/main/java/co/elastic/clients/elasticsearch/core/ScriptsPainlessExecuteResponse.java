@@ -32,7 +32,7 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: _global.scripts_painless_execute.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/scripts_painless_execute/ExecutePainlessScriptResponse.ts#L20-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ScriptsPainlessExecuteResponse<TResult> implements JsonpSerializable {
 	private final TResult result;
@@ -53,7 +60,7 @@ public class ScriptsPainlessExecuteResponse<TResult> implements JsonpSerializabl
 
 	private ScriptsPainlessExecuteResponse(Builder<TResult> builder) {
 
-		this.result = ModelTypeHelper.requireNonNull(builder.result, this, "result");
+		this.result = ApiTypeHelper.requireNonNull(builder.result, this, "result");
 		this.tResultSerializer = builder.tResultSerializer;
 
 	}
@@ -91,6 +98,7 @@ public class ScriptsPainlessExecuteResponse<TResult> implements JsonpSerializabl
 	/**
 	 * Builder for {@link ScriptsPainlessExecuteResponse}.
 	 */
+
 	public static class Builder<TResult> extends ObjectBuilderBase
 			implements
 				ObjectBuilder<ScriptsPainlessExecuteResponse<TResult>> {
@@ -132,7 +140,7 @@ public class ScriptsPainlessExecuteResponse<TResult> implements JsonpSerializabl
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for ScriptsPainlessExecuteResponse
+	 * Create a JSON deserializer for ScriptsPainlessExecuteResponse
 	 */
 	public static <TResult> JsonpDeserializer<ScriptsPainlessExecuteResponse<TResult>> createScriptsPainlessExecuteResponseDeserializer(
 			JsonpDeserializer<TResult> tResultDeserializer) {

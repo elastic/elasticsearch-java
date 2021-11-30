@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.analyze.AnalyzeDetail
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/analyze/types.ts#L22-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AnalyzeDetail implements JsonpSerializable {
 	@Nullable
@@ -59,9 +66,9 @@ public class AnalyzeDetail implements JsonpSerializable {
 	private AnalyzeDetail(Builder builder) {
 
 		this.analyzer = builder.analyzer;
-		this.charfilters = ModelTypeHelper.unmodifiable(builder.charfilters);
-		this.customAnalyzer = ModelTypeHelper.requireNonNull(builder.customAnalyzer, this, "customAnalyzer");
-		this.tokenfilters = ModelTypeHelper.unmodifiable(builder.tokenfilters);
+		this.charfilters = ApiTypeHelper.unmodifiable(builder.charfilters);
+		this.customAnalyzer = ApiTypeHelper.requireNonNull(builder.customAnalyzer, this, "customAnalyzer");
+		this.tokenfilters = ApiTypeHelper.unmodifiable(builder.tokenfilters);
 		this.tokenizer = builder.tokenizer;
 
 	}
@@ -123,7 +130,7 @@ public class AnalyzeDetail implements JsonpSerializable {
 			this.analyzer.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.charfilters)) {
+		if (ApiTypeHelper.isDefined(this.charfilters)) {
 			generator.writeKey("charfilters");
 			generator.writeStartArray();
 			for (CharFilterDetail item0 : this.charfilters) {
@@ -136,7 +143,7 @@ public class AnalyzeDetail implements JsonpSerializable {
 		generator.writeKey("custom_analyzer");
 		generator.write(this.customAnalyzer);
 
-		if (ModelTypeHelper.isDefined(this.tokenfilters)) {
+		if (ApiTypeHelper.isDefined(this.tokenfilters)) {
 			generator.writeKey("tokenfilters");
 			generator.writeStartArray();
 			for (TokenDetail item0 : this.tokenfilters) {
@@ -159,6 +166,7 @@ public class AnalyzeDetail implements JsonpSerializable {
 	/**
 	 * Builder for {@link AnalyzeDetail}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AnalyzeDetail> {
 		@Nullable
 		private AnalyzerDetail analyzer;
@@ -192,11 +200,9 @@ public class AnalyzeDetail implements JsonpSerializable {
 		/**
 		 * API name: {@code charfilters}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>charfilters</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>charfilters</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>charfilters</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder charfilters(List<CharFilterDetail> list) {
 			this.charfilters = _listAddAll(this.charfilters, list);
@@ -233,11 +239,9 @@ public class AnalyzeDetail implements JsonpSerializable {
 		/**
 		 * API name: {@code tokenfilters}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>tokenfilters</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>tokenfilters</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>tokenfilters</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder tokenfilters(List<TokenDetail> list) {
 			this.tokenfilters = _listAddAll(this.tokenfilters, list);

@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.render_search_template.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/render_search_template/RenderSearchTemplateResponse.ts#L23-L25">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RenderSearchTemplateResponse implements JsonpSerializable {
 	private final Map<String, JsonData> templateOutput;
@@ -49,7 +56,7 @@ public class RenderSearchTemplateResponse implements JsonpSerializable {
 
 	private RenderSearchTemplateResponse(Builder builder) {
 
-		this.templateOutput = ModelTypeHelper.unmodifiableRequired(builder.templateOutput, this, "templateOutput");
+		this.templateOutput = ApiTypeHelper.unmodifiableRequired(builder.templateOutput, this, "templateOutput");
 
 	}
 
@@ -75,7 +82,7 @@ public class RenderSearchTemplateResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.templateOutput)) {
+		if (ApiTypeHelper.isDefined(this.templateOutput)) {
 			generator.writeKey("template_output");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.templateOutput.entrySet()) {
@@ -94,17 +101,16 @@ public class RenderSearchTemplateResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link RenderSearchTemplateResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RenderSearchTemplateResponse> {
 		private Map<String, JsonData> templateOutput;
 
 		/**
 		 * Required - API name: {@code template_output}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>templateOutput</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>templateOutput</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>templateOutput</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder templateOutput(Map<String, JsonData> map) {
 			this.templateOutput = _mapPutAll(this.templateOutput, map);

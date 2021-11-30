@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.Page
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/Page.ts#L22-L33">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Page implements JsonpSerializable {
 	@Nullable
@@ -108,6 +115,7 @@ public class Page implements JsonpSerializable {
 	/**
 	 * Builder for {@link Page}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Page> {
 		@Nullable
 		private Integer from;

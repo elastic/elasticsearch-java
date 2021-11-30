@@ -36,6 +36,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MissingAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/bucket.ts#L232-L235">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MissingAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
@@ -103,6 +110,7 @@ public class MissingAggregation extends BucketAggregationBase implements Aggrega
 	/**
 	 * Builder for {@link MissingAggregation}.
 	 */
+
 	public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<MissingAggregation> {

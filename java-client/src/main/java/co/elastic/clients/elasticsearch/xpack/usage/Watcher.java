@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -36,6 +36,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Watcher
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/xpack/usage/types.ts#L421-L425">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Watcher extends Base {
 	private final WatcherActions execution;
@@ -49,9 +56,9 @@ public class Watcher extends Base {
 	private Watcher(Builder builder) {
 		super(builder);
 
-		this.execution = ModelTypeHelper.requireNonNull(builder.execution, this, "execution");
-		this.watch = ModelTypeHelper.requireNonNull(builder.watch, this, "watch");
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
+		this.execution = ApiTypeHelper.requireNonNull(builder.execution, this, "execution");
+		this.watch = ApiTypeHelper.requireNonNull(builder.watch, this, "watch");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
 
 	}
 
@@ -99,6 +106,7 @@ public class Watcher extends Base {
 	/**
 	 * Builder for {@link Watcher}.
 	 */
+
 	public static class Builder extends Base.AbstractBuilder<Builder> implements ObjectBuilder<Watcher> {
 		private WatcherActions execution;
 

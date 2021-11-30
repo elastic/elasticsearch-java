@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot._types.SnapshotStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/snapshot/_types/SnapshotStats.ts#L23-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SnapshotStats implements JsonpSerializable {
 	private final FileCountSnapshotStats incremental;
@@ -53,10 +60,10 @@ public class SnapshotStats implements JsonpSerializable {
 
 	private SnapshotStats(Builder builder) {
 
-		this.incremental = ModelTypeHelper.requireNonNull(builder.incremental, this, "incremental");
-		this.startTimeInMillis = ModelTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
-		this.timeInMillis = ModelTypeHelper.requireNonNull(builder.timeInMillis, this, "timeInMillis");
-		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
+		this.incremental = ApiTypeHelper.requireNonNull(builder.incremental, this, "incremental");
+		this.startTimeInMillis = ApiTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
+		this.timeInMillis = ApiTypeHelper.requireNonNull(builder.timeInMillis, this, "timeInMillis");
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
 
 	}
 
@@ -122,6 +129,7 @@ public class SnapshotStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link SnapshotStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SnapshotStats> {
 		private FileCountSnapshotStats incremental;
 

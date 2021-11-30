@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -38,6 +38,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.GeoPolygonQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/query_dsl/geo.ts#L63-L71">API
+ *      specification</a>
+ * @deprecated 7.12.0 Use geo-shape instead.
+ */
+@Deprecated
 @JsonpDeserializable
 public class GeoPolygonQuery extends QueryBase implements QueryVariant {
 	private final String field;
@@ -54,8 +63,8 @@ public class GeoPolygonQuery extends QueryBase implements QueryVariant {
 
 	private GeoPolygonQuery(Builder builder) {
 		super(builder);
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
-		this.polygon = ModelTypeHelper.requireNonNull(builder.polygon, this, "polygon");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.polygon = ApiTypeHelper.requireNonNull(builder.polygon, this, "polygon");
 
 		this.validationMethod = builder.validationMethod;
 		this.ignoreUnmapped = builder.ignoreUnmapped;
@@ -126,6 +135,7 @@ public class GeoPolygonQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link GeoPolygonQuery}.
 	 */
+	@Deprecated
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<GeoPolygonQuery> {
 		private String field;
 

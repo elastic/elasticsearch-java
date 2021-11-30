@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.MlDataFrameAnalyticsJobs
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/xpack/usage/types.ts#L163-L167">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MlDataFrameAnalyticsJobs implements JsonpSerializable {
 	@Nullable
@@ -54,7 +61,7 @@ public class MlDataFrameAnalyticsJobs implements JsonpSerializable {
 	private MlDataFrameAnalyticsJobs(Builder builder) {
 
 		this.memoryUsage = builder.memoryUsage;
-		this.all = ModelTypeHelper.requireNonNull(builder.all, this, "all");
+		this.all = ApiTypeHelper.requireNonNull(builder.all, this, "all");
 		this.analysisCounts = builder.analysisCounts;
 
 	}
@@ -118,6 +125,7 @@ public class MlDataFrameAnalyticsJobs implements JsonpSerializable {
 	/**
 	 * Builder for {@link MlDataFrameAnalyticsJobs}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MlDataFrameAnalyticsJobs> {
 		@Nullable
 		private MlDataFrameAnalyticsJobsMemory memoryUsage;

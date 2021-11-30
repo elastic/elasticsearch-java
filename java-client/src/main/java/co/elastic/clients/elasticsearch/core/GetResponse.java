@@ -36,6 +36,13 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 // typedef: _global.get.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/get/GetResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetResponse<TDocument> extends GetResult<TDocument> {
 	// ---------------------------------------------------------------------------------------------
@@ -55,6 +62,7 @@ public class GetResponse<TDocument> extends GetResult<TDocument> {
 	/**
 	 * Builder for {@link GetResponse}.
 	 */
+
 	public static class Builder<TDocument> extends GetResult.AbstractBuilder<TDocument, Builder<TDocument>>
 			implements
 				ObjectBuilder<GetResponse<TDocument>> {
@@ -79,7 +87,7 @@ public class GetResponse<TDocument> extends GetResult<TDocument> {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for GetResponse
+	 * Create a JSON deserializer for GetResponse
 	 */
 	public static <TDocument> JsonpDeserializer<GetResponse<TDocument>> createGetResponseDeserializer(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {

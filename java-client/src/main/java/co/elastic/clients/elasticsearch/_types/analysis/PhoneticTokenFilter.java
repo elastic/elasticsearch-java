@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.PhoneticTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/analysis/phonetic-plugin.ts#L64-L72">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PhoneticTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final PhoneticEncoder encoder;
@@ -60,12 +67,12 @@ public class PhoneticTokenFilter extends TokenFilterBase implements TokenFilterD
 	private PhoneticTokenFilter(Builder builder) {
 		super(builder);
 
-		this.encoder = ModelTypeHelper.requireNonNull(builder.encoder, this, "encoder");
-		this.languageset = ModelTypeHelper.unmodifiableRequired(builder.languageset, this, "languageset");
+		this.encoder = ApiTypeHelper.requireNonNull(builder.encoder, this, "encoder");
+		this.languageset = ApiTypeHelper.unmodifiableRequired(builder.languageset, this, "languageset");
 		this.maxCodeLen = builder.maxCodeLen;
-		this.nameType = ModelTypeHelper.requireNonNull(builder.nameType, this, "nameType");
+		this.nameType = ApiTypeHelper.requireNonNull(builder.nameType, this, "nameType");
 		this.replace = builder.replace;
-		this.ruleType = ModelTypeHelper.requireNonNull(builder.ruleType, this, "ruleType");
+		this.ruleType = ApiTypeHelper.requireNonNull(builder.ruleType, this, "ruleType");
 
 	}
 
@@ -131,7 +138,7 @@ public class PhoneticTokenFilter extends TokenFilterBase implements TokenFilterD
 		super.serializeInternal(generator, mapper);
 		generator.writeKey("encoder");
 		this.encoder.serialize(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.languageset)) {
+		if (ApiTypeHelper.isDefined(this.languageset)) {
 			generator.writeKey("languageset");
 			generator.writeStartArray();
 			for (PhoneticLanguage item0 : this.languageset) {
@@ -162,6 +169,7 @@ public class PhoneticTokenFilter extends TokenFilterBase implements TokenFilterD
 	/**
 	 * Builder for {@link PhoneticTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PhoneticTokenFilter> {
@@ -190,11 +198,9 @@ public class PhoneticTokenFilter extends TokenFilterBase implements TokenFilterD
 		/**
 		 * Required - API name: {@code languageset}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>languageset</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>languageset</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>languageset</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder languageset(List<PhoneticLanguage> list) {
 			this.languageset = _listAddAll(this.languageset, list);

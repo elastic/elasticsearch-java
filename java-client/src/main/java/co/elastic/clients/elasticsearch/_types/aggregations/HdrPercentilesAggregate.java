@@ -33,6 +33,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.aggregations.HdrPercentilesAggregate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/Aggregate.ts#L152-L153">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class HdrPercentilesAggregate extends PercentilesAggregateBase implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -59,6 +66,7 @@ public class HdrPercentilesAggregate extends PercentilesAggregateBase implements
 	/**
 	 * Builder for {@link HdrPercentilesAggregate}.
 	 */
+
 	public static class Builder extends PercentilesAggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<HdrPercentilesAggregate> {

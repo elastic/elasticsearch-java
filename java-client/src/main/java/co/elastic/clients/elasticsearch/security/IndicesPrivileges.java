@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security._types.IndicesPrivileges
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/security/_types/Privileges.ts#L77-L100">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IndicesPrivileges implements JsonpSerializable {
 	private final List<FieldSecurity> fieldSecurity;
@@ -58,10 +65,10 @@ public class IndicesPrivileges implements JsonpSerializable {
 
 	private IndicesPrivileges(Builder builder) {
 
-		this.fieldSecurity = ModelTypeHelper.unmodifiable(builder.fieldSecurity);
-		this.names = ModelTypeHelper.unmodifiableRequired(builder.names, this, "names");
-		this.privileges = ModelTypeHelper.unmodifiableRequired(builder.privileges, this, "privileges");
-		this.query = ModelTypeHelper.unmodifiable(builder.query);
+		this.fieldSecurity = ApiTypeHelper.unmodifiable(builder.fieldSecurity);
+		this.names = ApiTypeHelper.unmodifiableRequired(builder.names, this, "names");
+		this.privileges = ApiTypeHelper.unmodifiableRequired(builder.privileges, this, "privileges");
+		this.query = ApiTypeHelper.unmodifiable(builder.query);
 		this.allowRestrictedIndices = builder.allowRestrictedIndices;
 
 	}
@@ -136,7 +143,7 @@ public class IndicesPrivileges implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.fieldSecurity)) {
+		if (ApiTypeHelper.isDefined(this.fieldSecurity)) {
 			generator.writeKey("field_security");
 			generator.writeStartArray();
 			for (FieldSecurity item0 : this.fieldSecurity) {
@@ -146,7 +153,7 @@ public class IndicesPrivileges implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.names)) {
+		if (ApiTypeHelper.isDefined(this.names)) {
 			generator.writeKey("names");
 			generator.writeStartArray();
 			for (String item0 : this.names) {
@@ -156,7 +163,7 @@ public class IndicesPrivileges implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.privileges)) {
+		if (ApiTypeHelper.isDefined(this.privileges)) {
 			generator.writeKey("privileges");
 			generator.writeStartArray();
 			for (IndexPrivilege item0 : this.privileges) {
@@ -165,7 +172,7 @@ public class IndicesPrivileges implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.query)) {
+		if (ApiTypeHelper.isDefined(this.query)) {
 			generator.writeKey("query");
 			generator.writeStartArray();
 			for (String item0 : this.query) {
@@ -188,6 +195,7 @@ public class IndicesPrivileges implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndicesPrivileges}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndicesPrivileges> {
 		@Nullable
 		private List<FieldSecurity> fieldSecurity;
@@ -207,11 +215,9 @@ public class IndicesPrivileges implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code field_security}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>fieldSecurity</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>fieldSecurity</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>fieldSecurity</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder fieldSecurity(List<FieldSecurity> list) {
 			this.fieldSecurity = _listAddAll(this.fieldSecurity, list);
@@ -247,11 +253,9 @@ public class IndicesPrivileges implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code names}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>names</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>names</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>names</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder names(List<String> list) {
 			this.names = _listAddAll(this.names, list);
@@ -277,11 +281,9 @@ public class IndicesPrivileges implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code privileges}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>privileges</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>privileges</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>privileges</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder privileges(List<IndexPrivilege> list) {
 			this.privileges = _listAddAll(this.privileges, list);
@@ -308,11 +310,9 @@ public class IndicesPrivileges implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code query}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>query</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>query</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>query</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder query(List<String> list) {
 			this.query = _listAddAll(this.query, list);

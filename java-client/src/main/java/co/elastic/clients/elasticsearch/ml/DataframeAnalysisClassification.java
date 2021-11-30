@@ -37,6 +37,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisClassification
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/DataframeAnalytics.ts#L226-L235">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeAnalysisClassification extends DataframeAnalysisBase implements DataframeAnalysisVariant {
 	@Nullable
@@ -113,6 +120,7 @@ public class DataframeAnalysisClassification extends DataframeAnalysisBase imple
 	/**
 	 * Builder for {@link DataframeAnalysisClassification}.
 	 */
+
 	public static class Builder extends DataframeAnalysisBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DataframeAnalysisClassification> {

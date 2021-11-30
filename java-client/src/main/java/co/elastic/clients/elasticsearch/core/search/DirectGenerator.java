@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.DirectGenerator
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/search/_types/suggester.ts#L135-L147">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DirectGenerator implements JsonpSerializable {
 	private final String field;
@@ -80,7 +87,7 @@ public class DirectGenerator implements JsonpSerializable {
 
 	private DirectGenerator(Builder builder) {
 
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.maxEdits = builder.maxEdits;
 		this.maxInspections = builder.maxInspections;
 		this.maxTermFreq = builder.maxTermFreq;
@@ -256,6 +263,7 @@ public class DirectGenerator implements JsonpSerializable {
 	/**
 	 * Builder for {@link DirectGenerator}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DirectGenerator> {
 		private String field;
 

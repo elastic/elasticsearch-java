@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -46,6 +46,15 @@ import javax.annotation.Nullable;
 
 // typedef: cat.thread_pool.Request
 
+/**
+ * Returns cluster-wide thread pool statistics per node. By default the active,
+ * queue and rejected statistics are returned for all thread pools.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cat/thread_pool/CatThreadPoolRequest.ts#L24-L36">API
+ *      specification</a>
+ */
+
 public class ThreadPoolRequest extends CatRequestBase {
 	@Nullable
 	private final ThreadPoolSize size;
@@ -57,7 +66,7 @@ public class ThreadPoolRequest extends CatRequestBase {
 	private ThreadPoolRequest(Builder builder) {
 
 		this.size = builder.size;
-		this.threadPoolPatterns = ModelTypeHelper.unmodifiable(builder.threadPoolPatterns);
+		this.threadPoolPatterns = ApiTypeHelper.unmodifiable(builder.threadPoolPatterns);
 
 	}
 
@@ -88,6 +97,7 @@ public class ThreadPoolRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link ThreadPoolRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ThreadPoolRequest> {
 		@Nullable
 		private ThreadPoolSize size;
@@ -110,10 +120,8 @@ public class ThreadPoolRequest extends CatRequestBase {
 		 * API name: {@code thread_pool_patterns}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>threadPoolPatterns</code>.
-		 * Use <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>threadPoolPatterns</code> to <code>null</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder threadPoolPatterns(List<String> list) {
 			this.threadPoolPatterns = _listAddAll(this.threadPoolPatterns, list);
@@ -166,7 +174,7 @@ public class ThreadPoolRequest extends CatRequestBase {
 
 				int propsSet = 0;
 
-				if (ModelTypeHelper.isDefined(request.threadPoolPatterns()))
+				if (ApiTypeHelper.isDefined(request.threadPoolPatterns()))
 					propsSet |= _threadPoolPatterns;
 
 				if (propsSet == 0) {

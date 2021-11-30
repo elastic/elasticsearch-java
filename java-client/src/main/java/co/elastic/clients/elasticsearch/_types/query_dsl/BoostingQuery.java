@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
@@ -37,6 +37,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.BoostingQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/query_dsl/compound.ts#L36-L40">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class BoostingQuery extends QueryBase implements QueryVariant {
 	private final double negativeBoost;
@@ -50,9 +57,9 @@ public class BoostingQuery extends QueryBase implements QueryVariant {
 	private BoostingQuery(Builder builder) {
 		super(builder);
 
-		this.negativeBoost = ModelTypeHelper.requireNonNull(builder.negativeBoost, this, "negativeBoost");
-		this.negative = ModelTypeHelper.requireNonNull(builder.negative, this, "negative");
-		this.positive = ModelTypeHelper.requireNonNull(builder.positive, this, "positive");
+		this.negativeBoost = ApiTypeHelper.requireNonNull(builder.negativeBoost, this, "negativeBoost");
+		this.negative = ApiTypeHelper.requireNonNull(builder.negative, this, "negative");
+		this.positive = ApiTypeHelper.requireNonNull(builder.positive, this, "positive");
 
 	}
 
@@ -108,6 +115,7 @@ public class BoostingQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link BoostingQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<BoostingQuery> {
 		private Double negativeBoost;
 

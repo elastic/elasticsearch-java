@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.HistogramOrder
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/bucket.ts#L216-L219">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class HistogramOrder implements JsonpSerializable {
 	@Nullable
@@ -102,6 +109,7 @@ public class HistogramOrder implements JsonpSerializable {
 	/**
 	 * Builder for {@link HistogramOrder}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HistogramOrder> {
 		@Nullable
 		private SortOrder count;

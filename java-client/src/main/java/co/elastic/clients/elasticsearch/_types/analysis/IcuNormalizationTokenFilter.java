@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -36,6 +36,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.IcuNormalizationTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/analysis/icu-plugin.ts#L35-L38">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IcuNormalizationTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final IcuNormalizationType name;
@@ -45,7 +52,7 @@ public class IcuNormalizationTokenFilter extends TokenFilterBase implements Toke
 	private IcuNormalizationTokenFilter(Builder builder) {
 		super(builder);
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
@@ -82,6 +89,7 @@ public class IcuNormalizationTokenFilter extends TokenFilterBase implements Toke
 	/**
 	 * Builder for {@link IcuNormalizationTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<IcuNormalizationTokenFilter> {

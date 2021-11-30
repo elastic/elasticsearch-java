@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.FetchProfile
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/search/_types/profile.ts#L138-L145">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FetchProfile implements JsonpSerializable {
 	private final String type;
@@ -60,12 +67,12 @@ public class FetchProfile implements JsonpSerializable {
 
 	private FetchProfile(Builder builder) {
 
-		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
-		this.description = ModelTypeHelper.requireNonNull(builder.description, this, "description");
-		this.timeInNanos = ModelTypeHelper.requireNonNull(builder.timeInNanos, this, "timeInNanos");
-		this.breakdown = ModelTypeHelper.requireNonNull(builder.breakdown, this, "breakdown");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
+		this.timeInNanos = ApiTypeHelper.requireNonNull(builder.timeInNanos, this, "timeInNanos");
+		this.breakdown = ApiTypeHelper.requireNonNull(builder.breakdown, this, "breakdown");
 		this.debug = builder.debug;
-		this.children = ModelTypeHelper.unmodifiable(builder.children);
+		this.children = ApiTypeHelper.unmodifiable(builder.children);
 
 	}
 
@@ -144,7 +151,7 @@ public class FetchProfile implements JsonpSerializable {
 			this.debug.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.children)) {
+		if (ApiTypeHelper.isDefined(this.children)) {
 			generator.writeKey("children");
 			generator.writeStartArray();
 			for (FetchProfile item0 : this.children) {
@@ -162,6 +169,7 @@ public class FetchProfile implements JsonpSerializable {
 	/**
 	 * Builder for {@link FetchProfile}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FetchProfile> {
 		private String type;
 
@@ -235,11 +243,9 @@ public class FetchProfile implements JsonpSerializable {
 		/**
 		 * API name: {@code children}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>children</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>children</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>children</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder children(List<FetchProfile> list) {
 			this.children = _listAddAll(this.children, list);

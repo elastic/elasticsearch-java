@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,6 +37,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GeoHashGridBucket
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/Aggregate.ts#L485-L487">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GeoHashGridBucket extends MultiBucketBase {
 	private final String key;
@@ -46,7 +53,7 @@ public class GeoHashGridBucket extends MultiBucketBase {
 	private GeoHashGridBucket(Builder builder) {
 		super(builder);
 
-		this.key = ModelTypeHelper.requireNonNull(builder.key, this, "key");
+		this.key = ApiTypeHelper.requireNonNull(builder.key, this, "key");
 
 	}
 
@@ -74,6 +81,7 @@ public class GeoHashGridBucket extends MultiBucketBase {
 	/**
 	 * Builder for {@link GeoHashGridBucket}.
 	 */
+
 	public static class Builder extends MultiBucketBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<GeoHashGridBucket> {

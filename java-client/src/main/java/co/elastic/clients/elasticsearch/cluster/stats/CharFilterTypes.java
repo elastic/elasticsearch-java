@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.CharFilterTypes
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cluster/stats/types.ts#L125-L134">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CharFilterTypes implements JsonpSerializable {
 	private final List<FieldTypes> charFilterTypes;
@@ -61,17 +68,16 @@ public class CharFilterTypes implements JsonpSerializable {
 
 	private CharFilterTypes(Builder builder) {
 
-		this.charFilterTypes = ModelTypeHelper.unmodifiableRequired(builder.charFilterTypes, this, "charFilterTypes");
-		this.tokenizerTypes = ModelTypeHelper.unmodifiableRequired(builder.tokenizerTypes, this, "tokenizerTypes");
-		this.filterTypes = ModelTypeHelper.unmodifiableRequired(builder.filterTypes, this, "filterTypes");
-		this.analyzerTypes = ModelTypeHelper.unmodifiableRequired(builder.analyzerTypes, this, "analyzerTypes");
-		this.builtInCharFilters = ModelTypeHelper.unmodifiableRequired(builder.builtInCharFilters, this,
+		this.charFilterTypes = ApiTypeHelper.unmodifiableRequired(builder.charFilterTypes, this, "charFilterTypes");
+		this.tokenizerTypes = ApiTypeHelper.unmodifiableRequired(builder.tokenizerTypes, this, "tokenizerTypes");
+		this.filterTypes = ApiTypeHelper.unmodifiableRequired(builder.filterTypes, this, "filterTypes");
+		this.analyzerTypes = ApiTypeHelper.unmodifiableRequired(builder.analyzerTypes, this, "analyzerTypes");
+		this.builtInCharFilters = ApiTypeHelper.unmodifiableRequired(builder.builtInCharFilters, this,
 				"builtInCharFilters");
-		this.builtInTokenizers = ModelTypeHelper.unmodifiableRequired(builder.builtInTokenizers, this,
+		this.builtInTokenizers = ApiTypeHelper.unmodifiableRequired(builder.builtInTokenizers, this,
 				"builtInTokenizers");
-		this.builtInFilters = ModelTypeHelper.unmodifiableRequired(builder.builtInFilters, this, "builtInFilters");
-		this.builtInAnalyzers = ModelTypeHelper.unmodifiableRequired(builder.builtInAnalyzers, this,
-				"builtInAnalyzers");
+		this.builtInFilters = ApiTypeHelper.unmodifiableRequired(builder.builtInFilters, this, "builtInFilters");
+		this.builtInAnalyzers = ApiTypeHelper.unmodifiableRequired(builder.builtInAnalyzers, this, "builtInAnalyzers");
 
 	}
 
@@ -146,7 +152,7 @@ public class CharFilterTypes implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.charFilterTypes)) {
+		if (ApiTypeHelper.isDefined(this.charFilterTypes)) {
 			generator.writeKey("char_filter_types");
 			generator.writeStartArray();
 			for (FieldTypes item0 : this.charFilterTypes) {
@@ -156,7 +162,7 @@ public class CharFilterTypes implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.tokenizerTypes)) {
+		if (ApiTypeHelper.isDefined(this.tokenizerTypes)) {
 			generator.writeKey("tokenizer_types");
 			generator.writeStartArray();
 			for (FieldTypes item0 : this.tokenizerTypes) {
@@ -166,7 +172,7 @@ public class CharFilterTypes implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.filterTypes)) {
+		if (ApiTypeHelper.isDefined(this.filterTypes)) {
 			generator.writeKey("filter_types");
 			generator.writeStartArray();
 			for (FieldTypes item0 : this.filterTypes) {
@@ -176,7 +182,7 @@ public class CharFilterTypes implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.analyzerTypes)) {
+		if (ApiTypeHelper.isDefined(this.analyzerTypes)) {
 			generator.writeKey("analyzer_types");
 			generator.writeStartArray();
 			for (FieldTypes item0 : this.analyzerTypes) {
@@ -186,7 +192,7 @@ public class CharFilterTypes implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.builtInCharFilters)) {
+		if (ApiTypeHelper.isDefined(this.builtInCharFilters)) {
 			generator.writeKey("built_in_char_filters");
 			generator.writeStartArray();
 			for (FieldTypes item0 : this.builtInCharFilters) {
@@ -196,7 +202,7 @@ public class CharFilterTypes implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.builtInTokenizers)) {
+		if (ApiTypeHelper.isDefined(this.builtInTokenizers)) {
 			generator.writeKey("built_in_tokenizers");
 			generator.writeStartArray();
 			for (FieldTypes item0 : this.builtInTokenizers) {
@@ -206,7 +212,7 @@ public class CharFilterTypes implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.builtInFilters)) {
+		if (ApiTypeHelper.isDefined(this.builtInFilters)) {
 			generator.writeKey("built_in_filters");
 			generator.writeStartArray();
 			for (FieldTypes item0 : this.builtInFilters) {
@@ -216,7 +222,7 @@ public class CharFilterTypes implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.builtInAnalyzers)) {
+		if (ApiTypeHelper.isDefined(this.builtInAnalyzers)) {
 			generator.writeKey("built_in_analyzers");
 			generator.writeStartArray();
 			for (FieldTypes item0 : this.builtInAnalyzers) {
@@ -234,6 +240,7 @@ public class CharFilterTypes implements JsonpSerializable {
 	/**
 	 * Builder for {@link CharFilterTypes}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CharFilterTypes> {
 		private List<FieldTypes> charFilterTypes;
 
@@ -254,11 +261,9 @@ public class CharFilterTypes implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code char_filter_types}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>charFilterTypes</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>charFilterTypes</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>charFilterTypes</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder charFilterTypes(List<FieldTypes> list) {
 			this.charFilterTypes = _listAddAll(this.charFilterTypes, list);
@@ -287,11 +292,9 @@ public class CharFilterTypes implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code tokenizer_types}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>tokenizerTypes</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>tokenizerTypes</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>tokenizerTypes</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder tokenizerTypes(List<FieldTypes> list) {
 			this.tokenizerTypes = _listAddAll(this.tokenizerTypes, list);
@@ -320,11 +323,9 @@ public class CharFilterTypes implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code filter_types}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>filterTypes</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>filterTypes</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>filterTypes</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder filterTypes(List<FieldTypes> list) {
 			this.filterTypes = _listAddAll(this.filterTypes, list);
@@ -353,11 +354,9 @@ public class CharFilterTypes implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code analyzer_types}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>analyzerTypes</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>analyzerTypes</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>analyzerTypes</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder analyzerTypes(List<FieldTypes> list) {
 			this.analyzerTypes = _listAddAll(this.analyzerTypes, list);
@@ -387,10 +386,8 @@ public class CharFilterTypes implements JsonpSerializable {
 		 * Required - API name: {@code built_in_char_filters}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>builtInCharFilters</code>.
-		 * Use <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>builtInCharFilters</code> to <code>null</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder builtInCharFilters(List<FieldTypes> list) {
 			this.builtInCharFilters = _listAddAll(this.builtInCharFilters, list);
@@ -419,11 +416,9 @@ public class CharFilterTypes implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code built_in_tokenizers}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>builtInTokenizers</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>builtInTokenizers</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>builtInTokenizers</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder builtInTokenizers(List<FieldTypes> list) {
 			this.builtInTokenizers = _listAddAll(this.builtInTokenizers, list);
@@ -452,11 +447,9 @@ public class CharFilterTypes implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code built_in_filters}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>builtInFilters</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>builtInFilters</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>builtInFilters</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder builtInFilters(List<FieldTypes> list) {
 			this.builtInFilters = _listAddAll(this.builtInFilters, list);
@@ -485,11 +478,9 @@ public class CharFilterTypes implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code built_in_analyzers}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>builtInAnalyzers</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>builtInAnalyzers</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>builtInAnalyzers</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder builtInAnalyzers(List<FieldTypes> list) {
 			this.builtInAnalyzers = _listAddAll(this.builtInAnalyzers, list);

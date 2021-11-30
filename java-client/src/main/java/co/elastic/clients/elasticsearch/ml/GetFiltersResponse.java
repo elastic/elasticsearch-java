@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_filters.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/get_filters/MlGetFiltersResponse.ts#L23-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetFiltersResponse implements JsonpSerializable {
 	private final long count;
@@ -50,8 +57,8 @@ public class GetFiltersResponse implements JsonpSerializable {
 
 	private GetFiltersResponse(Builder builder) {
 
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
-		this.filters = ModelTypeHelper.unmodifiableRequired(builder.filters, this, "filters");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.filters = ApiTypeHelper.unmodifiableRequired(builder.filters, this, "filters");
 
 	}
 
@@ -87,7 +94,7 @@ public class GetFiltersResponse implements JsonpSerializable {
 		generator.writeKey("count");
 		generator.write(this.count);
 
-		if (ModelTypeHelper.isDefined(this.filters)) {
+		if (ApiTypeHelper.isDefined(this.filters)) {
 			generator.writeKey("filters");
 			generator.writeStartArray();
 			for (Filter item0 : this.filters) {
@@ -105,6 +112,7 @@ public class GetFiltersResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetFiltersResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetFiltersResponse> {
 		private Long count;
 
@@ -121,11 +129,9 @@ public class GetFiltersResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code filters}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>filters</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>filters</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>filters</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder filters(List<Filter> list) {
 			this.filters = _listAddAll(this.filters, list);

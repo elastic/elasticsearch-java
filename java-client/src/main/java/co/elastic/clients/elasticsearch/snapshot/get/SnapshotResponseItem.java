@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.get.SnapshotResponseItem
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/snapshot/get/SnapshotGetResponse.ts#L42-L46">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SnapshotResponseItem implements JsonpSerializable {
 	private final String repository;
@@ -55,8 +62,8 @@ public class SnapshotResponseItem implements JsonpSerializable {
 
 	private SnapshotResponseItem(Builder builder) {
 
-		this.repository = ModelTypeHelper.requireNonNull(builder.repository, this, "repository");
-		this.snapshots = ModelTypeHelper.unmodifiable(builder.snapshots);
+		this.repository = ApiTypeHelper.requireNonNull(builder.repository, this, "repository");
+		this.snapshots = ApiTypeHelper.unmodifiable(builder.snapshots);
 		this.error = builder.error;
 
 	}
@@ -101,7 +108,7 @@ public class SnapshotResponseItem implements JsonpSerializable {
 		generator.writeKey("repository");
 		generator.write(this.repository);
 
-		if (ModelTypeHelper.isDefined(this.snapshots)) {
+		if (ApiTypeHelper.isDefined(this.snapshots)) {
 			generator.writeKey("snapshots");
 			generator.writeStartArray();
 			for (SnapshotInfo item0 : this.snapshots) {
@@ -124,6 +131,7 @@ public class SnapshotResponseItem implements JsonpSerializable {
 	/**
 	 * Builder for {@link SnapshotResponseItem}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SnapshotResponseItem> {
 		private String repository;
 
@@ -144,11 +152,9 @@ public class SnapshotResponseItem implements JsonpSerializable {
 		/**
 		 * API name: {@code snapshots}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>snapshots</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>snapshots</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>snapshots</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder snapshots(List<SnapshotInfo> list) {
 			this.snapshots = _listAddAll(this.snapshots, list);

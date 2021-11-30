@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.OperatingSystem
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/nodes/_types/Stats.ts#L193-L198">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class OperatingSystem implements JsonpSerializable {
 	private final Cpu cpu;
@@ -53,10 +60,10 @@ public class OperatingSystem implements JsonpSerializable {
 
 	private OperatingSystem(Builder builder) {
 
-		this.cpu = ModelTypeHelper.requireNonNull(builder.cpu, this, "cpu");
-		this.mem = ModelTypeHelper.requireNonNull(builder.mem, this, "mem");
-		this.swap = ModelTypeHelper.requireNonNull(builder.swap, this, "swap");
-		this.timestamp = ModelTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+		this.cpu = ApiTypeHelper.requireNonNull(builder.cpu, this, "cpu");
+		this.mem = ApiTypeHelper.requireNonNull(builder.mem, this, "mem");
+		this.swap = ApiTypeHelper.requireNonNull(builder.swap, this, "swap");
+		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
 
 	}
 
@@ -122,6 +129,7 @@ public class OperatingSystem implements JsonpSerializable {
 	/**
 	 * Builder for {@link OperatingSystem}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<OperatingSystem> {
 		private Cpu cpu;
 

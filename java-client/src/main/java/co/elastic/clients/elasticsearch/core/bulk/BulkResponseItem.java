@@ -33,7 +33,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -47,6 +47,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.bulk.ResponseItem
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/bulk/types.ts#L35-L49">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class BulkResponseItem implements JsonpSerializable {
 	// Single key dictionary
@@ -90,11 +97,11 @@ public class BulkResponseItem implements JsonpSerializable {
 
 	private BulkResponseItem(Builder builder) {
 
-		this.operationType = ModelTypeHelper.requireNonNull(builder.operationType, this, "operationType");
+		this.operationType = ApiTypeHelper.requireNonNull(builder.operationType, this, "operationType");
 
 		this.id = builder.id;
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
-		this.status = ModelTypeHelper.requireNonNull(builder.status, this, "status");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 		this.error = builder.error;
 		this.primaryTerm = builder.primaryTerm;
 		this.result = builder.result;
@@ -290,6 +297,7 @@ public class BulkResponseItem implements JsonpSerializable {
 	/**
 	 * Builder for {@link BulkResponseItem}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<BulkResponseItem> {
 		private OperationType operationType;
 

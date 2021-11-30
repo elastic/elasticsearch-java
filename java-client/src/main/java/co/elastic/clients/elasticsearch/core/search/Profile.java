@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.Profile
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/search/_types/profile.ts#L92-L94">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Profile implements JsonpSerializable {
 	private final List<ShardProfile> shards;
@@ -47,7 +54,7 @@ public class Profile implements JsonpSerializable {
 
 	private Profile(Builder builder) {
 
-		this.shards = ModelTypeHelper.unmodifiableRequired(builder.shards, this, "shards");
+		this.shards = ApiTypeHelper.unmodifiableRequired(builder.shards, this, "shards");
 
 	}
 
@@ -73,7 +80,7 @@ public class Profile implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.shards)) {
+		if (ApiTypeHelper.isDefined(this.shards)) {
 			generator.writeKey("shards");
 			generator.writeStartArray();
 			for (ShardProfile item0 : this.shards) {
@@ -91,17 +98,16 @@ public class Profile implements JsonpSerializable {
 	/**
 	 * Builder for {@link Profile}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Profile> {
 		private List<ShardProfile> shards;
 
 		/**
 		 * Required - API name: {@code shards}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>shards</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>shards</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>shards</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder shards(List<ShardProfile> list) {
 			this.shards = _listAddAll(this.shards, list);

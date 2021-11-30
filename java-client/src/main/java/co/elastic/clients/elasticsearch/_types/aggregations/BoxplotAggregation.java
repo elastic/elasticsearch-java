@@ -36,6 +36,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.BoxplotAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/metric.ts#L50-L52">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class BoxplotAggregation extends MetricAggregationBase implements AggregationVariant {
 	@Nullable
@@ -86,6 +93,7 @@ public class BoxplotAggregation extends MetricAggregationBase implements Aggrega
 	/**
 	 * Builder for {@link BoxplotAggregation}.
 	 */
+
 	public static class Builder extends MetricAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<BoxplotAggregation> {

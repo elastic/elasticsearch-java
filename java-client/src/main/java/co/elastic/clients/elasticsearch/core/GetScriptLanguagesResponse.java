@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.get_script_languages.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/get_script_languages/GetScriptLanguagesResponse.ts#L22-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetScriptLanguagesResponse implements JsonpSerializable {
 	private final List<LanguageContext> languageContexts;
@@ -51,9 +58,8 @@ public class GetScriptLanguagesResponse implements JsonpSerializable {
 
 	private GetScriptLanguagesResponse(Builder builder) {
 
-		this.languageContexts = ModelTypeHelper.unmodifiableRequired(builder.languageContexts, this,
-				"languageContexts");
-		this.typesAllowed = ModelTypeHelper.unmodifiableRequired(builder.typesAllowed, this, "typesAllowed");
+		this.languageContexts = ApiTypeHelper.unmodifiableRequired(builder.languageContexts, this, "languageContexts");
+		this.typesAllowed = ApiTypeHelper.unmodifiableRequired(builder.typesAllowed, this, "typesAllowed");
 
 	}
 
@@ -86,7 +92,7 @@ public class GetScriptLanguagesResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.languageContexts)) {
+		if (ApiTypeHelper.isDefined(this.languageContexts)) {
 			generator.writeKey("language_contexts");
 			generator.writeStartArray();
 			for (LanguageContext item0 : this.languageContexts) {
@@ -96,7 +102,7 @@ public class GetScriptLanguagesResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.typesAllowed)) {
+		if (ApiTypeHelper.isDefined(this.typesAllowed)) {
 			generator.writeKey("types_allowed");
 			generator.writeStartArray();
 			for (String item0 : this.typesAllowed) {
@@ -114,6 +120,7 @@ public class GetScriptLanguagesResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetScriptLanguagesResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetScriptLanguagesResponse> {
 		private List<LanguageContext> languageContexts;
 
@@ -122,11 +129,9 @@ public class GetScriptLanguagesResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code language_contexts}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>languageContexts</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>languageContexts</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>languageContexts</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder languageContexts(List<LanguageContext> list) {
 			this.languageContexts = _listAddAll(this.languageContexts, list);
@@ -155,11 +160,9 @@ public class GetScriptLanguagesResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code types_allowed}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>typesAllowed</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>typesAllowed</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>typesAllowed</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder typesAllowed(List<String> list) {
 			this.typesAllowed = _listAddAll(this.typesAllowed, list);

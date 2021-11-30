@@ -34,6 +34,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _global.delete_by_query_rethrottle.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/delete_by_query_rethrottle/DeleteByQueryRethrottleResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DeleteByQueryRethrottleResponse extends ListResponse {
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +60,7 @@ public class DeleteByQueryRethrottleResponse extends ListResponse {
 	/**
 	 * Builder for {@link DeleteByQueryRethrottleResponse}.
 	 */
+
 	public static class Builder extends ListResponse.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeleteByQueryRethrottleResponse> {

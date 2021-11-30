@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.CommonGramsTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/analysis/token_filters.ts#L172-L178">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CommonGramsTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final List<String> commonWords;
@@ -57,7 +64,7 @@ public class CommonGramsTokenFilter extends TokenFilterBase implements TokenFilt
 	private CommonGramsTokenFilter(Builder builder) {
 		super(builder);
 
-		this.commonWords = ModelTypeHelper.unmodifiable(builder.commonWords);
+		this.commonWords = ApiTypeHelper.unmodifiable(builder.commonWords);
 		this.commonWordsPath = builder.commonWordsPath;
 		this.ignoreCase = builder.ignoreCase;
 		this.queryMode = builder.queryMode;
@@ -111,7 +118,7 @@ public class CommonGramsTokenFilter extends TokenFilterBase implements TokenFilt
 
 		generator.write("type", "common_grams");
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.commonWords)) {
+		if (ApiTypeHelper.isDefined(this.commonWords)) {
 			generator.writeKey("common_words");
 			generator.writeStartArray();
 			for (String item0 : this.commonWords) {
@@ -144,6 +151,7 @@ public class CommonGramsTokenFilter extends TokenFilterBase implements TokenFilt
 	/**
 	 * Builder for {@link CommonGramsTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<CommonGramsTokenFilter> {
@@ -162,11 +170,9 @@ public class CommonGramsTokenFilter extends TokenFilterBase implements TokenFilt
 		/**
 		 * API name: {@code common_words}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>commonWords</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>commonWords</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>commonWords</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder commonWords(List<String> list) {
 			this.commonWords = _listAddAll(this.commonWords, list);

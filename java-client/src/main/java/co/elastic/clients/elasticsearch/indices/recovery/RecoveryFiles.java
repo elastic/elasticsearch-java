@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.recovery.RecoveryFiles
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/recovery/types.ts#L51-L57">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RecoveryFiles implements JsonpSerializable {
 	private final List<FileDetails> details;
@@ -57,11 +64,11 @@ public class RecoveryFiles implements JsonpSerializable {
 
 	private RecoveryFiles(Builder builder) {
 
-		this.details = ModelTypeHelper.unmodifiable(builder.details);
-		this.percent = ModelTypeHelper.requireNonNull(builder.percent, this, "percent");
-		this.recovered = ModelTypeHelper.requireNonNull(builder.recovered, this, "recovered");
-		this.reused = ModelTypeHelper.requireNonNull(builder.reused, this, "reused");
-		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
+		this.details = ApiTypeHelper.unmodifiable(builder.details);
+		this.percent = ApiTypeHelper.requireNonNull(builder.percent, this, "percent");
+		this.recovered = ApiTypeHelper.requireNonNull(builder.recovered, this, "recovered");
+		this.reused = ApiTypeHelper.requireNonNull(builder.reused, this, "reused");
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
 
 	}
 
@@ -115,7 +122,7 @@ public class RecoveryFiles implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.details)) {
+		if (ApiTypeHelper.isDefined(this.details)) {
 			generator.writeKey("details");
 			generator.writeStartArray();
 			for (FileDetails item0 : this.details) {
@@ -144,6 +151,7 @@ public class RecoveryFiles implements JsonpSerializable {
 	/**
 	 * Builder for {@link RecoveryFiles}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RecoveryFiles> {
 		@Nullable
 		private List<FileDetails> details;
@@ -159,11 +167,9 @@ public class RecoveryFiles implements JsonpSerializable {
 		/**
 		 * API name: {@code details}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>details</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>details</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>details</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder details(List<FileDetails> list) {
 			this.details = _listAddAll(this.details, list);

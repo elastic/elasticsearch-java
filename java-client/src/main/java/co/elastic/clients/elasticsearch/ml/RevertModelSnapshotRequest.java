@@ -33,7 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -45,6 +45,21 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.revert_model_snapshot.Request
+
+/**
+ * Reverts to a specific snapshot. The machine learning features react quickly
+ * to anomalous input, learning new behaviors in data. Highly anomalous input
+ * increases the variance in the models whilst the system learns whether this is
+ * a new step-change in behavior or a one-off event. In the case where this
+ * anomalous input is known to be a one-off, then it might be appropriate to
+ * reset the model state to a time before this event. For example, you might
+ * consider reverting to a saved snapshot after Black Friday or a critical
+ * system failure.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/revert_model_snapshot/MlRevertModelSnapshotRequest.ts#L23-L69">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RevertModelSnapshotRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -59,8 +74,8 @@ public class RevertModelSnapshotRequest extends RequestBase implements JsonpSeri
 	private RevertModelSnapshotRequest(Builder builder) {
 
 		this.deleteInterveningResults = builder.deleteInterveningResults;
-		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
-		this.snapshotId = ModelTypeHelper.requireNonNull(builder.snapshotId, this, "snapshotId");
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.snapshotId = ApiTypeHelper.requireNonNull(builder.snapshotId, this, "snapshotId");
 
 	}
 
@@ -123,6 +138,7 @@ public class RevertModelSnapshotRequest extends RequestBase implements JsonpSeri
 	/**
 	 * Builder for {@link RevertModelSnapshotRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RevertModelSnapshotRequest> {
 		@Nullable
 		private Boolean deleteInterveningResults;

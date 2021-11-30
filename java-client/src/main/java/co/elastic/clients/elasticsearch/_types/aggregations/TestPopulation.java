@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TestPopulation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/metric.ts#L150-L154">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TestPopulation implements JsonpSerializable {
 	private final String field;
@@ -55,7 +62,7 @@ public class TestPopulation implements JsonpSerializable {
 
 	private TestPopulation(Builder builder) {
 
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.script = builder.script;
 		this.filter = builder.filter;
 
@@ -120,6 +127,7 @@ public class TestPopulation implements JsonpSerializable {
 	/**
 	 * Builder for {@link TestPopulation}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TestPopulation> {
 		private String field;
 

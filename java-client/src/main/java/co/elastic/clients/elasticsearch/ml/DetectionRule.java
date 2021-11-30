@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DetectionRule
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/Rule.ts#L25-L39">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DetectionRule implements JsonpSerializable {
 	private final List<RuleAction> actions;
@@ -53,9 +60,9 @@ public class DetectionRule implements JsonpSerializable {
 
 	private DetectionRule(Builder builder) {
 
-		this.actions = ModelTypeHelper.unmodifiable(builder.actions);
-		this.conditions = ModelTypeHelper.unmodifiable(builder.conditions);
-		this.scope = ModelTypeHelper.unmodifiable(builder.scope);
+		this.actions = ApiTypeHelper.unmodifiable(builder.actions);
+		this.conditions = ApiTypeHelper.unmodifiable(builder.conditions);
+		this.scope = ApiTypeHelper.unmodifiable(builder.scope);
 
 	}
 
@@ -108,7 +115,7 @@ public class DetectionRule implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.actions)) {
+		if (ApiTypeHelper.isDefined(this.actions)) {
 			generator.writeKey("actions");
 			generator.writeStartArray();
 			for (RuleAction item0 : this.actions) {
@@ -117,7 +124,7 @@ public class DetectionRule implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.conditions)) {
+		if (ApiTypeHelper.isDefined(this.conditions)) {
 			generator.writeKey("conditions");
 			generator.writeStartArray();
 			for (RuleCondition item0 : this.conditions) {
@@ -127,7 +134,7 @@ public class DetectionRule implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.scope)) {
+		if (ApiTypeHelper.isDefined(this.scope)) {
 			generator.writeKey("scope");
 			generator.writeStartObject();
 			for (Map.Entry<String, FilterRef> item0 : this.scope.entrySet()) {
@@ -146,6 +153,7 @@ public class DetectionRule implements JsonpSerializable {
 	/**
 	 * Builder for {@link DetectionRule}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DetectionRule> {
 		@Nullable
 		private List<RuleAction> actions;
@@ -162,11 +170,9 @@ public class DetectionRule implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code actions}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>actions</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>actions</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>actions</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder actions(List<RuleAction> list) {
 			this.actions = _listAddAll(this.actions, list);
@@ -193,11 +199,9 @@ public class DetectionRule implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code conditions}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>conditions</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>conditions</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>conditions</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder conditions(List<RuleCondition> list) {
 			this.conditions = _listAddAll(this.conditions, list);
@@ -240,11 +244,9 @@ public class DetectionRule implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code scope}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>scope</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>scope</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>scope</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder scope(Map<String, FilterRef> map) {
 			this.scope = _mapPutAll(this.scope, map);

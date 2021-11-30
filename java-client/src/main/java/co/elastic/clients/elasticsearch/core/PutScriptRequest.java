@@ -35,7 +35,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -47,6 +47,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.put_script.Request
+
+/**
+ * Creates or updates a script.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/put_script/PutScriptRequest.ts#L25-L42">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutScriptRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -67,9 +75,9 @@ public class PutScriptRequest extends RequestBase implements JsonpSerializable {
 	private PutScriptRequest(Builder builder) {
 
 		this.context = builder.context;
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.masterTimeout = builder.masterTimeout;
-		this.script = ModelTypeHelper.requireNonNull(builder.script, this, "script");
+		this.script = ApiTypeHelper.requireNonNull(builder.script, this, "script");
 		this.timeout = builder.timeout;
 
 	}
@@ -145,6 +153,7 @@ public class PutScriptRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link PutScriptRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutScriptRequest> {
 		@Nullable
 		private String context;

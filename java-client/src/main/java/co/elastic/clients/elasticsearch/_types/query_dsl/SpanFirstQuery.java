@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -37,6 +37,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SpanFirstQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/query_dsl/span.ts#L35-L38">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SpanFirstQuery extends QueryBase implements SpanQueryVariant, QueryVariant {
 	private final int end;
@@ -48,8 +55,8 @@ public class SpanFirstQuery extends QueryBase implements SpanQueryVariant, Query
 	private SpanFirstQuery(Builder builder) {
 		super(builder);
 
-		this.end = ModelTypeHelper.requireNonNull(builder.end, this, "end");
-		this.match = ModelTypeHelper.requireNonNull(builder.match, this, "match");
+		this.end = ApiTypeHelper.requireNonNull(builder.end, this, "end");
+		this.match = ApiTypeHelper.requireNonNull(builder.match, this, "match");
 
 	}
 
@@ -103,6 +110,7 @@ public class SpanFirstQuery extends QueryBase implements SpanQueryVariant, Query
 	/**
 	 * Builder for {@link SpanFirstQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<SpanFirstQuery> {
 		private Integer end;
 

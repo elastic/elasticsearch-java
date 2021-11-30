@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _global.search._types.QueryBreakdown
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/search/_types/profile.ts#L96-L115">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class QueryBreakdown implements JsonpSerializable {
 	private final long advance;
@@ -80,27 +87,27 @@ public class QueryBreakdown implements JsonpSerializable {
 
 	private QueryBreakdown(Builder builder) {
 
-		this.advance = ModelTypeHelper.requireNonNull(builder.advance, this, "advance");
-		this.advanceCount = ModelTypeHelper.requireNonNull(builder.advanceCount, this, "advanceCount");
-		this.buildScorer = ModelTypeHelper.requireNonNull(builder.buildScorer, this, "buildScorer");
-		this.buildScorerCount = ModelTypeHelper.requireNonNull(builder.buildScorerCount, this, "buildScorerCount");
-		this.createWeight = ModelTypeHelper.requireNonNull(builder.createWeight, this, "createWeight");
-		this.createWeightCount = ModelTypeHelper.requireNonNull(builder.createWeightCount, this, "createWeightCount");
-		this.match = ModelTypeHelper.requireNonNull(builder.match, this, "match");
-		this.matchCount = ModelTypeHelper.requireNonNull(builder.matchCount, this, "matchCount");
-		this.shallowAdvance = ModelTypeHelper.requireNonNull(builder.shallowAdvance, this, "shallowAdvance");
-		this.shallowAdvanceCount = ModelTypeHelper.requireNonNull(builder.shallowAdvanceCount, this,
+		this.advance = ApiTypeHelper.requireNonNull(builder.advance, this, "advance");
+		this.advanceCount = ApiTypeHelper.requireNonNull(builder.advanceCount, this, "advanceCount");
+		this.buildScorer = ApiTypeHelper.requireNonNull(builder.buildScorer, this, "buildScorer");
+		this.buildScorerCount = ApiTypeHelper.requireNonNull(builder.buildScorerCount, this, "buildScorerCount");
+		this.createWeight = ApiTypeHelper.requireNonNull(builder.createWeight, this, "createWeight");
+		this.createWeightCount = ApiTypeHelper.requireNonNull(builder.createWeightCount, this, "createWeightCount");
+		this.match = ApiTypeHelper.requireNonNull(builder.match, this, "match");
+		this.matchCount = ApiTypeHelper.requireNonNull(builder.matchCount, this, "matchCount");
+		this.shallowAdvance = ApiTypeHelper.requireNonNull(builder.shallowAdvance, this, "shallowAdvance");
+		this.shallowAdvanceCount = ApiTypeHelper.requireNonNull(builder.shallowAdvanceCount, this,
 				"shallowAdvanceCount");
-		this.nextDoc = ModelTypeHelper.requireNonNull(builder.nextDoc, this, "nextDoc");
-		this.nextDocCount = ModelTypeHelper.requireNonNull(builder.nextDocCount, this, "nextDocCount");
-		this.score = ModelTypeHelper.requireNonNull(builder.score, this, "score");
-		this.scoreCount = ModelTypeHelper.requireNonNull(builder.scoreCount, this, "scoreCount");
-		this.computeMaxScore = ModelTypeHelper.requireNonNull(builder.computeMaxScore, this, "computeMaxScore");
-		this.computeMaxScoreCount = ModelTypeHelper.requireNonNull(builder.computeMaxScoreCount, this,
+		this.nextDoc = ApiTypeHelper.requireNonNull(builder.nextDoc, this, "nextDoc");
+		this.nextDocCount = ApiTypeHelper.requireNonNull(builder.nextDocCount, this, "nextDocCount");
+		this.score = ApiTypeHelper.requireNonNull(builder.score, this, "score");
+		this.scoreCount = ApiTypeHelper.requireNonNull(builder.scoreCount, this, "scoreCount");
+		this.computeMaxScore = ApiTypeHelper.requireNonNull(builder.computeMaxScore, this, "computeMaxScore");
+		this.computeMaxScoreCount = ApiTypeHelper.requireNonNull(builder.computeMaxScoreCount, this,
 				"computeMaxScoreCount");
-		this.setMinCompetitiveScore = ModelTypeHelper.requireNonNull(builder.setMinCompetitiveScore, this,
+		this.setMinCompetitiveScore = ApiTypeHelper.requireNonNull(builder.setMinCompetitiveScore, this,
 				"setMinCompetitiveScore");
-		this.setMinCompetitiveScoreCount = ModelTypeHelper.requireNonNull(builder.setMinCompetitiveScoreCount, this,
+		this.setMinCompetitiveScoreCount = ApiTypeHelper.requireNonNull(builder.setMinCompetitiveScoreCount, this,
 				"setMinCompetitiveScoreCount");
 
 	}
@@ -307,6 +314,7 @@ public class QueryBreakdown implements JsonpSerializable {
 	/**
 	 * Builder for {@link QueryBreakdown}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<QueryBreakdown> {
 		private Long advance;
 

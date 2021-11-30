@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: nodes._types.JvmThreads
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/nodes/_types/Stats.ts#L172-L175">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class JvmThreads implements JsonpSerializable {
 	private final long count;
@@ -48,8 +55,8 @@ public class JvmThreads implements JsonpSerializable {
 
 	private JvmThreads(Builder builder) {
 
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
-		this.peakCount = ModelTypeHelper.requireNonNull(builder.peakCount, this, "peakCount");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.peakCount = ApiTypeHelper.requireNonNull(builder.peakCount, this, "peakCount");
 
 	}
 
@@ -95,6 +102,7 @@ public class JvmThreads implements JsonpSerializable {
 	/**
 	 * Builder for {@link JvmThreads}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<JvmThreads> {
 		private Long count;
 

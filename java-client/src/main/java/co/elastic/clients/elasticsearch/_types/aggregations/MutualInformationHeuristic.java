@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MutualInformationHeuristic
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/bucket.ts#L294-L297">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MutualInformationHeuristic implements JsonpSerializable {
 	@Nullable
@@ -104,6 +111,7 @@ public class MutualInformationHeuristic implements JsonpSerializable {
 	/**
 	 * Builder for {@link MutualInformationHeuristic}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MutualInformationHeuristic> {
 		@Nullable
 		private Boolean backgroundIsSuperset;

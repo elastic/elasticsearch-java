@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot._types.Repository
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/snapshot/_types/SnapshotRepository.ts#L23-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Repository implements JsonpSerializable {
 	private final String type;
@@ -52,9 +59,9 @@ public class Repository implements JsonpSerializable {
 
 	private Repository(Builder builder) {
 
-		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 		this.uuid = builder.uuid;
-		this.settings = ModelTypeHelper.requireNonNull(builder.settings, this, "settings");
+		this.settings = ApiTypeHelper.requireNonNull(builder.settings, this, "settings");
 
 	}
 
@@ -113,6 +120,7 @@ public class Repository implements JsonpSerializable {
 	/**
 	 * Builder for {@link Repository}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Repository> {
 		private String type;
 

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.UnratedDocument
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/rank_eval/types.ts#L148-L151">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class UnratedDocument implements JsonpSerializable {
 	private final String id;
@@ -49,8 +56,8 @@ public class UnratedDocument implements JsonpSerializable {
 
 	private UnratedDocument(Builder builder) {
 
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 
 	}
 
@@ -96,6 +103,7 @@ public class UnratedDocument implements JsonpSerializable {
 	/**
 	 * Builder for {@link UnratedDocument}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UnratedDocument> {
 		private String id;
 

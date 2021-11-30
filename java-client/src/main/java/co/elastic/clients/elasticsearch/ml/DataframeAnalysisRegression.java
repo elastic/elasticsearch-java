@@ -37,6 +37,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisRegression
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/DataframeAnalytics.ts#L214-L224">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeAnalysisRegression extends DataframeAnalysisBase implements DataframeAnalysisVariant {
 	@Nullable
@@ -111,6 +118,7 @@ public class DataframeAnalysisRegression extends DataframeAnalysisBase implement
 	/**
 	 * Builder for {@link DataframeAnalysisRegression}.
 	 */
+
 	public static class Builder extends DataframeAnalysisBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DataframeAnalysisRegression> {

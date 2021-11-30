@@ -36,6 +36,13 @@ import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.RankEvalMetricRatingTreshold
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/rank_eval/types.ts#L34-L40">API
+ *      specification</a>
+ */
+
 public abstract class RankEvalMetricRatingTreshold extends RankEvalMetricBase {
 	@Nullable
 	private final Integer relevantRatingThreshold;

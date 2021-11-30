@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_mapping.IndexMappingRecord
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/get_mapping/IndicesGetMappingResponse.ts#L29-L32">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IndexMappingRecord implements JsonpSerializable {
 	@Nullable
@@ -51,7 +58,7 @@ public class IndexMappingRecord implements JsonpSerializable {
 	private IndexMappingRecord(Builder builder) {
 
 		this.item = builder.item;
-		this.mappings = ModelTypeHelper.requireNonNull(builder.mappings, this, "mappings");
+		this.mappings = ApiTypeHelper.requireNonNull(builder.mappings, this, "mappings");
 
 	}
 
@@ -100,6 +107,7 @@ public class IndexMappingRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexMappingRecord}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexMappingRecord> {
 		@Nullable
 		private TypeMapping item;

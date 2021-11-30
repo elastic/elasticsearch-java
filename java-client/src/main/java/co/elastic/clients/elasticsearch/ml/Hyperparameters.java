@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.Hyperparameters
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/DataframeAnalytics.ts#L390-L405">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Hyperparameters implements JsonpSerializable {
 	@Nullable
@@ -309,6 +316,7 @@ public class Hyperparameters implements JsonpSerializable {
 	/**
 	 * Builder for {@link Hyperparameters}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Hyperparameters> {
 		@Nullable
 		private Double alpha;

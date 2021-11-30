@@ -45,6 +45,17 @@ import javax.annotation.Nullable;
 
 // typedef: ml.get_data_frame_analytics.Request
 
+/**
+ * Retrieves configuration information for data frame analytics jobs. You can
+ * get information for multiple data frame analytics jobs in a single API
+ * request by using a comma-separated list of data frame analytics jobs or a
+ * wildcard expression.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/get_data_frame_analytics/MlGetDataFrameAnalyticsRequest.ts#L24-L77">API
+ *      specification</a>
+ */
+
 public class GetDataFrameAnalyticsRequest extends RequestBase {
 	@Nullable
 	private final Boolean allowNoMatch;
@@ -148,6 +159,7 @@ public class GetDataFrameAnalyticsRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetDataFrameAnalyticsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetDataFrameAnalyticsRequest> {
 		@Nullable
 		private Boolean allowNoMatch;

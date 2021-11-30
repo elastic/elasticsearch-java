@@ -33,6 +33,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.aggregations.CumulativeSumAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/pipeline.ts#L65-L65">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CumulativeSumAggregation extends PipelineAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -59,6 +66,7 @@ public class CumulativeSumAggregation extends PipelineAggregationBase implements
 	/**
 	 * Builder for {@link CumulativeSumAggregation}.
 	 */
+
 	public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<CumulativeSumAggregation> {

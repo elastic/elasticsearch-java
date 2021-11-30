@@ -33,6 +33,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.aggregations.GlobalAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/bucket.ts#L195-L195">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GlobalAggregation extends BucketAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -59,6 +66,7 @@ public class GlobalAggregation extends BucketAggregationBase implements Aggregat
 	/**
 	 * Builder for {@link GlobalAggregation}.
 	 */
+
 	public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<GlobalAggregation> {

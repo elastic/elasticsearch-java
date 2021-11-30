@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.get_watch.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/watcher/get_watch/GetWatchResponse.ts#L24-L34">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetWatchResponse implements JsonpSerializable {
 	private final boolean found;
@@ -67,8 +74,8 @@ public class GetWatchResponse implements JsonpSerializable {
 
 	private GetWatchResponse(Builder builder) {
 
-		this.found = ModelTypeHelper.requireNonNull(builder.found, this, "found");
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.status = builder.status;
 		this.watch = builder.watch;
 		this.primaryTerm = builder.primaryTerm;
@@ -185,6 +192,7 @@ public class GetWatchResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetWatchResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetWatchResponse> {
 		private Boolean found;
 

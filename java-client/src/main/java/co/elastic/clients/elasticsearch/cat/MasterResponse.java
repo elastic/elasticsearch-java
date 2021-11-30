@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.master.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cat/master/CatMasterResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MasterResponse implements JsonpSerializable {
 	private final List<MasterRecord> valueBody;
@@ -48,7 +55,7 @@ public class MasterResponse implements JsonpSerializable {
 
 	private MasterResponse(Builder builder) {
 
-		this.valueBody = ModelTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
+		this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
 
 	}
 
@@ -83,6 +90,7 @@ public class MasterResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link MasterResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MasterResponse> {
 		private List<MasterRecord> valueBody;
 
@@ -91,11 +99,9 @@ public class MasterResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>valueBody</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>valueBody</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>valueBody</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder valueBody(List<MasterRecord> list) {
 			this.valueBody = _listAddAll(this.valueBody, list);

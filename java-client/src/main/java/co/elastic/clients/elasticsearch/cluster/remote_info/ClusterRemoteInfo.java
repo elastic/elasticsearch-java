@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
@@ -41,13 +41,22 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.remote_info.ClusterRemoteInfo
-// union type: InternalTag[tag=mode]
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cluster/remote_info/ClusterRemoteInfoResponse.ts#L29-L30">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ClusterRemoteInfo
 		implements
 			TaggedUnion<ClusterRemoteInfo.Kind, ClusterRemoteInfoVariant>,
 			JsonpSerializable {
 
+	/**
+	 * {@link ClusterRemoteInfo} variant kinds.
+	 */
 	/**
 	 * {@link ClusterRemoteInfo} variant kinds.
 	 */
@@ -86,15 +95,15 @@ public class ClusterRemoteInfo
 
 	public ClusterRemoteInfo(ClusterRemoteInfoVariant value) {
 
-		this._kind = ModelTypeHelper.requireNonNull(value._clusterRemoteInfoKind(), this, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(value._clusterRemoteInfoKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
 	private ClusterRemoteInfo(Builder builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 

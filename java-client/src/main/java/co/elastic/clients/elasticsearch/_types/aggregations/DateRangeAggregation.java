@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.DateRangeAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/bucket.ts#L126-L133">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DateRangeAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
@@ -66,7 +73,7 @@ public class DateRangeAggregation extends BucketAggregationBase implements Aggre
 		this.field = builder.field;
 		this.format = builder.format;
 		this.missing = builder.missing;
-		this.ranges = ModelTypeHelper.unmodifiable(builder.ranges);
+		this.ranges = ApiTypeHelper.unmodifiable(builder.ranges);
 		this.timeZone = builder.timeZone;
 		this.keyed = builder.keyed;
 
@@ -149,7 +156,7 @@ public class DateRangeAggregation extends BucketAggregationBase implements Aggre
 			generator.write(this.missing);
 
 		}
-		if (ModelTypeHelper.isDefined(this.ranges)) {
+		if (ApiTypeHelper.isDefined(this.ranges)) {
 			generator.writeKey("ranges");
 			generator.writeStartArray();
 			for (DateRangeExpression item0 : this.ranges) {
@@ -177,6 +184,7 @@ public class DateRangeAggregation extends BucketAggregationBase implements Aggre
 	/**
 	 * Builder for {@link DateRangeAggregation}.
 	 */
+
 	public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DateRangeAggregation> {
@@ -225,11 +233,9 @@ public class DateRangeAggregation extends BucketAggregationBase implements Aggre
 		/**
 		 * API name: {@code ranges}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>ranges</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>ranges</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>ranges</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder ranges(List<DateRangeExpression> list) {
 			this.ranges = _listAddAll(this.ranges, list);

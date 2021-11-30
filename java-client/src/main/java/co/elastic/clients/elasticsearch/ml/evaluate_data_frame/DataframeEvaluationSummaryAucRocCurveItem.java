@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: ml.evaluate_data_frame.DataframeEvaluationSummaryAucRocCurveItem
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/evaluate_data_frame/types.ts#L54-L58">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeEvaluationSummaryAucRocCurveItem implements JsonpSerializable {
 	private final double tpr;
@@ -50,9 +57,9 @@ public class DataframeEvaluationSummaryAucRocCurveItem implements JsonpSerializa
 
 	private DataframeEvaluationSummaryAucRocCurveItem(Builder builder) {
 
-		this.tpr = ModelTypeHelper.requireNonNull(builder.tpr, this, "tpr");
-		this.fpr = ModelTypeHelper.requireNonNull(builder.fpr, this, "fpr");
-		this.threshold = ModelTypeHelper.requireNonNull(builder.threshold, this, "threshold");
+		this.tpr = ApiTypeHelper.requireNonNull(builder.tpr, this, "tpr");
+		this.fpr = ApiTypeHelper.requireNonNull(builder.fpr, this, "fpr");
+		this.threshold = ApiTypeHelper.requireNonNull(builder.threshold, this, "threshold");
 
 	}
 
@@ -109,6 +116,7 @@ public class DataframeEvaluationSummaryAucRocCurveItem implements JsonpSerializa
 	/**
 	 * Builder for {@link DataframeEvaluationSummaryAucRocCurveItem}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase
 			implements
 				ObjectBuilder<DataframeEvaluationSummaryAucRocCurveItem> {

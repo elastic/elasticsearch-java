@@ -35,7 +35,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -48,6 +48,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.query_watches.Request
+
+/**
+ * Retrieves stored watches.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/watcher/query_watches/WatcherQueryWatchesRequest.ts#L25-L49">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class QueryWatchesRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -69,9 +77,9 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 
 		this.from = builder.from;
 		this.query = builder.query;
-		this.searchAfter = ModelTypeHelper.unmodifiable(builder.searchAfter);
+		this.searchAfter = ApiTypeHelper.unmodifiable(builder.searchAfter);
 		this.size = builder.size;
-		this.sort = ModelTypeHelper.unmodifiable(builder.sort);
+		this.sort = ApiTypeHelper.unmodifiable(builder.sort);
 
 	}
 
@@ -148,7 +156,7 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 			this.query.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.searchAfter)) {
+		if (ApiTypeHelper.isDefined(this.searchAfter)) {
 			generator.writeKey("search_after");
 			generator.writeStartArray();
 			for (String item0 : this.searchAfter) {
@@ -163,7 +171,7 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 			generator.write(this.size);
 
 		}
-		if (ModelTypeHelper.isDefined(this.sort)) {
+		if (ApiTypeHelper.isDefined(this.sort)) {
 			generator.writeKey("sort");
 			generator.writeStartArray();
 			for (SortOptions item0 : this.sort) {
@@ -181,6 +189,7 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Builder for {@link QueryWatchesRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<QueryWatchesRequest> {
 		@Nullable
 		private Integer from;
@@ -231,11 +240,9 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code search_after}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>searchAfter</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>searchAfter</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>searchAfter</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder searchAfter(List<String> list) {
 			this.searchAfter = _listAddAll(this.searchAfter, list);
@@ -269,11 +276,9 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code sort}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>sort</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>sort</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>sort</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder sort(List<SortOptions> list) {
 			this.sort = _listAddAll(this.sort, list);

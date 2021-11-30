@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Ssl
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/xpack/usage/types.ts#L352-L355">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Ssl implements JsonpSerializable {
 	private final FeatureToggle http;
@@ -48,8 +55,8 @@ public class Ssl implements JsonpSerializable {
 
 	private Ssl(Builder builder) {
 
-		this.http = ModelTypeHelper.requireNonNull(builder.http, this, "http");
-		this.transport = ModelTypeHelper.requireNonNull(builder.transport, this, "transport");
+		this.http = ApiTypeHelper.requireNonNull(builder.http, this, "http");
+		this.transport = ApiTypeHelper.requireNonNull(builder.transport, this, "transport");
 
 	}
 
@@ -95,6 +102,7 @@ public class Ssl implements JsonpSerializable {
 	/**
 	 * Builder for {@link Ssl}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Ssl> {
 		private FeatureToggle http;
 

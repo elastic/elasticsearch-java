@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_index_template.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/get_index_template/IndicesGetIndexTemplateResponse.ts#L27-L31">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetIndexTemplateResponse implements JsonpSerializable {
 	private final List<IndexTemplateItem> indexTemplates;
@@ -48,7 +55,7 @@ public class GetIndexTemplateResponse implements JsonpSerializable {
 
 	private GetIndexTemplateResponse(Builder builder) {
 
-		this.indexTemplates = ModelTypeHelper.unmodifiableRequired(builder.indexTemplates, this, "indexTemplates");
+		this.indexTemplates = ApiTypeHelper.unmodifiableRequired(builder.indexTemplates, this, "indexTemplates");
 
 	}
 
@@ -74,7 +81,7 @@ public class GetIndexTemplateResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.indexTemplates)) {
+		if (ApiTypeHelper.isDefined(this.indexTemplates)) {
 			generator.writeKey("index_templates");
 			generator.writeStartArray();
 			for (IndexTemplateItem item0 : this.indexTemplates) {
@@ -92,17 +99,16 @@ public class GetIndexTemplateResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetIndexTemplateResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetIndexTemplateResponse> {
 		private List<IndexTemplateItem> indexTemplates;
 
 		/**
 		 * Required - API name: {@code index_templates}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>indexTemplates</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>indexTemplates</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>indexTemplates</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder indexTemplates(List<IndexTemplateItem> list) {
 			this.indexTemplates = _listAddAll(this.indexTemplates, list);

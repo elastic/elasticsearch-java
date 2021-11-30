@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,6 +43,14 @@ import javax.annotation.Nullable;
 
 // typedef: watcher.delete_watch.Request
 
+/**
+ * Removes a watch from Watcher.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/watcher/delete_watch/DeleteWatchRequest.ts#L23-L32">API
+ *      specification</a>
+ */
+
 public class DeleteWatchRequest extends RequestBase {
 	private final String id;
 
@@ -50,7 +58,7 @@ public class DeleteWatchRequest extends RequestBase {
 
 	private DeleteWatchRequest(Builder builder) {
 
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 
 	}
 
@@ -72,6 +80,7 @@ public class DeleteWatchRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteWatchRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteWatchRequest> {
 		private String id;
 

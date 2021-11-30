@@ -43,6 +43,23 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.preview_datafeed.Request
+
+/**
+ * Previews a datafeed. This API returns the first &quot;page&quot; of search
+ * results from a datafeed. You can preview an existing datafeed or provide
+ * configuration details for a datafeed and anomaly detection job in the API.
+ * The preview shows the structure of the data that will be passed to the
+ * anomaly detection engine. IMPORTANT: When Elasticsearch security features are
+ * enabled, the preview uses the credentials of the user that called the API.
+ * However, when the datafeed starts it uses the roles of the last user that
+ * created or updated the datafeed. To get a preview that accurately reflects
+ * the behavior of the datafeed, use the appropriate credentials. You can also
+ * use secondary authorization headers to supply the credentials.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/preview_datafeed/MlPreviewDatafeedRequest.ts#L25-L64">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PreviewDatafeedRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -137,6 +154,7 @@ public class PreviewDatafeedRequest extends RequestBase implements JsonpSerializ
 	/**
 	 * Builder for {@link PreviewDatafeedRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PreviewDatafeedRequest> {
 		@Nullable
 		private DatafeedConfig datafeedConfig;

@@ -33,6 +33,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.aggregations.SignificantLongTermsAggregate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/Aggregate.ts#L544-L546">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SignificantLongTermsAggregate extends MultiBucketAggregateBase<SignificantLongTermsBucket>
 		implements
@@ -61,6 +68,7 @@ public class SignificantLongTermsAggregate extends MultiBucketAggregateBase<Sign
 	/**
 	 * Builder for {@link SignificantLongTermsAggregate}.
 	 */
+
 	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<SignificantLongTermsBucket, Builder>
 			implements
 				ObjectBuilder<SignificantLongTermsAggregate> {

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_service_accounts.RoleDescriptorWrapper
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/security/get_service_accounts/types.ts#L29-L31">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RoleDescriptorWrapper implements JsonpSerializable {
 	private final RoleDescriptor roleDescriptor;
@@ -46,7 +53,7 @@ public class RoleDescriptorWrapper implements JsonpSerializable {
 
 	private RoleDescriptorWrapper(Builder builder) {
 
-		this.roleDescriptor = ModelTypeHelper.requireNonNull(builder.roleDescriptor, this, "roleDescriptor");
+		this.roleDescriptor = ApiTypeHelper.requireNonNull(builder.roleDescriptor, this, "roleDescriptor");
 
 	}
 
@@ -82,6 +89,7 @@ public class RoleDescriptorWrapper implements JsonpSerializable {
 	/**
 	 * Builder for {@link RoleDescriptorWrapper}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RoleDescriptorWrapper> {
 		private RoleDescriptor roleDescriptor;
 

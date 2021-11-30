@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -45,6 +45,21 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.upgrade_job_snapshot.Request
+
+/**
+ * Upgrades an anomaly detection model snapshot to the latest major version.
+ * Over time, older snapshot formats are deprecated and removed. Anomaly
+ * detection jobs support only snapshots that are from the current or previous
+ * major version. This API provides a means to upgrade a snapshot to the current
+ * major version. This aids in preparing the cluster for an upgrade to the next
+ * major version. Only one snapshot per anomaly detection job can be upgraded at
+ * a time and the upgraded snapshot cannot be the current snapshot of the
+ * anomaly detection job.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/upgrade_job_snapshot/MlUpgradeJobSnapshotRequest.ts#L24-L63">API
+ *      specification</a>
+ */
 
 public class UpgradeJobSnapshotRequest extends RequestBase {
 	private final String jobId;
@@ -61,8 +76,8 @@ public class UpgradeJobSnapshotRequest extends RequestBase {
 
 	private UpgradeJobSnapshotRequest(Builder builder) {
 
-		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
-		this.snapshotId = ModelTypeHelper.requireNonNull(builder.snapshotId, this, "snapshotId");
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.snapshotId = ApiTypeHelper.requireNonNull(builder.snapshotId, this, "snapshotId");
 		this.timeout = builder.timeout;
 		this.waitForCompletion = builder.waitForCompletion;
 
@@ -117,6 +132,7 @@ public class UpgradeJobSnapshotRequest extends RequestBase {
 	/**
 	 * Builder for {@link UpgradeJobSnapshotRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UpgradeJobSnapshotRequest> {
 		private String jobId;
 

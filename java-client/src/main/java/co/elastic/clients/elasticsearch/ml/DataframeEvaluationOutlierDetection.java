@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationOutlierDetection
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/DataframeEvaluation.ts#L46-L53">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeEvaluationOutlierDetection implements DataframeEvaluationVariant, JsonpSerializable {
 	private final String actualField;
@@ -52,8 +59,8 @@ public class DataframeEvaluationOutlierDetection implements DataframeEvaluationV
 
 	private DataframeEvaluationOutlierDetection(Builder builder) {
 
-		this.actualField = ModelTypeHelper.requireNonNull(builder.actualField, this, "actualField");
-		this.predictedProbabilityField = ModelTypeHelper.requireNonNull(builder.predictedProbabilityField, this,
+		this.actualField = ApiTypeHelper.requireNonNull(builder.actualField, this, "actualField");
+		this.predictedProbabilityField = ApiTypeHelper.requireNonNull(builder.predictedProbabilityField, this,
 				"predictedProbabilityField");
 		this.metrics = builder.metrics;
 
@@ -134,6 +141,7 @@ public class DataframeEvaluationOutlierDetection implements DataframeEvaluationV
 	/**
 	 * Builder for {@link DataframeEvaluationOutlierDetection}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase
 			implements
 				ObjectBuilder<DataframeEvaluationOutlierDetection> {

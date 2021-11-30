@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.field_caps.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/field_caps/FieldCapabilitiesResponse.ts#L24-L29">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FieldCapsResponse implements JsonpSerializable {
 	private final List<String> indices;
@@ -52,8 +59,8 @@ public class FieldCapsResponse implements JsonpSerializable {
 
 	private FieldCapsResponse(Builder builder) {
 
-		this.indices = ModelTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
-		this.fields = ModelTypeHelper.unmodifiableRequired(builder.fields, this, "fields");
+		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
+		this.fields = ApiTypeHelper.unmodifiableRequired(builder.fields, this, "fields");
 
 	}
 
@@ -86,7 +93,7 @@ public class FieldCapsResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.indices)) {
+		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartArray();
 			for (String item0 : this.indices) {
@@ -96,7 +103,7 @@ public class FieldCapsResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.fields)) {
+		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartObject();
 			for (Map.Entry<String, Map<String, FieldCapability>> item0 : this.fields.entrySet()) {
@@ -123,6 +130,7 @@ public class FieldCapsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link FieldCapsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldCapsResponse> {
 		private List<String> indices;
 
@@ -131,11 +139,9 @@ public class FieldCapsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code indices}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>indices</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>indices</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder indices(List<String> list) {
 			this.indices = _listAddAll(this.indices, list);
@@ -155,11 +161,9 @@ public class FieldCapsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code fields}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>fields</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>fields</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>fields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder fields(Map<String, Map<String, FieldCapability>> map) {
 			this.fields = _mapPutAll(this.fields, map);

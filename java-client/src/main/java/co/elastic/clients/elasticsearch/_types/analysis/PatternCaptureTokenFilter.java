@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.PatternCaptureTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/analysis/token_filters.ts#L276-L280">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PatternCaptureTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final List<String> patterns;
@@ -50,8 +57,8 @@ public class PatternCaptureTokenFilter extends TokenFilterBase implements TokenF
 	private PatternCaptureTokenFilter(Builder builder) {
 		super(builder);
 
-		this.patterns = ModelTypeHelper.unmodifiableRequired(builder.patterns, this, "patterns");
-		this.preserveOriginal = ModelTypeHelper.requireNonNull(builder.preserveOriginal, this, "preserveOriginal");
+		this.patterns = ApiTypeHelper.unmodifiableRequired(builder.patterns, this, "patterns");
+		this.preserveOriginal = ApiTypeHelper.requireNonNull(builder.preserveOriginal, this, "preserveOriginal");
 
 	}
 
@@ -85,7 +92,7 @@ public class PatternCaptureTokenFilter extends TokenFilterBase implements TokenF
 
 		generator.write("type", "pattern_capture");
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.patterns)) {
+		if (ApiTypeHelper.isDefined(this.patterns)) {
 			generator.writeKey("patterns");
 			generator.writeStartArray();
 			for (String item0 : this.patterns) {
@@ -105,6 +112,7 @@ public class PatternCaptureTokenFilter extends TokenFilterBase implements TokenF
 	/**
 	 * Builder for {@link PatternCaptureTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PatternCaptureTokenFilter> {
@@ -115,11 +123,9 @@ public class PatternCaptureTokenFilter extends TokenFilterBase implements TokenF
 		/**
 		 * Required - API name: {@code patterns}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>patterns</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>patterns</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>patterns</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder patterns(List<String> list) {
 			this.patterns = _listAddAll(this.patterns, list);

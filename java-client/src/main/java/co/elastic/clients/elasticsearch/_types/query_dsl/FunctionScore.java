@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
@@ -43,10 +43,19 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.FunctionScoreContainer
-// union type: Container[]
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/query_dsl/compound.ts#L114-L131">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, JsonpSerializable {
 
+	/**
+	 * {@link FunctionScore} variant kinds.
+	 */
 	/**
 	 * {@link FunctionScore} variant kinds.
 	 */
@@ -99,8 +108,8 @@ public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, J
 
 	public FunctionScore(FunctionScoreVariant value) {
 
-		this._kind = ModelTypeHelper.requireNonNull(value._functionScoreKind(), this, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(value._functionScoreKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
 		this.filter = null;
 		this.weight = null;
@@ -109,8 +118,8 @@ public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, J
 
 	private FunctionScore(Builder builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 		this.filter = builder.filter;
 		this.weight = builder.weight;

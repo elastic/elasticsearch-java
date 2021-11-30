@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr.get_auto_follow_pattern.AutoFollowPatternSummary
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ccr/get_auto_follow_pattern/types.ts#L28-L51">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AutoFollowPatternSummary implements JsonpSerializable {
 	private final boolean active;
@@ -61,14 +68,14 @@ public class AutoFollowPatternSummary implements JsonpSerializable {
 
 	private AutoFollowPatternSummary(Builder builder) {
 
-		this.active = ModelTypeHelper.requireNonNull(builder.active, this, "active");
-		this.remoteCluster = ModelTypeHelper.requireNonNull(builder.remoteCluster, this, "remoteCluster");
+		this.active = ApiTypeHelper.requireNonNull(builder.active, this, "active");
+		this.remoteCluster = ApiTypeHelper.requireNonNull(builder.remoteCluster, this, "remoteCluster");
 		this.followIndexPattern = builder.followIndexPattern;
-		this.leaderIndexPatterns = ModelTypeHelper.unmodifiableRequired(builder.leaderIndexPatterns, this,
+		this.leaderIndexPatterns = ApiTypeHelper.unmodifiableRequired(builder.leaderIndexPatterns, this,
 				"leaderIndexPatterns");
-		this.leaderIndexExclusionPatterns = ModelTypeHelper.unmodifiableRequired(builder.leaderIndexExclusionPatterns,
+		this.leaderIndexExclusionPatterns = ApiTypeHelper.unmodifiableRequired(builder.leaderIndexExclusionPatterns,
 				this, "leaderIndexExclusionPatterns");
-		this.maxOutstandingReadRequests = ModelTypeHelper.requireNonNull(builder.maxOutstandingReadRequests, this,
+		this.maxOutstandingReadRequests = ApiTypeHelper.requireNonNull(builder.maxOutstandingReadRequests, this,
 				"maxOutstandingReadRequests");
 
 	}
@@ -155,7 +162,7 @@ public class AutoFollowPatternSummary implements JsonpSerializable {
 			generator.write(this.followIndexPattern);
 
 		}
-		if (ModelTypeHelper.isDefined(this.leaderIndexPatterns)) {
+		if (ApiTypeHelper.isDefined(this.leaderIndexPatterns)) {
 			generator.writeKey("leader_index_patterns");
 			generator.writeStartArray();
 			for (String item0 : this.leaderIndexPatterns) {
@@ -165,7 +172,7 @@ public class AutoFollowPatternSummary implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.leaderIndexExclusionPatterns)) {
+		if (ApiTypeHelper.isDefined(this.leaderIndexExclusionPatterns)) {
 			generator.writeKey("leader_index_exclusion_patterns");
 			generator.writeStartArray();
 			for (String item0 : this.leaderIndexExclusionPatterns) {
@@ -185,6 +192,7 @@ public class AutoFollowPatternSummary implements JsonpSerializable {
 	/**
 	 * Builder for {@link AutoFollowPatternSummary}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AutoFollowPatternSummary> {
 		private Boolean active;
 
@@ -234,10 +242,8 @@ public class AutoFollowPatternSummary implements JsonpSerializable {
 		 * API name: {@code leader_index_patterns}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>leaderIndexPatterns</code>.
-		 * Use <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>leaderIndexPatterns</code> to <code>null</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder leaderIndexPatterns(List<String> list) {
 			this.leaderIndexPatterns = _listAddAll(this.leaderIndexPatterns, list);
@@ -264,11 +270,9 @@ public class AutoFollowPatternSummary implements JsonpSerializable {
 		 * API name: {@code leader_index_exclusion_patterns}
 		 * <p>
 		 * Adds all elements of <code>list</code> to
-		 * <code>leaderIndexExclusionPatterns</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>leaderIndexExclusionPatterns</code> to <code>null</code>.
+		 * <code>leaderIndexExclusionPatterns</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder leaderIndexExclusionPatterns(List<String> list) {
 			this.leaderIndexExclusionPatterns = _listAddAll(this.leaderIndexExclusionPatterns, list);

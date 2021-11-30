@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.SynonymGraphTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/analysis/token_filters.ts#L109-L118">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SynonymGraphTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	@Nullable
@@ -69,7 +76,7 @@ public class SynonymGraphTokenFilter extends TokenFilterBase implements TokenFil
 		this.expand = builder.expand;
 		this.format = builder.format;
 		this.lenient = builder.lenient;
-		this.synonyms = ModelTypeHelper.unmodifiable(builder.synonyms);
+		this.synonyms = ApiTypeHelper.unmodifiable(builder.synonyms);
 		this.synonymsPath = builder.synonymsPath;
 		this.tokenizer = builder.tokenizer;
 		this.updateable = builder.updateable;
@@ -161,7 +168,7 @@ public class SynonymGraphTokenFilter extends TokenFilterBase implements TokenFil
 			generator.write(this.lenient);
 
 		}
-		if (ModelTypeHelper.isDefined(this.synonyms)) {
+		if (ApiTypeHelper.isDefined(this.synonyms)) {
 			generator.writeKey("synonyms");
 			generator.writeStartArray();
 			for (String item0 : this.synonyms) {
@@ -194,6 +201,7 @@ public class SynonymGraphTokenFilter extends TokenFilterBase implements TokenFil
 	/**
 	 * Builder for {@link SynonymGraphTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<SynonymGraphTokenFilter> {
@@ -245,11 +253,9 @@ public class SynonymGraphTokenFilter extends TokenFilterBase implements TokenFil
 		/**
 		 * API name: {@code synonyms}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>synonyms</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>synonyms</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>synonyms</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder synonyms(List<String> list) {
 			this.synonyms = _listAddAll(this.synonyms, list);

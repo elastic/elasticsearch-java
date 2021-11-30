@@ -34,7 +34,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -45,6 +45,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexSettingsAnalysis
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/_types/IndexSettings.ts#L297-L303">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IndexSettingsAnalysis implements JsonpSerializable {
 	private final Map<String, Analyzer> analyzer;
@@ -61,11 +68,11 @@ public class IndexSettingsAnalysis implements JsonpSerializable {
 
 	private IndexSettingsAnalysis(Builder builder) {
 
-		this.analyzer = ModelTypeHelper.unmodifiable(builder.analyzer);
-		this.charFilter = ModelTypeHelper.unmodifiable(builder.charFilter);
-		this.filter = ModelTypeHelper.unmodifiable(builder.filter);
-		this.normalizer = ModelTypeHelper.unmodifiable(builder.normalizer);
-		this.tokenizer = ModelTypeHelper.unmodifiable(builder.tokenizer);
+		this.analyzer = ApiTypeHelper.unmodifiable(builder.analyzer);
+		this.charFilter = ApiTypeHelper.unmodifiable(builder.charFilter);
+		this.filter = ApiTypeHelper.unmodifiable(builder.filter);
+		this.normalizer = ApiTypeHelper.unmodifiable(builder.normalizer);
+		this.tokenizer = ApiTypeHelper.unmodifiable(builder.tokenizer);
 
 	}
 
@@ -119,7 +126,7 @@ public class IndexSettingsAnalysis implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.analyzer)) {
+		if (ApiTypeHelper.isDefined(this.analyzer)) {
 			generator.writeKey("analyzer");
 			generator.writeStartObject();
 			for (Map.Entry<String, Analyzer> item0 : this.analyzer.entrySet()) {
@@ -130,7 +137,7 @@ public class IndexSettingsAnalysis implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.charFilter)) {
+		if (ApiTypeHelper.isDefined(this.charFilter)) {
 			generator.writeKey("char_filter");
 			generator.writeStartObject();
 			for (Map.Entry<String, CharFilter> item0 : this.charFilter.entrySet()) {
@@ -141,7 +148,7 @@ public class IndexSettingsAnalysis implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.filter)) {
+		if (ApiTypeHelper.isDefined(this.filter)) {
 			generator.writeKey("filter");
 			generator.writeStartObject();
 			for (Map.Entry<String, TokenFilter> item0 : this.filter.entrySet()) {
@@ -152,7 +159,7 @@ public class IndexSettingsAnalysis implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.normalizer)) {
+		if (ApiTypeHelper.isDefined(this.normalizer)) {
 			generator.writeKey("normalizer");
 			generator.writeStartObject();
 			for (Map.Entry<String, Normalizer> item0 : this.normalizer.entrySet()) {
@@ -163,7 +170,7 @@ public class IndexSettingsAnalysis implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.tokenizer)) {
+		if (ApiTypeHelper.isDefined(this.tokenizer)) {
 			generator.writeKey("tokenizer");
 			generator.writeStartObject();
 			for (Map.Entry<String, Tokenizer> item0 : this.tokenizer.entrySet()) {
@@ -182,6 +189,7 @@ public class IndexSettingsAnalysis implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexSettingsAnalysis}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexSettingsAnalysis> {
 		@Nullable
 		private Map<String, Analyzer> analyzer;
@@ -201,11 +209,9 @@ public class IndexSettingsAnalysis implements JsonpSerializable {
 		/**
 		 * API name: {@code analyzer}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>analyzer</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>analyzer</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>analyzer</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder analyzer(Map<String, Analyzer> map) {
 			this.analyzer = _mapPutAll(this.analyzer, map);
@@ -234,11 +240,9 @@ public class IndexSettingsAnalysis implements JsonpSerializable {
 		/**
 		 * API name: {@code char_filter}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>charFilter</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>charFilter</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>charFilter</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder charFilter(Map<String, CharFilter> map) {
 			this.charFilter = _mapPutAll(this.charFilter, map);
@@ -267,11 +271,9 @@ public class IndexSettingsAnalysis implements JsonpSerializable {
 		/**
 		 * API name: {@code filter}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>filter</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>filter</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>filter</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder filter(Map<String, TokenFilter> map) {
 			this.filter = _mapPutAll(this.filter, map);
@@ -300,11 +302,9 @@ public class IndexSettingsAnalysis implements JsonpSerializable {
 		/**
 		 * API name: {@code normalizer}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>normalizer</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>normalizer</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>normalizer</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder normalizer(Map<String, Normalizer> map) {
 			this.normalizer = _mapPutAll(this.normalizer, map);
@@ -333,11 +333,9 @@ public class IndexSettingsAnalysis implements JsonpSerializable {
 		/**
 		 * API name: {@code tokenizer}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>tokenizer</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>tokenizer</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>tokenizer</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder tokenizer(Map<String, Tokenizer> map) {
 			this.tokenizer = _mapPutAll(this.tokenizer, map);

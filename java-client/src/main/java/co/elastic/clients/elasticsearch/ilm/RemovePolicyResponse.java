@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm.remove_policy.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ilm/remove_policy/RemovePolicyResponse.ts#L22-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RemovePolicyResponse implements JsonpSerializable {
 	private final List<String> failedIndexes;
@@ -51,8 +58,8 @@ public class RemovePolicyResponse implements JsonpSerializable {
 
 	private RemovePolicyResponse(Builder builder) {
 
-		this.failedIndexes = ModelTypeHelper.unmodifiableRequired(builder.failedIndexes, this, "failedIndexes");
-		this.hasFailures = ModelTypeHelper.requireNonNull(builder.hasFailures, this, "hasFailures");
+		this.failedIndexes = ApiTypeHelper.unmodifiableRequired(builder.failedIndexes, this, "failedIndexes");
+		this.hasFailures = ApiTypeHelper.requireNonNull(builder.hasFailures, this, "hasFailures");
 
 	}
 
@@ -85,7 +92,7 @@ public class RemovePolicyResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.failedIndexes)) {
+		if (ApiTypeHelper.isDefined(this.failedIndexes)) {
 			generator.writeKey("failed_indexes");
 			generator.writeStartArray();
 			for (String item0 : this.failedIndexes) {
@@ -105,6 +112,7 @@ public class RemovePolicyResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link RemovePolicyResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RemovePolicyResponse> {
 		private List<String> failedIndexes;
 
@@ -113,11 +121,9 @@ public class RemovePolicyResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code failed_indexes}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>failedIndexes</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>failedIndexes</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>failedIndexes</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder failedIndexes(List<String> list) {
 			this.failedIndexes = _listAddAll(this.failedIndexes, list);

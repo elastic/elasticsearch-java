@@ -34,6 +34,13 @@ import java.util.Objects;
 
 // typedef: _types.RequestBase
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/Base.ts#L35-L35">API
+ *      specification</a>
+ */
+
 public abstract class RequestBase {
 	public RequestBase() {
 	}

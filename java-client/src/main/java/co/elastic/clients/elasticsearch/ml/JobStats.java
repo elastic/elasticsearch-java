@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.JobStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/Job.ts#L91-L102">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class JobStats implements JsonpSerializable {
 	private final String assignmentExplanation;
@@ -68,16 +75,16 @@ public class JobStats implements JsonpSerializable {
 
 	private JobStats(Builder builder) {
 
-		this.assignmentExplanation = ModelTypeHelper.requireNonNull(builder.assignmentExplanation, this,
+		this.assignmentExplanation = ApiTypeHelper.requireNonNull(builder.assignmentExplanation, this,
 				"assignmentExplanation");
-		this.dataCounts = ModelTypeHelper.requireNonNull(builder.dataCounts, this, "dataCounts");
-		this.forecastsStats = ModelTypeHelper.requireNonNull(builder.forecastsStats, this, "forecastsStats");
-		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
-		this.modelSizeStats = ModelTypeHelper.requireNonNull(builder.modelSizeStats, this, "modelSizeStats");
-		this.node = ModelTypeHelper.requireNonNull(builder.node, this, "node");
+		this.dataCounts = ApiTypeHelper.requireNonNull(builder.dataCounts, this, "dataCounts");
+		this.forecastsStats = ApiTypeHelper.requireNonNull(builder.forecastsStats, this, "forecastsStats");
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.modelSizeStats = ApiTypeHelper.requireNonNull(builder.modelSizeStats, this, "modelSizeStats");
+		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
 		this.openTime = builder.openTime;
-		this.state = ModelTypeHelper.requireNonNull(builder.state, this, "state");
-		this.timingStats = ModelTypeHelper.requireNonNull(builder.timingStats, this, "timingStats");
+		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
+		this.timingStats = ApiTypeHelper.requireNonNull(builder.timingStats, this, "timingStats");
 		this.deleting = builder.deleting;
 
 	}
@@ -210,6 +217,7 @@ public class JobStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link JobStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<JobStats> {
 		private String assignmentExplanation;
 

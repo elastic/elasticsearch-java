@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.RankEvalQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/rank_eval/types.ts#L111-L114">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RankEvalQuery implements JsonpSerializable {
 	private final Query query;
@@ -51,7 +58,7 @@ public class RankEvalQuery implements JsonpSerializable {
 
 	private RankEvalQuery(Builder builder) {
 
-		this.query = ModelTypeHelper.requireNonNull(builder.query, this, "query");
+		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 		this.size = builder.size;
 
 	}
@@ -102,6 +109,7 @@ public class RankEvalQuery implements JsonpSerializable {
 	/**
 	 * Builder for {@link RankEvalQuery}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RankEvalQuery> {
 		private Query query;
 

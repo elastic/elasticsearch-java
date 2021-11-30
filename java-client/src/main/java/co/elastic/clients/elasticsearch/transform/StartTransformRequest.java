@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -45,6 +45,14 @@ import javax.annotation.Nullable;
 
 // typedef: transform.start_transform.Request
 
+/**
+ * Starts one or more transforms.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/transform/start_transform/StartTransformRequest.ts#L24-L36">API
+ *      specification</a>
+ */
+
 public class StartTransformRequest extends RequestBase {
 	@Nullable
 	private final Time timeout;
@@ -56,7 +64,7 @@ public class StartTransformRequest extends RequestBase {
 	private StartTransformRequest(Builder builder) {
 
 		this.timeout = builder.timeout;
-		this.transformId = ModelTypeHelper.requireNonNull(builder.transformId, this, "transformId");
+		this.transformId = ApiTypeHelper.requireNonNull(builder.transformId, this, "transformId");
 
 	}
 
@@ -88,6 +96,7 @@ public class StartTransformRequest extends RequestBase {
 	/**
 	 * Builder for {@link StartTransformRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StartTransformRequest> {
 		@Nullable
 		private Time timeout;

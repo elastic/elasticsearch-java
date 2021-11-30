@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_job_stats.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/get_job_stats/MlGetJobStatsResponse.ts#L23-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetJobStatsResponse implements JsonpSerializable {
 	private final long count;
@@ -50,8 +57,8 @@ public class GetJobStatsResponse implements JsonpSerializable {
 
 	private GetJobStatsResponse(Builder builder) {
 
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
-		this.jobs = ModelTypeHelper.unmodifiableRequired(builder.jobs, this, "jobs");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.jobs = ApiTypeHelper.unmodifiableRequired(builder.jobs, this, "jobs");
 
 	}
 
@@ -87,7 +94,7 @@ public class GetJobStatsResponse implements JsonpSerializable {
 		generator.writeKey("count");
 		generator.write(this.count);
 
-		if (ModelTypeHelper.isDefined(this.jobs)) {
+		if (ApiTypeHelper.isDefined(this.jobs)) {
 			generator.writeKey("jobs");
 			generator.writeStartArray();
 			for (JobStats item0 : this.jobs) {
@@ -105,6 +112,7 @@ public class GetJobStatsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetJobStatsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetJobStatsResponse> {
 		private Long count;
 
@@ -121,11 +129,9 @@ public class GetJobStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code jobs}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>jobs</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>jobs</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>jobs</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder jobs(List<JobStats> list) {
 			this.jobs = _listAddAll(this.jobs, list);

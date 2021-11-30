@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup._types.FieldMetric
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/rollup/_types/Metric.ts#L30-L33">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FieldMetric implements JsonpSerializable {
 	private final String field;
@@ -50,8 +57,8 @@ public class FieldMetric implements JsonpSerializable {
 
 	private FieldMetric(Builder builder) {
 
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
-		this.metrics = ModelTypeHelper.unmodifiableRequired(builder.metrics, this, "metrics");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.metrics = ApiTypeHelper.unmodifiableRequired(builder.metrics, this, "metrics");
 
 	}
 
@@ -87,7 +94,7 @@ public class FieldMetric implements JsonpSerializable {
 		generator.writeKey("field");
 		generator.write(this.field);
 
-		if (ModelTypeHelper.isDefined(this.metrics)) {
+		if (ApiTypeHelper.isDefined(this.metrics)) {
 			generator.writeKey("metrics");
 			generator.writeStartArray();
 			for (Metric item0 : this.metrics) {
@@ -104,6 +111,7 @@ public class FieldMetric implements JsonpSerializable {
 	/**
 	 * Builder for {@link FieldMetric}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldMetric> {
 		private String field;
 
@@ -120,11 +128,9 @@ public class FieldMetric implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code metrics}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>metrics</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>metrics</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>metrics</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder metrics(List<Metric> list) {
 			this.metrics = _listAddAll(this.metrics, list);

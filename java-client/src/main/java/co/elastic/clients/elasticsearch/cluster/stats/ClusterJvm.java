@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterJvm
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cluster/stats/types.ts#L148-L153">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ClusterJvm implements JsonpSerializable {
 	private final long maxUptimeInMillis;
@@ -54,10 +61,10 @@ public class ClusterJvm implements JsonpSerializable {
 
 	private ClusterJvm(Builder builder) {
 
-		this.maxUptimeInMillis = ModelTypeHelper.requireNonNull(builder.maxUptimeInMillis, this, "maxUptimeInMillis");
-		this.mem = ModelTypeHelper.requireNonNull(builder.mem, this, "mem");
-		this.threads = ModelTypeHelper.requireNonNull(builder.threads, this, "threads");
-		this.versions = ModelTypeHelper.unmodifiableRequired(builder.versions, this, "versions");
+		this.maxUptimeInMillis = ApiTypeHelper.requireNonNull(builder.maxUptimeInMillis, this, "maxUptimeInMillis");
+		this.mem = ApiTypeHelper.requireNonNull(builder.mem, this, "mem");
+		this.threads = ApiTypeHelper.requireNonNull(builder.threads, this, "threads");
+		this.versions = ApiTypeHelper.unmodifiableRequired(builder.versions, this, "versions");
 
 	}
 
@@ -113,7 +120,7 @@ public class ClusterJvm implements JsonpSerializable {
 		generator.writeKey("threads");
 		generator.write(this.threads);
 
-		if (ModelTypeHelper.isDefined(this.versions)) {
+		if (ApiTypeHelper.isDefined(this.versions)) {
 			generator.writeKey("versions");
 			generator.writeStartArray();
 			for (ClusterJvmVersion item0 : this.versions) {
@@ -131,6 +138,7 @@ public class ClusterJvm implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClusterJvm}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterJvm> {
 		private Long maxUptimeInMillis;
 
@@ -174,11 +182,9 @@ public class ClusterJvm implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code versions}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>versions</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>versions</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>versions</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder versions(List<ClusterJvmVersion> list) {
 			this.versions = _listAddAll(this.versions, list);

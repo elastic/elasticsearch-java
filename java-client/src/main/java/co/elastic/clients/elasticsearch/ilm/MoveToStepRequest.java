@@ -34,7 +34,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -45,6 +45,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm.move_to_step.Request
+
+/**
+ * Manually moves an index into the specified step and executes that step.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ilm/move_to_step/MoveToStepRequest.ts#L24-L37">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MoveToStepRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -60,7 +68,7 @@ public class MoveToStepRequest extends RequestBase implements JsonpSerializable 
 	private MoveToStepRequest(Builder builder) {
 
 		this.currentStep = builder.currentStep;
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.nextStep = builder.nextStep;
 
 	}
@@ -123,6 +131,7 @@ public class MoveToStepRequest extends RequestBase implements JsonpSerializable 
 	/**
 	 * Builder for {@link MoveToStepRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MoveToStepRequest> {
 		@Nullable
 		private StepKey currentStep;

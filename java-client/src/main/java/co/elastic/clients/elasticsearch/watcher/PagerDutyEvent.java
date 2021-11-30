@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.PagerDutyEvent
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/watcher/_types/Actions.ts#L34-L43">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PagerDutyEvent implements JsonpSerializable {
 	private final String account;
@@ -63,14 +70,14 @@ public class PagerDutyEvent implements JsonpSerializable {
 
 	private PagerDutyEvent(Builder builder) {
 
-		this.account = ModelTypeHelper.requireNonNull(builder.account, this, "account");
-		this.attachPayload = ModelTypeHelper.requireNonNull(builder.attachPayload, this, "attachPayload");
-		this.client = ModelTypeHelper.requireNonNull(builder.client, this, "client");
-		this.clientUrl = ModelTypeHelper.requireNonNull(builder.clientUrl, this, "clientUrl");
-		this.context = ModelTypeHelper.unmodifiableRequired(builder.context, this, "context");
-		this.description = ModelTypeHelper.requireNonNull(builder.description, this, "description");
-		this.eventType = ModelTypeHelper.requireNonNull(builder.eventType, this, "eventType");
-		this.incidentKey = ModelTypeHelper.requireNonNull(builder.incidentKey, this, "incidentKey");
+		this.account = ApiTypeHelper.requireNonNull(builder.account, this, "account");
+		this.attachPayload = ApiTypeHelper.requireNonNull(builder.attachPayload, this, "attachPayload");
+		this.client = ApiTypeHelper.requireNonNull(builder.client, this, "client");
+		this.clientUrl = ApiTypeHelper.requireNonNull(builder.clientUrl, this, "clientUrl");
+		this.context = ApiTypeHelper.unmodifiableRequired(builder.context, this, "context");
+		this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
+		this.eventType = ApiTypeHelper.requireNonNull(builder.eventType, this, "eventType");
+		this.incidentKey = ApiTypeHelper.requireNonNull(builder.incidentKey, this, "incidentKey");
 
 	}
 
@@ -157,7 +164,7 @@ public class PagerDutyEvent implements JsonpSerializable {
 		generator.writeKey("client_url");
 		generator.write(this.clientUrl);
 
-		if (ModelTypeHelper.isDefined(this.context)) {
+		if (ApiTypeHelper.isDefined(this.context)) {
 			generator.writeKey("context");
 			generator.writeStartArray();
 			for (PagerDutyContext item0 : this.context) {
@@ -182,6 +189,7 @@ public class PagerDutyEvent implements JsonpSerializable {
 	/**
 	 * Builder for {@link PagerDutyEvent}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PagerDutyEvent> {
 		private String account;
 
@@ -234,11 +242,9 @@ public class PagerDutyEvent implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code context}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>context</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>context</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>context</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder context(List<PagerDutyContext> list) {
 			this.context = _listAddAll(this.context, list);

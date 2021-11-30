@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_model_snapshots.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/get_model_snapshots/MlGetModelSnapshotsResponse.ts#L23-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetModelSnapshotsResponse implements JsonpSerializable {
 	private final long count;
@@ -50,8 +57,8 @@ public class GetModelSnapshotsResponse implements JsonpSerializable {
 
 	private GetModelSnapshotsResponse(Builder builder) {
 
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
-		this.modelSnapshots = ModelTypeHelper.unmodifiableRequired(builder.modelSnapshots, this, "modelSnapshots");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.modelSnapshots = ApiTypeHelper.unmodifiableRequired(builder.modelSnapshots, this, "modelSnapshots");
 
 	}
 
@@ -87,7 +94,7 @@ public class GetModelSnapshotsResponse implements JsonpSerializable {
 		generator.writeKey("count");
 		generator.write(this.count);
 
-		if (ModelTypeHelper.isDefined(this.modelSnapshots)) {
+		if (ApiTypeHelper.isDefined(this.modelSnapshots)) {
 			generator.writeKey("model_snapshots");
 			generator.writeStartArray();
 			for (ModelSnapshot item0 : this.modelSnapshots) {
@@ -105,6 +112,7 @@ public class GetModelSnapshotsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetModelSnapshotsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetModelSnapshotsResponse> {
 		private Long count;
 
@@ -121,11 +129,9 @@ public class GetModelSnapshotsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code model_snapshots}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>modelSnapshots</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>modelSnapshots</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>modelSnapshots</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder modelSnapshots(List<ModelSnapshot> list) {
 			this.modelSnapshots = _listAddAll(this.modelSnapshots, list);

@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.ml_data_frame_analytics.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cat/ml_data_frame_analytics/CatDataFrameAnalyticsResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MlDataFrameAnalyticsResponse implements JsonpSerializable {
 	private final List<DataFrameAnalyticsRecord> valueBody;
@@ -48,7 +55,7 @@ public class MlDataFrameAnalyticsResponse implements JsonpSerializable {
 
 	private MlDataFrameAnalyticsResponse(Builder builder) {
 
-		this.valueBody = ModelTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
+		this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
 
 	}
 
@@ -83,6 +90,7 @@ public class MlDataFrameAnalyticsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link MlDataFrameAnalyticsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MlDataFrameAnalyticsResponse> {
 		private List<DataFrameAnalyticsRecord> valueBody;
 
@@ -91,11 +99,9 @@ public class MlDataFrameAnalyticsResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>valueBody</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>valueBody</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>valueBody</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder valueBody(List<DataFrameAnalyticsRecord> list) {
 			this.valueBody = _listAddAll(this.valueBody, list);

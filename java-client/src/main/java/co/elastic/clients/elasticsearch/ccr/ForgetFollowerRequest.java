@@ -33,7 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -44,6 +44,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr.forget_follower.Request
+
+/**
+ * Removes the follower retention leases from the leader.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ccr/forget_follower/ForgetFollowerIndexRequest.ts#L23-L38">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ForgetFollowerRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -67,7 +75,7 @@ public class ForgetFollowerRequest extends RequestBase implements JsonpSerializa
 		this.followerCluster = builder.followerCluster;
 		this.followerIndex = builder.followerIndex;
 		this.followerIndexUuid = builder.followerIndexUuid;
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.leaderRemoteCluster = builder.leaderRemoteCluster;
 
 	}
@@ -157,6 +165,7 @@ public class ForgetFollowerRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Builder for {@link ForgetFollowerRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ForgetFollowerRequest> {
 		@Nullable
 		private String followerCluster;

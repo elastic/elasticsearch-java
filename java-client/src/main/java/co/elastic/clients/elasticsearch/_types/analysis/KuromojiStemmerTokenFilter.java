@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -36,6 +36,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.analysis.KuromojiStemmerTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/analysis/kuromoji-plugin.ts#L47-L50">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class KuromojiStemmerTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final int minimumLength;
@@ -45,7 +52,7 @@ public class KuromojiStemmerTokenFilter extends TokenFilterBase implements Token
 	private KuromojiStemmerTokenFilter(Builder builder) {
 		super(builder);
 
-		this.minimumLength = ModelTypeHelper.requireNonNull(builder.minimumLength, this, "minimumLength");
+		this.minimumLength = ApiTypeHelper.requireNonNull(builder.minimumLength, this, "minimumLength");
 
 	}
 
@@ -82,6 +89,7 @@ public class KuromojiStemmerTokenFilter extends TokenFilterBase implements Token
 	/**
 	 * Builder for {@link KuromojiStemmerTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<KuromojiStemmerTokenFilter> {

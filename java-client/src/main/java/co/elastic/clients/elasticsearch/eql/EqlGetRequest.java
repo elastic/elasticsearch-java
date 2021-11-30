@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -44,6 +44,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: eql.get.Request
+
+/**
+ * Returns async results from previously executed Event Query Language (EQL)
+ * search
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/eql/get/EqlGetRequest.ts#L24-L46">API
+ *      specification</a>
+ */
 
 public class EqlGetRequest extends RequestBase {
 	private final String id;
@@ -58,7 +67,7 @@ public class EqlGetRequest extends RequestBase {
 
 	private EqlGetRequest(Builder builder) {
 
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.keepAlive = builder.keepAlive;
 		this.waitForCompletionTimeout = builder.waitForCompletionTimeout;
 
@@ -104,6 +113,7 @@ public class EqlGetRequest extends RequestBase {
 	/**
 	 * Builder for {@link EqlGetRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<EqlGetRequest> {
 		private String id;
 

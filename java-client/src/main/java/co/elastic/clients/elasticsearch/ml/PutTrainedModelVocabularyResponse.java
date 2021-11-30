@@ -34,6 +34,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: ml.put_trained_model_vocabulary.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/put_trained_model_vocabulary/MlPutTrainedModelVocabularyResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutTrainedModelVocabularyResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +60,7 @@ public class PutTrainedModelVocabularyResponse extends AcknowledgedResponseBase 
 	/**
 	 * Builder for {@link PutTrainedModelVocabularyResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PutTrainedModelVocabularyResponse> {

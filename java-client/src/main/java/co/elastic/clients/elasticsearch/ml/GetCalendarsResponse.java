@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_calendars.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/get_calendars/MlGetCalendarsResponse.ts#L23-L25">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetCalendarsResponse implements JsonpSerializable {
 	private final List<Calendar> calendars;
@@ -51,8 +58,8 @@ public class GetCalendarsResponse implements JsonpSerializable {
 
 	private GetCalendarsResponse(Builder builder) {
 
-		this.calendars = ModelTypeHelper.unmodifiableRequired(builder.calendars, this, "calendars");
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
+		this.calendars = ApiTypeHelper.unmodifiableRequired(builder.calendars, this, "calendars");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
 
 	}
 
@@ -85,7 +92,7 @@ public class GetCalendarsResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.calendars)) {
+		if (ApiTypeHelper.isDefined(this.calendars)) {
 			generator.writeKey("calendars");
 			generator.writeStartArray();
 			for (Calendar item0 : this.calendars) {
@@ -105,6 +112,7 @@ public class GetCalendarsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetCalendarsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetCalendarsResponse> {
 		private List<Calendar> calendars;
 
@@ -113,11 +121,9 @@ public class GetCalendarsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code calendars}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>calendars</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>calendars</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>calendars</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder calendars(List<Calendar> list) {
 			this.calendars = _listAddAll(this.calendars, list);

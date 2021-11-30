@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: nodes._types.JvmClasses
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/nodes/_types/Stats.ts#L177-L181">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class JvmClasses implements JsonpSerializable {
 	private final long currentLoadedCount;
@@ -50,11 +57,9 @@ public class JvmClasses implements JsonpSerializable {
 
 	private JvmClasses(Builder builder) {
 
-		this.currentLoadedCount = ModelTypeHelper.requireNonNull(builder.currentLoadedCount, this,
-				"currentLoadedCount");
-		this.totalLoadedCount = ModelTypeHelper.requireNonNull(builder.totalLoadedCount, this, "totalLoadedCount");
-		this.totalUnloadedCount = ModelTypeHelper.requireNonNull(builder.totalUnloadedCount, this,
-				"totalUnloadedCount");
+		this.currentLoadedCount = ApiTypeHelper.requireNonNull(builder.currentLoadedCount, this, "currentLoadedCount");
+		this.totalLoadedCount = ApiTypeHelper.requireNonNull(builder.totalLoadedCount, this, "totalLoadedCount");
+		this.totalUnloadedCount = ApiTypeHelper.requireNonNull(builder.totalUnloadedCount, this, "totalUnloadedCount");
 
 	}
 
@@ -110,6 +115,7 @@ public class JvmClasses implements JsonpSerializable {
 	/**
 	 * Builder for {@link JvmClasses}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<JvmClasses> {
 		private Long currentLoadedCount;
 

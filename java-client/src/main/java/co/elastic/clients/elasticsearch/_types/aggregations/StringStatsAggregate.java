@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.StringStatsAggregate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/Aggregate.ts#L630-L641">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class StringStatsAggregate extends AggregateBase implements AggregateVariant {
 	private final long count;
@@ -69,11 +76,11 @@ public class StringStatsAggregate extends AggregateBase implements AggregateVari
 	private StringStatsAggregate(Builder builder) {
 		super(builder);
 
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
-		this.minLength = ModelTypeHelper.requireNonNull(builder.minLength, this, "minLength");
-		this.maxLength = ModelTypeHelper.requireNonNull(builder.maxLength, this, "maxLength");
-		this.avgLength = ModelTypeHelper.requireNonNull(builder.avgLength, this, "avgLength");
-		this.entropy = ModelTypeHelper.requireNonNull(builder.entropy, this, "entropy");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.minLength = ApiTypeHelper.requireNonNull(builder.minLength, this, "minLength");
+		this.maxLength = ApiTypeHelper.requireNonNull(builder.maxLength, this, "maxLength");
+		this.avgLength = ApiTypeHelper.requireNonNull(builder.avgLength, this, "avgLength");
+		this.entropy = ApiTypeHelper.requireNonNull(builder.entropy, this, "entropy");
 		this.distribution = builder.distribution;
 		this.minLengthAsString = builder.minLengthAsString;
 		this.maxLengthAsString = builder.maxLengthAsString;
@@ -206,6 +213,7 @@ public class StringStatsAggregate extends AggregateBase implements AggregateVari
 	/**
 	 * Builder for {@link StringStatsAggregate}.
 	 */
+
 	public static class Builder extends AggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<StringStatsAggregate> {

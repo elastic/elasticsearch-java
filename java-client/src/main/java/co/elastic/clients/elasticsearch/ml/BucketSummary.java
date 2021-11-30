@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -44,6 +44,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.BucketSummary
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/Bucket.ts#L24-L66">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class BucketSummary implements JsonpSerializable {
 	private final double anomalyScore;
@@ -70,18 +77,18 @@ public class BucketSummary implements JsonpSerializable {
 
 	private BucketSummary(Builder builder) {
 
-		this.anomalyScore = ModelTypeHelper.requireNonNull(builder.anomalyScore, this, "anomalyScore");
-		this.bucketInfluencers = ModelTypeHelper.unmodifiableRequired(builder.bucketInfluencers, this,
+		this.anomalyScore = ApiTypeHelper.requireNonNull(builder.anomalyScore, this, "anomalyScore");
+		this.bucketInfluencers = ApiTypeHelper.unmodifiableRequired(builder.bucketInfluencers, this,
 				"bucketInfluencers");
-		this.bucketSpan = ModelTypeHelper.requireNonNull(builder.bucketSpan, this, "bucketSpan");
-		this.eventCount = ModelTypeHelper.requireNonNull(builder.eventCount, this, "eventCount");
-		this.initialAnomalyScore = ModelTypeHelper.requireNonNull(builder.initialAnomalyScore, this,
+		this.bucketSpan = ApiTypeHelper.requireNonNull(builder.bucketSpan, this, "bucketSpan");
+		this.eventCount = ApiTypeHelper.requireNonNull(builder.eventCount, this, "eventCount");
+		this.initialAnomalyScore = ApiTypeHelper.requireNonNull(builder.initialAnomalyScore, this,
 				"initialAnomalyScore");
-		this.isInterim = ModelTypeHelper.requireNonNull(builder.isInterim, this, "isInterim");
-		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
-		this.processingTimeMs = ModelTypeHelper.requireNonNull(builder.processingTimeMs, this, "processingTimeMs");
-		this.resultType = ModelTypeHelper.requireNonNull(builder.resultType, this, "resultType");
-		this.timestamp = ModelTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+		this.isInterim = ApiTypeHelper.requireNonNull(builder.isInterim, this, "isInterim");
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.processingTimeMs = ApiTypeHelper.requireNonNull(builder.processingTimeMs, this, "processingTimeMs");
+		this.resultType = ApiTypeHelper.requireNonNull(builder.resultType, this, "resultType");
+		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
 
 	}
 
@@ -201,7 +208,7 @@ public class BucketSummary implements JsonpSerializable {
 		generator.writeKey("anomaly_score");
 		generator.write(this.anomalyScore);
 
-		if (ModelTypeHelper.isDefined(this.bucketInfluencers)) {
+		if (ApiTypeHelper.isDefined(this.bucketInfluencers)) {
 			generator.writeKey("bucket_influencers");
 			generator.writeStartArray();
 			for (BucketInfluencer item0 : this.bucketInfluencers) {
@@ -242,6 +249,7 @@ public class BucketSummary implements JsonpSerializable {
 	/**
 	 * Builder for {@link BucketSummary}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<BucketSummary> {
 		private Double anomalyScore;
 
@@ -279,11 +287,9 @@ public class BucketSummary implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code bucket_influencers}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>bucketInfluencers</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>bucketInfluencers</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>bucketInfluencers</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder bucketInfluencers(List<BucketInfluencer> list) {
 			this.bucketInfluencers = _listAddAll(this.bucketInfluencers, list);

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.WatcherActions
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/xpack/usage/types.ts#L357-L359">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class WatcherActions implements JsonpSerializable {
 	private final Map<String, WatcherActionTotals> actions;
@@ -48,7 +55,7 @@ public class WatcherActions implements JsonpSerializable {
 
 	private WatcherActions(Builder builder) {
 
-		this.actions = ModelTypeHelper.unmodifiableRequired(builder.actions, this, "actions");
+		this.actions = ApiTypeHelper.unmodifiableRequired(builder.actions, this, "actions");
 
 	}
 
@@ -74,7 +81,7 @@ public class WatcherActions implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.actions)) {
+		if (ApiTypeHelper.isDefined(this.actions)) {
 			generator.writeKey("actions");
 			generator.writeStartObject();
 			for (Map.Entry<String, WatcherActionTotals> item0 : this.actions.entrySet()) {
@@ -93,17 +100,16 @@ public class WatcherActions implements JsonpSerializable {
 	/**
 	 * Builder for {@link WatcherActions}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WatcherActions> {
 		private Map<String, WatcherActionTotals> actions;
 
 		/**
 		 * Required - API name: {@code actions}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>actions</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>actions</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>actions</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder actions(Map<String, WatcherActionTotals> map) {
 			this.actions = _mapPutAll(this.actions, map);

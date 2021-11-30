@@ -36,6 +36,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: security.get_role.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/security/get_role/SecurityGetRoleResponse.ts#L23-L23">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetRoleResponse extends DictionaryResponse<String, Role> {
 	// ---------------------------------------------------------------------------------------------
@@ -54,6 +61,7 @@ public class GetRoleResponse extends DictionaryResponse<String, Role> {
 	/**
 	 * Builder for {@link GetRoleResponse}.
 	 */
+
 	public static class Builder extends DictionaryResponse.AbstractBuilder<String, Role, Builder>
 			implements
 				ObjectBuilder<GetRoleResponse> {

@@ -42,6 +42,15 @@ import javax.annotation.Nullable;
 
 // typedef: ccr.get_auto_follow_pattern.Request
 
+/**
+ * Gets configured auto-follow patterns. Returns the specified auto-follow
+ * pattern collection.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ccr/get_auto_follow_pattern/GetAutoFollowPatternRequest.ts#L23-L33">API
+ *      specification</a>
+ */
+
 public class GetAutoFollowPatternRequest extends RequestBase {
 	@Nullable
 	private final String name;
@@ -74,6 +83,7 @@ public class GetAutoFollowPatternRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetAutoFollowPatternRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetAutoFollowPatternRequest> {
 		@Nullable
 		private String name;

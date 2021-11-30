@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GeoDistanceAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/bucket.ts#L171-L177">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GeoDistanceAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
@@ -65,7 +72,7 @@ public class GeoDistanceAggregation extends BucketAggregationBase implements Agg
 		this.distanceType = builder.distanceType;
 		this.field = builder.field;
 		this.origin = builder.origin;
-		this.ranges = ModelTypeHelper.unmodifiable(builder.ranges);
+		this.ranges = ApiTypeHelper.unmodifiable(builder.ranges);
 		this.unit = builder.unit;
 
 	}
@@ -138,7 +145,7 @@ public class GeoDistanceAggregation extends BucketAggregationBase implements Agg
 			this.origin.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.ranges)) {
+		if (ApiTypeHelper.isDefined(this.ranges)) {
 			generator.writeKey("ranges");
 			generator.writeStartArray();
 			for (AggregationRange item0 : this.ranges) {
@@ -160,6 +167,7 @@ public class GeoDistanceAggregation extends BucketAggregationBase implements Agg
 	/**
 	 * Builder for {@link GeoDistanceAggregation}.
 	 */
+
 	public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<GeoDistanceAggregation> {
@@ -212,11 +220,9 @@ public class GeoDistanceAggregation extends BucketAggregationBase implements Agg
 		/**
 		 * API name: {@code ranges}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>ranges</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>ranges</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>ranges</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder ranges(List<AggregationRange> list) {
 			this.ranges = _listAddAll(this.ranges, list);

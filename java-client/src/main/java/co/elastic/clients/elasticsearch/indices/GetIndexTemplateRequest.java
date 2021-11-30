@@ -45,6 +45,14 @@ import javax.annotation.Nullable;
 
 // typedef: indices.get_index_template.Request
 
+/**
+ * Returns an index template.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/get_index_template/IndicesGetIndexTemplateRequest.ts#L24-L56">API
+ *      specification</a>
+ */
+
 public class GetIndexTemplateRequest extends RequestBase {
 	@Nullable
 	private final Boolean flatSettings;
@@ -135,6 +143,7 @@ public class GetIndexTemplateRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetIndexTemplateRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetIndexTemplateRequest> {
 		@Nullable
 		private Boolean flatSettings;

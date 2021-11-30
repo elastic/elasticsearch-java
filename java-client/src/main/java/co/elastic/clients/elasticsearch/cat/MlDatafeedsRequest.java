@@ -44,6 +44,18 @@ import javax.annotation.Nullable;
 
 // typedef: cat.ml_datafeeds.Request
 
+/**
+ * Returns configuration and usage information about datafeeds. This API returns
+ * a maximum of 10,000 datafeeds. If the Elasticsearch security features are
+ * enabled, you must have <code>monitor_ml</code>, <code>monitor</code>,
+ * <code>manage_ml</code>, or <code>manage</code> cluster privileges to use this
+ * API.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cat/ml_datafeeds/CatDatafeedsRequest.ts#L24-L62">API
+ *      specification</a>
+ */
+
 public class MlDatafeedsRequest extends CatRequestBase {
 	@Nullable
 	private final Boolean allowNoMatch;
@@ -116,6 +128,7 @@ public class MlDatafeedsRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link MlDatafeedsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MlDatafeedsRequest> {
 		@Nullable
 		private Boolean allowNoMatch;

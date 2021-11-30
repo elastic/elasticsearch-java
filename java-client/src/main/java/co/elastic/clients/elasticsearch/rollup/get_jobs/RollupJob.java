@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.get_jobs.RollupJob
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/rollup/get_jobs/types.ts#L28-L32">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RollupJob implements JsonpSerializable {
 	private final RollupJobConfiguration config;
@@ -50,9 +57,9 @@ public class RollupJob implements JsonpSerializable {
 
 	private RollupJob(Builder builder) {
 
-		this.config = ModelTypeHelper.requireNonNull(builder.config, this, "config");
-		this.stats = ModelTypeHelper.requireNonNull(builder.stats, this, "stats");
-		this.status = ModelTypeHelper.requireNonNull(builder.status, this, "status");
+		this.config = ApiTypeHelper.requireNonNull(builder.config, this, "config");
+		this.stats = ApiTypeHelper.requireNonNull(builder.stats, this, "stats");
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 
 	}
 
@@ -108,6 +115,7 @@ public class RollupJob implements JsonpSerializable {
 	/**
 	 * Builder for {@link RollupJob}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RollupJob> {
 		private RollupJobConfiguration config;
 

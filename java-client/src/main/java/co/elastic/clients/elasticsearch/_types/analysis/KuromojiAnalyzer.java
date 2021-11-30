@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.KuromojiAnalyzer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/analysis/kuromoji-plugin.ts#L25-L29">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class KuromojiAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	private final KuromojiTokenizationMode mode;
@@ -50,7 +57,7 @@ public class KuromojiAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
 	private KuromojiAnalyzer(Builder builder) {
 
-		this.mode = ModelTypeHelper.requireNonNull(builder.mode, this, "mode");
+		this.mode = ApiTypeHelper.requireNonNull(builder.mode, this, "mode");
 		this.userDictionary = builder.userDictionary;
 
 	}
@@ -110,6 +117,7 @@ public class KuromojiAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	/**
 	 * Builder for {@link KuromojiAnalyzer}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<KuromojiAnalyzer> {
 		private KuromojiTokenizationMode mode;
 

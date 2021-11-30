@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Ilm
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/xpack/usage/types.ts#L148-L151">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Ilm implements JsonpSerializable {
 	private final int policyCount;
@@ -50,8 +57,8 @@ public class Ilm implements JsonpSerializable {
 
 	private Ilm(Builder builder) {
 
-		this.policyCount = ModelTypeHelper.requireNonNull(builder.policyCount, this, "policyCount");
-		this.policyStats = ModelTypeHelper.unmodifiableRequired(builder.policyStats, this, "policyStats");
+		this.policyCount = ApiTypeHelper.requireNonNull(builder.policyCount, this, "policyCount");
+		this.policyStats = ApiTypeHelper.unmodifiableRequired(builder.policyStats, this, "policyStats");
 
 	}
 
@@ -87,7 +94,7 @@ public class Ilm implements JsonpSerializable {
 		generator.writeKey("policy_count");
 		generator.write(this.policyCount);
 
-		if (ModelTypeHelper.isDefined(this.policyStats)) {
+		if (ApiTypeHelper.isDefined(this.policyStats)) {
 			generator.writeKey("policy_stats");
 			generator.writeStartArray();
 			for (IlmPolicyStatistics item0 : this.policyStats) {
@@ -105,6 +112,7 @@ public class Ilm implements JsonpSerializable {
 	/**
 	 * Builder for {@link Ilm}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Ilm> {
 		private Integer policyCount;
 
@@ -121,11 +129,9 @@ public class Ilm implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code policy_stats}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>policyStats</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>policyStats</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>policyStats</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder policyStats(List<IlmPolicyStatistics> list) {
 			this.policyStats = _listAddAll(this.policyStats, list);

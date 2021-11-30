@@ -34,6 +34,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.analysis.UppercaseTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/analysis/token_filters.ts#L336-L338">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class UppercaseTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -67,6 +74,7 @@ public class UppercaseTokenFilter extends TokenFilterBase implements TokenFilter
 	/**
 	 * Builder for {@link UppercaseTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<UppercaseTokenFilter> {

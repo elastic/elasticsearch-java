@@ -37,7 +37,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -54,6 +54,14 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: _global.msearch.Request
+
+/**
+ * Allows to execute several search operations in one request.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/msearch/MultiSearchRequest.ts#L25-L91">API
+ *      specification</a>
+ */
 
 public class MsearchRequest extends RequestBase implements NdJsonpSerializable, JsonpSerializable {
 	@Nullable
@@ -92,15 +100,15 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 
 		this.allowNoIndices = builder.allowNoIndices;
 		this.ccsMinimizeRoundtrips = builder.ccsMinimizeRoundtrips;
-		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
+		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreThrottled = builder.ignoreThrottled;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
+		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.maxConcurrentSearches = builder.maxConcurrentSearches;
 		this.maxConcurrentShardRequests = builder.maxConcurrentShardRequests;
 		this.preFilterShardSize = builder.preFilterShardSize;
 		this.searchType = builder.searchType;
-		this.searches = ModelTypeHelper.unmodifiableRequired(builder.searches, this, "searches");
+		this.searches = ApiTypeHelper.unmodifiableRequired(builder.searches, this, "searches");
 
 	}
 
@@ -251,6 +259,7 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 	/**
 	 * Builder for {@link MsearchRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MsearchRequest> {
 		@Nullable
 		private Boolean allowNoIndices;
@@ -316,11 +325,9 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>expandWildcards</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder expandWildcards(List<ExpandWildcard> list) {
 			this.expandWildcards = _listAddAll(this.expandWildcards, list);
@@ -366,11 +373,9 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>index</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>index</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder index(List<String> list) {
 			this.index = _listAddAll(this.index, list);
@@ -441,11 +446,9 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 		 * <p>
 		 * API name: {@code _value_body}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>searches</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>searches</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>searches</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder searches(List<RequestItem> list) {
 			this.searches = _listAddAll(this.searches, list);
@@ -507,7 +510,7 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 
 				int propsSet = 0;
 
-				if (ModelTypeHelper.isDefined(request.index()))
+				if (ApiTypeHelper.isDefined(request.index()))
 					propsSet |= _index;
 
 				if (propsSet == 0) {
@@ -536,7 +539,7 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 				if (request.maxConcurrentShardRequests != null) {
 					params.put("max_concurrent_shard_requests", String.valueOf(request.maxConcurrentShardRequests));
 				}
-				if (ModelTypeHelper.isDefined(request.expandWildcards)) {
+				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}

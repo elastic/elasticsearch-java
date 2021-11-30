@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.QueryProfile
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/search/_types/profile.ts#L117-L123">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class QueryProfile implements JsonpSerializable {
 	private final QueryBreakdown breakdown;
@@ -57,11 +64,11 @@ public class QueryProfile implements JsonpSerializable {
 
 	private QueryProfile(Builder builder) {
 
-		this.breakdown = ModelTypeHelper.requireNonNull(builder.breakdown, this, "breakdown");
-		this.description = ModelTypeHelper.requireNonNull(builder.description, this, "description");
-		this.timeInNanos = ModelTypeHelper.requireNonNull(builder.timeInNanos, this, "timeInNanos");
-		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
-		this.children = ModelTypeHelper.unmodifiable(builder.children);
+		this.breakdown = ApiTypeHelper.requireNonNull(builder.breakdown, this, "breakdown");
+		this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
+		this.timeInNanos = ApiTypeHelper.requireNonNull(builder.timeInNanos, this, "timeInNanos");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.children = ApiTypeHelper.unmodifiable(builder.children);
 
 	}
 
@@ -127,7 +134,7 @@ public class QueryProfile implements JsonpSerializable {
 		generator.writeKey("type");
 		generator.write(this.type);
 
-		if (ModelTypeHelper.isDefined(this.children)) {
+		if (ApiTypeHelper.isDefined(this.children)) {
 			generator.writeKey("children");
 			generator.writeStartArray();
 			for (QueryProfile item0 : this.children) {
@@ -145,6 +152,7 @@ public class QueryProfile implements JsonpSerializable {
 	/**
 	 * Builder for {@link QueryProfile}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<QueryProfile> {
 		private QueryBreakdown breakdown;
 
@@ -199,11 +207,9 @@ public class QueryProfile implements JsonpSerializable {
 		/**
 		 * API name: {@code children}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>children</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>children</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>children</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder children(List<QueryProfile> list) {
 			this.children = _listAddAll(this.children, list);

@@ -33,6 +33,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.aggregations.MinBucketAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/pipeline.ts#L113-L113">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MinBucketAggregation extends PipelineAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -59,6 +66,7 @@ public class MinBucketAggregation extends PipelineAggregationBase implements Agg
 	/**
 	 * Builder for {@link MinBucketAggregation}.
 	 */
+
 	public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<MinBucketAggregation> {

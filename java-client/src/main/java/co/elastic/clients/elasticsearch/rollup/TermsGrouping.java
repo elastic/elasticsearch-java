@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup._types.TermsGrouping
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/rollup/_types/Groupings.ts#L40-L42">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TermsGrouping implements JsonpSerializable {
 	private final List<String> fields;
@@ -48,7 +55,7 @@ public class TermsGrouping implements JsonpSerializable {
 
 	private TermsGrouping(Builder builder) {
 
-		this.fields = ModelTypeHelper.unmodifiableRequired(builder.fields, this, "fields");
+		this.fields = ApiTypeHelper.unmodifiableRequired(builder.fields, this, "fields");
 
 	}
 
@@ -74,7 +81,7 @@ public class TermsGrouping implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.fields)) {
+		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartArray();
 			for (String item0 : this.fields) {
@@ -92,17 +99,16 @@ public class TermsGrouping implements JsonpSerializable {
 	/**
 	 * Builder for {@link TermsGrouping}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TermsGrouping> {
 		private List<String> fields;
 
 		/**
 		 * Required - API name: {@code fields}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>fields</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>fields</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>fields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder fields(List<String> list) {
 			this.fields = _listAddAll(this.fields, list);

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.Hyperparameter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/TrainedModel.ts#L105-L119">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Hyperparameter implements JsonpSerializable {
 	@Nullable
@@ -60,10 +67,10 @@ public class Hyperparameter implements JsonpSerializable {
 	private Hyperparameter(Builder builder) {
 
 		this.absoluteImportance = builder.absoluteImportance;
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.relativeImportance = builder.relativeImportance;
-		this.supplied = ModelTypeHelper.requireNonNull(builder.supplied, this, "supplied");
-		this.value = ModelTypeHelper.requireNonNull(builder.value, this, "value");
+		this.supplied = ApiTypeHelper.requireNonNull(builder.supplied, this, "supplied");
+		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
 
 	}
 
@@ -162,6 +169,7 @@ public class Hyperparameter implements JsonpSerializable {
 	/**
 	 * Builder for {@link Hyperparameter}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Hyperparameter> {
 		@Nullable
 		private Double absoluteImportance;

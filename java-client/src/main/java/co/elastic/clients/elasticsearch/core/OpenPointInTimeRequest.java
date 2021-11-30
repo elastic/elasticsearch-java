@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -47,6 +47,14 @@ import javax.annotation.Nullable;
 
 // typedef: _global.open_point_in_time.Request
 
+/**
+ * Open a point in time that can be used in subsequent searches
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/open_point_in_time/OpenPointInTimeRequest.ts#L24-L36">API
+ *      specification</a>
+ */
+
 public class OpenPointInTimeRequest extends RequestBase {
 	private final List<String> index;
 
@@ -56,8 +64,8 @@ public class OpenPointInTimeRequest extends RequestBase {
 
 	private OpenPointInTimeRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiableRequired(builder.index, this, "index");
-		this.keepAlive = ModelTypeHelper.requireNonNull(builder.keepAlive, this, "keepAlive");
+		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
+		this.keepAlive = ApiTypeHelper.requireNonNull(builder.keepAlive, this, "keepAlive");
 
 	}
 
@@ -89,6 +97,7 @@ public class OpenPointInTimeRequest extends RequestBase {
 	/**
 	 * Builder for {@link OpenPointInTimeRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<OpenPointInTimeRequest> {
 		private List<String> index;
 
@@ -100,11 +109,9 @@ public class OpenPointInTimeRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>index</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>index</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder index(List<String> list) {
 			this.index = _listAddAll(this.index, list);

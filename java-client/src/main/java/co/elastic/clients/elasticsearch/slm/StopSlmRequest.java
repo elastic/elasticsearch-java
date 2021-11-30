@@ -38,6 +38,14 @@ import java.util.Objects;
 
 // typedef: slm.stop.Request
 
+/**
+ * Turns off snapshot lifecycle management (SLM).
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/slm/stop/StopSnapshotLifecycleManagementRequest.ts#L22-L27">API
+ *      specification</a>
+ */
+
 public class StopSlmRequest extends RequestBase {
 	public StopSlmRequest() {
 	}

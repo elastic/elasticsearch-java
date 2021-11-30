@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -45,6 +45,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.stop_data_frame_analytics.Request
+
+/**
+ * Stops one or more data frame analytics jobs. A data frame analytics job can
+ * be started and stopped multiple times throughout its lifecycle.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/stop_data_frame_analytics/MlStopDataFrameAnalyticsRequest.ts#L24-L70">API
+ *      specification</a>
+ */
 
 public class StopDataFrameAnalyticsRequest extends RequestBase {
 	@Nullable
@@ -64,7 +73,7 @@ public class StopDataFrameAnalyticsRequest extends RequestBase {
 
 		this.allowNoMatch = builder.allowNoMatch;
 		this.force = builder.force;
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.timeout = builder.timeout;
 
 	}
@@ -131,6 +140,7 @@ public class StopDataFrameAnalyticsRequest extends RequestBase {
 	/**
 	 * Builder for {@link StopDataFrameAnalyticsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StopDataFrameAnalyticsRequest> {
 		@Nullable
 		private Boolean allowNoMatch;

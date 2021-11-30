@@ -34,7 +34,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -45,6 +45,18 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.Request
+
+/**
+ * Evaluates the data frame analytics for an annotated index. The API packages
+ * together commonly used evaluation metrics for various types of machine
+ * learning features. This has been designed for use on indexes created by data
+ * frame analytics. Evaluation requires both a ground truth field and an
+ * analytics result field to be present.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/evaluate_data_frame/MlEvaluateDataFrameRequest.ts#L25-L53">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class EvaluateDataFrameRequest extends RequestBase implements JsonpSerializable {
 	private final DataframeEvaluation evaluation;
@@ -58,8 +70,8 @@ public class EvaluateDataFrameRequest extends RequestBase implements JsonpSerial
 
 	private EvaluateDataFrameRequest(Builder builder) {
 
-		this.evaluation = ModelTypeHelper.requireNonNull(builder.evaluation, this, "evaluation");
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.evaluation = ApiTypeHelper.requireNonNull(builder.evaluation, this, "evaluation");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.query = builder.query;
 
 	}
@@ -126,6 +138,7 @@ public class EvaluateDataFrameRequest extends RequestBase implements JsonpSerial
 	/**
 	 * Builder for {@link EvaluateDataFrameRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<EvaluateDataFrameRequest> {
 		private DataframeEvaluation evaluation;
 

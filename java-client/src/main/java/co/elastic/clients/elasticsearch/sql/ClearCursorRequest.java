@@ -33,7 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -44,6 +44,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: sql.clear_cursor.Request
+
+/**
+ * Clears the SQL cursor
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/sql/clear_cursor/ClearSqlCursorRequest.ts#L22-L31">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ClearCursorRequest extends RequestBase implements JsonpSerializable {
 	private final String cursor;
@@ -52,7 +60,7 @@ public class ClearCursorRequest extends RequestBase implements JsonpSerializable
 
 	private ClearCursorRequest(Builder builder) {
 
-		this.cursor = ModelTypeHelper.requireNonNull(builder.cursor, this, "cursor");
+		this.cursor = ApiTypeHelper.requireNonNull(builder.cursor, this, "cursor");
 
 	}
 
@@ -88,6 +96,7 @@ public class ClearCursorRequest extends RequestBase implements JsonpSerializable
 	/**
 	 * Builder for {@link ClearCursorRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClearCursorRequest> {
 		private String cursor;
 

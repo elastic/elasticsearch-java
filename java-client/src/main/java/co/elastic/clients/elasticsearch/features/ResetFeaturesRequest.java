@@ -38,6 +38,14 @@ import java.util.Objects;
 
 // typedef: features.reset_features.Request
 
+/**
+ * Resets the internal state of features, usually by deleting system indices
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/features/reset_features/ResetFeaturesRequest.ts#L22-L27">API
+ *      specification</a>
+ */
+
 public class ResetFeaturesRequest extends RequestBase {
 	public ResetFeaturesRequest() {
 	}

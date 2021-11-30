@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.Alias
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/_types/Alias.ts#L23-L30">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Alias implements JsonpSerializable {
 	@Nullable
@@ -174,6 +181,7 @@ public class Alias implements JsonpSerializable {
 	/**
 	 * Builder for {@link Alias}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Alias> {
 		@Nullable
 		private Query filter;

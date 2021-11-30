@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -44,6 +44,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.Anomaly
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/Anomaly.ts#L24-L47">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Anomaly implements JsonpSerializable {
 	private final List<Double> actual;
@@ -103,29 +110,28 @@ public class Anomaly implements JsonpSerializable {
 
 	private Anomaly(Builder builder) {
 
-		this.actual = ModelTypeHelper.unmodifiable(builder.actual);
-		this.bucketSpan = ModelTypeHelper.requireNonNull(builder.bucketSpan, this, "bucketSpan");
+		this.actual = ApiTypeHelper.unmodifiable(builder.actual);
+		this.bucketSpan = ApiTypeHelper.requireNonNull(builder.bucketSpan, this, "bucketSpan");
 		this.byFieldName = builder.byFieldName;
 		this.byFieldValue = builder.byFieldValue;
-		this.causes = ModelTypeHelper.unmodifiable(builder.causes);
-		this.detectorIndex = ModelTypeHelper.requireNonNull(builder.detectorIndex, this, "detectorIndex");
+		this.causes = ApiTypeHelper.unmodifiable(builder.causes);
+		this.detectorIndex = ApiTypeHelper.requireNonNull(builder.detectorIndex, this, "detectorIndex");
 		this.fieldName = builder.fieldName;
 		this.function = builder.function;
 		this.functionDescription = builder.functionDescription;
-		this.influencers = ModelTypeHelper.unmodifiable(builder.influencers);
-		this.initialRecordScore = ModelTypeHelper.requireNonNull(builder.initialRecordScore, this,
-				"initialRecordScore");
-		this.isInterim = ModelTypeHelper.requireNonNull(builder.isInterim, this, "isInterim");
-		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.influencers = ApiTypeHelper.unmodifiable(builder.influencers);
+		this.initialRecordScore = ApiTypeHelper.requireNonNull(builder.initialRecordScore, this, "initialRecordScore");
+		this.isInterim = ApiTypeHelper.requireNonNull(builder.isInterim, this, "isInterim");
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.overFieldName = builder.overFieldName;
 		this.overFieldValue = builder.overFieldValue;
 		this.partitionFieldName = builder.partitionFieldName;
 		this.partitionFieldValue = builder.partitionFieldValue;
-		this.probability = ModelTypeHelper.requireNonNull(builder.probability, this, "probability");
-		this.recordScore = ModelTypeHelper.requireNonNull(builder.recordScore, this, "recordScore");
-		this.resultType = ModelTypeHelper.requireNonNull(builder.resultType, this, "resultType");
-		this.timestamp = ModelTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
-		this.typical = ModelTypeHelper.unmodifiable(builder.typical);
+		this.probability = ApiTypeHelper.requireNonNull(builder.probability, this, "probability");
+		this.recordScore = ApiTypeHelper.requireNonNull(builder.recordScore, this, "recordScore");
+		this.resultType = ApiTypeHelper.requireNonNull(builder.resultType, this, "resultType");
+		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+		this.typical = ApiTypeHelper.unmodifiable(builder.typical);
 
 	}
 
@@ -307,7 +313,7 @@ public class Anomaly implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.actual)) {
+		if (ApiTypeHelper.isDefined(this.actual)) {
 			generator.writeKey("actual");
 			generator.writeStartArray();
 			for (Double item0 : this.actual) {
@@ -330,7 +336,7 @@ public class Anomaly implements JsonpSerializable {
 			generator.write(this.byFieldValue);
 
 		}
-		if (ModelTypeHelper.isDefined(this.causes)) {
+		if (ApiTypeHelper.isDefined(this.causes)) {
 			generator.writeKey("causes");
 			generator.writeStartArray();
 			for (AnomalyCause item0 : this.causes) {
@@ -358,7 +364,7 @@ public class Anomaly implements JsonpSerializable {
 			generator.write(this.functionDescription);
 
 		}
-		if (ModelTypeHelper.isDefined(this.influencers)) {
+		if (ApiTypeHelper.isDefined(this.influencers)) {
 			generator.writeKey("influencers");
 			generator.writeStartArray();
 			for (Influence item0 : this.influencers) {
@@ -409,7 +415,7 @@ public class Anomaly implements JsonpSerializable {
 		generator.writeKey("timestamp");
 		generator.write(this.timestamp);
 
-		if (ModelTypeHelper.isDefined(this.typical)) {
+		if (ApiTypeHelper.isDefined(this.typical)) {
 			generator.writeKey("typical");
 			generator.writeStartArray();
 			for (Double item0 : this.typical) {
@@ -427,6 +433,7 @@ public class Anomaly implements JsonpSerializable {
 	/**
 	 * Builder for {@link Anomaly}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Anomaly> {
 		@Nullable
 		private List<Double> actual;
@@ -488,11 +495,9 @@ public class Anomaly implements JsonpSerializable {
 		/**
 		 * API name: {@code actual}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>actual</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>actual</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>actual</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder actual(List<Double> list) {
 			this.actual = _listAddAll(this.actual, list);
@@ -543,11 +548,9 @@ public class Anomaly implements JsonpSerializable {
 		/**
 		 * API name: {@code causes}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>causes</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>causes</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>causes</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder causes(List<AnomalyCause> list) {
 			this.causes = _listAddAll(this.causes, list);
@@ -608,11 +611,9 @@ public class Anomaly implements JsonpSerializable {
 		/**
 		 * API name: {@code influencers}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>influencers</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>influencers</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>influencers</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder influencers(List<Influence> list) {
 			this.influencers = _listAddAll(this.influencers, list);
@@ -729,11 +730,9 @@ public class Anomaly implements JsonpSerializable {
 		/**
 		 * API name: {@code typical}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>typical</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>typical</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>typical</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder typical(List<Double> list) {
 			this.typical = _listAddAll(this.typical, list);

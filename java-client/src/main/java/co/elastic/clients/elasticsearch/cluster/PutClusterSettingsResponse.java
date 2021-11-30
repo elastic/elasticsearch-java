@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.put_settings.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cluster/put_settings/ClusterPutSettingsResponse.ts#L23-L29">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutClusterSettingsResponse implements JsonpSerializable {
 	private final boolean acknowledged;
@@ -54,9 +61,9 @@ public class PutClusterSettingsResponse implements JsonpSerializable {
 
 	private PutClusterSettingsResponse(Builder builder) {
 
-		this.acknowledged = ModelTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged");
-		this.persistent = ModelTypeHelper.unmodifiableRequired(builder.persistent, this, "persistent");
-		this.transient_ = ModelTypeHelper.unmodifiableRequired(builder.transient_, this, "transient_");
+		this.acknowledged = ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged");
+		this.persistent = ApiTypeHelper.unmodifiableRequired(builder.persistent, this, "persistent");
+		this.transient_ = ApiTypeHelper.unmodifiableRequired(builder.transient_, this, "transient_");
 
 	}
 
@@ -99,7 +106,7 @@ public class PutClusterSettingsResponse implements JsonpSerializable {
 		generator.writeKey("acknowledged");
 		generator.write(this.acknowledged);
 
-		if (ModelTypeHelper.isDefined(this.persistent)) {
+		if (ApiTypeHelper.isDefined(this.persistent)) {
 			generator.writeKey("persistent");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.persistent.entrySet()) {
@@ -110,7 +117,7 @@ public class PutClusterSettingsResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.transient_)) {
+		if (ApiTypeHelper.isDefined(this.transient_)) {
 			generator.writeKey("transient");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.transient_.entrySet()) {
@@ -129,6 +136,7 @@ public class PutClusterSettingsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link PutClusterSettingsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutClusterSettingsResponse> {
 		private Boolean acknowledged;
 
@@ -147,11 +155,9 @@ public class PutClusterSettingsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code persistent}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>persistent</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>persistent</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>persistent</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder persistent(Map<String, JsonData> map) {
 			this.persistent = _mapPutAll(this.persistent, map);
@@ -171,11 +177,9 @@ public class PutClusterSettingsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code transient}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>transient_</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>transient_</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>transient_</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder transient_(Map<String, JsonData> map) {
 			this.transient_ = _mapPutAll(this.transient_, map);

@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,6 +43,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.data_streams_stats.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/data_streams_stats/IndicesDataStreamsStatsResponse.ts#L24-L33">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataStreamsStatsResponse implements JsonpSerializable {
 	private final ShardStatistics shards;
@@ -62,13 +69,13 @@ public class DataStreamsStatsResponse implements JsonpSerializable {
 
 	private DataStreamsStatsResponse(Builder builder) {
 
-		this.shards = ModelTypeHelper.requireNonNull(builder.shards, this, "shards");
-		this.backingIndices = ModelTypeHelper.requireNonNull(builder.backingIndices, this, "backingIndices");
-		this.dataStreamCount = ModelTypeHelper.requireNonNull(builder.dataStreamCount, this, "dataStreamCount");
+		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
+		this.backingIndices = ApiTypeHelper.requireNonNull(builder.backingIndices, this, "backingIndices");
+		this.dataStreamCount = ApiTypeHelper.requireNonNull(builder.dataStreamCount, this, "dataStreamCount");
 		this.totalStoreSizes = builder.totalStoreSizes;
-		this.totalStoreSizeBytes = ModelTypeHelper.requireNonNull(builder.totalStoreSizeBytes, this,
+		this.totalStoreSizeBytes = ApiTypeHelper.requireNonNull(builder.totalStoreSizeBytes, this,
 				"totalStoreSizeBytes");
-		this.dataStreams = ModelTypeHelper.unmodifiableRequired(builder.dataStreams, this, "dataStreams");
+		this.dataStreams = ApiTypeHelper.unmodifiableRequired(builder.dataStreams, this, "dataStreams");
 
 	}
 
@@ -147,7 +154,7 @@ public class DataStreamsStatsResponse implements JsonpSerializable {
 		generator.writeKey("total_store_size_bytes");
 		generator.write(this.totalStoreSizeBytes);
 
-		if (ModelTypeHelper.isDefined(this.dataStreams)) {
+		if (ApiTypeHelper.isDefined(this.dataStreams)) {
 			generator.writeKey("data_streams");
 			generator.writeStartArray();
 			for (DataStreamsStatsItem item0 : this.dataStreams) {
@@ -165,6 +172,7 @@ public class DataStreamsStatsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link DataStreamsStatsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataStreamsStatsResponse> {
 		private ShardStatistics shards;
 
@@ -229,11 +237,9 @@ public class DataStreamsStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code data_streams}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>dataStreams</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>dataStreams</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>dataStreams</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder dataStreams(List<DataStreamsStatsItem> list) {
 			this.dataStreams = _listAddAll(this.dataStreams, list);

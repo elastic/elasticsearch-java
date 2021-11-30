@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: monitoring.bulk.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/monitoring/bulk/BulkMonitoringResponse.ts#L23-L32">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class BulkResponse implements JsonpSerializable {
 	@Nullable
@@ -57,9 +64,9 @@ public class BulkResponse implements JsonpSerializable {
 	private BulkResponse(Builder builder) {
 
 		this.error = builder.error;
-		this.errors = ModelTypeHelper.requireNonNull(builder.errors, this, "errors");
-		this.ignored = ModelTypeHelper.requireNonNull(builder.ignored, this, "ignored");
-		this.took = ModelTypeHelper.requireNonNull(builder.took, this, "took");
+		this.errors = ApiTypeHelper.requireNonNull(builder.errors, this, "errors");
+		this.ignored = ApiTypeHelper.requireNonNull(builder.ignored, this, "ignored");
+		this.took = ApiTypeHelper.requireNonNull(builder.took, this, "took");
 
 	}
 
@@ -132,6 +139,7 @@ public class BulkResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link BulkResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<BulkResponse> {
 		@Nullable
 		private ErrorCause error;

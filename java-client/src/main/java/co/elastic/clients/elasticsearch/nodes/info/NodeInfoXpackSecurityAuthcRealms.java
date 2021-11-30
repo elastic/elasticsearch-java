@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoXpackSecurityAuthcRealms
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/nodes/info/types.ts#L243-L247">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeInfoXpackSecurityAuthcRealms implements JsonpSerializable {
 	private final Map<String, NodeInfoXpackSecurityAuthcRealmsStatus> file;
@@ -52,9 +59,9 @@ public class NodeInfoXpackSecurityAuthcRealms implements JsonpSerializable {
 
 	private NodeInfoXpackSecurityAuthcRealms(Builder builder) {
 
-		this.file = ModelTypeHelper.unmodifiable(builder.file);
-		this.native_ = ModelTypeHelper.unmodifiable(builder.native_);
-		this.pki = ModelTypeHelper.unmodifiable(builder.pki);
+		this.file = ApiTypeHelper.unmodifiable(builder.file);
+		this.native_ = ApiTypeHelper.unmodifiable(builder.native_);
+		this.pki = ApiTypeHelper.unmodifiable(builder.pki);
 
 	}
 
@@ -95,7 +102,7 @@ public class NodeInfoXpackSecurityAuthcRealms implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.file)) {
+		if (ApiTypeHelper.isDefined(this.file)) {
 			generator.writeKey("file");
 			generator.writeStartObject();
 			for (Map.Entry<String, NodeInfoXpackSecurityAuthcRealmsStatus> item0 : this.file.entrySet()) {
@@ -106,7 +113,7 @@ public class NodeInfoXpackSecurityAuthcRealms implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.native_)) {
+		if (ApiTypeHelper.isDefined(this.native_)) {
 			generator.writeKey("native");
 			generator.writeStartObject();
 			for (Map.Entry<String, NodeInfoXpackSecurityAuthcRealmsStatus> item0 : this.native_.entrySet()) {
@@ -117,7 +124,7 @@ public class NodeInfoXpackSecurityAuthcRealms implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.pki)) {
+		if (ApiTypeHelper.isDefined(this.pki)) {
 			generator.writeKey("pki");
 			generator.writeStartObject();
 			for (Map.Entry<String, NodeInfoXpackSecurityAuthcRealmsStatus> item0 : this.pki.entrySet()) {
@@ -136,6 +143,7 @@ public class NodeInfoXpackSecurityAuthcRealms implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoXpackSecurityAuthcRealms}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoXpackSecurityAuthcRealms> {
 		@Nullable
 		private Map<String, NodeInfoXpackSecurityAuthcRealmsStatus> file;
@@ -149,11 +157,9 @@ public class NodeInfoXpackSecurityAuthcRealms implements JsonpSerializable {
 		/**
 		 * API name: {@code file}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>file</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>file</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>file</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder file(Map<String, NodeInfoXpackSecurityAuthcRealmsStatus> map) {
 			this.file = _mapPutAll(this.file, map);
@@ -183,11 +189,9 @@ public class NodeInfoXpackSecurityAuthcRealms implements JsonpSerializable {
 		/**
 		 * API name: {@code native}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>native_</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>native_</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>native_</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder native_(Map<String, NodeInfoXpackSecurityAuthcRealmsStatus> map) {
 			this.native_ = _mapPutAll(this.native_, map);
@@ -217,11 +221,9 @@ public class NodeInfoXpackSecurityAuthcRealms implements JsonpSerializable {
 		/**
 		 * API name: {@code pki}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>pki</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset <code>pki</code>
-		 * to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>pki</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder pki(Map<String, NodeInfoXpackSecurityAuthcRealmsStatus> map) {
 			this.pki = _mapPutAll(this.pki, map);

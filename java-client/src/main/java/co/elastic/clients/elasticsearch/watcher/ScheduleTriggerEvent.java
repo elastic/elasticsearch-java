@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ScheduleTriggerEvent
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/watcher/_types/Schedule.ts#L98-L101">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ScheduleTriggerEvent implements TriggerEventVariant, JsonpSerializable {
 	private final String scheduledTime;
@@ -50,7 +57,7 @@ public class ScheduleTriggerEvent implements TriggerEventVariant, JsonpSerializa
 
 	private ScheduleTriggerEvent(Builder builder) {
 
-		this.scheduledTime = ModelTypeHelper.requireNonNull(builder.scheduledTime, this, "scheduledTime");
+		this.scheduledTime = ApiTypeHelper.requireNonNull(builder.scheduledTime, this, "scheduledTime");
 		this.triggeredTime = builder.triggeredTime;
 
 	}
@@ -109,6 +116,7 @@ public class ScheduleTriggerEvent implements TriggerEventVariant, JsonpSerializa
 	/**
 	 * Builder for {@link ScheduleTriggerEvent}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ScheduleTriggerEvent> {
 		private String scheduledTime;
 

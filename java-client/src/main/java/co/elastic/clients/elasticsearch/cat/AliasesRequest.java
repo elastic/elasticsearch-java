@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -46,6 +46,15 @@ import javax.annotation.Nullable;
 
 // typedef: cat.aliases.Request
 
+/**
+ * Shows information about currently configured aliases to indices including
+ * filter and routing infos.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cat/aliases/CatAliasesRequest.ts#L23-L35">API
+ *      specification</a>
+ */
+
 public class AliasesRequest extends CatRequestBase {
 	private final List<ExpandWildcard> expandWildcards;
 
@@ -55,8 +64,8 @@ public class AliasesRequest extends CatRequestBase {
 
 	private AliasesRequest(Builder builder) {
 
-		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
-		this.name = ModelTypeHelper.unmodifiable(builder.name);
+		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
+		this.name = ApiTypeHelper.unmodifiable(builder.name);
 
 	}
 
@@ -88,6 +97,7 @@ public class AliasesRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link AliasesRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AliasesRequest> {
 		@Nullable
 		private List<ExpandWildcard> expandWildcards;
@@ -101,11 +111,9 @@ public class AliasesRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>expandWildcards</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder expandWildcards(List<ExpandWildcard> list) {
 			this.expandWildcards = _listAddAll(this.expandWildcards, list);
@@ -130,11 +138,9 @@ public class AliasesRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code name}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>name</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>name</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>name</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder name(List<String> list) {
 			this.name = _listAddAll(this.name, list);
@@ -186,7 +192,7 @@ public class AliasesRequest extends CatRequestBase {
 
 				int propsSet = 0;
 
-				if (ModelTypeHelper.isDefined(request.name()))
+				if (ApiTypeHelper.isDefined(request.name()))
 					propsSet |= _name;
 
 				if (propsSet == 0) {
@@ -211,7 +217,7 @@ public class AliasesRequest extends CatRequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				params.put("format", "json");
-				if (ModelTypeHelper.isDefined(request.expandWildcards)) {
+				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}

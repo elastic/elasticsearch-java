@@ -30,6 +30,12 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/watcher/_types/Conditions.ts#L23-L23">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AlwaysCondition implements ConditionVariant, JsonpSerializable {
 

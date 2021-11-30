@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,6 +43,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.msearch.MultisearchHeader
+
+/**
+ * Contains parameters used to limit or change the subsequent search body
+ * request.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/msearch/types.ts#L36-L48">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MultisearchHeader implements JsonpSerializable {
 	@Nullable
@@ -72,9 +81,9 @@ public class MultisearchHeader implements JsonpSerializable {
 	private MultisearchHeader(Builder builder) {
 
 		this.allowNoIndices = builder.allowNoIndices;
-		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
+		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
+		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.preference = builder.preference;
 		this.requestCache = builder.requestCache;
 		this.routing = builder.routing;
@@ -164,7 +173,7 @@ public class MultisearchHeader implements JsonpSerializable {
 			generator.write(this.allowNoIndices);
 
 		}
-		if (ModelTypeHelper.isDefined(this.expandWildcards)) {
+		if (ApiTypeHelper.isDefined(this.expandWildcards)) {
 			generator.writeKey("expand_wildcards");
 			generator.writeStartArray();
 			for (ExpandWildcard item0 : this.expandWildcards) {
@@ -178,7 +187,7 @@ public class MultisearchHeader implements JsonpSerializable {
 			generator.write(this.ignoreUnavailable);
 
 		}
-		if (ModelTypeHelper.isDefined(this.index)) {
+		if (ApiTypeHelper.isDefined(this.index)) {
 			generator.writeKey("index");
 			generator.writeStartArray();
 			for (String item0 : this.index) {
@@ -215,6 +224,7 @@ public class MultisearchHeader implements JsonpSerializable {
 	/**
 	 * Builder for {@link MultisearchHeader}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MultisearchHeader> {
 		@Nullable
 		private Boolean allowNoIndices;
@@ -251,11 +261,9 @@ public class MultisearchHeader implements JsonpSerializable {
 		/**
 		 * API name: {@code expand_wildcards}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>expandWildcards</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder expandWildcards(List<ExpandWildcard> list) {
 			this.expandWildcards = _listAddAll(this.expandWildcards, list);
@@ -283,11 +291,9 @@ public class MultisearchHeader implements JsonpSerializable {
 		/**
 		 * API name: {@code index}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>index</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>index</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder index(List<String> list) {
 			this.index = _listAddAll(this.index, list);

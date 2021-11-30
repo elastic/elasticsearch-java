@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -36,6 +36,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.analysis.AsciiFoldingTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/analysis/token_filters.ts#L167-L170">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AsciiFoldingTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final boolean preserveOriginal;
@@ -45,7 +52,7 @@ public class AsciiFoldingTokenFilter extends TokenFilterBase implements TokenFil
 	private AsciiFoldingTokenFilter(Builder builder) {
 		super(builder);
 
-		this.preserveOriginal = ModelTypeHelper.requireNonNull(builder.preserveOriginal, this, "preserveOriginal");
+		this.preserveOriginal = ApiTypeHelper.requireNonNull(builder.preserveOriginal, this, "preserveOriginal");
 
 	}
 
@@ -82,6 +89,7 @@ public class AsciiFoldingTokenFilter extends TokenFilterBase implements TokenFil
 	/**
 	 * Builder for {@link AsciiFoldingTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<AsciiFoldingTokenFilter> {

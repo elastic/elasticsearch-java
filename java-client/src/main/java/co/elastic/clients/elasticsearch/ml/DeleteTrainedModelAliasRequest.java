@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,6 +43,17 @@ import javax.annotation.Nullable;
 
 // typedef: ml.delete_trained_model_alias.Request
 
+/**
+ * Deletes a trained model alias. This API deletes an existing model alias that
+ * refers to a trained model. If the model alias is missing or refers to a model
+ * other than the one identified by the <code>model_id</code>, this API returns
+ * an error.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/delete_trained_model_alias/MlDeleteTrainedModelAliasRequest.ts#L23-L44">API
+ *      specification</a>
+ */
+
 public class DeleteTrainedModelAliasRequest extends RequestBase {
 	private final String modelAlias;
 
@@ -52,8 +63,8 @@ public class DeleteTrainedModelAliasRequest extends RequestBase {
 
 	private DeleteTrainedModelAliasRequest(Builder builder) {
 
-		this.modelAlias = ModelTypeHelper.requireNonNull(builder.modelAlias, this, "modelAlias");
-		this.modelId = ModelTypeHelper.requireNonNull(builder.modelId, this, "modelId");
+		this.modelAlias = ApiTypeHelper.requireNonNull(builder.modelAlias, this, "modelAlias");
+		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
 
 	}
 
@@ -85,6 +96,7 @@ public class DeleteTrainedModelAliasRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteTrainedModelAliasRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteTrainedModelAliasRequest> {
 		private String modelAlias;
 

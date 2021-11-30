@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: eql._types.EqlHits
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/eql/_types/EqlHits.ts#L25-L39">API
+ *      specification</a>
+ */
 
 public class EqlHits<TEvent> implements JsonpSerializable {
 	@Nullable
@@ -59,8 +66,8 @@ public class EqlHits<TEvent> implements JsonpSerializable {
 	private EqlHits(Builder<TEvent> builder) {
 
 		this.total = builder.total;
-		this.events = ModelTypeHelper.unmodifiable(builder.events);
-		this.sequences = ModelTypeHelper.unmodifiable(builder.sequences);
+		this.events = ApiTypeHelper.unmodifiable(builder.events);
+		this.sequences = ApiTypeHelper.unmodifiable(builder.sequences);
 		this.tEventSerializer = builder.tEventSerializer;
 
 	}
@@ -115,7 +122,7 @@ public class EqlHits<TEvent> implements JsonpSerializable {
 			this.total.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.events)) {
+		if (ApiTypeHelper.isDefined(this.events)) {
 			generator.writeKey("events");
 			generator.writeStartArray();
 			for (HitsEvent<TEvent> item0 : this.events) {
@@ -125,7 +132,7 @@ public class EqlHits<TEvent> implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.sequences)) {
+		if (ApiTypeHelper.isDefined(this.sequences)) {
 			generator.writeKey("sequences");
 			generator.writeStartArray();
 			for (HitsSequence<TEvent> item0 : this.sequences) {
@@ -143,6 +150,7 @@ public class EqlHits<TEvent> implements JsonpSerializable {
 	/**
 	 * Builder for {@link EqlHits}.
 	 */
+
 	public static class Builder<TEvent> extends ObjectBuilderBase implements ObjectBuilder<EqlHits<TEvent>> {
 		@Nullable
 		private TotalHits total;
@@ -180,11 +188,9 @@ public class EqlHits<TEvent> implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code events}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>events</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>events</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>events</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder<TEvent> events(List<HitsEvent<TEvent>> list) {
 			this.events = _listAddAll(this.events, list);
@@ -221,11 +227,9 @@ public class EqlHits<TEvent> implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code sequences}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>sequences</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>sequences</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>sequences</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder<TEvent> sequences(List<HitsSequence<TEvent>> list) {
 			this.sequences = _listAddAll(this.sequences, list);
@@ -285,7 +289,7 @@ public class EqlHits<TEvent> implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for EqlHits
+	 * Create a JSON deserializer for EqlHits
 	 */
 	public static <TEvent> JsonpDeserializer<EqlHits<TEvent>> createEqlHitsDeserializer(
 			JsonpDeserializer<TEvent> tEventDeserializer) {

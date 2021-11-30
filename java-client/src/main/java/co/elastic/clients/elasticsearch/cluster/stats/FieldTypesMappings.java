@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.FieldTypesMappings
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cluster/stats/types.ts#L95-L98">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FieldTypesMappings implements JsonpSerializable {
 	private final List<FieldTypes> fieldTypes;
@@ -49,8 +56,8 @@ public class FieldTypesMappings implements JsonpSerializable {
 
 	private FieldTypesMappings(Builder builder) {
 
-		this.fieldTypes = ModelTypeHelper.unmodifiableRequired(builder.fieldTypes, this, "fieldTypes");
-		this.runtimeFieldTypes = ModelTypeHelper.unmodifiable(builder.runtimeFieldTypes);
+		this.fieldTypes = ApiTypeHelper.unmodifiableRequired(builder.fieldTypes, this, "fieldTypes");
+		this.runtimeFieldTypes = ApiTypeHelper.unmodifiable(builder.runtimeFieldTypes);
 
 	}
 
@@ -83,7 +90,7 @@ public class FieldTypesMappings implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.fieldTypes)) {
+		if (ApiTypeHelper.isDefined(this.fieldTypes)) {
 			generator.writeKey("field_types");
 			generator.writeStartArray();
 			for (FieldTypes item0 : this.fieldTypes) {
@@ -93,7 +100,7 @@ public class FieldTypesMappings implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.runtimeFieldTypes)) {
+		if (ApiTypeHelper.isDefined(this.runtimeFieldTypes)) {
 			generator.writeKey("runtime_field_types");
 			generator.writeStartArray();
 			for (RuntimeFieldTypes item0 : this.runtimeFieldTypes) {
@@ -111,6 +118,7 @@ public class FieldTypesMappings implements JsonpSerializable {
 	/**
 	 * Builder for {@link FieldTypesMappings}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldTypesMappings> {
 		private List<FieldTypes> fieldTypes;
 
@@ -120,11 +128,9 @@ public class FieldTypesMappings implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code field_types}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>fieldTypes</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>fieldTypes</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>fieldTypes</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder fieldTypes(List<FieldTypes> list) {
 			this.fieldTypes = _listAddAll(this.fieldTypes, list);
@@ -153,11 +159,9 @@ public class FieldTypesMappings implements JsonpSerializable {
 		/**
 		 * API name: {@code runtime_field_types}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>runtimeFieldTypes</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>runtimeFieldTypes</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>runtimeFieldTypes</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder runtimeFieldTypes(List<RuntimeFieldTypes> list) {
 			this.runtimeFieldTypes = _listAddAll(this.runtimeFieldTypes, list);

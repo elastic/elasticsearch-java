@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.recovery.ShardRecovery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/recovery/types.ts#L111-L128">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ShardRecovery implements JsonpSerializable {
 	private final long id;
@@ -83,22 +90,22 @@ public class ShardRecovery implements JsonpSerializable {
 
 	private ShardRecovery(Builder builder) {
 
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
-		this.primary = ModelTypeHelper.requireNonNull(builder.primary, this, "primary");
-		this.source = ModelTypeHelper.requireNonNull(builder.source, this, "source");
-		this.stage = ModelTypeHelper.requireNonNull(builder.stage, this, "stage");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.primary = ApiTypeHelper.requireNonNull(builder.primary, this, "primary");
+		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
+		this.stage = ApiTypeHelper.requireNonNull(builder.stage, this, "stage");
 		this.start = builder.start;
 		this.startTime = builder.startTime;
-		this.startTimeInMillis = ModelTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
+		this.startTimeInMillis = ApiTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
 		this.stopTime = builder.stopTime;
-		this.stopTimeInMillis = ModelTypeHelper.requireNonNull(builder.stopTimeInMillis, this, "stopTimeInMillis");
-		this.target = ModelTypeHelper.requireNonNull(builder.target, this, "target");
+		this.stopTimeInMillis = ApiTypeHelper.requireNonNull(builder.stopTimeInMillis, this, "stopTimeInMillis");
+		this.target = ApiTypeHelper.requireNonNull(builder.target, this, "target");
 		this.totalTime = builder.totalTime;
-		this.totalTimeInMillis = ModelTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
-		this.translog = ModelTypeHelper.requireNonNull(builder.translog, this, "translog");
-		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
-		this.verifyIndex = ModelTypeHelper.requireNonNull(builder.verifyIndex, this, "verifyIndex");
+		this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
+		this.translog = ApiTypeHelper.requireNonNull(builder.translog, this, "translog");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.verifyIndex = ApiTypeHelper.requireNonNull(builder.verifyIndex, this, "verifyIndex");
 
 	}
 
@@ -296,6 +303,7 @@ public class ShardRecovery implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardRecovery}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardRecovery> {
 		private Long id;
 

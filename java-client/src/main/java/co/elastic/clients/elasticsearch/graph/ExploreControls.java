@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: graph._types.ExploreControls
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/graph/_types/ExploreControls.ts#L24-L29">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ExploreControls implements JsonpSerializable {
 	@Nullable
@@ -61,7 +68,7 @@ public class ExploreControls implements JsonpSerializable {
 		this.sampleDiversity = builder.sampleDiversity;
 		this.sampleSize = builder.sampleSize;
 		this.timeout = builder.timeout;
-		this.useSignificance = ModelTypeHelper.requireNonNull(builder.useSignificance, this, "useSignificance");
+		this.useSignificance = ApiTypeHelper.requireNonNull(builder.useSignificance, this, "useSignificance");
 
 	}
 
@@ -136,6 +143,7 @@ public class ExploreControls implements JsonpSerializable {
 	/**
 	 * Builder for {@link ExploreControls}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExploreControls> {
 		@Nullable
 		private SampleDiversity sampleDiversity;

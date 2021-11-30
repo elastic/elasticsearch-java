@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -44,6 +44,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.delete_script.Request
+
+/**
+ * Deletes a script.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/delete_script/DeleteScriptRequest.ts#L24-L37">API
+ *      specification</a>
+ */
 
 public class DeleteScriptRequest extends RequestBase {
 	private final String id;
@@ -58,7 +66,7 @@ public class DeleteScriptRequest extends RequestBase {
 
 	private DeleteScriptRequest(Builder builder) {
 
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;
 
@@ -102,6 +110,7 @@ public class DeleteScriptRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteScriptRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteScriptRequest> {
 		private String id;
 

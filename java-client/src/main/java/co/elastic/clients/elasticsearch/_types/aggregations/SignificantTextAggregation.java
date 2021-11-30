@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.SignificantTextAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/bucket.ts#L322-L339">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SignificantTextAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
@@ -102,7 +109,7 @@ public class SignificantTextAggregation extends BucketAggregationBase implements
 		this.field = builder.field;
 		this.filterDuplicateText = builder.filterDuplicateText;
 		this.gnd = builder.gnd;
-		this.include = ModelTypeHelper.unmodifiable(builder.include);
+		this.include = ApiTypeHelper.unmodifiable(builder.include);
 		this.minDocCount = builder.minDocCount;
 		this.mutualInformation = builder.mutualInformation;
 		this.percentage = builder.percentage;
@@ -110,7 +117,7 @@ public class SignificantTextAggregation extends BucketAggregationBase implements
 		this.shardMinDocCount = builder.shardMinDocCount;
 		this.shardSize = builder.shardSize;
 		this.size = builder.size;
-		this.sourceFields = ModelTypeHelper.unmodifiable(builder.sourceFields);
+		this.sourceFields = ApiTypeHelper.unmodifiable(builder.sourceFields);
 
 	}
 
@@ -289,7 +296,7 @@ public class SignificantTextAggregation extends BucketAggregationBase implements
 			this.gnd.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.include)) {
+		if (ApiTypeHelper.isDefined(this.include)) {
 			generator.writeKey("include");
 			generator.writeStartArray();
 			for (String item0 : this.include) {
@@ -334,7 +341,7 @@ public class SignificantTextAggregation extends BucketAggregationBase implements
 			generator.write(this.size);
 
 		}
-		if (ModelTypeHelper.isDefined(this.sourceFields)) {
+		if (ApiTypeHelper.isDefined(this.sourceFields)) {
 			generator.writeKey("source_fields");
 			generator.writeStartArray();
 			for (String item0 : this.sourceFields) {
@@ -352,6 +359,7 @@ public class SignificantTextAggregation extends BucketAggregationBase implements
 	/**
 	 * Builder for {@link SignificantTextAggregation}.
 	 */
+
 	public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<SignificantTextAggregation> {
@@ -491,11 +499,9 @@ public class SignificantTextAggregation extends BucketAggregationBase implements
 		/**
 		 * API name: {@code include}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>include</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>include</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>include</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder include(List<String> list) {
 			this.include = _listAddAll(this.include, list);
@@ -594,11 +600,9 @@ public class SignificantTextAggregation extends BucketAggregationBase implements
 		/**
 		 * API name: {@code source_fields}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>sourceFields</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>sourceFields</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>sourceFields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder sourceFields(List<String> list) {
 			this.sourceFields = _listAddAll(this.sourceFields, list);

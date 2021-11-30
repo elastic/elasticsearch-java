@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -44,6 +44,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.TrainedModelConfig
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/TrainedModel.ts#L58-L88">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TrainedModelConfig implements JsonpSerializable {
 	private final String modelId;
@@ -89,19 +96,19 @@ public class TrainedModelConfig implements JsonpSerializable {
 
 	protected TrainedModelConfig(AbstractBuilder<?> builder) {
 
-		this.modelId = ModelTypeHelper.requireNonNull(builder.modelId, this, "modelId");
-		this.modelType = ModelTypeHelper.requireNonNull(builder.modelType, this, "modelType");
-		this.tags = ModelTypeHelper.unmodifiableRequired(builder.tags, this, "tags");
+		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
+		this.modelType = ApiTypeHelper.requireNonNull(builder.modelType, this, "modelType");
+		this.tags = ApiTypeHelper.unmodifiableRequired(builder.tags, this, "tags");
 		this.version = builder.version;
 		this.compressedDefinition = builder.compressedDefinition;
 		this.createdBy = builder.createdBy;
 		this.createTime = builder.createTime;
-		this.defaultFieldMap = ModelTypeHelper.unmodifiable(builder.defaultFieldMap);
+		this.defaultFieldMap = ApiTypeHelper.unmodifiable(builder.defaultFieldMap);
 		this.description = builder.description;
 		this.estimatedHeapMemoryUsageBytes = builder.estimatedHeapMemoryUsageBytes;
 		this.estimatedOperations = builder.estimatedOperations;
-		this.inferenceConfig = ModelTypeHelper.requireNonNull(builder.inferenceConfig, this, "inferenceConfig");
-		this.input = ModelTypeHelper.requireNonNull(builder.input, this, "input");
+		this.inferenceConfig = ApiTypeHelper.requireNonNull(builder.inferenceConfig, this, "inferenceConfig");
+		this.input = ApiTypeHelper.requireNonNull(builder.input, this, "input");
 		this.licenseLevel = builder.licenseLevel;
 		this.metadata = builder.metadata;
 
@@ -269,7 +276,7 @@ public class TrainedModelConfig implements JsonpSerializable {
 
 		generator.writeKey("model_type");
 		this.modelType.serialize(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.tags)) {
+		if (ApiTypeHelper.isDefined(this.tags)) {
 			generator.writeKey("tags");
 			generator.writeStartArray();
 			for (String item0 : this.tags) {
@@ -299,7 +306,7 @@ public class TrainedModelConfig implements JsonpSerializable {
 			this.createTime.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.defaultFieldMap)) {
+		if (ApiTypeHelper.isDefined(this.defaultFieldMap)) {
 			generator.writeKey("default_field_map");
 			generator.writeStartObject();
 			for (Map.Entry<String, String> item0 : this.defaultFieldMap.entrySet()) {
@@ -349,6 +356,7 @@ public class TrainedModelConfig implements JsonpSerializable {
 	/**
 	 * Builder for {@link TrainedModelConfig}.
 	 */
+
 	public static class Builder extends TrainedModelConfig.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<TrainedModelConfig> {
@@ -439,11 +447,9 @@ public class TrainedModelConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code tags}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>tags</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>tags</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>tags</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final BuilderT tags(List<String> list) {
 			this.tags = _listAddAll(this.tags, list);
@@ -515,11 +521,9 @@ public class TrainedModelConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code default_field_map}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>defaultFieldMap</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>defaultFieldMap</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>defaultFieldMap</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final BuilderT defaultFieldMap(Map<String, String> map) {
 			this.defaultFieldMap = _mapPutAll(this.defaultFieldMap, map);

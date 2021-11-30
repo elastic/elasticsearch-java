@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.reindex.Destination
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/reindex/types.ts#L38-L44">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Destination implements JsonpSerializable {
 	private final String index;
@@ -61,7 +68,7 @@ public class Destination implements JsonpSerializable {
 
 	private Destination(Builder builder) {
 
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.opType = builder.opType;
 		this.pipeline = builder.pipeline;
 		this.routing = builder.routing;
@@ -152,6 +159,7 @@ public class Destination implements JsonpSerializable {
 	/**
 	 * Builder for {@link Destination}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Destination> {
 		private String index;
 

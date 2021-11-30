@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr.follow_info.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ccr/follow_info/FollowInfoResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FollowInfoResponse implements JsonpSerializable {
 	private final List<FollowerIndex> followerIndices;
@@ -48,7 +55,7 @@ public class FollowInfoResponse implements JsonpSerializable {
 
 	private FollowInfoResponse(Builder builder) {
 
-		this.followerIndices = ModelTypeHelper.unmodifiableRequired(builder.followerIndices, this, "followerIndices");
+		this.followerIndices = ApiTypeHelper.unmodifiableRequired(builder.followerIndices, this, "followerIndices");
 
 	}
 
@@ -74,7 +81,7 @@ public class FollowInfoResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.followerIndices)) {
+		if (ApiTypeHelper.isDefined(this.followerIndices)) {
 			generator.writeKey("follower_indices");
 			generator.writeStartArray();
 			for (FollowerIndex item0 : this.followerIndices) {
@@ -92,17 +99,16 @@ public class FollowInfoResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link FollowInfoResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FollowInfoResponse> {
 		private List<FollowerIndex> followerIndices;
 
 		/**
 		 * Required - API name: {@code follower_indices}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>followerIndices</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>followerIndices</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>followerIndices</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder followerIndices(List<FollowerIndex> list) {
 			this.followerIndices = _listAddAll(this.followerIndices, list);

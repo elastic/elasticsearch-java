@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.get_rollup_index_caps.IndexCapabilities
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/rollup/get_rollup_index_caps/types.ts#L24-L26">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IndexCapabilities implements JsonpSerializable {
 	private final List<RollupJobSummary> rollupJobs;
@@ -47,7 +54,7 @@ public class IndexCapabilities implements JsonpSerializable {
 
 	private IndexCapabilities(Builder builder) {
 
-		this.rollupJobs = ModelTypeHelper.unmodifiableRequired(builder.rollupJobs, this, "rollupJobs");
+		this.rollupJobs = ApiTypeHelper.unmodifiableRequired(builder.rollupJobs, this, "rollupJobs");
 
 	}
 
@@ -73,7 +80,7 @@ public class IndexCapabilities implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.rollupJobs)) {
+		if (ApiTypeHelper.isDefined(this.rollupJobs)) {
 			generator.writeKey("rollup_jobs");
 			generator.writeStartArray();
 			for (RollupJobSummary item0 : this.rollupJobs) {
@@ -91,17 +98,16 @@ public class IndexCapabilities implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexCapabilities}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexCapabilities> {
 		private List<RollupJobSummary> rollupJobs;
 
 		/**
 		 * Required - API name: {@code rollup_jobs}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>rollupJobs</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>rollupJobs</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>rollupJobs</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder rollupJobs(List<RollupJobSummary> list) {
 			this.rollupJobs = _listAddAll(this.rollupJobs, list);

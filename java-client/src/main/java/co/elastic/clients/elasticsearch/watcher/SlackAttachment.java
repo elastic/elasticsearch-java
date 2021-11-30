@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.SlackAttachment
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/watcher/_types/Actions.ts#L80-L96">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SlackAttachment implements JsonpSerializable {
 	@Nullable
@@ -90,17 +97,17 @@ public class SlackAttachment implements JsonpSerializable {
 
 		this.authorIcon = builder.authorIcon;
 		this.authorLink = builder.authorLink;
-		this.authorName = ModelTypeHelper.requireNonNull(builder.authorName, this, "authorName");
+		this.authorName = ApiTypeHelper.requireNonNull(builder.authorName, this, "authorName");
 		this.color = builder.color;
 		this.fallback = builder.fallback;
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 		this.footer = builder.footer;
 		this.footerIcon = builder.footerIcon;
 		this.imageUrl = builder.imageUrl;
 		this.pretext = builder.pretext;
 		this.text = builder.text;
 		this.thumbUrl = builder.thumbUrl;
-		this.title = ModelTypeHelper.requireNonNull(builder.title, this, "title");
+		this.title = ApiTypeHelper.requireNonNull(builder.title, this, "title");
 		this.titleLink = builder.titleLink;
 		this.ts = builder.ts;
 
@@ -261,7 +268,7 @@ public class SlackAttachment implements JsonpSerializable {
 			generator.write(this.fallback);
 
 		}
-		if (ModelTypeHelper.isDefined(this.fields)) {
+		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartArray();
 			for (SlackAttachmentField item0 : this.fields) {
@@ -322,6 +329,7 @@ public class SlackAttachment implements JsonpSerializable {
 	/**
 	 * Builder for {@link SlackAttachment}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SlackAttachment> {
 		@Nullable
 		private String authorIcon;
@@ -409,11 +417,9 @@ public class SlackAttachment implements JsonpSerializable {
 		/**
 		 * API name: {@code fields}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>fields</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>fields</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>fields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder fields(List<SlackAttachmentField> list) {
 			this.fields = _listAddAll(this.fields, list);

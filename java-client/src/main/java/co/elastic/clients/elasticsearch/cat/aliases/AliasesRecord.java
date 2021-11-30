@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.aliases.AliasesRecord
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cat/aliases/types.ts#L22-L53">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AliasesRecord implements JsonpSerializable {
 	@Nullable
@@ -184,6 +191,7 @@ public class AliasesRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link AliasesRecord}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AliasesRecord> {
 		@Nullable
 		private String alias;

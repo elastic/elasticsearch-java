@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform._types.Pivot
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/transform/_types/Transform.ts#L51-L56">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Pivot implements JsonpSerializable {
 	private final Map<String, Aggregation> aggregations;
@@ -55,8 +62,8 @@ public class Pivot implements JsonpSerializable {
 
 	private Pivot(Builder builder) {
 
-		this.aggregations = ModelTypeHelper.unmodifiable(builder.aggregations);
-		this.groupBy = ModelTypeHelper.unmodifiable(builder.groupBy);
+		this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);
+		this.groupBy = ApiTypeHelper.unmodifiable(builder.groupBy);
 		this.maxPageSearchSize = builder.maxPageSearchSize;
 
 	}
@@ -98,7 +105,7 @@ public class Pivot implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.aggregations)) {
+		if (ApiTypeHelper.isDefined(this.aggregations)) {
 			generator.writeKey("aggregations");
 			generator.writeStartObject();
 			for (Map.Entry<String, Aggregation> item0 : this.aggregations.entrySet()) {
@@ -109,7 +116,7 @@ public class Pivot implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.groupBy)) {
+		if (ApiTypeHelper.isDefined(this.groupBy)) {
 			generator.writeKey("group_by");
 			generator.writeStartObject();
 			for (Map.Entry<String, PivotGroupBy> item0 : this.groupBy.entrySet()) {
@@ -133,6 +140,7 @@ public class Pivot implements JsonpSerializable {
 	/**
 	 * Builder for {@link Pivot}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Pivot> {
 		@Nullable
 		private Map<String, Aggregation> aggregations;
@@ -146,11 +154,9 @@ public class Pivot implements JsonpSerializable {
 		/**
 		 * API name: {@code aggregations}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>aggregations</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>aggregations</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>aggregations</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder aggregations(Map<String, Aggregation> map) {
 			this.aggregations = _mapPutAll(this.aggregations, map);
@@ -179,11 +185,9 @@ public class Pivot implements JsonpSerializable {
 		/**
 		 * API name: {@code group_by}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>groupBy</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>groupBy</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>groupBy</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder groupBy(Map<String, PivotGroupBy> map) {
 			this.groupBy = _mapPutAll(this.groupBy, map);

@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
@@ -37,6 +37,13 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.SingleMetricAggregateBase
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/Aggregate.ts#L169-L178">API
+ *      specification</a>
+ */
 
 public abstract class SingleMetricAggregateBase extends AggregateBase {
 	private final double value;
@@ -49,7 +56,7 @@ public abstract class SingleMetricAggregateBase extends AggregateBase {
 	protected SingleMetricAggregateBase(AbstractBuilder<?> builder) {
 		super(builder);
 
-		this.value = ModelTypeHelper.requireNonNull(builder.value, this, "value");
+		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
 		this.valueAsString = builder.valueAsString;
 
 	}

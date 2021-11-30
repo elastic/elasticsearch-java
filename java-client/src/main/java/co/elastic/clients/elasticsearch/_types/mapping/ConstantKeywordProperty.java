@@ -36,6 +36,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.ConstantKeywordProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/mapping/specialized.ts#L45-L48">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ConstantKeywordProperty extends PropertyBase implements PropertyVariant {
 	@Nullable
@@ -87,6 +94,7 @@ public class ConstantKeywordProperty extends PropertyBase implements PropertyVar
 	/**
 	 * Builder for {@link ConstantKeywordProperty}.
 	 */
+
 	public static class Builder extends PropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ConstantKeywordProperty> {

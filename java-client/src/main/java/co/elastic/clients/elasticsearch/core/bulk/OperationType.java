@@ -27,6 +27,12 @@ import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/bulk/types.ts#L51-L56">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public enum OperationType implements JsonEnum {
 	Index("index"),

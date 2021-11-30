@@ -39,7 +39,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -55,6 +55,15 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: _global.bulk.Request
+
+/**
+ * Allows to perform multiple index/update/delete operations in a single
+ * request.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/bulk/BulkRequest.ts#L33-L58">API
+ *      specification</a>
+ */
 
 public class BulkRequest extends RequestBase implements NdJsonpSerializable, JsonpSerializable {
 	@Nullable
@@ -95,8 +104,8 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 	private BulkRequest(Builder builder) {
 
 		this.source = builder.source;
-		this.sourceExcludes = ModelTypeHelper.unmodifiable(builder.sourceExcludes);
-		this.sourceIncludes = ModelTypeHelper.unmodifiable(builder.sourceIncludes);
+		this.sourceExcludes = ApiTypeHelper.unmodifiable(builder.sourceExcludes);
+		this.sourceIncludes = ApiTypeHelper.unmodifiable(builder.sourceIncludes);
 		this.index = builder.index;
 		this.pipeline = builder.pipeline;
 		this.refresh = builder.refresh;
@@ -105,7 +114,7 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		this.timeout = builder.timeout;
 		this.type = builder.type;
 		this.waitForActiveShards = builder.waitForActiveShards;
-		this.operations = ModelTypeHelper.unmodifiableRequired(builder.operations, this, "operations");
+		this.operations = ApiTypeHelper.unmodifiableRequired(builder.operations, this, "operations");
 
 	}
 
@@ -262,6 +271,7 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 	/**
 	 * Builder for {@link BulkRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<BulkRequest> {
 		@Nullable
 		private SourceConfigParam source;
@@ -325,11 +335,9 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		 * <p>
 		 * API name: {@code _source_excludes}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>sourceExcludes</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>sourceExcludes</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>sourceExcludes</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder sourceExcludes(List<String> list) {
 			this.sourceExcludes = _listAddAll(this.sourceExcludes, list);
@@ -355,11 +363,9 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		 * <p>
 		 * API name: {@code _source_includes}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>sourceIncludes</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>sourceIncludes</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>sourceIncludes</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder sourceIncludes(List<String> list) {
 			this.sourceIncludes = _listAddAll(this.sourceIncludes, list);
@@ -494,11 +500,9 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		 * <p>
 		 * API name: {@code _value_body}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>operations</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>operations</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>operations</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder operations(List<BulkOperation> list) {
 			this.operations = _listAddAll(this.operations, list);
@@ -612,11 +616,11 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 				if (request.source != null) {
 					params.put("_source", request.source._toJsonString());
 				}
-				if (ModelTypeHelper.isDefined(request.sourceExcludes)) {
+				if (ApiTypeHelper.isDefined(request.sourceExcludes)) {
 					params.put("_source_excludes",
 							request.sourceExcludes.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
-				if (ModelTypeHelper.isDefined(request.sourceIncludes)) {
+				if (ApiTypeHelper.isDefined(request.sourceIncludes)) {
 					params.put("_source_includes",
 							request.sourceIncludes.stream().map(v -> v).collect(Collectors.joining(",")));
 				}

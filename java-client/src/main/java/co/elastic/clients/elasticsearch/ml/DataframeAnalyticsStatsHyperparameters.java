@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsStatsHyperparameters
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/DataframeAnalytics.ts#L375-L382">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeAnalyticsStatsHyperparameters implements DataframeAnalyticsStatsVariant, JsonpSerializable {
 	private final Hyperparameters hyperparameters;
@@ -56,11 +63,11 @@ public class DataframeAnalyticsStatsHyperparameters implements DataframeAnalytic
 
 	private DataframeAnalyticsStatsHyperparameters(Builder builder) {
 
-		this.hyperparameters = ModelTypeHelper.requireNonNull(builder.hyperparameters, this, "hyperparameters");
-		this.iteration = ModelTypeHelper.requireNonNull(builder.iteration, this, "iteration");
-		this.timestamp = ModelTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
-		this.timingStats = ModelTypeHelper.requireNonNull(builder.timingStats, this, "timingStats");
-		this.validationLoss = ModelTypeHelper.requireNonNull(builder.validationLoss, this, "validationLoss");
+		this.hyperparameters = ApiTypeHelper.requireNonNull(builder.hyperparameters, this, "hyperparameters");
+		this.iteration = ApiTypeHelper.requireNonNull(builder.iteration, this, "iteration");
+		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+		this.timingStats = ApiTypeHelper.requireNonNull(builder.timingStats, this, "timingStats");
+		this.validationLoss = ApiTypeHelper.requireNonNull(builder.validationLoss, this, "validationLoss");
 
 	}
 
@@ -147,6 +154,7 @@ public class DataframeAnalyticsStatsHyperparameters implements DataframeAnalytic
 	/**
 	 * Builder for {@link DataframeAnalyticsStatsHyperparameters}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase
 			implements
 				ObjectBuilder<DataframeAnalyticsStatsHyperparameters> {

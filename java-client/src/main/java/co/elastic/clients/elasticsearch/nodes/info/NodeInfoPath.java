@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoPath
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/nodes/info/types.ts#L147-L152">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeInfoPath implements JsonpSerializable {
 	private final String logs;
@@ -54,10 +61,10 @@ public class NodeInfoPath implements JsonpSerializable {
 
 	private NodeInfoPath(Builder builder) {
 
-		this.logs = ModelTypeHelper.requireNonNull(builder.logs, this, "logs");
-		this.home = ModelTypeHelper.requireNonNull(builder.home, this, "home");
-		this.repo = ModelTypeHelper.unmodifiableRequired(builder.repo, this, "repo");
-		this.data = ModelTypeHelper.unmodifiable(builder.data);
+		this.logs = ApiTypeHelper.requireNonNull(builder.logs, this, "logs");
+		this.home = ApiTypeHelper.requireNonNull(builder.home, this, "home");
+		this.repo = ApiTypeHelper.unmodifiableRequired(builder.repo, this, "repo");
+		this.data = ApiTypeHelper.unmodifiable(builder.data);
 
 	}
 
@@ -110,7 +117,7 @@ public class NodeInfoPath implements JsonpSerializable {
 		generator.writeKey("home");
 		generator.write(this.home);
 
-		if (ModelTypeHelper.isDefined(this.repo)) {
+		if (ApiTypeHelper.isDefined(this.repo)) {
 			generator.writeKey("repo");
 			generator.writeStartArray();
 			for (String item0 : this.repo) {
@@ -120,7 +127,7 @@ public class NodeInfoPath implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.data)) {
+		if (ApiTypeHelper.isDefined(this.data)) {
 			generator.writeKey("data");
 			generator.writeStartArray();
 			for (String item0 : this.data) {
@@ -138,6 +145,7 @@ public class NodeInfoPath implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoPath}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoPath> {
 		private String logs;
 
@@ -167,11 +175,9 @@ public class NodeInfoPath implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code repo}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>repo</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>repo</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>repo</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder repo(List<String> list) {
 			this.repo = _listAddAll(this.repo, list);
@@ -191,11 +197,9 @@ public class NodeInfoPath implements JsonpSerializable {
 		/**
 		 * API name: {@code data}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>data</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>data</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>data</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder data(List<String> list) {
 			this.data = _listAddAll(this.data, list);

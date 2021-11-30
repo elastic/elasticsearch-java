@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ClassificationInferenceOptions
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/pipeline.ts#L95-L109">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ClassificationInferenceOptions implements JsonpSerializable {
 	@Nullable
@@ -172,6 +179,7 @@ public class ClassificationInferenceOptions implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClassificationInferenceOptions}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClassificationInferenceOptions> {
 		@Nullable
 		private Integer numTopClasses;

@@ -44,6 +44,14 @@ import javax.annotation.Nullable;
 
 // typedef: cat.ml_data_frame_analytics.Request
 
+/**
+ * Gets configuration and usage information about data frame analytics jobs.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cat/ml_data_frame_analytics/CatDataFrameAnalyticsRequest.ts#L23-L36">API
+ *      specification</a>
+ */
+
 public class MlDataFrameAnalyticsRequest extends CatRequestBase {
 	@Nullable
 	private final Boolean allowNoMatch;
@@ -104,6 +112,7 @@ public class MlDataFrameAnalyticsRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link MlDataFrameAnalyticsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MlDataFrameAnalyticsRequest> {
 		@Nullable
 		private Boolean allowNoMatch;

@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.IpProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/mapping/specialized.ts#L75-L81">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IpProperty extends DocValuesPropertyBase implements PropertyVariant {
 	@Nullable
@@ -140,6 +147,7 @@ public class IpProperty extends DocValuesPropertyBase implements PropertyVariant
 	/**
 	 * Builder for {@link IpProperty}.
 	 */
+
 	public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<IpProperty> {

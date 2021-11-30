@@ -35,6 +35,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: indices.get.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/get/IndicesGetResponse.ts#L24-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetIndexResponse extends DictionaryResponse<String, IndexState> {
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +60,7 @@ public class GetIndexResponse extends DictionaryResponse<String, IndexState> {
 	/**
 	 * Builder for {@link GetIndexResponse}.
 	 */
+
 	public static class Builder extends DictionaryResponse.AbstractBuilder<String, IndexState, Builder>
 			implements
 				ObjectBuilder<GetIndexResponse> {

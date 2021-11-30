@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.CompletionSuggester
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/search/_types/suggester.ts#L98-L104">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CompletionSuggester extends SuggesterBase implements FieldSuggesterVariant {
 	private final Map<String, List<CompletionContext>> contexts;
@@ -61,7 +68,7 @@ public class CompletionSuggester extends SuggesterBase implements FieldSuggester
 	private CompletionSuggester(Builder builder) {
 		super(builder);
 
-		this.contexts = ModelTypeHelper.unmodifiable(builder.contexts);
+		this.contexts = ApiTypeHelper.unmodifiable(builder.contexts);
 		this.fuzzy = builder.fuzzy;
 		this.prefix = builder.prefix;
 		this.regex = builder.regex;
@@ -123,7 +130,7 @@ public class CompletionSuggester extends SuggesterBase implements FieldSuggester
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.contexts)) {
+		if (ApiTypeHelper.isDefined(this.contexts)) {
 			generator.writeKey("contexts");
 			generator.writeStartObject();
 			for (Map.Entry<String, List<CompletionContext>> item0 : this.contexts.entrySet()) {
@@ -169,6 +176,7 @@ public class CompletionSuggester extends SuggesterBase implements FieldSuggester
 	/**
 	 * Builder for {@link CompletionSuggester}.
 	 */
+
 	public static class Builder extends SuggesterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<CompletionSuggester> {
@@ -190,11 +198,9 @@ public class CompletionSuggester extends SuggesterBase implements FieldSuggester
 		/**
 		 * API name: {@code contexts}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>contexts</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>contexts</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>contexts</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder contexts(Map<String, List<CompletionContext>> map) {
 			this.contexts = _mapPutAll(this.contexts, map);

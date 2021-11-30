@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot._types.SnapshotIndexStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/snapshot/_types/SnapshotIndexStats.ts#L25-L29">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SnapshotIndexStats implements JsonpSerializable {
 	private final Map<String, SnapshotShardsStatus> shards;
@@ -52,9 +59,9 @@ public class SnapshotIndexStats implements JsonpSerializable {
 
 	private SnapshotIndexStats(Builder builder) {
 
-		this.shards = ModelTypeHelper.unmodifiableRequired(builder.shards, this, "shards");
-		this.shardsStats = ModelTypeHelper.requireNonNull(builder.shardsStats, this, "shardsStats");
-		this.stats = ModelTypeHelper.requireNonNull(builder.stats, this, "stats");
+		this.shards = ApiTypeHelper.unmodifiableRequired(builder.shards, this, "shards");
+		this.shardsStats = ApiTypeHelper.requireNonNull(builder.shardsStats, this, "shardsStats");
+		this.stats = ApiTypeHelper.requireNonNull(builder.stats, this, "stats");
 
 	}
 
@@ -94,7 +101,7 @@ public class SnapshotIndexStats implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.shards)) {
+		if (ApiTypeHelper.isDefined(this.shards)) {
 			generator.writeKey("shards");
 			generator.writeStartObject();
 			for (Map.Entry<String, SnapshotShardsStatus> item0 : this.shards.entrySet()) {
@@ -118,6 +125,7 @@ public class SnapshotIndexStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link SnapshotIndexStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SnapshotIndexStats> {
 		private Map<String, SnapshotShardsStatus> shards;
 
@@ -128,11 +136,9 @@ public class SnapshotIndexStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code shards}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>shards</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>shards</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>shards</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder shards(Map<String, SnapshotShardsStatus> map) {
 			this.shards = _mapPutAll(this.shards, map);

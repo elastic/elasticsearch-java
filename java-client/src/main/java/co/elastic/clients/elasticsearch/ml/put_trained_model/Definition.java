@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.Definition
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/put_trained_model/types.ts#L24-L29">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Definition implements JsonpSerializable {
 	private final List<Preprocessor> preprocessors;
@@ -49,8 +56,8 @@ public class Definition implements JsonpSerializable {
 
 	private Definition(Builder builder) {
 
-		this.preprocessors = ModelTypeHelper.unmodifiable(builder.preprocessors);
-		this.trainedModel = ModelTypeHelper.requireNonNull(builder.trainedModel, this, "trainedModel");
+		this.preprocessors = ApiTypeHelper.unmodifiable(builder.preprocessors);
+		this.trainedModel = ApiTypeHelper.requireNonNull(builder.trainedModel, this, "trainedModel");
 
 	}
 
@@ -87,7 +94,7 @@ public class Definition implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.preprocessors)) {
+		if (ApiTypeHelper.isDefined(this.preprocessors)) {
 			generator.writeKey("preprocessors");
 			generator.writeStartArray();
 			for (Preprocessor item0 : this.preprocessors) {
@@ -107,6 +114,7 @@ public class Definition implements JsonpSerializable {
 	/**
 	 * Builder for {@link Definition}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Definition> {
 		@Nullable
 		private List<Preprocessor> preprocessors;
@@ -118,11 +126,9 @@ public class Definition implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code preprocessors}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>preprocessors</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>preprocessors</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>preprocessors</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder preprocessors(List<Preprocessor> list) {
 			this.preprocessors = _listAddAll(this.preprocessors, list);

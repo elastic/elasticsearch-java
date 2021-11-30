@@ -34,7 +34,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -45,6 +45,30 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.start_datafeed.Request
+
+/**
+ * Starts one or more datafeeds.
+ * <p>
+ * A datafeed must be started in order to retrieve data from Elasticsearch. A
+ * datafeed can be started and stopped multiple times throughout its lifecycle.
+ * <p>
+ * Before you can start a datafeed, the anomaly detection job must be open.
+ * Otherwise, an error occurs.
+ * <p>
+ * If you restart a stopped datafeed, it continues processing input data from
+ * the next millisecond after it was stopped. If new data was indexed for that
+ * exact millisecond between stopping and starting, it will be ignored.
+ * <p>
+ * When Elasticsearch security features are enabled, your datafeed remembers
+ * which roles the last user to create or update it had at the time of creation
+ * or update and runs the query using those same roles. If you provided
+ * secondary authorization headers when you created or updated the datafeed,
+ * those credentials are used instead.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/start_datafeed/MlStartDatafeedRequest.ts#L24-L91">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class StartDatafeedRequest extends RequestBase implements JsonpSerializable {
 	private final String datafeedId;
@@ -62,7 +86,7 @@ public class StartDatafeedRequest extends RequestBase implements JsonpSerializab
 
 	private StartDatafeedRequest(Builder builder) {
 
-		this.datafeedId = ModelTypeHelper.requireNonNull(builder.datafeedId, this, "datafeedId");
+		this.datafeedId = ApiTypeHelper.requireNonNull(builder.datafeedId, this, "datafeedId");
 		this.end = builder.end;
 		this.start = builder.start;
 		this.timeout = builder.timeout;
@@ -149,6 +173,7 @@ public class StartDatafeedRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Builder for {@link StartDatafeedRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StartDatafeedRequest> {
 		private String datafeedId;
 

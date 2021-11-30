@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoBootstrap
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/nodes/info/types.ts#L186-L188">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeInfoBootstrap implements JsonpSerializable {
 	private final String memoryLock;
@@ -47,7 +54,7 @@ public class NodeInfoBootstrap implements JsonpSerializable {
 
 	private NodeInfoBootstrap(Builder builder) {
 
-		this.memoryLock = ModelTypeHelper.requireNonNull(builder.memoryLock, this, "memoryLock");
+		this.memoryLock = ApiTypeHelper.requireNonNull(builder.memoryLock, this, "memoryLock");
 
 	}
 
@@ -83,6 +90,7 @@ public class NodeInfoBootstrap implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoBootstrap}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoBootstrap> {
 		private String memoryLock;
 

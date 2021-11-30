@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.BoolQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/query_dsl/compound.ts#L28-L34">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class BoolQuery extends QueryBase implements QueryVariant {
 	private final List<Query> filter;
@@ -56,11 +63,11 @@ public class BoolQuery extends QueryBase implements QueryVariant {
 	private BoolQuery(Builder builder) {
 		super(builder);
 
-		this.filter = ModelTypeHelper.unmodifiable(builder.filter);
+		this.filter = ApiTypeHelper.unmodifiable(builder.filter);
 		this.minimumShouldMatch = builder.minimumShouldMatch;
-		this.must = ModelTypeHelper.unmodifiable(builder.must);
-		this.mustNot = ModelTypeHelper.unmodifiable(builder.mustNot);
-		this.should = ModelTypeHelper.unmodifiable(builder.should);
+		this.must = ApiTypeHelper.unmodifiable(builder.must);
+		this.mustNot = ApiTypeHelper.unmodifiable(builder.mustNot);
+		this.should = ApiTypeHelper.unmodifiable(builder.should);
 
 	}
 
@@ -115,7 +122,7 @@ public class BoolQuery extends QueryBase implements QueryVariant {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.filter)) {
+		if (ApiTypeHelper.isDefined(this.filter)) {
 			generator.writeKey("filter");
 			generator.writeStartArray();
 			for (Query item0 : this.filter) {
@@ -130,7 +137,7 @@ public class BoolQuery extends QueryBase implements QueryVariant {
 			generator.write(this.minimumShouldMatch);
 
 		}
-		if (ModelTypeHelper.isDefined(this.must)) {
+		if (ApiTypeHelper.isDefined(this.must)) {
 			generator.writeKey("must");
 			generator.writeStartArray();
 			for (Query item0 : this.must) {
@@ -140,7 +147,7 @@ public class BoolQuery extends QueryBase implements QueryVariant {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.mustNot)) {
+		if (ApiTypeHelper.isDefined(this.mustNot)) {
 			generator.writeKey("must_not");
 			generator.writeStartArray();
 			for (Query item0 : this.mustNot) {
@@ -150,7 +157,7 @@ public class BoolQuery extends QueryBase implements QueryVariant {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.should)) {
+		if (ApiTypeHelper.isDefined(this.should)) {
 			generator.writeKey("should");
 			generator.writeStartArray();
 			for (Query item0 : this.should) {
@@ -168,6 +175,7 @@ public class BoolQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link BoolQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<BoolQuery> {
 		@Nullable
 		private List<Query> filter;
@@ -187,11 +195,9 @@ public class BoolQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code filter}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>filter</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>filter</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>filter</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder filter(List<Query> list) {
 			this.filter = _listAddAll(this.filter, list);
@@ -228,11 +234,9 @@ public class BoolQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code must}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>must</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>must</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>must</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder must(List<Query> list) {
 			this.must = _listAddAll(this.must, list);
@@ -261,11 +265,9 @@ public class BoolQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code must_not}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>mustNot</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>mustNot</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>mustNot</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder mustNot(List<Query> list) {
 			this.mustNot = _listAddAll(this.mustNot, list);
@@ -294,11 +296,9 @@ public class BoolQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code should}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>should</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>should</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>should</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder should(List<Query> list) {
 			this.should = _listAddAll(this.should, list);

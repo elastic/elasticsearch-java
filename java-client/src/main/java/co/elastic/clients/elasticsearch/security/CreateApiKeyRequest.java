@@ -37,7 +37,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -49,6 +49,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.create_api_key.Request
+
+/**
+ * Creates an API key for access without requiring basic authentication.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/security/create_api_key/SecurityCreateApiKeyRequest.ts#L26-L51">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CreateApiKeyRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -69,10 +77,10 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 	private CreateApiKeyRequest(Builder builder) {
 
 		this.expiration = builder.expiration;
-		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
+		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
 		this.name = builder.name;
 		this.refresh = builder.refresh;
-		this.roleDescriptors = ModelTypeHelper.unmodifiable(builder.roleDescriptors);
+		this.roleDescriptors = ApiTypeHelper.unmodifiable(builder.roleDescriptors);
 
 	}
 
@@ -156,7 +164,7 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 			this.expiration.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.metadata)) {
+		if (ApiTypeHelper.isDefined(this.metadata)) {
 			generator.writeKey("metadata");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
@@ -172,7 +180,7 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 			generator.write(this.name);
 
 		}
-		if (ModelTypeHelper.isDefined(this.roleDescriptors)) {
+		if (ApiTypeHelper.isDefined(this.roleDescriptors)) {
 			generator.writeKey("role_descriptors");
 			generator.writeStartObject();
 			for (Map.Entry<String, RoleDescriptor> item0 : this.roleDescriptors.entrySet()) {
@@ -191,6 +199,7 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Builder for {@link CreateApiKeyRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CreateApiKeyRequest> {
 		@Nullable
 		private Time expiration;
@@ -233,11 +242,9 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code metadata}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>metadata</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>metadata</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>metadata</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder metadata(Map<String, JsonData> map) {
 			this.metadata = _mapPutAll(this.metadata, map);
@@ -293,11 +300,9 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code role_descriptors}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>roleDescriptors</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>roleDescriptors</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>roleDescriptors</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder roleDescriptors(Map<String, RoleDescriptor> map) {
 			this.roleDescriptors = _mapPutAll(this.roleDescriptors, map);

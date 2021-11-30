@@ -33,7 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -46,6 +46,16 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.estimate_model_memory.Request
+
+/**
+ * Makes an estimation of the memory usage for an anomaly detection job model.
+ * It is based on analysis configuration details for the job and cardinality
+ * estimates for the fields it references.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/estimate_model_memory/MlEstimateModelMemoryRequest.ts#L26-L61">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class EstimateModelMemoryRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -60,8 +70,8 @@ public class EstimateModelMemoryRequest extends RequestBase implements JsonpSeri
 	private EstimateModelMemoryRequest(Builder builder) {
 
 		this.analysisConfig = builder.analysisConfig;
-		this.maxBucketCardinality = ModelTypeHelper.unmodifiable(builder.maxBucketCardinality);
-		this.overallCardinality = ModelTypeHelper.unmodifiable(builder.overallCardinality);
+		this.maxBucketCardinality = ApiTypeHelper.unmodifiable(builder.maxBucketCardinality);
+		this.overallCardinality = ApiTypeHelper.unmodifiable(builder.overallCardinality);
 
 	}
 
@@ -125,7 +135,7 @@ public class EstimateModelMemoryRequest extends RequestBase implements JsonpSeri
 			this.analysisConfig.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.maxBucketCardinality)) {
+		if (ApiTypeHelper.isDefined(this.maxBucketCardinality)) {
 			generator.writeKey("max_bucket_cardinality");
 			generator.writeStartObject();
 			for (Map.Entry<String, Long> item0 : this.maxBucketCardinality.entrySet()) {
@@ -136,7 +146,7 @@ public class EstimateModelMemoryRequest extends RequestBase implements JsonpSeri
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.overallCardinality)) {
+		if (ApiTypeHelper.isDefined(this.overallCardinality)) {
 			generator.writeKey("overall_cardinality");
 			generator.writeStartObject();
 			for (Map.Entry<String, Long> item0 : this.overallCardinality.entrySet()) {
@@ -155,6 +165,7 @@ public class EstimateModelMemoryRequest extends RequestBase implements JsonpSeri
 	/**
 	 * Builder for {@link EstimateModelMemoryRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<EstimateModelMemoryRequest> {
 		@Nullable
 		private AnalysisConfig analysisConfig;
@@ -196,10 +207,8 @@ public class EstimateModelMemoryRequest extends RequestBase implements JsonpSeri
 		 * API name: {@code max_bucket_cardinality}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>maxBucketCardinality</code>.
-		 * Use <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>maxBucketCardinality</code> to <code>null</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder maxBucketCardinality(Map<String, Long> map) {
 			this.maxBucketCardinality = _mapPutAll(this.maxBucketCardinality, map);
@@ -234,11 +243,9 @@ public class EstimateModelMemoryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code overall_cardinality}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>overallCardinality</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>overallCardinality</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>overallCardinality</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder overallCardinality(Map<String, Long> map) {
 			this.overallCardinality = _mapPutAll(this.overallCardinality, map);

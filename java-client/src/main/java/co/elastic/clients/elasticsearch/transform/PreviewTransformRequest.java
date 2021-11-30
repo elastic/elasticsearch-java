@@ -46,6 +46,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform.preview_transform.Request
+
+/**
+ * Previews a transform.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/transform/preview_transform/PreviewTransformRequest.ts#L32-L64">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PreviewTransformRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -269,6 +277,7 @@ public class PreviewTransformRequest extends RequestBase implements JsonpSeriali
 	/**
 	 * Builder for {@link PreviewTransformRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PreviewTransformRequest> {
 		@Nullable
 		private String description;

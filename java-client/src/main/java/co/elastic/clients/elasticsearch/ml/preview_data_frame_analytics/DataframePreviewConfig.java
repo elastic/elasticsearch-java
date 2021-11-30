@@ -32,7 +32,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,6 +43,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.preview_data_frame_analytics.DataframePreviewConfig
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/preview_data_frame_analytics/types.ts#L27-L33">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframePreviewConfig implements JsonpSerializable {
 	private final DataframeAnalyticsSource source;
@@ -62,8 +69,8 @@ public class DataframePreviewConfig implements JsonpSerializable {
 
 	private DataframePreviewConfig(Builder builder) {
 
-		this.source = ModelTypeHelper.requireNonNull(builder.source, this, "source");
-		this.analysis = ModelTypeHelper.requireNonNull(builder.analysis, this, "analysis");
+		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
+		this.analysis = ApiTypeHelper.requireNonNull(builder.analysis, this, "analysis");
 		this.modelMemoryLimit = builder.modelMemoryLimit;
 		this.maxNumThreads = builder.maxNumThreads;
 		this.analyzedFields = builder.analyzedFields;
@@ -152,6 +159,7 @@ public class DataframePreviewConfig implements JsonpSerializable {
 	/**
 	 * Builder for {@link DataframePreviewConfig}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframePreviewConfig> {
 		private DataframeAnalyticsSource source;
 

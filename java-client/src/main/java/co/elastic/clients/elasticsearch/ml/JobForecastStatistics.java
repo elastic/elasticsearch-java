@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.JobForecastStatistics
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/Job.ts#L115-L122">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class JobForecastStatistics implements JsonpSerializable {
 	@Nullable
@@ -66,9 +73,9 @@ public class JobForecastStatistics implements JsonpSerializable {
 		this.memoryBytes = builder.memoryBytes;
 		this.processingTimeMs = builder.processingTimeMs;
 		this.records = builder.records;
-		this.status = ModelTypeHelper.unmodifiable(builder.status);
-		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
-		this.forecastedJobs = ModelTypeHelper.requireNonNull(builder.forecastedJobs, this, "forecastedJobs");
+		this.status = ApiTypeHelper.unmodifiable(builder.status);
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+		this.forecastedJobs = ApiTypeHelper.requireNonNull(builder.forecastedJobs, this, "forecastedJobs");
 
 	}
 
@@ -147,7 +154,7 @@ public class JobForecastStatistics implements JsonpSerializable {
 			this.records.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.status)) {
+		if (ApiTypeHelper.isDefined(this.status)) {
 			generator.writeKey("status");
 			generator.writeStartObject();
 			for (Map.Entry<String, Long> item0 : this.status.entrySet()) {
@@ -171,6 +178,7 @@ public class JobForecastStatistics implements JsonpSerializable {
 	/**
 	 * Builder for {@link JobForecastStatistics}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<JobForecastStatistics> {
 		@Nullable
 		private JobStatistics memoryBytes;
@@ -236,11 +244,9 @@ public class JobForecastStatistics implements JsonpSerializable {
 		/**
 		 * API name: {@code status}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>status</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>status</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>status</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder status(Map<String, Long> map) {
 			this.status = _mapPutAll(this.status, map);

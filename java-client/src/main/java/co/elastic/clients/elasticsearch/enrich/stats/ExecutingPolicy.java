@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: enrich.stats.ExecutingPolicy
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/enrich/stats/types.ts#L24-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ExecutingPolicy implements JsonpSerializable {
 	private final String name;
@@ -50,8 +57,8 @@ public class ExecutingPolicy implements JsonpSerializable {
 
 	private ExecutingPolicy(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
-		this.task = ModelTypeHelper.requireNonNull(builder.task, this, "task");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.task = ApiTypeHelper.requireNonNull(builder.task, this, "task");
 
 	}
 
@@ -97,6 +104,7 @@ public class ExecutingPolicy implements JsonpSerializable {
 	/**
 	 * Builder for {@link ExecutingPolicy}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExecutingPolicy> {
 		private String name;
 

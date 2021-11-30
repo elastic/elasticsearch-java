@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.MlInferenceTrainedModels
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/xpack/usage/types.ts#L189-L194">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MlInferenceTrainedModels implements JsonpSerializable {
 	@Nullable
@@ -59,7 +66,7 @@ public class MlInferenceTrainedModels implements JsonpSerializable {
 		this.estimatedOperations = builder.estimatedOperations;
 		this.estimatedHeapMemoryUsageBytes = builder.estimatedHeapMemoryUsageBytes;
 		this.count = builder.count;
-		this.all = ModelTypeHelper.requireNonNull(builder.all, this, "all");
+		this.all = ApiTypeHelper.requireNonNull(builder.all, this, "all");
 
 	}
 
@@ -134,6 +141,7 @@ public class MlInferenceTrainedModels implements JsonpSerializable {
 	/**
 	 * Builder for {@link MlInferenceTrainedModels}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MlInferenceTrainedModels> {
 		@Nullable
 		private JobStatistics estimatedOperations;

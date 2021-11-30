@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SimpleQueryStringQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/query_dsl/fulltext.ts#L294-L312">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 	@Nullable
@@ -88,14 +95,14 @@ public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 		this.analyzeWildcard = builder.analyzeWildcard;
 		this.autoGenerateSynonymsPhraseQuery = builder.autoGenerateSynonymsPhraseQuery;
 		this.defaultOperator = builder.defaultOperator;
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 		this.flags = builder.flags;
 		this.fuzzyMaxExpansions = builder.fuzzyMaxExpansions;
 		this.fuzzyPrefixLength = builder.fuzzyPrefixLength;
 		this.fuzzyTranspositions = builder.fuzzyTranspositions;
 		this.lenient = builder.lenient;
 		this.minimumShouldMatch = builder.minimumShouldMatch;
-		this.query = ModelTypeHelper.requireNonNull(builder.query, this, "query");
+		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 		this.quoteFieldSuffix = builder.quoteFieldSuffix;
 
 	}
@@ -236,7 +243,7 @@ public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 			generator.writeKey("default_operator");
 			this.defaultOperator.serialize(generator, mapper);
 		}
-		if (ModelTypeHelper.isDefined(this.fields)) {
+		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartArray();
 			for (String item0 : this.fields) {
@@ -292,6 +299,7 @@ public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link SimpleQueryStringQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<SimpleQueryStringQuery> {
@@ -368,11 +376,9 @@ public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code fields}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>fields</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>fields</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>fields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder fields(List<String> list) {
 			this.fields = _listAddAll(this.fields, list);

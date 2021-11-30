@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.msearch.MultiSearchResult
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/msearch/types.ts#L61-L64">API
+ *      specification</a>
+ */
 
 public abstract class MultiSearchResult<TDocument> implements JsonpSerializable {
 	private final long took;
@@ -54,8 +61,8 @@ public abstract class MultiSearchResult<TDocument> implements JsonpSerializable 
 
 	protected MultiSearchResult(AbstractBuilder<TDocument, ?> builder) {
 
-		this.took = ModelTypeHelper.requireNonNull(builder.took, this, "took");
-		this.responses = ModelTypeHelper.unmodifiableRequired(builder.responses, this, "responses");
+		this.took = ApiTypeHelper.requireNonNull(builder.took, this, "took");
+		this.responses = ApiTypeHelper.unmodifiableRequired(builder.responses, this, "responses");
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}
@@ -88,7 +95,7 @@ public abstract class MultiSearchResult<TDocument> implements JsonpSerializable 
 		generator.writeKey("took");
 		generator.write(this.took);
 
-		if (ModelTypeHelper.isDefined(this.responses)) {
+		if (ApiTypeHelper.isDefined(this.responses)) {
 			generator.writeKey("responses");
 			generator.writeStartArray();
 			for (MultiSearchResponseItem<TDocument> item0 : this.responses) {
@@ -122,11 +129,9 @@ public abstract class MultiSearchResult<TDocument> implements JsonpSerializable 
 		/**
 		 * Required - API name: {@code responses}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>responses</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>responses</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>responses</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final BuilderT responses(List<MultiSearchResponseItem<TDocument>> list) {
 			this.responses = _listAddAll(this.responses, list);

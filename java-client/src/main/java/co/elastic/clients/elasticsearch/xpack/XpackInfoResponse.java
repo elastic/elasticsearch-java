@@ -32,7 +32,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.info.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/xpack/info/XPackInfoResponse.ts#L22-L29">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class XpackInfoResponse implements JsonpSerializable {
 	private final BuildInformation build;
@@ -56,10 +63,10 @@ public class XpackInfoResponse implements JsonpSerializable {
 
 	private XpackInfoResponse(Builder builder) {
 
-		this.build = ModelTypeHelper.requireNonNull(builder.build, this, "build");
-		this.features = ModelTypeHelper.requireNonNull(builder.features, this, "features");
-		this.license = ModelTypeHelper.requireNonNull(builder.license, this, "license");
-		this.tagline = ModelTypeHelper.requireNonNull(builder.tagline, this, "tagline");
+		this.build = ApiTypeHelper.requireNonNull(builder.build, this, "build");
+		this.features = ApiTypeHelper.requireNonNull(builder.features, this, "features");
+		this.license = ApiTypeHelper.requireNonNull(builder.license, this, "license");
+		this.tagline = ApiTypeHelper.requireNonNull(builder.tagline, this, "tagline");
 
 	}
 
@@ -125,6 +132,7 @@ public class XpackInfoResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link XpackInfoResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<XpackInfoResponse> {
 		private BuildInformation build;
 

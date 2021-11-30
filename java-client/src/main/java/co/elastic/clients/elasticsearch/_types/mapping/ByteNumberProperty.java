@@ -36,6 +36,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.ByteNumberProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/mapping/core.ts#L191-L194">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ByteNumberProperty extends StandardNumberProperty implements PropertyVariant {
 	@Nullable
@@ -87,6 +94,7 @@ public class ByteNumberProperty extends StandardNumberProperty implements Proper
 	/**
 	 * Builder for {@link ByteNumberProperty}.
 	 */
+
 	public static class Builder extends StandardNumberProperty.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ByteNumberProperty> {

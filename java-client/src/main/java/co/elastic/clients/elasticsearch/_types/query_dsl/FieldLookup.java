@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.FieldLookup
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/query_dsl/abstractions.ts#L161-L166">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FieldLookup implements JsonpSerializable {
 	private final String id;
@@ -56,7 +63,7 @@ public class FieldLookup implements JsonpSerializable {
 
 	private FieldLookup(Builder builder) {
 
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.index = builder.index;
 		this.path = builder.path;
 		this.routing = builder.routing;
@@ -135,6 +142,7 @@ public class FieldLookup implements JsonpSerializable {
 	/**
 	 * Builder for {@link FieldLookup}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldLookup> {
 		private String id;
 

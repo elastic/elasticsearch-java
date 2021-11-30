@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,6 +43,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeJvmInfo
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/nodes/info/types.ts#L341-L355">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeJvmInfo implements JsonpSerializable {
 	private final List<String> gcCollectors;
@@ -76,19 +83,19 @@ public class NodeJvmInfo implements JsonpSerializable {
 
 	private NodeJvmInfo(Builder builder) {
 
-		this.gcCollectors = ModelTypeHelper.unmodifiableRequired(builder.gcCollectors, this, "gcCollectors");
-		this.mem = ModelTypeHelper.requireNonNull(builder.mem, this, "mem");
-		this.memoryPools = ModelTypeHelper.unmodifiableRequired(builder.memoryPools, this, "memoryPools");
-		this.pid = ModelTypeHelper.requireNonNull(builder.pid, this, "pid");
-		this.startTimeInMillis = ModelTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
-		this.version = ModelTypeHelper.requireNonNull(builder.version, this, "version");
-		this.vmName = ModelTypeHelper.requireNonNull(builder.vmName, this, "vmName");
-		this.vmVendor = ModelTypeHelper.requireNonNull(builder.vmVendor, this, "vmVendor");
-		this.vmVersion = ModelTypeHelper.requireNonNull(builder.vmVersion, this, "vmVersion");
-		this.bundledJdk = ModelTypeHelper.requireNonNull(builder.bundledJdk, this, "bundledJdk");
-		this.usingBundledJdk = ModelTypeHelper.requireNonNull(builder.usingBundledJdk, this, "usingBundledJdk");
+		this.gcCollectors = ApiTypeHelper.unmodifiableRequired(builder.gcCollectors, this, "gcCollectors");
+		this.mem = ApiTypeHelper.requireNonNull(builder.mem, this, "mem");
+		this.memoryPools = ApiTypeHelper.unmodifiableRequired(builder.memoryPools, this, "memoryPools");
+		this.pid = ApiTypeHelper.requireNonNull(builder.pid, this, "pid");
+		this.startTimeInMillis = ApiTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
+		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
+		this.vmName = ApiTypeHelper.requireNonNull(builder.vmName, this, "vmName");
+		this.vmVendor = ApiTypeHelper.requireNonNull(builder.vmVendor, this, "vmVendor");
+		this.vmVersion = ApiTypeHelper.requireNonNull(builder.vmVersion, this, "vmVersion");
+		this.bundledJdk = ApiTypeHelper.requireNonNull(builder.bundledJdk, this, "bundledJdk");
+		this.usingBundledJdk = ApiTypeHelper.requireNonNull(builder.usingBundledJdk, this, "usingBundledJdk");
 		this.usingCompressedOrdinaryObjectPointers = builder.usingCompressedOrdinaryObjectPointers;
-		this.inputArguments = ModelTypeHelper.unmodifiableRequired(builder.inputArguments, this, "inputArguments");
+		this.inputArguments = ApiTypeHelper.unmodifiableRequired(builder.inputArguments, this, "inputArguments");
 
 	}
 
@@ -199,7 +206,7 @@ public class NodeJvmInfo implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.gcCollectors)) {
+		if (ApiTypeHelper.isDefined(this.gcCollectors)) {
 			generator.writeKey("gc_collectors");
 			generator.writeStartArray();
 			for (String item0 : this.gcCollectors) {
@@ -212,7 +219,7 @@ public class NodeJvmInfo implements JsonpSerializable {
 		generator.writeKey("mem");
 		this.mem.serialize(generator, mapper);
 
-		if (ModelTypeHelper.isDefined(this.memoryPools)) {
+		if (ApiTypeHelper.isDefined(this.memoryPools)) {
 			generator.writeKey("memory_pools");
 			generator.writeStartArray();
 			for (String item0 : this.memoryPools) {
@@ -251,7 +258,7 @@ public class NodeJvmInfo implements JsonpSerializable {
 			generator.write(this.usingCompressedOrdinaryObjectPointers);
 
 		}
-		if (ModelTypeHelper.isDefined(this.inputArguments)) {
+		if (ApiTypeHelper.isDefined(this.inputArguments)) {
 			generator.writeKey("input_arguments");
 			generator.writeStartArray();
 			for (String item0 : this.inputArguments) {
@@ -269,6 +276,7 @@ public class NodeJvmInfo implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeJvmInfo}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeJvmInfo> {
 		private List<String> gcCollectors;
 
@@ -300,11 +308,9 @@ public class NodeJvmInfo implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code gc_collectors}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>gcCollectors</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>gcCollectors</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>gcCollectors</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder gcCollectors(List<String> list) {
 			this.gcCollectors = _listAddAll(this.gcCollectors, list);
@@ -339,11 +345,9 @@ public class NodeJvmInfo implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code memory_pools}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>memoryPools</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>memoryPools</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>memoryPools</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder memoryPools(List<String> list) {
 			this.memoryPools = _listAddAll(this.memoryPools, list);
@@ -435,11 +439,9 @@ public class NodeJvmInfo implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code input_arguments}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>inputArguments</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>inputArguments</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>inputArguments</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder inputArguments(List<String> list) {
 			this.inputArguments = _listAddAll(this.inputArguments, list);

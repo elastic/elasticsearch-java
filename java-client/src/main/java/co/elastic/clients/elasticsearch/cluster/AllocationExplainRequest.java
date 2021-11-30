@@ -46,6 +46,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.Request
+
+/**
+ * Provides explanations for shard allocations in the cluster.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cluster/allocation_explain/ClusterAllocationExplainRequest.ts#L24-L60">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AllocationExplainRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -183,6 +191,7 @@ public class AllocationExplainRequest extends RequestBase implements JsonpSerial
 	/**
 	 * Builder for {@link AllocationExplainRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AllocationExplainRequest> {
 		@Nullable
 		private String currentNode;

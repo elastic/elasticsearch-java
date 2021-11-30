@@ -36,6 +36,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MedianAbsoluteDeviationAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/metric.ts#L90-L92">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MedianAbsoluteDeviationAggregation extends FormatMetricAggregationBase implements AggregationVariant {
 	@Nullable
@@ -87,6 +94,7 @@ public class MedianAbsoluteDeviationAggregation extends FormatMetricAggregationB
 	/**
 	 * Builder for {@link MedianAbsoluteDeviationAggregation}.
 	 */
+
 	public static class Builder extends FormatMetricAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<MedianAbsoluteDeviationAggregation> {

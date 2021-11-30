@@ -32,7 +32,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -46,6 +46,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.InnerHits
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/search/_types/hits.ts#L106-L124">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class InnerHits implements JsonpSerializable {
 	@Nullable
@@ -99,16 +106,16 @@ public class InnerHits implements JsonpSerializable {
 		this.size = builder.size;
 		this.from = builder.from;
 		this.collapse = builder.collapse;
-		this.docvalueFields = ModelTypeHelper.unmodifiable(builder.docvalueFields);
+		this.docvalueFields = ApiTypeHelper.unmodifiable(builder.docvalueFields);
 		this.explain = builder.explain;
 		this.highlight = builder.highlight;
 		this.ignoreUnmapped = builder.ignoreUnmapped;
-		this.scriptFields = ModelTypeHelper.unmodifiable(builder.scriptFields);
+		this.scriptFields = ApiTypeHelper.unmodifiable(builder.scriptFields);
 		this.seqNoPrimaryTerm = builder.seqNoPrimaryTerm;
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
-		this.sort = ModelTypeHelper.unmodifiable(builder.sort);
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
+		this.sort = ApiTypeHelper.unmodifiable(builder.sort);
 		this.source = builder.source;
-		this.storedField = ModelTypeHelper.unmodifiable(builder.storedField);
+		this.storedField = ApiTypeHelper.unmodifiable(builder.storedField);
 		this.trackScores = builder.trackScores;
 		this.version = builder.version;
 
@@ -272,7 +279,7 @@ public class InnerHits implements JsonpSerializable {
 			this.collapse.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.docvalueFields)) {
+		if (ApiTypeHelper.isDefined(this.docvalueFields)) {
 			generator.writeKey("docvalue_fields");
 			generator.writeStartArray();
 			for (FieldAndFormat item0 : this.docvalueFields) {
@@ -297,7 +304,7 @@ public class InnerHits implements JsonpSerializable {
 			generator.write(this.ignoreUnmapped);
 
 		}
-		if (ModelTypeHelper.isDefined(this.scriptFields)) {
+		if (ApiTypeHelper.isDefined(this.scriptFields)) {
 			generator.writeKey("script_fields");
 			generator.writeStartObject();
 			for (Map.Entry<String, ScriptField> item0 : this.scriptFields.entrySet()) {
@@ -313,7 +320,7 @@ public class InnerHits implements JsonpSerializable {
 			generator.write(this.seqNoPrimaryTerm);
 
 		}
-		if (ModelTypeHelper.isDefined(this.fields)) {
+		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartArray();
 			for (String item0 : this.fields) {
@@ -323,7 +330,7 @@ public class InnerHits implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.sort)) {
+		if (ApiTypeHelper.isDefined(this.sort)) {
 			generator.writeKey("sort");
 			generator.writeStartArray();
 			for (SortOptions item0 : this.sort) {
@@ -338,7 +345,7 @@ public class InnerHits implements JsonpSerializable {
 			this.source.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.storedField)) {
+		if (ApiTypeHelper.isDefined(this.storedField)) {
 			generator.writeKey("stored_field");
 			generator.writeStartArray();
 			for (String item0 : this.storedField) {
@@ -366,6 +373,7 @@ public class InnerHits implements JsonpSerializable {
 	/**
 	 * Builder for {@link InnerHits}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<InnerHits> {
 		@Nullable
 		private String name;
@@ -457,11 +465,9 @@ public class InnerHits implements JsonpSerializable {
 		/**
 		 * API name: {@code docvalue_fields}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>docvalueFields</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>docvalueFields</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>docvalueFields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder docvalueFields(List<FieldAndFormat> list) {
 			this.docvalueFields = _listAddAll(this.docvalueFields, list);
@@ -521,11 +527,9 @@ public class InnerHits implements JsonpSerializable {
 		/**
 		 * API name: {@code script_fields}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>scriptFields</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>scriptFields</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>scriptFields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder scriptFields(Map<String, ScriptField> map) {
 			this.scriptFields = _mapPutAll(this.scriptFields, map);
@@ -562,11 +566,9 @@ public class InnerHits implements JsonpSerializable {
 		/**
 		 * API name: {@code fields}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>fields</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>fields</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>fields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder fields(List<String> list) {
 			this.fields = _listAddAll(this.fields, list);
@@ -586,11 +588,9 @@ public class InnerHits implements JsonpSerializable {
 		/**
 		 * API name: {@code sort}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>sort</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>sort</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>sort</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder sort(List<SortOptions> list) {
 			this.sort = _listAddAll(this.sort, list);
@@ -634,11 +634,9 @@ public class InnerHits implements JsonpSerializable {
 		/**
 		 * API name: {@code stored_field}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>storedField</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>storedField</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>storedField</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder storedField(List<String> list) {
 			this.storedField = _listAddAll(this.storedField, list);

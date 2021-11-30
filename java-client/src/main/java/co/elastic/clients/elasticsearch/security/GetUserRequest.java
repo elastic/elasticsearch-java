@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -45,6 +45,14 @@ import javax.annotation.Nullable;
 
 // typedef: security.get_user.Request
 
+/**
+ * Retrieves information about users in the native realm and built-in users.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/security/get_user/SecurityGetUserRequest.ts#L23-L33">API
+ *      specification</a>
+ */
+
 public class GetUserRequest extends RequestBase {
 	private final List<String> username;
 
@@ -52,7 +60,7 @@ public class GetUserRequest extends RequestBase {
 
 	private GetUserRequest(Builder builder) {
 
-		this.username = ModelTypeHelper.unmodifiable(builder.username);
+		this.username = ApiTypeHelper.unmodifiable(builder.username);
 
 	}
 
@@ -76,6 +84,7 @@ public class GetUserRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetUserRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetUserRequest> {
 		@Nullable
 		private List<String> username;
@@ -87,11 +96,9 @@ public class GetUserRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code username}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>username</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>username</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>username</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder username(List<String> list) {
 			this.username = _listAddAll(this.username, list);
@@ -145,7 +152,7 @@ public class GetUserRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (ModelTypeHelper.isDefined(request.username()))
+				if (ApiTypeHelper.isDefined(request.username()))
 					propsSet |= _username;
 
 				if (propsSet == (_username)) {

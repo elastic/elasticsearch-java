@@ -37,6 +37,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.RangeBucket
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/Aggregate.ts#L502-L507">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RangeBucket extends MultiBucketBase {
 	@Nullable
@@ -130,6 +137,7 @@ public class RangeBucket extends MultiBucketBase {
 	/**
 	 * Builder for {@link RangeBucket}.
 	 */
+
 	public static class Builder extends MultiBucketBase.AbstractBuilder<Builder> implements ObjectBuilder<RangeBucket> {
 		@Nullable
 		private Double from;

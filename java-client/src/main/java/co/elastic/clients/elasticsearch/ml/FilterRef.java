@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.FilterRef
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/Filter.ts#L28-L38">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FilterRef implements JsonpSerializable {
 	private final String filterId;
@@ -50,7 +57,7 @@ public class FilterRef implements JsonpSerializable {
 
 	private FilterRef(Builder builder) {
 
-		this.filterId = ModelTypeHelper.requireNonNull(builder.filterId, this, "filterId");
+		this.filterId = ApiTypeHelper.requireNonNull(builder.filterId, this, "filterId");
 		this.filterType = builder.filterType;
 
 	}
@@ -105,6 +112,7 @@ public class FilterRef implements JsonpSerializable {
 	/**
 	 * Builder for {@link FilterRef}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FilterRef> {
 		private String filterId;
 

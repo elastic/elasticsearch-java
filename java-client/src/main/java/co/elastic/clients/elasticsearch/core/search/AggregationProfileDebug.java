@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.AggregationProfileDebug
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/search/_types/profile.ts#L37-L60">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AggregationProfileDebug implements JsonpSerializable {
 	@Nullable
@@ -134,7 +141,7 @@ public class AggregationProfileDebug implements JsonpSerializable {
 		this.stringHashingCollectorsUsed = builder.stringHashingCollectorsUsed;
 		this.numericCollectorsUsed = builder.numericCollectorsUsed;
 		this.emptyCollectorsUsed = builder.emptyCollectorsUsed;
-		this.deferredAggregators = ModelTypeHelper.unmodifiable(builder.deferredAggregators);
+		this.deferredAggregators = ApiTypeHelper.unmodifiable(builder.deferredAggregators);
 
 	}
 
@@ -433,7 +440,7 @@ public class AggregationProfileDebug implements JsonpSerializable {
 			generator.write(this.emptyCollectorsUsed);
 
 		}
-		if (ModelTypeHelper.isDefined(this.deferredAggregators)) {
+		if (ApiTypeHelper.isDefined(this.deferredAggregators)) {
 			generator.writeKey("deferred_aggregators");
 			generator.writeStartArray();
 			for (String item0 : this.deferredAggregators) {
@@ -451,6 +458,7 @@ public class AggregationProfileDebug implements JsonpSerializable {
 	/**
 	 * Builder for {@link AggregationProfileDebug}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AggregationProfileDebug> {
 		@Nullable
 		private Integer segmentsWithMultiValuedOrds;
@@ -698,10 +706,8 @@ public class AggregationProfileDebug implements JsonpSerializable {
 		 * API name: {@code deferred_aggregators}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>deferredAggregators</code>.
-		 * Use <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>deferredAggregators</code> to <code>null</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder deferredAggregators(List<String> list) {
 			this.deferredAggregators = _listAddAll(this.deferredAggregators, list);

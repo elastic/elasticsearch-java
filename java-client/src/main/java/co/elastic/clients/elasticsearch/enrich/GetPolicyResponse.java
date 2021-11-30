@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: enrich.get_policy.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/enrich/get_policy/GetEnrichPolicyResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetPolicyResponse implements JsonpSerializable {
 	private final List<EnrichSummary> policies;
@@ -47,7 +54,7 @@ public class GetPolicyResponse implements JsonpSerializable {
 
 	private GetPolicyResponse(Builder builder) {
 
-		this.policies = ModelTypeHelper.unmodifiableRequired(builder.policies, this, "policies");
+		this.policies = ApiTypeHelper.unmodifiableRequired(builder.policies, this, "policies");
 
 	}
 
@@ -73,7 +80,7 @@ public class GetPolicyResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.policies)) {
+		if (ApiTypeHelper.isDefined(this.policies)) {
 			generator.writeKey("policies");
 			generator.writeStartArray();
 			for (EnrichSummary item0 : this.policies) {
@@ -91,17 +98,16 @@ public class GetPolicyResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetPolicyResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetPolicyResponse> {
 		private List<EnrichSummary> policies;
 
 		/**
 		 * Required - API name: {@code policies}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>policies</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>policies</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>policies</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder policies(List<EnrichSummary> list) {
 			this.policies = _listAddAll(this.policies, list);

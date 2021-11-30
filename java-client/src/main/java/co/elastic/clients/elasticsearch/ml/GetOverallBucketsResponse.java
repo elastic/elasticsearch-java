@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_overall_buckets.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/get_overall_buckets/MlGetOverallBucketsResponse.ts#L23-L29">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetOverallBucketsResponse implements JsonpSerializable {
 	private final long count;
@@ -50,8 +57,8 @@ public class GetOverallBucketsResponse implements JsonpSerializable {
 
 	private GetOverallBucketsResponse(Builder builder) {
 
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
-		this.overallBuckets = ModelTypeHelper.unmodifiableRequired(builder.overallBuckets, this, "overallBuckets");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.overallBuckets = ApiTypeHelper.unmodifiableRequired(builder.overallBuckets, this, "overallBuckets");
 
 	}
 
@@ -89,7 +96,7 @@ public class GetOverallBucketsResponse implements JsonpSerializable {
 		generator.writeKey("count");
 		generator.write(this.count);
 
-		if (ModelTypeHelper.isDefined(this.overallBuckets)) {
+		if (ApiTypeHelper.isDefined(this.overallBuckets)) {
 			generator.writeKey("overall_buckets");
 			generator.writeStartArray();
 			for (OverallBucket item0 : this.overallBuckets) {
@@ -107,6 +114,7 @@ public class GetOverallBucketsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetOverallBucketsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetOverallBucketsResponse> {
 		private Long count;
 
@@ -125,11 +133,9 @@ public class GetOverallBucketsResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code overall_buckets}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>overallBuckets</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>overallBuckets</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>overallBuckets</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder overallBuckets(List<OverallBucket> list) {
 			this.overallBuckets = _listAddAll(this.overallBuckets, list);

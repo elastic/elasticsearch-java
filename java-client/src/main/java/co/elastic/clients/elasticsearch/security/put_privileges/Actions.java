@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.put_privileges.Actions
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/security/put_privileges/types.ts#L22-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Actions implements JsonpSerializable {
 	private final List<String> actions;
@@ -58,10 +65,10 @@ public class Actions implements JsonpSerializable {
 
 	private Actions(Builder builder) {
 
-		this.actions = ModelTypeHelper.unmodifiableRequired(builder.actions, this, "actions");
+		this.actions = ApiTypeHelper.unmodifiableRequired(builder.actions, this, "actions");
 		this.application = builder.application;
 		this.name = builder.name;
-		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
+		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
 
 	}
 
@@ -110,7 +117,7 @@ public class Actions implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.actions)) {
+		if (ApiTypeHelper.isDefined(this.actions)) {
 			generator.writeKey("actions");
 			generator.writeStartArray();
 			for (String item0 : this.actions) {
@@ -130,7 +137,7 @@ public class Actions implements JsonpSerializable {
 			generator.write(this.name);
 
 		}
-		if (ModelTypeHelper.isDefined(this.metadata)) {
+		if (ApiTypeHelper.isDefined(this.metadata)) {
 			generator.writeKey("metadata");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
@@ -149,6 +156,7 @@ public class Actions implements JsonpSerializable {
 	/**
 	 * Builder for {@link Actions}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Actions> {
 		private List<String> actions;
 
@@ -164,11 +172,9 @@ public class Actions implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code actions}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>actions</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>actions</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>actions</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder actions(List<String> list) {
 			this.actions = _listAddAll(this.actions, list);
@@ -204,11 +210,9 @@ public class Actions implements JsonpSerializable {
 		/**
 		 * API name: {@code metadata}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>metadata</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>metadata</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>metadata</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder metadata(Map<String, JsonData> map) {
 			this.metadata = _mapPutAll(this.metadata, map);

@@ -44,6 +44,14 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.get_settings.Request
 
+/**
+ * Returns cluster settings.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cluster/get_settings/ClusterGetSettingsRequest.ts#L23-L35">API
+ *      specification</a>
+ */
+
 public class GetClusterSettingsRequest extends RequestBase {
 	@Nullable
 	private final Boolean flatSettings;
@@ -117,6 +125,7 @@ public class GetClusterSettingsRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetClusterSettingsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetClusterSettingsRequest> {
 		@Nullable
 		private Boolean flatSettings;

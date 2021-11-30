@@ -36,6 +36,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: indices.get_mapping.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/get_mapping/IndicesGetMappingResponse.ts#L24-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetMappingResponse extends DictionaryResponse<String, IndexMappingRecord> {
 	// ---------------------------------------------------------------------------------------------
@@ -54,6 +61,7 @@ public class GetMappingResponse extends DictionaryResponse<String, IndexMappingR
 	/**
 	 * Builder for {@link GetMappingResponse}.
 	 */
+
 	public static class Builder extends DictionaryResponse.AbstractBuilder<String, IndexMappingRecord, Builder>
 			implements
 				ObjectBuilder<GetMappingResponse> {

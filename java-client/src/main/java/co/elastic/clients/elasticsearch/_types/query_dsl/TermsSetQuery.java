@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.TermsSetQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/query_dsl/term.ts#L139-L143">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TermsSetQuery extends QueryBase implements QueryVariant {
 	// Single key dictionary
@@ -56,11 +63,11 @@ public class TermsSetQuery extends QueryBase implements QueryVariant {
 
 	private TermsSetQuery(Builder builder) {
 		super(builder);
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
 		this.minimumShouldMatchField = builder.minimumShouldMatchField;
 		this.minimumShouldMatchScript = builder.minimumShouldMatchScript;
-		this.terms = ModelTypeHelper.unmodifiableRequired(builder.terms, this, "terms");
+		this.terms = ApiTypeHelper.unmodifiableRequired(builder.terms, this, "terms");
 
 	}
 
@@ -120,7 +127,7 @@ public class TermsSetQuery extends QueryBase implements QueryVariant {
 			this.minimumShouldMatchScript.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.terms)) {
+		if (ApiTypeHelper.isDefined(this.terms)) {
 			generator.writeKey("terms");
 			generator.writeStartArray();
 			for (String item0 : this.terms) {
@@ -140,6 +147,7 @@ public class TermsSetQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link TermsSetQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<TermsSetQuery> {
 		private String field;
 
@@ -185,11 +193,9 @@ public class TermsSetQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - API name: {@code terms}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>terms</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>terms</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>terms</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder terms(List<String> list) {
 			this.terms = _listAddAll(this.terms, list);

@@ -33,7 +33,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -45,6 +45,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.DateHistogramAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/bucket.ts#L89-L105">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DateHistogramAggregation extends BucketAggregationBase implements AggregationVariant, PivotGroupByVariant {
 	@Nullable
@@ -107,7 +114,7 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		this.missing = builder.missing;
 		this.offset = builder.offset;
 		this.order = builder.order;
-		this.params = ModelTypeHelper.unmodifiable(builder.params);
+		this.params = ApiTypeHelper.unmodifiable(builder.params);
 		this.script = builder.script;
 		this.timeZone = builder.timeZone;
 		this.keyed = builder.keyed;
@@ -310,7 +317,7 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 			this.order.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.params)) {
+		if (ApiTypeHelper.isDefined(this.params)) {
 			generator.writeKey("params");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.params.entrySet()) {
@@ -344,6 +351,7 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 	/**
 	 * Builder for {@link DateHistogramAggregation}.
 	 */
+
 	public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DateHistogramAggregation> {
@@ -527,11 +535,9 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		/**
 		 * API name: {@code params}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>params</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>params</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>params</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder params(Map<String, JsonData> map) {
 			this.params = _mapPutAll(this.params, map);

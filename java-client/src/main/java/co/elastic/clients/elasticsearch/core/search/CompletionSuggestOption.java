@@ -32,7 +32,7 @@ import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -47,6 +47,13 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.CompletionSuggestOption
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/search/_types/suggester.ts#L71-L82">API
+ *      specification</a>
+ */
 
 public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 	@Nullable
@@ -80,15 +87,15 @@ public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 	private CompletionSuggestOption(Builder<TDocument> builder) {
 
 		this.collateMatch = builder.collateMatch;
-		this.contexts = ModelTypeHelper.unmodifiable(builder.contexts);
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.contexts = ApiTypeHelper.unmodifiable(builder.contexts);
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.type = builder.type;
 		this.routing = builder.routing;
-		this.score = ModelTypeHelper.requireNonNull(builder.score, this, "score");
-		this.source = ModelTypeHelper.requireNonNull(builder.source, this, "source");
-		this.text = ModelTypeHelper.requireNonNull(builder.text, this, "text");
+		this.score = ApiTypeHelper.requireNonNull(builder.score, this, "score");
+		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
+		this.text = ApiTypeHelper.requireNonNull(builder.text, this, "text");
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}
@@ -187,7 +194,7 @@ public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 			generator.write(this.collateMatch);
 
 		}
-		if (ModelTypeHelper.isDefined(this.contexts)) {
+		if (ApiTypeHelper.isDefined(this.contexts)) {
 			generator.writeKey("contexts");
 			generator.writeStartObject();
 			for (Map.Entry<String, List<Context>> item0 : this.contexts.entrySet()) {
@@ -205,7 +212,7 @@ public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.fields)) {
+		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.fields.entrySet()) {
@@ -248,6 +255,7 @@ public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 	/**
 	 * Builder for {@link CompletionSuggestOption}.
 	 */
+
 	public static class Builder<TDocument> extends ObjectBuilderBase
 			implements
 				ObjectBuilder<CompletionSuggestOption<TDocument>> {
@@ -290,11 +298,9 @@ public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code contexts}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>contexts</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>contexts</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>contexts</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder<TDocument> contexts(Map<String, List<Context>> map) {
 			this.contexts = _mapPutAll(this.contexts, map);
@@ -314,11 +320,9 @@ public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code fields}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>fields</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>fields</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>fields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder<TDocument> fields(Map<String, JsonData> map) {
 			this.fields = _mapPutAll(this.fields, map);
@@ -416,7 +420,7 @@ public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for CompletionSuggestOption
+	 * Create a JSON deserializer for CompletionSuggestOption
 	 */
 	public static <TDocument> JsonpDeserializer<CompletionSuggestOption<TDocument>> createCompletionSuggestOptionDeserializer(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {

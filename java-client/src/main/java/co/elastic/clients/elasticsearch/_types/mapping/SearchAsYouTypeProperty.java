@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.SearchAsYouTypeProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/mapping/core.ts#L232-L242">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SearchAsYouTypeProperty extends CorePropertyBase implements PropertyVariant {
 	@Nullable
@@ -206,6 +213,7 @@ public class SearchAsYouTypeProperty extends CorePropertyBase implements Propert
 	/**
 	 * Builder for {@link SearchAsYouTypeProperty}.
 	 */
+
 	public static class Builder extends CorePropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<SearchAsYouTypeProperty> {

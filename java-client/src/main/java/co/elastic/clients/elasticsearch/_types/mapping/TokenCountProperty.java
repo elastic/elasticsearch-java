@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.TokenCountProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/mapping/specialized.ts#L87-L94">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TokenCountProperty extends DocValuesPropertyBase implements PropertyVariant {
 	@Nullable
@@ -157,6 +164,7 @@ public class TokenCountProperty extends DocValuesPropertyBase implements Propert
 	/**
 	 * Builder for {@link TokenCountProperty}.
 	 */
+
 	public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<TokenCountProperty> {

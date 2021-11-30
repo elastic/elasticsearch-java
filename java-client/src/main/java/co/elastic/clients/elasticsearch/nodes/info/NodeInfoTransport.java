@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoTransport
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/nodes/info/types.ts#L335-L339">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeInfoTransport implements JsonpSerializable {
 	private final List<String> boundAddress;
@@ -53,9 +60,9 @@ public class NodeInfoTransport implements JsonpSerializable {
 
 	private NodeInfoTransport(Builder builder) {
 
-		this.boundAddress = ModelTypeHelper.unmodifiableRequired(builder.boundAddress, this, "boundAddress");
-		this.publishAddress = ModelTypeHelper.requireNonNull(builder.publishAddress, this, "publishAddress");
-		this.profiles = ModelTypeHelper.unmodifiableRequired(builder.profiles, this, "profiles");
+		this.boundAddress = ApiTypeHelper.unmodifiableRequired(builder.boundAddress, this, "boundAddress");
+		this.publishAddress = ApiTypeHelper.requireNonNull(builder.publishAddress, this, "publishAddress");
+		this.profiles = ApiTypeHelper.unmodifiableRequired(builder.profiles, this, "profiles");
 
 	}
 
@@ -95,7 +102,7 @@ public class NodeInfoTransport implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.boundAddress)) {
+		if (ApiTypeHelper.isDefined(this.boundAddress)) {
 			generator.writeKey("bound_address");
 			generator.writeStartArray();
 			for (String item0 : this.boundAddress) {
@@ -108,7 +115,7 @@ public class NodeInfoTransport implements JsonpSerializable {
 		generator.writeKey("publish_address");
 		generator.write(this.publishAddress);
 
-		if (ModelTypeHelper.isDefined(this.profiles)) {
+		if (ApiTypeHelper.isDefined(this.profiles)) {
 			generator.writeKey("profiles");
 			generator.writeStartObject();
 			for (Map.Entry<String, String> item0 : this.profiles.entrySet()) {
@@ -127,6 +134,7 @@ public class NodeInfoTransport implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoTransport}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoTransport> {
 		private List<String> boundAddress;
 
@@ -137,11 +145,9 @@ public class NodeInfoTransport implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code bound_address}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>boundAddress</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>boundAddress</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>boundAddress</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder boundAddress(List<String> list) {
 			this.boundAddress = _listAddAll(this.boundAddress, list);
@@ -169,11 +175,9 @@ public class NodeInfoTransport implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code profiles}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>profiles</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>profiles</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>profiles</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder profiles(Map<String, String> map) {
 			this.profiles = _mapPutAll(this.profiles, map);

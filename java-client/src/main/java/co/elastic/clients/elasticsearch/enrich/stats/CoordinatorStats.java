@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: enrich.stats.CoordinatorStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/enrich/stats/types.ts#L29-L35">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CoordinatorStats implements JsonpSerializable {
 	private final long executedSearchesTotal;
@@ -57,13 +64,13 @@ public class CoordinatorStats implements JsonpSerializable {
 
 	private CoordinatorStats(Builder builder) {
 
-		this.executedSearchesTotal = ModelTypeHelper.requireNonNull(builder.executedSearchesTotal, this,
+		this.executedSearchesTotal = ApiTypeHelper.requireNonNull(builder.executedSearchesTotal, this,
 				"executedSearchesTotal");
-		this.nodeId = ModelTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
-		this.queueSize = ModelTypeHelper.requireNonNull(builder.queueSize, this, "queueSize");
-		this.remoteRequestsCurrent = ModelTypeHelper.requireNonNull(builder.remoteRequestsCurrent, this,
+		this.nodeId = ApiTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
+		this.queueSize = ApiTypeHelper.requireNonNull(builder.queueSize, this, "queueSize");
+		this.remoteRequestsCurrent = ApiTypeHelper.requireNonNull(builder.remoteRequestsCurrent, this,
 				"remoteRequestsCurrent");
-		this.remoteRequestsTotal = ModelTypeHelper.requireNonNull(builder.remoteRequestsTotal, this,
+		this.remoteRequestsTotal = ApiTypeHelper.requireNonNull(builder.remoteRequestsTotal, this,
 				"remoteRequestsTotal");
 
 	}
@@ -140,6 +147,7 @@ public class CoordinatorStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link CoordinatorStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CoordinatorStats> {
 		private Long executedSearchesTotal;
 

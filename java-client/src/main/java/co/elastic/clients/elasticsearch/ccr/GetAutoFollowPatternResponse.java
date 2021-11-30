@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr.get_auto_follow_pattern.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ccr/get_auto_follow_pattern/GetAutoFollowPatternResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetAutoFollowPatternResponse implements JsonpSerializable {
 	private final List<AutoFollowPattern> patterns;
@@ -48,7 +55,7 @@ public class GetAutoFollowPatternResponse implements JsonpSerializable {
 
 	private GetAutoFollowPatternResponse(Builder builder) {
 
-		this.patterns = ModelTypeHelper.unmodifiableRequired(builder.patterns, this, "patterns");
+		this.patterns = ApiTypeHelper.unmodifiableRequired(builder.patterns, this, "patterns");
 
 	}
 
@@ -74,7 +81,7 @@ public class GetAutoFollowPatternResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.patterns)) {
+		if (ApiTypeHelper.isDefined(this.patterns)) {
 			generator.writeKey("patterns");
 			generator.writeStartArray();
 			for (AutoFollowPattern item0 : this.patterns) {
@@ -92,17 +99,16 @@ public class GetAutoFollowPatternResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetAutoFollowPatternResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetAutoFollowPatternResponse> {
 		private List<AutoFollowPattern> patterns;
 
 		/**
 		 * Required - API name: {@code patterns}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>patterns</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>patterns</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>patterns</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder patterns(List<AutoFollowPattern> list) {
 			this.patterns = _listAddAll(this.patterns, list);

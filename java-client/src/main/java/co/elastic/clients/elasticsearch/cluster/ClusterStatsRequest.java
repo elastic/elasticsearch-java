@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -48,6 +48,14 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.stats.Request
 
+/**
+ * Returns high-level overview of cluster statistics.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cluster/stats/ClusterStatsRequest.ts#L24-L39">API
+ *      specification</a>
+ */
+
 public class ClusterStatsRequest extends RequestBase {
 	@Nullable
 	private final Boolean flatSettings;
@@ -62,7 +70,7 @@ public class ClusterStatsRequest extends RequestBase {
 	private ClusterStatsRequest(Builder builder) {
 
 		this.flatSettings = builder.flatSettings;
-		this.nodeId = ModelTypeHelper.unmodifiable(builder.nodeId);
+		this.nodeId = ApiTypeHelper.unmodifiable(builder.nodeId);
 		this.timeout = builder.timeout;
 
 	}
@@ -109,6 +117,7 @@ public class ClusterStatsRequest extends RequestBase {
 	/**
 	 * Builder for {@link ClusterStatsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterStatsRequest> {
 		@Nullable
 		private Boolean flatSettings;
@@ -135,11 +144,9 @@ public class ClusterStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code node_id}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>nodeId</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>nodeId</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>nodeId</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder nodeId(List<String> list) {
 			this.nodeId = _listAddAll(this.nodeId, list);
@@ -217,7 +224,7 @@ public class ClusterStatsRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (ModelTypeHelper.isDefined(request.nodeId()))
+				if (ApiTypeHelper.isDefined(request.nodeId()))
 					propsSet |= _nodeId;
 
 				if (propsSet == 0) {

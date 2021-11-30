@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -47,6 +47,14 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.status.Request
+
+/**
+ * Returns information about the status of a snapshot.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/snapshot/status/SnapshotStatusRequest.ts#L24-L38">API
+ *      specification</a>
+ */
 
 public class SnapshotStatusRequest extends RequestBase {
 	@Nullable
@@ -67,7 +75,7 @@ public class SnapshotStatusRequest extends RequestBase {
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.masterTimeout = builder.masterTimeout;
 		this.repository = builder.repository;
-		this.snapshot = ModelTypeHelper.unmodifiable(builder.snapshot);
+		this.snapshot = ApiTypeHelper.unmodifiable(builder.snapshot);
 
 	}
 
@@ -120,6 +128,7 @@ public class SnapshotStatusRequest extends RequestBase {
 	/**
 	 * Builder for {@link SnapshotStatusRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SnapshotStatusRequest> {
 		@Nullable
 		private Boolean ignoreUnavailable;
@@ -178,11 +187,9 @@ public class SnapshotStatusRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code snapshot}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>snapshot</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>snapshot</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>snapshot</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder snapshot(List<String> list) {
 			this.snapshot = _listAddAll(this.snapshot, list);
@@ -237,7 +244,7 @@ public class SnapshotStatusRequest extends RequestBase {
 
 				if (request.repository() != null)
 					propsSet |= _repository;
-				if (ModelTypeHelper.isDefined(request.snapshot()))
+				if (ApiTypeHelper.isDefined(request.snapshot()))
 					propsSet |= _snapshot;
 
 				if (propsSet == 0) {

@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,6 +43,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsSource
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/DataframeAnalytics.ts#L38-L52">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeAnalyticsSource implements JsonpSerializable {
 	private final List<String> index;
@@ -59,9 +66,9 @@ public class DataframeAnalyticsSource implements JsonpSerializable {
 
 	private DataframeAnalyticsSource(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiableRequired(builder.index, this, "index");
+		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
 		this.query = builder.query;
-		this.runtimeMappings = ModelTypeHelper.unmodifiable(builder.runtimeMappings);
+		this.runtimeMappings = ApiTypeHelper.unmodifiable(builder.runtimeMappings);
 		this.source = builder.source;
 
 	}
@@ -129,7 +136,7 @@ public class DataframeAnalyticsSource implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.index)) {
+		if (ApiTypeHelper.isDefined(this.index)) {
 			generator.writeKey("index");
 			generator.writeStartArray();
 			for (String item0 : this.index) {
@@ -144,7 +151,7 @@ public class DataframeAnalyticsSource implements JsonpSerializable {
 			this.query.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.runtimeMappings)) {
+		if (ApiTypeHelper.isDefined(this.runtimeMappings)) {
 			generator.writeKey("runtime_mappings");
 			generator.writeStartObject();
 			for (Map.Entry<String, RuntimeField> item0 : this.runtimeMappings.entrySet()) {
@@ -168,6 +175,7 @@ public class DataframeAnalyticsSource implements JsonpSerializable {
 	/**
 	 * Builder for {@link DataframeAnalyticsSource}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframeAnalyticsSource> {
 		private List<String> index;
 
@@ -188,11 +196,9 @@ public class DataframeAnalyticsSource implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>index</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>index</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder index(List<String> list) {
 			this.index = _listAddAll(this.index, list);
@@ -247,11 +253,9 @@ public class DataframeAnalyticsSource implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code runtime_mappings}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>runtimeMappings</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>runtimeMappings</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>runtimeMappings</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder runtimeMappings(Map<String, RuntimeField> map) {
 			this.runtimeMappings = _mapPutAll(this.runtimeMappings, map);

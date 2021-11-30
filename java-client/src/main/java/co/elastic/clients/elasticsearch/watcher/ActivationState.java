@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ActivationState
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/watcher/_types/Activation.ts#L24-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ActivationState implements JsonpSerializable {
 	private final boolean active;
@@ -50,8 +57,8 @@ public class ActivationState implements JsonpSerializable {
 
 	private ActivationState(Builder builder) {
 
-		this.active = ModelTypeHelper.requireNonNull(builder.active, this, "active");
-		this.timestamp = ModelTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+		this.active = ApiTypeHelper.requireNonNull(builder.active, this, "active");
+		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
 
 	}
 
@@ -97,6 +104,7 @@ public class ActivationState implements JsonpSerializable {
 	/**
 	 * Builder for {@link ActivationState}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ActivationState> {
 		private Boolean active;
 

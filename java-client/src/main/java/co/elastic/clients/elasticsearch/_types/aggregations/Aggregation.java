@@ -32,7 +32,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
@@ -46,10 +46,19 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.AggregationContainer
-// union type: Container[]
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/AggregationContainer.ts#L99-L185">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, JsonpSerializable {
 
+	/**
+	 * {@link Aggregation} variant kinds.
+	 */
 	/**
 	 * {@link Aggregation} variant kinds.
 	 */
@@ -226,8 +235,8 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 
 	public Aggregation(AggregationVariant value) {
 
-		this._kind = ModelTypeHelper.requireNonNull(value._aggregationKind(), this, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(value._aggregationKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
 		this.aggregations = null;
 		this.meta = null;
@@ -236,11 +245,11 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 
 	private Aggregation(Builder builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
-		this.aggregations = ModelTypeHelper.unmodifiable(builder.aggregations);
-		this.meta = ModelTypeHelper.unmodifiable(builder.meta);
+		this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);
+		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 
 	}
 
@@ -1457,7 +1466,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 
 		generator.writeStartObject();
 
-		if (ModelTypeHelper.isDefined(this.aggregations)) {
+		if (ApiTypeHelper.isDefined(this.aggregations)) {
 			generator.writeKey("aggregations");
 			generator.writeStartObject();
 			for (Map.Entry<String, Aggregation> item0 : this.aggregations.entrySet()) {
@@ -1468,7 +1477,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.meta)) {
+		if (ApiTypeHelper.isDefined(this.meta)) {
 			generator.writeKey("meta");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
@@ -1504,11 +1513,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 		 * <p>
 		 * API name: {@code aggregations}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>aggregations</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>aggregations</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>aggregations</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder aggregations(Map<String, Aggregation> map) {
 			this.aggregations = _mapPutAll(this.aggregations, map);
@@ -1541,11 +1548,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 		/**
 		 * API name: {@code meta}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>meta</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>meta</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>meta</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder meta(Map<String, JsonData> map) {
 			this.meta = _mapPutAll(this.meta, map);
@@ -2312,11 +2317,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			 * <p>
 			 * API name: {@code aggregations}
 			 * <p>
-			 * Adds all entries of <code>map</code> to <code>aggregations</code>. Use
-			 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-			 * <code>aggregations</code> to <code>null</code>.
+			 * Adds all entries of <code>map</code> to <code>aggregations</code>.
 			 * 
-			 * @see ModelTypeHelper#resetMap()
+			 * @see ApiTypeHelper#resetMap() Resetting the value to null
 			 */
 			public final ContainerBuilder aggregations(Map<String, Aggregation> map) {
 				Builder.this.aggregations = _mapPutAll(Builder.this.aggregations, map);
@@ -2350,11 +2353,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			/**
 			 * API name: {@code meta}
 			 * <p>
-			 * Adds all entries of <code>map</code> to <code>meta</code>. Use
-			 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-			 * <code>meta</code> to <code>null</code>.
+			 * Adds all entries of <code>map</code> to <code>meta</code>.
 			 * 
-			 * @see ModelTypeHelper#resetMap()
+			 * @see ApiTypeHelper#resetMap() Resetting the value to null
 			 */
 			public final ContainerBuilder meta(Map<String, JsonData> map) {
 				Builder.this.meta = _mapPutAll(Builder.this.meta, map);

@@ -35,7 +35,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -47,6 +47,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.update_aliases.Request
+
+/**
+ * Updates index aliases.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/update_aliases/IndicesUpdateAliasesRequest.ts#L24-L37">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class UpdateAliasesRequest extends RequestBase implements JsonpSerializable {
 	private final List<Action> actions;
@@ -61,7 +69,7 @@ public class UpdateAliasesRequest extends RequestBase implements JsonpSerializab
 
 	private UpdateAliasesRequest(Builder builder) {
 
-		this.actions = ModelTypeHelper.unmodifiable(builder.actions);
+		this.actions = ApiTypeHelper.unmodifiable(builder.actions);
 		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;
 
@@ -109,7 +117,7 @@ public class UpdateAliasesRequest extends RequestBase implements JsonpSerializab
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.actions)) {
+		if (ApiTypeHelper.isDefined(this.actions)) {
 			generator.writeKey("actions");
 			generator.writeStartArray();
 			for (Action item0 : this.actions) {
@@ -127,6 +135,7 @@ public class UpdateAliasesRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Builder for {@link UpdateAliasesRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UpdateAliasesRequest> {
 		@Nullable
 		private List<Action> actions;
@@ -140,11 +149,9 @@ public class UpdateAliasesRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code actions}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>actions</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>actions</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>actions</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder actions(List<Action> list) {
 			this.actions = _listAddAll(this.actions, list);

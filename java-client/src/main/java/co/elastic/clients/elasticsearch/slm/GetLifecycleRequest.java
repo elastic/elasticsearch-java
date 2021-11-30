@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -45,6 +45,15 @@ import javax.annotation.Nullable;
 
 // typedef: slm.get_lifecycle.Request
 
+/**
+ * Retrieves one or more snapshot lifecycle policy definitions and information
+ * about the latest snapshot attempts.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/slm/get_lifecycle/GetSnapshotLifecycleRequest.ts#L23-L32">API
+ *      specification</a>
+ */
+
 public class GetLifecycleRequest extends RequestBase {
 	private final List<String> policyId;
 
@@ -52,7 +61,7 @@ public class GetLifecycleRequest extends RequestBase {
 
 	private GetLifecycleRequest(Builder builder) {
 
-		this.policyId = ModelTypeHelper.unmodifiable(builder.policyId);
+		this.policyId = ApiTypeHelper.unmodifiable(builder.policyId);
 
 	}
 
@@ -74,6 +83,7 @@ public class GetLifecycleRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetLifecycleRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetLifecycleRequest> {
 		@Nullable
 		private List<String> policyId;
@@ -83,11 +93,9 @@ public class GetLifecycleRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code policy_id}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>policyId</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>policyId</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>policyId</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder policyId(List<String> list) {
 			this.policyId = _listAddAll(this.policyId, list);
@@ -139,7 +147,7 @@ public class GetLifecycleRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (ModelTypeHelper.isDefined(request.policyId()))
+				if (ApiTypeHelper.isDefined(request.policyId()))
 					propsSet |= _policyId;
 
 				if (propsSet == (_policyId)) {

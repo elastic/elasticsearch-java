@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,6 +43,14 @@ import javax.annotation.Nullable;
 
 // typedef: watcher.activate_watch.Request
 
+/**
+ * Activates a currently inactive watch.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/watcher/activate_watch/WatcherActivateWatchRequest.ts#L23-L32">API
+ *      specification</a>
+ */
+
 public class ActivateWatchRequest extends RequestBase {
 	private final String watchId;
 
@@ -50,7 +58,7 @@ public class ActivateWatchRequest extends RequestBase {
 
 	private ActivateWatchRequest(Builder builder) {
 
-		this.watchId = ModelTypeHelper.requireNonNull(builder.watchId, this, "watchId");
+		this.watchId = ApiTypeHelper.requireNonNull(builder.watchId, this, "watchId");
 
 	}
 
@@ -72,6 +80,7 @@ public class ActivateWatchRequest extends RequestBase {
 	/**
 	 * Builder for {@link ActivateWatchRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ActivateWatchRequest> {
 		private String watchId;
 

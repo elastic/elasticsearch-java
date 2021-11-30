@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,6 +43,14 @@ import javax.annotation.Nullable;
 
 // typedef: security.clear_cached_privileges.Request
 
+/**
+ * Evicts application privileges from the native application privileges cache.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/security/clear_cached_privileges/SecurityClearCachedPrivilegesRequest.ts#L23-L32">API
+ *      specification</a>
+ */
+
 public class ClearCachedPrivilegesRequest extends RequestBase {
 	private final String application;
 
@@ -50,7 +58,7 @@ public class ClearCachedPrivilegesRequest extends RequestBase {
 
 	private ClearCachedPrivilegesRequest(Builder builder) {
 
-		this.application = ModelTypeHelper.requireNonNull(builder.application, this, "application");
+		this.application = ApiTypeHelper.requireNonNull(builder.application, this, "application");
 
 	}
 
@@ -72,6 +80,7 @@ public class ClearCachedPrivilegesRequest extends RequestBase {
 	/**
 	 * Builder for {@link ClearCachedPrivilegesRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClearCachedPrivilegesRequest> {
 		private String application;
 

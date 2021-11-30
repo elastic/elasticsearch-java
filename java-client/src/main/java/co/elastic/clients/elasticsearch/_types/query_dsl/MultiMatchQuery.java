@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.MultiMatchQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/query_dsl/fulltext.ts#L191-L217">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MultiMatchQuery extends QueryBase implements QueryVariant {
 	@Nullable
@@ -100,7 +107,7 @@ public class MultiMatchQuery extends QueryBase implements QueryVariant {
 		this.analyzer = builder.analyzer;
 		this.autoGenerateSynonymsPhraseQuery = builder.autoGenerateSynonymsPhraseQuery;
 		this.cutoffFrequency = builder.cutoffFrequency;
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 		this.fuzziness = builder.fuzziness;
 		this.fuzzyRewrite = builder.fuzzyRewrite;
 		this.fuzzyTranspositions = builder.fuzzyTranspositions;
@@ -109,7 +116,7 @@ public class MultiMatchQuery extends QueryBase implements QueryVariant {
 		this.minimumShouldMatch = builder.minimumShouldMatch;
 		this.operator = builder.operator;
 		this.prefixLength = builder.prefixLength;
-		this.query = ModelTypeHelper.requireNonNull(builder.query, this, "query");
+		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 		this.slop = builder.slop;
 		this.tieBreaker = builder.tieBreaker;
 		this.type = builder.type;
@@ -147,7 +154,10 @@ public class MultiMatchQuery extends QueryBase implements QueryVariant {
 
 	/**
 	 * API name: {@code cutoff_frequency}
+	 * 
+	 * @deprecated 7.3.0
 	 */
+	@Deprecated
 	@Nullable
 	public final Double cutoffFrequency() {
 		return this.cutoffFrequency;
@@ -281,7 +291,7 @@ public class MultiMatchQuery extends QueryBase implements QueryVariant {
 			generator.write(this.cutoffFrequency);
 
 		}
-		if (ModelTypeHelper.isDefined(this.fields)) {
+		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartArray();
 			for (String item0 : this.fields) {
@@ -359,6 +369,7 @@ public class MultiMatchQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link MultiMatchQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<MultiMatchQuery> {
 		@Nullable
 		private String analyzer;
@@ -428,7 +439,10 @@ public class MultiMatchQuery extends QueryBase implements QueryVariant {
 
 		/**
 		 * API name: {@code cutoff_frequency}
+		 * 
+		 * @deprecated 7.3.0
 		 */
+		@Deprecated
 		public final Builder cutoffFrequency(@Nullable Double value) {
 			this.cutoffFrequency = value;
 			return this;
@@ -437,11 +451,9 @@ public class MultiMatchQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code fields}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>fields</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>fields</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>fields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder fields(List<String> list) {
 			this.fields = _listAddAll(this.fields, list);

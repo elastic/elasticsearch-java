@@ -33,6 +33,15 @@ import java.util.Objects;
 
 // typedef: _types.aggregations.BucketAggregationBase
 
+/**
+ * Base type for bucket aggregations. These aggregations also accept
+ * sub-aggregations.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/bucket.ts#L40-L45">API
+ *      specification</a>
+ */
+
 public abstract class BucketAggregationBase extends AggregationBase {
 	// ---------------------------------------------------------------------------------------------
 

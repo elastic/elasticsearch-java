@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -45,6 +45,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: tasks.get.Request
+
+/**
+ * Returns information about a task.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/tasks/get/GetTaskRequest.ts#L24-L37">API
+ *      specification</a>
+ */
 
 public class GetTasksRequest extends RequestBase {
 	private final String taskId;
@@ -59,7 +67,7 @@ public class GetTasksRequest extends RequestBase {
 
 	private GetTasksRequest(Builder builder) {
 
-		this.taskId = ModelTypeHelper.requireNonNull(builder.taskId, this, "taskId");
+		this.taskId = ApiTypeHelper.requireNonNull(builder.taskId, this, "taskId");
 		this.timeout = builder.timeout;
 		this.waitForCompletion = builder.waitForCompletion;
 
@@ -103,6 +111,7 @@ public class GetTasksRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetTasksRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetTasksRequest> {
 		private String taskId;
 

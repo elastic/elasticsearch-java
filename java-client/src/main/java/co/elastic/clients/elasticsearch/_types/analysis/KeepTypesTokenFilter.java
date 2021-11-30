@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.KeepTypesTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/analysis/token_filters.ts#L216-L220">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class KeepTypesTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	@Nullable
@@ -51,7 +58,7 @@ public class KeepTypesTokenFilter extends TokenFilterBase implements TokenFilter
 		super(builder);
 
 		this.mode = builder.mode;
-		this.types = ModelTypeHelper.unmodifiable(builder.types);
+		this.types = ApiTypeHelper.unmodifiable(builder.types);
 
 	}
 
@@ -90,7 +97,7 @@ public class KeepTypesTokenFilter extends TokenFilterBase implements TokenFilter
 			generator.writeKey("mode");
 			this.mode.serialize(generator, mapper);
 		}
-		if (ModelTypeHelper.isDefined(this.types)) {
+		if (ApiTypeHelper.isDefined(this.types)) {
 			generator.writeKey("types");
 			generator.writeStartArray();
 			for (String item0 : this.types) {
@@ -108,6 +115,7 @@ public class KeepTypesTokenFilter extends TokenFilterBase implements TokenFilter
 	/**
 	 * Builder for {@link KeepTypesTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<KeepTypesTokenFilter> {
@@ -128,11 +136,9 @@ public class KeepTypesTokenFilter extends TokenFilterBase implements TokenFilter
 		/**
 		 * API name: {@code types}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>types</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>types</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>types</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder types(List<String> list) {
 			this.types = _listAddAll(this.types, list);

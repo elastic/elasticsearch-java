@@ -34,6 +34,15 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.aggregations.UnmappedTermsAggregate
+
+/**
+ * Result of a <code>terms</code> aggregation when the field is unmapped.
+ * <code>buckets</code> is always empty.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/Aggregate.ts#L407-L413">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class UnmappedTermsAggregate extends TermsAggregateBase<Void> implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -60,6 +69,7 @@ public class UnmappedTermsAggregate extends TermsAggregateBase<Void> implements 
 	/**
 	 * Builder for {@link UnmappedTermsAggregate}.
 	 */
+
 	public static class Builder extends TermsAggregateBase.AbstractBuilder<Void, Builder>
 			implements
 				ObjectBuilder<UnmappedTermsAggregate> {

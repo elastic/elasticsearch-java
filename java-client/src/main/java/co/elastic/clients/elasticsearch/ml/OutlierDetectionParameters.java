@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.OutlierDetectionParameters
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/DataframeAnalytics.ts#L407-L414">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class OutlierDetectionParameters implements JsonpSerializable {
 	@Nullable
@@ -175,6 +182,7 @@ public class OutlierDetectionParameters implements JsonpSerializable {
 	/**
 	 * Builder for {@link OutlierDetectionParameters}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<OutlierDetectionParameters> {
 		@Nullable
 		private Boolean computeFeatureInfluence;

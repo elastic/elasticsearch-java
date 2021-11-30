@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_buckets.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/get_buckets/MlGetBucketsResponse.ts#L23-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetBucketsResponse implements JsonpSerializable {
 	private final List<BucketSummary> buckets;
@@ -50,8 +57,8 @@ public class GetBucketsResponse implements JsonpSerializable {
 
 	private GetBucketsResponse(Builder builder) {
 
-		this.buckets = ModelTypeHelper.unmodifiableRequired(builder.buckets, this, "buckets");
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
+		this.buckets = ApiTypeHelper.unmodifiableRequired(builder.buckets, this, "buckets");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
 
 	}
 
@@ -84,7 +91,7 @@ public class GetBucketsResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.buckets)) {
+		if (ApiTypeHelper.isDefined(this.buckets)) {
 			generator.writeKey("buckets");
 			generator.writeStartArray();
 			for (BucketSummary item0 : this.buckets) {
@@ -104,6 +111,7 @@ public class GetBucketsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetBucketsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetBucketsResponse> {
 		private List<BucketSummary> buckets;
 
@@ -112,11 +120,9 @@ public class GetBucketsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code buckets}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>buckets</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>buckets</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>buckets</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder buckets(List<BucketSummary> list) {
 			this.buckets = _listAddAll(this.buckets, list);

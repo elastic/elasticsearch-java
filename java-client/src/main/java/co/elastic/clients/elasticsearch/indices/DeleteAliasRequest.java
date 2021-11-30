@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -46,6 +46,14 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: indices.delete_alias.Request
+
+/**
+ * Deletes an alias.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/delete_alias/IndicesDeleteAliasRequest.ts#L24-L38">API
+ *      specification</a>
+ */
 
 public class DeleteAliasRequest extends RequestBase {
 	private final List<String> index;
@@ -62,9 +70,9 @@ public class DeleteAliasRequest extends RequestBase {
 
 	private DeleteAliasRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiableRequired(builder.index, this, "index");
+		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
 		this.masterTimeout = builder.masterTimeout;
-		this.name = ModelTypeHelper.unmodifiableRequired(builder.name, this, "name");
+		this.name = ApiTypeHelper.unmodifiableRequired(builder.name, this, "name");
 		this.timeout = builder.timeout;
 
 	}
@@ -118,6 +126,7 @@ public class DeleteAliasRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteAliasRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteAliasRequest> {
 		private List<String> index;
 
@@ -135,11 +144,9 @@ public class DeleteAliasRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>index</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>index</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder index(List<String> list) {
 			this.index = _listAddAll(this.index, list);
@@ -184,11 +191,9 @@ public class DeleteAliasRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code name}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>name</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>name</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>name</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder name(List<String> list) {
 			this.name = _listAddAll(this.name, list);

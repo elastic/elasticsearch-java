@@ -34,7 +34,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.BooleanEndpoint;
 import co.elastic.clients.transport.endpoints.BooleanResponse;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -49,6 +49,14 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: indices.exists_template.Request
+
+/**
+ * Returns information about whether a particular index template exists.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/exists_template/IndicesExistsTemplateRequest.ts#L24-L38">API
+ *      specification</a>
+ */
 
 public class ExistsTemplateRequest extends RequestBase {
 	@Nullable
@@ -69,7 +77,7 @@ public class ExistsTemplateRequest extends RequestBase {
 		this.flatSettings = builder.flatSettings;
 		this.local = builder.local;
 		this.masterTimeout = builder.masterTimeout;
-		this.name = ModelTypeHelper.unmodifiableRequired(builder.name, this, "name");
+		this.name = ApiTypeHelper.unmodifiableRequired(builder.name, this, "name");
 
 	}
 
@@ -122,6 +130,7 @@ public class ExistsTemplateRequest extends RequestBase {
 	/**
 	 * Builder for {@link ExistsTemplateRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExistsTemplateRequest> {
 		@Nullable
 		private Boolean flatSettings;
@@ -179,11 +188,9 @@ public class ExistsTemplateRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code name}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>name</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>name</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>name</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder name(List<String> list) {
 			this.name = _listAddAll(this.name, list);

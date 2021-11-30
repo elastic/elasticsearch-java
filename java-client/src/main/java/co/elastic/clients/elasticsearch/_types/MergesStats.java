@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.MergesStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/Stats.ts#L117-L134">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MergesStats implements JsonpSerializable {
 	private final long current;
@@ -84,26 +91,25 @@ public class MergesStats implements JsonpSerializable {
 
 	private MergesStats(Builder builder) {
 
-		this.current = ModelTypeHelper.requireNonNull(builder.current, this, "current");
-		this.currentDocs = ModelTypeHelper.requireNonNull(builder.currentDocs, this, "currentDocs");
+		this.current = ApiTypeHelper.requireNonNull(builder.current, this, "current");
+		this.currentDocs = ApiTypeHelper.requireNonNull(builder.currentDocs, this, "currentDocs");
 		this.currentSize = builder.currentSize;
-		this.currentSizeInBytes = ModelTypeHelper.requireNonNull(builder.currentSizeInBytes, this,
-				"currentSizeInBytes");
-		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
+		this.currentSizeInBytes = ApiTypeHelper.requireNonNull(builder.currentSizeInBytes, this, "currentSizeInBytes");
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
 		this.totalAutoThrottle = builder.totalAutoThrottle;
-		this.totalAutoThrottleInBytes = ModelTypeHelper.requireNonNull(builder.totalAutoThrottleInBytes, this,
+		this.totalAutoThrottleInBytes = ApiTypeHelper.requireNonNull(builder.totalAutoThrottleInBytes, this,
 				"totalAutoThrottleInBytes");
-		this.totalDocs = ModelTypeHelper.requireNonNull(builder.totalDocs, this, "totalDocs");
+		this.totalDocs = ApiTypeHelper.requireNonNull(builder.totalDocs, this, "totalDocs");
 		this.totalSize = builder.totalSize;
-		this.totalSizeInBytes = ModelTypeHelper.requireNonNull(builder.totalSizeInBytes, this, "totalSizeInBytes");
+		this.totalSizeInBytes = ApiTypeHelper.requireNonNull(builder.totalSizeInBytes, this, "totalSizeInBytes");
 		this.totalStoppedTime = builder.totalStoppedTime;
-		this.totalStoppedTimeInMillis = ModelTypeHelper.requireNonNull(builder.totalStoppedTimeInMillis, this,
+		this.totalStoppedTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalStoppedTimeInMillis, this,
 				"totalStoppedTimeInMillis");
 		this.totalThrottledTime = builder.totalThrottledTime;
-		this.totalThrottledTimeInMillis = ModelTypeHelper.requireNonNull(builder.totalThrottledTimeInMillis, this,
+		this.totalThrottledTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalThrottledTimeInMillis, this,
 				"totalThrottledTimeInMillis");
 		this.totalTime = builder.totalTime;
-		this.totalTimeInMillis = ModelTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
+		this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
 
 	}
 
@@ -307,6 +313,7 @@ public class MergesStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link MergesStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MergesStats> {
 		private Long current;
 

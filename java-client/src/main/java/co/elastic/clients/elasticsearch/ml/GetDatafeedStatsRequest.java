@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -47,6 +47,21 @@ import javax.annotation.Nullable;
 
 // typedef: ml.get_datafeed_stats.Request
 
+/**
+ * Retrieves usage information for datafeeds. You can get statistics for
+ * multiple datafeeds in a single API request by using a comma-separated list of
+ * datafeeds or a wildcard expression. You can get statistics for all datafeeds
+ * by using <code>_all</code>, by specifying <code>*</code> as the
+ * <code>&lt;feed_id&gt;</code>, or by omitting the
+ * <code>&lt;feed_id&gt;</code>. If the datafeed is stopped, the only
+ * information you receive is the <code>datafeed_id</code> and the
+ * <code>state</code>. This API returns a maximum of 10,000 datafeeds.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/get_datafeed_stats/MlGetDatafeedStatsRequest.ts#L23-L60">API
+ *      specification</a>
+ */
+
 public class GetDatafeedStatsRequest extends RequestBase {
 	@Nullable
 	private final Boolean allowNoMatch;
@@ -58,7 +73,7 @@ public class GetDatafeedStatsRequest extends RequestBase {
 	private GetDatafeedStatsRequest(Builder builder) {
 
 		this.allowNoMatch = builder.allowNoMatch;
-		this.datafeedId = ModelTypeHelper.unmodifiable(builder.datafeedId);
+		this.datafeedId = ApiTypeHelper.unmodifiable(builder.datafeedId);
 
 	}
 
@@ -104,6 +119,7 @@ public class GetDatafeedStatsRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetDatafeedStatsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetDatafeedStatsRequest> {
 		@Nullable
 		private Boolean allowNoMatch;
@@ -140,11 +156,9 @@ public class GetDatafeedStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code datafeed_id}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>datafeedId</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>datafeedId</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>datafeedId</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder datafeedId(List<String> list) {
 			this.datafeedId = _listAddAll(this.datafeedId, list);
@@ -198,7 +212,7 @@ public class GetDatafeedStatsRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (ModelTypeHelper.isDefined(request.datafeedId()))
+				if (ApiTypeHelper.isDefined(request.datafeedId()))
 					propsSet |= _datafeedId;
 
 				if (propsSet == (_datafeedId)) {

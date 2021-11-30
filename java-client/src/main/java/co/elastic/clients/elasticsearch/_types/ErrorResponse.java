@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.ErrorResponseBase
+
+/**
+ * The response returned by Elasticsearch when request execution did not
+ * succeed.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/Base.ts#L70-L79">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ErrorResponse implements JsonpSerializable {
 	private final ErrorCause error;
@@ -49,8 +58,8 @@ public class ErrorResponse implements JsonpSerializable {
 
 	private ErrorResponse(Builder builder) {
 
-		this.error = ModelTypeHelper.requireNonNull(builder.error, this, "error");
-		this.status = ModelTypeHelper.requireNonNull(builder.status, this, "status");
+		this.error = ApiTypeHelper.requireNonNull(builder.error, this, "error");
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 
 	}
 
@@ -96,6 +105,7 @@ public class ErrorResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link ErrorResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ErrorResponse> {
 		private ErrorCause error;
 

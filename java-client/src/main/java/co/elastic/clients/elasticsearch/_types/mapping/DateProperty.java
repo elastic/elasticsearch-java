@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.DateProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/mapping/core.ts#L103-L113">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DateProperty extends DocValuesPropertyBase implements PropertyVariant {
 	@Nullable
@@ -210,6 +217,7 @@ public class DateProperty extends DocValuesPropertyBase implements PropertyVaria
 	/**
 	 * Builder for {@link DateProperty}.
 	 */
+
 	public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DateProperty> {

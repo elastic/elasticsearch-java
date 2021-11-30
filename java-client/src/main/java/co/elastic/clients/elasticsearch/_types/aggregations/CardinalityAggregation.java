@@ -37,6 +37,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.CardinalityAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/metric.ts#L54-L57">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CardinalityAggregation extends MetricAggregationBase implements AggregationVariant {
 	@Nullable
@@ -104,6 +111,7 @@ public class CardinalityAggregation extends MetricAggregationBase implements Agg
 	/**
 	 * Builder for {@link CardinalityAggregation}.
 	 */
+
 	public static class Builder extends MetricAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<CardinalityAggregation> {

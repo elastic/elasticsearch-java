@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -45,6 +45,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: tasks._types.Status
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/tasks/_types/TaskStatus.ts#L24-L42">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Status implements JsonpSerializable {
 	private final long batches;
@@ -90,24 +97,24 @@ public class Status implements JsonpSerializable {
 
 	private Status(Builder builder) {
 
-		this.batches = ModelTypeHelper.requireNonNull(builder.batches, this, "batches");
+		this.batches = ApiTypeHelper.requireNonNull(builder.batches, this, "batches");
 		this.canceled = builder.canceled;
-		this.created = ModelTypeHelper.requireNonNull(builder.created, this, "created");
-		this.deleted = ModelTypeHelper.requireNonNull(builder.deleted, this, "deleted");
-		this.noops = ModelTypeHelper.requireNonNull(builder.noops, this, "noops");
-		this.failures = ModelTypeHelper.unmodifiable(builder.failures);
-		this.requestsPerSecond = ModelTypeHelper.requireNonNull(builder.requestsPerSecond, this, "requestsPerSecond");
-		this.retries = ModelTypeHelper.requireNonNull(builder.retries, this, "retries");
+		this.created = ApiTypeHelper.requireNonNull(builder.created, this, "created");
+		this.deleted = ApiTypeHelper.requireNonNull(builder.deleted, this, "deleted");
+		this.noops = ApiTypeHelper.requireNonNull(builder.noops, this, "noops");
+		this.failures = ApiTypeHelper.unmodifiable(builder.failures);
+		this.requestsPerSecond = ApiTypeHelper.requireNonNull(builder.requestsPerSecond, this, "requestsPerSecond");
+		this.retries = ApiTypeHelper.requireNonNull(builder.retries, this, "retries");
 		this.throttled = builder.throttled;
-		this.throttledMillis = ModelTypeHelper.requireNonNull(builder.throttledMillis, this, "throttledMillis");
+		this.throttledMillis = ApiTypeHelper.requireNonNull(builder.throttledMillis, this, "throttledMillis");
 		this.throttledUntil = builder.throttledUntil;
-		this.throttledUntilMillis = ModelTypeHelper.requireNonNull(builder.throttledUntilMillis, this,
+		this.throttledUntilMillis = ApiTypeHelper.requireNonNull(builder.throttledUntilMillis, this,
 				"throttledUntilMillis");
 		this.timedOut = builder.timedOut;
 		this.took = builder.took;
-		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
-		this.updated = ModelTypeHelper.requireNonNull(builder.updated, this, "updated");
-		this.versionConflicts = ModelTypeHelper.requireNonNull(builder.versionConflicts, this, "versionConflicts");
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+		this.updated = ApiTypeHelper.requireNonNull(builder.updated, this, "updated");
+		this.versionConflicts = ApiTypeHelper.requireNonNull(builder.versionConflicts, this, "versionConflicts");
 
 	}
 
@@ -267,7 +274,7 @@ public class Status implements JsonpSerializable {
 		generator.writeKey("noops");
 		generator.write(this.noops);
 
-		if (ModelTypeHelper.isDefined(this.failures)) {
+		if (ApiTypeHelper.isDefined(this.failures)) {
 			generator.writeKey("failures");
 			generator.writeStartArray();
 			for (String item0 : this.failures) {
@@ -325,6 +332,7 @@ public class Status implements JsonpSerializable {
 	/**
 	 * Builder for {@link Status}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Status> {
 		private Long batches;
 
@@ -409,11 +417,9 @@ public class Status implements JsonpSerializable {
 		/**
 		 * API name: {@code failures}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>failures</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>failures</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>failures</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder failures(List<String> list) {
 			this.failures = _listAddAll(this.failures, list);

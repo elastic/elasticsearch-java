@@ -35,7 +35,7 @@ import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -49,6 +49,13 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: rollup.rollup_search.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/rollup/rollup_search/RollupSearchResponse.ts#L27-L36">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RollupSearchResponse<TDocument> implements JsonpSerializable {
 	private final long took;
@@ -71,12 +78,12 @@ public class RollupSearchResponse<TDocument> implements JsonpSerializable {
 
 	private RollupSearchResponse(Builder<TDocument> builder) {
 
-		this.took = ModelTypeHelper.requireNonNull(builder.took, this, "took");
-		this.timedOut = ModelTypeHelper.requireNonNull(builder.timedOut, this, "timedOut");
+		this.took = ApiTypeHelper.requireNonNull(builder.took, this, "took");
+		this.timedOut = ApiTypeHelper.requireNonNull(builder.timedOut, this, "timedOut");
 		this.terminatedEarly = builder.terminatedEarly;
-		this.shards = ModelTypeHelper.requireNonNull(builder.shards, this, "shards");
-		this.hits = ModelTypeHelper.requireNonNull(builder.hits, this, "hits");
-		this.aggregations = ModelTypeHelper.unmodifiable(builder.aggregations);
+		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
+		this.hits = ApiTypeHelper.requireNonNull(builder.hits, this, "hits");
+		this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}
@@ -157,7 +164,7 @@ public class RollupSearchResponse<TDocument> implements JsonpSerializable {
 		generator.writeKey("hits");
 		this.hits.serialize(generator, mapper);
 
-		if (ModelTypeHelper.isDefined(this.aggregations)) {
+		if (ApiTypeHelper.isDefined(this.aggregations)) {
 			generator.writeKey("aggregations");
 			ExternallyTaggedUnion.serializeTypedKeys(this.aggregations, generator, mapper);
 
@@ -170,6 +177,7 @@ public class RollupSearchResponse<TDocument> implements JsonpSerializable {
 	/**
 	 * Builder for {@link RollupSearchResponse}.
 	 */
+
 	public static class Builder<TDocument> extends ObjectBuilderBase
 			implements
 				ObjectBuilder<RollupSearchResponse<TDocument>> {
@@ -248,11 +256,9 @@ public class RollupSearchResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code aggregations}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>aggregations</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>aggregations</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>aggregations</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder<TDocument> aggregations(Map<String, Aggregate> map) {
 			this.aggregations = _mapPutAll(this.aggregations, map);
@@ -304,7 +310,7 @@ public class RollupSearchResponse<TDocument> implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for RollupSearchResponse
+	 * Create a JSON deserializer for RollupSearchResponse
 	 */
 	public static <TDocument> JsonpDeserializer<RollupSearchResponse<TDocument>> createRollupSearchResponseDeserializer(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {

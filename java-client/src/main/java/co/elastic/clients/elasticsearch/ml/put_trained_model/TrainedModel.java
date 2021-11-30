@@ -37,6 +37,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.TrainedModel
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/put_trained_model/types.ts#L60-L72">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TrainedModel implements JsonpSerializable {
 	@Nullable
@@ -132,6 +139,7 @@ public class TrainedModel implements JsonpSerializable {
 	/**
 	 * Builder for {@link TrainedModel}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TrainedModel> {
 		@Nullable
 		private TrainedModelTree tree;

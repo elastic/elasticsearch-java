@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_api_key.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/security/get_api_key/SecurityGetApiKeyResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetApiKeyResponse implements JsonpSerializable {
 	private final List<ApiKey> apiKeys;
@@ -48,7 +55,7 @@ public class GetApiKeyResponse implements JsonpSerializable {
 
 	private GetApiKeyResponse(Builder builder) {
 
-		this.apiKeys = ModelTypeHelper.unmodifiableRequired(builder.apiKeys, this, "apiKeys");
+		this.apiKeys = ApiTypeHelper.unmodifiableRequired(builder.apiKeys, this, "apiKeys");
 
 	}
 
@@ -74,7 +81,7 @@ public class GetApiKeyResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.apiKeys)) {
+		if (ApiTypeHelper.isDefined(this.apiKeys)) {
 			generator.writeKey("api_keys");
 			generator.writeStartArray();
 			for (ApiKey item0 : this.apiKeys) {
@@ -92,17 +99,16 @@ public class GetApiKeyResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetApiKeyResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetApiKeyResponse> {
 		private List<ApiKey> apiKeys;
 
 		/**
 		 * Required - API name: {@code api_keys}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>apiKeys</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>apiKeys</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>apiKeys</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder apiKeys(List<ApiKey> list) {
 			this.apiKeys = _listAddAll(this.apiKeys, list);

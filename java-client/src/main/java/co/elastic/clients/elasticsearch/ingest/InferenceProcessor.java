@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.InferenceProcessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ingest/_types/Processors.ts#L236-L241">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class InferenceProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String modelId;
@@ -55,9 +62,9 @@ public class InferenceProcessor extends ProcessorBase implements ProcessorVarian
 	private InferenceProcessor(Builder builder) {
 		super(builder);
 
-		this.modelId = ModelTypeHelper.requireNonNull(builder.modelId, this, "modelId");
-		this.targetField = ModelTypeHelper.requireNonNull(builder.targetField, this, "targetField");
-		this.fieldMap = ModelTypeHelper.unmodifiable(builder.fieldMap);
+		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
+		this.targetField = ApiTypeHelper.requireNonNull(builder.targetField, this, "targetField");
+		this.fieldMap = ApiTypeHelper.unmodifiable(builder.fieldMap);
 		this.inferenceConfig = builder.inferenceConfig;
 
 	}
@@ -112,7 +119,7 @@ public class InferenceProcessor extends ProcessorBase implements ProcessorVarian
 		generator.writeKey("target_field");
 		generator.write(this.targetField);
 
-		if (ModelTypeHelper.isDefined(this.fieldMap)) {
+		if (ApiTypeHelper.isDefined(this.fieldMap)) {
 			generator.writeKey("field_map");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.fieldMap.entrySet()) {
@@ -136,6 +143,7 @@ public class InferenceProcessor extends ProcessorBase implements ProcessorVarian
 	/**
 	 * Builder for {@link InferenceProcessor}.
 	 */
+
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<InferenceProcessor> {
@@ -168,11 +176,9 @@ public class InferenceProcessor extends ProcessorBase implements ProcessorVarian
 		/**
 		 * API name: {@code field_map}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>fieldMap</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>fieldMap</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>fieldMap</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder fieldMap(Map<String, JsonData> map) {
 			this.fieldMap = _mapPutAll(this.fieldMap, map);

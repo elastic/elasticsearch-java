@@ -54,6 +54,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.stats.IndexStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/stats/types.ts#L43-L79">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IndexStats implements JsonpSerializable {
 	@Nullable
@@ -428,6 +435,7 @@ public class IndexStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexStats> {
 		@Nullable
 		private CompletionStats completion;

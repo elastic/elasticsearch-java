@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security._types.ManageUserPrivileges
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/security/_types/Privileges.ts#L131-L133">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ManageUserPrivileges implements JsonpSerializable {
 	private final List<String> applications;
@@ -48,7 +55,7 @@ public class ManageUserPrivileges implements JsonpSerializable {
 
 	private ManageUserPrivileges(Builder builder) {
 
-		this.applications = ModelTypeHelper.unmodifiableRequired(builder.applications, this, "applications");
+		this.applications = ApiTypeHelper.unmodifiableRequired(builder.applications, this, "applications");
 
 	}
 
@@ -74,7 +81,7 @@ public class ManageUserPrivileges implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.applications)) {
+		if (ApiTypeHelper.isDefined(this.applications)) {
 			generator.writeKey("applications");
 			generator.writeStartArray();
 			for (String item0 : this.applications) {
@@ -92,17 +99,16 @@ public class ManageUserPrivileges implements JsonpSerializable {
 	/**
 	 * Builder for {@link ManageUserPrivileges}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ManageUserPrivileges> {
 		private List<String> applications;
 
 		/**
 		 * Required - API name: {@code applications}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>applications</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>applications</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>applications</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder applications(List<String> list) {
 			this.applications = _listAddAll(this.applications, list);

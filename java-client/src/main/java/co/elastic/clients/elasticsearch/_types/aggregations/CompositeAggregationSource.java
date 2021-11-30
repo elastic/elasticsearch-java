@@ -37,6 +37,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.CompositeAggregationSource
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/bucket.ts#L82-L87">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CompositeAggregationSource implements JsonpSerializable {
 	@Nullable
@@ -137,6 +144,7 @@ public class CompositeAggregationSource implements JsonpSerializable {
 	/**
 	 * Builder for {@link CompositeAggregationSource}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CompositeAggregationSource> {
 		@Nullable
 		private TermsAggregation terms;

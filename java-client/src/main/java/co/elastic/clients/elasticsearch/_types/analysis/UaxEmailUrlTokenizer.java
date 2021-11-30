@@ -36,6 +36,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.UaxEmailUrlTokenizer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/analysis/tokenizers.ts#L109-L112">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class UaxEmailUrlTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
 	@Nullable
@@ -87,6 +94,7 @@ public class UaxEmailUrlTokenizer extends TokenizerBase implements TokenizerDefi
 	/**
 	 * Builder for {@link UaxEmailUrlTokenizer}.
 	 */
+
 	public static class Builder extends TokenizerBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<UaxEmailUrlTokenizer> {
