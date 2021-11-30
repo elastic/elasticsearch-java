@@ -36,7 +36,7 @@ import co.elastic.clients.elasticsearch.core.search.TotalHits;
 import co.elastic.clients.elasticsearch.core.search.TotalHitsRelation;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.util.MissingRequiredPropertyException;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import org.junit.Test;
 
@@ -152,7 +152,7 @@ public class ClassStructureTest extends ModelTestCase {
             SearchRequest search = SearchRequest.of(b -> b);
             assertNotNull(search.storedFields());
             assertEquals(0, search.storedFields().size());
-            assertFalse(ModelTypeHelper.isDefined(search.storedFields()));
+            assertFalse(ApiTypeHelper.isDefined(search.storedFields()));
             assertEquals("{}", toJson(search));
         }
 
@@ -161,7 +161,7 @@ public class ClassStructureTest extends ModelTestCase {
             SearchRequest search = SearchRequest.of(b -> b.storedFields(Collections.emptyList()));
             assertNotNull(search.storedFields());
             assertEquals(0, search.storedFields().size());
-            assertTrue(ModelTypeHelper.isDefined(search.storedFields()));
+            assertTrue(ApiTypeHelper.isDefined(search.storedFields()));
             assertEquals("{\"stored_fields\":[]}", toJson(search));
         }
 
@@ -170,7 +170,7 @@ public class ClassStructureTest extends ModelTestCase {
             CardinalityAggregate card = CardinalityAggregate.of(b -> b.value(1));
             assertNotNull(card.meta());
             assertEquals(0, card.meta().size());
-            assertFalse(ModelTypeHelper.isDefined(card.meta()));
+            assertFalse(ApiTypeHelper.isDefined(card.meta()));
             assertEquals("{\"value\":1}", toJson(card));
         }
 
@@ -182,7 +182,7 @@ public class ClassStructureTest extends ModelTestCase {
             );
             assertNotNull(card.meta());
             assertEquals(0, card.meta().size());
-            assertTrue(ModelTypeHelper.isDefined(card.meta()));
+            assertTrue(ApiTypeHelper.isDefined(card.meta()));
             assertEquals("{\"meta\":{},\"value\":1}", toJson(card));
         }
     }
@@ -217,13 +217,13 @@ public class ClassStructureTest extends ModelTestCase {
             // Reset builder property
             SearchRequest search = SearchRequest.of(b -> b
                 .storedFields(fields)
-                .storedFields(ModelTypeHelper.resetList())
+                .storedFields(ApiTypeHelper.resetList())
             );
-            assertFalse(ModelTypeHelper.isDefined(search.storedFields()));
+            assertFalse(ApiTypeHelper.isDefined(search.storedFields()));
 
             search = SearchRequest.of(b -> b
                 .storedFields(fields)
-                .storedFields(ModelTypeHelper.resetList())
+                .storedFields(ApiTypeHelper.resetList())
                 .storedFields("d", "e")
             );
             assertEquals(Arrays.asList("d", "e"), search.storedFields());
@@ -276,13 +276,13 @@ public class ClassStructureTest extends ModelTestCase {
             // Reset builder property
             SearchRequest search = SearchRequest.of(b -> b
                 .aggregations(aggs)
-                .aggregations(ModelTypeHelper.resetMap())
+                .aggregations(ApiTypeHelper.resetMap())
             );
-            assertFalse(ModelTypeHelper.isDefined(search.storedFields()));
+            assertFalse(ApiTypeHelper.isDefined(search.storedFields()));
 
             search = SearchRequest.of(b -> b
                 .aggregations(aggs)
-                .aggregations(ModelTypeHelper.resetMap())
+                .aggregations(ApiTypeHelper.resetMap())
                 .aggregations("aggC", countC._toAggregation())
             );
             assertEquals(1, search.aggregations().size());
@@ -323,7 +323,7 @@ public class ClassStructureTest extends ModelTestCase {
         assertEquals("id", ex.getPropertyName());
 
         // Disable checks, missing id property is accepted.
-        try (ModelTypeHelper.DisabledChecksHandle h = ModelTypeHelper.DANGEROUS_disableRequiredPropertiesCheck(true)) {
+        try (ApiTypeHelper.DisabledChecksHandle h = ApiTypeHelper.DANGEROUS_disableRequiredPropertiesCheck(true)) {
             GetRequest r1 = GetRequest.of(b -> b.index("foo"));
             assertNull(r1.id());
         }

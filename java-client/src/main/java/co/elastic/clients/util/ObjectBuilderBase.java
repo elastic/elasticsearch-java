@@ -77,7 +77,7 @@ public class ObjectBuilderBase {
             // Keep the original list to avoid an unnecessary copy.
             // It will be copied if we add more values.
             return values;
-        } else if (values == ModelTypeHelper.RESET_LIST) {
+        } else if (values == ApiTypeHelper.RESET_LIST) {
             return null;
         } else {
             list = _mutableList(list);
@@ -119,7 +119,7 @@ public class ObjectBuilderBase {
 
     /** Add all elements of a list to a (possibly {@code null}) map */
     protected static <K, V> Map<K, V> _mapPutAll(Map<K, V> map, Map<K, V> entries) {
-        if (entries == ModelTypeHelper.RESET_MAP) {
+        if (entries == ApiTypeHelper.RESET_MAP) {
             return null;
         }
         map = _mutableMap(map);

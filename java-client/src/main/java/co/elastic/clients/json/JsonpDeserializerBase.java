@@ -72,7 +72,7 @@ public abstract class JsonpDeserializerBase<V> implements JsonpDeserializer<V> {
     }
 
     /**
-     * The json events this deserializer accepts as a starting point
+     * The JSON events this deserializer accepts as a starting point
      */
     public final EnumSet<Event> acceptedEvents() {
         return acceptedEvents;

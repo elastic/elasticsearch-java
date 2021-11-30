@@ -27,8 +27,11 @@ import java.util.EnumSet;
 /**
  * A raw JSON value. It can be converted to a JSON node tree or to an arbitrary object using a {@link JsonpMapper}.
  * <p>
- * This type is used in the API for values that don't have a statically-defined type or that cannot be represented
+ * This type is used in API types for values that don't have a statically-defined type or that cannot be represented
  * as a generic parameter of the enclosing data structure.
+ * <p>
+ * Instances of this class returned by API clients keep a reference to the client's {@link JsonpMapper} and can be
+ * converted to arbitrary types using {@link #to(Class)} without requiring an explicit mapper.
  */
 @JsonpDeserializable
 public interface JsonData extends JsonpSerializable {
@@ -70,21 +73,21 @@ public interface JsonData extends JsonpSerializable {
      <T> T deserialize(JsonpDeserializer<T> deserializer, JsonpMapper mapper);
 
     /**
-     * Creates a raw json value from an existing object. A mapper will be needed to convert the result.
+     * Creates a raw JSON value from an existing object. A mapper will be needed to convert the result.
      */
     static <T> JsonData of(T value) {
         return new JsonDataImpl(value, null);
     }
 
     /**
-     * Creates a raw json value from an existing object, along with the mapper to use for further conversions.
+     * Creates a raw JSON value from an existing object, along with the mapper to use for further conversions.
      */
     static <T> JsonData of(T value, JsonpMapper mapper) {
         return new JsonDataImpl(value, mapper);
     }
 
     /**
-     * Creates a raw json value from a parser. The provider mapper will be used for conversions unless one is
+     * Creates a raw JSON value from a parser. The provider mapper will be used for conversions unless one is
      * explicitly provided using {@link #to(Class, JsonpMapper)}, {@link #toJson(JsonpMapper)} or
      * {@link #deserialize(JsonpDeserializer)}.
      */
