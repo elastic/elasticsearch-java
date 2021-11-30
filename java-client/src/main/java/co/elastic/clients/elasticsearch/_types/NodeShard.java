@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -44,6 +44,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.NodeShard
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Node.ts#L52-L61">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeShard implements JsonpSerializable {
 	private final ShardRoutingState state;
@@ -68,13 +75,13 @@ public class NodeShard implements JsonpSerializable {
 
 	private NodeShard(Builder builder) {
 
-		this.state = ModelTypeHelper.requireNonNull(builder.state, this, "state");
-		this.primary = ModelTypeHelper.requireNonNull(builder.primary, this, "primary");
+		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
+		this.primary = ApiTypeHelper.requireNonNull(builder.primary, this, "primary");
 		this.node = builder.node;
-		this.shard = ModelTypeHelper.requireNonNull(builder.shard, this, "shard");
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
-		this.allocationId = ModelTypeHelper.unmodifiable(builder.allocationId);
-		this.recoverySource = ModelTypeHelper.unmodifiable(builder.recoverySource);
+		this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.allocationId = ApiTypeHelper.unmodifiable(builder.allocationId);
+		this.recoverySource = ApiTypeHelper.unmodifiable(builder.recoverySource);
 		this.unassignedInfo = builder.unassignedInfo;
 
 	}
@@ -168,7 +175,7 @@ public class NodeShard implements JsonpSerializable {
 		generator.writeKey("index");
 		generator.write(this.index);
 
-		if (ModelTypeHelper.isDefined(this.allocationId)) {
+		if (ApiTypeHelper.isDefined(this.allocationId)) {
 			generator.writeKey("allocation_id");
 			generator.writeStartObject();
 			for (Map.Entry<String, String> item0 : this.allocationId.entrySet()) {
@@ -179,7 +186,7 @@ public class NodeShard implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.recoverySource)) {
+		if (ApiTypeHelper.isDefined(this.recoverySource)) {
 			generator.writeKey("recovery_source");
 			generator.writeStartObject();
 			for (Map.Entry<String, String> item0 : this.recoverySource.entrySet()) {
@@ -203,6 +210,7 @@ public class NodeShard implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeShard}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeShard> {
 		private ShardRoutingState state;
 
@@ -267,11 +275,9 @@ public class NodeShard implements JsonpSerializable {
 		/**
 		 * API name: {@code allocation_id}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>allocationId</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>allocationId</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>allocationId</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder allocationId(Map<String, String> map) {
 			this.allocationId = _mapPutAll(this.allocationId, map);
@@ -291,11 +297,9 @@ public class NodeShard implements JsonpSerializable {
 		/**
 		 * API name: {@code recovery_source}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>recoverySource</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>recoverySource</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>recoverySource</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder recoverySource(Map<String, String> map) {
 			this.recoverySource = _mapPutAll(this.recoverySource, map);

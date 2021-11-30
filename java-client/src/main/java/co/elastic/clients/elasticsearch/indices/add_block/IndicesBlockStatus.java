@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.add_block.IndicesBlockStatus
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/add_block/IndicesAddBlockResponse.ts#L29-L32">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IndicesBlockStatus implements JsonpSerializable {
 	private final String name;
@@ -50,8 +57,8 @@ public class IndicesBlockStatus implements JsonpSerializable {
 
 	private IndicesBlockStatus(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
-		this.blocked = ModelTypeHelper.requireNonNull(builder.blocked, this, "blocked");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.blocked = ApiTypeHelper.requireNonNull(builder.blocked, this, "blocked");
 
 	}
 
@@ -97,6 +104,7 @@ public class IndicesBlockStatus implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndicesBlockStatus}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndicesBlockStatus> {
 		private String name;
 

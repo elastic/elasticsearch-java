@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,6 +43,16 @@ import javax.annotation.Nullable;
 
 // typedef: ml.delete_filter.Request
 
+/**
+ * Deletes a filter. If an anomaly detection job references the filter, you
+ * cannot delete the filter. You must update or delete the job before you can
+ * delete the filter.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/delete_filter/MlDeleteFilterRequest.ts#L23-L39">API
+ *      specification</a>
+ */
+
 public class DeleteFilterRequest extends RequestBase {
 	private final String filterId;
 
@@ -50,7 +60,7 @@ public class DeleteFilterRequest extends RequestBase {
 
 	private DeleteFilterRequest(Builder builder) {
 
-		this.filterId = ModelTypeHelper.requireNonNull(builder.filterId, this, "filterId");
+		this.filterId = ApiTypeHelper.requireNonNull(builder.filterId, this, "filterId");
 
 	}
 
@@ -72,6 +82,7 @@ public class DeleteFilterRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteFilterRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteFilterRequest> {
 		private String filterId;
 

@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.SignificantLongTermsBucket
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L553-L556">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SignificantLongTermsBucket extends SignificantTermsBucketBase {
 	private final long key;
@@ -50,7 +57,7 @@ public class SignificantLongTermsBucket extends SignificantTermsBucketBase {
 	private SignificantLongTermsBucket(Builder builder) {
 		super(builder);
 
-		this.key = ModelTypeHelper.requireNonNull(builder.key, this, "key");
+		this.key = ApiTypeHelper.requireNonNull(builder.key, this, "key");
 		this.keyAsString = builder.keyAsString;
 
 	}
@@ -93,6 +100,7 @@ public class SignificantLongTermsBucket extends SignificantTermsBucketBase {
 	/**
 	 * Builder for {@link SignificantLongTermsBucket}.
 	 */
+
 	public static class Builder extends SignificantTermsBucketBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<SignificantLongTermsBucket> {

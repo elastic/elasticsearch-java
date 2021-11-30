@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: indices.stats.ShardQueryCache
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/stats/types.ts#L122-L130">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ShardQueryCache implements JsonpSerializable {
 	private final long cacheCount;
@@ -58,13 +65,13 @@ public class ShardQueryCache implements JsonpSerializable {
 
 	private ShardQueryCache(Builder builder) {
 
-		this.cacheCount = ModelTypeHelper.requireNonNull(builder.cacheCount, this, "cacheCount");
-		this.cacheSize = ModelTypeHelper.requireNonNull(builder.cacheSize, this, "cacheSize");
-		this.evictions = ModelTypeHelper.requireNonNull(builder.evictions, this, "evictions");
-		this.hitCount = ModelTypeHelper.requireNonNull(builder.hitCount, this, "hitCount");
-		this.memorySizeInBytes = ModelTypeHelper.requireNonNull(builder.memorySizeInBytes, this, "memorySizeInBytes");
-		this.missCount = ModelTypeHelper.requireNonNull(builder.missCount, this, "missCount");
-		this.totalCount = ModelTypeHelper.requireNonNull(builder.totalCount, this, "totalCount");
+		this.cacheCount = ApiTypeHelper.requireNonNull(builder.cacheCount, this, "cacheCount");
+		this.cacheSize = ApiTypeHelper.requireNonNull(builder.cacheSize, this, "cacheSize");
+		this.evictions = ApiTypeHelper.requireNonNull(builder.evictions, this, "evictions");
+		this.hitCount = ApiTypeHelper.requireNonNull(builder.hitCount, this, "hitCount");
+		this.memorySizeInBytes = ApiTypeHelper.requireNonNull(builder.memorySizeInBytes, this, "memorySizeInBytes");
+		this.missCount = ApiTypeHelper.requireNonNull(builder.missCount, this, "missCount");
+		this.totalCount = ApiTypeHelper.requireNonNull(builder.totalCount, this, "totalCount");
 
 	}
 
@@ -160,6 +167,7 @@ public class ShardQueryCache implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardQueryCache}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardQueryCache> {
 		private Long cacheCount;
 

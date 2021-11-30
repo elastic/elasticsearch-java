@@ -35,7 +35,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -50,6 +50,14 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: _global.mget.Request
+
+/**
+ * Allows to get multiple documents in one request.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/mget/MultiGetRequest.ts#L25-L50">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MgetRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -88,16 +96,16 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 	private MgetRequest(Builder builder) {
 
 		this.source = builder.source;
-		this.sourceExcludes = ModelTypeHelper.unmodifiable(builder.sourceExcludes);
-		this.sourceIncludes = ModelTypeHelper.unmodifiable(builder.sourceIncludes);
-		this.docs = ModelTypeHelper.unmodifiable(builder.docs);
-		this.ids = ModelTypeHelper.unmodifiable(builder.ids);
+		this.sourceExcludes = ApiTypeHelper.unmodifiable(builder.sourceExcludes);
+		this.sourceIncludes = ApiTypeHelper.unmodifiable(builder.sourceIncludes);
+		this.docs = ApiTypeHelper.unmodifiable(builder.docs);
+		this.ids = ApiTypeHelper.unmodifiable(builder.ids);
 		this.index = builder.index;
 		this.preference = builder.preference;
 		this.realtime = builder.realtime;
 		this.refresh = builder.refresh;
 		this.routing = builder.routing;
-		this.storedFields = ModelTypeHelper.unmodifiable(builder.storedFields);
+		this.storedFields = ApiTypeHelper.unmodifiable(builder.storedFields);
 		this.type = builder.type;
 
 	}
@@ -230,7 +238,7 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.docs)) {
+		if (ApiTypeHelper.isDefined(this.docs)) {
 			generator.writeKey("docs");
 			generator.writeStartArray();
 			for (MultiGetOperation item0 : this.docs) {
@@ -240,7 +248,7 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.ids)) {
+		if (ApiTypeHelper.isDefined(this.ids)) {
 			generator.writeKey("ids");
 			generator.writeStartArray();
 			for (String item0 : this.ids) {
@@ -258,6 +266,7 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link MgetRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MgetRequest> {
 		@Nullable
 		private SourceConfigParam source;
@@ -321,11 +330,9 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _source_excludes}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>sourceExcludes</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>sourceExcludes</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>sourceExcludes</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder sourceExcludes(List<String> list) {
 			this.sourceExcludes = _listAddAll(this.sourceExcludes, list);
@@ -349,11 +356,9 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _source_includes}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>sourceIncludes</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>sourceIncludes</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>sourceIncludes</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder sourceIncludes(List<String> list) {
 			this.sourceIncludes = _listAddAll(this.sourceIncludes, list);
@@ -375,11 +380,9 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code docs}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>docs</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>docs</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>docs</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder docs(List<MultiGetOperation> list) {
 			this.docs = _listAddAll(this.docs, list);
@@ -408,11 +411,9 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code ids}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>ids</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>ids</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>ids</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder ids(List<String> list) {
 			this.ids = _listAddAll(this.ids, list);
@@ -485,11 +486,9 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code stored_fields}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>storedFields</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>storedFields</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>storedFields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder storedFields(List<String> list) {
 			this.storedFields = _listAddAll(this.storedFields, list);
@@ -605,7 +604,7 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 				if (request.realtime != null) {
 					params.put("realtime", String.valueOf(request.realtime));
 				}
-				if (ModelTypeHelper.isDefined(request.storedFields)) {
+				if (ApiTypeHelper.isDefined(request.storedFields)) {
 					params.put("stored_fields",
 							request.storedFields.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
@@ -618,11 +617,11 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 				if (request.source != null) {
 					params.put("_source", request.source._toJsonString());
 				}
-				if (ModelTypeHelper.isDefined(request.sourceExcludes)) {
+				if (ApiTypeHelper.isDefined(request.sourceExcludes)) {
 					params.put("_source_excludes",
 							request.sourceExcludes.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
-				if (ModelTypeHelper.isDefined(request.sourceIncludes)) {
+				if (ApiTypeHelper.isDefined(request.sourceIncludes)) {
 					params.put("_source_includes",
 							request.sourceIncludes.stream().map(v -> v).collect(Collectors.joining(",")));
 				}

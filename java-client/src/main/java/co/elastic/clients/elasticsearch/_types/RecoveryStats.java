@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.RecoveryStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Stats.ts#L160-L165">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RecoveryStats implements JsonpSerializable {
 	private final long currentAsSource;
@@ -55,10 +62,10 @@ public class RecoveryStats implements JsonpSerializable {
 
 	private RecoveryStats(Builder builder) {
 
-		this.currentAsSource = ModelTypeHelper.requireNonNull(builder.currentAsSource, this, "currentAsSource");
-		this.currentAsTarget = ModelTypeHelper.requireNonNull(builder.currentAsTarget, this, "currentAsTarget");
+		this.currentAsSource = ApiTypeHelper.requireNonNull(builder.currentAsSource, this, "currentAsSource");
+		this.currentAsTarget = ApiTypeHelper.requireNonNull(builder.currentAsTarget, this, "currentAsTarget");
 		this.throttleTime = builder.throttleTime;
-		this.throttleTimeInMillis = ModelTypeHelper.requireNonNull(builder.throttleTimeInMillis, this,
+		this.throttleTimeInMillis = ApiTypeHelper.requireNonNull(builder.throttleTimeInMillis, this,
 				"throttleTimeInMillis");
 
 	}
@@ -128,6 +135,7 @@ public class RecoveryStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link RecoveryStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RecoveryStats> {
 		private Long currentAsSource;
 

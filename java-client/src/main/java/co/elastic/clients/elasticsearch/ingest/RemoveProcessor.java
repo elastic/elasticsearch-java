@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.RemoveProcessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ingest/_types/Processors.ts#L287-L290">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RemoveProcessor extends ProcessorBase implements ProcessorVariant {
 	private final List<String> field;
@@ -51,7 +58,7 @@ public class RemoveProcessor extends ProcessorBase implements ProcessorVariant {
 	private RemoveProcessor(Builder builder) {
 		super(builder);
 
-		this.field = ModelTypeHelper.unmodifiableRequired(builder.field, this, "field");
+		this.field = ApiTypeHelper.unmodifiableRequired(builder.field, this, "field");
 		this.ignoreMissing = builder.ignoreMissing;
 
 	}
@@ -86,7 +93,7 @@ public class RemoveProcessor extends ProcessorBase implements ProcessorVariant {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.field)) {
+		if (ApiTypeHelper.isDefined(this.field)) {
 			generator.writeKey("field");
 			generator.writeStartArray();
 			for (String item0 : this.field) {
@@ -109,6 +116,7 @@ public class RemoveProcessor extends ProcessorBase implements ProcessorVariant {
 	/**
 	 * Builder for {@link RemoveProcessor}.
 	 */
+
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<RemoveProcessor> {
@@ -120,11 +128,9 @@ public class RemoveProcessor extends ProcessorBase implements ProcessorVariant {
 		/**
 		 * Required - API name: {@code field}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>field</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>field</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>field</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder field(List<String> list) {
 			this.field = _listAddAll(this.field, list);

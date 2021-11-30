@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.RankFeatureFunctionSaturation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/specialized.ts#L147-L149">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RankFeatureFunctionSaturation extends RankFeatureFunction implements JsonpSerializable {
 	@Nullable
@@ -87,6 +94,7 @@ public class RankFeatureFunctionSaturation extends RankFeatureFunction implement
 	/**
 	 * Builder for {@link RankFeatureFunctionSaturation}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RankFeatureFunctionSaturation> {
 		@Nullable
 		private Float pivot;

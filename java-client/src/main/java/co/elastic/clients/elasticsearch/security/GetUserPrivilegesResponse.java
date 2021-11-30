@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_user_privileges.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/get_user_privileges/SecurityGetUserPrivilegesResponse.ts#L26-L34">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetUserPrivilegesResponse implements JsonpSerializable {
 	private final List<ApplicationPrivileges> applications;
@@ -56,11 +63,11 @@ public class GetUserPrivilegesResponse implements JsonpSerializable {
 
 	private GetUserPrivilegesResponse(Builder builder) {
 
-		this.applications = ModelTypeHelper.unmodifiableRequired(builder.applications, this, "applications");
-		this.cluster = ModelTypeHelper.unmodifiableRequired(builder.cluster, this, "cluster");
-		this.global = ModelTypeHelper.unmodifiableRequired(builder.global, this, "global");
-		this.indices = ModelTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
-		this.runAs = ModelTypeHelper.unmodifiableRequired(builder.runAs, this, "runAs");
+		this.applications = ApiTypeHelper.unmodifiableRequired(builder.applications, this, "applications");
+		this.cluster = ApiTypeHelper.unmodifiableRequired(builder.cluster, this, "cluster");
+		this.global = ApiTypeHelper.unmodifiableRequired(builder.global, this, "global");
+		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
+		this.runAs = ApiTypeHelper.unmodifiableRequired(builder.runAs, this, "runAs");
 
 	}
 
@@ -114,7 +121,7 @@ public class GetUserPrivilegesResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.applications)) {
+		if (ApiTypeHelper.isDefined(this.applications)) {
 			generator.writeKey("applications");
 			generator.writeStartArray();
 			for (ApplicationPrivileges item0 : this.applications) {
@@ -124,7 +131,7 @@ public class GetUserPrivilegesResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.cluster)) {
+		if (ApiTypeHelper.isDefined(this.cluster)) {
 			generator.writeKey("cluster");
 			generator.writeStartArray();
 			for (String item0 : this.cluster) {
@@ -134,7 +141,7 @@ public class GetUserPrivilegesResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.global)) {
+		if (ApiTypeHelper.isDefined(this.global)) {
 			generator.writeKey("global");
 			generator.writeStartArray();
 			for (GlobalPrivilege item0 : this.global) {
@@ -144,7 +151,7 @@ public class GetUserPrivilegesResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.indices)) {
+		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartArray();
 			for (IndicesPrivileges item0 : this.indices) {
@@ -154,7 +161,7 @@ public class GetUserPrivilegesResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.runAs)) {
+		if (ApiTypeHelper.isDefined(this.runAs)) {
 			generator.writeKey("run_as");
 			generator.writeStartArray();
 			for (String item0 : this.runAs) {
@@ -172,6 +179,7 @@ public class GetUserPrivilegesResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetUserPrivilegesResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetUserPrivilegesResponse> {
 		private List<ApplicationPrivileges> applications;
 
@@ -186,11 +194,9 @@ public class GetUserPrivilegesResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code applications}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>applications</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>applications</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>applications</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder applications(List<ApplicationPrivileges> list) {
 			this.applications = _listAddAll(this.applications, list);
@@ -220,11 +226,9 @@ public class GetUserPrivilegesResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code cluster}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>cluster</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>cluster</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>cluster</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder cluster(List<String> list) {
 			this.cluster = _listAddAll(this.cluster, list);
@@ -244,11 +248,9 @@ public class GetUserPrivilegesResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code global}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>global</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>global</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>global</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder global(List<GlobalPrivilege> list) {
 			this.global = _listAddAll(this.global, list);
@@ -277,11 +279,9 @@ public class GetUserPrivilegesResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code indices}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>indices</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>indices</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder indices(List<IndicesPrivileges> list) {
 			this.indices = _listAddAll(this.indices, list);
@@ -310,11 +310,9 @@ public class GetUserPrivilegesResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code run_as}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>runAs</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>runAs</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>runAs</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder runAs(List<String> list) {
 			this.runAs = _listAddAll(this.runAs, list);

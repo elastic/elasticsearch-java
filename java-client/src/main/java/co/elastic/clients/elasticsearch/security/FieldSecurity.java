@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security._types.FieldSecurity
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/_types/FieldSecurity.ts#L22-L25">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FieldSecurity implements JsonpSerializable {
 	private final List<String> except;
@@ -50,8 +57,8 @@ public class FieldSecurity implements JsonpSerializable {
 
 	private FieldSecurity(Builder builder) {
 
-		this.except = ModelTypeHelper.unmodifiable(builder.except);
-		this.grant = ModelTypeHelper.unmodifiableRequired(builder.grant, this, "grant");
+		this.except = ApiTypeHelper.unmodifiable(builder.except);
+		this.grant = ApiTypeHelper.unmodifiableRequired(builder.grant, this, "grant");
 
 	}
 
@@ -84,7 +91,7 @@ public class FieldSecurity implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.except)) {
+		if (ApiTypeHelper.isDefined(this.except)) {
 			generator.writeKey("except");
 			generator.writeStartArray();
 			for (String item0 : this.except) {
@@ -94,7 +101,7 @@ public class FieldSecurity implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.grant)) {
+		if (ApiTypeHelper.isDefined(this.grant)) {
 			generator.writeKey("grant");
 			generator.writeStartArray();
 			for (String item0 : this.grant) {
@@ -112,6 +119,7 @@ public class FieldSecurity implements JsonpSerializable {
 	/**
 	 * Builder for {@link FieldSecurity}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldSecurity> {
 		@Nullable
 		private List<String> except;
@@ -121,11 +129,9 @@ public class FieldSecurity implements JsonpSerializable {
 		/**
 		 * API name: {@code except}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>except</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>except</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>except</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder except(List<String> list) {
 			this.except = _listAddAll(this.except, list);
@@ -145,11 +151,9 @@ public class FieldSecurity implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code grant}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>grant</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>grant</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>grant</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder grant(List<String> list) {
 			this.grant = _listAddAll(this.grant, list);

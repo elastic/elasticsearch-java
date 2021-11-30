@@ -33,6 +33,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.aggregations.FilterAggregate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L473-L474">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FilterAggregate extends SingleBucketAggregateBase implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -59,6 +66,7 @@ public class FilterAggregate extends SingleBucketAggregateBase implements Aggreg
 	/**
 	 * Builder for {@link FilterAggregate}.
 	 */
+
 	public static class Builder extends SingleBucketAggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<FilterAggregate> {

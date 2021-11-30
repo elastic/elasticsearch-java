@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr.stats.AutoFollowedCluster
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ccr/stats/types.ts.ts#L27-L31">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AutoFollowedCluster implements JsonpSerializable {
 	private final String clusterName;
@@ -52,10 +59,10 @@ public class AutoFollowedCluster implements JsonpSerializable {
 
 	private AutoFollowedCluster(Builder builder) {
 
-		this.clusterName = ModelTypeHelper.requireNonNull(builder.clusterName, this, "clusterName");
-		this.lastSeenMetadataVersion = ModelTypeHelper.requireNonNull(builder.lastSeenMetadataVersion, this,
+		this.clusterName = ApiTypeHelper.requireNonNull(builder.clusterName, this, "clusterName");
+		this.lastSeenMetadataVersion = ApiTypeHelper.requireNonNull(builder.lastSeenMetadataVersion, this,
 				"lastSeenMetadataVersion");
-		this.timeSinceLastCheckMillis = ModelTypeHelper.requireNonNull(builder.timeSinceLastCheckMillis, this,
+		this.timeSinceLastCheckMillis = ApiTypeHelper.requireNonNull(builder.timeSinceLastCheckMillis, this,
 				"timeSinceLastCheckMillis");
 
 	}
@@ -112,6 +119,7 @@ public class AutoFollowedCluster implements JsonpSerializable {
 	/**
 	 * Builder for {@link AutoFollowedCluster}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AutoFollowedCluster> {
 		private String clusterName;
 

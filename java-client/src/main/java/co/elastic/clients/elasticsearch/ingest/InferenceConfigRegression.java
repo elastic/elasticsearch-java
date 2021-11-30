@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.InferenceConfigRegression
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ingest/_types/Processors.ts#L247-L249">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class InferenceConfigRegression implements JsonpSerializable {
 	private final String resultsField;
@@ -47,7 +54,7 @@ public class InferenceConfigRegression implements JsonpSerializable {
 
 	private InferenceConfigRegression(Builder builder) {
 
-		this.resultsField = ModelTypeHelper.requireNonNull(builder.resultsField, this, "resultsField");
+		this.resultsField = ApiTypeHelper.requireNonNull(builder.resultsField, this, "resultsField");
 
 	}
 
@@ -83,6 +90,7 @@ public class InferenceConfigRegression implements JsonpSerializable {
 	/**
 	 * Builder for {@link InferenceConfigRegression}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<InferenceConfigRegression> {
 		private String resultsField;
 

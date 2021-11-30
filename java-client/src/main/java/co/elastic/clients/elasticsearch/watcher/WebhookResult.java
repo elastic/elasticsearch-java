@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.WebhookResult
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/_types/Actions.ts#L198-L201">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class WebhookResult implements JsonpSerializable {
 	private final HttpInputRequestResult request;
@@ -49,7 +56,7 @@ public class WebhookResult implements JsonpSerializable {
 
 	private WebhookResult(Builder builder) {
 
-		this.request = ModelTypeHelper.requireNonNull(builder.request, this, "request");
+		this.request = ApiTypeHelper.requireNonNull(builder.request, this, "request");
 		this.response = builder.response;
 
 	}
@@ -100,6 +107,7 @@ public class WebhookResult implements JsonpSerializable {
 	/**
 	 * Builder for {@link WebhookResult}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WebhookResult> {
 		private HttpInputRequestResult request;
 

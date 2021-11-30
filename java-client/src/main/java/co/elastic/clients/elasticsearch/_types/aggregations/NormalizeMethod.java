@@ -27,6 +27,12 @@ import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/pipeline.ts#L193-L201">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public enum NormalizeMethod implements JsonEnum {
 	Rescale_0_1("rescale_0_1"),

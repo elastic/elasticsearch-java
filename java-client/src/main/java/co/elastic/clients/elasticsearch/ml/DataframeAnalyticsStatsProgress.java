@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsStatsProgress
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/_types/DataframeAnalytics.ts#L338-L343">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeAnalyticsStatsProgress implements JsonpSerializable {
 	private final String phase;
@@ -50,8 +57,8 @@ public class DataframeAnalyticsStatsProgress implements JsonpSerializable {
 
 	private DataframeAnalyticsStatsProgress(Builder builder) {
 
-		this.phase = ModelTypeHelper.requireNonNull(builder.phase, this, "phase");
-		this.progressPercent = ModelTypeHelper.requireNonNull(builder.progressPercent, this, "progressPercent");
+		this.phase = ApiTypeHelper.requireNonNull(builder.phase, this, "phase");
+		this.progressPercent = ApiTypeHelper.requireNonNull(builder.progressPercent, this, "progressPercent");
 
 	}
 
@@ -103,6 +110,7 @@ public class DataframeAnalyticsStatsProgress implements JsonpSerializable {
 	/**
 	 * Builder for {@link DataframeAnalyticsStatsProgress}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframeAnalyticsStatsProgress> {
 		private String phase;
 

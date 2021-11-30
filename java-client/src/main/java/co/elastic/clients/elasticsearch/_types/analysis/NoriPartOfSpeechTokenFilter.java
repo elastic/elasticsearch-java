@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.NoriPartOfSpeechTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/token_filters.ts#L271-L274">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NoriPartOfSpeechTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final List<String> stoptags;
@@ -47,7 +54,7 @@ public class NoriPartOfSpeechTokenFilter extends TokenFilterBase implements Toke
 	private NoriPartOfSpeechTokenFilter(Builder builder) {
 		super(builder);
 
-		this.stoptags = ModelTypeHelper.unmodifiableRequired(builder.stoptags, this, "stoptags");
+		this.stoptags = ApiTypeHelper.unmodifiableRequired(builder.stoptags, this, "stoptags");
 
 	}
 
@@ -74,7 +81,7 @@ public class NoriPartOfSpeechTokenFilter extends TokenFilterBase implements Toke
 
 		generator.write("type", "nori_part_of_speech");
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.stoptags)) {
+		if (ApiTypeHelper.isDefined(this.stoptags)) {
 			generator.writeKey("stoptags");
 			generator.writeStartArray();
 			for (String item0 : this.stoptags) {
@@ -92,6 +99,7 @@ public class NoriPartOfSpeechTokenFilter extends TokenFilterBase implements Toke
 	/**
 	 * Builder for {@link NoriPartOfSpeechTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<NoriPartOfSpeechTokenFilter> {
@@ -100,11 +108,9 @@ public class NoriPartOfSpeechTokenFilter extends TokenFilterBase implements Toke
 		/**
 		 * Required - API name: {@code stoptags}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>stoptags</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>stoptags</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>stoptags</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder stoptags(List<String> list) {
 			this.stoptags = _listAddAll(this.stoptags, list);

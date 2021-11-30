@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DelayedDataCheckConfig
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/_types/Datafeed.ts#L108-L117">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DelayedDataCheckConfig implements JsonpSerializable {
 	@Nullable
@@ -52,7 +59,7 @@ public class DelayedDataCheckConfig implements JsonpSerializable {
 	private DelayedDataCheckConfig(Builder builder) {
 
 		this.checkWindow = builder.checkWindow;
-		this.enabled = ModelTypeHelper.requireNonNull(builder.enabled, this, "enabled");
+		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
 
 	}
 
@@ -110,6 +117,7 @@ public class DelayedDataCheckConfig implements JsonpSerializable {
 	/**
 	 * Builder for {@link DelayedDataCheckConfig}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DelayedDataCheckConfig> {
 		@Nullable
 		private Time checkWindow;

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: slm._types.Policy
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/slm/_types/SnapshotLifecycle.ts#L70-L76">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SlmPolicy implements JsonpSerializable {
 	private final SlmConfiguration config;
@@ -55,11 +62,11 @@ public class SlmPolicy implements JsonpSerializable {
 
 	private SlmPolicy(Builder builder) {
 
-		this.config = ModelTypeHelper.requireNonNull(builder.config, this, "config");
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
-		this.repository = ModelTypeHelper.requireNonNull(builder.repository, this, "repository");
-		this.retention = ModelTypeHelper.requireNonNull(builder.retention, this, "retention");
-		this.schedule = ModelTypeHelper.requireNonNull(builder.schedule, this, "schedule");
+		this.config = ApiTypeHelper.requireNonNull(builder.config, this, "config");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.repository = ApiTypeHelper.requireNonNull(builder.repository, this, "repository");
+		this.retention = ApiTypeHelper.requireNonNull(builder.retention, this, "retention");
+		this.schedule = ApiTypeHelper.requireNonNull(builder.schedule, this, "schedule");
 
 	}
 
@@ -135,6 +142,7 @@ public class SlmPolicy implements JsonpSerializable {
 	/**
 	 * Builder for {@link SlmPolicy}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SlmPolicy> {
 		private SlmConfiguration config;
 

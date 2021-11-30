@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -46,6 +46,14 @@ import javax.annotation.Nullable;
 
 // typedef: searchable_snapshots.stats.Request
 
+/**
+ * Retrieve shard-level statistics about searchable snapshots.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/searchable_snapshots/stats/SearchableSnapshotsStatsRequest.ts#L24-L36">API
+ *      specification</a>
+ */
+
 public class SearchableSnapshotsStatsRequest extends RequestBase {
 	private final List<String> index;
 
@@ -56,7 +64,7 @@ public class SearchableSnapshotsStatsRequest extends RequestBase {
 
 	private SearchableSnapshotsStatsRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
+		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.level = builder.level;
 
 	}
@@ -90,6 +98,7 @@ public class SearchableSnapshotsStatsRequest extends RequestBase {
 	/**
 	 * Builder for {@link SearchableSnapshotsStatsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SearchableSnapshotsStatsRequest> {
 		@Nullable
 		private List<String> index;
@@ -102,11 +111,9 @@ public class SearchableSnapshotsStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>index</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>index</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder index(List<String> list) {
 			this.index = _listAddAll(this.index, list);
@@ -168,7 +175,7 @@ public class SearchableSnapshotsStatsRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (ModelTypeHelper.isDefined(request.index()))
+				if (ApiTypeHelper.isDefined(request.index()))
 					propsSet |= _index;
 
 				if (propsSet == 0) {

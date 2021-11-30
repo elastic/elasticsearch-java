@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: sql.query.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/sql/query/QuerySqlResponse.ts#L22-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class QueryResponse implements JsonpSerializable {
 	private final List<Column> columns;
@@ -55,9 +62,9 @@ public class QueryResponse implements JsonpSerializable {
 
 	private QueryResponse(Builder builder) {
 
-		this.columns = ModelTypeHelper.unmodifiable(builder.columns);
+		this.columns = ApiTypeHelper.unmodifiable(builder.columns);
 		this.cursor = builder.cursor;
-		this.rows = ModelTypeHelper.unmodifiableRequired(builder.rows, this, "rows");
+		this.rows = ApiTypeHelper.unmodifiableRequired(builder.rows, this, "rows");
 
 	}
 
@@ -98,7 +105,7 @@ public class QueryResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.columns)) {
+		if (ApiTypeHelper.isDefined(this.columns)) {
 			generator.writeKey("columns");
 			generator.writeStartArray();
 			for (Column item0 : this.columns) {
@@ -113,7 +120,7 @@ public class QueryResponse implements JsonpSerializable {
 			generator.write(this.cursor);
 
 		}
-		if (ModelTypeHelper.isDefined(this.rows)) {
+		if (ApiTypeHelper.isDefined(this.rows)) {
 			generator.writeKey("rows");
 			generator.writeStartArray();
 			for (List<JsonData> item0 : this.rows) {
@@ -138,6 +145,7 @@ public class QueryResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link QueryResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<QueryResponse> {
 		@Nullable
 		private List<Column> columns;
@@ -150,11 +158,9 @@ public class QueryResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code columns}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>columns</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>columns</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>columns</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder columns(List<Column> list) {
 			this.columns = _listAddAll(this.columns, list);
@@ -191,11 +197,9 @@ public class QueryResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code rows}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>rows</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>rows</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>rows</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder rows(List<List<JsonData>> list) {
 			this.rows = _listAddAll(this.rows, list);

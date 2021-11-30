@@ -37,6 +37,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.DataframeRegressionSummary
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/evaluate_data_frame/types.ts#L39-L44">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeRegressionSummary implements JsonpSerializable {
 	@Nullable
@@ -137,6 +144,7 @@ public class DataframeRegressionSummary implements JsonpSerializable {
 	/**
 	 * Builder for {@link DataframeRegressionSummary}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframeRegressionSummary> {
 		@Nullable
 		private DataframeEvaluationValue huber;

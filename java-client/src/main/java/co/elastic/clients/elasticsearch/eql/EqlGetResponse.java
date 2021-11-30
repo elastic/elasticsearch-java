@@ -35,6 +35,13 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 // typedef: eql.get.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/eql/get/EqlGetResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class EqlGetResponse<TEvent> extends EqlSearchResponseBase<TEvent> {
 	// ---------------------------------------------------------------------------------------------
@@ -54,6 +61,7 @@ public class EqlGetResponse<TEvent> extends EqlSearchResponseBase<TEvent> {
 	/**
 	 * Builder for {@link EqlGetResponse}.
 	 */
+
 	public static class Builder<TEvent> extends EqlSearchResponseBase.AbstractBuilder<TEvent, Builder<TEvent>>
 			implements
 				ObjectBuilder<EqlGetResponse<TEvent>> {
@@ -78,7 +86,7 @@ public class EqlGetResponse<TEvent> extends EqlSearchResponseBase<TEvent> {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for EqlGetResponse
+	 * Create a JSON deserializer for EqlGetResponse
 	 */
 	public static <TEvent> JsonpDeserializer<EqlGetResponse<TEvent>> createEqlGetResponseDeserializer(
 			JsonpDeserializer<TEvent> tEventDeserializer) {

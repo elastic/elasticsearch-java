@@ -33,7 +33,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -46,6 +46,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.reindex.Source
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/reindex/types.ts#L48-L58">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Source implements JsonpSerializable {
 	private final List<String> index;
@@ -72,14 +79,14 @@ public class Source implements JsonpSerializable {
 
 	private Source(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiableRequired(builder.index, this, "index");
+		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
 		this.query = builder.query;
 		this.remote = builder.remote;
 		this.size = builder.size;
 		this.slice = builder.slice;
-		this.sort = ModelTypeHelper.unmodifiable(builder.sort);
-		this.sourceFields = ModelTypeHelper.unmodifiable(builder.sourceFields);
-		this.runtimeMappings = ModelTypeHelper.unmodifiable(builder.runtimeMappings);
+		this.sort = ApiTypeHelper.unmodifiable(builder.sort);
+		this.sourceFields = ApiTypeHelper.unmodifiable(builder.sourceFields);
+		this.runtimeMappings = ApiTypeHelper.unmodifiable(builder.runtimeMappings);
 
 	}
 
@@ -158,7 +165,7 @@ public class Source implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.index)) {
+		if (ApiTypeHelper.isDefined(this.index)) {
 			generator.writeKey("index");
 			generator.writeStartArray();
 			for (String item0 : this.index) {
@@ -188,7 +195,7 @@ public class Source implements JsonpSerializable {
 			this.slice.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.sort)) {
+		if (ApiTypeHelper.isDefined(this.sort)) {
 			generator.writeKey("sort");
 			generator.writeStartArray();
 			for (SortOptions item0 : this.sort) {
@@ -198,7 +205,7 @@ public class Source implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.sourceFields)) {
+		if (ApiTypeHelper.isDefined(this.sourceFields)) {
 			generator.writeKey("_source");
 			generator.writeStartArray();
 			for (String item0 : this.sourceFields) {
@@ -208,7 +215,7 @@ public class Source implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.runtimeMappings)) {
+		if (ApiTypeHelper.isDefined(this.runtimeMappings)) {
 			generator.writeKey("runtime_mappings");
 			generator.writeStartObject();
 			for (Map.Entry<String, RuntimeField> item0 : this.runtimeMappings.entrySet()) {
@@ -227,6 +234,7 @@ public class Source implements JsonpSerializable {
 	/**
 	 * Builder for {@link Source}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Source> {
 		private List<String> index;
 
@@ -254,11 +262,9 @@ public class Source implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>index</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>index</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder index(List<String> list) {
 			this.index = _listAddAll(this.index, list);
@@ -331,11 +337,9 @@ public class Source implements JsonpSerializable {
 		/**
 		 * API name: {@code sort}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>sort</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>sort</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>sort</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder sort(List<SortOptions> list) {
 			this.sort = _listAddAll(this.sort, list);
@@ -364,11 +368,9 @@ public class Source implements JsonpSerializable {
 		/**
 		 * API name: {@code _source}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>sourceFields</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>sourceFields</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>sourceFields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder sourceFields(List<String> list) {
 			this.sourceFields = _listAddAll(this.sourceFields, list);
@@ -388,11 +390,9 @@ public class Source implements JsonpSerializable {
 		/**
 		 * API name: {@code runtime_mappings}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>runtimeMappings</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>runtimeMappings</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>runtimeMappings</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder runtimeMappings(Map<String, RuntimeField> map) {
 			this.runtimeMappings = _mapPutAll(this.runtimeMappings, map);

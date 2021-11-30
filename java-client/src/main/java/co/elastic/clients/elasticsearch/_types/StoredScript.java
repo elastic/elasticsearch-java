@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.StoredScript
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Scripting.ts#L37-L41">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class StoredScript implements JsonpSerializable {
 	private final String lang;
@@ -52,9 +59,9 @@ public class StoredScript implements JsonpSerializable {
 
 	private StoredScript(Builder builder) {
 
-		this.lang = ModelTypeHelper.requireNonNull(builder.lang, this, "lang");
-		this.options = ModelTypeHelper.unmodifiable(builder.options);
-		this.source = ModelTypeHelper.requireNonNull(builder.source, this, "source");
+		this.lang = ApiTypeHelper.requireNonNull(builder.lang, this, "lang");
+		this.options = ApiTypeHelper.unmodifiable(builder.options);
+		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
 
 	}
 
@@ -97,7 +104,7 @@ public class StoredScript implements JsonpSerializable {
 		generator.writeKey("lang");
 		generator.write(this.lang);
 
-		if (ModelTypeHelper.isDefined(this.options)) {
+		if (ApiTypeHelper.isDefined(this.options)) {
 			generator.writeKey("options");
 			generator.writeStartObject();
 			for (Map.Entry<String, String> item0 : this.options.entrySet()) {
@@ -118,6 +125,7 @@ public class StoredScript implements JsonpSerializable {
 	/**
 	 * Builder for {@link StoredScript}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StoredScript> {
 		private String lang;
 
@@ -137,11 +145,9 @@ public class StoredScript implements JsonpSerializable {
 		/**
 		 * API name: {@code options}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>options</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>options</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>options</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder options(Map<String, String> map) {
 			this.options = _mapPutAll(this.options, map);

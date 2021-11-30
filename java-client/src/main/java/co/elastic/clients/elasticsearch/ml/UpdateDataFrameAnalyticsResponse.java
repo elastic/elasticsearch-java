@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.update_data_frame_analytics.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/update_data_frame_analytics/MlUpdateDataFrameAnalyticsResponse.ts#L29-L43">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class UpdateDataFrameAnalyticsResponse implements JsonpSerializable {
 	private final String id;
@@ -72,16 +79,16 @@ public class UpdateDataFrameAnalyticsResponse implements JsonpSerializable {
 
 	private UpdateDataFrameAnalyticsResponse(Builder builder) {
 
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
-		this.createTime = ModelTypeHelper.requireNonNull(builder.createTime, this, "createTime");
-		this.version = ModelTypeHelper.requireNonNull(builder.version, this, "version");
-		this.source = ModelTypeHelper.requireNonNull(builder.source, this, "source");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.createTime = ApiTypeHelper.requireNonNull(builder.createTime, this, "createTime");
+		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
+		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
 		this.description = builder.description;
-		this.dest = ModelTypeHelper.requireNonNull(builder.dest, this, "dest");
-		this.modelMemoryLimit = ModelTypeHelper.requireNonNull(builder.modelMemoryLimit, this, "modelMemoryLimit");
-		this.allowLazyStart = ModelTypeHelper.requireNonNull(builder.allowLazyStart, this, "allowLazyStart");
-		this.maxNumThreads = ModelTypeHelper.requireNonNull(builder.maxNumThreads, this, "maxNumThreads");
-		this.analysis = ModelTypeHelper.requireNonNull(builder.analysis, this, "analysis");
+		this.dest = ApiTypeHelper.requireNonNull(builder.dest, this, "dest");
+		this.modelMemoryLimit = ApiTypeHelper.requireNonNull(builder.modelMemoryLimit, this, "modelMemoryLimit");
+		this.allowLazyStart = ApiTypeHelper.requireNonNull(builder.allowLazyStart, this, "allowLazyStart");
+		this.maxNumThreads = ApiTypeHelper.requireNonNull(builder.maxNumThreads, this, "maxNumThreads");
+		this.analysis = ApiTypeHelper.requireNonNull(builder.analysis, this, "analysis");
 		this.analyzedFields = builder.analyzedFields;
 
 	}
@@ -226,6 +233,7 @@ public class UpdateDataFrameAnalyticsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link UpdateDataFrameAnalyticsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UpdateDataFrameAnalyticsResponse> {
 		private String id;
 

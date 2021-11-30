@@ -45,6 +45,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_calendars.Request
+
+/**
+ * Retrieves configuration information for calendars.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/get_calendars/MlGetCalendarsRequest.ts#L25-L51">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetCalendarsRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -143,6 +151,7 @@ public class GetCalendarsRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Builder for {@link GetCalendarsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetCalendarsRequest> {
 		@Nullable
 		private String calendarId;

@@ -27,7 +27,7 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
@@ -108,8 +108,8 @@ public class FieldValue implements TaggedUnion<FieldValue.Kind, Object>, JsonpSe
 	}
 
 	private FieldValue(Kind kind, Object value) {
-		this._kind = ModelTypeHelper.requireNonNull(kind, this, "<variant kind>");
-		this._value = kind == Kind.Null ? null : ModelTypeHelper.requireNonNull(value, this, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(kind, this, "<variant kind>");
+		this._value = kind == Kind.Null ? null : ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 	}
 
 	public static FieldValue of(Consumer<Builder> fn) {

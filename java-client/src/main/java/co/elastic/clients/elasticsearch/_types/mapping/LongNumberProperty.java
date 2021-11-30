@@ -36,6 +36,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.LongNumberProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/core.ts#L177-L180">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class LongNumberProperty extends StandardNumberProperty implements PropertyVariant {
 	@Nullable
@@ -87,6 +94,7 @@ public class LongNumberProperty extends StandardNumberProperty implements Proper
 	/**
 	 * Builder for {@link LongNumberProperty}.
 	 */
+
 	public static class Builder extends StandardNumberProperty.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<LongNumberProperty> {

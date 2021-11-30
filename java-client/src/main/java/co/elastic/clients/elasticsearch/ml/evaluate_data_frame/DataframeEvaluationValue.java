@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -37,6 +37,13 @@ import java.lang.Double;
 import java.util.Objects;
 
 // typedef: ml.evaluate_data_frame.DataframeEvaluationValue
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/evaluate_data_frame/types.ts#L46-L48">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeEvaluationValue implements JsonpSerializable {
 	private final double value;
@@ -45,7 +52,7 @@ public class DataframeEvaluationValue implements JsonpSerializable {
 
 	protected DataframeEvaluationValue(AbstractBuilder<?> builder) {
 
-		this.value = ModelTypeHelper.requireNonNull(builder.value, this, "value");
+		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
 
 	}
 
@@ -77,6 +84,7 @@ public class DataframeEvaluationValue implements JsonpSerializable {
 	/**
 	 * Builder for {@link DataframeEvaluationValue}.
 	 */
+
 	public static class Builder extends DataframeEvaluationValue.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DataframeEvaluationValue> {

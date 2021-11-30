@@ -38,6 +38,14 @@ import java.util.Objects;
 
 // typedef: cat.help.Request
 
+/**
+ * Returns help for the Cat APIs.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/help/CatHelpRequest.ts#L22-L27">API
+ *      specification</a>
+ */
+
 public class HelpRequest extends CatRequestBase {
 	public HelpRequest() {
 	}

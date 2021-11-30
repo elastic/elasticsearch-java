@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ExtendedStatsAggregate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L264-L280">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ExtendedStatsAggregate extends StatsAggregate implements AggregateVariant {
 	private final double sumOfSquares;
@@ -76,12 +83,11 @@ public class ExtendedStatsAggregate extends StatsAggregate implements AggregateV
 	protected ExtendedStatsAggregate(AbstractBuilder<?> builder) {
 		super(builder);
 
-		this.sumOfSquares = ModelTypeHelper.requireNonNull(builder.sumOfSquares, this, "sumOfSquares");
-		this.variance = ModelTypeHelper.requireNonNull(builder.variance, this, "variance");
-		this.variancePopulation = ModelTypeHelper.requireNonNull(builder.variancePopulation, this,
-				"variancePopulation");
-		this.varianceSampling = ModelTypeHelper.requireNonNull(builder.varianceSampling, this, "varianceSampling");
-		this.stdDeviation = ModelTypeHelper.requireNonNull(builder.stdDeviation, this, "stdDeviation");
+		this.sumOfSquares = ApiTypeHelper.requireNonNull(builder.sumOfSquares, this, "sumOfSquares");
+		this.variance = ApiTypeHelper.requireNonNull(builder.variance, this, "variance");
+		this.variancePopulation = ApiTypeHelper.requireNonNull(builder.variancePopulation, this, "variancePopulation");
+		this.varianceSampling = ApiTypeHelper.requireNonNull(builder.varianceSampling, this, "varianceSampling");
+		this.stdDeviation = ApiTypeHelper.requireNonNull(builder.stdDeviation, this, "stdDeviation");
 		this.stdDeviationBounds = builder.stdDeviationBounds;
 		this.sumOfSquaresAsString = builder.sumOfSquaresAsString;
 		this.varianceAsString = builder.varianceAsString;
@@ -252,6 +258,7 @@ public class ExtendedStatsAggregate extends StatsAggregate implements AggregateV
 	/**
 	 * Builder for {@link ExtendedStatsAggregate}.
 	 */
+
 	public static class Builder extends ExtendedStatsAggregate.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ExtendedStatsAggregate> {

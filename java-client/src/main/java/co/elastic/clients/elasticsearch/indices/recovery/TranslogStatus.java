@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.recovery.TranslogStatus
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/recovery/types.ts#L95-L102">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TranslogStatus implements JsonpSerializable {
 	private final String percent;
@@ -59,12 +66,12 @@ public class TranslogStatus implements JsonpSerializable {
 
 	private TranslogStatus(Builder builder) {
 
-		this.percent = ModelTypeHelper.requireNonNull(builder.percent, this, "percent");
-		this.recovered = ModelTypeHelper.requireNonNull(builder.recovered, this, "recovered");
-		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
-		this.totalOnStart = ModelTypeHelper.requireNonNull(builder.totalOnStart, this, "totalOnStart");
+		this.percent = ApiTypeHelper.requireNonNull(builder.percent, this, "percent");
+		this.recovered = ApiTypeHelper.requireNonNull(builder.recovered, this, "recovered");
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+		this.totalOnStart = ApiTypeHelper.requireNonNull(builder.totalOnStart, this, "totalOnStart");
 		this.totalTime = builder.totalTime;
-		this.totalTimeInMillis = ModelTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
+		this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
 
 	}
 
@@ -153,6 +160,7 @@ public class TranslogStatus implements JsonpSerializable {
 	/**
 	 * Builder for {@link TranslogStatus}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TranslogStatus> {
 		private String percent;
 

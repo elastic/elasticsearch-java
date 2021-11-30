@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.Objects;
 
 // typedef: _types.AcknowledgedResponseBase
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Base.ts#L49-L52">API
+ *      specification</a>
+ */
+
 public abstract class AcknowledgedResponseBase implements JsonpSerializable {
 	private final boolean acknowledged;
 
@@ -45,7 +52,7 @@ public abstract class AcknowledgedResponseBase implements JsonpSerializable {
 
 	protected AcknowledgedResponseBase(AbstractBuilder<?> builder) {
 
-		this.acknowledged = ModelTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged");
+		this.acknowledged = ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged");
 
 	}
 

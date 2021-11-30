@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.ProcessorBase
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ingest/_types/Processors.ts#L68-L73">API
+ *      specification</a>
+ */
 
 public abstract class ProcessorBase implements JsonpSerializable {
 	@Nullable
@@ -60,7 +67,7 @@ public abstract class ProcessorBase implements JsonpSerializable {
 
 		this.if_ = builder.if_;
 		this.ignoreFailure = builder.ignoreFailure;
-		this.onFailure = ModelTypeHelper.unmodifiable(builder.onFailure);
+		this.onFailure = ApiTypeHelper.unmodifiable(builder.onFailure);
 		this.tag = builder.tag;
 
 	}
@@ -117,7 +124,7 @@ public abstract class ProcessorBase implements JsonpSerializable {
 			generator.write(this.ignoreFailure);
 
 		}
-		if (ModelTypeHelper.isDefined(this.onFailure)) {
+		if (ApiTypeHelper.isDefined(this.onFailure)) {
 			generator.writeKey("on_failure");
 			generator.writeStartArray();
 			for (Processor item0 : this.onFailure) {
@@ -169,11 +176,9 @@ public abstract class ProcessorBase implements JsonpSerializable {
 		/**
 		 * API name: {@code on_failure}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>onFailure</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>onFailure</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>onFailure</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final BuilderT onFailure(List<Processor> list) {
 			this.onFailure = _listAddAll(this.onFailure, list);

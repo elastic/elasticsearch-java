@@ -38,6 +38,15 @@ import java.util.Objects;
 
 // typedef: ssl.certificates.Request
 
+/**
+ * Retrieves information about the X.509 certificates used to encrypt
+ * communications in the cluster.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ssl/certificates/GetCertificatesRequest.ts#L22-L27">API
+ *      specification</a>
+ */
+
 public class CertificatesRequest extends RequestBase {
 	public CertificatesRequest() {
 	}

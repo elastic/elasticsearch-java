@@ -38,6 +38,13 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.StandardNumberProperty
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/core.ts#L151-L155">API
+ *      specification</a>
+ */
+
 public abstract class StandardNumberProperty extends NumberPropertyBase {
 	@Nullable
 	private final Boolean coerce;

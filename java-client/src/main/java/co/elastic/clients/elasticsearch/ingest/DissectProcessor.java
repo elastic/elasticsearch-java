@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.DissectProcessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ingest/_types/Processors.ts#L186-L191">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DissectProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String appendSeparator;
@@ -53,10 +60,10 @@ public class DissectProcessor extends ProcessorBase implements ProcessorVariant 
 	private DissectProcessor(Builder builder) {
 		super(builder);
 
-		this.appendSeparator = ModelTypeHelper.requireNonNull(builder.appendSeparator, this, "appendSeparator");
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
-		this.ignoreMissing = ModelTypeHelper.requireNonNull(builder.ignoreMissing, this, "ignoreMissing");
-		this.pattern = ModelTypeHelper.requireNonNull(builder.pattern, this, "pattern");
+		this.appendSeparator = ApiTypeHelper.requireNonNull(builder.appendSeparator, this, "appendSeparator");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.ignoreMissing = ApiTypeHelper.requireNonNull(builder.ignoreMissing, this, "ignoreMissing");
+		this.pattern = ApiTypeHelper.requireNonNull(builder.pattern, this, "pattern");
 
 	}
 
@@ -122,6 +129,7 @@ public class DissectProcessor extends ProcessorBase implements ProcessorVariant 
 	/**
 	 * Builder for {@link DissectProcessor}.
 	 */
+
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DissectProcessor> {

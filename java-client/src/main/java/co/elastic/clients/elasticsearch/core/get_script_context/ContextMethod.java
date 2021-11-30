@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.get_script_context.ContextMethod
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/get_script_context/types.ts#L27-L31">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ContextMethod implements JsonpSerializable {
 	private final String name;
@@ -52,9 +59,9 @@ public class ContextMethod implements JsonpSerializable {
 
 	private ContextMethod(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
-		this.returnType = ModelTypeHelper.requireNonNull(builder.returnType, this, "returnType");
-		this.params = ModelTypeHelper.unmodifiableRequired(builder.params, this, "params");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.returnType = ApiTypeHelper.requireNonNull(builder.returnType, this, "returnType");
+		this.params = ApiTypeHelper.unmodifiableRequired(builder.params, this, "params");
 
 	}
 
@@ -100,7 +107,7 @@ public class ContextMethod implements JsonpSerializable {
 		generator.writeKey("return_type");
 		generator.write(this.returnType);
 
-		if (ModelTypeHelper.isDefined(this.params)) {
+		if (ApiTypeHelper.isDefined(this.params)) {
 			generator.writeKey("params");
 			generator.writeStartArray();
 			for (ContextMethodParam item0 : this.params) {
@@ -118,6 +125,7 @@ public class ContextMethod implements JsonpSerializable {
 	/**
 	 * Builder for {@link ContextMethod}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ContextMethod> {
 		private String name;
 
@@ -144,11 +152,9 @@ public class ContextMethod implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code params}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>params</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>params</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>params</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder params(List<ContextMethodParam> list) {
 			this.params = _listAddAll(this.params, list);

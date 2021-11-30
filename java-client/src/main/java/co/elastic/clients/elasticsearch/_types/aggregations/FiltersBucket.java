@@ -33,6 +33,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.aggregations.FiltersBucket
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L536-L536">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FiltersBucket extends MultiBucketBase {
 	// ---------------------------------------------------------------------------------------------
@@ -51,6 +58,7 @@ public class FiltersBucket extends MultiBucketBase {
 	/**
 	 * Builder for {@link FiltersBucket}.
 	 */
+
 	public static class Builder extends MultiBucketBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<FiltersBucket> {

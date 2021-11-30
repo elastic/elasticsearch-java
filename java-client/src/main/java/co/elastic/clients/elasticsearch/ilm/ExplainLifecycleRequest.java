@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -44,6 +44,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm.explain_lifecycle.Request
+
+/**
+ * Retrieves information about the index's current lifecycle state, such as the
+ * currently executing phase, action, and step.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ilm/explain_lifecycle/ExplainLifecycleRequest.ts#L23-L36">API
+ *      specification</a>
+ */
 
 public class ExplainLifecycleRequest extends RequestBase {
 	private final String index;
@@ -58,7 +67,7 @@ public class ExplainLifecycleRequest extends RequestBase {
 
 	private ExplainLifecycleRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.onlyErrors = builder.onlyErrors;
 		this.onlyManaged = builder.onlyManaged;
 
@@ -103,6 +112,7 @@ public class ExplainLifecycleRequest extends RequestBase {
 	/**
 	 * Builder for {@link ExplainLifecycleRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExplainLifecycleRequest> {
 		private String index;
 

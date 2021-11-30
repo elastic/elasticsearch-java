@@ -27,6 +27,12 @@ import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/_types/Input.ts#L102-L106">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public enum InputType implements JsonEnum {
 	Http("http"),

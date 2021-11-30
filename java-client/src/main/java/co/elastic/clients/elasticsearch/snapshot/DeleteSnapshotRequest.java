@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -44,6 +44,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.delete.Request
+
+/**
+ * Deletes a snapshot.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/snapshot/delete/SnapshotDeleteRequest.ts#L24-L37">API
+ *      specification</a>
+ */
 
 public class DeleteSnapshotRequest extends RequestBase {
 	@Nullable
@@ -58,8 +66,8 @@ public class DeleteSnapshotRequest extends RequestBase {
 	private DeleteSnapshotRequest(Builder builder) {
 
 		this.masterTimeout = builder.masterTimeout;
-		this.repository = ModelTypeHelper.requireNonNull(builder.repository, this, "repository");
-		this.snapshot = ModelTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
+		this.repository = ApiTypeHelper.requireNonNull(builder.repository, this, "repository");
+		this.snapshot = ApiTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
 
 	}
 
@@ -100,6 +108,7 @@ public class DeleteSnapshotRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteSnapshotRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteSnapshotRequest> {
 		@Nullable
 		private Time masterTimeout;

@@ -33,7 +33,7 @@ import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -45,6 +45,13 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: _global.explain.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/explain/ExplainResponse.ts#L23-L32">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ExplainResponse<TDocument> implements JsonpSerializable {
 	private final String index;
@@ -69,10 +76,10 @@ public class ExplainResponse<TDocument> implements JsonpSerializable {
 
 	private ExplainResponse(Builder<TDocument> builder) {
 
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.type = builder.type;
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
-		this.matched = ModelTypeHelper.requireNonNull(builder.matched, this, "matched");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.matched = ApiTypeHelper.requireNonNull(builder.matched, this, "matched");
 		this.explanation = builder.explanation;
 		this.get = builder.get;
 		this.tDocumentSerializer = builder.tDocumentSerializer;
@@ -172,6 +179,7 @@ public class ExplainResponse<TDocument> implements JsonpSerializable {
 	/**
 	 * Builder for {@link ExplainResponse}.
 	 */
+
 	public static class Builder<TDocument> extends ObjectBuilderBase
 			implements
 				ObjectBuilder<ExplainResponse<TDocument>> {
@@ -282,7 +290,7 @@ public class ExplainResponse<TDocument> implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for ExplainResponse
+	 * Create a JSON deserializer for ExplainResponse
 	 */
 	public static <TDocument> JsonpDeserializer<ExplainResponse<TDocument>> createExplainResponseDeserializer(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {

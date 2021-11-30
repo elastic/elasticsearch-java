@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.delete_calendar_job.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/delete_calendar_job/MlDeleteCalendarJobResponse.ts#L22-L31">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DeleteCalendarJobResponse implements JsonpSerializable {
 	private final String calendarId;
@@ -53,9 +60,9 @@ public class DeleteCalendarJobResponse implements JsonpSerializable {
 
 	private DeleteCalendarJobResponse(Builder builder) {
 
-		this.calendarId = ModelTypeHelper.requireNonNull(builder.calendarId, this, "calendarId");
+		this.calendarId = ApiTypeHelper.requireNonNull(builder.calendarId, this, "calendarId");
 		this.description = builder.description;
-		this.jobIds = ModelTypeHelper.unmodifiableRequired(builder.jobIds, this, "jobIds");
+		this.jobIds = ApiTypeHelper.unmodifiableRequired(builder.jobIds, this, "jobIds");
 
 	}
 
@@ -110,7 +117,7 @@ public class DeleteCalendarJobResponse implements JsonpSerializable {
 			generator.write(this.description);
 
 		}
-		if (ModelTypeHelper.isDefined(this.jobIds)) {
+		if (ApiTypeHelper.isDefined(this.jobIds)) {
 			generator.writeKey("job_ids");
 			generator.writeStartArray();
 			for (String item0 : this.jobIds) {
@@ -128,6 +135,7 @@ public class DeleteCalendarJobResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link DeleteCalendarJobResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteCalendarJobResponse> {
 		private String calendarId;
 
@@ -161,11 +169,9 @@ public class DeleteCalendarJobResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code job_ids}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>jobIds</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>jobIds</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>jobIds</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder jobIds(List<String> list) {
 			this.jobIds = _listAddAll(this.jobIds, list);

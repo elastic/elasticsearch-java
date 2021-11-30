@@ -43,6 +43,14 @@ import javax.annotation.Nullable;
 
 // typedef: license.get.Request
 
+/**
+ * Retrieves licensing information for the cluster
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/license/get/GetLicenseRequest.ts#L22-L32">API
+ *      specification</a>
+ */
+
 public class GetLicenseRequest extends RequestBase {
 	@Nullable
 	private final Boolean acceptEnterprise;
@@ -90,6 +98,7 @@ public class GetLicenseRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetLicenseRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetLicenseRequest> {
 		@Nullable
 		private Boolean acceptEnterprise;

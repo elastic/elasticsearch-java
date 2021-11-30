@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DatafeedStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/_types/Datafeed.ts#L127-L133">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DatafeedStats implements JsonpSerializable {
 	private final String assignmentExplanation;
@@ -55,12 +62,12 @@ public class DatafeedStats implements JsonpSerializable {
 
 	private DatafeedStats(Builder builder) {
 
-		this.assignmentExplanation = ModelTypeHelper.requireNonNull(builder.assignmentExplanation, this,
+		this.assignmentExplanation = ApiTypeHelper.requireNonNull(builder.assignmentExplanation, this,
 				"assignmentExplanation");
-		this.datafeedId = ModelTypeHelper.requireNonNull(builder.datafeedId, this, "datafeedId");
-		this.node = ModelTypeHelper.requireNonNull(builder.node, this, "node");
-		this.state = ModelTypeHelper.requireNonNull(builder.state, this, "state");
-		this.timingStats = ModelTypeHelper.requireNonNull(builder.timingStats, this, "timingStats");
+		this.datafeedId = ApiTypeHelper.requireNonNull(builder.datafeedId, this, "datafeedId");
+		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
+		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
+		this.timingStats = ApiTypeHelper.requireNonNull(builder.timingStats, this, "timingStats");
 
 	}
 
@@ -135,6 +142,7 @@ public class DatafeedStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link DatafeedStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DatafeedStats> {
 		private String assignmentExplanation;
 

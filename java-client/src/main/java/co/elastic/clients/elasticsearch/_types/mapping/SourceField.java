@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.SourceField
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/meta-fields.ts#L58-L64">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SourceField implements JsonpSerializable {
 	@Nullable
@@ -63,8 +70,8 @@ public class SourceField implements JsonpSerializable {
 		this.compress = builder.compress;
 		this.compressThreshold = builder.compressThreshold;
 		this.enabled = builder.enabled;
-		this.excludes = ModelTypeHelper.unmodifiable(builder.excludes);
-		this.includes = ModelTypeHelper.unmodifiable(builder.includes);
+		this.excludes = ApiTypeHelper.unmodifiable(builder.excludes);
+		this.includes = ApiTypeHelper.unmodifiable(builder.includes);
 
 	}
 
@@ -136,7 +143,7 @@ public class SourceField implements JsonpSerializable {
 			generator.write(this.enabled);
 
 		}
-		if (ModelTypeHelper.isDefined(this.excludes)) {
+		if (ApiTypeHelper.isDefined(this.excludes)) {
 			generator.writeKey("excludes");
 			generator.writeStartArray();
 			for (String item0 : this.excludes) {
@@ -146,7 +153,7 @@ public class SourceField implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.includes)) {
+		if (ApiTypeHelper.isDefined(this.includes)) {
 			generator.writeKey("includes");
 			generator.writeStartArray();
 			for (String item0 : this.includes) {
@@ -164,6 +171,7 @@ public class SourceField implements JsonpSerializable {
 	/**
 	 * Builder for {@link SourceField}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SourceField> {
 		@Nullable
 		private Boolean compress;
@@ -207,11 +215,9 @@ public class SourceField implements JsonpSerializable {
 		/**
 		 * API name: {@code excludes}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>excludes</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>excludes</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>excludes</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder excludes(List<String> list) {
 			this.excludes = _listAddAll(this.excludes, list);
@@ -231,11 +237,9 @@ public class SourceField implements JsonpSerializable {
 		/**
 		 * API name: {@code includes}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>includes</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>includes</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>includes</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder includes(List<String> list) {
 			this.includes = _listAddAll(this.includes, list);

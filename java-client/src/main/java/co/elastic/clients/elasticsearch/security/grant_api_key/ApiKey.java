@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,6 +43,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.grant_api_key.ApiKey
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/grant_api_key/types.ts#L25-L29">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ApiKey implements JsonpSerializable {
 	private final String name;
@@ -56,9 +63,9 @@ public class ApiKey implements JsonpSerializable {
 
 	private ApiKey(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.expiration = builder.expiration;
-		this.roleDescriptors = ModelTypeHelper.unmodifiable(builder.roleDescriptors);
+		this.roleDescriptors = ApiTypeHelper.unmodifiable(builder.roleDescriptors);
 
 	}
 
@@ -107,7 +114,7 @@ public class ApiKey implements JsonpSerializable {
 			this.expiration.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.roleDescriptors)) {
+		if (ApiTypeHelper.isDefined(this.roleDescriptors)) {
 			generator.writeKey("role_descriptors");
 			generator.writeStartArray();
 			for (Map<String, JsonData> item0 : this.roleDescriptors) {
@@ -133,6 +140,7 @@ public class ApiKey implements JsonpSerializable {
 	/**
 	 * Builder for {@link ApiKey}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ApiKey> {
 		private String name;
 
@@ -168,11 +176,9 @@ public class ApiKey implements JsonpSerializable {
 		/**
 		 * API name: {@code role_descriptors}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>roleDescriptors</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>roleDescriptors</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>roleDescriptors</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder roleDescriptors(List<Map<String, JsonData>> list) {
 			this.roleDescriptors = _listAddAll(this.roleDescriptors, list);

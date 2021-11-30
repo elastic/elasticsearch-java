@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.NodeBufferPool
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/_types/Stats.ts#L153-L159">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeBufferPool implements JsonpSerializable {
 	private final long count;
@@ -56,12 +63,12 @@ public class NodeBufferPool implements JsonpSerializable {
 
 	private NodeBufferPool(Builder builder) {
 
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
-		this.totalCapacity = ModelTypeHelper.requireNonNull(builder.totalCapacity, this, "totalCapacity");
-		this.totalCapacityInBytes = ModelTypeHelper.requireNonNull(builder.totalCapacityInBytes, this,
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.totalCapacity = ApiTypeHelper.requireNonNull(builder.totalCapacity, this, "totalCapacity");
+		this.totalCapacityInBytes = ApiTypeHelper.requireNonNull(builder.totalCapacityInBytes, this,
 				"totalCapacityInBytes");
-		this.used = ModelTypeHelper.requireNonNull(builder.used, this, "used");
-		this.usedInBytes = ModelTypeHelper.requireNonNull(builder.usedInBytes, this, "usedInBytes");
+		this.used = ApiTypeHelper.requireNonNull(builder.used, this, "used");
+		this.usedInBytes = ApiTypeHelper.requireNonNull(builder.usedInBytes, this, "usedInBytes");
 
 	}
 
@@ -137,6 +144,7 @@ public class NodeBufferPool implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeBufferPool}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeBufferPool> {
 		private Long count;
 

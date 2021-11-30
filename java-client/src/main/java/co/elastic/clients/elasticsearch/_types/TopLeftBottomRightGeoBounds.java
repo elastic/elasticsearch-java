@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.TopLeftBottomRightGeoBounds
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Geo.ts#L142-L145">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TopLeftBottomRightGeoBounds implements JsonpSerializable {
 	private final GeoLocation topLeft;
@@ -48,8 +55,8 @@ public class TopLeftBottomRightGeoBounds implements JsonpSerializable {
 
 	private TopLeftBottomRightGeoBounds(Builder builder) {
 
-		this.topLeft = ModelTypeHelper.requireNonNull(builder.topLeft, this, "topLeft");
-		this.bottomRight = ModelTypeHelper.requireNonNull(builder.bottomRight, this, "bottomRight");
+		this.topLeft = ApiTypeHelper.requireNonNull(builder.topLeft, this, "topLeft");
+		this.bottomRight = ApiTypeHelper.requireNonNull(builder.bottomRight, this, "bottomRight");
 
 	}
 
@@ -95,6 +102,7 @@ public class TopLeftBottomRightGeoBounds implements JsonpSerializable {
 	/**
 	 * Builder for {@link TopLeftBottomRightGeoBounds}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TopLeftBottomRightGeoBounds> {
 		private GeoLocation topLeft;
 

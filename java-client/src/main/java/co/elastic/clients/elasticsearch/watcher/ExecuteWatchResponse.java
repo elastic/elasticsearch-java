@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.execute_watch.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/execute_watch/WatcherExecuteWatchResponse.ts#L23-L25">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ExecuteWatchResponse implements JsonpSerializable {
 	private final String id;
@@ -50,8 +57,8 @@ public class ExecuteWatchResponse implements JsonpSerializable {
 
 	private ExecuteWatchResponse(Builder builder) {
 
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
-		this.watchRecord = ModelTypeHelper.requireNonNull(builder.watchRecord, this, "watchRecord");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.watchRecord = ApiTypeHelper.requireNonNull(builder.watchRecord, this, "watchRecord");
 
 	}
 
@@ -97,6 +104,7 @@ public class ExecuteWatchResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link ExecuteWatchResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExecuteWatchResponse> {
 		private String id;
 

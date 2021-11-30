@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,6 +43,16 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.ErrorCause
+
+/**
+ * Cause and details about a request failure. This class defines the properties
+ * common to all error types. Additional details are also provided, that depend
+ * on the error type.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Errors.ts#L25-L48">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ErrorCause implements JsonpSerializable {
 	private final Map<String, JsonData> metadata;
@@ -65,14 +75,14 @@ public class ErrorCause implements JsonpSerializable {
 
 	private ErrorCause(Builder builder) {
 
-		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
+		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
 
-		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
-		this.reason = ModelTypeHelper.requireNonNull(builder.reason, this, "reason");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
 		this.stackTrace = builder.stackTrace;
 		this.causedBy = builder.causedBy;
-		this.rootCause = ModelTypeHelper.unmodifiable(builder.rootCause);
-		this.suppressed = ModelTypeHelper.unmodifiable(builder.suppressed);
+		this.rootCause = ApiTypeHelper.unmodifiable(builder.rootCause);
+		this.suppressed = ApiTypeHelper.unmodifiable(builder.suppressed);
 
 	}
 
@@ -171,7 +181,7 @@ public class ErrorCause implements JsonpSerializable {
 			this.causedBy.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.rootCause)) {
+		if (ApiTypeHelper.isDefined(this.rootCause)) {
 			generator.writeKey("root_cause");
 			generator.writeStartArray();
 			for (ErrorCause item0 : this.rootCause) {
@@ -181,7 +191,7 @@ public class ErrorCause implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.suppressed)) {
+		if (ApiTypeHelper.isDefined(this.suppressed)) {
 			generator.writeKey("suppressed");
 			generator.writeStartArray();
 			for (ErrorCause item0 : this.suppressed) {
@@ -199,6 +209,7 @@ public class ErrorCause implements JsonpSerializable {
 	/**
 	 * Builder for {@link ErrorCause}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ErrorCause> {
 		@Nullable
 		private Map<String, JsonData> metadata = new HashMap<>();
@@ -206,11 +217,9 @@ public class ErrorCause implements JsonpSerializable {
 		/**
 		 * Additional details about the error
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>metadata</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>metadata</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>metadata</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder metadata(Map<String, JsonData> map) {
 			this.metadata = _mapPutAll(this.metadata, map);
@@ -292,11 +301,9 @@ public class ErrorCause implements JsonpSerializable {
 		/**
 		 * API name: {@code root_cause}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>rootCause</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>rootCause</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>rootCause</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder rootCause(List<ErrorCause> list) {
 			this.rootCause = _listAddAll(this.rootCause, list);
@@ -325,11 +332,9 @@ public class ErrorCause implements JsonpSerializable {
 		/**
 		 * API name: {@code suppressed}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>suppressed</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>suppressed</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>suppressed</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder suppressed(List<ErrorCause> list) {
 			this.suppressed = _listAddAll(this.suppressed, list);

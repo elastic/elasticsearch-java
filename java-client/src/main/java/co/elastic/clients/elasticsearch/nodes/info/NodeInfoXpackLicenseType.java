@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoXpackLicenseType
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/info/types.ts#L262-L264">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeInfoXpackLicenseType implements JsonpSerializable {
 	private final String type;
@@ -47,7 +54,7 @@ public class NodeInfoXpackLicenseType implements JsonpSerializable {
 
 	private NodeInfoXpackLicenseType(Builder builder) {
 
-		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 
@@ -83,6 +90,7 @@ public class NodeInfoXpackLicenseType implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoXpackLicenseType}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoXpackLicenseType> {
 		private String type;
 

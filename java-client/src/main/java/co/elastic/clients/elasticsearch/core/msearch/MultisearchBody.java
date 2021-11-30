@@ -34,7 +34,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -46,6 +46,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.msearch.MultisearchBody
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/msearch/types.ts#L50-L59">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MultisearchBody implements JsonpSerializable {
 	private final Map<String, Aggregation> aggregations;
@@ -72,7 +79,7 @@ public class MultisearchBody implements JsonpSerializable {
 
 	private MultisearchBody(Builder builder) {
 
-		this.aggregations = ModelTypeHelper.unmodifiable(builder.aggregations);
+		this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);
 		this.query = builder.query;
 		this.from = builder.from;
 		this.size = builder.size;
@@ -152,7 +159,7 @@ public class MultisearchBody implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.aggregations)) {
+		if (ApiTypeHelper.isDefined(this.aggregations)) {
 			generator.writeKey("aggregations");
 			generator.writeStartObject();
 			for (Map.Entry<String, Aggregation> item0 : this.aggregations.entrySet()) {
@@ -201,6 +208,7 @@ public class MultisearchBody implements JsonpSerializable {
 	/**
 	 * Builder for {@link MultisearchBody}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MultisearchBody> {
 		@Nullable
 		private Map<String, Aggregation> aggregations;
@@ -226,11 +234,9 @@ public class MultisearchBody implements JsonpSerializable {
 		/**
 		 * API name: {@code aggregations}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>aggregations</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>aggregations</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>aggregations</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder aggregations(Map<String, Aggregation> map) {
 			this.aggregations = _mapPutAll(this.aggregations, map);

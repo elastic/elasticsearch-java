@@ -37,6 +37,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Slm
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/xpack/usage/types.ts#L410-L413">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Slm extends Base {
 	@Nullable
@@ -96,6 +103,7 @@ public class Slm extends Base {
 	/**
 	 * Builder for {@link Slm}.
 	 */
+
 	public static class Builder extends Base.AbstractBuilder<Builder> implements ObjectBuilder<Slm> {
 		@Nullable
 		private Integer policyCount;

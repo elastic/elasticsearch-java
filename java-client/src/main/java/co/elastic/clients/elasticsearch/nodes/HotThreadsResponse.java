@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.hot_threads.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/hot_threads/NodesHotThreadsResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class HotThreadsResponse implements JsonpSerializable {
 	private final List<HotThread> hotThreads;
@@ -48,7 +55,7 @@ public class HotThreadsResponse implements JsonpSerializable {
 
 	private HotThreadsResponse(Builder builder) {
 
-		this.hotThreads = ModelTypeHelper.unmodifiableRequired(builder.hotThreads, this, "hotThreads");
+		this.hotThreads = ApiTypeHelper.unmodifiableRequired(builder.hotThreads, this, "hotThreads");
 
 	}
 
@@ -74,7 +81,7 @@ public class HotThreadsResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.hotThreads)) {
+		if (ApiTypeHelper.isDefined(this.hotThreads)) {
 			generator.writeKey("hot_threads");
 			generator.writeStartArray();
 			for (HotThread item0 : this.hotThreads) {
@@ -92,17 +99,16 @@ public class HotThreadsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link HotThreadsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HotThreadsResponse> {
 		private List<HotThread> hotThreads;
 
 		/**
 		 * Required - API name: {@code hot_threads}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>hotThreads</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>hotThreads</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>hotThreads</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder hotThreads(List<HotThread> list) {
 			this.hotThreads = _listAddAll(this.hotThreads, list);

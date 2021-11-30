@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.HdrMethod
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/metric.ts#L110-L112">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class HdrMethod implements JsonpSerializable {
 	@Nullable
@@ -87,6 +94,7 @@ public class HdrMethod implements JsonpSerializable {
 	/**
 	 * Builder for {@link HdrMethod}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HdrMethod> {
 		@Nullable
 		private Integer numberOfSignificantValueDigits;

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.TrainedModelConfigMetadata
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/_types/TrainedModel.ts#L92-L100">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TrainedModelConfigMetadata implements JsonpSerializable {
 	private final List<String> modelAliases;
@@ -55,10 +62,10 @@ public class TrainedModelConfigMetadata implements JsonpSerializable {
 
 	private TrainedModelConfigMetadata(Builder builder) {
 
-		this.modelAliases = ModelTypeHelper.unmodifiable(builder.modelAliases);
-		this.featureImportanceBaseline = ModelTypeHelper.unmodifiable(builder.featureImportanceBaseline);
-		this.hyperparameters = ModelTypeHelper.unmodifiable(builder.hyperparameters);
-		this.totalFeatureImportance = ModelTypeHelper.unmodifiable(builder.totalFeatureImportance);
+		this.modelAliases = ApiTypeHelper.unmodifiable(builder.modelAliases);
+		this.featureImportanceBaseline = ApiTypeHelper.unmodifiable(builder.featureImportanceBaseline);
+		this.hyperparameters = ApiTypeHelper.unmodifiable(builder.hyperparameters);
+		this.totalFeatureImportance = ApiTypeHelper.unmodifiable(builder.totalFeatureImportance);
 
 	}
 
@@ -117,7 +124,7 @@ public class TrainedModelConfigMetadata implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.modelAliases)) {
+		if (ApiTypeHelper.isDefined(this.modelAliases)) {
 			generator.writeKey("model_aliases");
 			generator.writeStartArray();
 			for (String item0 : this.modelAliases) {
@@ -127,7 +134,7 @@ public class TrainedModelConfigMetadata implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.featureImportanceBaseline)) {
+		if (ApiTypeHelper.isDefined(this.featureImportanceBaseline)) {
 			generator.writeKey("feature_importance_baseline");
 			generator.writeStartObject();
 			for (Map.Entry<String, String> item0 : this.featureImportanceBaseline.entrySet()) {
@@ -138,7 +145,7 @@ public class TrainedModelConfigMetadata implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.hyperparameters)) {
+		if (ApiTypeHelper.isDefined(this.hyperparameters)) {
 			generator.writeKey("hyperparameters");
 			generator.writeStartArray();
 			for (Hyperparameter item0 : this.hyperparameters) {
@@ -148,7 +155,7 @@ public class TrainedModelConfigMetadata implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.totalFeatureImportance)) {
+		if (ApiTypeHelper.isDefined(this.totalFeatureImportance)) {
 			generator.writeKey("total_feature_importance");
 			generator.writeStartArray();
 			for (TotalFeatureImportance item0 : this.totalFeatureImportance) {
@@ -166,6 +173,7 @@ public class TrainedModelConfigMetadata implements JsonpSerializable {
 	/**
 	 * Builder for {@link TrainedModelConfigMetadata}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TrainedModelConfigMetadata> {
 		@Nullable
 		private List<String> modelAliases;
@@ -182,11 +190,9 @@ public class TrainedModelConfigMetadata implements JsonpSerializable {
 		/**
 		 * API name: {@code model_aliases}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>modelAliases</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>modelAliases</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>modelAliases</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder modelAliases(List<String> list) {
 			this.modelAliases = _listAddAll(this.modelAliases, list);
@@ -211,11 +217,9 @@ public class TrainedModelConfigMetadata implements JsonpSerializable {
 		 * API name: {@code feature_importance_baseline}
 		 * <p>
 		 * Adds all entries of <code>map</code> to
-		 * <code>featureImportanceBaseline</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>featureImportanceBaseline</code> to <code>null</code>.
+		 * <code>featureImportanceBaseline</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder featureImportanceBaseline(Map<String, String> map) {
 			this.featureImportanceBaseline = _mapPutAll(this.featureImportanceBaseline, map);
@@ -242,11 +246,9 @@ public class TrainedModelConfigMetadata implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code hyperparameters}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>hyperparameters</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>hyperparameters</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>hyperparameters</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder hyperparameters(List<Hyperparameter> list) {
 			this.hyperparameters = _listAddAll(this.hyperparameters, list);
@@ -287,11 +289,9 @@ public class TrainedModelConfigMetadata implements JsonpSerializable {
 		 * API name: {@code total_feature_importance}
 		 * <p>
 		 * Adds all elements of <code>list</code> to
-		 * <code>totalFeatureImportance</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>totalFeatureImportance</code> to <code>null</code>.
+		 * <code>totalFeatureImportance</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder totalFeatureImportance(List<TotalFeatureImportance> list) {
 			this.totalFeatureImportance = _listAddAll(this.totalFeatureImportance, list);

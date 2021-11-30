@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.CoordsGeoBounds
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Geo.ts#L135-L140">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CoordsGeoBounds implements JsonpSerializable {
 	private final double top;
@@ -52,10 +59,10 @@ public class CoordsGeoBounds implements JsonpSerializable {
 
 	private CoordsGeoBounds(Builder builder) {
 
-		this.top = ModelTypeHelper.requireNonNull(builder.top, this, "top");
-		this.bottom = ModelTypeHelper.requireNonNull(builder.bottom, this, "bottom");
-		this.left = ModelTypeHelper.requireNonNull(builder.left, this, "left");
-		this.right = ModelTypeHelper.requireNonNull(builder.right, this, "right");
+		this.top = ApiTypeHelper.requireNonNull(builder.top, this, "top");
+		this.bottom = ApiTypeHelper.requireNonNull(builder.bottom, this, "bottom");
+		this.left = ApiTypeHelper.requireNonNull(builder.left, this, "left");
+		this.right = ApiTypeHelper.requireNonNull(builder.right, this, "right");
 
 	}
 
@@ -121,6 +128,7 @@ public class CoordsGeoBounds implements JsonpSerializable {
 	/**
 	 * Builder for {@link CoordsGeoBounds}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CoordsGeoBounds> {
 		private Double top;
 

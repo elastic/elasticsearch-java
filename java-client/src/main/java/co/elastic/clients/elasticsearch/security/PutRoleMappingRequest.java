@@ -35,7 +35,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -49,6 +49,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.put_role_mapping.Request
+
+/**
+ * Creates and updates role mappings.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/put_role_mapping/SecurityPutRoleMappingRequest.ts#L24-L43">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutRoleMappingRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -73,12 +81,12 @@ public class PutRoleMappingRequest extends RequestBase implements JsonpSerializa
 	private PutRoleMappingRequest(Builder builder) {
 
 		this.enabled = builder.enabled;
-		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.refresh = builder.refresh;
-		this.roles = ModelTypeHelper.unmodifiable(builder.roles);
+		this.roles = ApiTypeHelper.unmodifiable(builder.roles);
 		this.rules = builder.rules;
-		this.runAs = ModelTypeHelper.unmodifiable(builder.runAs);
+		this.runAs = ApiTypeHelper.unmodifiable(builder.runAs);
 
 	}
 
@@ -161,7 +169,7 @@ public class PutRoleMappingRequest extends RequestBase implements JsonpSerializa
 			generator.write(this.enabled);
 
 		}
-		if (ModelTypeHelper.isDefined(this.metadata)) {
+		if (ApiTypeHelper.isDefined(this.metadata)) {
 			generator.writeKey("metadata");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
@@ -172,7 +180,7 @@ public class PutRoleMappingRequest extends RequestBase implements JsonpSerializa
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.roles)) {
+		if (ApiTypeHelper.isDefined(this.roles)) {
 			generator.writeKey("roles");
 			generator.writeStartArray();
 			for (String item0 : this.roles) {
@@ -187,7 +195,7 @@ public class PutRoleMappingRequest extends RequestBase implements JsonpSerializa
 			this.rules.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.runAs)) {
+		if (ApiTypeHelper.isDefined(this.runAs)) {
 			generator.writeKey("run_as");
 			generator.writeStartArray();
 			for (String item0 : this.runAs) {
@@ -205,6 +213,7 @@ public class PutRoleMappingRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Builder for {@link PutRoleMappingRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutRoleMappingRequest> {
 		@Nullable
 		private Boolean enabled;
@@ -237,11 +246,9 @@ public class PutRoleMappingRequest extends RequestBase implements JsonpSerializa
 		/**
 		 * API name: {@code metadata}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>metadata</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>metadata</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>metadata</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder metadata(Map<String, JsonData> map) {
 			this.metadata = _mapPutAll(this.metadata, map);
@@ -284,11 +291,9 @@ public class PutRoleMappingRequest extends RequestBase implements JsonpSerializa
 		/**
 		 * API name: {@code roles}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>roles</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>roles</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>roles</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder roles(List<String> list) {
 			this.roles = _listAddAll(this.roles, list);
@@ -323,11 +328,9 @@ public class PutRoleMappingRequest extends RequestBase implements JsonpSerializa
 		/**
 		 * API name: {@code run_as}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>runAs</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>runAs</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>runAs</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder runAs(List<String> list) {
 			this.runAs = _listAddAll(this.runAs, list);

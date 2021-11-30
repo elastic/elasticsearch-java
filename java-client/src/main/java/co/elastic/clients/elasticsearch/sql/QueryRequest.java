@@ -48,6 +48,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: sql.query.Request
+
+/**
+ * Executes a SQL request
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/sql/query/QuerySqlRequest.ts#L25-L76">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class QueryRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -264,6 +272,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link QueryRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<QueryRequest> {
 		@Nullable
 		private Boolean columnar;

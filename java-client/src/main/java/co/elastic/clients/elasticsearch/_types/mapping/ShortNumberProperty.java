@@ -36,6 +36,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.ShortNumberProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/core.ts#L182-L185">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ShortNumberProperty extends StandardNumberProperty implements PropertyVariant {
 	@Nullable
@@ -87,6 +94,7 @@ public class ShortNumberProperty extends StandardNumberProperty implements Prope
 	/**
 	 * Builder for {@link ShortNumberProperty}.
 	 */
+
 	public static class Builder extends StandardNumberProperty.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ShortNumberProperty> {

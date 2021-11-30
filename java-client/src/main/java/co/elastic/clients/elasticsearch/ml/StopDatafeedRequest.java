@@ -34,7 +34,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -47,6 +47,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.stop_datafeed.Request
+
+/**
+ * Stops one or more datafeeds.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/stop_datafeed/MlStopDatafeedRequest.ts#L24-L49">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class StopDatafeedRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -69,7 +77,7 @@ public class StopDatafeedRequest extends RequestBase implements JsonpSerializabl
 
 		this.allowNoDatafeeds = builder.allowNoDatafeeds;
 		this.allowNoMatch = builder.allowNoMatch;
-		this.datafeedId = ModelTypeHelper.requireNonNull(builder.datafeedId, this, "datafeedId");
+		this.datafeedId = ApiTypeHelper.requireNonNull(builder.datafeedId, this, "datafeedId");
 		this.force = builder.force;
 		this.timeout = builder.timeout;
 
@@ -84,7 +92,10 @@ public class StopDatafeedRequest extends RequestBase implements JsonpSerializabl
 	 * includes <code>_all</code> string or when no datafeeds have been specified)
 	 * <p>
 	 * API name: {@code allow_no_datafeeds}
+	 * 
+	 * @deprecated 7.10.0 Use <code>allow_no_match</code> instead.
 	 */
+	@Deprecated
 	@Nullable
 	public final Boolean allowNoDatafeeds() {
 		return this.allowNoDatafeeds;
@@ -155,6 +166,7 @@ public class StopDatafeedRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Builder for {@link StopDatafeedRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StopDatafeedRequest> {
 		@Nullable
 		private Boolean allowNoDatafeeds;
@@ -175,7 +187,10 @@ public class StopDatafeedRequest extends RequestBase implements JsonpSerializabl
 		 * includes <code>_all</code> string or when no datafeeds have been specified)
 		 * <p>
 		 * API name: {@code allow_no_datafeeds}
+		 * 
+		 * @deprecated 7.10.0 Use <code>allow_no_match</code> instead.
 		 */
+		@Deprecated
 		public final Builder allowNoDatafeeds(@Nullable Boolean value) {
 			this.allowNoDatafeeds = value;
 			return this;

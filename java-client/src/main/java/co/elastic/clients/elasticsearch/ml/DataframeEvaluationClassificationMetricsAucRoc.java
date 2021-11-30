@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationClassificationMetricsAucRoc
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/_types/DataframeEvaluation.ts#L85-L90">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeEvaluationClassificationMetricsAucRoc implements JsonpSerializable {
 	@Nullable
@@ -114,6 +121,7 @@ public class DataframeEvaluationClassificationMetricsAucRoc implements JsonpSeri
 	/**
 	 * Builder for {@link DataframeEvaluationClassificationMetricsAucRoc}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase
 			implements
 				ObjectBuilder<DataframeEvaluationClassificationMetricsAucRoc> {

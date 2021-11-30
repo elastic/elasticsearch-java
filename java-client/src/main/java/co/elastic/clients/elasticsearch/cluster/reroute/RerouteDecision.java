@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.RerouteDecision
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/reroute/types.ts#L88-L92">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RerouteDecision implements JsonpSerializable {
 	private final String decider;
@@ -51,9 +58,9 @@ public class RerouteDecision implements JsonpSerializable {
 
 	private RerouteDecision(Builder builder) {
 
-		this.decider = ModelTypeHelper.requireNonNull(builder.decider, this, "decider");
-		this.decision = ModelTypeHelper.requireNonNull(builder.decision, this, "decision");
-		this.explanation = ModelTypeHelper.requireNonNull(builder.explanation, this, "explanation");
+		this.decider = ApiTypeHelper.requireNonNull(builder.decider, this, "decider");
+		this.decision = ApiTypeHelper.requireNonNull(builder.decision, this, "decision");
+		this.explanation = ApiTypeHelper.requireNonNull(builder.explanation, this, "explanation");
 
 	}
 
@@ -109,6 +116,7 @@ public class RerouteDecision implements JsonpSerializable {
 	/**
 	 * Builder for {@link RerouteDecision}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RerouteDecision> {
 		private String decider;
 

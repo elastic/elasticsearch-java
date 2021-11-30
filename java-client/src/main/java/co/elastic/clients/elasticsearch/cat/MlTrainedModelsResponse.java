@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.ml_trained_models.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/ml_trained_models/CatTrainedModelsResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MlTrainedModelsResponse implements JsonpSerializable {
 	private final List<TrainedModelsRecord> valueBody;
@@ -48,7 +55,7 @@ public class MlTrainedModelsResponse implements JsonpSerializable {
 
 	private MlTrainedModelsResponse(Builder builder) {
 
-		this.valueBody = ModelTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
+		this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
 
 	}
 
@@ -83,6 +90,7 @@ public class MlTrainedModelsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link MlTrainedModelsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MlTrainedModelsResponse> {
 		private List<TrainedModelsRecord> valueBody;
 
@@ -91,11 +99,9 @@ public class MlTrainedModelsResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>valueBody</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>valueBody</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>valueBody</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder valueBody(List<TrainedModelsRecord> list) {
 			this.valueBody = _listAddAll(this.valueBody, list);

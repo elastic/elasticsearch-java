@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,6 +43,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.validate_query.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/validate_query/IndicesValidateQueryResponse.ts#L23-L30">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ValidateQueryResponse implements JsonpSerializable {
 	private final List<IndicesValidationExplanation> explanations;
@@ -59,9 +66,9 @@ public class ValidateQueryResponse implements JsonpSerializable {
 
 	private ValidateQueryResponse(Builder builder) {
 
-		this.explanations = ModelTypeHelper.unmodifiable(builder.explanations);
+		this.explanations = ApiTypeHelper.unmodifiable(builder.explanations);
 		this.shards = builder.shards;
-		this.valid = ModelTypeHelper.requireNonNull(builder.valid, this, "valid");
+		this.valid = ApiTypeHelper.requireNonNull(builder.valid, this, "valid");
 		this.error = builder.error;
 
 	}
@@ -111,7 +118,7 @@ public class ValidateQueryResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.explanations)) {
+		if (ApiTypeHelper.isDefined(this.explanations)) {
 			generator.writeKey("explanations");
 			generator.writeStartArray();
 			for (IndicesValidationExplanation item0 : this.explanations) {
@@ -142,6 +149,7 @@ public class ValidateQueryResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link ValidateQueryResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ValidateQueryResponse> {
 		@Nullable
 		private List<IndicesValidationExplanation> explanations;
@@ -157,11 +165,9 @@ public class ValidateQueryResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code explanations}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>explanations</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>explanations</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>explanations</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder explanations(List<IndicesValidationExplanation> list) {
 			this.explanations = _listAddAll(this.explanations, list);

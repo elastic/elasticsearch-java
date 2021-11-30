@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -38,6 +38,13 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.CorePropertyBase
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/core.ts#L53-L57">API
+ *      specification</a>
+ */
 
 public abstract class CorePropertyBase extends PropertyBase {
 	private final List<String> copyTo;
@@ -53,7 +60,7 @@ public abstract class CorePropertyBase extends PropertyBase {
 	protected CorePropertyBase(AbstractBuilder<?> builder) {
 		super(builder);
 
-		this.copyTo = ModelTypeHelper.unmodifiable(builder.copyTo);
+		this.copyTo = ApiTypeHelper.unmodifiable(builder.copyTo);
 		this.similarity = builder.similarity;
 		this.store = builder.store;
 
@@ -85,7 +92,7 @@ public abstract class CorePropertyBase extends PropertyBase {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.copyTo)) {
+		if (ApiTypeHelper.isDefined(this.copyTo)) {
 			generator.writeKey("copy_to");
 			generator.writeStartArray();
 			for (String item0 : this.copyTo) {
@@ -123,11 +130,9 @@ public abstract class CorePropertyBase extends PropertyBase {
 		/**
 		 * API name: {@code copy_to}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>copyTo</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>copyTo</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>copyTo</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final BuilderT copyTo(List<String> list) {
 			this.copyTo = _listAddAll(this.copyTo, list);

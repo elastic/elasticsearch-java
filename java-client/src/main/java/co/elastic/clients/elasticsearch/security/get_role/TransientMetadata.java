@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: security.get_role.TransientMetadata
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/get_role/types.ts#L37-L39">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TransientMetadata implements JsonpSerializable {
 	private final boolean enabled;
@@ -46,7 +53,7 @@ public class TransientMetadata implements JsonpSerializable {
 
 	private TransientMetadata(Builder builder) {
 
-		this.enabled = ModelTypeHelper.requireNonNull(builder.enabled, this, "enabled");
+		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
 
 	}
 
@@ -82,6 +89,7 @@ public class TransientMetadata implements JsonpSerializable {
 	/**
 	 * Builder for {@link TransientMetadata}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TransientMetadata> {
 		private Boolean enabled;
 

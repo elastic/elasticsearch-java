@@ -42,6 +42,15 @@ import javax.annotation.Nullable;
 
 // typedef: ilm.get_lifecycle.Request
 
+/**
+ * Returns the specified policy definition. Includes the policy version and last
+ * modified date.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ilm/get_lifecycle/GetLifecycleRequest.ts#L23-L33">API
+ *      specification</a>
+ */
+
 public class GetLifecycleRequest extends RequestBase {
 	@Nullable
 	private final String name;
@@ -73,6 +82,7 @@ public class GetLifecycleRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetLifecycleRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetLifecycleRequest> {
 		@Nullable
 		private String name;

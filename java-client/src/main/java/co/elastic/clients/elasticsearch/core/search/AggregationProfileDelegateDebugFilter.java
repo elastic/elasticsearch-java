@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.AggregationProfileDelegateDebugFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search/_types/profile.ts#L70-L74">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AggregationProfileDelegateDebugFilter implements JsonpSerializable {
 	@Nullable
@@ -123,6 +130,7 @@ public class AggregationProfileDelegateDebugFilter implements JsonpSerializable 
 	/**
 	 * Builder for {@link AggregationProfileDelegateDebugFilter}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase
 			implements
 				ObjectBuilder<AggregationProfileDelegateDebugFilter> {

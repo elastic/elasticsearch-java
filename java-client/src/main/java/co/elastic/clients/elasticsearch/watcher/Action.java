@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.Action
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/_types/Action.ts#L29-L42">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Action implements JsonpSerializable {
 	@Nullable
@@ -259,6 +266,7 @@ public class Action implements JsonpSerializable {
 	/**
 	 * Builder for {@link Action}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Action> {
 		@Nullable
 		private ActionType actionType;

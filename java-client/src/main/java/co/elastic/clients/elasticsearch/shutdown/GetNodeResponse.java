@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: shutdown.get_node.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/shutdown/get_node/ShutdownGetNodeResponse.ts#L23-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetNodeResponse implements JsonpSerializable {
 	private final List<NodeShutdownStatus> nodes;
@@ -48,7 +55,7 @@ public class GetNodeResponse implements JsonpSerializable {
 
 	private GetNodeResponse(Builder builder) {
 
-		this.nodes = ModelTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
+		this.nodes = ApiTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
 
 	}
 
@@ -74,7 +81,7 @@ public class GetNodeResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.nodes)) {
+		if (ApiTypeHelper.isDefined(this.nodes)) {
 			generator.writeKey("nodes");
 			generator.writeStartArray();
 			for (NodeShutdownStatus item0 : this.nodes) {
@@ -92,17 +99,16 @@ public class GetNodeResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetNodeResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetNodeResponse> {
 		private List<NodeShutdownStatus> nodes;
 
 		/**
 		 * Required - API name: {@code nodes}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>nodes</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>nodes</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>nodes</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder nodes(List<NodeShutdownStatus> list) {
 			this.nodes = _listAddAll(this.nodes, list);

@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.stats.WatcherNodeStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/stats/types.ts#L33-L40">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class WatcherNodeStats implements JsonpSerializable {
 	private final List<WatchRecordStats> currentWatches;
@@ -60,13 +67,13 @@ public class WatcherNodeStats implements JsonpSerializable {
 
 	private WatcherNodeStats(Builder builder) {
 
-		this.currentWatches = ModelTypeHelper.unmodifiable(builder.currentWatches);
-		this.executionThreadPool = ModelTypeHelper.requireNonNull(builder.executionThreadPool, this,
+		this.currentWatches = ApiTypeHelper.unmodifiable(builder.currentWatches);
+		this.executionThreadPool = ApiTypeHelper.requireNonNull(builder.executionThreadPool, this,
 				"executionThreadPool");
-		this.queuedWatches = ModelTypeHelper.unmodifiable(builder.queuedWatches);
-		this.watchCount = ModelTypeHelper.requireNonNull(builder.watchCount, this, "watchCount");
-		this.watcherState = ModelTypeHelper.requireNonNull(builder.watcherState, this, "watcherState");
-		this.nodeId = ModelTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
+		this.queuedWatches = ApiTypeHelper.unmodifiable(builder.queuedWatches);
+		this.watchCount = ApiTypeHelper.requireNonNull(builder.watchCount, this, "watchCount");
+		this.watcherState = ApiTypeHelper.requireNonNull(builder.watcherState, this, "watcherState");
+		this.nodeId = ApiTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
 
 	}
 
@@ -127,7 +134,7 @@ public class WatcherNodeStats implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.currentWatches)) {
+		if (ApiTypeHelper.isDefined(this.currentWatches)) {
 			generator.writeKey("current_watches");
 			generator.writeStartArray();
 			for (WatchRecordStats item0 : this.currentWatches) {
@@ -140,7 +147,7 @@ public class WatcherNodeStats implements JsonpSerializable {
 		generator.writeKey("execution_thread_pool");
 		this.executionThreadPool.serialize(generator, mapper);
 
-		if (ModelTypeHelper.isDefined(this.queuedWatches)) {
+		if (ApiTypeHelper.isDefined(this.queuedWatches)) {
 			generator.writeKey("queued_watches");
 			generator.writeStartArray();
 			for (WatchRecordQueuedStats item0 : this.queuedWatches) {
@@ -165,6 +172,7 @@ public class WatcherNodeStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link WatcherNodeStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WatcherNodeStats> {
 		@Nullable
 		private List<WatchRecordStats> currentWatches;
@@ -183,11 +191,9 @@ public class WatcherNodeStats implements JsonpSerializable {
 		/**
 		 * API name: {@code current_watches}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>currentWatches</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>currentWatches</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>currentWatches</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder currentWatches(List<WatchRecordStats> list) {
 			this.currentWatches = _listAddAll(this.currentWatches, list);
@@ -232,11 +238,9 @@ public class WatcherNodeStats implements JsonpSerializable {
 		/**
 		 * API name: {@code queued_watches}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>queuedWatches</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>queuedWatches</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>queuedWatches</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder queuedWatches(List<WatchRecordQueuedStats> list) {
 			this.queuedWatches = _listAddAll(this.queuedWatches, list);

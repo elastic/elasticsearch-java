@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.NdJsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Arrays;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.bulk.IndexOperation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/bulk/types.ts#L76-L76">API
+ *      specification</a>
+ */
 
 public class IndexOperation<TDocument> extends WriteOperation implements NdJsonpSerializable, BulkOperationVariant {
 	private final TDocument document;
@@ -50,7 +57,7 @@ public class IndexOperation<TDocument> extends WriteOperation implements NdJsonp
 
 	private IndexOperation(Builder<TDocument> builder) {
 		super(builder);
-		this.document = ModelTypeHelper.requireNonNull(builder.document, this, "document");
+		this.document = ApiTypeHelper.requireNonNull(builder.document, this, "document");
 
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
@@ -86,6 +93,7 @@ public class IndexOperation<TDocument> extends WriteOperation implements NdJsonp
 	/**
 	 * Builder for {@link IndexOperation}.
 	 */
+
 	public static class Builder<TDocument> extends WriteOperation.AbstractBuilder<Builder<TDocument>>
 			implements
 				ObjectBuilder<IndexOperation<TDocument>> {

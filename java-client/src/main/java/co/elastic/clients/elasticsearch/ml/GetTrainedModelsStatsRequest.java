@@ -45,6 +45,16 @@ import javax.annotation.Nullable;
 
 // typedef: ml.get_trained_models_stats.Request
 
+/**
+ * Retrieves usage information for trained models. You can get usage information
+ * for multiple trained models in a single API request by using a
+ * comma-separated list of model IDs or a wildcard expression.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/get_trained_models_stats/MlGetTrainedModelStatsRequest.ts#L24-L65">API
+ *      specification</a>
+ */
+
 public class GetTrainedModelsStatsRequest extends RequestBase {
 	@Nullable
 	private final Boolean allowNoMatch;
@@ -126,6 +136,7 @@ public class GetTrainedModelsStatsRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetTrainedModelsStatsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetTrainedModelsStatsRequest> {
 		@Nullable
 		private Boolean allowNoMatch;

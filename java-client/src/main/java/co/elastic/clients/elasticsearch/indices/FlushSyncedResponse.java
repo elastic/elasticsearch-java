@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.endpoints.DictionaryResponse;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.flush_synced.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/flush_synced/IndicesFlushSyncedResponse.ts#L24-L31">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FlushSyncedResponse extends DictionaryResponse<String, ShardStatistics> {
 	private final ShardStatistics shards;
@@ -48,7 +55,7 @@ public class FlushSyncedResponse extends DictionaryResponse<String, ShardStatist
 	private FlushSyncedResponse(Builder builder) {
 		super(builder);
 
-		this.shards = ModelTypeHelper.requireNonNull(builder.shards, this, "shards");
+		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
 
 	}
 
@@ -76,6 +83,7 @@ public class FlushSyncedResponse extends DictionaryResponse<String, ShardStatist
 	/**
 	 * Builder for {@link FlushSyncedResponse}.
 	 */
+
 	public static class Builder extends DictionaryResponse.AbstractBuilder<String, ShardStatistics, Builder>
 			implements
 				ObjectBuilder<FlushSyncedResponse> {

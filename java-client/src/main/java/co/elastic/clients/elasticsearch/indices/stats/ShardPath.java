@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.stats.ShardPath
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/stats/types.ts#L116-L120">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ShardPath implements JsonpSerializable {
 	private final String dataPath;
@@ -52,9 +59,9 @@ public class ShardPath implements JsonpSerializable {
 
 	private ShardPath(Builder builder) {
 
-		this.dataPath = ModelTypeHelper.requireNonNull(builder.dataPath, this, "dataPath");
-		this.isCustomDataPath = ModelTypeHelper.requireNonNull(builder.isCustomDataPath, this, "isCustomDataPath");
-		this.statePath = ModelTypeHelper.requireNonNull(builder.statePath, this, "statePath");
+		this.dataPath = ApiTypeHelper.requireNonNull(builder.dataPath, this, "dataPath");
+		this.isCustomDataPath = ApiTypeHelper.requireNonNull(builder.isCustomDataPath, this, "isCustomDataPath");
+		this.statePath = ApiTypeHelper.requireNonNull(builder.statePath, this, "statePath");
 
 	}
 
@@ -110,6 +117,7 @@ public class ShardPath implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardPath}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardPath> {
 		private String dataPath;
 

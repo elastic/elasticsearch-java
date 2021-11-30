@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.WatcherWatch
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/xpack/usage/types.ts#L361-L366">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class WatcherWatch implements JsonpSerializable {
 	private final Map<String, Counter> input;
@@ -54,10 +61,10 @@ public class WatcherWatch implements JsonpSerializable {
 
 	private WatcherWatch(Builder builder) {
 
-		this.input = ModelTypeHelper.unmodifiableRequired(builder.input, this, "input");
-		this.condition = ModelTypeHelper.unmodifiable(builder.condition);
-		this.action = ModelTypeHelper.unmodifiable(builder.action);
-		this.trigger = ModelTypeHelper.requireNonNull(builder.trigger, this, "trigger");
+		this.input = ApiTypeHelper.unmodifiableRequired(builder.input, this, "input");
+		this.condition = ApiTypeHelper.unmodifiable(builder.condition);
+		this.action = ApiTypeHelper.unmodifiable(builder.action);
+		this.trigger = ApiTypeHelper.requireNonNull(builder.trigger, this, "trigger");
 
 	}
 
@@ -104,7 +111,7 @@ public class WatcherWatch implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.input)) {
+		if (ApiTypeHelper.isDefined(this.input)) {
 			generator.writeKey("input");
 			generator.writeStartObject();
 			for (Map.Entry<String, Counter> item0 : this.input.entrySet()) {
@@ -115,7 +122,7 @@ public class WatcherWatch implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.condition)) {
+		if (ApiTypeHelper.isDefined(this.condition)) {
 			generator.writeKey("condition");
 			generator.writeStartObject();
 			for (Map.Entry<String, Counter> item0 : this.condition.entrySet()) {
@@ -126,7 +133,7 @@ public class WatcherWatch implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.action)) {
+		if (ApiTypeHelper.isDefined(this.action)) {
 			generator.writeKey("action");
 			generator.writeStartObject();
 			for (Map.Entry<String, Counter> item0 : this.action.entrySet()) {
@@ -147,6 +154,7 @@ public class WatcherWatch implements JsonpSerializable {
 	/**
 	 * Builder for {@link WatcherWatch}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WatcherWatch> {
 		private Map<String, Counter> input;
 
@@ -161,11 +169,9 @@ public class WatcherWatch implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code input}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>input</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>input</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>input</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder input(Map<String, Counter> map) {
 			this.input = _mapPutAll(this.input, map);
@@ -194,11 +200,9 @@ public class WatcherWatch implements JsonpSerializable {
 		/**
 		 * API name: {@code condition}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>condition</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>condition</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>condition</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder condition(Map<String, Counter> map) {
 			this.condition = _mapPutAll(this.condition, map);
@@ -227,11 +231,9 @@ public class WatcherWatch implements JsonpSerializable {
 		/**
 		 * API name: {@code action}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>action</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>action</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>action</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder action(Map<String, Counter> map) {
 			this.action = _mapPutAll(this.action, map);

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.Category
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/_types/Category.ts#L23-L49">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Category implements JsonpSerializable {
 	private final Number categoryId;
@@ -81,20 +88,20 @@ public class Category implements JsonpSerializable {
 
 	private Category(Builder builder) {
 
-		this.categoryId = ModelTypeHelper.requireNonNull(builder.categoryId, this, "categoryId");
-		this.examples = ModelTypeHelper.unmodifiableRequired(builder.examples, this, "examples");
+		this.categoryId = ApiTypeHelper.requireNonNull(builder.categoryId, this, "categoryId");
+		this.examples = ApiTypeHelper.unmodifiableRequired(builder.examples, this, "examples");
 		this.grokPattern = builder.grokPattern;
-		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
-		this.maxMatchingLength = ModelTypeHelper.requireNonNull(builder.maxMatchingLength, this, "maxMatchingLength");
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.maxMatchingLength = ApiTypeHelper.requireNonNull(builder.maxMatchingLength, this, "maxMatchingLength");
 		this.partitionFieldName = builder.partitionFieldName;
 		this.partitionFieldValue = builder.partitionFieldValue;
-		this.regex = ModelTypeHelper.requireNonNull(builder.regex, this, "regex");
-		this.terms = ModelTypeHelper.requireNonNull(builder.terms, this, "terms");
+		this.regex = ApiTypeHelper.requireNonNull(builder.regex, this, "regex");
+		this.terms = ApiTypeHelper.requireNonNull(builder.terms, this, "terms");
 		this.numMatches = builder.numMatches;
-		this.preferredToCategories = ModelTypeHelper.unmodifiable(builder.preferredToCategories);
+		this.preferredToCategories = ApiTypeHelper.unmodifiable(builder.preferredToCategories);
 		this.p = builder.p;
-		this.resultType = ModelTypeHelper.requireNonNull(builder.resultType, this, "resultType");
-		this.mlcategory = ModelTypeHelper.requireNonNull(builder.mlcategory, this, "mlcategory");
+		this.resultType = ApiTypeHelper.requireNonNull(builder.resultType, this, "resultType");
+		this.mlcategory = ApiTypeHelper.requireNonNull(builder.mlcategory, this, "mlcategory");
 
 	}
 
@@ -258,7 +265,7 @@ public class Category implements JsonpSerializable {
 		generator.writeKey("category_id");
 		generator.write(this.categoryId.doubleValue());
 
-		if (ModelTypeHelper.isDefined(this.examples)) {
+		if (ApiTypeHelper.isDefined(this.examples)) {
 			generator.writeKey("examples");
 			generator.writeStartArray();
 			for (String item0 : this.examples) {
@@ -300,7 +307,7 @@ public class Category implements JsonpSerializable {
 			generator.write(this.numMatches);
 
 		}
-		if (ModelTypeHelper.isDefined(this.preferredToCategories)) {
+		if (ApiTypeHelper.isDefined(this.preferredToCategories)) {
 			generator.writeKey("preferred_to_categories");
 			generator.writeStartArray();
 			for (String item0 : this.preferredToCategories) {
@@ -328,6 +335,7 @@ public class Category implements JsonpSerializable {
 	/**
 	 * Builder for {@link Category}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Category> {
 		private Number categoryId;
 
@@ -379,11 +387,9 @@ public class Category implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code examples}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>examples</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>examples</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>examples</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder examples(List<String> list) {
 			this.examples = _listAddAll(this.examples, list);
@@ -504,10 +510,8 @@ public class Category implements JsonpSerializable {
 		 * API name: {@code preferred_to_categories}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>preferredToCategories</code>.
-		 * Use <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>preferredToCategories</code> to <code>null</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder preferredToCategories(List<String> list) {
 			this.preferredToCategories = _listAddAll(this.preferredToCategories, list);

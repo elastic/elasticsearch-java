@@ -37,7 +37,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -54,6 +54,15 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: _global.termvectors.Request
+
+/**
+ * Returns information and statistics about terms in the fields of a particular
+ * document.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/termvectors/TermVectorsRequest.ts#L34-L63">API
+ *      specification</a>
+ */
 
 public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -113,13 +122,13 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 
 		this.doc = builder.doc;
 		this.fieldStatistics = builder.fieldStatistics;
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 		this.filter = builder.filter;
 		this.id = builder.id;
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.offsets = builder.offsets;
 		this.payloads = builder.payloads;
-		this.perFieldAnalyzer = ModelTypeHelper.unmodifiable(builder.perFieldAnalyzer);
+		this.perFieldAnalyzer = ApiTypeHelper.unmodifiable(builder.perFieldAnalyzer);
 		this.positions = builder.positions;
 		this.preference = builder.preference;
 		this.realtime = builder.realtime;
@@ -322,7 +331,7 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 			this.filter.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.perFieldAnalyzer)) {
+		if (ApiTypeHelper.isDefined(this.perFieldAnalyzer)) {
 			generator.writeKey("per_field_analyzer");
 			generator.writeStartObject();
 			for (Map.Entry<String, String> item0 : this.perFieldAnalyzer.entrySet()) {
@@ -341,6 +350,7 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 	/**
 	 * Builder for {@link TermvectorsRequest}.
 	 */
+
 	public static class Builder<TDocument> extends ObjectBuilderBase
 			implements
 				ObjectBuilder<TermvectorsRequest<TDocument>> {
@@ -421,11 +431,9 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 		 * <p>
 		 * API name: {@code fields}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>fields</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>fields</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>fields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder<TDocument> fields(List<String> list) {
 			this.fields = _listAddAll(this.fields, list);
@@ -502,11 +510,9 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 		/**
 		 * API name: {@code per_field_analyzer}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>perFieldAnalyzer</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>perFieldAnalyzer</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>perFieldAnalyzer</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder<TDocument> perFieldAnalyzer(Map<String, String> map) {
 			this.perFieldAnalyzer = _mapPutAll(this.perFieldAnalyzer, map);
@@ -630,7 +636,7 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for TermvectorsRequest
+	 * Create a JSON deserializer for TermvectorsRequest
 	 */
 	public static <TDocument> JsonpDeserializer<TermvectorsRequest<TDocument>> createTermvectorsRequestDeserializer(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
@@ -747,7 +753,7 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 				if (request.fieldStatistics != null) {
 					params.put("field_statistics", String.valueOf(request.fieldStatistics));
 				}
-				if (ModelTypeHelper.isDefined(request.fields)) {
+				if (ApiTypeHelper.isDefined(request.fields)) {
 					params.put("fields", request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.version != null) {

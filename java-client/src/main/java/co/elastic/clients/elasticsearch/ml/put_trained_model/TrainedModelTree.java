@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.TrainedModelTree
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/put_trained_model/types.ts#L74-L79">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TrainedModelTree implements JsonpSerializable {
 	private final List<String> classificationLabels;
@@ -55,10 +62,10 @@ public class TrainedModelTree implements JsonpSerializable {
 
 	private TrainedModelTree(Builder builder) {
 
-		this.classificationLabels = ModelTypeHelper.unmodifiable(builder.classificationLabels);
-		this.featureNames = ModelTypeHelper.unmodifiableRequired(builder.featureNames, this, "featureNames");
+		this.classificationLabels = ApiTypeHelper.unmodifiable(builder.classificationLabels);
+		this.featureNames = ApiTypeHelper.unmodifiableRequired(builder.featureNames, this, "featureNames");
 		this.targetType = builder.targetType;
-		this.treeStructure = ModelTypeHelper.unmodifiableRequired(builder.treeStructure, this, "treeStructure");
+		this.treeStructure = ApiTypeHelper.unmodifiableRequired(builder.treeStructure, this, "treeStructure");
 
 	}
 
@@ -106,7 +113,7 @@ public class TrainedModelTree implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.classificationLabels)) {
+		if (ApiTypeHelper.isDefined(this.classificationLabels)) {
 			generator.writeKey("classification_labels");
 			generator.writeStartArray();
 			for (String item0 : this.classificationLabels) {
@@ -116,7 +123,7 @@ public class TrainedModelTree implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.featureNames)) {
+		if (ApiTypeHelper.isDefined(this.featureNames)) {
 			generator.writeKey("feature_names");
 			generator.writeStartArray();
 			for (String item0 : this.featureNames) {
@@ -131,7 +138,7 @@ public class TrainedModelTree implements JsonpSerializable {
 			generator.write(this.targetType);
 
 		}
-		if (ModelTypeHelper.isDefined(this.treeStructure)) {
+		if (ApiTypeHelper.isDefined(this.treeStructure)) {
 			generator.writeKey("tree_structure");
 			generator.writeStartArray();
 			for (TrainedModelTreeNode item0 : this.treeStructure) {
@@ -149,6 +156,7 @@ public class TrainedModelTree implements JsonpSerializable {
 	/**
 	 * Builder for {@link TrainedModelTree}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TrainedModelTree> {
 		@Nullable
 		private List<String> classificationLabels;
@@ -164,10 +172,8 @@ public class TrainedModelTree implements JsonpSerializable {
 		 * API name: {@code classification_labels}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>classificationLabels</code>.
-		 * Use <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>classificationLabels</code> to <code>null</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder classificationLabels(List<String> list) {
 			this.classificationLabels = _listAddAll(this.classificationLabels, list);
@@ -187,11 +193,9 @@ public class TrainedModelTree implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code feature_names}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>featureNames</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>featureNames</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>featureNames</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder featureNames(List<String> list) {
 			this.featureNames = _listAddAll(this.featureNames, list);
@@ -219,11 +223,9 @@ public class TrainedModelTree implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code tree_structure}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>treeStructure</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>treeStructure</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>treeStructure</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder treeStructure(List<TrainedModelTreeNode> list) {
 			this.treeStructure = _listAddAll(this.treeStructure, list);

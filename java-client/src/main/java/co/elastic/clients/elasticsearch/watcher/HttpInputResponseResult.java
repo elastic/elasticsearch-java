@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.HttpInputResponseResult
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/_types/Actions.ts#L205-L209">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class HttpInputResponseResult implements JsonpSerializable {
 	private final String body;
@@ -54,9 +61,9 @@ public class HttpInputResponseResult implements JsonpSerializable {
 
 	private HttpInputResponseResult(Builder builder) {
 
-		this.body = ModelTypeHelper.requireNonNull(builder.body, this, "body");
-		this.headers = ModelTypeHelper.unmodifiableRequired(builder.headers, this, "headers");
-		this.status = ModelTypeHelper.requireNonNull(builder.status, this, "status");
+		this.body = ApiTypeHelper.requireNonNull(builder.body, this, "body");
+		this.headers = ApiTypeHelper.unmodifiableRequired(builder.headers, this, "headers");
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 
 	}
 
@@ -99,7 +106,7 @@ public class HttpInputResponseResult implements JsonpSerializable {
 		generator.writeKey("body");
 		generator.write(this.body);
 
-		if (ModelTypeHelper.isDefined(this.headers)) {
+		if (ApiTypeHelper.isDefined(this.headers)) {
 			generator.writeKey("headers");
 			generator.writeStartObject();
 			for (Map.Entry<String, List<String>> item0 : this.headers.entrySet()) {
@@ -127,6 +134,7 @@ public class HttpInputResponseResult implements JsonpSerializable {
 	/**
 	 * Builder for {@link HttpInputResponseResult}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HttpInputResponseResult> {
 		private String body;
 
@@ -145,11 +153,9 @@ public class HttpInputResponseResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code headers}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>headers</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>headers</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>headers</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder headers(Map<String, List<String>> map) {
 			this.headers = _mapPutAll(this.headers, map);

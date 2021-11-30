@@ -27,6 +27,12 @@ import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/sort.ts#L75-L78">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public enum ScriptSortType implements JsonEnum {
 	String("string"),

@@ -38,7 +38,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -54,6 +54,13 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: async_search._types.AsyncSearch
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/async_search/_types/AsyncSearch.ts#L30-L45">API
+ *      specification</a>
+ */
 
 public class AsyncSearch<TDocument> implements JsonpSerializable {
 	private final Map<String, Aggregate> aggregations;
@@ -98,20 +105,20 @@ public class AsyncSearch<TDocument> implements JsonpSerializable {
 
 	private AsyncSearch(Builder<TDocument> builder) {
 
-		this.aggregations = ModelTypeHelper.unmodifiable(builder.aggregations);
+		this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);
 		this.clusters = builder.clusters;
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
-		this.hits = ModelTypeHelper.requireNonNull(builder.hits, this, "hits");
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
+		this.hits = ApiTypeHelper.requireNonNull(builder.hits, this, "hits");
 		this.maxScore = builder.maxScore;
 		this.numReducePhases = builder.numReducePhases;
 		this.profile = builder.profile;
 		this.pitId = builder.pitId;
 		this.scrollId = builder.scrollId;
-		this.shards = ModelTypeHelper.requireNonNull(builder.shards, this, "shards");
-		this.suggest = ModelTypeHelper.unmodifiable(builder.suggest);
+		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
+		this.suggest = ApiTypeHelper.unmodifiable(builder.suggest);
 		this.terminatedEarly = builder.terminatedEarly;
-		this.timedOut = ModelTypeHelper.requireNonNull(builder.timedOut, this, "timedOut");
-		this.took = ModelTypeHelper.requireNonNull(builder.took, this, "took");
+		this.timedOut = ApiTypeHelper.requireNonNull(builder.timedOut, this, "timedOut");
+		this.took = ApiTypeHelper.requireNonNull(builder.took, this, "took");
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}
@@ -237,7 +244,7 @@ public class AsyncSearch<TDocument> implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.aggregations)) {
+		if (ApiTypeHelper.isDefined(this.aggregations)) {
 			generator.writeKey("aggregations");
 			ExternallyTaggedUnion.serializeTypedKeys(this.aggregations, generator, mapper);
 
@@ -247,7 +254,7 @@ public class AsyncSearch<TDocument> implements JsonpSerializable {
 			this.clusters.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.fields)) {
+		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.fields.entrySet()) {
@@ -289,7 +296,7 @@ public class AsyncSearch<TDocument> implements JsonpSerializable {
 		generator.writeKey("_shards");
 		this.shards.serialize(generator, mapper);
 
-		if (ModelTypeHelper.isDefined(this.suggest)) {
+		if (ApiTypeHelper.isDefined(this.suggest)) {
 			generator.writeKey("suggest");
 			generator.writeStartObject();
 			for (Map.Entry<String, List<Suggestion<TDocument>>> item0 : this.suggest.entrySet()) {
@@ -325,6 +332,7 @@ public class AsyncSearch<TDocument> implements JsonpSerializable {
 	/**
 	 * Builder for {@link AsyncSearch}.
 	 */
+
 	public static class Builder<TDocument> extends ObjectBuilderBase implements ObjectBuilder<AsyncSearch<TDocument>> {
 		@Nullable
 		private Map<String, Aggregate> aggregations;
@@ -370,11 +378,9 @@ public class AsyncSearch<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code aggregations}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>aggregations</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>aggregations</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>aggregations</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder<TDocument> aggregations(Map<String, Aggregate> map) {
 			this.aggregations = _mapPutAll(this.aggregations, map);
@@ -420,11 +426,9 @@ public class AsyncSearch<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code fields}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>fields</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>fields</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>fields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder<TDocument> fields(Map<String, JsonData> map) {
 			this.fields = _mapPutAll(this.fields, map);
@@ -522,11 +526,9 @@ public class AsyncSearch<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code suggest}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>suggest</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>suggest</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>suggest</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder<TDocument> suggest(Map<String, List<Suggestion<TDocument>>> map) {
 			this.suggest = _mapPutAll(this.suggest, map);
@@ -592,7 +594,7 @@ public class AsyncSearch<TDocument> implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for AsyncSearch
+	 * Create a JSON deserializer for AsyncSearch
 	 */
 	public static <TDocument> JsonpDeserializer<AsyncSearch<TDocument>> createAsyncSearchDeserializer(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {

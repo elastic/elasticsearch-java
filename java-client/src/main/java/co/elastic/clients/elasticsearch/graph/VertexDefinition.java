@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: graph._types.VertexDefinition
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/graph/_types/Vertex.ts#L30-L37">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class VertexDefinition implements JsonpSerializable {
 	private final List<String> exclude;
@@ -63,9 +70,9 @@ public class VertexDefinition implements JsonpSerializable {
 
 	private VertexDefinition(Builder builder) {
 
-		this.exclude = ModelTypeHelper.unmodifiable(builder.exclude);
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
-		this.include = ModelTypeHelper.unmodifiable(builder.include);
+		this.exclude = ApiTypeHelper.unmodifiable(builder.exclude);
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.include = ApiTypeHelper.unmodifiable(builder.include);
 		this.minDocCount = builder.minDocCount;
 		this.shardMinDocCount = builder.shardMinDocCount;
 		this.size = builder.size;
@@ -132,7 +139,7 @@ public class VertexDefinition implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.exclude)) {
+		if (ApiTypeHelper.isDefined(this.exclude)) {
 			generator.writeKey("exclude");
 			generator.writeStartArray();
 			for (String item0 : this.exclude) {
@@ -145,7 +152,7 @@ public class VertexDefinition implements JsonpSerializable {
 		generator.writeKey("field");
 		generator.write(this.field);
 
-		if (ModelTypeHelper.isDefined(this.include)) {
+		if (ApiTypeHelper.isDefined(this.include)) {
 			generator.writeKey("include");
 			generator.writeStartArray();
 			for (VertexInclude item0 : this.include) {
@@ -178,6 +185,7 @@ public class VertexDefinition implements JsonpSerializable {
 	/**
 	 * Builder for {@link VertexDefinition}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<VertexDefinition> {
 		@Nullable
 		private List<String> exclude;
@@ -199,11 +207,9 @@ public class VertexDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code exclude}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>exclude</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>exclude</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>exclude</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder exclude(List<String> list) {
 			this.exclude = _listAddAll(this.exclude, list);
@@ -231,11 +237,9 @@ public class VertexDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code include}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>include</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>include</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>include</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder include(List<VertexInclude> list) {
 			this.include = _listAddAll(this.include, list);

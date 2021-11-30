@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.info.Defaults
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/info/types.ts#L24-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Defaults implements JsonpSerializable {
 	private final AnomalyDetectors anomalyDetectors;
@@ -48,8 +55,8 @@ public class Defaults implements JsonpSerializable {
 
 	private Defaults(Builder builder) {
 
-		this.anomalyDetectors = ModelTypeHelper.requireNonNull(builder.anomalyDetectors, this, "anomalyDetectors");
-		this.datafeeds = ModelTypeHelper.requireNonNull(builder.datafeeds, this, "datafeeds");
+		this.anomalyDetectors = ApiTypeHelper.requireNonNull(builder.anomalyDetectors, this, "anomalyDetectors");
+		this.datafeeds = ApiTypeHelper.requireNonNull(builder.datafeeds, this, "datafeeds");
 
 	}
 
@@ -95,6 +102,7 @@ public class Defaults implements JsonpSerializable {
 	/**
 	 * Builder for {@link Defaults}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Defaults> {
 		private AnomalyDetectors anomalyDetectors;
 

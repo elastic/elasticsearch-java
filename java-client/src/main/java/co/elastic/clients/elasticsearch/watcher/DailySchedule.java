@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.DailySchedule
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/_types/Schedule.ts#L33-L35">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DailySchedule implements ScheduleVariant, JsonpSerializable {
 	private final List<TimeOfDay> at;
@@ -47,7 +54,7 @@ public class DailySchedule implements ScheduleVariant, JsonpSerializable {
 
 	private DailySchedule(Builder builder) {
 
-		this.at = ModelTypeHelper.unmodifiableRequired(builder.at, this, "at");
+		this.at = ApiTypeHelper.unmodifiableRequired(builder.at, this, "at");
 
 	}
 
@@ -81,7 +88,7 @@ public class DailySchedule implements ScheduleVariant, JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.at)) {
+		if (ApiTypeHelper.isDefined(this.at)) {
 			generator.writeKey("at");
 			generator.writeStartArray();
 			for (TimeOfDay item0 : this.at) {
@@ -99,17 +106,16 @@ public class DailySchedule implements ScheduleVariant, JsonpSerializable {
 	/**
 	 * Builder for {@link DailySchedule}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DailySchedule> {
 		private List<TimeOfDay> at;
 
 		/**
 		 * Required - API name: {@code at}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>at</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset <code>at</code>
-		 * to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>at</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder at(List<TimeOfDay> list) {
 			this.at = _listAddAll(this.at, list);

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisAnalyzedFields
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/_types/DataframeAnalytics.ts#L237-L243">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeAnalysisAnalyzedFields implements JsonpSerializable {
 	private final List<String> includes;
@@ -50,8 +57,8 @@ public class DataframeAnalysisAnalyzedFields implements JsonpSerializable {
 
 	private DataframeAnalysisAnalyzedFields(Builder builder) {
 
-		this.includes = ModelTypeHelper.unmodifiableRequired(builder.includes, this, "includes");
-		this.excludes = ModelTypeHelper.unmodifiableRequired(builder.excludes, this, "excludes");
+		this.includes = ApiTypeHelper.unmodifiableRequired(builder.includes, this, "includes");
+		this.excludes = ApiTypeHelper.unmodifiableRequired(builder.excludes, this, "excludes");
 
 	}
 
@@ -92,7 +99,7 @@ public class DataframeAnalysisAnalyzedFields implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.includes)) {
+		if (ApiTypeHelper.isDefined(this.includes)) {
 			generator.writeKey("includes");
 			generator.writeStartArray();
 			for (String item0 : this.includes) {
@@ -102,7 +109,7 @@ public class DataframeAnalysisAnalyzedFields implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.excludes)) {
+		if (ApiTypeHelper.isDefined(this.excludes)) {
 			generator.writeKey("excludes");
 			generator.writeStartArray();
 			for (String item0 : this.excludes) {
@@ -120,6 +127,7 @@ public class DataframeAnalysisAnalyzedFields implements JsonpSerializable {
 	/**
 	 * Builder for {@link DataframeAnalysisAnalyzedFields}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframeAnalysisAnalyzedFields> {
 		private List<String> includes;
 
@@ -132,11 +140,9 @@ public class DataframeAnalysisAnalyzedFields implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code includes}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>includes</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>includes</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>includes</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder includes(List<String> list) {
 			this.includes = _listAddAll(this.includes, list);
@@ -163,11 +169,9 @@ public class DataframeAnalysisAnalyzedFields implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code excludes}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>excludes</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>excludes</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>excludes</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder excludes(List<String> list) {
 			this.excludes = _listAddAll(this.excludes, list);

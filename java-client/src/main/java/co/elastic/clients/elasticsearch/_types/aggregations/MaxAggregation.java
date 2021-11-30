@@ -33,6 +33,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.aggregations.MaxAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/metric.ts#L88-L88">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MaxAggregation extends FormatMetricAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -59,6 +66,7 @@ public class MaxAggregation extends FormatMetricAggregationBase implements Aggre
 	/**
 	 * Builder for {@link MaxAggregation}.
 	 */
+
 	public static class Builder extends FormatMetricAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<MaxAggregation> {

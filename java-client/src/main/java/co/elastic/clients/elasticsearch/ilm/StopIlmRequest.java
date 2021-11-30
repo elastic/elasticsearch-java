@@ -43,6 +43,15 @@ import javax.annotation.Nullable;
 
 // typedef: ilm.stop.Request
 
+/**
+ * Halts all lifecycle management operations and stops the index lifecycle
+ * management (ILM) plugin
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ilm/stop/StopIlmRequest.ts#L23-L33">API
+ *      specification</a>
+ */
+
 public class StopIlmRequest extends RequestBase {
 	@Nullable
 	private final Time masterTimeout;
@@ -84,6 +93,7 @@ public class StopIlmRequest extends RequestBase {
 	/**
 	 * Builder for {@link StopIlmRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StopIlmRequest> {
 		@Nullable
 		private Time masterTimeout;

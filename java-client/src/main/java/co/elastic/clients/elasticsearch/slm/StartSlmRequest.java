@@ -38,6 +38,14 @@ import java.util.Objects;
 
 // typedef: slm.start.Request
 
+/**
+ * Turns on snapshot lifecycle management (SLM).
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/slm/start/StartSnapshotLifecycleManagementRequest.ts#L22-L27">API
+ *      specification</a>
+ */
+
 public class StartSlmRequest extends RequestBase {
 	public StartSlmRequest() {
 	}

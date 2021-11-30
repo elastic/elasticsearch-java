@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform.get_transform.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/transform/get_transform/GetTransformResponse.ts#L23-L25">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetTransformResponse implements JsonpSerializable {
 	private final long count;
@@ -51,8 +58,8 @@ public class GetTransformResponse implements JsonpSerializable {
 
 	private GetTransformResponse(Builder builder) {
 
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
-		this.transforms = ModelTypeHelper.unmodifiableRequired(builder.transforms, this, "transforms");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.transforms = ApiTypeHelper.unmodifiableRequired(builder.transforms, this, "transforms");
 
 	}
 
@@ -88,7 +95,7 @@ public class GetTransformResponse implements JsonpSerializable {
 		generator.writeKey("count");
 		generator.write(this.count);
 
-		if (ModelTypeHelper.isDefined(this.transforms)) {
+		if (ApiTypeHelper.isDefined(this.transforms)) {
 			generator.writeKey("transforms");
 			generator.writeStartArray();
 			for (EmptyTransform item0 : this.transforms) {
@@ -106,6 +113,7 @@ public class GetTransformResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetTransformResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetTransformResponse> {
 		private Long count;
 
@@ -122,11 +130,9 @@ public class GetTransformResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code transforms}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>transforms</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>transforms</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>transforms</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder transforms(List<EmptyTransform> list) {
 			this.transforms = _listAddAll(this.transforms, list);

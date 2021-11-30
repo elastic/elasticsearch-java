@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.reindex.RemoteSource
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/reindex/types.ts#L60-L66">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RemoteSource implements JsonpSerializable {
 	private final Time connectTimeout;
@@ -56,11 +63,11 @@ public class RemoteSource implements JsonpSerializable {
 
 	private RemoteSource(Builder builder) {
 
-		this.connectTimeout = ModelTypeHelper.requireNonNull(builder.connectTimeout, this, "connectTimeout");
-		this.host = ModelTypeHelper.requireNonNull(builder.host, this, "host");
-		this.username = ModelTypeHelper.requireNonNull(builder.username, this, "username");
-		this.password = ModelTypeHelper.requireNonNull(builder.password, this, "password");
-		this.socketTimeout = ModelTypeHelper.requireNonNull(builder.socketTimeout, this, "socketTimeout");
+		this.connectTimeout = ApiTypeHelper.requireNonNull(builder.connectTimeout, this, "connectTimeout");
+		this.host = ApiTypeHelper.requireNonNull(builder.host, this, "host");
+		this.username = ApiTypeHelper.requireNonNull(builder.username, this, "username");
+		this.password = ApiTypeHelper.requireNonNull(builder.password, this, "password");
+		this.socketTimeout = ApiTypeHelper.requireNonNull(builder.socketTimeout, this, "socketTimeout");
 
 	}
 
@@ -136,6 +143,7 @@ public class RemoteSource implements JsonpSerializable {
 	/**
 	 * Builder for {@link RemoteSource}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RemoteSource> {
 		private Time connectTimeout;
 

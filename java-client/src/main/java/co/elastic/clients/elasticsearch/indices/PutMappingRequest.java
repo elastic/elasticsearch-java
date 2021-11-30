@@ -43,7 +43,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -58,6 +58,14 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: indices.put_mapping.Request
+
+/**
+ * Updates the index mappings.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/put_mapping/IndicesPutMappingRequest.ts#L37-L113">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutMappingRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -118,22 +126,22 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 	private PutMappingRequest(Builder builder) {
 
 		this.fieldNames = builder.fieldNames;
-		this.meta = ModelTypeHelper.unmodifiable(builder.meta);
+		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 		this.routing = builder.routing;
 		this.source = builder.source;
 		this.allowNoIndices = builder.allowNoIndices;
 		this.dateDetection = builder.dateDetection;
 		this.dynamic = builder.dynamic;
-		this.dynamicDateFormats = ModelTypeHelper.unmodifiable(builder.dynamicDateFormats);
-		this.dynamicTemplates = ModelTypeHelper.unmodifiable(builder.dynamicTemplates);
-		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
+		this.dynamicDateFormats = ApiTypeHelper.unmodifiable(builder.dynamicDateFormats);
+		this.dynamicTemplates = ApiTypeHelper.unmodifiable(builder.dynamicTemplates);
+		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.includeTypeName = builder.includeTypeName;
-		this.index = ModelTypeHelper.unmodifiableRequired(builder.index, this, "index");
+		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
 		this.masterTimeout = builder.masterTimeout;
 		this.numericDetection = builder.numericDetection;
-		this.properties = ModelTypeHelper.unmodifiable(builder.properties);
-		this.runtime = ModelTypeHelper.unmodifiable(builder.runtime);
+		this.properties = ApiTypeHelper.unmodifiable(builder.properties);
+		this.runtime = ApiTypeHelper.unmodifiable(builder.runtime);
 		this.timeout = builder.timeout;
 		this.type = builder.type;
 		this.writeIndexOnly = builder.writeIndexOnly;
@@ -369,7 +377,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 			this.fieldNames.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.meta)) {
+		if (ApiTypeHelper.isDefined(this.meta)) {
 			generator.writeKey("_meta");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
@@ -399,7 +407,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 			generator.writeKey("dynamic");
 			this.dynamic.serialize(generator, mapper);
 		}
-		if (ModelTypeHelper.isDefined(this.dynamicDateFormats)) {
+		if (ApiTypeHelper.isDefined(this.dynamicDateFormats)) {
 			generator.writeKey("dynamic_date_formats");
 			generator.writeStartArray();
 			for (String item0 : this.dynamicDateFormats) {
@@ -409,7 +417,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.dynamicTemplates)) {
+		if (ApiTypeHelper.isDefined(this.dynamicTemplates)) {
 			generator.writeKey("dynamic_templates");
 			generator.writeStartArray();
 			for (Map<String, DynamicTemplate> item0 : this.dynamicTemplates) {
@@ -432,7 +440,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 			generator.write(this.numericDetection);
 
 		}
-		if (ModelTypeHelper.isDefined(this.properties)) {
+		if (ApiTypeHelper.isDefined(this.properties)) {
 			generator.writeKey("properties");
 			generator.writeStartObject();
 			for (Map.Entry<String, Property> item0 : this.properties.entrySet()) {
@@ -443,7 +451,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.runtime)) {
+		if (ApiTypeHelper.isDefined(this.runtime)) {
 			generator.writeKey("runtime");
 			generator.writeStartObject();
 			for (Map.Entry<String, RuntimeField> item0 : this.runtime.entrySet()) {
@@ -462,6 +470,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 	/**
 	 * Builder for {@link PutMappingRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutMappingRequest> {
 		@Nullable
 		private FieldNamesField fieldNames;
@@ -548,11 +557,9 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		 * <p>
 		 * API name: {@code _meta}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>meta</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>meta</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>meta</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder meta(Map<String, JsonData> map) {
 			this.meta = _mapPutAll(this.meta, map);
@@ -651,10 +658,8 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		 * API name: {@code dynamic_date_formats}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>dynamicDateFormats</code>.
-		 * Use <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>dynamicDateFormats</code> to <code>null</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder dynamicDateFormats(List<String> list) {
 			this.dynamicDateFormats = _listAddAll(this.dynamicDateFormats, list);
@@ -680,11 +685,9 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		 * <p>
 		 * API name: {@code dynamic_templates}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>dynamicTemplates</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>dynamicTemplates</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>dynamicTemplates</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder dynamicTemplates(List<Map<String, DynamicTemplate>> list) {
 			this.dynamicTemplates = _listAddAll(this.dynamicTemplates, list);
@@ -710,11 +713,9 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>expandWildcards</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder expandWildcards(List<ExpandWildcard> list) {
 			this.expandWildcards = _listAddAll(this.expandWildcards, list);
@@ -762,11 +763,9 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>index</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>index</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder index(List<String> list) {
 			this.index = _listAddAll(this.index, list);
@@ -826,11 +825,9 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		 * <p>
 		 * API name: {@code properties}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>properties</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>properties</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>properties</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder properties(Map<String, Property> map) {
 			this.properties = _mapPutAll(this.properties, map);
@@ -875,11 +872,9 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		 * <p>
 		 * API name: {@code runtime}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>runtime</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>runtime</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>runtime</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder runtime(Map<String, RuntimeField> map) {
 			this.runtime = _mapPutAll(this.runtime, map);
@@ -1090,7 +1085,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 				if (request.includeTypeName != null) {
 					params.put("include_type_name", String.valueOf(request.includeTypeName));
 				}
-				if (ModelTypeHelper.isDefined(request.expandWildcards)) {
+				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}

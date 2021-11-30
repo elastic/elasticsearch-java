@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.plugins.PluginsRecord
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/plugins/types.ts#L22-L52">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PluginsRecord implements JsonpSerializable {
 	@Nullable
@@ -184,6 +191,7 @@ public class PluginsRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link PluginsRecord}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PluginsRecord> {
 		@Nullable
 		private String id;

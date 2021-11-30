@@ -34,7 +34,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -45,6 +45,17 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.forecast.Request
+
+/**
+ * Predicts the future behavior of a time series by using its historical
+ * behavior. You can create a forecast job based on an anomaly detection job to
+ * extrapolate future behavior. You can delete a forecast by using the Delete
+ * forecast API.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/forecast/MlForecastJobRequest.ts#L24-L67">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ForecastRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -64,7 +75,7 @@ public class ForecastRequest extends RequestBase implements JsonpSerializable {
 
 		this.duration = builder.duration;
 		this.expiresIn = builder.expiresIn;
-		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.maxModelMemory = builder.maxModelMemory;
 
 	}
@@ -153,6 +164,7 @@ public class ForecastRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link ForecastRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ForecastRequest> {
 		@Nullable
 		private Time duration;

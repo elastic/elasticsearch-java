@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoXpack
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/info/types.ts#L221-L225">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeInfoXpack implements JsonpSerializable {
 	@Nullable
@@ -55,8 +62,8 @@ public class NodeInfoXpack implements JsonpSerializable {
 	private NodeInfoXpack(Builder builder) {
 
 		this.license = builder.license;
-		this.security = ModelTypeHelper.requireNonNull(builder.security, this, "security");
-		this.notification = ModelTypeHelper.unmodifiable(builder.notification);
+		this.security = ApiTypeHelper.requireNonNull(builder.security, this, "security");
+		this.notification = ApiTypeHelper.unmodifiable(builder.notification);
 
 	}
 
@@ -105,7 +112,7 @@ public class NodeInfoXpack implements JsonpSerializable {
 		generator.writeKey("security");
 		this.security.serialize(generator, mapper);
 
-		if (ModelTypeHelper.isDefined(this.notification)) {
+		if (ApiTypeHelper.isDefined(this.notification)) {
 			generator.writeKey("notification");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.notification.entrySet()) {
@@ -124,6 +131,7 @@ public class NodeInfoXpack implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoXpack}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoXpack> {
 		@Nullable
 		private NodeInfoXpackLicense license;
@@ -167,11 +175,9 @@ public class NodeInfoXpack implements JsonpSerializable {
 		/**
 		 * API name: {@code notification}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>notification</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>notification</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>notification</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder notification(Map<String, JsonData> map) {
 			this.notification = _mapPutAll(this.notification, map);

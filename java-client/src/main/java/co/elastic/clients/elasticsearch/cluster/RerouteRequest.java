@@ -35,7 +35,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -50,6 +50,14 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.Request
+
+/**
+ * Allows to manually change the allocation of individual shards in the cluster.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/reroute/ClusterRerouteRequest.ts#L25-L69">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RerouteRequest extends RequestBase implements JsonpSerializable {
 	private final List<Command> commands;
@@ -75,11 +83,11 @@ public class RerouteRequest extends RequestBase implements JsonpSerializable {
 
 	private RerouteRequest(Builder builder) {
 
-		this.commands = ModelTypeHelper.unmodifiable(builder.commands);
+		this.commands = ApiTypeHelper.unmodifiable(builder.commands);
 		this.dryRun = builder.dryRun;
 		this.explain = builder.explain;
 		this.masterTimeout = builder.masterTimeout;
-		this.metric = ModelTypeHelper.unmodifiable(builder.metric);
+		this.metric = ApiTypeHelper.unmodifiable(builder.metric);
 		this.retryFailed = builder.retryFailed;
 		this.timeout = builder.timeout;
 
@@ -173,7 +181,7 @@ public class RerouteRequest extends RequestBase implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.commands)) {
+		if (ApiTypeHelper.isDefined(this.commands)) {
 			generator.writeKey("commands");
 			generator.writeStartArray();
 			for (Command item0 : this.commands) {
@@ -191,6 +199,7 @@ public class RerouteRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link RerouteRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RerouteRequest> {
 		@Nullable
 		private List<Command> commands;
@@ -218,11 +227,9 @@ public class RerouteRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code commands}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>commands</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>commands</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>commands</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder commands(List<Command> list) {
 			this.commands = _listAddAll(this.commands, list);
@@ -300,11 +307,9 @@ public class RerouteRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code metric}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>metric</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>metric</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>metric</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder metric(List<String> list) {
 			this.metric = _listAddAll(this.metric, list);
@@ -411,7 +416,7 @@ public class RerouteRequest extends RequestBase implements JsonpSerializable {
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
-				if (ModelTypeHelper.isDefined(request.metric)) {
+				if (ApiTypeHelper.isDefined(request.metric)) {
 					params.put("metric", request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.dryRun != null) {

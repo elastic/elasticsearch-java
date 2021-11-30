@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.AdjacencyMatrixAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/bucket.ts#L47-L49">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AdjacencyMatrixAggregation extends BucketAggregationBase implements AggregationVariant {
 	private final Map<String, Query> filters;
@@ -48,7 +55,7 @@ public class AdjacencyMatrixAggregation extends BucketAggregationBase implements
 	private AdjacencyMatrixAggregation(Builder builder) {
 		super(builder);
 
-		this.filters = ModelTypeHelper.unmodifiable(builder.filters);
+		this.filters = ApiTypeHelper.unmodifiable(builder.filters);
 
 	}
 
@@ -74,7 +81,7 @@ public class AdjacencyMatrixAggregation extends BucketAggregationBase implements
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.filters)) {
+		if (ApiTypeHelper.isDefined(this.filters)) {
 			generator.writeKey("filters");
 			generator.writeStartObject();
 			for (Map.Entry<String, Query> item0 : this.filters.entrySet()) {
@@ -93,6 +100,7 @@ public class AdjacencyMatrixAggregation extends BucketAggregationBase implements
 	/**
 	 * Builder for {@link AdjacencyMatrixAggregation}.
 	 */
+
 	public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<AdjacencyMatrixAggregation> {
@@ -102,11 +110,9 @@ public class AdjacencyMatrixAggregation extends BucketAggregationBase implements
 		/**
 		 * API name: {@code filters}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>filters</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>filters</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>filters</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder filters(Map<String, Query> map) {
 			this.filters = _mapPutAll(this.filters, map);

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_trained_models_stats.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/get_trained_models_stats/MlGetTrainedModelStatsResponse.ts#L23-L33">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetTrainedModelsStatsResponse implements JsonpSerializable {
 	private final int count;
@@ -50,8 +57,8 @@ public class GetTrainedModelsStatsResponse implements JsonpSerializable {
 
 	private GetTrainedModelsStatsResponse(Builder builder) {
 
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
-		this.trainedModelStats = ModelTypeHelper.unmodifiableRequired(builder.trainedModelStats, this,
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.trainedModelStats = ApiTypeHelper.unmodifiableRequired(builder.trainedModelStats, this,
 				"trainedModelStats");
 
 	}
@@ -96,7 +103,7 @@ public class GetTrainedModelsStatsResponse implements JsonpSerializable {
 		generator.writeKey("count");
 		generator.write(this.count);
 
-		if (ModelTypeHelper.isDefined(this.trainedModelStats)) {
+		if (ApiTypeHelper.isDefined(this.trainedModelStats)) {
 			generator.writeKey("trained_model_stats");
 			generator.writeStartArray();
 			for (TrainedModelStats item0 : this.trainedModelStats) {
@@ -114,6 +121,7 @@ public class GetTrainedModelsStatsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetTrainedModelsStatsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetTrainedModelsStatsResponse> {
 		private Integer count;
 
@@ -138,11 +146,9 @@ public class GetTrainedModelsStatsResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code trained_model_stats}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>trainedModelStats</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>trainedModelStats</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>trainedModelStats</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder trainedModelStats(List<TrainedModelStats> list) {
 			this.trainedModelStats = _listAddAll(this.trainedModelStats, list);

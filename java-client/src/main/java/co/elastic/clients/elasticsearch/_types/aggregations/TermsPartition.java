@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.aggregations.TermsPartition
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/bucket.ts#L381-L384">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TermsPartition implements JsonpSerializable {
 	private final long numPartitions;
@@ -48,8 +55,8 @@ public class TermsPartition implements JsonpSerializable {
 
 	private TermsPartition(Builder builder) {
 
-		this.numPartitions = ModelTypeHelper.requireNonNull(builder.numPartitions, this, "numPartitions");
-		this.partition = ModelTypeHelper.requireNonNull(builder.partition, this, "partition");
+		this.numPartitions = ApiTypeHelper.requireNonNull(builder.numPartitions, this, "numPartitions");
+		this.partition = ApiTypeHelper.requireNonNull(builder.partition, this, "partition");
 
 	}
 
@@ -95,6 +102,7 @@ public class TermsPartition implements JsonpSerializable {
 	/**
 	 * Builder for {@link TermsPartition}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TermsPartition> {
 		private Long numPartitions;
 

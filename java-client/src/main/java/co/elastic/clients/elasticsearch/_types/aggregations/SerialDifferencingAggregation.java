@@ -36,6 +36,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.SerialDifferencingAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/pipeline.ts#L207-L209">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SerialDifferencingAggregation extends PipelineAggregationBase implements AggregationVariant {
 	@Nullable
@@ -86,6 +93,7 @@ public class SerialDifferencingAggregation extends PipelineAggregationBase imple
 	/**
 	 * Builder for {@link SerialDifferencingAggregation}.
 	 */
+
 	public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<SerialDifferencingAggregation> {

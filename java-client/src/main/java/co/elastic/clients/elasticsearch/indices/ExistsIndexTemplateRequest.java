@@ -34,7 +34,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.BooleanEndpoint;
 import co.elastic.clients.transport.endpoints.BooleanResponse;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -47,6 +47,14 @@ import javax.annotation.Nullable;
 
 // typedef: indices.exists_index_template.Request
 
+/**
+ * Returns information about whether a particular index template exists.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/exists_index_template/IndicesExistsIndexTemplateRequest.ts#L24-L41">API
+ *      specification</a>
+ */
+
 public class ExistsIndexTemplateRequest extends RequestBase {
 	@Nullable
 	private final Time masterTimeout;
@@ -58,7 +66,7 @@ public class ExistsIndexTemplateRequest extends RequestBase {
 	private ExistsIndexTemplateRequest(Builder builder) {
 
 		this.masterTimeout = builder.masterTimeout;
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
@@ -92,6 +100,7 @@ public class ExistsIndexTemplateRequest extends RequestBase {
 	/**
 	 * Builder for {@link ExistsIndexTemplateRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExistsIndexTemplateRequest> {
 		@Nullable
 		private Time masterTimeout;

@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search_shards.ShardStoreIndex
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search_shards/SearchShardsResponse.ts#L33-L36">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ShardStoreIndex implements JsonpSerializable {
 	private final List<String> aliases;
@@ -52,7 +59,7 @@ public class ShardStoreIndex implements JsonpSerializable {
 
 	private ShardStoreIndex(Builder builder) {
 
-		this.aliases = ModelTypeHelper.unmodifiable(builder.aliases);
+		this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
 		this.filter = builder.filter;
 
 	}
@@ -87,7 +94,7 @@ public class ShardStoreIndex implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.aliases)) {
+		if (ApiTypeHelper.isDefined(this.aliases)) {
 			generator.writeKey("aliases");
 			generator.writeStartArray();
 			for (String item0 : this.aliases) {
@@ -110,6 +117,7 @@ public class ShardStoreIndex implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardStoreIndex}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardStoreIndex> {
 		@Nullable
 		private List<String> aliases;
@@ -120,11 +128,9 @@ public class ShardStoreIndex implements JsonpSerializable {
 		/**
 		 * API name: {@code aliases}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>aliases</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>aliases</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>aliases</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder aliases(List<String> list) {
 			this.aliases = _listAddAll(this.aliases, list);

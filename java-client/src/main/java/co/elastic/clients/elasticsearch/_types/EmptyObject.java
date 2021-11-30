@@ -30,6 +30,13 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 
+/**
+ * For empty Class assignments
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/common.ts#L136-L137">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class EmptyObject implements JsonpSerializable {
 

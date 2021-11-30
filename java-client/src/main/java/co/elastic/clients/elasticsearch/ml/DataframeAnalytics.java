@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalytics
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/_types/DataframeAnalytics.ts#L319-L336">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeAnalytics implements JsonpSerializable {
 	@Nullable
@@ -68,12 +75,12 @@ public class DataframeAnalytics implements JsonpSerializable {
 
 		this.analysisStats = builder.analysisStats;
 		this.assignmentExplanation = builder.assignmentExplanation;
-		this.dataCounts = ModelTypeHelper.requireNonNull(builder.dataCounts, this, "dataCounts");
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
-		this.memoryUsage = ModelTypeHelper.requireNonNull(builder.memoryUsage, this, "memoryUsage");
+		this.dataCounts = ApiTypeHelper.requireNonNull(builder.dataCounts, this, "dataCounts");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.memoryUsage = ApiTypeHelper.requireNonNull(builder.memoryUsage, this, "memoryUsage");
 		this.node = builder.node;
-		this.progress = ModelTypeHelper.unmodifiableRequired(builder.progress, this, "progress");
-		this.state = ModelTypeHelper.requireNonNull(builder.state, this, "state");
+		this.progress = ApiTypeHelper.unmodifiableRequired(builder.progress, this, "progress");
+		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
 
 	}
 
@@ -196,7 +203,7 @@ public class DataframeAnalytics implements JsonpSerializable {
 			this.node.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.progress)) {
+		if (ApiTypeHelper.isDefined(this.progress)) {
 			generator.writeKey("progress");
 			generator.writeStartArray();
 			for (DataframeAnalyticsStatsProgress item0 : this.progress) {
@@ -216,6 +223,7 @@ public class DataframeAnalytics implements JsonpSerializable {
 	/**
 	 * Builder for {@link DataframeAnalytics}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframeAnalytics> {
 		@Nullable
 		private DataframeAnalyticsStats analysisStats;
@@ -347,11 +355,9 @@ public class DataframeAnalytics implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code progress}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>progress</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>progress</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>progress</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder progress(List<DataframeAnalyticsStatsProgress> list) {
 			this.progress = _listAddAll(this.progress, list);

@@ -35,7 +35,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -46,6 +46,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterIndices
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/stats/types.ts#L62-L93">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ClusterIndices implements JsonpSerializable {
 	private final CompletionStats completion;
@@ -74,17 +81,17 @@ public class ClusterIndices implements JsonpSerializable {
 
 	private ClusterIndices(Builder builder) {
 
-		this.completion = ModelTypeHelper.requireNonNull(builder.completion, this, "completion");
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
-		this.docs = ModelTypeHelper.requireNonNull(builder.docs, this, "docs");
-		this.fielddata = ModelTypeHelper.requireNonNull(builder.fielddata, this, "fielddata");
-		this.queryCache = ModelTypeHelper.requireNonNull(builder.queryCache, this, "queryCache");
-		this.segments = ModelTypeHelper.requireNonNull(builder.segments, this, "segments");
-		this.shards = ModelTypeHelper.requireNonNull(builder.shards, this, "shards");
-		this.store = ModelTypeHelper.requireNonNull(builder.store, this, "store");
-		this.mappings = ModelTypeHelper.requireNonNull(builder.mappings, this, "mappings");
-		this.analysis = ModelTypeHelper.requireNonNull(builder.analysis, this, "analysis");
-		this.versions = ModelTypeHelper.unmodifiable(builder.versions);
+		this.completion = ApiTypeHelper.requireNonNull(builder.completion, this, "completion");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.docs = ApiTypeHelper.requireNonNull(builder.docs, this, "docs");
+		this.fielddata = ApiTypeHelper.requireNonNull(builder.fielddata, this, "fielddata");
+		this.queryCache = ApiTypeHelper.requireNonNull(builder.queryCache, this, "queryCache");
+		this.segments = ApiTypeHelper.requireNonNull(builder.segments, this, "segments");
+		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
+		this.store = ApiTypeHelper.requireNonNull(builder.store, this, "store");
+		this.mappings = ApiTypeHelper.requireNonNull(builder.mappings, this, "mappings");
+		this.analysis = ApiTypeHelper.requireNonNull(builder.analysis, this, "analysis");
+		this.versions = ApiTypeHelper.unmodifiable(builder.versions);
 
 	}
 
@@ -234,7 +241,7 @@ public class ClusterIndices implements JsonpSerializable {
 		generator.writeKey("analysis");
 		this.analysis.serialize(generator, mapper);
 
-		if (ModelTypeHelper.isDefined(this.versions)) {
+		if (ApiTypeHelper.isDefined(this.versions)) {
 			generator.writeKey("versions");
 			generator.writeStartArray();
 			for (IndicesVersions item0 : this.versions) {
@@ -252,6 +259,7 @@ public class ClusterIndices implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClusterIndices}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterIndices> {
 		private CompletionStats completion;
 
@@ -468,11 +476,9 @@ public class ClusterIndices implements JsonpSerializable {
 		/**
 		 * API name: {@code versions}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>versions</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>versions</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>versions</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder versions(List<IndicesVersions> list) {
 			this.versions = _listAddAll(this.versions, list);

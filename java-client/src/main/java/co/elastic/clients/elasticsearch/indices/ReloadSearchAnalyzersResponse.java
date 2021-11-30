@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.reload_search_analyzers.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/reload_search_analyzers/ReloadSearchAnalyzersResponse.ts#L23-L25">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ReloadSearchAnalyzersResponse implements JsonpSerializable {
 	private final List<ReloadDetails> reloadDetails;
@@ -51,8 +58,8 @@ public class ReloadSearchAnalyzersResponse implements JsonpSerializable {
 
 	private ReloadSearchAnalyzersResponse(Builder builder) {
 
-		this.reloadDetails = ModelTypeHelper.unmodifiableRequired(builder.reloadDetails, this, "reloadDetails");
-		this.shards = ModelTypeHelper.requireNonNull(builder.shards, this, "shards");
+		this.reloadDetails = ApiTypeHelper.unmodifiableRequired(builder.reloadDetails, this, "reloadDetails");
+		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
 
 	}
 
@@ -85,7 +92,7 @@ public class ReloadSearchAnalyzersResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.reloadDetails)) {
+		if (ApiTypeHelper.isDefined(this.reloadDetails)) {
 			generator.writeKey("reload_details");
 			generator.writeStartArray();
 			for (ReloadDetails item0 : this.reloadDetails) {
@@ -105,6 +112,7 @@ public class ReloadSearchAnalyzersResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link ReloadSearchAnalyzersResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ReloadSearchAnalyzersResponse> {
 		private List<ReloadDetails> reloadDetails;
 
@@ -113,11 +121,9 @@ public class ReloadSearchAnalyzersResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code reload_details}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>reloadDetails</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>reloadDetails</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>reloadDetails</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder reloadDetails(List<ReloadDetails> list) {
 			this.reloadDetails = _listAddAll(this.reloadDetails, list);

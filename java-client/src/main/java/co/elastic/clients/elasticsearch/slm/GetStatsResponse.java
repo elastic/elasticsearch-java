@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: slm.get_stats.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/slm/get_stats/GetSnapshotLifecycleStatsResponse.ts#L23-L36">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetStatsResponse implements JsonpSerializable {
 	private final String retentionDeletionTime;
@@ -67,22 +74,22 @@ public class GetStatsResponse implements JsonpSerializable {
 
 	private GetStatsResponse(Builder builder) {
 
-		this.retentionDeletionTime = ModelTypeHelper.requireNonNull(builder.retentionDeletionTime, this,
+		this.retentionDeletionTime = ApiTypeHelper.requireNonNull(builder.retentionDeletionTime, this,
 				"retentionDeletionTime");
-		this.retentionDeletionTimeMillis = ModelTypeHelper.requireNonNull(builder.retentionDeletionTimeMillis, this,
+		this.retentionDeletionTimeMillis = ApiTypeHelper.requireNonNull(builder.retentionDeletionTimeMillis, this,
 				"retentionDeletionTimeMillis");
-		this.retentionFailed = ModelTypeHelper.requireNonNull(builder.retentionFailed, this, "retentionFailed");
-		this.retentionRuns = ModelTypeHelper.requireNonNull(builder.retentionRuns, this, "retentionRuns");
-		this.retentionTimedOut = ModelTypeHelper.requireNonNull(builder.retentionTimedOut, this, "retentionTimedOut");
-		this.totalSnapshotsDeleted = ModelTypeHelper.requireNonNull(builder.totalSnapshotsDeleted, this,
+		this.retentionFailed = ApiTypeHelper.requireNonNull(builder.retentionFailed, this, "retentionFailed");
+		this.retentionRuns = ApiTypeHelper.requireNonNull(builder.retentionRuns, this, "retentionRuns");
+		this.retentionTimedOut = ApiTypeHelper.requireNonNull(builder.retentionTimedOut, this, "retentionTimedOut");
+		this.totalSnapshotsDeleted = ApiTypeHelper.requireNonNull(builder.totalSnapshotsDeleted, this,
 				"totalSnapshotsDeleted");
-		this.totalSnapshotDeletionFailures = ModelTypeHelper.requireNonNull(builder.totalSnapshotDeletionFailures, this,
+		this.totalSnapshotDeletionFailures = ApiTypeHelper.requireNonNull(builder.totalSnapshotDeletionFailures, this,
 				"totalSnapshotDeletionFailures");
-		this.totalSnapshotsFailed = ModelTypeHelper.requireNonNull(builder.totalSnapshotsFailed, this,
+		this.totalSnapshotsFailed = ApiTypeHelper.requireNonNull(builder.totalSnapshotsFailed, this,
 				"totalSnapshotsFailed");
-		this.totalSnapshotsTaken = ModelTypeHelper.requireNonNull(builder.totalSnapshotsTaken, this,
+		this.totalSnapshotsTaken = ApiTypeHelper.requireNonNull(builder.totalSnapshotsTaken, this,
 				"totalSnapshotsTaken");
-		this.policyStats = ModelTypeHelper.unmodifiableRequired(builder.policyStats, this, "policyStats");
+		this.policyStats = ApiTypeHelper.unmodifiableRequired(builder.policyStats, this, "policyStats");
 
 	}
 
@@ -198,7 +205,7 @@ public class GetStatsResponse implements JsonpSerializable {
 		generator.writeKey("total_snapshots_taken");
 		generator.write(this.totalSnapshotsTaken);
 
-		if (ModelTypeHelper.isDefined(this.policyStats)) {
+		if (ApiTypeHelper.isDefined(this.policyStats)) {
 			generator.writeKey("policy_stats");
 			generator.writeStartArray();
 			for (String item0 : this.policyStats) {
@@ -216,6 +223,7 @@ public class GetStatsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetStatsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetStatsResponse> {
 		private String retentionDeletionTime;
 
@@ -312,11 +320,9 @@ public class GetStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code policy_stats}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>policyStats</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>policyStats</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>policyStats</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder policyStats(List<String> list) {
 			this.policyStats = _listAddAll(this.policyStats, list);

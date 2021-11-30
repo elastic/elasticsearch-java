@@ -33,6 +33,13 @@ import java.util.Objects;
 
 // typedef: security.change_password.Response
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/change_password/SecurityChangePasswordResponse.ts#L20-L22">API
+ *      specification</a>
+ */
+
 public class ChangePasswordResponse {
 	public ChangePasswordResponse() {
 	}

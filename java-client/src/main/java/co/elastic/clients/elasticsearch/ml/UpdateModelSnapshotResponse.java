@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -37,6 +37,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.update_model_snapshot.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/update_model_snapshot/MlUpdateModelSnapshotResponse.ts#L23-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class UpdateModelSnapshotResponse extends AcknowledgedResponseBase {
 	private final ModelSnapshot model;
@@ -46,7 +53,7 @@ public class UpdateModelSnapshotResponse extends AcknowledgedResponseBase {
 	private UpdateModelSnapshotResponse(Builder builder) {
 		super(builder);
 
-		this.model = ModelTypeHelper.requireNonNull(builder.model, this, "model");
+		this.model = ApiTypeHelper.requireNonNull(builder.model, this, "model");
 
 	}
 
@@ -74,6 +81,7 @@ public class UpdateModelSnapshotResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link UpdateModelSnapshotResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<UpdateModelSnapshotResponse> {

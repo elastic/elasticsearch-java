@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: ingest.geo_ip_stats.GeoIpDownloadStatistics
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ingest/geo_ip_stats/types.ts#L23-L34">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GeoIpDownloadStatistics implements JsonpSerializable {
 	private final int successfulDownloads;
@@ -54,12 +61,12 @@ public class GeoIpDownloadStatistics implements JsonpSerializable {
 
 	private GeoIpDownloadStatistics(Builder builder) {
 
-		this.successfulDownloads = ModelTypeHelper.requireNonNull(builder.successfulDownloads, this,
+		this.successfulDownloads = ApiTypeHelper.requireNonNull(builder.successfulDownloads, this,
 				"successfulDownloads");
-		this.failedDownloads = ModelTypeHelper.requireNonNull(builder.failedDownloads, this, "failedDownloads");
-		this.totalDownloadTime = ModelTypeHelper.requireNonNull(builder.totalDownloadTime, this, "totalDownloadTime");
-		this.databaseCount = ModelTypeHelper.requireNonNull(builder.databaseCount, this, "databaseCount");
-		this.skippedUpdates = ModelTypeHelper.requireNonNull(builder.skippedUpdates, this, "skippedUpdates");
+		this.failedDownloads = ApiTypeHelper.requireNonNull(builder.failedDownloads, this, "failedDownloads");
+		this.totalDownloadTime = ApiTypeHelper.requireNonNull(builder.totalDownloadTime, this, "totalDownloadTime");
+		this.databaseCount = ApiTypeHelper.requireNonNull(builder.databaseCount, this, "databaseCount");
+		this.skippedUpdates = ApiTypeHelper.requireNonNull(builder.skippedUpdates, this, "skippedUpdates");
 
 	}
 
@@ -145,6 +152,7 @@ public class GeoIpDownloadStatistics implements JsonpSerializable {
 	/**
 	 * Builder for {@link GeoIpDownloadStatistics}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GeoIpDownloadStatistics> {
 		private Integer successfulDownloads;
 

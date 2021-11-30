@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: tasks._types.TaskExecutingNode
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/tasks/_types/TaskExecutingNode.ts#L25-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TaskExecutingNode extends BaseNode {
 	private final Map<String, State> tasks;
@@ -48,7 +55,7 @@ public class TaskExecutingNode extends BaseNode {
 	private TaskExecutingNode(Builder builder) {
 		super(builder);
 
-		this.tasks = ModelTypeHelper.unmodifiableRequired(builder.tasks, this, "tasks");
+		this.tasks = ApiTypeHelper.unmodifiableRequired(builder.tasks, this, "tasks");
 
 	}
 
@@ -66,7 +73,7 @@ public class TaskExecutingNode extends BaseNode {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.tasks)) {
+		if (ApiTypeHelper.isDefined(this.tasks)) {
 			generator.writeKey("tasks");
 			generator.writeStartObject();
 			for (Map.Entry<String, State> item0 : this.tasks.entrySet()) {
@@ -85,17 +92,16 @@ public class TaskExecutingNode extends BaseNode {
 	/**
 	 * Builder for {@link TaskExecutingNode}.
 	 */
+
 	public static class Builder extends BaseNode.AbstractBuilder<Builder> implements ObjectBuilder<TaskExecutingNode> {
 		private Map<String, State> tasks;
 
 		/**
 		 * Required - API name: {@code tasks}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>tasks</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>tasks</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>tasks</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder tasks(Map<String, State> map) {
 			this.tasks = _mapPutAll(this.tasks, map);

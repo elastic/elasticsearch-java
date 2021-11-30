@@ -33,7 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -48,6 +48,14 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: indices.stats.Request
+
+/**
+ * Provides statistics on operations happening in an index.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/stats/IndicesStatsRequest.ts#L30-L52">API
+ *      specification</a>
+ */
 
 public class IndicesStatsRequest extends RequestBase {
 	private final List<String> completionFields;
@@ -82,18 +90,18 @@ public class IndicesStatsRequest extends RequestBase {
 
 	private IndicesStatsRequest(Builder builder) {
 
-		this.completionFields = ModelTypeHelper.unmodifiable(builder.completionFields);
-		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
-		this.fielddataFields = ModelTypeHelper.unmodifiable(builder.fielddataFields);
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
+		this.completionFields = ApiTypeHelper.unmodifiable(builder.completionFields);
+		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
+		this.fielddataFields = ApiTypeHelper.unmodifiable(builder.fielddataFields);
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 		this.forbidClosedIndices = builder.forbidClosedIndices;
-		this.groups = ModelTypeHelper.unmodifiable(builder.groups);
+		this.groups = ApiTypeHelper.unmodifiable(builder.groups);
 		this.includeSegmentFileSizes = builder.includeSegmentFileSizes;
 		this.includeUnloadedSegments = builder.includeUnloadedSegments;
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
+		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.level = builder.level;
-		this.metric = ModelTypeHelper.unmodifiable(builder.metric);
-		this.types = ModelTypeHelper.unmodifiable(builder.types);
+		this.metric = ApiTypeHelper.unmodifiable(builder.metric);
+		this.types = ApiTypeHelper.unmodifiable(builder.types);
 
 	}
 
@@ -227,6 +235,7 @@ public class IndicesStatsRequest extends RequestBase {
 	/**
 	 * Builder for {@link IndicesStatsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndicesStatsRequest> {
 		@Nullable
 		private List<String> completionFields;
@@ -270,11 +279,9 @@ public class IndicesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code completion_fields}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>completionFields</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>completionFields</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>completionFields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder completionFields(List<String> list) {
 			this.completionFields = _listAddAll(this.completionFields, list);
@@ -300,11 +307,9 @@ public class IndicesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>expandWildcards</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder expandWildcards(List<ExpandWildcard> list) {
 			this.expandWildcards = _listAddAll(this.expandWildcards, list);
@@ -330,11 +335,9 @@ public class IndicesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code fielddata_fields}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>fielddataFields</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>fielddataFields</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>fielddataFields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder fielddataFields(List<String> list) {
 			this.fielddataFields = _listAddAll(this.fielddataFields, list);
@@ -360,11 +363,9 @@ public class IndicesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code fields}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>fields</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>fields</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>fields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder fields(List<String> list) {
 			this.fields = _listAddAll(this.fields, list);
@@ -400,11 +401,9 @@ public class IndicesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code groups}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>groups</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>groups</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>groups</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder groups(List<String> list) {
 			this.groups = _listAddAll(this.groups, list);
@@ -451,11 +450,9 @@ public class IndicesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>index</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>index</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder index(List<String> list) {
 			this.index = _listAddAll(this.index, list);
@@ -490,11 +487,9 @@ public class IndicesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code metric}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>metric</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>metric</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>metric</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder metric(List<String> list) {
 			this.metric = _listAddAll(this.metric, list);
@@ -519,11 +514,9 @@ public class IndicesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code types}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>types</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>types</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>types</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder types(List<String> list) {
 			this.types = _listAddAll(this.types, list);
@@ -577,9 +570,9 @@ public class IndicesStatsRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (ModelTypeHelper.isDefined(request.metric()))
+				if (ApiTypeHelper.isDefined(request.metric()))
 					propsSet |= _metric;
-				if (ModelTypeHelper.isDefined(request.index()))
+				if (ApiTypeHelper.isDefined(request.index()))
 					propsSet |= _index;
 
 				if (propsSet == 0) {
@@ -619,31 +612,31 @@ public class IndicesStatsRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (ModelTypeHelper.isDefined(request.types)) {
+				if (ApiTypeHelper.isDefined(request.types)) {
 					params.put("types", request.types.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
-				if (ModelTypeHelper.isDefined(request.expandWildcards)) {
+				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
 				if (request.level != null) {
 					params.put("level", request.level.jsonValue());
 				}
-				if (ModelTypeHelper.isDefined(request.completionFields)) {
+				if (ApiTypeHelper.isDefined(request.completionFields)) {
 					params.put("completion_fields",
 							request.completionFields.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
-				if (ModelTypeHelper.isDefined(request.fielddataFields)) {
+				if (ApiTypeHelper.isDefined(request.fielddataFields)) {
 					params.put("fielddata_fields",
 							request.fielddataFields.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
-				if (ModelTypeHelper.isDefined(request.groups)) {
+				if (ApiTypeHelper.isDefined(request.groups)) {
 					params.put("groups", request.groups.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.includeUnloadedSegments != null) {
 					params.put("include_unloaded_segments", String.valueOf(request.includeUnloadedSegments));
 				}
-				if (ModelTypeHelper.isDefined(request.fields)) {
+				if (ApiTypeHelper.isDefined(request.fields)) {
 					params.put("fields", request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.forbidClosedIndices != null) {

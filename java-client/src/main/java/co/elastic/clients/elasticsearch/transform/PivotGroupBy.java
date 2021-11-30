@@ -34,7 +34,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
@@ -46,10 +46,19 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform._types.PivotGroupByContainer
-// union type: Container[]
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/transform/_types/Transform.ts#L70-L78">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PivotGroupBy implements TaggedUnion<PivotGroupBy.Kind, Object>, JsonpSerializable {
 
+	/**
+	 * {@link PivotGroupBy} variant kinds.
+	 */
 	/**
 	 * {@link PivotGroupBy} variant kinds.
 	 */
@@ -92,15 +101,15 @@ public class PivotGroupBy implements TaggedUnion<PivotGroupBy.Kind, Object>, Jso
 
 	public PivotGroupBy(PivotGroupByVariant value) {
 
-		this._kind = ModelTypeHelper.requireNonNull(value._pivotGroupByKind(), this, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(value._pivotGroupByKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
 	private PivotGroupBy(Builder builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 

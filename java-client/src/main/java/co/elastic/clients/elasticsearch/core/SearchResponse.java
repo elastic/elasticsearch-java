@@ -40,7 +40,7 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -56,6 +56,13 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: _global.search.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search/SearchResponse.ts#L30-L49">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SearchResponse<TDocument> implements JsonpSerializable {
 	private final long took;
@@ -102,20 +109,20 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 
 	protected SearchResponse(AbstractBuilder<TDocument, ?> builder) {
 
-		this.took = ModelTypeHelper.requireNonNull(builder.took, this, "took");
-		this.timedOut = ModelTypeHelper.requireNonNull(builder.timedOut, this, "timedOut");
-		this.shards = ModelTypeHelper.requireNonNull(builder.shards, this, "shards");
-		this.hits = ModelTypeHelper.requireNonNull(builder.hits, this, "hits");
-		this.aggregations = ModelTypeHelper.unmodifiable(builder.aggregations);
+		this.took = ApiTypeHelper.requireNonNull(builder.took, this, "took");
+		this.timedOut = ApiTypeHelper.requireNonNull(builder.timedOut, this, "timedOut");
+		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
+		this.hits = ApiTypeHelper.requireNonNull(builder.hits, this, "hits");
+		this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);
 		this.clusters = builder.clusters;
-		this.documents = ModelTypeHelper.unmodifiable(builder.documents);
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
+		this.documents = ApiTypeHelper.unmodifiable(builder.documents);
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 		this.maxScore = builder.maxScore;
 		this.numReducePhases = builder.numReducePhases;
 		this.profile = builder.profile;
 		this.pitId = builder.pitId;
 		this.scrollId = builder.scrollId;
-		this.suggest = ModelTypeHelper.unmodifiable(builder.suggest);
+		this.suggest = ApiTypeHelper.unmodifiable(builder.suggest);
 		this.terminatedEarly = builder.terminatedEarly;
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
@@ -256,7 +263,7 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 		generator.writeKey("hits");
 		this.hits.serialize(generator, mapper);
 
-		if (ModelTypeHelper.isDefined(this.aggregations)) {
+		if (ApiTypeHelper.isDefined(this.aggregations)) {
 			generator.writeKey("aggregations");
 			ExternallyTaggedUnion.serializeTypedKeys(this.aggregations, generator, mapper);
 
@@ -266,7 +273,7 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 			this.clusters.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.documents)) {
+		if (ApiTypeHelper.isDefined(this.documents)) {
 			generator.writeKey("documents");
 			generator.writeStartArray();
 			for (TDocument item0 : this.documents) {
@@ -276,7 +283,7 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.fields)) {
+		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.fields.entrySet()) {
@@ -312,7 +319,7 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 			generator.write(this.scrollId);
 
 		}
-		if (ModelTypeHelper.isDefined(this.suggest)) {
+		if (ApiTypeHelper.isDefined(this.suggest)) {
 			generator.writeKey("suggest");
 			generator.writeStartObject();
 			for (Map.Entry<String, List<Suggestion<TDocument>>> item0 : this.suggest.entrySet()) {
@@ -343,6 +350,7 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 	/**
 	 * Builder for {@link SearchResponse}.
 	 */
+
 	public static class Builder<TDocument> extends SearchResponse.AbstractBuilder<TDocument, Builder<TDocument>>
 			implements
 				ObjectBuilder<SearchResponse<TDocument>> {
@@ -461,11 +469,9 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code aggregations}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>aggregations</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>aggregations</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>aggregations</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final BuilderT aggregations(Map<String, Aggregate> map) {
 			this.aggregations = _mapPutAll(this.aggregations, map);
@@ -509,11 +515,9 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code documents}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>documents</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>documents</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>documents</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final BuilderT documents(List<TDocument> list) {
 			this.documents = _listAddAll(this.documents, list);
@@ -533,11 +537,9 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code fields}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>fields</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>fields</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>fields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final BuilderT fields(Map<String, JsonData> map) {
 			this.fields = _mapPutAll(this.fields, map);
@@ -604,11 +606,9 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code suggest}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>suggest</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>suggest</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>suggest</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final BuilderT suggest(Map<String, List<Suggestion<TDocument>>> map) {
 			this.suggest = _mapPutAll(this.suggest, map);
@@ -649,7 +649,7 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for SearchResponse
+	 * Create a JSON deserializer for SearchResponse
 	 */
 	public static <TDocument> JsonpDeserializer<SearchResponse<TDocument>> createSearchResponseDeserializer(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {

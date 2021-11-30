@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.ChunkingConfig
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/_types/Datafeed.ts#L150-L159">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ChunkingConfig implements JsonpSerializable {
 	private final ChunkingMode mode;
@@ -50,7 +57,7 @@ public class ChunkingConfig implements JsonpSerializable {
 
 	private ChunkingConfig(Builder builder) {
 
-		this.mode = ModelTypeHelper.requireNonNull(builder.mode, this, "mode");
+		this.mode = ApiTypeHelper.requireNonNull(builder.mode, this, "mode");
 		this.timeSpan = builder.timeSpan;
 
 	}
@@ -110,6 +117,7 @@ public class ChunkingConfig implements JsonpSerializable {
 	/**
 	 * Builder for {@link ChunkingConfig}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ChunkingConfig> {
 		private ChunkingMode mode;
 

@@ -35,6 +35,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: indices.get_settings.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/get_settings/IndicesGetSettingsResponse.ts#L24-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetIndicesSettingsResponse extends DictionaryResponse<String, IndexState> {
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +60,7 @@ public class GetIndicesSettingsResponse extends DictionaryResponse<String, Index
 	/**
 	 * Builder for {@link GetIndicesSettingsResponse}.
 	 */
+
 	public static class Builder extends DictionaryResponse.AbstractBuilder<String, IndexState, Builder>
 			implements
 				ObjectBuilder<GetIndicesSettingsResponse> {

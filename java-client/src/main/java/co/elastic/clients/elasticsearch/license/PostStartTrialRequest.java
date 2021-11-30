@@ -44,6 +44,14 @@ import javax.annotation.Nullable;
 
 // typedef: license.post_start_trial.Request
 
+/**
+ * starts a limited time trial license.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/license/post_start_trial/StartTrialLicenseRequest.ts#L22-L32">API
+ *      specification</a>
+ */
+
 public class PostStartTrialRequest extends RequestBase {
 	@Nullable
 	private final Boolean acknowledge;
@@ -87,6 +95,7 @@ public class PostStartTrialRequest extends RequestBase {
 	/**
 	 * Builder for {@link PostStartTrialRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PostStartTrialRequest> {
 		@Nullable
 		private Boolean acknowledge;

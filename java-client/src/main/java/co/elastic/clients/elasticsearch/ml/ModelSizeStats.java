@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.ModelSizeStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/_types/Model.ts#L47-L69">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ModelSizeStats implements JsonpSerializable {
 	private final long bucketAllocationFailuresCount;
@@ -95,34 +102,33 @@ public class ModelSizeStats implements JsonpSerializable {
 
 	private ModelSizeStats(Builder builder) {
 
-		this.bucketAllocationFailuresCount = ModelTypeHelper.requireNonNull(builder.bucketAllocationFailuresCount, this,
+		this.bucketAllocationFailuresCount = ApiTypeHelper.requireNonNull(builder.bucketAllocationFailuresCount, this,
 				"bucketAllocationFailuresCount");
-		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
-		this.logTime = ModelTypeHelper.requireNonNull(builder.logTime, this, "logTime");
-		this.memoryStatus = ModelTypeHelper.requireNonNull(builder.memoryStatus, this, "memoryStatus");
-		this.modelBytes = ModelTypeHelper.requireNonNull(builder.modelBytes, this, "modelBytes");
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.logTime = ApiTypeHelper.requireNonNull(builder.logTime, this, "logTime");
+		this.memoryStatus = ApiTypeHelper.requireNonNull(builder.memoryStatus, this, "memoryStatus");
+		this.modelBytes = ApiTypeHelper.requireNonNull(builder.modelBytes, this, "modelBytes");
 		this.modelBytesExceeded = builder.modelBytesExceeded;
 		this.modelBytesMemoryLimit = builder.modelBytesMemoryLimit;
 		this.peakModelBytes = builder.peakModelBytes;
 		this.assignmentMemoryBasis = builder.assignmentMemoryBasis;
-		this.resultType = ModelTypeHelper.requireNonNull(builder.resultType, this, "resultType");
-		this.totalByFieldCount = ModelTypeHelper.requireNonNull(builder.totalByFieldCount, this, "totalByFieldCount");
-		this.totalOverFieldCount = ModelTypeHelper.requireNonNull(builder.totalOverFieldCount, this,
+		this.resultType = ApiTypeHelper.requireNonNull(builder.resultType, this, "resultType");
+		this.totalByFieldCount = ApiTypeHelper.requireNonNull(builder.totalByFieldCount, this, "totalByFieldCount");
+		this.totalOverFieldCount = ApiTypeHelper.requireNonNull(builder.totalOverFieldCount, this,
 				"totalOverFieldCount");
-		this.totalPartitionFieldCount = ModelTypeHelper.requireNonNull(builder.totalPartitionFieldCount, this,
+		this.totalPartitionFieldCount = ApiTypeHelper.requireNonNull(builder.totalPartitionFieldCount, this,
 				"totalPartitionFieldCount");
-		this.categorizationStatus = ModelTypeHelper.requireNonNull(builder.categorizationStatus, this,
+		this.categorizationStatus = ApiTypeHelper.requireNonNull(builder.categorizationStatus, this,
 				"categorizationStatus");
-		this.categorizedDocCount = ModelTypeHelper.requireNonNull(builder.categorizedDocCount, this,
+		this.categorizedDocCount = ApiTypeHelper.requireNonNull(builder.categorizedDocCount, this,
 				"categorizedDocCount");
-		this.deadCategoryCount = ModelTypeHelper.requireNonNull(builder.deadCategoryCount, this, "deadCategoryCount");
-		this.failedCategoryCount = ModelTypeHelper.requireNonNull(builder.failedCategoryCount, this,
+		this.deadCategoryCount = ApiTypeHelper.requireNonNull(builder.deadCategoryCount, this, "deadCategoryCount");
+		this.failedCategoryCount = ApiTypeHelper.requireNonNull(builder.failedCategoryCount, this,
 				"failedCategoryCount");
-		this.frequentCategoryCount = ModelTypeHelper.requireNonNull(builder.frequentCategoryCount, this,
+		this.frequentCategoryCount = ApiTypeHelper.requireNonNull(builder.frequentCategoryCount, this,
 				"frequentCategoryCount");
-		this.rareCategoryCount = ModelTypeHelper.requireNonNull(builder.rareCategoryCount, this, "rareCategoryCount");
-		this.totalCategoryCount = ModelTypeHelper.requireNonNull(builder.totalCategoryCount, this,
-				"totalCategoryCount");
+		this.rareCategoryCount = ApiTypeHelper.requireNonNull(builder.rareCategoryCount, this, "rareCategoryCount");
+		this.totalCategoryCount = ApiTypeHelper.requireNonNull(builder.totalCategoryCount, this, "totalCategoryCount");
 		this.timestamp = builder.timestamp;
 
 	}
@@ -373,6 +379,7 @@ public class ModelSizeStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link ModelSizeStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ModelSizeStats> {
 		private Long bucketAllocationFailuresCount;
 

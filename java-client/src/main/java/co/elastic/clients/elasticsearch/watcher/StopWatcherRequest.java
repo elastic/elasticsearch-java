@@ -38,6 +38,14 @@ import java.util.Objects;
 
 // typedef: watcher.stop.Request
 
+/**
+ * Stops Watcher if it is running.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/stop/WatcherStopRequest.ts#L22-L27">API
+ *      specification</a>
+ */
+
 public class StopWatcherRequest extends RequestBase {
 	public StopWatcherRequest() {
 	}

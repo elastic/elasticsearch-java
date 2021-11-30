@@ -35,7 +35,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -48,6 +48,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.post_data.Request
+
+/**
+ * Sends data to an anomaly detection job for analysis.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/post_data/MlPostJobDataRequest.ts#L24-L54">API
+ *      specification</a>
+ */
 
 public class PostDataRequest<TData> extends RequestBase implements JsonpSerializable {
 	private final String jobId;
@@ -67,10 +75,10 @@ public class PostDataRequest<TData> extends RequestBase implements JsonpSerializ
 
 	private PostDataRequest(Builder<TData> builder) {
 
-		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.resetEnd = builder.resetEnd;
 		this.resetStart = builder.resetStart;
-		this.data = ModelTypeHelper.unmodifiableRequired(builder.data, this, "data");
+		this.data = ApiTypeHelper.unmodifiableRequired(builder.data, this, "data");
 		this.tDataSerializer = builder.tDataSerializer;
 
 	}
@@ -136,6 +144,7 @@ public class PostDataRequest<TData> extends RequestBase implements JsonpSerializ
 	/**
 	 * Builder for {@link PostDataRequest}.
 	 */
+
 	public static class Builder<TData> extends ObjectBuilderBase implements ObjectBuilder<PostDataRequest<TData>> {
 		private String jobId;
 
@@ -185,11 +194,9 @@ public class PostDataRequest<TData> extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code _value_body}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>data</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>data</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>data</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder<TData> data(List<TData> list) {
 			this.data = _listAddAll(this.data, list);

@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.PatternTokenizer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/tokenizers.ts#L97-L102">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PatternTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
 	private final String flags;
@@ -51,9 +58,9 @@ public class PatternTokenizer extends TokenizerBase implements TokenizerDefiniti
 	private PatternTokenizer(Builder builder) {
 		super(builder);
 
-		this.flags = ModelTypeHelper.requireNonNull(builder.flags, this, "flags");
-		this.group = ModelTypeHelper.requireNonNull(builder.group, this, "group");
-		this.pattern = ModelTypeHelper.requireNonNull(builder.pattern, this, "pattern");
+		this.flags = ApiTypeHelper.requireNonNull(builder.flags, this, "flags");
+		this.group = ApiTypeHelper.requireNonNull(builder.group, this, "group");
+		this.pattern = ApiTypeHelper.requireNonNull(builder.pattern, this, "pattern");
 
 	}
 
@@ -110,6 +117,7 @@ public class PatternTokenizer extends TokenizerBase implements TokenizerDefiniti
 	/**
 	 * Builder for {@link PatternTokenizer}.
 	 */
+
 	public static class Builder extends TokenizerBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PatternTokenizer> {

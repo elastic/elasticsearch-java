@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -45,6 +45,14 @@ import javax.annotation.Nullable;
 
 // typedef: enrich.get_policy.Request
 
+/**
+ * Gets information about an enrich policy.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/enrich/get_policy/GetEnrichPolicyRequest.ts#L23-L32">API
+ *      specification</a>
+ */
+
 public class GetPolicyRequest extends RequestBase {
 	private final List<String> name;
 
@@ -52,7 +60,7 @@ public class GetPolicyRequest extends RequestBase {
 
 	private GetPolicyRequest(Builder builder) {
 
-		this.name = ModelTypeHelper.unmodifiable(builder.name);
+		this.name = ApiTypeHelper.unmodifiable(builder.name);
 
 	}
 
@@ -74,6 +82,7 @@ public class GetPolicyRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetPolicyRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetPolicyRequest> {
 		@Nullable
 		private List<String> name;
@@ -83,11 +92,9 @@ public class GetPolicyRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code name}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>name</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>name</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>name</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder name(List<String> list) {
 			this.name = _listAddAll(this.name, list);
@@ -139,7 +146,7 @@ public class GetPolicyRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (ModelTypeHelper.isDefined(request.name()))
+				if (ApiTypeHelper.isDefined(request.name()))
 					propsSet |= _name;
 
 				if (propsSet == (_name)) {

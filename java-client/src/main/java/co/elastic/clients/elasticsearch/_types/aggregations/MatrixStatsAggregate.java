@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MatrixStatsAggregate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L696-L700">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MatrixStatsAggregate extends AggregateBase implements AggregateVariant {
 	private final long docCount;
@@ -49,8 +56,8 @@ public class MatrixStatsAggregate extends AggregateBase implements AggregateVari
 	private MatrixStatsAggregate(Builder builder) {
 		super(builder);
 
-		this.docCount = ModelTypeHelper.requireNonNull(builder.docCount, this, "docCount");
-		this.fields = ModelTypeHelper.unmodifiableRequired(builder.fields, this, "fields");
+		this.docCount = ApiTypeHelper.requireNonNull(builder.docCount, this, "docCount");
+		this.fields = ApiTypeHelper.unmodifiableRequired(builder.fields, this, "fields");
 
 	}
 
@@ -86,7 +93,7 @@ public class MatrixStatsAggregate extends AggregateBase implements AggregateVari
 		generator.writeKey("doc_count");
 		generator.write(this.docCount);
 
-		if (ModelTypeHelper.isDefined(this.fields)) {
+		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartArray();
 			for (MatrixStatsFields item0 : this.fields) {
@@ -104,6 +111,7 @@ public class MatrixStatsAggregate extends AggregateBase implements AggregateVari
 	/**
 	 * Builder for {@link MatrixStatsAggregate}.
 	 */
+
 	public static class Builder extends AggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<MatrixStatsAggregate> {
@@ -122,11 +130,9 @@ public class MatrixStatsAggregate extends AggregateBase implements AggregateVari
 		/**
 		 * Required - API name: {@code fields}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>fields</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>fields</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>fields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder fields(List<MatrixStatsFields> list) {
 			this.fields = _listAddAll(this.fields, list);

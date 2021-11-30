@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.RerouteParameters
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/reroute/types.ts#L100-L107">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RerouteParameters implements JsonpSerializable {
 	private final boolean allowPrimary;
@@ -61,10 +68,10 @@ public class RerouteParameters implements JsonpSerializable {
 
 	private RerouteParameters(Builder builder) {
 
-		this.allowPrimary = ModelTypeHelper.requireNonNull(builder.allowPrimary, this, "allowPrimary");
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
-		this.node = ModelTypeHelper.requireNonNull(builder.node, this, "node");
-		this.shard = ModelTypeHelper.requireNonNull(builder.shard, this, "shard");
+		this.allowPrimary = ApiTypeHelper.requireNonNull(builder.allowPrimary, this, "allowPrimary");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
+		this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard");
 		this.fromNode = builder.fromNode;
 		this.toNode = builder.toNode;
 
@@ -159,6 +166,7 @@ public class RerouteParameters implements JsonpSerializable {
 	/**
 	 * Builder for {@link RerouteParameters}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RerouteParameters> {
 		private Boolean allowPrimary;
 

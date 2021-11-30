@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,6 +43,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.stats.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/stats/WatcherStatsResponse.ts#L24-L32">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class WatcherStatsResponse implements JsonpSerializable {
 	private final NodeStatistics nodeStats;
@@ -57,10 +64,10 @@ public class WatcherStatsResponse implements JsonpSerializable {
 
 	private WatcherStatsResponse(Builder builder) {
 
-		this.nodeStats = ModelTypeHelper.requireNonNull(builder.nodeStats, this, "nodeStats");
-		this.clusterName = ModelTypeHelper.requireNonNull(builder.clusterName, this, "clusterName");
-		this.manuallyStopped = ModelTypeHelper.requireNonNull(builder.manuallyStopped, this, "manuallyStopped");
-		this.stats = ModelTypeHelper.unmodifiableRequired(builder.stats, this, "stats");
+		this.nodeStats = ApiTypeHelper.requireNonNull(builder.nodeStats, this, "nodeStats");
+		this.clusterName = ApiTypeHelper.requireNonNull(builder.clusterName, this, "clusterName");
+		this.manuallyStopped = ApiTypeHelper.requireNonNull(builder.manuallyStopped, this, "manuallyStopped");
+		this.stats = ApiTypeHelper.unmodifiableRequired(builder.stats, this, "stats");
 
 	}
 
@@ -116,7 +123,7 @@ public class WatcherStatsResponse implements JsonpSerializable {
 		generator.writeKey("manually_stopped");
 		generator.write(this.manuallyStopped);
 
-		if (ModelTypeHelper.isDefined(this.stats)) {
+		if (ApiTypeHelper.isDefined(this.stats)) {
 			generator.writeKey("stats");
 			generator.writeStartArray();
 			for (WatcherNodeStats item0 : this.stats) {
@@ -134,6 +141,7 @@ public class WatcherStatsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link WatcherStatsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WatcherStatsResponse> {
 		private NodeStatistics nodeStats;
 
@@ -177,11 +185,9 @@ public class WatcherStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code stats}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>stats</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>stats</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>stats</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder stats(List<WatcherNodeStats> list) {
 			this.stats = _listAddAll(this.stats, list);

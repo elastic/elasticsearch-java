@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.thread_pool.ThreadPoolRecord
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/thread_pool/types.ts#L22-L123">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ThreadPoolRecord implements JsonpSerializable {
 	@Nullable
@@ -450,6 +457,7 @@ public class ThreadPoolRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link ThreadPoolRecord}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ThreadPoolRecord> {
 		@Nullable
 		private String nodeName;

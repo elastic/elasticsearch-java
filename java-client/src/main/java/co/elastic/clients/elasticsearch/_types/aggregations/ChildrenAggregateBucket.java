@@ -33,6 +33,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.aggregations.ChildrenAggregateBucket
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L718-L718">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ChildrenAggregateBucket extends MultiBucketBase {
 	// ---------------------------------------------------------------------------------------------
@@ -51,6 +58,7 @@ public class ChildrenAggregateBucket extends MultiBucketBase {
 	/**
 	 * Builder for {@link ChildrenAggregateBucket}.
 	 */
+
 	public static class Builder extends MultiBucketBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ChildrenAggregateBucket> {

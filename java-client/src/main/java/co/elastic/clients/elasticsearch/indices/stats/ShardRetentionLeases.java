@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.stats.ShardRetentionLeases
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/stats/types.ts#L132-L136">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ShardRetentionLeases implements JsonpSerializable {
 	private final long primaryTerm;
@@ -52,9 +59,9 @@ public class ShardRetentionLeases implements JsonpSerializable {
 
 	private ShardRetentionLeases(Builder builder) {
 
-		this.primaryTerm = ModelTypeHelper.requireNonNull(builder.primaryTerm, this, "primaryTerm");
-		this.version = ModelTypeHelper.requireNonNull(builder.version, this, "version");
-		this.leases = ModelTypeHelper.unmodifiableRequired(builder.leases, this, "leases");
+		this.primaryTerm = ApiTypeHelper.requireNonNull(builder.primaryTerm, this, "primaryTerm");
+		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
+		this.leases = ApiTypeHelper.unmodifiableRequired(builder.leases, this, "leases");
 
 	}
 
@@ -100,7 +107,7 @@ public class ShardRetentionLeases implements JsonpSerializable {
 		generator.writeKey("version");
 		generator.write(this.version);
 
-		if (ModelTypeHelper.isDefined(this.leases)) {
+		if (ApiTypeHelper.isDefined(this.leases)) {
 			generator.writeKey("leases");
 			generator.writeStartArray();
 			for (ShardLease item0 : this.leases) {
@@ -118,6 +125,7 @@ public class ShardRetentionLeases implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardRetentionLeases}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardRetentionLeases> {
 		private Long primaryTerm;
 
@@ -144,11 +152,9 @@ public class ShardRetentionLeases implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code leases}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>leases</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>leases</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>leases</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder leases(List<ShardLease> list) {
 			this.leases = _listAddAll(this.leases, list);

@@ -35,6 +35,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: slm.get_lifecycle.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/slm/get_lifecycle/GetSnapshotLifecycleResponse.ts#L24-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetLifecycleResponse extends DictionaryResponse<String, SnapshotLifecycle> {
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +60,7 @@ public class GetLifecycleResponse extends DictionaryResponse<String, SnapshotLif
 	/**
 	 * Builder for {@link GetLifecycleResponse}.
 	 */
+
 	public static class Builder extends DictionaryResponse.AbstractBuilder<String, SnapshotLifecycle, Builder>
 			implements
 				ObjectBuilder<GetLifecycleResponse> {

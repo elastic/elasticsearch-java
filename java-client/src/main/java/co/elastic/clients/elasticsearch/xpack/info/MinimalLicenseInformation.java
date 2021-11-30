@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.info.MinimalLicenseInformation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/xpack/info/types.ts#L34-L40">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MinimalLicenseInformation implements JsonpSerializable {
 	private final String expiryDateInMillis;
@@ -57,12 +64,11 @@ public class MinimalLicenseInformation implements JsonpSerializable {
 
 	private MinimalLicenseInformation(Builder builder) {
 
-		this.expiryDateInMillis = ModelTypeHelper.requireNonNull(builder.expiryDateInMillis, this,
-				"expiryDateInMillis");
-		this.mode = ModelTypeHelper.requireNonNull(builder.mode, this, "mode");
-		this.status = ModelTypeHelper.requireNonNull(builder.status, this, "status");
-		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
-		this.uid = ModelTypeHelper.requireNonNull(builder.uid, this, "uid");
+		this.expiryDateInMillis = ApiTypeHelper.requireNonNull(builder.expiryDateInMillis, this, "expiryDateInMillis");
+		this.mode = ApiTypeHelper.requireNonNull(builder.mode, this, "mode");
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.uid = ApiTypeHelper.requireNonNull(builder.uid, this, "uid");
 
 	}
 
@@ -135,6 +141,7 @@ public class MinimalLicenseInformation implements JsonpSerializable {
 	/**
 	 * Builder for {@link MinimalLicenseInformation}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MinimalLicenseInformation> {
 		private String expiryDateInMillis;
 

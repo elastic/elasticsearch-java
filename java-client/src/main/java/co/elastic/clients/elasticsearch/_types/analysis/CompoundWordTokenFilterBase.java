@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -39,6 +39,13 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.CompoundWordTokenFilterBase
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/token_filters.ts#L43-L51">API
+ *      specification</a>
+ */
 
 public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 	@Nullable
@@ -71,7 +78,7 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 		this.minSubwordSize = builder.minSubwordSize;
 		this.minWordSize = builder.minWordSize;
 		this.onlyLongestMatch = builder.onlyLongestMatch;
-		this.wordList = ModelTypeHelper.unmodifiable(builder.wordList);
+		this.wordList = ApiTypeHelper.unmodifiable(builder.wordList);
 		this.wordListPath = builder.wordListPath;
 
 	}
@@ -159,7 +166,7 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 			generator.write(this.onlyLongestMatch);
 
 		}
-		if (ModelTypeHelper.isDefined(this.wordList)) {
+		if (ApiTypeHelper.isDefined(this.wordList)) {
 			generator.writeKey("word_list");
 			generator.writeStartArray();
 			for (String item0 : this.wordList) {
@@ -244,11 +251,9 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 		/**
 		 * API name: {@code word_list}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>wordList</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>wordList</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>wordList</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final BuilderT wordList(List<String> list) {
 			this.wordList = _listAddAll(this.wordList, list);

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: license.post.Acknowledgement
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/license/post/types.ts#L20-L23">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Acknowledgement implements JsonpSerializable {
 	private final List<String> license;
@@ -50,8 +57,8 @@ public class Acknowledgement implements JsonpSerializable {
 
 	private Acknowledgement(Builder builder) {
 
-		this.license = ModelTypeHelper.unmodifiableRequired(builder.license, this, "license");
-		this.message = ModelTypeHelper.requireNonNull(builder.message, this, "message");
+		this.license = ApiTypeHelper.unmodifiableRequired(builder.license, this, "license");
+		this.message = ApiTypeHelper.requireNonNull(builder.message, this, "message");
 
 	}
 
@@ -84,7 +91,7 @@ public class Acknowledgement implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.license)) {
+		if (ApiTypeHelper.isDefined(this.license)) {
 			generator.writeKey("license");
 			generator.writeStartArray();
 			for (String item0 : this.license) {
@@ -104,6 +111,7 @@ public class Acknowledgement implements JsonpSerializable {
 	/**
 	 * Builder for {@link Acknowledgement}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Acknowledgement> {
 		private List<String> license;
 
@@ -112,11 +120,9 @@ public class Acknowledgement implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code license}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>license</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>license</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>license</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder license(List<String> list) {
 			this.license = _listAddAll(this.license, list);

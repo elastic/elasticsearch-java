@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.CompletionStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Stats.ts#L52-L56">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CompletionStats implements JsonpSerializable {
 	private final long sizeInBytes;
@@ -54,9 +61,9 @@ public class CompletionStats implements JsonpSerializable {
 
 	private CompletionStats(Builder builder) {
 
-		this.sizeInBytes = ModelTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
+		this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
 		this.size = builder.size;
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 
 	}
 
@@ -105,7 +112,7 @@ public class CompletionStats implements JsonpSerializable {
 			generator.write(this.size);
 
 		}
-		if (ModelTypeHelper.isDefined(this.fields)) {
+		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartObject();
 			for (Map.Entry<String, FieldSizeUsage> item0 : this.fields.entrySet()) {
@@ -124,6 +131,7 @@ public class CompletionStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link CompletionStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CompletionStats> {
 		private Long sizeInBytes;
 
@@ -152,11 +160,9 @@ public class CompletionStats implements JsonpSerializable {
 		/**
 		 * API name: {@code fields}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>fields</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>fields</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>fields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder fields(Map<String, FieldSizeUsage> map) {
 			this.fields = _mapPutAll(this.fields, map);

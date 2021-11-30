@@ -34,6 +34,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.mapping.LongRangeProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/range.ts#L58-L60">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class LongRangeProperty extends RangePropertyBase implements PropertyVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -67,6 +74,7 @@ public class LongRangeProperty extends RangePropertyBase implements PropertyVari
 	/**
 	 * Builder for {@link LongRangeProperty}.
 	 */
+
 	public static class Builder extends RangePropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<LongRangeProperty> {

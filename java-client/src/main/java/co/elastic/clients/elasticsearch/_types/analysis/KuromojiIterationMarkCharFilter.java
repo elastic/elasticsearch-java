@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -36,6 +36,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.analysis.KuromojiIterationMarkCharFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/kuromoji-plugin.ts#L31-L35">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class KuromojiIterationMarkCharFilter extends CharFilterBase implements CharFilterDefinitionVariant {
 	private final boolean normalizeKana;
@@ -47,8 +54,8 @@ public class KuromojiIterationMarkCharFilter extends CharFilterBase implements C
 	private KuromojiIterationMarkCharFilter(Builder builder) {
 		super(builder);
 
-		this.normalizeKana = ModelTypeHelper.requireNonNull(builder.normalizeKana, this, "normalizeKana");
-		this.normalizeKanji = ModelTypeHelper.requireNonNull(builder.normalizeKanji, this, "normalizeKanji");
+		this.normalizeKana = ApiTypeHelper.requireNonNull(builder.normalizeKana, this, "normalizeKana");
+		this.normalizeKanji = ApiTypeHelper.requireNonNull(builder.normalizeKanji, this, "normalizeKanji");
 
 	}
 
@@ -96,6 +103,7 @@ public class KuromojiIterationMarkCharFilter extends CharFilterBase implements C
 	/**
 	 * Builder for {@link KuromojiIterationMarkCharFilter}.
 	 */
+
 	public static class Builder extends CharFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<KuromojiIterationMarkCharFilter> {

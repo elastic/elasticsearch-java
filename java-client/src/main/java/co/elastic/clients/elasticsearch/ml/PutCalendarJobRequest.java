@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,6 +43,14 @@ import javax.annotation.Nullable;
 
 // typedef: ml.put_calendar_job.Request
 
+/**
+ * Adds an anomaly detection job to a calendar.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/put_calendar_job/MlPutCalendarJobRequest.ts#L23-L37">API
+ *      specification</a>
+ */
+
 public class PutCalendarJobRequest extends RequestBase {
 	private final String calendarId;
 
@@ -52,8 +60,8 @@ public class PutCalendarJobRequest extends RequestBase {
 
 	private PutCalendarJobRequest(Builder builder) {
 
-		this.calendarId = ModelTypeHelper.requireNonNull(builder.calendarId, this, "calendarId");
-		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.calendarId = ApiTypeHelper.requireNonNull(builder.calendarId, this, "calendarId");
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 
 	}
 
@@ -85,6 +93,7 @@ public class PutCalendarJobRequest extends RequestBase {
 	/**
 	 * Builder for {@link PutCalendarJobRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutCalendarJobRequest> {
 		private String calendarId;
 

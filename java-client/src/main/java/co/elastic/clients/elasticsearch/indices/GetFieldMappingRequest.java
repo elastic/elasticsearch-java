@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -47,6 +47,14 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_field_mapping.Request
+
+/**
+ * Returns mapping for one or more fields.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/get_field_mapping/IndicesGetFieldMappingRequest.ts#L23-L42">API
+ *      specification</a>
+ */
 
 public class GetFieldMappingRequest extends RequestBase {
 	@Nullable
@@ -77,14 +85,14 @@ public class GetFieldMappingRequest extends RequestBase {
 	private GetFieldMappingRequest(Builder builder) {
 
 		this.allowNoIndices = builder.allowNoIndices;
-		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
-		this.fields = ModelTypeHelper.unmodifiableRequired(builder.fields, this, "fields");
+		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
+		this.fields = ApiTypeHelper.unmodifiableRequired(builder.fields, this, "fields");
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.includeDefaults = builder.includeDefaults;
 		this.includeTypeName = builder.includeTypeName;
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
+		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.local = builder.local;
-		this.type = ModelTypeHelper.unmodifiable(builder.type);
+		this.type = ApiTypeHelper.unmodifiable(builder.type);
 
 	}
 
@@ -188,6 +196,7 @@ public class GetFieldMappingRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetFieldMappingRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetFieldMappingRequest> {
 		@Nullable
 		private Boolean allowNoIndices;
@@ -233,11 +242,9 @@ public class GetFieldMappingRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>expandWildcards</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder expandWildcards(List<ExpandWildcard> list) {
 			this.expandWildcards = _listAddAll(this.expandWildcards, list);
@@ -262,11 +269,9 @@ public class GetFieldMappingRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code fields}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>fields</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>fields</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>fields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder fields(List<String> list) {
 			this.fields = _listAddAll(this.fields, list);
@@ -321,11 +326,9 @@ public class GetFieldMappingRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>index</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>index</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder index(List<String> list) {
 			this.index = _listAddAll(this.index, list);
@@ -360,11 +363,9 @@ public class GetFieldMappingRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code type}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>type</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>type</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>type</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder type(List<String> list) {
 			this.type = _listAddAll(this.type, list);
@@ -418,10 +419,10 @@ public class GetFieldMappingRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (ModelTypeHelper.isDefined(request.index()))
+				if (ApiTypeHelper.isDefined(request.index()))
 					propsSet |= _index;
 				propsSet |= _fields;
-				if (ModelTypeHelper.isDefined(request.type()))
+				if (ApiTypeHelper.isDefined(request.type()))
 					propsSet |= _type;
 
 				if (propsSet == (_fields)) {
@@ -478,7 +479,7 @@ public class GetFieldMappingRequest extends RequestBase {
 				if (request.includeTypeName != null) {
 					params.put("include_type_name", String.valueOf(request.includeTypeName));
 				}
-				if (ModelTypeHelper.isDefined(request.expandWildcards)) {
+				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}

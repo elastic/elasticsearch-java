@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.recovery.RecoveryRecord
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/recovery/types.ts#L23-L154">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RecoveryRecord implements JsonpSerializable {
 	@Nullable
@@ -564,6 +571,7 @@ public class RecoveryRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link RecoveryRecord}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RecoveryRecord> {
 		@Nullable
 		private String index;

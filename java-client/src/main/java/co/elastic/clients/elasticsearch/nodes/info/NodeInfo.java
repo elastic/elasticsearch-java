@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -44,6 +44,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfo
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/info/types.ts#L29-L65">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeInfo implements JsonpSerializable {
 	private final Map<String, String> attributes;
@@ -108,30 +115,30 @@ public class NodeInfo implements JsonpSerializable {
 
 	private NodeInfo(Builder builder) {
 
-		this.attributes = ModelTypeHelper.unmodifiableRequired(builder.attributes, this, "attributes");
-		this.buildFlavor = ModelTypeHelper.requireNonNull(builder.buildFlavor, this, "buildFlavor");
-		this.buildHash = ModelTypeHelper.requireNonNull(builder.buildHash, this, "buildHash");
-		this.buildType = ModelTypeHelper.requireNonNull(builder.buildType, this, "buildType");
-		this.host = ModelTypeHelper.requireNonNull(builder.host, this, "host");
+		this.attributes = ApiTypeHelper.unmodifiableRequired(builder.attributes, this, "attributes");
+		this.buildFlavor = ApiTypeHelper.requireNonNull(builder.buildFlavor, this, "buildFlavor");
+		this.buildHash = ApiTypeHelper.requireNonNull(builder.buildHash, this, "buildHash");
+		this.buildType = ApiTypeHelper.requireNonNull(builder.buildType, this, "buildType");
+		this.host = ApiTypeHelper.requireNonNull(builder.host, this, "host");
 		this.http = builder.http;
-		this.ip = ModelTypeHelper.requireNonNull(builder.ip, this, "ip");
+		this.ip = ApiTypeHelper.requireNonNull(builder.ip, this, "ip");
 		this.jvm = builder.jvm;
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.network = builder.network;
 		this.os = builder.os;
-		this.plugins = ModelTypeHelper.unmodifiable(builder.plugins);
+		this.plugins = ApiTypeHelper.unmodifiable(builder.plugins);
 		this.process = builder.process;
-		this.roles = ModelTypeHelper.unmodifiableRequired(builder.roles, this, "roles");
+		this.roles = ApiTypeHelper.unmodifiableRequired(builder.roles, this, "roles");
 		this.settings = builder.settings;
-		this.threadPool = ModelTypeHelper.unmodifiable(builder.threadPool);
+		this.threadPool = ApiTypeHelper.unmodifiable(builder.threadPool);
 		this.totalIndexingBuffer = builder.totalIndexingBuffer;
 		this.totalIndexingBufferInBytes = builder.totalIndexingBufferInBytes;
 		this.transport = builder.transport;
-		this.transportAddress = ModelTypeHelper.requireNonNull(builder.transportAddress, this, "transportAddress");
-		this.version = ModelTypeHelper.requireNonNull(builder.version, this, "version");
-		this.modules = ModelTypeHelper.unmodifiable(builder.modules);
+		this.transportAddress = ApiTypeHelper.requireNonNull(builder.transportAddress, this, "transportAddress");
+		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
+		this.modules = ApiTypeHelper.unmodifiable(builder.modules);
 		this.ingest = builder.ingest;
-		this.aggregations = ModelTypeHelper.unmodifiable(builder.aggregations);
+		this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);
 
 	}
 
@@ -346,7 +353,7 @@ public class NodeInfo implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.attributes)) {
+		if (ApiTypeHelper.isDefined(this.attributes)) {
 			generator.writeKey("attributes");
 			generator.writeStartObject();
 			for (Map.Entry<String, String> item0 : this.attributes.entrySet()) {
@@ -395,7 +402,7 @@ public class NodeInfo implements JsonpSerializable {
 			this.os.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.plugins)) {
+		if (ApiTypeHelper.isDefined(this.plugins)) {
 			generator.writeKey("plugins");
 			generator.writeStartArray();
 			for (PluginStats item0 : this.plugins) {
@@ -410,7 +417,7 @@ public class NodeInfo implements JsonpSerializable {
 			this.process.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.roles)) {
+		if (ApiTypeHelper.isDefined(this.roles)) {
 			generator.writeKey("roles");
 			generator.writeStartArray();
 			for (NodeRole item0 : this.roles) {
@@ -424,7 +431,7 @@ public class NodeInfo implements JsonpSerializable {
 			this.settings.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.threadPool)) {
+		if (ApiTypeHelper.isDefined(this.threadPool)) {
 			generator.writeKey("thread_pool");
 			generator.writeStartObject();
 			for (Map.Entry<String, NodeThreadPoolInfo> item0 : this.threadPool.entrySet()) {
@@ -456,7 +463,7 @@ public class NodeInfo implements JsonpSerializable {
 		generator.writeKey("version");
 		generator.write(this.version);
 
-		if (ModelTypeHelper.isDefined(this.modules)) {
+		if (ApiTypeHelper.isDefined(this.modules)) {
 			generator.writeKey("modules");
 			generator.writeStartArray();
 			for (PluginStats item0 : this.modules) {
@@ -471,7 +478,7 @@ public class NodeInfo implements JsonpSerializable {
 			this.ingest.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.aggregations)) {
+		if (ApiTypeHelper.isDefined(this.aggregations)) {
 			generator.writeKey("aggregations");
 			generator.writeStartObject();
 			for (Map.Entry<String, NodeInfoAggregation> item0 : this.aggregations.entrySet()) {
@@ -490,6 +497,7 @@ public class NodeInfo implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfo}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfo> {
 		private Map<String, String> attributes;
 
@@ -556,11 +564,9 @@ public class NodeInfo implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code attributes}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>attributes</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>attributes</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>attributes</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder attributes(Map<String, String> map) {
 			this.attributes = _mapPutAll(this.attributes, map);
@@ -696,11 +702,9 @@ public class NodeInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code plugins}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>plugins</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>plugins</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>plugins</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder plugins(List<PluginStats> list) {
 			this.plugins = _listAddAll(this.plugins, list);
@@ -744,11 +748,9 @@ public class NodeInfo implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code roles}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>roles</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>roles</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>roles</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder roles(List<NodeRole> list) {
 			this.roles = _listAddAll(this.roles, list);
@@ -783,11 +785,9 @@ public class NodeInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code thread_pool}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>threadPool</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>threadPool</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>threadPool</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder threadPool(Map<String, NodeThreadPoolInfo> map) {
 			this.threadPool = _mapPutAll(this.threadPool, map);
@@ -874,11 +874,9 @@ public class NodeInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code modules}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>modules</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>modules</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>modules</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder modules(List<PluginStats> list) {
 			this.modules = _listAddAll(this.modules, list);
@@ -922,11 +920,9 @@ public class NodeInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code aggregations}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>aggregations</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>aggregations</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>aggregations</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder aggregations(Map<String, NodeInfoAggregation> map) {
 			this.aggregations = _mapPutAll(this.aggregations, map);

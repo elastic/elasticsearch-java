@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DiscoveryNode
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/_types/DiscoveryNode.ts#L24-L30">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DiscoveryNode implements JsonpSerializable {
 	private final Map<String, String> attributes;
@@ -56,11 +63,11 @@ public class DiscoveryNode implements JsonpSerializable {
 
 	private DiscoveryNode(Builder builder) {
 
-		this.attributes = ModelTypeHelper.unmodifiableRequired(builder.attributes, this, "attributes");
-		this.ephemeralId = ModelTypeHelper.requireNonNull(builder.ephemeralId, this, "ephemeralId");
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
-		this.transportAddress = ModelTypeHelper.requireNonNull(builder.transportAddress, this, "transportAddress");
+		this.attributes = ApiTypeHelper.unmodifiableRequired(builder.attributes, this, "attributes");
+		this.ephemeralId = ApiTypeHelper.requireNonNull(builder.ephemeralId, this, "ephemeralId");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.transportAddress = ApiTypeHelper.requireNonNull(builder.transportAddress, this, "transportAddress");
 
 	}
 
@@ -114,7 +121,7 @@ public class DiscoveryNode implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.attributes)) {
+		if (ApiTypeHelper.isDefined(this.attributes)) {
 			generator.writeKey("attributes");
 			generator.writeStartObject();
 			for (Map.Entry<String, String> item0 : this.attributes.entrySet()) {
@@ -144,6 +151,7 @@ public class DiscoveryNode implements JsonpSerializable {
 	/**
 	 * Builder for {@link DiscoveryNode}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DiscoveryNode> {
 		private Map<String, String> attributes;
 
@@ -158,11 +166,9 @@ public class DiscoveryNode implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code attributes}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>attributes</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>attributes</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>attributes</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder attributes(Map<String, String> map) {
 			this.attributes = _mapPutAll(this.attributes, map);

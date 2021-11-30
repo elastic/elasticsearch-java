@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.KeepWordsTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/token_filters.ts#L222-L227">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class KeepWordsTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final List<String> keepWords;
@@ -54,7 +61,7 @@ public class KeepWordsTokenFilter extends TokenFilterBase implements TokenFilter
 	private KeepWordsTokenFilter(Builder builder) {
 		super(builder);
 
-		this.keepWords = ModelTypeHelper.unmodifiable(builder.keepWords);
+		this.keepWords = ApiTypeHelper.unmodifiable(builder.keepWords);
 		this.keepWordsCase = builder.keepWordsCase;
 		this.keepWordsPath = builder.keepWordsPath;
 
@@ -99,7 +106,7 @@ public class KeepWordsTokenFilter extends TokenFilterBase implements TokenFilter
 
 		generator.write("type", "keep");
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.keepWords)) {
+		if (ApiTypeHelper.isDefined(this.keepWords)) {
 			generator.writeKey("keep_words");
 			generator.writeStartArray();
 			for (String item0 : this.keepWords) {
@@ -127,6 +134,7 @@ public class KeepWordsTokenFilter extends TokenFilterBase implements TokenFilter
 	/**
 	 * Builder for {@link KeepWordsTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<KeepWordsTokenFilter> {
@@ -142,11 +150,9 @@ public class KeepWordsTokenFilter extends TokenFilterBase implements TokenFilter
 		/**
 		 * API name: {@code keep_words}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>keepWords</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>keepWords</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>keepWords</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder keepWords(List<String> list) {
 			this.keepWords = _listAddAll(this.keepWords, list);

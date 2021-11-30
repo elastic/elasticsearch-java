@@ -33,7 +33,7 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -44,6 +44,13 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: transform.preview_transform.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/transform/preview_transform/PreviewTransformResponse.ts#L22-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PreviewTransformResponse<TTransform> implements JsonpSerializable {
 	private final IndexState generatedDestIndex;
@@ -57,9 +64,8 @@ public class PreviewTransformResponse<TTransform> implements JsonpSerializable {
 
 	private PreviewTransformResponse(Builder<TTransform> builder) {
 
-		this.generatedDestIndex = ModelTypeHelper.requireNonNull(builder.generatedDestIndex, this,
-				"generatedDestIndex");
-		this.preview = ModelTypeHelper.unmodifiableRequired(builder.preview, this, "preview");
+		this.generatedDestIndex = ApiTypeHelper.requireNonNull(builder.generatedDestIndex, this, "generatedDestIndex");
+		this.preview = ApiTypeHelper.unmodifiableRequired(builder.preview, this, "preview");
 		this.tTransformSerializer = builder.tTransformSerializer;
 
 	}
@@ -97,7 +103,7 @@ public class PreviewTransformResponse<TTransform> implements JsonpSerializable {
 		generator.writeKey("generated_dest_index");
 		this.generatedDestIndex.serialize(generator, mapper);
 
-		if (ModelTypeHelper.isDefined(this.preview)) {
+		if (ApiTypeHelper.isDefined(this.preview)) {
 			generator.writeKey("preview");
 			generator.writeStartArray();
 			for (TTransform item0 : this.preview) {
@@ -115,6 +121,7 @@ public class PreviewTransformResponse<TTransform> implements JsonpSerializable {
 	/**
 	 * Builder for {@link PreviewTransformResponse}.
 	 */
+
 	public static class Builder<TTransform> extends ObjectBuilderBase
 			implements
 				ObjectBuilder<PreviewTransformResponse<TTransform>> {
@@ -144,11 +151,9 @@ public class PreviewTransformResponse<TTransform> implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code preview}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>preview</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>preview</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>preview</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder<TTransform> preview(List<TTransform> list) {
 			this.preview = _listAddAll(this.preview, list);
@@ -190,7 +195,7 @@ public class PreviewTransformResponse<TTransform> implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for PreviewTransformResponse
+	 * Create a JSON deserializer for PreviewTransformResponse
 	 */
 	public static <TTransform> JsonpDeserializer<PreviewTransformResponse<TTransform>> createPreviewTransformResponseDeserializer(
 			JsonpDeserializer<TTransform> tTransformDeserializer) {

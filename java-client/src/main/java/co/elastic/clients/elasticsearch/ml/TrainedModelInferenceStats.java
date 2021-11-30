@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.TrainedModelInferenceStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/_types/TrainedModel.ts#L41-L55">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TrainedModelInferenceStats implements JsonpSerializable {
 	private final long failureCount;
@@ -56,12 +63,12 @@ public class TrainedModelInferenceStats implements JsonpSerializable {
 
 	private TrainedModelInferenceStats(Builder builder) {
 
-		this.failureCount = ModelTypeHelper.requireNonNull(builder.failureCount, this, "failureCount");
-		this.inferenceCount = ModelTypeHelper.requireNonNull(builder.inferenceCount, this, "inferenceCount");
-		this.cacheMissCount = ModelTypeHelper.requireNonNull(builder.cacheMissCount, this, "cacheMissCount");
-		this.missingAllFieldsCount = ModelTypeHelper.requireNonNull(builder.missingAllFieldsCount, this,
+		this.failureCount = ApiTypeHelper.requireNonNull(builder.failureCount, this, "failureCount");
+		this.inferenceCount = ApiTypeHelper.requireNonNull(builder.inferenceCount, this, "inferenceCount");
+		this.cacheMissCount = ApiTypeHelper.requireNonNull(builder.cacheMissCount, this, "cacheMissCount");
+		this.missingAllFieldsCount = ApiTypeHelper.requireNonNull(builder.missingAllFieldsCount, this,
 				"missingAllFieldsCount");
-		this.timestamp = ModelTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
 
 	}
 
@@ -153,6 +160,7 @@ public class TrainedModelInferenceStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link TrainedModelInferenceStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TrainedModelInferenceStats> {
 		private Long failureCount;
 

@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.MachineLearning
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/xpack/usage/types.ts#L332-L340">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MachineLearning extends Base {
 	private final Map<String, Datafeed> datafeeds;
@@ -56,12 +63,12 @@ public class MachineLearning extends Base {
 	private MachineLearning(Builder builder) {
 		super(builder);
 
-		this.datafeeds = ModelTypeHelper.unmodifiableRequired(builder.datafeeds, this, "datafeeds");
-		this.jobs = ModelTypeHelper.requireNonNull(builder.jobs, this, "jobs");
-		this.nodeCount = ModelTypeHelper.requireNonNull(builder.nodeCount, this, "nodeCount");
-		this.dataFrameAnalyticsJobs = ModelTypeHelper.requireNonNull(builder.dataFrameAnalyticsJobs, this,
+		this.datafeeds = ApiTypeHelper.unmodifiableRequired(builder.datafeeds, this, "datafeeds");
+		this.jobs = ApiTypeHelper.requireNonNull(builder.jobs, this, "jobs");
+		this.nodeCount = ApiTypeHelper.requireNonNull(builder.nodeCount, this, "nodeCount");
+		this.dataFrameAnalyticsJobs = ApiTypeHelper.requireNonNull(builder.dataFrameAnalyticsJobs, this,
 				"dataFrameAnalyticsJobs");
-		this.inference = ModelTypeHelper.requireNonNull(builder.inference, this, "inference");
+		this.inference = ApiTypeHelper.requireNonNull(builder.inference, this, "inference");
 
 	}
 
@@ -107,7 +114,7 @@ public class MachineLearning extends Base {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.datafeeds)) {
+		if (ApiTypeHelper.isDefined(this.datafeeds)) {
 			generator.writeKey("datafeeds");
 			generator.writeStartObject();
 			for (Map.Entry<String, Datafeed> item0 : this.datafeeds.entrySet()) {
@@ -137,6 +144,7 @@ public class MachineLearning extends Base {
 	/**
 	 * Builder for {@link MachineLearning}.
 	 */
+
 	public static class Builder extends Base.AbstractBuilder<Builder> implements ObjectBuilder<MachineLearning> {
 		private Map<String, Datafeed> datafeeds;
 
@@ -151,11 +159,9 @@ public class MachineLearning extends Base {
 		/**
 		 * Required - API name: {@code datafeeds}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>datafeeds</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>datafeeds</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>datafeeds</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder datafeeds(Map<String, Datafeed> map) {
 			this.datafeeds = _mapPutAll(this.datafeeds, map);

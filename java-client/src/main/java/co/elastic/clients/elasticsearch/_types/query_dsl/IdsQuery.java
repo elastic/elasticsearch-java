@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.IdsQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/term.ts#L53-L55">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IdsQuery extends QueryBase implements QueryVariant {
 	private final List<String> values;
@@ -47,7 +54,7 @@ public class IdsQuery extends QueryBase implements QueryVariant {
 	private IdsQuery(Builder builder) {
 		super(builder);
 
-		this.values = ModelTypeHelper.unmodifiable(builder.values);
+		this.values = ApiTypeHelper.unmodifiable(builder.values);
 
 	}
 
@@ -73,7 +80,7 @@ public class IdsQuery extends QueryBase implements QueryVariant {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.values)) {
+		if (ApiTypeHelper.isDefined(this.values)) {
 			generator.writeKey("values");
 			generator.writeStartArray();
 			for (String item0 : this.values) {
@@ -91,6 +98,7 @@ public class IdsQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link IdsQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<IdsQuery> {
 		@Nullable
 		private List<String> values;
@@ -98,11 +106,9 @@ public class IdsQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code values}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>values</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>values</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>values</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder values(List<String> list) {
 			this.values = _listAddAll(this.values, list);

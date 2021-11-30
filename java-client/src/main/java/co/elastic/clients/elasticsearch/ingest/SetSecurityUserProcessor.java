@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.SetSecurityUserProcessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ingest/_types/Processors.ts#L311-L314">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SetSecurityUserProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
@@ -49,8 +56,8 @@ public class SetSecurityUserProcessor extends ProcessorBase implements Processor
 	private SetSecurityUserProcessor(Builder builder) {
 		super(builder);
 
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
-		this.properties = ModelTypeHelper.unmodifiable(builder.properties);
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.properties = ApiTypeHelper.unmodifiable(builder.properties);
 
 	}
 
@@ -86,7 +93,7 @@ public class SetSecurityUserProcessor extends ProcessorBase implements Processor
 		generator.writeKey("field");
 		generator.write(this.field);
 
-		if (ModelTypeHelper.isDefined(this.properties)) {
+		if (ApiTypeHelper.isDefined(this.properties)) {
 			generator.writeKey("properties");
 			generator.writeStartArray();
 			for (String item0 : this.properties) {
@@ -104,6 +111,7 @@ public class SetSecurityUserProcessor extends ProcessorBase implements Processor
 	/**
 	 * Builder for {@link SetSecurityUserProcessor}.
 	 */
+
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<SetSecurityUserProcessor> {
@@ -123,11 +131,9 @@ public class SetSecurityUserProcessor extends ProcessorBase implements Processor
 		/**
 		 * API name: {@code properties}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>properties</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>properties</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>properties</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder properties(List<String> list) {
 			this.properties = _listAddAll(this.properties, list);

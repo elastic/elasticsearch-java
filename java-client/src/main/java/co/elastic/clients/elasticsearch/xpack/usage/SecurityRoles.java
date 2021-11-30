@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.SecurityRoles
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/xpack/usage/types.ts#L251-L255">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SecurityRoles implements JsonpSerializable {
 	private final SecurityRolesNative native_;
@@ -50,9 +57,9 @@ public class SecurityRoles implements JsonpSerializable {
 
 	private SecurityRoles(Builder builder) {
 
-		this.native_ = ModelTypeHelper.requireNonNull(builder.native_, this, "native_");
-		this.dls = ModelTypeHelper.requireNonNull(builder.dls, this, "dls");
-		this.file = ModelTypeHelper.requireNonNull(builder.file, this, "file");
+		this.native_ = ApiTypeHelper.requireNonNull(builder.native_, this, "native_");
+		this.dls = ApiTypeHelper.requireNonNull(builder.dls, this, "dls");
+		this.file = ApiTypeHelper.requireNonNull(builder.file, this, "file");
 
 	}
 
@@ -108,6 +115,7 @@ public class SecurityRoles implements JsonpSerializable {
 	/**
 	 * Builder for {@link SecurityRoles}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SecurityRoles> {
 		private SecurityRolesNative native_;
 

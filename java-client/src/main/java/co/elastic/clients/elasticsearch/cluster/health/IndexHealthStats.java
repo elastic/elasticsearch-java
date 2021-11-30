@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.health.IndexHealthStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/health/types.ts#L24-L34">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IndexHealthStats implements JsonpSerializable {
 	private final int activePrimaryShards;
@@ -66,17 +73,16 @@ public class IndexHealthStats implements JsonpSerializable {
 
 	private IndexHealthStats(Builder builder) {
 
-		this.activePrimaryShards = ModelTypeHelper.requireNonNull(builder.activePrimaryShards, this,
+		this.activePrimaryShards = ApiTypeHelper.requireNonNull(builder.activePrimaryShards, this,
 				"activePrimaryShards");
-		this.activeShards = ModelTypeHelper.requireNonNull(builder.activeShards, this, "activeShards");
-		this.initializingShards = ModelTypeHelper.requireNonNull(builder.initializingShards, this,
-				"initializingShards");
-		this.numberOfReplicas = ModelTypeHelper.requireNonNull(builder.numberOfReplicas, this, "numberOfReplicas");
-		this.numberOfShards = ModelTypeHelper.requireNonNull(builder.numberOfShards, this, "numberOfShards");
-		this.relocatingShards = ModelTypeHelper.requireNonNull(builder.relocatingShards, this, "relocatingShards");
-		this.shards = ModelTypeHelper.unmodifiable(builder.shards);
-		this.status = ModelTypeHelper.requireNonNull(builder.status, this, "status");
-		this.unassignedShards = ModelTypeHelper.requireNonNull(builder.unassignedShards, this, "unassignedShards");
+		this.activeShards = ApiTypeHelper.requireNonNull(builder.activeShards, this, "activeShards");
+		this.initializingShards = ApiTypeHelper.requireNonNull(builder.initializingShards, this, "initializingShards");
+		this.numberOfReplicas = ApiTypeHelper.requireNonNull(builder.numberOfReplicas, this, "numberOfReplicas");
+		this.numberOfShards = ApiTypeHelper.requireNonNull(builder.numberOfShards, this, "numberOfShards");
+		this.relocatingShards = ApiTypeHelper.requireNonNull(builder.relocatingShards, this, "relocatingShards");
+		this.shards = ApiTypeHelper.unmodifiable(builder.shards);
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
+		this.unassignedShards = ApiTypeHelper.requireNonNull(builder.unassignedShards, this, "unassignedShards");
 
 	}
 
@@ -176,7 +182,7 @@ public class IndexHealthStats implements JsonpSerializable {
 		generator.writeKey("relocating_shards");
 		generator.write(this.relocatingShards);
 
-		if (ModelTypeHelper.isDefined(this.shards)) {
+		if (ApiTypeHelper.isDefined(this.shards)) {
 			generator.writeKey("shards");
 			generator.writeStartObject();
 			for (Map.Entry<String, ShardHealthStats> item0 : this.shards.entrySet()) {
@@ -199,6 +205,7 @@ public class IndexHealthStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexHealthStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexHealthStats> {
 		private Integer activePrimaryShards;
 
@@ -270,11 +277,9 @@ public class IndexHealthStats implements JsonpSerializable {
 		/**
 		 * API name: {@code shards}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>shards</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>shards</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>shards</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder shards(Map<String, ShardHealthStats> map) {
 			this.shards = _mapPutAll(this.shards, map);

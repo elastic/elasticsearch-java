@@ -40,8 +40,19 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform._types.Settings
+
+/**
+ * The source of the data for the transform.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/transform/_types/Transform.ts#L98-L128">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Settings implements JsonpSerializable {
+	@Nullable
+	private final Boolean alignCheckpoints;
+
 	@Nullable
 	private final Boolean datesAsEpochMillis;
 
@@ -55,6 +66,7 @@ public class Settings implements JsonpSerializable {
 
 	private Settings(Builder builder) {
 
+		this.alignCheckpoints = builder.alignCheckpoints;
 		this.datesAsEpochMillis = builder.datesAsEpochMillis;
 		this.docsPerSecond = builder.docsPerSecond;
 		this.maxPageSearchSize = builder.maxPageSearchSize;
@@ -66,10 +78,24 @@ public class Settings implements JsonpSerializable {
 	}
 
 	/**
-	 * Defines if dates in the ouput should be written as ISO formatted string
-	 * (default) or as millis since epoch. epoch_millis has been the default for
-	 * transforms created before version 7.11. For compatible output set this to
-	 * true.
+	 * Specifies whether the transform checkpoint ranges should be optimized for
+	 * performance. Such optimization can align checkpoint ranges with the date
+	 * histogram interval when date histogram is specified as a group source in the
+	 * transform config. As a result, less document updates in the destination index
+	 * will be performed thus improving overall performance.
+	 * <p>
+	 * API name: {@code align_checkpoints}
+	 */
+	@Nullable
+	public final Boolean alignCheckpoints() {
+		return this.alignCheckpoints;
+	}
+
+	/**
+	 * Defines if dates in the ouput should be written as ISO formatted string or as
+	 * millis since epoch. epoch_millis was the default for transforms created
+	 * before version 7.11. For compatible output set this value to
+	 * <code>true</code>.
 	 * <p>
 	 * API name: {@code dates_as_epoch_millis}
 	 */
@@ -93,7 +119,8 @@ public class Settings implements JsonpSerializable {
 	/**
 	 * Defines the initial page size to use for the composite aggregation for each
 	 * checkpoint. If circuit breaker exceptions occur, the page size is dynamically
-	 * adjusted to a lower value. The minimum value is 10 and the maximum is 10,000.
+	 * adjusted to a lower value. The minimum value is <code>10</code> and the
+	 * maximum is <code>65,536</code>.
 	 * <p>
 	 * API name: {@code max_page_search_size}
 	 */
@@ -113,6 +140,11 @@ public class Settings implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.alignCheckpoints != null) {
+			generator.writeKey("align_checkpoints");
+			generator.write(this.alignCheckpoints);
+
+		}
 		if (this.datesAsEpochMillis != null) {
 			generator.writeKey("dates_as_epoch_millis");
 			generator.write(this.datesAsEpochMillis);
@@ -136,7 +168,11 @@ public class Settings implements JsonpSerializable {
 	/**
 	 * Builder for {@link Settings}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Settings> {
+		@Nullable
+		private Boolean alignCheckpoints;
+
 		@Nullable
 		private Boolean datesAsEpochMillis;
 
@@ -147,10 +183,24 @@ public class Settings implements JsonpSerializable {
 		private Integer maxPageSearchSize;
 
 		/**
-		 * Defines if dates in the ouput should be written as ISO formatted string
-		 * (default) or as millis since epoch. epoch_millis has been the default for
-		 * transforms created before version 7.11. For compatible output set this to
-		 * true.
+		 * Specifies whether the transform checkpoint ranges should be optimized for
+		 * performance. Such optimization can align checkpoint ranges with the date
+		 * histogram interval when date histogram is specified as a group source in the
+		 * transform config. As a result, less document updates in the destination index
+		 * will be performed thus improving overall performance.
+		 * <p>
+		 * API name: {@code align_checkpoints}
+		 */
+		public final Builder alignCheckpoints(@Nullable Boolean value) {
+			this.alignCheckpoints = value;
+			return this;
+		}
+
+		/**
+		 * Defines if dates in the ouput should be written as ISO formatted string or as
+		 * millis since epoch. epoch_millis was the default for transforms created
+		 * before version 7.11. For compatible output set this value to
+		 * <code>true</code>.
 		 * <p>
 		 * API name: {@code dates_as_epoch_millis}
 		 */
@@ -174,7 +224,8 @@ public class Settings implements JsonpSerializable {
 		/**
 		 * Defines the initial page size to use for the composite aggregation for each
 		 * checkpoint. If circuit breaker exceptions occur, the page size is dynamically
-		 * adjusted to a lower value. The minimum value is 10 and the maximum is 10,000.
+		 * adjusted to a lower value. The minimum value is <code>10</code> and the
+		 * maximum is <code>65,536</code>.
 		 * <p>
 		 * API name: {@code max_page_search_size}
 		 */
@@ -206,6 +257,7 @@ public class Settings implements JsonpSerializable {
 
 	protected static void setupSettingsDeserializer(ObjectDeserializer<Settings.Builder> op) {
 
+		op.add(Builder::alignCheckpoints, JsonpDeserializer.booleanDeserializer(), "align_checkpoints");
 		op.add(Builder::datesAsEpochMillis, JsonpDeserializer.booleanDeserializer(), "dates_as_epoch_millis");
 		op.add(Builder::docsPerSecond, JsonpDeserializer.floatDeserializer(), "docs_per_second");
 		op.add(Builder::maxPageSearchSize, JsonpDeserializer.integerDeserializer(), "max_page_search_size");

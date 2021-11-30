@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -37,6 +37,13 @@ import java.lang.Boolean;
 import java.util.Objects;
 
 // typedef: xpack.usage.Base
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/xpack/usage/types.ts#L28-L31">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Base implements JsonpSerializable {
 	private final boolean available;
@@ -47,8 +54,8 @@ public class Base implements JsonpSerializable {
 
 	protected Base(AbstractBuilder<?> builder) {
 
-		this.available = ModelTypeHelper.requireNonNull(builder.available, this, "available");
-		this.enabled = ModelTypeHelper.requireNonNull(builder.enabled, this, "enabled");
+		this.available = ApiTypeHelper.requireNonNull(builder.available, this, "available");
+		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
 
 	}
 
@@ -90,6 +97,7 @@ public class Base implements JsonpSerializable {
 	/**
 	 * Builder for {@link Base}.
 	 */
+
 	public static class Builder extends Base.AbstractBuilder<Builder> implements ObjectBuilder<Base> {
 		@Override
 		protected Builder self() {

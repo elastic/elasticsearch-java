@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: watcher._types.ExecutionThreadPool
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/_types/Execution.ts#L92-L95">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ExecutionThreadPool implements JsonpSerializable {
 	private final long maxSize;
@@ -48,8 +55,8 @@ public class ExecutionThreadPool implements JsonpSerializable {
 
 	private ExecutionThreadPool(Builder builder) {
 
-		this.maxSize = ModelTypeHelper.requireNonNull(builder.maxSize, this, "maxSize");
-		this.queueSize = ModelTypeHelper.requireNonNull(builder.queueSize, this, "queueSize");
+		this.maxSize = ApiTypeHelper.requireNonNull(builder.maxSize, this, "maxSize");
+		this.queueSize = ApiTypeHelper.requireNonNull(builder.queueSize, this, "queueSize");
 
 	}
 
@@ -95,6 +102,7 @@ public class ExecutionThreadPool implements JsonpSerializable {
 	/**
 	 * Builder for {@link ExecutionThreadPool}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExecutionThreadPool> {
 		private Long maxSize;
 

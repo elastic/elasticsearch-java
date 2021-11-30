@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: security.put_user.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/put_user/SecurityPutUserResponse.ts#L20-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutUserResponse implements JsonpSerializable {
 	private final boolean created;
@@ -46,7 +53,7 @@ public class PutUserResponse implements JsonpSerializable {
 
 	private PutUserResponse(Builder builder) {
 
-		this.created = ModelTypeHelper.requireNonNull(builder.created, this, "created");
+		this.created = ApiTypeHelper.requireNonNull(builder.created, this, "created");
 
 	}
 
@@ -82,6 +89,7 @@ public class PutUserResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link PutUserResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutUserResponse> {
 		private Boolean created;
 

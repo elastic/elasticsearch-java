@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -37,6 +37,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GeoBoundsAggregate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L287-L290">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GeoBoundsAggregate extends AggregateBase implements AggregateVariant {
 	private final GeoBounds bounds;
@@ -46,7 +53,7 @@ public class GeoBoundsAggregate extends AggregateBase implements AggregateVarian
 	private GeoBoundsAggregate(Builder builder) {
 		super(builder);
 
-		this.bounds = ModelTypeHelper.requireNonNull(builder.bounds, this, "bounds");
+		this.bounds = ApiTypeHelper.requireNonNull(builder.bounds, this, "bounds");
 
 	}
 
@@ -82,6 +89,7 @@ public class GeoBoundsAggregate extends AggregateBase implements AggregateVarian
 	/**
 	 * Builder for {@link GeoBoundsAggregate}.
 	 */
+
 	public static class Builder extends AggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<GeoBoundsAggregate> {

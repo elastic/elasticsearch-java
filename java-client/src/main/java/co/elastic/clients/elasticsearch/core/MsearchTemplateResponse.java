@@ -36,6 +36,13 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 // typedef: _global.msearch_template.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/msearch_template/MultiSearchTemplateResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MsearchTemplateResponse<TDocument> extends MultiSearchResult<TDocument> {
 	// ---------------------------------------------------------------------------------------------
@@ -55,6 +62,7 @@ public class MsearchTemplateResponse<TDocument> extends MultiSearchResult<TDocum
 	/**
 	 * Builder for {@link MsearchTemplateResponse}.
 	 */
+
 	public static class Builder<TDocument> extends MultiSearchResult.AbstractBuilder<TDocument, Builder<TDocument>>
 			implements
 				ObjectBuilder<MsearchTemplateResponse<TDocument>> {
@@ -79,7 +87,7 @@ public class MsearchTemplateResponse<TDocument> extends MultiSearchResult<TDocum
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for MsearchTemplateResponse
+	 * Create a JSON deserializer for MsearchTemplateResponse
 	 */
 	public static <TDocument> JsonpDeserializer<MsearchTemplateResponse<TDocument>> createMsearchTemplateResponseDeserializer(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {

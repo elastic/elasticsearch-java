@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
@@ -40,6 +40,13 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MatrixAggregation
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/matrix.ts#L26-L29">API
+ *      specification</a>
+ */
+
 public abstract class MatrixAggregation extends AggregationBase {
 	private final List<String> fields;
 
@@ -50,8 +57,8 @@ public abstract class MatrixAggregation extends AggregationBase {
 	protected MatrixAggregation(AbstractBuilder<?> builder) {
 		super(builder);
 
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
-		this.missing = ModelTypeHelper.unmodifiable(builder.missing);
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
+		this.missing = ApiTypeHelper.unmodifiable(builder.missing);
 
 	}
 
@@ -72,7 +79,7 @@ public abstract class MatrixAggregation extends AggregationBase {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.fields)) {
+		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartArray();
 			for (String item0 : this.fields) {
@@ -82,7 +89,7 @@ public abstract class MatrixAggregation extends AggregationBase {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.missing)) {
+		if (ApiTypeHelper.isDefined(this.missing)) {
 			generator.writeKey("missing");
 			generator.writeStartObject();
 			for (Map.Entry<String, Double> item0 : this.missing.entrySet()) {
@@ -108,11 +115,9 @@ public abstract class MatrixAggregation extends AggregationBase {
 		/**
 		 * API name: {@code fields}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>fields</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>fields</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>fields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final BuilderT fields(List<String> list) {
 			this.fields = _listAddAll(this.fields, list);
@@ -132,11 +137,9 @@ public abstract class MatrixAggregation extends AggregationBase {
 		/**
 		 * API name: {@code missing}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>missing</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>missing</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>missing</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final BuilderT missing(Map<String, Double> map) {
 			this.missing = _mapPutAll(this.missing, map);

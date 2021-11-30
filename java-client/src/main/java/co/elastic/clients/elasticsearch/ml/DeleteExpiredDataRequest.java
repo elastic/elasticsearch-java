@@ -45,6 +45,21 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.delete_expired_data.Request
+
+/**
+ * Deletes expired and unused machine learning data. Deletes all job results,
+ * model snapshots and forecast data that have exceeded their retention days
+ * period. Machine learning state documents that are not associated with any job
+ * are also deleted. You can limit the request to a single or set of anomaly
+ * detection jobs by using a job identifier, a group name, a comma-separated
+ * list of jobs, or a wildcard expression. You can delete expired data for all
+ * anomaly detection jobs by using _all, by specifying * as the &lt;job_id&gt;,
+ * or by omitting the &lt;job_id&gt;.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/delete_expired_data/MlDeleteExpiredDataRequest.ts#L25-L72">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DeleteExpiredDataRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -131,6 +146,7 @@ public class DeleteExpiredDataRequest extends RequestBase implements JsonpSerial
 	/**
 	 * Builder for {@link DeleteExpiredDataRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteExpiredDataRequest> {
 		@Nullable
 		private String jobId;

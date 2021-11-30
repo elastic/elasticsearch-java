@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: tasks.cancel.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/tasks/cancel/CancelTasksResponse.ts#L24-L29">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CancelResponse implements JsonpSerializable {
 	private final List<ErrorCause> nodeFailures;
@@ -52,8 +59,8 @@ public class CancelResponse implements JsonpSerializable {
 
 	private CancelResponse(Builder builder) {
 
-		this.nodeFailures = ModelTypeHelper.unmodifiable(builder.nodeFailures);
-		this.nodes = ModelTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
+		this.nodeFailures = ApiTypeHelper.unmodifiable(builder.nodeFailures);
+		this.nodes = ApiTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
 
 	}
 
@@ -86,7 +93,7 @@ public class CancelResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.nodeFailures)) {
+		if (ApiTypeHelper.isDefined(this.nodeFailures)) {
 			generator.writeKey("node_failures");
 			generator.writeStartArray();
 			for (ErrorCause item0 : this.nodeFailures) {
@@ -96,7 +103,7 @@ public class CancelResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.nodes)) {
+		if (ApiTypeHelper.isDefined(this.nodes)) {
 			generator.writeKey("nodes");
 			generator.writeStartObject();
 			for (Map.Entry<String, TaskExecutingNode> item0 : this.nodes.entrySet()) {
@@ -115,6 +122,7 @@ public class CancelResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link CancelResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CancelResponse> {
 		@Nullable
 		private List<ErrorCause> nodeFailures;
@@ -124,11 +132,9 @@ public class CancelResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code node_failures}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>nodeFailures</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>nodeFailures</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>nodeFailures</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder nodeFailures(List<ErrorCause> list) {
 			this.nodeFailures = _listAddAll(this.nodeFailures, list);
@@ -157,11 +163,9 @@ public class CancelResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code nodes}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>nodes</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>nodes</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>nodes</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder nodes(Map<String, TaskExecutingNode> map) {
 			this.nodes = _mapPutAll(this.nodes, map);

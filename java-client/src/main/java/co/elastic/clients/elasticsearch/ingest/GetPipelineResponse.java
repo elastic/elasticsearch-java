@@ -35,6 +35,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: ingest.get_pipeline.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ingest/get_pipeline/GetPipelineResponse.ts#L23-L23">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetPipelineResponse extends DictionaryResponse<String, Pipeline> {
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +60,7 @@ public class GetPipelineResponse extends DictionaryResponse<String, Pipeline> {
 	/**
 	 * Builder for {@link GetPipelineResponse}.
 	 */
+
 	public static class Builder extends DictionaryResponse.AbstractBuilder<String, Pipeline, Builder>
 			implements
 				ObjectBuilder<GetPipelineResponse> {

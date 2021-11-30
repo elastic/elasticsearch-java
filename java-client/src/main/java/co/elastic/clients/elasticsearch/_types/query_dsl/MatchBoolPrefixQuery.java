@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.MatchBoolPrefixQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/fulltext.ts#L160-L171">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MatchBoolPrefixQuery extends QueryBase implements QueryVariant {
 	// Single key dictionary
@@ -74,7 +81,7 @@ public class MatchBoolPrefixQuery extends QueryBase implements QueryVariant {
 
 	private MatchBoolPrefixQuery(Builder builder) {
 		super(builder);
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
 		this.analyzer = builder.analyzer;
 		this.fuzziness = builder.fuzziness;
@@ -84,7 +91,7 @@ public class MatchBoolPrefixQuery extends QueryBase implements QueryVariant {
 		this.minimumShouldMatch = builder.minimumShouldMatch;
 		this.operator = builder.operator;
 		this.prefixLength = builder.prefixLength;
-		this.query = ModelTypeHelper.requireNonNull(builder.query, this, "query");
+		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 
 	}
 
@@ -233,6 +240,7 @@ public class MatchBoolPrefixQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link MatchBoolPrefixQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<MatchBoolPrefixQuery> {

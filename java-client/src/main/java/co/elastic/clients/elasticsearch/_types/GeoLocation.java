@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.UnionDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
@@ -44,7 +44,22 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.GeoLocation
-// union type: Union[]
+
+/**
+ * A latitude/longitude as a 2 dimensional point. It can be represented in
+ * various ways:
+ * <ul>
+ * <li>as a <code>{lat, long}</code> object</li>
+ * <li>as a geo hash value</li>
+ * <li>as a <code>[lon, lat]</code> array</li>
+ * <li>as a string in <code>&quot;&lt;lat&gt;, &lt;lon&gt;&quot;</code> or WKT
+ * point formats</li>
+ * </ul>
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Geo.ts#L91-L105">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GeoLocation implements TaggedUnion<GeoLocation.Kind, Object>, JsonpSerializable {
 
@@ -73,8 +88,8 @@ public class GeoLocation implements TaggedUnion<GeoLocation.Kind, Object>, Jsonp
 
 	private GeoLocation(Builder builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 

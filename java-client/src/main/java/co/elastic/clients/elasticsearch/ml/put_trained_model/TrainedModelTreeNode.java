@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.TrainedModelTreeNode
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/put_trained_model/types.ts#L81-L91">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TrainedModelTreeNode implements JsonpSerializable {
 	@Nullable
@@ -78,7 +85,7 @@ public class TrainedModelTreeNode implements JsonpSerializable {
 		this.defaultLeft = builder.defaultLeft;
 		this.leafValue = builder.leafValue;
 		this.leftChild = builder.leftChild;
-		this.nodeIndex = ModelTypeHelper.requireNonNull(builder.nodeIndex, this, "nodeIndex");
+		this.nodeIndex = ApiTypeHelper.requireNonNull(builder.nodeIndex, this, "nodeIndex");
 		this.rightChild = builder.rightChild;
 		this.splitFeature = builder.splitFeature;
 		this.splitGain = builder.splitGain;
@@ -223,6 +230,7 @@ public class TrainedModelTreeNode implements JsonpSerializable {
 	/**
 	 * Builder for {@link TrainedModelTreeNode}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TrainedModelTreeNode> {
 		@Nullable
 		private String decisionType;

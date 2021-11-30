@@ -37,6 +37,13 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MovingAverageAggregationBase
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/pipeline.ts#L123-L127">API
+ *      specification</a>
+ */
+
 public abstract class MovingAverageAggregationBase extends PipelineAggregationBase {
 	@Nullable
 	private final Boolean minimize;

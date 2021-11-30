@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.bulk.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/bulk/BulkResponse.ts#L24-L31">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class BulkResponse implements JsonpSerializable {
 	private final boolean errors;
@@ -57,9 +64,9 @@ public class BulkResponse implements JsonpSerializable {
 
 	private BulkResponse(Builder builder) {
 
-		this.errors = ModelTypeHelper.requireNonNull(builder.errors, this, "errors");
-		this.items = ModelTypeHelper.unmodifiableRequired(builder.items, this, "items");
-		this.took = ModelTypeHelper.requireNonNull(builder.took, this, "took");
+		this.errors = ApiTypeHelper.requireNonNull(builder.errors, this, "errors");
+		this.items = ApiTypeHelper.unmodifiableRequired(builder.items, this, "items");
+		this.took = ApiTypeHelper.requireNonNull(builder.took, this, "took");
 		this.ingestTook = builder.ingestTook;
 
 	}
@@ -111,7 +118,7 @@ public class BulkResponse implements JsonpSerializable {
 		generator.writeKey("errors");
 		generator.write(this.errors);
 
-		if (ModelTypeHelper.isDefined(this.items)) {
+		if (ApiTypeHelper.isDefined(this.items)) {
 			generator.writeKey("items");
 			generator.writeStartArray();
 			for (BulkResponseItem item0 : this.items) {
@@ -137,6 +144,7 @@ public class BulkResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link BulkResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<BulkResponse> {
 		private Boolean errors;
 
@@ -158,11 +166,9 @@ public class BulkResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code items}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>items</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>items</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>items</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder items(List<BulkResponseItem> list) {
 			this.items = _listAddAll(this.items, list);

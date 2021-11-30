@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: eql._types.HitsSequence
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/eql/_types/EqlHits.ts#L51-L59">API
+ *      specification</a>
+ */
 
 public class HitsSequence<TEvent> implements JsonpSerializable {
 	private final List<HitsEvent<TEvent>> events;
@@ -55,8 +62,8 @@ public class HitsSequence<TEvent> implements JsonpSerializable {
 
 	private HitsSequence(Builder<TEvent> builder) {
 
-		this.events = ModelTypeHelper.unmodifiableRequired(builder.events, this, "events");
-		this.joinKeys = ModelTypeHelper.unmodifiableRequired(builder.joinKeys, this, "joinKeys");
+		this.events = ApiTypeHelper.unmodifiableRequired(builder.events, this, "events");
+		this.joinKeys = ApiTypeHelper.unmodifiableRequired(builder.joinKeys, this, "joinKeys");
 		this.tEventSerializer = builder.tEventSerializer;
 
 	}
@@ -96,7 +103,7 @@ public class HitsSequence<TEvent> implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.events)) {
+		if (ApiTypeHelper.isDefined(this.events)) {
 			generator.writeKey("events");
 			generator.writeStartArray();
 			for (HitsEvent<TEvent> item0 : this.events) {
@@ -106,7 +113,7 @@ public class HitsSequence<TEvent> implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.joinKeys)) {
+		if (ApiTypeHelper.isDefined(this.joinKeys)) {
 			generator.writeKey("join_keys");
 			generator.writeStartArray();
 			for (JsonData item0 : this.joinKeys) {
@@ -124,6 +131,7 @@ public class HitsSequence<TEvent> implements JsonpSerializable {
 	/**
 	 * Builder for {@link HitsSequence}.
 	 */
+
 	public static class Builder<TEvent> extends ObjectBuilderBase implements ObjectBuilder<HitsSequence<TEvent>> {
 		private List<HitsEvent<TEvent>> events;
 
@@ -138,11 +146,9 @@ public class HitsSequence<TEvent> implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code events}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>events</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>events</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>events</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder<TEvent> events(List<HitsEvent<TEvent>> list) {
 			this.events = _listAddAll(this.events, list);
@@ -180,11 +186,9 @@ public class HitsSequence<TEvent> implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code join_keys}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>joinKeys</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>joinKeys</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>joinKeys</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder<TEvent> joinKeys(List<JsonData> list) {
 			this.joinKeys = _listAddAll(this.joinKeys, list);
@@ -229,7 +233,7 @@ public class HitsSequence<TEvent> implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for HitsSequence
+	 * Create a JSON deserializer for HitsSequence
 	 */
 	public static <TEvent> JsonpDeserializer<HitsSequence<TEvent>> createHitsSequenceDeserializer(
 			JsonpDeserializer<TEvent> tEventDeserializer) {

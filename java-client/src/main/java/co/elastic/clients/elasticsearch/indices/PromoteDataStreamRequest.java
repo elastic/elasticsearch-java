@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,6 +43,15 @@ import javax.annotation.Nullable;
 
 // typedef: indices.promote_data_stream.Request
 
+/**
+ * Promotes a data stream from a replicated data stream managed by CCR to a
+ * regular data stream
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/promote_data_stream/IndicesPromoteDataStreamRequest.ts#L23-L32">API
+ *      specification</a>
+ */
+
 public class PromoteDataStreamRequest extends RequestBase {
 	private final String name;
 
@@ -50,7 +59,7 @@ public class PromoteDataStreamRequest extends RequestBase {
 
 	private PromoteDataStreamRequest(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
@@ -72,6 +81,7 @@ public class PromoteDataStreamRequest extends RequestBase {
 	/**
 	 * Builder for {@link PromoteDataStreamRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PromoteDataStreamRequest> {
 		private String name;
 

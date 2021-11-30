@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.master.MasterRecord
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/master/types.ts#L20-L39">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MasterRecord implements JsonpSerializable {
 	@Nullable
@@ -146,6 +153,7 @@ public class MasterRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link MasterRecord}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MasterRecord> {
 		@Nullable
 		private String id;

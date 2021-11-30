@@ -42,6 +42,14 @@ import javax.annotation.Nullable;
 
 // typedef: security.get_role.Request
 
+/**
+ * Retrieves roles in the native realm.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/get_role/SecurityGetRoleRequest.ts#L23-L32">API
+ *      specification</a>
+ */
+
 public class GetRoleRequest extends RequestBase {
 	@Nullable
 	private final String name;
@@ -73,6 +81,7 @@ public class GetRoleRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetRoleRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetRoleRequest> {
 		@Nullable
 		private String name;

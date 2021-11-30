@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.create_api_key.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/create_api_key/SecurityCreateApiKeyResponse.ts#L23-L25">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CreateApiKeyResponse implements JsonpSerializable {
 	private final String apiKey;
@@ -55,10 +62,10 @@ public class CreateApiKeyResponse implements JsonpSerializable {
 
 	private CreateApiKeyResponse(Builder builder) {
 
-		this.apiKey = ModelTypeHelper.requireNonNull(builder.apiKey, this, "apiKey");
+		this.apiKey = ApiTypeHelper.requireNonNull(builder.apiKey, this, "apiKey");
 		this.expiration = builder.expiration;
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
@@ -127,6 +134,7 @@ public class CreateApiKeyResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link CreateApiKeyResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CreateApiKeyResponse> {
 		private String apiKey;
 

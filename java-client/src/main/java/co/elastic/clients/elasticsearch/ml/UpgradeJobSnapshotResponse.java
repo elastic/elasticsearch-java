@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.upgrade_job_snapshot.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/upgrade_job_snapshot/MlUpgradeJobSnapshotResponse.ts#L22-L29">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class UpgradeJobSnapshotResponse implements JsonpSerializable {
 	private final String node;
@@ -50,8 +57,8 @@ public class UpgradeJobSnapshotResponse implements JsonpSerializable {
 
 	private UpgradeJobSnapshotResponse(Builder builder) {
 
-		this.node = ModelTypeHelper.requireNonNull(builder.node, this, "node");
-		this.completed = ModelTypeHelper.requireNonNull(builder.completed, this, "completed");
+		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
+		this.completed = ApiTypeHelper.requireNonNull(builder.completed, this, "completed");
 
 	}
 
@@ -103,6 +110,7 @@ public class UpgradeJobSnapshotResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link UpgradeJobSnapshotResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UpgradeJobSnapshotResponse> {
 		private String node;
 

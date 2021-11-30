@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.AcknowledgeState
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/_types/Action.ts#L87-L90">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AcknowledgeState implements JsonpSerializable {
 	private final AcknowledgementOptions state;
@@ -49,8 +56,8 @@ public class AcknowledgeState implements JsonpSerializable {
 
 	private AcknowledgeState(Builder builder) {
 
-		this.state = ModelTypeHelper.requireNonNull(builder.state, this, "state");
-		this.timestamp = ModelTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
+		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
 
 	}
 
@@ -95,6 +102,7 @@ public class AcknowledgeState implements JsonpSerializable {
 	/**
 	 * Builder for {@link AcknowledgeState}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AcknowledgeState> {
 		private AcknowledgementOptions state;
 

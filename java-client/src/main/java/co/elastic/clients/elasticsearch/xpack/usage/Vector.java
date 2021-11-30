@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -37,6 +37,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Vector
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/xpack/usage/types.ts#L415-L419">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Vector extends Base {
 	private final int denseVectorDimsAvgCount;
@@ -51,9 +58,9 @@ public class Vector extends Base {
 	private Vector(Builder builder) {
 		super(builder);
 
-		this.denseVectorDimsAvgCount = ModelTypeHelper.requireNonNull(builder.denseVectorDimsAvgCount, this,
+		this.denseVectorDimsAvgCount = ApiTypeHelper.requireNonNull(builder.denseVectorDimsAvgCount, this,
 				"denseVectorDimsAvgCount");
-		this.denseVectorFieldsCount = ModelTypeHelper.requireNonNull(builder.denseVectorFieldsCount, this,
+		this.denseVectorFieldsCount = ApiTypeHelper.requireNonNull(builder.denseVectorFieldsCount, this,
 				"denseVectorFieldsCount");
 		this.sparseVectorFieldsCount = builder.sparseVectorFieldsCount;
 
@@ -107,6 +114,7 @@ public class Vector extends Base {
 	/**
 	 * Builder for {@link Vector}.
 	 */
+
 	public static class Builder extends Base.AbstractBuilder<Builder> implements ObjectBuilder<Vector> {
 		private Integer denseVectorDimsAvgCount;
 

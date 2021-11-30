@@ -33,7 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -46,6 +46,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: license.post.Request
+
+/**
+ * Updates the license for the cluster.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/license/post/PostLicenseRequest.ts#L23-L36">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PostRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -62,7 +70,7 @@ public class PostRequest extends RequestBase implements JsonpSerializable {
 
 		this.acknowledge = builder.acknowledge;
 		this.license = builder.license;
-		this.licenses = ModelTypeHelper.unmodifiable(builder.licenses);
+		this.licenses = ApiTypeHelper.unmodifiable(builder.licenses);
 
 	}
 
@@ -111,7 +119,7 @@ public class PostRequest extends RequestBase implements JsonpSerializable {
 			this.license.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.licenses)) {
+		if (ApiTypeHelper.isDefined(this.licenses)) {
 			generator.writeKey("licenses");
 			generator.writeStartArray();
 			for (License item0 : this.licenses) {
@@ -129,6 +137,7 @@ public class PostRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link PostRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PostRequest> {
 		@Nullable
 		private Boolean acknowledge;
@@ -167,11 +176,9 @@ public class PostRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code licenses}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>licenses</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>licenses</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>licenses</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder licenses(List<License> list) {
 			this.licenses = _listAddAll(this.licenses, list);

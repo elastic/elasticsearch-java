@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr.stats.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ccr/stats/CcrStatsResponse.ts#L22-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CcrStatsResponse implements JsonpSerializable {
 	private final AutoFollowStats autoFollowStats;
@@ -50,8 +57,8 @@ public class CcrStatsResponse implements JsonpSerializable {
 
 	private CcrStatsResponse(Builder builder) {
 
-		this.autoFollowStats = ModelTypeHelper.requireNonNull(builder.autoFollowStats, this, "autoFollowStats");
-		this.followStats = ModelTypeHelper.requireNonNull(builder.followStats, this, "followStats");
+		this.autoFollowStats = ApiTypeHelper.requireNonNull(builder.autoFollowStats, this, "autoFollowStats");
+		this.followStats = ApiTypeHelper.requireNonNull(builder.followStats, this, "followStats");
 
 	}
 
@@ -97,6 +104,7 @@ public class CcrStatsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link CcrStatsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CcrStatsResponse> {
 		private AutoFollowStats autoFollowStats;
 

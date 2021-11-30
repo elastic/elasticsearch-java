@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: migration.deprecations.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/migration/deprecations/DeprecationInfoResponse.ts#L23-L30">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DeprecationsResponse implements JsonpSerializable {
 	private final List<Deprecation> clusterSettings;
@@ -56,10 +63,10 @@ public class DeprecationsResponse implements JsonpSerializable {
 
 	private DeprecationsResponse(Builder builder) {
 
-		this.clusterSettings = ModelTypeHelper.unmodifiableRequired(builder.clusterSettings, this, "clusterSettings");
-		this.indexSettings = ModelTypeHelper.unmodifiableRequired(builder.indexSettings, this, "indexSettings");
-		this.nodeSettings = ModelTypeHelper.unmodifiableRequired(builder.nodeSettings, this, "nodeSettings");
-		this.mlSettings = ModelTypeHelper.unmodifiableRequired(builder.mlSettings, this, "mlSettings");
+		this.clusterSettings = ApiTypeHelper.unmodifiableRequired(builder.clusterSettings, this, "clusterSettings");
+		this.indexSettings = ApiTypeHelper.unmodifiableRequired(builder.indexSettings, this, "indexSettings");
+		this.nodeSettings = ApiTypeHelper.unmodifiableRequired(builder.nodeSettings, this, "nodeSettings");
+		this.mlSettings = ApiTypeHelper.unmodifiableRequired(builder.mlSettings, this, "mlSettings");
 
 	}
 
@@ -106,7 +113,7 @@ public class DeprecationsResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.clusterSettings)) {
+		if (ApiTypeHelper.isDefined(this.clusterSettings)) {
 			generator.writeKey("cluster_settings");
 			generator.writeStartArray();
 			for (Deprecation item0 : this.clusterSettings) {
@@ -116,7 +123,7 @@ public class DeprecationsResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.indexSettings)) {
+		if (ApiTypeHelper.isDefined(this.indexSettings)) {
 			generator.writeKey("index_settings");
 			generator.writeStartObject();
 			for (Map.Entry<String, List<Deprecation>> item0 : this.indexSettings.entrySet()) {
@@ -134,7 +141,7 @@ public class DeprecationsResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.nodeSettings)) {
+		if (ApiTypeHelper.isDefined(this.nodeSettings)) {
 			generator.writeKey("node_settings");
 			generator.writeStartArray();
 			for (Deprecation item0 : this.nodeSettings) {
@@ -144,7 +151,7 @@ public class DeprecationsResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.mlSettings)) {
+		if (ApiTypeHelper.isDefined(this.mlSettings)) {
 			generator.writeKey("ml_settings");
 			generator.writeStartArray();
 			for (Deprecation item0 : this.mlSettings) {
@@ -162,6 +169,7 @@ public class DeprecationsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link DeprecationsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeprecationsResponse> {
 		private List<Deprecation> clusterSettings;
 
@@ -174,11 +182,9 @@ public class DeprecationsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code cluster_settings}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>clusterSettings</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>clusterSettings</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>clusterSettings</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder clusterSettings(List<Deprecation> list) {
 			this.clusterSettings = _listAddAll(this.clusterSettings, list);
@@ -207,11 +213,9 @@ public class DeprecationsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index_settings}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>indexSettings</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>indexSettings</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>indexSettings</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder indexSettings(Map<String, List<Deprecation>> map) {
 			this.indexSettings = _mapPutAll(this.indexSettings, map);
@@ -231,11 +235,9 @@ public class DeprecationsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code node_settings}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>nodeSettings</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>nodeSettings</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>nodeSettings</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder nodeSettings(List<Deprecation> list) {
 			this.nodeSettings = _listAddAll(this.nodeSettings, list);
@@ -264,11 +266,9 @@ public class DeprecationsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code ml_settings}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>mlSettings</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>mlSettings</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>mlSettings</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder mlSettings(List<Deprecation> list) {
 			this.mlSettings = _listAddAll(this.mlSettings, list);

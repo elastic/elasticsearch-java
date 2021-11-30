@@ -38,6 +38,15 @@ import java.util.Objects;
 
 // typedef: slm.execute_retention.Request
 
+/**
+ * Deletes any snapshots that are expired according to the policy's retention
+ * rules.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/slm/execute_retention/ExecuteRetentionRequest.ts#L22-L27">API
+ *      specification</a>
+ */
+
 public class ExecuteRetentionRequest extends RequestBase {
 	public ExecuteRetentionRequest() {
 	}

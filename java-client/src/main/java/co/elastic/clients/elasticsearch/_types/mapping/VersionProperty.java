@@ -34,6 +34,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.mapping.VersionProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/core.ts#L270-L272">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class VersionProperty extends DocValuesPropertyBase implements PropertyVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -67,6 +74,7 @@ public class VersionProperty extends DocValuesPropertyBase implements PropertyVa
 	/**
 	 * Builder for {@link VersionProperty}.
 	 */
+
 	public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<VersionProperty> {

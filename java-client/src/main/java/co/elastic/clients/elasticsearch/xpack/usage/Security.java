@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Security
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/xpack/usage/types.ts#L395-L408">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Security extends Base {
 	private final FeatureToggle apiKeyService;
@@ -70,19 +77,18 @@ public class Security extends Base {
 	private Security(Builder builder) {
 		super(builder);
 
-		this.apiKeyService = ModelTypeHelper.requireNonNull(builder.apiKeyService, this, "apiKeyService");
-		this.anonymous = ModelTypeHelper.requireNonNull(builder.anonymous, this, "anonymous");
-		this.audit = ModelTypeHelper.requireNonNull(builder.audit, this, "audit");
-		this.fips140 = ModelTypeHelper.requireNonNull(builder.fips140, this, "fips140");
-		this.ipfilter = ModelTypeHelper.requireNonNull(builder.ipfilter, this, "ipfilter");
-		this.realms = ModelTypeHelper.unmodifiableRequired(builder.realms, this, "realms");
-		this.roleMapping = ModelTypeHelper.unmodifiableRequired(builder.roleMapping, this, "roleMapping");
-		this.roles = ModelTypeHelper.requireNonNull(builder.roles, this, "roles");
-		this.ssl = ModelTypeHelper.requireNonNull(builder.ssl, this, "ssl");
+		this.apiKeyService = ApiTypeHelper.requireNonNull(builder.apiKeyService, this, "apiKeyService");
+		this.anonymous = ApiTypeHelper.requireNonNull(builder.anonymous, this, "anonymous");
+		this.audit = ApiTypeHelper.requireNonNull(builder.audit, this, "audit");
+		this.fips140 = ApiTypeHelper.requireNonNull(builder.fips140, this, "fips140");
+		this.ipfilter = ApiTypeHelper.requireNonNull(builder.ipfilter, this, "ipfilter");
+		this.realms = ApiTypeHelper.unmodifiableRequired(builder.realms, this, "realms");
+		this.roleMapping = ApiTypeHelper.unmodifiableRequired(builder.roleMapping, this, "roleMapping");
+		this.roles = ApiTypeHelper.requireNonNull(builder.roles, this, "roles");
+		this.ssl = ApiTypeHelper.requireNonNull(builder.ssl, this, "ssl");
 		this.systemKey = builder.systemKey;
-		this.tokenService = ModelTypeHelper.requireNonNull(builder.tokenService, this, "tokenService");
-		this.operatorPrivileges = ModelTypeHelper.requireNonNull(builder.operatorPrivileges, this,
-				"operatorPrivileges");
+		this.tokenService = ApiTypeHelper.requireNonNull(builder.tokenService, this, "tokenService");
+		this.operatorPrivileges = ApiTypeHelper.requireNonNull(builder.operatorPrivileges, this, "operatorPrivileges");
 
 	}
 
@@ -193,7 +199,7 @@ public class Security extends Base {
 		generator.writeKey("ipfilter");
 		this.ipfilter.serialize(generator, mapper);
 
-		if (ModelTypeHelper.isDefined(this.realms)) {
+		if (ApiTypeHelper.isDefined(this.realms)) {
 			generator.writeKey("realms");
 			generator.writeStartObject();
 			for (Map.Entry<String, Realm> item0 : this.realms.entrySet()) {
@@ -204,7 +210,7 @@ public class Security extends Base {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.roleMapping)) {
+		if (ApiTypeHelper.isDefined(this.roleMapping)) {
 			generator.writeKey("role_mapping");
 			generator.writeStartObject();
 			for (Map.Entry<String, RoleMapping> item0 : this.roleMapping.entrySet()) {
@@ -239,6 +245,7 @@ public class Security extends Base {
 	/**
 	 * Builder for {@link Security}.
 	 */
+
 	public static class Builder extends Base.AbstractBuilder<Builder> implements ObjectBuilder<Security> {
 		private FeatureToggle apiKeyService;
 
@@ -343,11 +350,9 @@ public class Security extends Base {
 		/**
 		 * Required - API name: {@code realms}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>realms</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>realms</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>realms</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder realms(Map<String, Realm> map) {
 			this.realms = _mapPutAll(this.realms, map);
@@ -376,11 +381,9 @@ public class Security extends Base {
 		/**
 		 * Required - API name: {@code role_mapping}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>roleMapping</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>roleMapping</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>roleMapping</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder roleMapping(Map<String, RoleMapping> map) {
 			this.roleMapping = _mapPutAll(this.roleMapping, map);

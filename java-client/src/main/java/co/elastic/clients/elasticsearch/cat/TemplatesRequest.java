@@ -42,6 +42,14 @@ import javax.annotation.Nullable;
 
 // typedef: cat.templates.Request
 
+/**
+ * Returns information about existing templates.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/templates/CatTemplatesRequest.ts#L23-L32">API
+ *      specification</a>
+ */
+
 public class TemplatesRequest extends CatRequestBase {
 	@Nullable
 	private final String name;
@@ -73,6 +81,7 @@ public class TemplatesRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link TemplatesRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TemplatesRequest> {
 		@Nullable
 		private String name;

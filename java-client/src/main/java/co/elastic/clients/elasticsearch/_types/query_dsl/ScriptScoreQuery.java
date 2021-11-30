@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Float;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.ScriptScoreQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/specialized.ts#L170-L174">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ScriptScoreQuery extends QueryBase implements QueryVariant {
 	@Nullable
@@ -53,8 +60,8 @@ public class ScriptScoreQuery extends QueryBase implements QueryVariant {
 		super(builder);
 
 		this.minScore = builder.minScore;
-		this.query = ModelTypeHelper.requireNonNull(builder.query, this, "query");
-		this.script = ModelTypeHelper.requireNonNull(builder.script, this, "script");
+		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
+		this.script = ApiTypeHelper.requireNonNull(builder.script, this, "script");
 
 	}
 
@@ -113,6 +120,7 @@ public class ScriptScoreQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link ScriptScoreQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<ScriptScoreQuery> {
 		@Nullable
 		private Float minScore;

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.QueryWatch
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/_types/Watch.ts#L58-L64">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class QueryWatch implements JsonpSerializable {
 	private final String id;
@@ -61,7 +68,7 @@ public class QueryWatch implements JsonpSerializable {
 
 	private QueryWatch(Builder builder) {
 
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.status = builder.status;
 		this.watch = builder.watch;
 		this.primaryTerm = builder.primaryTerm;
@@ -154,6 +161,7 @@ public class QueryWatch implements JsonpSerializable {
 	/**
 	 * Builder for {@link QueryWatch}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<QueryWatch> {
 		private String id;
 

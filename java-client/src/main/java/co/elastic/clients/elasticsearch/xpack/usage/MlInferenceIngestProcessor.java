@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.MlInferenceIngestProcessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/xpack/usage/types.ts#L182-L187">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MlInferenceIngestProcessor implements JsonpSerializable {
 	private final MlInferenceIngestProcessorCount numDocsProcessed;
@@ -52,10 +59,10 @@ public class MlInferenceIngestProcessor implements JsonpSerializable {
 
 	private MlInferenceIngestProcessor(Builder builder) {
 
-		this.numDocsProcessed = ModelTypeHelper.requireNonNull(builder.numDocsProcessed, this, "numDocsProcessed");
-		this.pipelines = ModelTypeHelper.requireNonNull(builder.pipelines, this, "pipelines");
-		this.numFailures = ModelTypeHelper.requireNonNull(builder.numFailures, this, "numFailures");
-		this.timeMs = ModelTypeHelper.requireNonNull(builder.timeMs, this, "timeMs");
+		this.numDocsProcessed = ApiTypeHelper.requireNonNull(builder.numDocsProcessed, this, "numDocsProcessed");
+		this.pipelines = ApiTypeHelper.requireNonNull(builder.pipelines, this, "pipelines");
+		this.numFailures = ApiTypeHelper.requireNonNull(builder.numFailures, this, "numFailures");
+		this.timeMs = ApiTypeHelper.requireNonNull(builder.timeMs, this, "timeMs");
 
 	}
 
@@ -121,6 +128,7 @@ public class MlInferenceIngestProcessor implements JsonpSerializable {
 	/**
 	 * Builder for {@link MlInferenceIngestProcessor}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MlInferenceIngestProcessor> {
 		private MlInferenceIngestProcessorCount numDocsProcessed;
 

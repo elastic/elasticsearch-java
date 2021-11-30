@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexRoutingAllocationInclude
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/_types/IndexRouting.ts#L52-L55">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IndexRoutingAllocationInclude implements JsonpSerializable {
 	@Nullable
@@ -104,6 +111,7 @@ public class IndexRoutingAllocationInclude implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexRoutingAllocationInclude}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexRoutingAllocationInclude> {
 		@Nullable
 		private String tierPreference;

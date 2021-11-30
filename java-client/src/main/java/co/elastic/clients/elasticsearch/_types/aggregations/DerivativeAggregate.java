@@ -37,6 +37,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.DerivativeAggregate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L213-L217">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DerivativeAggregate extends SingleMetricAggregateBase implements AggregateVariant {
 	@Nullable
@@ -104,6 +111,7 @@ public class DerivativeAggregate extends SingleMetricAggregateBase implements Ag
 	/**
 	 * Builder for {@link DerivativeAggregate}.
 	 */
+
 	public static class Builder extends SingleMetricAggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DerivativeAggregate> {

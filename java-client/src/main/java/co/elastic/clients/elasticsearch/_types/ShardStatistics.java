@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.ShardStatistics
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Stats.ts#L32-L38">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ShardStatistics implements JsonpSerializable {
 	private final Number failed;
@@ -57,10 +64,10 @@ public class ShardStatistics implements JsonpSerializable {
 
 	private ShardStatistics(Builder builder) {
 
-		this.failed = ModelTypeHelper.requireNonNull(builder.failed, this, "failed");
-		this.successful = ModelTypeHelper.requireNonNull(builder.successful, this, "successful");
-		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
-		this.failures = ModelTypeHelper.unmodifiable(builder.failures);
+		this.failed = ApiTypeHelper.requireNonNull(builder.failed, this, "failed");
+		this.successful = ApiTypeHelper.requireNonNull(builder.successful, this, "successful");
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+		this.failures = ApiTypeHelper.unmodifiable(builder.failures);
 		this.skipped = builder.skipped;
 
 	}
@@ -125,7 +132,7 @@ public class ShardStatistics implements JsonpSerializable {
 		generator.writeKey("total");
 		generator.write(this.total.doubleValue());
 
-		if (ModelTypeHelper.isDefined(this.failures)) {
+		if (ApiTypeHelper.isDefined(this.failures)) {
 			generator.writeKey("failures");
 			generator.writeStartArray();
 			for (ShardFailure item0 : this.failures) {
@@ -148,6 +155,7 @@ public class ShardStatistics implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardStatistics}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardStatistics> {
 		private Number failed;
 
@@ -188,11 +196,9 @@ public class ShardStatistics implements JsonpSerializable {
 		/**
 		 * API name: {@code failures}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>failures</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>failures</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>failures</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder failures(List<ShardFailure> list) {
 			this.failures = _listAddAll(this.failures, list);

@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.IpRangeAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/bucket.ts#L221-L224">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IpRangeAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
@@ -51,7 +58,7 @@ public class IpRangeAggregation extends BucketAggregationBase implements Aggrega
 		super(builder);
 
 		this.field = builder.field;
-		this.ranges = ModelTypeHelper.unmodifiable(builder.ranges);
+		this.ranges = ApiTypeHelper.unmodifiable(builder.ranges);
 
 	}
 
@@ -90,7 +97,7 @@ public class IpRangeAggregation extends BucketAggregationBase implements Aggrega
 			generator.write(this.field);
 
 		}
-		if (ModelTypeHelper.isDefined(this.ranges)) {
+		if (ApiTypeHelper.isDefined(this.ranges)) {
 			generator.writeKey("ranges");
 			generator.writeStartArray();
 			for (IpRangeAggregationRange item0 : this.ranges) {
@@ -108,6 +115,7 @@ public class IpRangeAggregation extends BucketAggregationBase implements Aggrega
 	/**
 	 * Builder for {@link IpRangeAggregation}.
 	 */
+
 	public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<IpRangeAggregation> {
@@ -128,11 +136,9 @@ public class IpRangeAggregation extends BucketAggregationBase implements Aggrega
 		/**
 		 * API name: {@code ranges}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>ranges</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>ranges</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>ranges</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder ranges(List<IpRangeAggregationRange> list) {
 			this.ranges = _listAddAll(this.ranges, list);

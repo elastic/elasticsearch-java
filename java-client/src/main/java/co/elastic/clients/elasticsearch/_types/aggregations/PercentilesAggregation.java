@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.PercentilesAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/metric.ts#L103-L108">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PercentilesAggregation extends FormatMetricAggregationBase implements AggregationVariant {
 	@Nullable
@@ -58,7 +65,7 @@ public class PercentilesAggregation extends FormatMetricAggregationBase implemen
 		super(builder);
 
 		this.keyed = builder.keyed;
-		this.percents = ModelTypeHelper.unmodifiable(builder.percents);
+		this.percents = ApiTypeHelper.unmodifiable(builder.percents);
 		this.hdr = builder.hdr;
 		this.tdigest = builder.tdigest;
 
@@ -115,7 +122,7 @@ public class PercentilesAggregation extends FormatMetricAggregationBase implemen
 			generator.write(this.keyed);
 
 		}
-		if (ModelTypeHelper.isDefined(this.percents)) {
+		if (ApiTypeHelper.isDefined(this.percents)) {
 			generator.writeKey("percents");
 			generator.writeStartArray();
 			for (Double item0 : this.percents) {
@@ -143,6 +150,7 @@ public class PercentilesAggregation extends FormatMetricAggregationBase implemen
 	/**
 	 * Builder for {@link PercentilesAggregation}.
 	 */
+
 	public static class Builder extends FormatMetricAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PercentilesAggregation> {
@@ -169,11 +177,9 @@ public class PercentilesAggregation extends FormatMetricAggregationBase implemen
 		/**
 		 * API name: {@code percents}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>percents</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>percents</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>percents</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder percents(List<Double> list) {
 			this.percents = _listAddAll(this.percents, list);

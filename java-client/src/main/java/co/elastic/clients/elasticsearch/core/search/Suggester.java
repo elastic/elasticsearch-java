@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.Suggester
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search/_types/suggester.ts#L42-L45">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Suggester implements JsonpSerializable {
 	private final Map<String, FieldSuggester> suggesters;
@@ -52,7 +59,7 @@ public class Suggester implements JsonpSerializable {
 
 	private Suggester(Builder builder) {
 
-		this.suggesters = ModelTypeHelper.unmodifiable(builder.suggesters);
+		this.suggesters = ApiTypeHelper.unmodifiable(builder.suggesters);
 
 		this.text = builder.text;
 
@@ -110,6 +117,7 @@ public class Suggester implements JsonpSerializable {
 	/**
 	 * Builder for {@link Suggester}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Suggester> {
 		@Nullable
 		private Map<String, FieldSuggester> suggesters = new HashMap<>();
@@ -117,11 +125,9 @@ public class Suggester implements JsonpSerializable {
 		/**
 		 * The named suggesters
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>suggesters</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>suggesters</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>suggesters</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder suggesters(Map<String, FieldSuggester> map) {
 			this.suggesters = _mapPutAll(this.suggesters, map);

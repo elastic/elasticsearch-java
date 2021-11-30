@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.validate_query.IndicesValidationExplanation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/validate_query/IndicesValidateQueryResponse.ts#L32-L37">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IndicesValidationExplanation implements JsonpSerializable {
 	@Nullable
@@ -58,8 +65,8 @@ public class IndicesValidationExplanation implements JsonpSerializable {
 
 		this.error = builder.error;
 		this.explanation = builder.explanation;
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
-		this.valid = ModelTypeHelper.requireNonNull(builder.valid, this, "valid");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.valid = ApiTypeHelper.requireNonNull(builder.valid, this, "valid");
 
 	}
 
@@ -131,6 +138,7 @@ public class IndicesValidationExplanation implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndicesValidationExplanation}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndicesValidationExplanation> {
 		@Nullable
 		private String error;

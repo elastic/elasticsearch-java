@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.analyze.ExplainAnalyzeToken
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/analyze/types.ts#L49-L59">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ExplainAnalyzeToken implements JsonpSerializable {
 	private final String bytes;
@@ -66,15 +73,15 @@ public class ExplainAnalyzeToken implements JsonpSerializable {
 
 	private ExplainAnalyzeToken(Builder builder) {
 
-		this.bytes = ModelTypeHelper.requireNonNull(builder.bytes, this, "bytes");
-		this.endOffset = ModelTypeHelper.requireNonNull(builder.endOffset, this, "endOffset");
+		this.bytes = ApiTypeHelper.requireNonNull(builder.bytes, this, "bytes");
+		this.endOffset = ApiTypeHelper.requireNonNull(builder.endOffset, this, "endOffset");
 		this.keyword = builder.keyword;
-		this.position = ModelTypeHelper.requireNonNull(builder.position, this, "position");
-		this.positionlength = ModelTypeHelper.requireNonNull(builder.positionlength, this, "positionlength");
-		this.startOffset = ModelTypeHelper.requireNonNull(builder.startOffset, this, "startOffset");
-		this.termfrequency = ModelTypeHelper.requireNonNull(builder.termfrequency, this, "termfrequency");
-		this.token = ModelTypeHelper.requireNonNull(builder.token, this, "token");
-		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
+		this.position = ApiTypeHelper.requireNonNull(builder.position, this, "position");
+		this.positionlength = ApiTypeHelper.requireNonNull(builder.positionlength, this, "positionlength");
+		this.startOffset = ApiTypeHelper.requireNonNull(builder.startOffset, this, "startOffset");
+		this.termfrequency = ApiTypeHelper.requireNonNull(builder.termfrequency, this, "termfrequency");
+		this.token = ApiTypeHelper.requireNonNull(builder.token, this, "token");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 
@@ -193,6 +200,7 @@ public class ExplainAnalyzeToken implements JsonpSerializable {
 	/**
 	 * Builder for {@link ExplainAnalyzeToken}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExplainAnalyzeToken> {
 		private String bytes;
 

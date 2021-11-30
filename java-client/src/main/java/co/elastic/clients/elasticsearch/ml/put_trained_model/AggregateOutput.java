@@ -37,6 +37,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.AggregateOutput
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/put_trained_model/types.ts#L101-L106">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AggregateOutput implements JsonpSerializable {
 	@Nullable
@@ -137,6 +144,7 @@ public class AggregateOutput implements JsonpSerializable {
 	/**
 	 * Builder for {@link AggregateOutput}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AggregateOutput> {
 		@Nullable
 		private Weights logisticRegression;

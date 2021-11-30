@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -36,6 +36,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.PercentilesAggregateBase
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L132-L134">API
+ *      specification</a>
+ */
 
 public abstract class PercentilesAggregateBase extends AggregateBase {
 	private final Percentiles values;
@@ -45,7 +52,7 @@ public abstract class PercentilesAggregateBase extends AggregateBase {
 	protected PercentilesAggregateBase(AbstractBuilder<?> builder) {
 		super(builder);
 
-		this.values = ModelTypeHelper.requireNonNull(builder.values, this, "values");
+		this.values = ApiTypeHelper.requireNonNull(builder.values, this, "values");
 
 	}
 

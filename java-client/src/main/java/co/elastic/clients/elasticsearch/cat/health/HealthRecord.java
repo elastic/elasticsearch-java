@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.health.HealthRecord
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/health/types.ts#L22-L93">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class HealthRecord implements JsonpSerializable {
 	@Nullable
@@ -336,6 +343,7 @@ public class HealthRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link HealthRecord}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HealthRecord> {
 		@Nullable
 		private String epoch;

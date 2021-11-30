@@ -43,6 +43,14 @@ import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Request
 
+/**
+ * Retrieves usage information about the installed X-Pack features.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/xpack/usage/XPackUsageRequest.ts#L23-L32">API
+ *      specification</a>
+ */
+
 public class XpackUsageRequest extends RequestBase {
 	@Nullable
 	private final Time masterTimeout;
@@ -74,6 +82,7 @@ public class XpackUsageRequest extends RequestBase {
 	/**
 	 * Builder for {@link XpackUsageRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<XpackUsageRequest> {
 		@Nullable
 		private Time masterTimeout;

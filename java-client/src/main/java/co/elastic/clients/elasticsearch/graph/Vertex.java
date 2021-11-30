@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: graph._types.Vertex
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/graph/_types/Vertex.ts#L23-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Vertex implements JsonpSerializable {
 	private final long depth;
@@ -55,10 +62,10 @@ public class Vertex implements JsonpSerializable {
 
 	private Vertex(Builder builder) {
 
-		this.depth = ModelTypeHelper.requireNonNull(builder.depth, this, "depth");
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
-		this.term = ModelTypeHelper.requireNonNull(builder.term, this, "term");
-		this.weight = ModelTypeHelper.requireNonNull(builder.weight, this, "weight");
+		this.depth = ApiTypeHelper.requireNonNull(builder.depth, this, "depth");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.term = ApiTypeHelper.requireNonNull(builder.term, this, "term");
+		this.weight = ApiTypeHelper.requireNonNull(builder.weight, this, "weight");
 
 	}
 
@@ -124,6 +131,7 @@ public class Vertex implements JsonpSerializable {
 	/**
 	 * Builder for {@link Vertex}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Vertex> {
 		private Long depth;
 

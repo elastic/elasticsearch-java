@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.Influence
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/_types/Anomaly.ts#L66-L69">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Influence implements JsonpSerializable {
 	private final String influencerFieldName;
@@ -50,9 +57,9 @@ public class Influence implements JsonpSerializable {
 
 	private Influence(Builder builder) {
 
-		this.influencerFieldName = ModelTypeHelper.requireNonNull(builder.influencerFieldName, this,
+		this.influencerFieldName = ApiTypeHelper.requireNonNull(builder.influencerFieldName, this,
 				"influencerFieldName");
-		this.influencerFieldValues = ModelTypeHelper.unmodifiableRequired(builder.influencerFieldValues, this,
+		this.influencerFieldValues = ApiTypeHelper.unmodifiableRequired(builder.influencerFieldValues, this,
 				"influencerFieldValues");
 
 	}
@@ -89,7 +96,7 @@ public class Influence implements JsonpSerializable {
 		generator.writeKey("influencer_field_name");
 		generator.write(this.influencerFieldName);
 
-		if (ModelTypeHelper.isDefined(this.influencerFieldValues)) {
+		if (ApiTypeHelper.isDefined(this.influencerFieldValues)) {
 			generator.writeKey("influencer_field_values");
 			generator.writeStartArray();
 			for (String item0 : this.influencerFieldValues) {
@@ -107,6 +114,7 @@ public class Influence implements JsonpSerializable {
 	/**
 	 * Builder for {@link Influence}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Influence> {
 		private String influencerFieldName;
 
@@ -124,10 +132,8 @@ public class Influence implements JsonpSerializable {
 		 * Required - API name: {@code influencer_field_values}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>influencerFieldValues</code>.
-		 * Use <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>influencerFieldValues</code> to <code>null</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder influencerFieldValues(List<String> list) {
 			this.influencerFieldValues = _listAddAll(this.influencerFieldValues, list);

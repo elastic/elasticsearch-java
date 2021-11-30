@@ -45,6 +45,14 @@ import javax.annotation.Nullable;
 
 // typedef: cat.ml_trained_models.Request
 
+/**
+ * Gets configuration and usage information about inference trained models.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/ml_trained_models/CatTrainedModelsRequest.ts#L24-L39">API
+ *      specification</a>
+ */
+
 public class MlTrainedModelsRequest extends CatRequestBase {
 	@Nullable
 	private final Boolean allowNoMatch;
@@ -134,6 +142,7 @@ public class MlTrainedModelsRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link MlTrainedModelsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MlTrainedModelsRequest> {
 		@Nullable
 		private Boolean allowNoMatch;

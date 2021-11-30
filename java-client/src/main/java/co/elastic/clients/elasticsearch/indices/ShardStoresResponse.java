@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.shard_stores.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/shard_stores/IndicesShardStoresResponse.ts#L24-L26">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ShardStoresResponse implements JsonpSerializable {
 	private final Map<String, IndicesShardStores> indices;
@@ -49,7 +56,7 @@ public class ShardStoresResponse implements JsonpSerializable {
 
 	private ShardStoresResponse(Builder builder) {
 
-		this.indices = ModelTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
+		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
 
 	}
 
@@ -75,7 +82,7 @@ public class ShardStoresResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.indices)) {
+		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartObject();
 			for (Map.Entry<String, IndicesShardStores> item0 : this.indices.entrySet()) {
@@ -94,17 +101,16 @@ public class ShardStoresResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardStoresResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardStoresResponse> {
 		private Map<String, IndicesShardStores> indices;
 
 		/**
 		 * Required - API name: {@code indices}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>indices</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>indices</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>indices</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder indices(Map<String, IndicesShardStores> map) {
 			this.indices = _mapPutAll(this.indices, map);

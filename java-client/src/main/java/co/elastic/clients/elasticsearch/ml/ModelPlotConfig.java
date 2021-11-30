@@ -39,6 +39,16 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.ModelPlotConfig
+
+/**
+ *
+ * @see <a href=
+ *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-job-resource.html#ml-apimodelplotconfig">Documentation
+ *      on elastic.co</a>
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/_types/ModelPlot.ts#L23-L44">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ModelPlotConfig implements JsonpSerializable {
 	@Nullable
@@ -133,6 +143,7 @@ public class ModelPlotConfig implements JsonpSerializable {
 	/**
 	 * Builder for {@link ModelPlotConfig}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ModelPlotConfig> {
 		@Nullable
 		private Boolean annotationsEnabled;

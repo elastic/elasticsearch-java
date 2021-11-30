@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.rollup.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/rollup/rollup/RollupResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RollupResponse implements JsonpSerializable {
 	private final JsonData valueBody;
@@ -47,7 +54,7 @@ public class RollupResponse implements JsonpSerializable {
 
 	private RollupResponse(Builder builder) {
 
-		this.valueBody = ModelTypeHelper.requireNonNull(builder.valueBody, this, "valueBody");
+		this.valueBody = ApiTypeHelper.requireNonNull(builder.valueBody, this, "valueBody");
 
 	}
 
@@ -77,6 +84,7 @@ public class RollupResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link RollupResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RollupResponse> {
 		private JsonData valueBody;
 

@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -45,6 +45,36 @@ import javax.annotation.Nullable;
 
 // typedef: transform.start_transform.Request
 
+/**
+ * Starts a transform.
+ * <p>
+ * When you start a transform, it creates the destination index if it does not
+ * already exist. The <code>number_of_shards</code> is set to <code>1</code> and
+ * the <code>auto_expand_replicas</code> is set to <code>0-1</code>. If it is a
+ * pivot transform, it deduces the mapping definitions for the destination index
+ * from the source indices and the transform aggregations. If fields in the
+ * destination index are derived from scripts (as in the case of
+ * <code>scripted_metric</code> or <code>bucket_script</code> aggregations), the
+ * transform uses dynamic mappings unless an index template exists. If it is a
+ * latest transform, it does not deduce mapping definitions; it uses dynamic
+ * mappings. To use explicit mappings, create the destination index before you
+ * start the transform. Alternatively, you can create an index template, though
+ * it does not affect the deduced mappings in a pivot transform.
+ * <p>
+ * When the transform starts, a series of validations occur to ensure its
+ * success. If you deferred validation when you created the transform, they
+ * occur when you start the transform—​with the exception of privilege checks.
+ * When Elasticsearch security features are enabled, the transform remembers
+ * which roles the user that created it had at the time of creation and uses
+ * those same roles. If those roles do not have the required privileges on the
+ * source and destination indices, the transform fails when it attempts
+ * unauthorized operations.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/transform/start_transform/StartTransformRequest.ts#L24-L61">API
+ *      specification</a>
+ */
+
 public class StartTransformRequest extends RequestBase {
 	@Nullable
 	private final Time timeout;
@@ -56,7 +86,7 @@ public class StartTransformRequest extends RequestBase {
 	private StartTransformRequest(Builder builder) {
 
 		this.timeout = builder.timeout;
-		this.transformId = ModelTypeHelper.requireNonNull(builder.transformId, this, "transformId");
+		this.transformId = ApiTypeHelper.requireNonNull(builder.transformId, this, "transformId");
 
 	}
 
@@ -65,7 +95,8 @@ public class StartTransformRequest extends RequestBase {
 	}
 
 	/**
-	 * Controls the time to wait for the transform to start
+	 * Period to wait for a response. If no response is received before the timeout
+	 * expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -75,7 +106,7 @@ public class StartTransformRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The id of the transform to start
+	 * Required - Identifier for the transform.
 	 * <p>
 	 * API name: {@code transform_id}
 	 */
@@ -88,6 +119,7 @@ public class StartTransformRequest extends RequestBase {
 	/**
 	 * Builder for {@link StartTransformRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StartTransformRequest> {
 		@Nullable
 		private Time timeout;
@@ -95,7 +127,8 @@ public class StartTransformRequest extends RequestBase {
 		private String transformId;
 
 		/**
-		 * Controls the time to wait for the transform to start
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -105,7 +138,8 @@ public class StartTransformRequest extends RequestBase {
 		}
 
 		/**
-		 * Controls the time to wait for the transform to start
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -114,7 +148,7 @@ public class StartTransformRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - The id of the transform to start
+		 * Required - Identifier for the transform.
 		 * <p>
 		 * API name: {@code transform_id}
 		 */

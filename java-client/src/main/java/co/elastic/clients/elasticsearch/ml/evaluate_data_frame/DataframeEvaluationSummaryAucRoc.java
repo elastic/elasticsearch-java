@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
@@ -37,6 +37,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.DataframeEvaluationSummaryAucRoc
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/evaluate_data_frame/types.ts#L50-L52">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeEvaluationSummaryAucRoc extends DataframeEvaluationValue {
 	private final List<DataframeEvaluationSummaryAucRocCurveItem> curve;
@@ -46,7 +53,7 @@ public class DataframeEvaluationSummaryAucRoc extends DataframeEvaluationValue {
 	private DataframeEvaluationSummaryAucRoc(Builder builder) {
 		super(builder);
 
-		this.curve = ModelTypeHelper.unmodifiable(builder.curve);
+		this.curve = ApiTypeHelper.unmodifiable(builder.curve);
 
 	}
 
@@ -65,7 +72,7 @@ public class DataframeEvaluationSummaryAucRoc extends DataframeEvaluationValue {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.curve)) {
+		if (ApiTypeHelper.isDefined(this.curve)) {
 			generator.writeKey("curve");
 			generator.writeStartArray();
 			for (DataframeEvaluationSummaryAucRocCurveItem item0 : this.curve) {
@@ -83,6 +90,7 @@ public class DataframeEvaluationSummaryAucRoc extends DataframeEvaluationValue {
 	/**
 	 * Builder for {@link DataframeEvaluationSummaryAucRoc}.
 	 */
+
 	public static class Builder extends DataframeEvaluationValue.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DataframeEvaluationSummaryAucRoc> {
@@ -92,11 +100,9 @@ public class DataframeEvaluationSummaryAucRoc extends DataframeEvaluationValue {
 		/**
 		 * API name: {@code curve}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>curve</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>curve</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>curve</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder curve(List<DataframeEvaluationSummaryAucRocCurveItem> list) {
 			this.curve = _listAddAll(this.curve, list);

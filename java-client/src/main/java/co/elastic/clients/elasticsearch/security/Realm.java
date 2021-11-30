@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security._types.Realm
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/_types/RoleMappingRule.ts#L44-L46">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Realm implements FieldRuleVariant, JsonpSerializable {
 	private final String name;
@@ -47,7 +54,7 @@ public class Realm implements FieldRuleVariant, JsonpSerializable {
 
 	private Realm(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
@@ -91,6 +98,7 @@ public class Realm implements FieldRuleVariant, JsonpSerializable {
 	/**
 	 * Builder for {@link Realm}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Realm> {
 		private String name;
 

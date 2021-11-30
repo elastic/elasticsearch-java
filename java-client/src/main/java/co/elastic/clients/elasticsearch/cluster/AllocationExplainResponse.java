@@ -35,7 +35,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -49,6 +49,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/allocation_explain/ClusterAllocationExplainResponse.ts#L31-L60">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AllocationExplainResponse implements JsonpSerializable {
 	@Nullable
@@ -129,23 +136,23 @@ public class AllocationExplainResponse implements JsonpSerializable {
 		this.canAllocate = builder.canAllocate;
 		this.canMoveToOtherNode = builder.canMoveToOtherNode;
 		this.canRebalanceCluster = builder.canRebalanceCluster;
-		this.canRebalanceClusterDecisions = ModelTypeHelper.unmodifiable(builder.canRebalanceClusterDecisions);
+		this.canRebalanceClusterDecisions = ApiTypeHelper.unmodifiable(builder.canRebalanceClusterDecisions);
 		this.canRebalanceToOtherNode = builder.canRebalanceToOtherNode;
-		this.canRemainDecisions = ModelTypeHelper.unmodifiable(builder.canRemainDecisions);
+		this.canRemainDecisions = ApiTypeHelper.unmodifiable(builder.canRemainDecisions);
 		this.canRemainOnCurrentNode = builder.canRemainOnCurrentNode;
 		this.clusterInfo = builder.clusterInfo;
 		this.configuredDelay = builder.configuredDelay;
 		this.configuredDelayInMillis = builder.configuredDelayInMillis;
 		this.currentNode = builder.currentNode;
-		this.currentState = ModelTypeHelper.requireNonNull(builder.currentState, this, "currentState");
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.currentState = ApiTypeHelper.requireNonNull(builder.currentState, this, "currentState");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.moveExplanation = builder.moveExplanation;
-		this.nodeAllocationDecisions = ModelTypeHelper.unmodifiable(builder.nodeAllocationDecisions);
-		this.primary = ModelTypeHelper.requireNonNull(builder.primary, this, "primary");
+		this.nodeAllocationDecisions = ApiTypeHelper.unmodifiable(builder.nodeAllocationDecisions);
+		this.primary = ApiTypeHelper.requireNonNull(builder.primary, this, "primary");
 		this.rebalanceExplanation = builder.rebalanceExplanation;
 		this.remainingDelay = builder.remainingDelay;
 		this.remainingDelayInMillis = builder.remainingDelayInMillis;
-		this.shard = ModelTypeHelper.requireNonNull(builder.shard, this, "shard");
+		this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard");
 		this.unassignedInfo = builder.unassignedInfo;
 		this.note = builder.note;
 
@@ -386,7 +393,7 @@ public class AllocationExplainResponse implements JsonpSerializable {
 			generator.writeKey("can_rebalance_cluster");
 			this.canRebalanceCluster.serialize(generator, mapper);
 		}
-		if (ModelTypeHelper.isDefined(this.canRebalanceClusterDecisions)) {
+		if (ApiTypeHelper.isDefined(this.canRebalanceClusterDecisions)) {
 			generator.writeKey("can_rebalance_cluster_decisions");
 			generator.writeStartArray();
 			for (AllocationDecision item0 : this.canRebalanceClusterDecisions) {
@@ -400,7 +407,7 @@ public class AllocationExplainResponse implements JsonpSerializable {
 			generator.writeKey("can_rebalance_to_other_node");
 			this.canRebalanceToOtherNode.serialize(generator, mapper);
 		}
-		if (ModelTypeHelper.isDefined(this.canRemainDecisions)) {
+		if (ApiTypeHelper.isDefined(this.canRemainDecisions)) {
 			generator.writeKey("can_remain_decisions");
 			generator.writeStartArray();
 			for (AllocationDecision item0 : this.canRemainDecisions) {
@@ -445,7 +452,7 @@ public class AllocationExplainResponse implements JsonpSerializable {
 			generator.write(this.moveExplanation);
 
 		}
-		if (ModelTypeHelper.isDefined(this.nodeAllocationDecisions)) {
+		if (ApiTypeHelper.isDefined(this.nodeAllocationDecisions)) {
 			generator.writeKey("node_allocation_decisions");
 			generator.writeStartArray();
 			for (NodeAllocationExplanation item0 : this.nodeAllocationDecisions) {
@@ -494,6 +501,7 @@ public class AllocationExplainResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link AllocationExplainResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AllocationExplainResponse> {
 		@Nullable
 		private String allocateExplanation;
@@ -618,11 +626,9 @@ public class AllocationExplainResponse implements JsonpSerializable {
 		 * API name: {@code can_rebalance_cluster_decisions}
 		 * <p>
 		 * Adds all elements of <code>list</code> to
-		 * <code>canRebalanceClusterDecisions</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>canRebalanceClusterDecisions</code> to <code>null</code>.
+		 * <code>canRebalanceClusterDecisions</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder canRebalanceClusterDecisions(List<AllocationDecision> list) {
 			this.canRebalanceClusterDecisions = _listAddAll(this.canRebalanceClusterDecisions, list);
@@ -662,10 +668,8 @@ public class AllocationExplainResponse implements JsonpSerializable {
 		 * API name: {@code can_remain_decisions}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>canRemainDecisions</code>.
-		 * Use <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>canRemainDecisions</code> to <code>null</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder canRemainDecisions(List<AllocationDecision> list) {
 			this.canRemainDecisions = _listAddAll(this.canRemainDecisions, list);
@@ -774,11 +778,9 @@ public class AllocationExplainResponse implements JsonpSerializable {
 		 * API name: {@code node_allocation_decisions}
 		 * <p>
 		 * Adds all elements of <code>list</code> to
-		 * <code>nodeAllocationDecisions</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>nodeAllocationDecisions</code> to <code>null</code>.
+		 * <code>nodeAllocationDecisions</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder nodeAllocationDecisions(List<NodeAllocationExplanation> list) {
 			this.nodeAllocationDecisions = _listAddAll(this.nodeAllocationDecisions, list);

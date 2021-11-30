@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.UnassignedInformation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/allocation_explain/types.ts#L117-L125">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class UnassignedInformation implements JsonpSerializable {
 	private final String at;
@@ -66,9 +73,9 @@ public class UnassignedInformation implements JsonpSerializable {
 
 	private UnassignedInformation(Builder builder) {
 
-		this.at = ModelTypeHelper.requireNonNull(builder.at, this, "at");
+		this.at = ApiTypeHelper.requireNonNull(builder.at, this, "at");
 		this.lastAllocationStatus = builder.lastAllocationStatus;
-		this.reason = ModelTypeHelper.requireNonNull(builder.reason, this, "reason");
+		this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
 		this.details = builder.details;
 		this.failedAllocationAttempts = builder.failedAllocationAttempts;
 		this.delayed = builder.delayed;
@@ -183,6 +190,7 @@ public class UnassignedInformation implements JsonpSerializable {
 	/**
 	 * Builder for {@link UnassignedInformation}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UnassignedInformation> {
 		private String at;
 

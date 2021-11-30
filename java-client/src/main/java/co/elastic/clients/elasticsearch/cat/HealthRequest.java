@@ -42,6 +42,14 @@ import javax.annotation.Nullable;
 
 // typedef: cat.health.Request
 
+/**
+ * Returns a concise representation of the cluster health.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/health/CatHealthRequest.ts#L22-L31">API
+ *      specification</a>
+ */
+
 public class HealthRequest extends CatRequestBase {
 	@Nullable
 	private final Boolean ts;
@@ -73,6 +81,7 @@ public class HealthRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link HealthRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HealthRequest> {
 		@Nullable
 		private Boolean ts;

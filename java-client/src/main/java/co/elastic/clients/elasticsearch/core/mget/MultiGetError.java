@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.mget.MultiGetError
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/mget/types.ts#L49-L55">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MultiGetError implements JsonpSerializable {
 	private final ErrorCause error;
@@ -55,9 +62,9 @@ public class MultiGetError implements JsonpSerializable {
 
 	private MultiGetError(Builder builder) {
 
-		this.error = ModelTypeHelper.requireNonNull(builder.error, this, "error");
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.error = ApiTypeHelper.requireNonNull(builder.error, this, "error");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.type = builder.type;
 
 	}
@@ -89,7 +96,10 @@ public class MultiGetError implements JsonpSerializable {
 
 	/**
 	 * API name: {@code _type}
+	 * 
+	 * @deprecated 7.0.0
 	 */
+	@Deprecated
 	@Nullable
 	public final String type() {
 		return this.type;
@@ -128,6 +138,7 @@ public class MultiGetError implements JsonpSerializable {
 	/**
 	 * Builder for {@link MultiGetError}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MultiGetError> {
 		private ErrorCause error;
 
@@ -171,7 +182,10 @@ public class MultiGetError implements JsonpSerializable {
 
 		/**
 		 * API name: {@code _type}
+		 * 
+		 * @deprecated 7.0.0
 		 */
+		@Deprecated
 		public final Builder type(@Nullable String value) {
 			this.type = value;
 			return this;

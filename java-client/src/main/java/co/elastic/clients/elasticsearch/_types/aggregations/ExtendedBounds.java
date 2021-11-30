@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ExtendedBounds
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/bucket.ts#L197-L200">API
+ *      specification</a>
+ */
 
 public class ExtendedBounds<T> implements JsonpSerializable {
 	private final T max;
@@ -54,8 +61,8 @@ public class ExtendedBounds<T> implements JsonpSerializable {
 
 	private ExtendedBounds(Builder<T> builder) {
 
-		this.max = ModelTypeHelper.requireNonNull(builder.max, this, "max");
-		this.min = ModelTypeHelper.requireNonNull(builder.min, this, "min");
+		this.max = ApiTypeHelper.requireNonNull(builder.max, this, "max");
+		this.min = ApiTypeHelper.requireNonNull(builder.min, this, "min");
 		this.tSerializer = builder.tSerializer;
 
 	}
@@ -102,6 +109,7 @@ public class ExtendedBounds<T> implements JsonpSerializable {
 	/**
 	 * Builder for {@link ExtendedBounds}.
 	 */
+
 	public static class Builder<T> extends ObjectBuilderBase implements ObjectBuilder<ExtendedBounds<T>> {
 		private T max;
 
@@ -151,7 +159,7 @@ public class ExtendedBounds<T> implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for ExtendedBounds
+	 * Create a JSON deserializer for ExtendedBounds
 	 */
 	public static <T> JsonpDeserializer<ExtendedBounds<T>> createExtendedBoundsDeserializer(
 			JsonpDeserializer<T> tDeserializer) {

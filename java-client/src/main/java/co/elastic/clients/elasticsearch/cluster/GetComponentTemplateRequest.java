@@ -45,6 +45,14 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.get_component_template.Request
 
+/**
+ * Returns one or more component templates
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/get_component_template/ClusterGetComponentTemplateRequest.ts#L24-L41">API
+ *      specification</a>
+ */
+
 public class GetComponentTemplateRequest extends RequestBase {
 	@Nullable
 	private final Boolean flatSettings;
@@ -117,6 +125,7 @@ public class GetComponentTemplateRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetComponentTemplateRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetComponentTemplateRequest> {
 		@Nullable
 		private Boolean flatSettings;

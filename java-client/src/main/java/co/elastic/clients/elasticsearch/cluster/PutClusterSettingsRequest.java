@@ -35,7 +35,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -48,6 +48,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.put_settings.Request
+
+/**
+ * Updates the cluster settings.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/put_settings/ClusterPutSettingsRequest.ts#L25-L42">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutClusterSettingsRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -69,9 +77,9 @@ public class PutClusterSettingsRequest extends RequestBase implements JsonpSeria
 
 		this.flatSettings = builder.flatSettings;
 		this.masterTimeout = builder.masterTimeout;
-		this.persistent = ModelTypeHelper.unmodifiable(builder.persistent);
+		this.persistent = ApiTypeHelper.unmodifiable(builder.persistent);
 		this.timeout = builder.timeout;
-		this.transient_ = ModelTypeHelper.unmodifiable(builder.transient_);
+		this.transient_ = ApiTypeHelper.unmodifiable(builder.transient_);
 
 	}
 
@@ -134,7 +142,7 @@ public class PutClusterSettingsRequest extends RequestBase implements JsonpSeria
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.persistent)) {
+		if (ApiTypeHelper.isDefined(this.persistent)) {
 			generator.writeKey("persistent");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.persistent.entrySet()) {
@@ -145,7 +153,7 @@ public class PutClusterSettingsRequest extends RequestBase implements JsonpSeria
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.transient_)) {
+		if (ApiTypeHelper.isDefined(this.transient_)) {
 			generator.writeKey("transient");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.transient_.entrySet()) {
@@ -164,6 +172,7 @@ public class PutClusterSettingsRequest extends RequestBase implements JsonpSeria
 	/**
 	 * Builder for {@link PutClusterSettingsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutClusterSettingsRequest> {
 		@Nullable
 		private Boolean flatSettings;
@@ -212,11 +221,9 @@ public class PutClusterSettingsRequest extends RequestBase implements JsonpSeria
 		/**
 		 * API name: {@code persistent}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>persistent</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>persistent</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>persistent</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder persistent(Map<String, JsonData> map) {
 			this.persistent = _mapPutAll(this.persistent, map);
@@ -255,11 +262,9 @@ public class PutClusterSettingsRequest extends RequestBase implements JsonpSeria
 		/**
 		 * API name: {@code transient}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>transient_</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>transient_</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>transient_</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder transient_(Map<String, JsonData> map) {
 			this.transient_ = _mapPutAll(this.transient_, map);

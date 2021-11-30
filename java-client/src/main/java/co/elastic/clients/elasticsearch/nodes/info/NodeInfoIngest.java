@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoIngest
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/info/types.ts#L209-L211">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeInfoIngest implements JsonpSerializable {
 	private final List<NodeInfoIngestProcessor> processors;
@@ -47,7 +54,7 @@ public class NodeInfoIngest implements JsonpSerializable {
 
 	private NodeInfoIngest(Builder builder) {
 
-		this.processors = ModelTypeHelper.unmodifiableRequired(builder.processors, this, "processors");
+		this.processors = ApiTypeHelper.unmodifiableRequired(builder.processors, this, "processors");
 
 	}
 
@@ -73,7 +80,7 @@ public class NodeInfoIngest implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.processors)) {
+		if (ApiTypeHelper.isDefined(this.processors)) {
 			generator.writeKey("processors");
 			generator.writeStartArray();
 			for (NodeInfoIngestProcessor item0 : this.processors) {
@@ -91,17 +98,16 @@ public class NodeInfoIngest implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoIngest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoIngest> {
 		private List<NodeInfoIngestProcessor> processors;
 
 		/**
 		 * Required - API name: {@code processors}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>processors</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>processors</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>processors</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder processors(List<NodeInfoIngestProcessor> list) {
 			this.processors = _listAddAll(this.processors, list);

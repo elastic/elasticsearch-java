@@ -32,7 +32,7 @@ import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,6 +43,13 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: _global.mget.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/mget/MultiGetResponse.ts#L22-L26">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MgetResponse<TDocument> implements JsonpSerializable {
 	private final List<MultiGetResponseItem<TDocument>> docs;
@@ -54,7 +61,7 @@ public class MgetResponse<TDocument> implements JsonpSerializable {
 
 	private MgetResponse(Builder<TDocument> builder) {
 
-		this.docs = ModelTypeHelper.unmodifiableRequired(builder.docs, this, "docs");
+		this.docs = ApiTypeHelper.unmodifiableRequired(builder.docs, this, "docs");
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}
@@ -82,7 +89,7 @@ public class MgetResponse<TDocument> implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.docs)) {
+		if (ApiTypeHelper.isDefined(this.docs)) {
 			generator.writeKey("docs");
 			generator.writeStartArray();
 			for (MultiGetResponseItem<TDocument> item0 : this.docs) {
@@ -100,6 +107,7 @@ public class MgetResponse<TDocument> implements JsonpSerializable {
 	/**
 	 * Builder for {@link MgetResponse}.
 	 */
+
 	public static class Builder<TDocument> extends ObjectBuilderBase implements ObjectBuilder<MgetResponse<TDocument>> {
 		private List<MultiGetResponseItem<TDocument>> docs;
 
@@ -109,11 +117,9 @@ public class MgetResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code docs}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>docs</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>docs</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>docs</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder<TDocument> docs(List<MultiGetResponseItem<TDocument>> list) {
 			this.docs = _listAddAll(this.docs, list);
@@ -166,7 +172,7 @@ public class MgetResponse<TDocument> implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for MgetResponse
+	 * Create a JSON deserializer for MgetResponse
 	 */
 	public static <TDocument> JsonpDeserializer<MgetResponse<TDocument>> createMgetResponseDeserializer(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {

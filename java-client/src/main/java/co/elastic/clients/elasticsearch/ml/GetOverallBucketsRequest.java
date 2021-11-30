@@ -34,7 +34,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -47,6 +47,30 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_overall_buckets.Request
+
+/**
+ * Retrieves overall bucket results that summarize the bucket results of
+ * multiple anomaly detection jobs.
+ * <p>
+ * The <code>overall_score</code> is calculated by combining the scores of all
+ * the buckets within the overall bucket span. First, the maximum
+ * <code>anomaly_score</code> per anomaly detection job in the overall bucket is
+ * calculated. Then the <code>top_n</code> of those scores are averaged to
+ * result in the <code>overall_score</code>. This means that you can fine-tune
+ * the <code>overall_score</code> so that it is more or less sensitive to the
+ * number of jobs that detect an anomaly at the same time. For example, if you
+ * set <code>top_n</code> to <code>1</code>, the <code>overall_score</code> is
+ * the maximum bucket score in the overall bucket. Alternatively, if you set
+ * <code>top_n</code> to the number of jobs, the <code>overall_score</code> is
+ * high only when all jobs detect anomalies in that overall bucket. If you set
+ * the <code>bucket_span</code> parameter (to a value greater than its default),
+ * the <code>overall_score</code> is the maximum <code>overall_score</code> of
+ * the overall buckets that have a span equal to the jobs' largest bucket span.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/get_overall_buckets/MlGetOverallBucketsRequest.ts#L25-L149">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetOverallBucketsRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -80,7 +104,7 @@ public class GetOverallBucketsRequest extends RequestBase implements JsonpSerial
 		this.bucketSpan = builder.bucketSpan;
 		this.end = builder.end;
 		this.excludeInterim = builder.excludeInterim;
-		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.overallScore = builder.overallScore;
 		this.start = builder.start;
 		this.topN = builder.topN;
@@ -231,6 +255,7 @@ public class GetOverallBucketsRequest extends RequestBase implements JsonpSerial
 	/**
 	 * Builder for {@link GetOverallBucketsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetOverallBucketsRequest> {
 		@Nullable
 		private Boolean allowNoMatch;

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.shard_stores.ShardStoreWrapper
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/shard_stores/types.ts#L51-L53">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ShardStoreWrapper implements JsonpSerializable {
 	private final List<ShardStore> stores;
@@ -47,7 +54,7 @@ public class ShardStoreWrapper implements JsonpSerializable {
 
 	private ShardStoreWrapper(Builder builder) {
 
-		this.stores = ModelTypeHelper.unmodifiableRequired(builder.stores, this, "stores");
+		this.stores = ApiTypeHelper.unmodifiableRequired(builder.stores, this, "stores");
 
 	}
 
@@ -73,7 +80,7 @@ public class ShardStoreWrapper implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.stores)) {
+		if (ApiTypeHelper.isDefined(this.stores)) {
 			generator.writeKey("stores");
 			generator.writeStartArray();
 			for (ShardStore item0 : this.stores) {
@@ -91,17 +98,16 @@ public class ShardStoreWrapper implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardStoreWrapper}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardStoreWrapper> {
 		private List<ShardStore> stores;
 
 		/**
 		 * Required - API name: {@code stores}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>stores</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>stores</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>stores</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder stores(List<ShardStore> list) {
 			this.stores = _listAddAll(this.stores, list);

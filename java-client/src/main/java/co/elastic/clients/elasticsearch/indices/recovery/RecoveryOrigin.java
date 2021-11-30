@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.recovery.RecoveryOrigin
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/recovery/types.ts#L71-L84">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RecoveryOrigin implements JsonpSerializable {
 	@Nullable
@@ -275,6 +282,7 @@ public class RecoveryOrigin implements JsonpSerializable {
 	/**
 	 * Builder for {@link RecoveryOrigin}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RecoveryOrigin> {
 		@Nullable
 		private String hostname;

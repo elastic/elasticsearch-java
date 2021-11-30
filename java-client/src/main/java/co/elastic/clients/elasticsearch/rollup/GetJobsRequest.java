@@ -42,6 +42,14 @@ import javax.annotation.Nullable;
 
 // typedef: rollup.get_jobs.Request
 
+/**
+ * Retrieves the configuration, stats, and status of rollup jobs.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/rollup/get_jobs/GetRollupJobRequest.ts#L23-L32">API
+ *      specification</a>
+ */
+
 public class GetJobsRequest extends RequestBase {
 	@Nullable
 	private final String id;
@@ -74,6 +82,7 @@ public class GetJobsRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetJobsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetJobsRequest> {
 		@Nullable
 		private String id;

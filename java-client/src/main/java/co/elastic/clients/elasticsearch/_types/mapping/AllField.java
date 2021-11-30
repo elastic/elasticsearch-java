@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.AllField
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/meta-fields.ts#L29-L40">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AllField implements JsonpSerializable {
 	private final String analyzer;
@@ -66,19 +73,19 @@ public class AllField implements JsonpSerializable {
 
 	private AllField(Builder builder) {
 
-		this.analyzer = ModelTypeHelper.requireNonNull(builder.analyzer, this, "analyzer");
-		this.enabled = ModelTypeHelper.requireNonNull(builder.enabled, this, "enabled");
-		this.omitNorms = ModelTypeHelper.requireNonNull(builder.omitNorms, this, "omitNorms");
-		this.searchAnalyzer = ModelTypeHelper.requireNonNull(builder.searchAnalyzer, this, "searchAnalyzer");
-		this.similarity = ModelTypeHelper.requireNonNull(builder.similarity, this, "similarity");
-		this.store = ModelTypeHelper.requireNonNull(builder.store, this, "store");
-		this.storeTermVectorOffsets = ModelTypeHelper.requireNonNull(builder.storeTermVectorOffsets, this,
+		this.analyzer = ApiTypeHelper.requireNonNull(builder.analyzer, this, "analyzer");
+		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
+		this.omitNorms = ApiTypeHelper.requireNonNull(builder.omitNorms, this, "omitNorms");
+		this.searchAnalyzer = ApiTypeHelper.requireNonNull(builder.searchAnalyzer, this, "searchAnalyzer");
+		this.similarity = ApiTypeHelper.requireNonNull(builder.similarity, this, "similarity");
+		this.store = ApiTypeHelper.requireNonNull(builder.store, this, "store");
+		this.storeTermVectorOffsets = ApiTypeHelper.requireNonNull(builder.storeTermVectorOffsets, this,
 				"storeTermVectorOffsets");
-		this.storeTermVectorPayloads = ModelTypeHelper.requireNonNull(builder.storeTermVectorPayloads, this,
+		this.storeTermVectorPayloads = ApiTypeHelper.requireNonNull(builder.storeTermVectorPayloads, this,
 				"storeTermVectorPayloads");
-		this.storeTermVectorPositions = ModelTypeHelper.requireNonNull(builder.storeTermVectorPositions, this,
+		this.storeTermVectorPositions = ApiTypeHelper.requireNonNull(builder.storeTermVectorPositions, this,
 				"storeTermVectorPositions");
-		this.storeTermVectors = ModelTypeHelper.requireNonNull(builder.storeTermVectors, this, "storeTermVectors");
+		this.storeTermVectors = ApiTypeHelper.requireNonNull(builder.storeTermVectors, this, "storeTermVectors");
 
 	}
 
@@ -204,6 +211,7 @@ public class AllField implements JsonpSerializable {
 	/**
 	 * Builder for {@link AllField}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AllField> {
 		private String analyzer;
 

@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.PerPartitionCategorization
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/_types/Analysis.ts#L92-L101">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PerPartitionCategorization implements JsonpSerializable {
 	@Nullable
@@ -116,6 +123,7 @@ public class PerPartitionCategorization implements JsonpSerializable {
 	/**
 	 * Builder for {@link PerPartitionCategorization}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PerPartitionCategorization> {
 		@Nullable
 		private Boolean enabled;

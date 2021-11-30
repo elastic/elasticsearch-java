@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterIndicesShardsIndex
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/stats/types.ts#L39-L46">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ClusterIndicesShardsIndex implements JsonpSerializable {
 	private final ClusterShardMetrics primaries;
@@ -50,9 +57,9 @@ public class ClusterIndicesShardsIndex implements JsonpSerializable {
 
 	private ClusterIndicesShardsIndex(Builder builder) {
 
-		this.primaries = ModelTypeHelper.requireNonNull(builder.primaries, this, "primaries");
-		this.replication = ModelTypeHelper.requireNonNull(builder.replication, this, "replication");
-		this.shards = ModelTypeHelper.requireNonNull(builder.shards, this, "shards");
+		this.primaries = ApiTypeHelper.requireNonNull(builder.primaries, this, "primaries");
+		this.replication = ApiTypeHelper.requireNonNull(builder.replication, this, "replication");
+		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
 
 	}
 
@@ -117,6 +124,7 @@ public class ClusterIndicesShardsIndex implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClusterIndicesShardsIndex}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterIndicesShardsIndex> {
 		private ClusterShardMetrics primaries;
 

@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.stats.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/stats/IndicesStatsResponse.ts#L24-L30">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IndicesStatsResponse implements JsonpSerializable {
 	private final Map<String, IndicesStats> indices;
@@ -54,9 +61,9 @@ public class IndicesStatsResponse implements JsonpSerializable {
 
 	private IndicesStatsResponse(Builder builder) {
 
-		this.indices = ModelTypeHelper.unmodifiable(builder.indices);
-		this.shards = ModelTypeHelper.requireNonNull(builder.shards, this, "shards");
-		this.all = ModelTypeHelper.requireNonNull(builder.all, this, "all");
+		this.indices = ApiTypeHelper.unmodifiable(builder.indices);
+		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
+		this.all = ApiTypeHelper.requireNonNull(builder.all, this, "all");
 
 	}
 
@@ -96,7 +103,7 @@ public class IndicesStatsResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.indices)) {
+		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartObject();
 			for (Map.Entry<String, IndicesStats> item0 : this.indices.entrySet()) {
@@ -120,6 +127,7 @@ public class IndicesStatsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndicesStatsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndicesStatsResponse> {
 		@Nullable
 		private Map<String, IndicesStats> indices;
@@ -131,11 +139,9 @@ public class IndicesStatsResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code indices}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>indices</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>indices</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>indices</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder indices(Map<String, IndicesStats> map) {
 			this.indices = _mapPutAll(this.indices, map);

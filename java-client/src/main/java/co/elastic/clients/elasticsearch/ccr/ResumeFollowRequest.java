@@ -34,7 +34,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -46,6 +46,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr.resume_follow.Request
+
+/**
+ * Resumes a follower index that has been paused
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ccr/resume_follow/ResumeFollowIndexRequest.ts#L25-L46">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ResumeFollowRequest extends RequestBase implements JsonpSerializable {
 	private final String index;
@@ -84,7 +92,7 @@ public class ResumeFollowRequest extends RequestBase implements JsonpSerializabl
 
 	private ResumeFollowRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.maxOutstandingReadRequests = builder.maxOutstandingReadRequests;
 		this.maxOutstandingWriteRequests = builder.maxOutstandingWriteRequests;
 		this.maxReadRequestOperationCount = builder.maxReadRequestOperationCount;
@@ -260,6 +268,7 @@ public class ResumeFollowRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Builder for {@link ResumeFollowRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ResumeFollowRequest> {
 		private String index;
 

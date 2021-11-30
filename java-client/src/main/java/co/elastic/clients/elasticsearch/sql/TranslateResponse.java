@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -44,6 +44,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: sql.translate.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/sql/translate/TranslateSqlResponse.ts#L26-L33">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TranslateResponse implements JsonpSerializable {
 	private final long size;
@@ -58,10 +65,10 @@ public class TranslateResponse implements JsonpSerializable {
 
 	private TranslateResponse(Builder builder) {
 
-		this.size = ModelTypeHelper.requireNonNull(builder.size, this, "size");
-		this.source = ModelTypeHelper.requireNonNull(builder.source, this, "source");
-		this.fields = ModelTypeHelper.unmodifiableRequired(builder.fields, this, "fields");
-		this.sort = ModelTypeHelper.unmodifiableRequired(builder.sort, this, "sort");
+		this.size = ApiTypeHelper.requireNonNull(builder.size, this, "size");
+		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
+		this.fields = ApiTypeHelper.unmodifiableRequired(builder.fields, this, "fields");
+		this.sort = ApiTypeHelper.unmodifiableRequired(builder.sort, this, "sort");
 
 	}
 
@@ -114,7 +121,7 @@ public class TranslateResponse implements JsonpSerializable {
 		generator.writeKey("_source");
 		this.source.serialize(generator, mapper);
 
-		if (ModelTypeHelper.isDefined(this.fields)) {
+		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartArray();
 			for (Map<String, String> item0 : this.fields) {
@@ -132,7 +139,7 @@ public class TranslateResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.sort)) {
+		if (ApiTypeHelper.isDefined(this.sort)) {
 			generator.writeKey("sort");
 			generator.writeStartArray();
 			for (SortOptions item0 : this.sort) {
@@ -150,6 +157,7 @@ public class TranslateResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link TranslateResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TranslateResponse> {
 		private Long size;
 
@@ -185,11 +193,9 @@ public class TranslateResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code fields}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>fields</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>fields</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>fields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder fields(List<Map<String, String>> list) {
 			this.fields = _listAddAll(this.fields, list);
@@ -209,11 +215,9 @@ public class TranslateResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code sort}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>sort</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>sort</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>sort</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder sort(List<SortOptions> list) {
 			this.sort = _listAddAll(this.sort, list);

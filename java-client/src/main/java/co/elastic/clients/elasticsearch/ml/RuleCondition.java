@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.RuleCondition
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/_types/Rule.ts#L52-L65">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RuleCondition implements JsonpSerializable {
 	private final AppliesTo appliesTo;
@@ -51,9 +58,9 @@ public class RuleCondition implements JsonpSerializable {
 
 	private RuleCondition(Builder builder) {
 
-		this.appliesTo = ModelTypeHelper.requireNonNull(builder.appliesTo, this, "appliesTo");
-		this.operator = ModelTypeHelper.requireNonNull(builder.operator, this, "operator");
-		this.value = ModelTypeHelper.requireNonNull(builder.value, this, "value");
+		this.appliesTo = ApiTypeHelper.requireNonNull(builder.appliesTo, this, "appliesTo");
+		this.operator = ApiTypeHelper.requireNonNull(builder.operator, this, "operator");
+		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
 
 	}
 
@@ -117,6 +124,7 @@ public class RuleCondition implements JsonpSerializable {
 	/**
 	 * Builder for {@link RuleCondition}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RuleCondition> {
 		private AppliesTo appliesTo;
 

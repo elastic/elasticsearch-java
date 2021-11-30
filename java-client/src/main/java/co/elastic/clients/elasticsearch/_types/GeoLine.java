@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.GeoLine
+
+/**
+ * A GeoJson GeoLine.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Geo.ts#L59-L65">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GeoLine implements JsonpSerializable {
 	private final String type;
@@ -51,8 +59,8 @@ public class GeoLine implements JsonpSerializable {
 
 	private GeoLine(Builder builder) {
 
-		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
-		this.coordinates = ModelTypeHelper.unmodifiableRequired(builder.coordinates, this, "coordinates");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.coordinates = ApiTypeHelper.unmodifiableRequired(builder.coordinates, this, "coordinates");
 
 	}
 
@@ -92,7 +100,7 @@ public class GeoLine implements JsonpSerializable {
 		generator.writeKey("type");
 		generator.write(this.type);
 
-		if (ModelTypeHelper.isDefined(this.coordinates)) {
+		if (ApiTypeHelper.isDefined(this.coordinates)) {
 			generator.writeKey("coordinates");
 			generator.writeStartArray();
 			for (List<Double> item0 : this.coordinates) {
@@ -117,6 +125,7 @@ public class GeoLine implements JsonpSerializable {
 	/**
 	 * Builder for {@link GeoLine}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GeoLine> {
 		private String type;
 
@@ -137,11 +146,9 @@ public class GeoLine implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code coordinates}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>coordinates</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>coordinates</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>coordinates</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder coordinates(List<List<Double>> list) {
 			this.coordinates = _listAddAll(this.coordinates, list);

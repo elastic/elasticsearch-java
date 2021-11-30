@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.shard_stores.ShardStoreException
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/shard_stores/types.ts#L46-L49">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ShardStoreException implements JsonpSerializable {
 	private final String reason;
@@ -49,8 +56,8 @@ public class ShardStoreException implements JsonpSerializable {
 
 	private ShardStoreException(Builder builder) {
 
-		this.reason = ModelTypeHelper.requireNonNull(builder.reason, this, "reason");
-		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
+		this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 
@@ -96,6 +103,7 @@ public class ShardStoreException implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardStoreException}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardStoreException> {
 		private String reason;
 

@@ -42,6 +42,16 @@ import javax.annotation.Nullable;
 
 // typedef: migration.deprecations.Request
 
+/**
+ * Retrieves information about different cluster, node, and index level settings
+ * that use deprecated features that will be removed or changed in the next
+ * major version.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/migration/deprecations/DeprecationInfoRequest.ts#L23-L33">API
+ *      specification</a>
+ */
+
 public class DeprecationsRequest extends RequestBase {
 	@Nullable
 	private final String index;
@@ -74,6 +84,7 @@ public class DeprecationsRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeprecationsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeprecationsRequest> {
 		@Nullable
 		private String index;

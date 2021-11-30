@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ExecutionResult
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/_types/Execution.ts#L59-L65">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ExecutionResult implements JsonpSerializable {
 	private final List<ExecutionResultAction> actions;
@@ -57,11 +64,11 @@ public class ExecutionResult implements JsonpSerializable {
 
 	private ExecutionResult(Builder builder) {
 
-		this.actions = ModelTypeHelper.unmodifiableRequired(builder.actions, this, "actions");
-		this.condition = ModelTypeHelper.requireNonNull(builder.condition, this, "condition");
-		this.executionDuration = ModelTypeHelper.requireNonNull(builder.executionDuration, this, "executionDuration");
-		this.executionTime = ModelTypeHelper.requireNonNull(builder.executionTime, this, "executionTime");
-		this.input = ModelTypeHelper.requireNonNull(builder.input, this, "input");
+		this.actions = ApiTypeHelper.unmodifiableRequired(builder.actions, this, "actions");
+		this.condition = ApiTypeHelper.requireNonNull(builder.condition, this, "condition");
+		this.executionDuration = ApiTypeHelper.requireNonNull(builder.executionDuration, this, "executionDuration");
+		this.executionTime = ApiTypeHelper.requireNonNull(builder.executionTime, this, "executionTime");
+		this.input = ApiTypeHelper.requireNonNull(builder.input, this, "input");
 
 	}
 
@@ -115,7 +122,7 @@ public class ExecutionResult implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.actions)) {
+		if (ApiTypeHelper.isDefined(this.actions)) {
 			generator.writeKey("actions");
 			generator.writeStartArray();
 			for (ExecutionResultAction item0 : this.actions) {
@@ -144,6 +151,7 @@ public class ExecutionResult implements JsonpSerializable {
 	/**
 	 * Builder for {@link ExecutionResult}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExecutionResult> {
 		private List<ExecutionResultAction> actions;
 
@@ -158,11 +166,9 @@ public class ExecutionResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code actions}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>actions</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>actions</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>actions</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder actions(List<ExecutionResultAction> list) {
 			this.actions = _listAddAll(this.actions, list);

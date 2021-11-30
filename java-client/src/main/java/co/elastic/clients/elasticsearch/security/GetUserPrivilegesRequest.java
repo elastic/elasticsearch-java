@@ -43,6 +43,14 @@ import javax.annotation.Nullable;
 
 // typedef: security.get_user_privileges.Request
 
+/**
+ * Retrieves security privileges for the logged in user.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/get_user_privileges/SecurityGetUserPrivilegesRequest.ts#L23-L35">API
+ *      specification</a>
+ */
+
 public class GetUserPrivilegesRequest extends RequestBase {
 	@Nullable
 	private final String application;
@@ -91,6 +99,7 @@ public class GetUserPrivilegesRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetUserPrivilegesRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetUserPrivilegesRequest> {
 		@Nullable
 		private String application;

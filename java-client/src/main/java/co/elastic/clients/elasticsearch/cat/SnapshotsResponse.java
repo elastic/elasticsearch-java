@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.snapshots.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/snapshots/CatSnapshotsResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SnapshotsResponse implements JsonpSerializable {
 	private final List<SnapshotsRecord> valueBody;
@@ -48,7 +55,7 @@ public class SnapshotsResponse implements JsonpSerializable {
 
 	private SnapshotsResponse(Builder builder) {
 
-		this.valueBody = ModelTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
+		this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
 
 	}
 
@@ -83,6 +90,7 @@ public class SnapshotsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link SnapshotsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SnapshotsResponse> {
 		private List<SnapshotsRecord> valueBody;
 
@@ -91,11 +99,9 @@ public class SnapshotsResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>valueBody</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>valueBody</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>valueBody</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder valueBody(List<SnapshotsRecord> list) {
 			this.valueBody = _listAddAll(this.valueBody, list);

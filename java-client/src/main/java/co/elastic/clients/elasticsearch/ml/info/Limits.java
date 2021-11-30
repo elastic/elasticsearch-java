@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.info.Limits
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/info/types.ts#L34-L38">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Limits implements JsonpSerializable {
 	@Nullable
@@ -53,9 +60,9 @@ public class Limits implements JsonpSerializable {
 	private Limits(Builder builder) {
 
 		this.maxModelMemoryLimit = builder.maxModelMemoryLimit;
-		this.effectiveMaxModelMemoryLimit = ModelTypeHelper.requireNonNull(builder.effectiveMaxModelMemoryLimit, this,
+		this.effectiveMaxModelMemoryLimit = ApiTypeHelper.requireNonNull(builder.effectiveMaxModelMemoryLimit, this,
 				"effectiveMaxModelMemoryLimit");
-		this.totalMlMemory = ModelTypeHelper.requireNonNull(builder.totalMlMemory, this, "totalMlMemory");
+		this.totalMlMemory = ApiTypeHelper.requireNonNull(builder.totalMlMemory, this, "totalMlMemory");
 
 	}
 
@@ -114,6 +121,7 @@ public class Limits implements JsonpSerializable {
 	/**
 	 * Builder for {@link Limits}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Limits> {
 		@Nullable
 		private String maxModelMemoryLimit;

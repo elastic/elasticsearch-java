@@ -33,6 +33,14 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.aggregations.StringRareTermsAggregate
+
+/**
+ * Result of the <code>rare_terms</code> aggregation when the field is a string.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L427-L431">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class StringRareTermsAggregate extends MultiBucketAggregateBase<StringRareTermsBucket>
 		implements
@@ -61,6 +69,7 @@ public class StringRareTermsAggregate extends MultiBucketAggregateBase<StringRar
 	/**
 	 * Builder for {@link StringRareTermsAggregate}.
 	 */
+
 	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<StringRareTermsBucket, Builder>
 			implements
 				ObjectBuilder<StringRareTermsAggregate> {

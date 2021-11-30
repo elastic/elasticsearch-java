@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.FieldCollapse
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search/_types/FieldCollapse.ts#L24-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FieldCollapse implements JsonpSerializable {
 	private final String field;
@@ -54,8 +61,8 @@ public class FieldCollapse implements JsonpSerializable {
 
 	private FieldCollapse(Builder builder) {
 
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
-		this.innerHits = ModelTypeHelper.unmodifiable(builder.innerHits);
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.innerHits = ApiTypeHelper.unmodifiable(builder.innerHits);
 		this.maxConcurrentGroupSearches = builder.maxConcurrentGroupSearches;
 
 	}
@@ -100,7 +107,7 @@ public class FieldCollapse implements JsonpSerializable {
 		generator.writeKey("field");
 		generator.write(this.field);
 
-		if (ModelTypeHelper.isDefined(this.innerHits)) {
+		if (ApiTypeHelper.isDefined(this.innerHits)) {
 			generator.writeKey("inner_hits");
 			generator.writeStartArray();
 			for (InnerHits item0 : this.innerHits) {
@@ -123,6 +130,7 @@ public class FieldCollapse implements JsonpSerializable {
 	/**
 	 * Builder for {@link FieldCollapse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldCollapse> {
 		private String field;
 
@@ -143,11 +151,9 @@ public class FieldCollapse implements JsonpSerializable {
 		/**
 		 * API name: {@code inner_hits}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>innerHits</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>innerHits</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>innerHits</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder innerHits(List<InnerHits> list) {
 			this.innerHits = _listAddAll(this.innerHits, list);

@@ -44,6 +44,14 @@ import javax.annotation.Nullable;
 
 // typedef: ml.get_filters.Request
 
+/**
+ * Retrieves filters. You can get a single filter or all filters.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/get_filters/MlGetFiltersRequest.ts#L24-L51">API
+ *      specification</a>
+ */
+
 public class GetFiltersRequest extends RequestBase {
 	@Nullable
 	private final String filterId;
@@ -103,6 +111,7 @@ public class GetFiltersRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetFiltersRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetFiltersRequest> {
 		@Nullable
 		private String filterId;

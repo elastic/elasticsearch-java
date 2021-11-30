@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.GeoBoundingBoxQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/geo.ts#L32-L41">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GeoBoundingBoxQuery extends QueryBase implements QueryVariant {
 	private final String field;
@@ -58,8 +65,8 @@ public class GeoBoundingBoxQuery extends QueryBase implements QueryVariant {
 
 	private GeoBoundingBoxQuery(Builder builder) {
 		super(builder);
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
-		this.boundingBox = ModelTypeHelper.requireNonNull(builder.boundingBox, this, "boundingBox");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.boundingBox = ApiTypeHelper.requireNonNull(builder.boundingBox, this, "boundingBox");
 
 		this.type = builder.type;
 		this.validationMethod = builder.validationMethod;
@@ -95,7 +102,10 @@ public class GeoBoundingBoxQuery extends QueryBase implements QueryVariant {
 
 	/**
 	 * API name: {@code type}
+	 * 
+	 * @deprecated 7.14.0
 	 */
+	@Deprecated
 	@Nullable
 	public final GeoExecution type() {
 		return this.type;
@@ -143,6 +153,7 @@ public class GeoBoundingBoxQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link GeoBoundingBoxQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<GeoBoundingBoxQuery> {
@@ -184,7 +195,10 @@ public class GeoBoundingBoxQuery extends QueryBase implements QueryVariant {
 
 		/**
 		 * API name: {@code type}
+		 * 
+		 * @deprecated 7.14.0
 		 */
+		@Deprecated
 		public final Builder type(@Nullable GeoExecution value) {
 			this.type = value;
 			return this;

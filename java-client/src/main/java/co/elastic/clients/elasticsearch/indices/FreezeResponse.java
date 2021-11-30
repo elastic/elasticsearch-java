@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -37,6 +37,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: indices.freeze.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/freeze/IndicesFreezeResponse.ts#L22-L26">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FreezeResponse extends AcknowledgedResponseBase {
 	private final boolean shardsAcknowledged;
@@ -46,8 +53,7 @@ public class FreezeResponse extends AcknowledgedResponseBase {
 	private FreezeResponse(Builder builder) {
 		super(builder);
 
-		this.shardsAcknowledged = ModelTypeHelper.requireNonNull(builder.shardsAcknowledged, this,
-				"shardsAcknowledged");
+		this.shardsAcknowledged = ApiTypeHelper.requireNonNull(builder.shardsAcknowledged, this, "shardsAcknowledged");
 
 	}
 
@@ -75,6 +81,7 @@ public class FreezeResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link FreezeResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<FreezeResponse> {

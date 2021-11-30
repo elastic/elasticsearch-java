@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.get.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/snapshot/get/SnapshotGetResponse.ts#L25-L40">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetSnapshotResponse implements JsonpSerializable {
 	private final List<SnapshotResponseItem> responses;
@@ -55,10 +62,10 @@ public class GetSnapshotResponse implements JsonpSerializable {
 
 	private GetSnapshotResponse(Builder builder) {
 
-		this.responses = ModelTypeHelper.unmodifiable(builder.responses);
-		this.snapshots = ModelTypeHelper.unmodifiable(builder.snapshots);
-		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
-		this.remaining = ModelTypeHelper.requireNonNull(builder.remaining, this, "remaining");
+		this.responses = ApiTypeHelper.unmodifiable(builder.responses);
+		this.snapshots = ApiTypeHelper.unmodifiable(builder.snapshots);
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+		this.remaining = ApiTypeHelper.requireNonNull(builder.remaining, this, "remaining");
 
 	}
 
@@ -112,7 +119,7 @@ public class GetSnapshotResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.responses)) {
+		if (ApiTypeHelper.isDefined(this.responses)) {
 			generator.writeKey("responses");
 			generator.writeStartArray();
 			for (SnapshotResponseItem item0 : this.responses) {
@@ -122,7 +129,7 @@ public class GetSnapshotResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.snapshots)) {
+		if (ApiTypeHelper.isDefined(this.snapshots)) {
 			generator.writeKey("snapshots");
 			generator.writeStartArray();
 			for (SnapshotInfo item0 : this.snapshots) {
@@ -145,6 +152,7 @@ public class GetSnapshotResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetSnapshotResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetSnapshotResponse> {
 		@Nullable
 		private List<SnapshotResponseItem> responses;
@@ -159,11 +167,9 @@ public class GetSnapshotResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code responses}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>responses</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>responses</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>responses</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder responses(List<SnapshotResponseItem> list) {
 			this.responses = _listAddAll(this.responses, list);
@@ -192,11 +198,9 @@ public class GetSnapshotResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code snapshots}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>snapshots</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>snapshots</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>snapshots</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder snapshots(List<SnapshotInfo> list) {
 			this.snapshots = _listAddAll(this.snapshots, list);

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.has_privileges.ApplicationPrivilegesCheck
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/has_privileges/types.ts#L24-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ApplicationPrivilegesCheck implements JsonpSerializable {
 	private final String application;
@@ -52,9 +59,9 @@ public class ApplicationPrivilegesCheck implements JsonpSerializable {
 
 	private ApplicationPrivilegesCheck(Builder builder) {
 
-		this.application = ModelTypeHelper.requireNonNull(builder.application, this, "application");
-		this.privileges = ModelTypeHelper.unmodifiableRequired(builder.privileges, this, "privileges");
-		this.resources = ModelTypeHelper.unmodifiableRequired(builder.resources, this, "resources");
+		this.application = ApiTypeHelper.requireNonNull(builder.application, this, "application");
+		this.privileges = ApiTypeHelper.unmodifiableRequired(builder.privileges, this, "privileges");
+		this.resources = ApiTypeHelper.unmodifiableRequired(builder.resources, this, "resources");
 
 	}
 
@@ -97,7 +104,7 @@ public class ApplicationPrivilegesCheck implements JsonpSerializable {
 		generator.writeKey("application");
 		generator.write(this.application);
 
-		if (ModelTypeHelper.isDefined(this.privileges)) {
+		if (ApiTypeHelper.isDefined(this.privileges)) {
 			generator.writeKey("privileges");
 			generator.writeStartArray();
 			for (String item0 : this.privileges) {
@@ -107,7 +114,7 @@ public class ApplicationPrivilegesCheck implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.resources)) {
+		if (ApiTypeHelper.isDefined(this.resources)) {
 			generator.writeKey("resources");
 			generator.writeStartArray();
 			for (String item0 : this.resources) {
@@ -125,6 +132,7 @@ public class ApplicationPrivilegesCheck implements JsonpSerializable {
 	/**
 	 * Builder for {@link ApplicationPrivilegesCheck}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ApplicationPrivilegesCheck> {
 		private String application;
 
@@ -143,11 +151,9 @@ public class ApplicationPrivilegesCheck implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code privileges}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>privileges</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>privileges</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>privileges</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder privileges(List<String> list) {
 			this.privileges = _listAddAll(this.privileges, list);
@@ -167,11 +173,9 @@ public class ApplicationPrivilegesCheck implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code resources}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>resources</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>resources</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>resources</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder resources(List<String> list) {
 			this.resources = _listAddAll(this.resources, list);

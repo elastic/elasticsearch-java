@@ -32,7 +32,7 @@ import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -47,6 +47,13 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: _types.InlineGet
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/common.ts#L277-L286">API
+ *      specification</a>
+ */
 
 public class InlineGet<TDocument> implements JsonpSerializable {
 	private final Map<String, JsonData> metadata;
@@ -73,14 +80,14 @@ public class InlineGet<TDocument> implements JsonpSerializable {
 
 	private InlineGet(Builder<TDocument> builder) {
 
-		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
+		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
 
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
-		this.found = ModelTypeHelper.requireNonNull(builder.found, this, "found");
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
+		this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found");
 		this.seqNo = builder.seqNo;
 		this.primaryTerm = builder.primaryTerm;
 		this.routing = builder.routing;
-		this.source = ModelTypeHelper.requireNonNull(builder.source, this, "source");
+		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}
@@ -159,7 +166,7 @@ public class InlineGet<TDocument> implements JsonpSerializable {
 
 		}
 
-		if (ModelTypeHelper.isDefined(this.fields)) {
+		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.fields.entrySet()) {
@@ -198,6 +205,7 @@ public class InlineGet<TDocument> implements JsonpSerializable {
 	/**
 	 * Builder for {@link InlineGet}.
 	 */
+
 	public static class Builder<TDocument> extends ObjectBuilderBase implements ObjectBuilder<InlineGet<TDocument>> {
 		@Nullable
 		private Map<String, JsonData> metadata = new HashMap<>();
@@ -205,11 +213,9 @@ public class InlineGet<TDocument> implements JsonpSerializable {
 		/**
 		 * Document metadata
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>metadata</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>metadata</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>metadata</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder<TDocument> metadata(Map<String, JsonData> map) {
 			this.metadata = _mapPutAll(this.metadata, map);
@@ -248,11 +254,9 @@ public class InlineGet<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code fields}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>fields</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>fields</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>fields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder<TDocument> fields(Map<String, JsonData> map) {
 			this.fields = _mapPutAll(this.fields, map);
@@ -334,7 +338,7 @@ public class InlineGet<TDocument> implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for InlineGet
+	 * Create a JSON deserializer for InlineGet
 	 */
 	public static <TDocument> JsonpDeserializer<InlineGet<TDocument>> createInlineGetDeserializer(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {

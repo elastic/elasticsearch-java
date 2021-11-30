@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.CompareContextPayloadCondition
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/_types/Conditions.ts#L41-L47">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CompareContextPayloadCondition implements JsonpSerializable {
 	@Nullable
@@ -156,6 +163,7 @@ public class CompareContextPayloadCondition implements JsonpSerializable {
 	/**
 	 * Builder for {@link CompareContextPayloadCondition}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CompareContextPayloadCondition> {
 		@Nullable
 		private JsonData eq;

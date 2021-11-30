@@ -33,6 +33,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: ml.put_trained_model.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/put_trained_model/MlPutTrainedModelResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutTrainedModelResponse extends TrainedModelConfig {
 	// ---------------------------------------------------------------------------------------------
@@ -51,6 +58,7 @@ public class PutTrainedModelResponse extends TrainedModelConfig {
 	/**
 	 * Builder for {@link PutTrainedModelResponse}.
 	 */
+
 	public static class Builder extends TrainedModelConfig.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PutTrainedModelResponse> {

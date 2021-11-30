@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.info.NativeCode
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/info/types.ts#L29-L32">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NativeCode implements JsonpSerializable {
 	private final String buildHash;
@@ -49,8 +56,8 @@ public class NativeCode implements JsonpSerializable {
 
 	private NativeCode(Builder builder) {
 
-		this.buildHash = ModelTypeHelper.requireNonNull(builder.buildHash, this, "buildHash");
-		this.version = ModelTypeHelper.requireNonNull(builder.version, this, "version");
+		this.buildHash = ApiTypeHelper.requireNonNull(builder.buildHash, this, "buildHash");
+		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
 
 	}
 
@@ -96,6 +103,7 @@ public class NativeCode implements JsonpSerializable {
 	/**
 	 * Builder for {@link NativeCode}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NativeCode> {
 		private String buildHash;
 

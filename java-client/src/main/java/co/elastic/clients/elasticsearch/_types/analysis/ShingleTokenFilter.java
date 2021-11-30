@@ -37,6 +37,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.ShingleTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/token_filters.ts#L86-L94">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ShingleTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	@Nullable
@@ -173,6 +180,7 @@ public class ShingleTokenFilter extends TokenFilterBase implements TokenFilterDe
 	/**
 	 * Builder for {@link ShingleTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ShingleTokenFilter> {

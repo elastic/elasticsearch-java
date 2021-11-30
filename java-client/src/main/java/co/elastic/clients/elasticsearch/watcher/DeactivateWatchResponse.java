@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.deactivate_watch.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/deactivate_watch/DeactivateWatchResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DeactivateWatchResponse implements JsonpSerializable {
 	private final ActivationStatus status;
@@ -46,7 +53,7 @@ public class DeactivateWatchResponse implements JsonpSerializable {
 
 	private DeactivateWatchResponse(Builder builder) {
 
-		this.status = ModelTypeHelper.requireNonNull(builder.status, this, "status");
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 
 	}
 
@@ -82,6 +89,7 @@ public class DeactivateWatchResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link DeactivateWatchResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeactivateWatchResponse> {
 		private ActivationStatus status;
 

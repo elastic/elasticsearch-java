@@ -33,6 +33,13 @@ import java.util.Objects;
 
 // typedef: _global.ping.Response
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/ping/PingResponse.ts#L22-L24">API
+ *      specification</a>
+ */
+
 public class PingResponse {
 	public PingResponse() {
 	}

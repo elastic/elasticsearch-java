@@ -33,6 +33,14 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.aggregations.StringTermsAggregate
+
+/**
+ * Result of a <code>terms</code> aggregation when the field is a string.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L368-L373">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class StringTermsAggregate extends TermsAggregateBase<StringTermsBucket> implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -59,6 +67,7 @@ public class StringTermsAggregate extends TermsAggregateBase<StringTermsBucket> 
 	/**
 	 * Builder for {@link StringTermsAggregate}.
 	 */
+
 	public static class Builder extends TermsAggregateBase.AbstractBuilder<StringTermsBucket, Builder>
 			implements
 				ObjectBuilder<StringTermsAggregate> {

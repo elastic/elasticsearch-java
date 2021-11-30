@@ -39,7 +39,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -52,6 +52,17 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.create.Request
+
+/**
+ * Creates a new document in the index.
+ * <p>
+ * Returns a 409 response when a document with a same ID already exists in the
+ * index.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/create/CreateRequest.ts#L33-L56">API
+ *      specification</a>
+ */
 
 public class CreateRequest<TDocument> extends RequestBase implements JsonpSerializable {
 	private final String id;
@@ -91,8 +102,8 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 
 	private CreateRequest(Builder<TDocument> builder) {
 
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.pipeline = builder.pipeline;
 		this.refresh = builder.refresh;
 		this.routing = builder.routing;
@@ -101,7 +112,7 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 		this.version = builder.version;
 		this.versionType = builder.versionType;
 		this.waitForActiveShards = builder.waitForActiveShards;
-		this.document = ModelTypeHelper.requireNonNull(builder.document, this, "document");
+		this.document = ApiTypeHelper.requireNonNull(builder.document, this, "document");
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}
@@ -238,6 +249,7 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 	/**
 	 * Builder for {@link CreateRequest}.
 	 */
+
 	public static class Builder<TDocument> extends ObjectBuilderBase
 			implements
 				ObjectBuilder<CreateRequest<TDocument>> {

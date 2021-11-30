@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.AnalysisConfig
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/_types/Analysis.ts#L29-L76">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AnalysisConfig implements JsonpSerializable {
 	private final String bucketSpan;
@@ -77,12 +84,12 @@ public class AnalysisConfig implements JsonpSerializable {
 
 	private AnalysisConfig(Builder builder) {
 
-		this.bucketSpan = ModelTypeHelper.requireNonNull(builder.bucketSpan, this, "bucketSpan");
+		this.bucketSpan = ApiTypeHelper.requireNonNull(builder.bucketSpan, this, "bucketSpan");
 		this.categorizationAnalyzer = builder.categorizationAnalyzer;
 		this.categorizationFieldName = builder.categorizationFieldName;
-		this.categorizationFilters = ModelTypeHelper.unmodifiable(builder.categorizationFilters);
-		this.detectors = ModelTypeHelper.unmodifiableRequired(builder.detectors, this, "detectors");
-		this.influencers = ModelTypeHelper.unmodifiable(builder.influencers);
+		this.categorizationFilters = ApiTypeHelper.unmodifiable(builder.categorizationFilters);
+		this.detectors = ApiTypeHelper.unmodifiableRequired(builder.detectors, this, "detectors");
+		this.influencers = ApiTypeHelper.unmodifiable(builder.influencers);
 		this.modelPruneWindow = builder.modelPruneWindow;
 		this.latency = builder.latency;
 		this.multivariateByFields = builder.multivariateByFields;
@@ -285,7 +292,7 @@ public class AnalysisConfig implements JsonpSerializable {
 			generator.write(this.categorizationFieldName);
 
 		}
-		if (ModelTypeHelper.isDefined(this.categorizationFilters)) {
+		if (ApiTypeHelper.isDefined(this.categorizationFilters)) {
 			generator.writeKey("categorization_filters");
 			generator.writeStartArray();
 			for (String item0 : this.categorizationFilters) {
@@ -295,7 +302,7 @@ public class AnalysisConfig implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.detectors)) {
+		if (ApiTypeHelper.isDefined(this.detectors)) {
 			generator.writeKey("detectors");
 			generator.writeStartArray();
 			for (Detector item0 : this.detectors) {
@@ -305,7 +312,7 @@ public class AnalysisConfig implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.influencers)) {
+		if (ApiTypeHelper.isDefined(this.influencers)) {
 			generator.writeKey("influencers");
 			generator.writeStartArray();
 			for (String item0 : this.influencers) {
@@ -348,6 +355,7 @@ public class AnalysisConfig implements JsonpSerializable {
 	/**
 	 * Builder for {@link AnalysisConfig}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AnalysisConfig> {
 		private String bucketSpan;
 
@@ -461,10 +469,8 @@ public class AnalysisConfig implements JsonpSerializable {
 		 * API name: {@code categorization_filters}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>categorizationFilters</code>.
-		 * Use <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>categorizationFilters</code> to <code>null</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder categorizationFilters(List<String> list) {
 			this.categorizationFilters = _listAddAll(this.categorizationFilters, list);
@@ -503,11 +509,9 @@ public class AnalysisConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code detectors}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>detectors</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>detectors</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>detectors</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder detectors(List<Detector> list) {
 			this.detectors = _listAddAll(this.detectors, list);
@@ -553,11 +557,9 @@ public class AnalysisConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code influencers}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>influencers</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>influencers</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>influencers</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder influencers(List<String> list) {
 			this.influencers = _listAddAll(this.influencers, list);

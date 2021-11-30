@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_upgrade.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/get_upgrade/IndicesGetUpgradeResponse.ts#L23-L30">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetUpgradeResponse implements JsonpSerializable {
 	private final List<OverlappingIndexTemplate> overlapping;
@@ -50,7 +57,7 @@ public class GetUpgradeResponse implements JsonpSerializable {
 
 	private GetUpgradeResponse(Builder builder) {
 
-		this.overlapping = ModelTypeHelper.unmodifiable(builder.overlapping);
+		this.overlapping = ApiTypeHelper.unmodifiable(builder.overlapping);
 		this.template = builder.template;
 
 	}
@@ -90,7 +97,7 @@ public class GetUpgradeResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.overlapping)) {
+		if (ApiTypeHelper.isDefined(this.overlapping)) {
 			generator.writeKey("overlapping");
 			generator.writeStartArray();
 			for (OverlappingIndexTemplate item0 : this.overlapping) {
@@ -113,6 +120,7 @@ public class GetUpgradeResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetUpgradeResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetUpgradeResponse> {
 		@Nullable
 		private List<OverlappingIndexTemplate> overlapping;
@@ -125,11 +133,9 @@ public class GetUpgradeResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code overlapping}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>overlapping</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>overlapping</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>overlapping</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder overlapping(List<OverlappingIndexTemplate> list) {
 			this.overlapping = _listAddAll(this.overlapping, list);

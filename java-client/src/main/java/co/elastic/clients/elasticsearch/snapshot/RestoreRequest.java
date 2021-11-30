@@ -35,7 +35,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -49,6 +49,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.restore.Request
+
+/**
+ * Restores a snapshot.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/snapshot/restore/SnapshotRestoreRequest.ts#L25-L50">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RestoreRequest extends RequestBase implements JsonpSerializable {
 	private final List<String> ignoreIndexSettings;
@@ -90,18 +98,18 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 
 	private RestoreRequest(Builder builder) {
 
-		this.ignoreIndexSettings = ModelTypeHelper.unmodifiable(builder.ignoreIndexSettings);
+		this.ignoreIndexSettings = ApiTypeHelper.unmodifiable(builder.ignoreIndexSettings);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.includeAliases = builder.includeAliases;
 		this.includeGlobalState = builder.includeGlobalState;
 		this.indexSettings = builder.indexSettings;
-		this.indices = ModelTypeHelper.unmodifiable(builder.indices);
+		this.indices = ApiTypeHelper.unmodifiable(builder.indices);
 		this.masterTimeout = builder.masterTimeout;
 		this.partial = builder.partial;
 		this.renamePattern = builder.renamePattern;
 		this.renameReplacement = builder.renameReplacement;
-		this.repository = ModelTypeHelper.requireNonNull(builder.repository, this, "repository");
-		this.snapshot = ModelTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
+		this.repository = ApiTypeHelper.requireNonNull(builder.repository, this, "repository");
+		this.snapshot = ApiTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
 		this.waitForCompletion = builder.waitForCompletion;
 
 	}
@@ -229,7 +237,7 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.ignoreIndexSettings)) {
+		if (ApiTypeHelper.isDefined(this.ignoreIndexSettings)) {
 			generator.writeKey("ignore_index_settings");
 			generator.writeStartArray();
 			for (String item0 : this.ignoreIndexSettings) {
@@ -259,7 +267,7 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 			this.indexSettings.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.indices)) {
+		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartArray();
 			for (String item0 : this.indices) {
@@ -292,6 +300,7 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link RestoreRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RestoreRequest> {
 		@Nullable
 		private List<String> ignoreIndexSettings;
@@ -334,10 +343,8 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code ignore_index_settings}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>ignoreIndexSettings</code>.
-		 * Use <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>ignoreIndexSettings</code> to <code>null</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder ignoreIndexSettings(List<String> list) {
 			this.ignoreIndexSettings = _listAddAll(this.ignoreIndexSettings, list);
@@ -397,11 +404,9 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code indices}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>indices</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>indices</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder indices(List<String> list) {
 			this.indices = _listAddAll(this.indices, list);

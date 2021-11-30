@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.ShapeQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/specialized.ts#L178-L183">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ShapeQuery extends QueryBase implements QueryVariant {
 	private final String field;
@@ -51,8 +58,8 @@ public class ShapeQuery extends QueryBase implements QueryVariant {
 
 	private ShapeQuery(Builder builder) {
 		super(builder);
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
-		this.shape = ModelTypeHelper.requireNonNull(builder.shape, this, "shape");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.shape = ApiTypeHelper.requireNonNull(builder.shape, this, "shape");
 
 		this.ignoreUnmapped = builder.ignoreUnmapped;
 
@@ -110,6 +117,7 @@ public class ShapeQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link ShapeQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<ShapeQuery> {
 		private String field;
 

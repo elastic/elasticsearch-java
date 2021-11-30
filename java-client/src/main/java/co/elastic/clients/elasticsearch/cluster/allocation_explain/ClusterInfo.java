@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.ClusterInfo
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/allocation_explain/types.ts#L48-L54">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ClusterInfo implements JsonpSerializable {
 	private final Map<String, NodeDiskUsage> nodes;
@@ -58,11 +65,11 @@ public class ClusterInfo implements JsonpSerializable {
 
 	private ClusterInfo(Builder builder) {
 
-		this.nodes = ModelTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
-		this.shardSizes = ModelTypeHelper.unmodifiableRequired(builder.shardSizes, this, "shardSizes");
-		this.shardDataSetSizes = ModelTypeHelper.unmodifiable(builder.shardDataSetSizes);
-		this.shardPaths = ModelTypeHelper.unmodifiableRequired(builder.shardPaths, this, "shardPaths");
-		this.reservedSizes = ModelTypeHelper.unmodifiableRequired(builder.reservedSizes, this, "reservedSizes");
+		this.nodes = ApiTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
+		this.shardSizes = ApiTypeHelper.unmodifiableRequired(builder.shardSizes, this, "shardSizes");
+		this.shardDataSetSizes = ApiTypeHelper.unmodifiable(builder.shardDataSetSizes);
+		this.shardPaths = ApiTypeHelper.unmodifiableRequired(builder.shardPaths, this, "shardPaths");
+		this.reservedSizes = ApiTypeHelper.unmodifiableRequired(builder.reservedSizes, this, "reservedSizes");
 
 	}
 
@@ -116,7 +123,7 @@ public class ClusterInfo implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.nodes)) {
+		if (ApiTypeHelper.isDefined(this.nodes)) {
 			generator.writeKey("nodes");
 			generator.writeStartObject();
 			for (Map.Entry<String, NodeDiskUsage> item0 : this.nodes.entrySet()) {
@@ -127,7 +134,7 @@ public class ClusterInfo implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.shardSizes)) {
+		if (ApiTypeHelper.isDefined(this.shardSizes)) {
 			generator.writeKey("shard_sizes");
 			generator.writeStartObject();
 			for (Map.Entry<String, Long> item0 : this.shardSizes.entrySet()) {
@@ -138,7 +145,7 @@ public class ClusterInfo implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.shardDataSetSizes)) {
+		if (ApiTypeHelper.isDefined(this.shardDataSetSizes)) {
 			generator.writeKey("shard_data_set_sizes");
 			generator.writeStartObject();
 			for (Map.Entry<String, String> item0 : this.shardDataSetSizes.entrySet()) {
@@ -149,7 +156,7 @@ public class ClusterInfo implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.shardPaths)) {
+		if (ApiTypeHelper.isDefined(this.shardPaths)) {
 			generator.writeKey("shard_paths");
 			generator.writeStartObject();
 			for (Map.Entry<String, String> item0 : this.shardPaths.entrySet()) {
@@ -160,7 +167,7 @@ public class ClusterInfo implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.reservedSizes)) {
+		if (ApiTypeHelper.isDefined(this.reservedSizes)) {
 			generator.writeKey("reserved_sizes");
 			generator.writeStartArray();
 			for (ReservedSize item0 : this.reservedSizes) {
@@ -178,6 +185,7 @@ public class ClusterInfo implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClusterInfo}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterInfo> {
 		private Map<String, NodeDiskUsage> nodes;
 
@@ -193,11 +201,9 @@ public class ClusterInfo implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code nodes}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>nodes</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>nodes</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>nodes</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder nodes(Map<String, NodeDiskUsage> map) {
 			this.nodes = _mapPutAll(this.nodes, map);
@@ -226,11 +232,9 @@ public class ClusterInfo implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code shard_sizes}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>shardSizes</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>shardSizes</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>shardSizes</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder shardSizes(Map<String, Long> map) {
 			this.shardSizes = _mapPutAll(this.shardSizes, map);
@@ -250,11 +254,9 @@ public class ClusterInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code shard_data_set_sizes}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>shardDataSetSizes</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>shardDataSetSizes</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>shardDataSetSizes</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder shardDataSetSizes(Map<String, String> map) {
 			this.shardDataSetSizes = _mapPutAll(this.shardDataSetSizes, map);
@@ -274,11 +276,9 @@ public class ClusterInfo implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code shard_paths}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>shardPaths</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>shardPaths</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>shardPaths</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder shardPaths(Map<String, String> map) {
 			this.shardPaths = _mapPutAll(this.shardPaths, map);
@@ -298,11 +298,9 @@ public class ClusterInfo implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code reserved_sizes}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>reservedSizes</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>reservedSizes</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>reservedSizes</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder reservedSizes(List<ReservedSize> list) {
 			this.reservedSizes = _listAddAll(this.reservedSizes, list);

@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_alias.IndexAliases
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/get_alias/IndicesGetAliasResponse.ts#L27-L29">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IndexAliases implements JsonpSerializable {
 	private final Map<String, AliasDefinition> aliases;
@@ -49,7 +56,7 @@ public class IndexAliases implements JsonpSerializable {
 
 	private IndexAliases(Builder builder) {
 
-		this.aliases = ModelTypeHelper.unmodifiableRequired(builder.aliases, this, "aliases");
+		this.aliases = ApiTypeHelper.unmodifiableRequired(builder.aliases, this, "aliases");
 
 	}
 
@@ -75,7 +82,7 @@ public class IndexAliases implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.aliases)) {
+		if (ApiTypeHelper.isDefined(this.aliases)) {
 			generator.writeKey("aliases");
 			generator.writeStartObject();
 			for (Map.Entry<String, AliasDefinition> item0 : this.aliases.entrySet()) {
@@ -94,17 +101,16 @@ public class IndexAliases implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexAliases}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexAliases> {
 		private Map<String, AliasDefinition> aliases;
 
 		/**
 		 * Required - API name: {@code aliases}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>aliases</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>aliases</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>aliases</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder aliases(Map<String, AliasDefinition> map) {
 			this.aliases = _mapPutAll(this.aliases, map);

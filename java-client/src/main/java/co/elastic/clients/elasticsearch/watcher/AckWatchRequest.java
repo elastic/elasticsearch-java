@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -45,6 +45,15 @@ import javax.annotation.Nullable;
 
 // typedef: watcher.ack_watch.Request
 
+/**
+ * Acknowledges a watch, manually throttling the execution of the watch's
+ * actions.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/ack_watch/WatcherAckWatchRequest.ts#L23-L33">API
+ *      specification</a>
+ */
+
 public class AckWatchRequest extends RequestBase {
 	private final List<String> actionId;
 
@@ -54,8 +63,8 @@ public class AckWatchRequest extends RequestBase {
 
 	private AckWatchRequest(Builder builder) {
 
-		this.actionId = ModelTypeHelper.unmodifiable(builder.actionId);
-		this.watchId = ModelTypeHelper.requireNonNull(builder.watchId, this, "watchId");
+		this.actionId = ApiTypeHelper.unmodifiable(builder.actionId);
+		this.watchId = ApiTypeHelper.requireNonNull(builder.watchId, this, "watchId");
 
 	}
 
@@ -86,6 +95,7 @@ public class AckWatchRequest extends RequestBase {
 	/**
 	 * Builder for {@link AckWatchRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AckWatchRequest> {
 		@Nullable
 		private List<String> actionId;
@@ -97,11 +107,9 @@ public class AckWatchRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code action_id}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>actionId</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>actionId</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>actionId</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder actionId(List<String> list) {
 			this.actionId = _listAddAll(this.actionId, list);
@@ -165,7 +173,7 @@ public class AckWatchRequest extends RequestBase {
 				int propsSet = 0;
 
 				propsSet |= _watchId;
-				if (ModelTypeHelper.isDefined(request.actionId()))
+				if (ApiTypeHelper.isDefined(request.actionId()))
 					propsSet |= _actionId;
 
 				if (propsSet == (_watchId)) {

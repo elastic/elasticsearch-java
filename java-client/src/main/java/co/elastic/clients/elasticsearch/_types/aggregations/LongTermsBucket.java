@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,6 +37,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.LongTermsBucket
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L390-L393">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class LongTermsBucket extends TermsBucketBase {
 	private final String key;
@@ -49,7 +56,7 @@ public class LongTermsBucket extends TermsBucketBase {
 	private LongTermsBucket(Builder builder) {
 		super(builder);
 
-		this.key = ModelTypeHelper.requireNonNull(builder.key, this, "key");
+		this.key = ApiTypeHelper.requireNonNull(builder.key, this, "key");
 		this.keyAsString = builder.keyAsString;
 
 	}
@@ -92,6 +99,7 @@ public class LongTermsBucket extends TermsBucketBase {
 	/**
 	 * Builder for {@link LongTermsBucket}.
 	 */
+
 	public static class Builder extends TermsBucketBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<LongTermsBucket> {

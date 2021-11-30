@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.ml_trained_models.TrainedModelsRecord
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/ml_trained_models/types.ts#L23-L109">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TrainedModelsRecord implements JsonpSerializable {
 	@Nullable
@@ -394,6 +401,7 @@ public class TrainedModelsRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link TrainedModelsRecord}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TrainedModelsRecord> {
 		@Nullable
 		private String id;

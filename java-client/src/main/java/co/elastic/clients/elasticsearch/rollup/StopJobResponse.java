@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: rollup.stop_job.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/rollup/stop_job/StopRollupJobResponse.ts#L20-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class StopJobResponse implements JsonpSerializable {
 	private final boolean stopped;
@@ -46,7 +53,7 @@ public class StopJobResponse implements JsonpSerializable {
 
 	private StopJobResponse(Builder builder) {
 
-		this.stopped = ModelTypeHelper.requireNonNull(builder.stopped, this, "stopped");
+		this.stopped = ApiTypeHelper.requireNonNull(builder.stopped, this, "stopped");
 
 	}
 
@@ -82,6 +89,7 @@ public class StopJobResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link StopJobResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StopJobResponse> {
 		private Boolean stopped;
 

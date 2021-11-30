@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.verify_repository.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/snapshot/verify_repository/SnapshotVerifyRepositoryResponse.ts#L23-L25">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class VerifyRepositoryResponse implements JsonpSerializable {
 	private final Map<String, CompactNodeInfo> nodes;
@@ -49,7 +56,7 @@ public class VerifyRepositoryResponse implements JsonpSerializable {
 
 	private VerifyRepositoryResponse(Builder builder) {
 
-		this.nodes = ModelTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
+		this.nodes = ApiTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
 
 	}
 
@@ -75,7 +82,7 @@ public class VerifyRepositoryResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.nodes)) {
+		if (ApiTypeHelper.isDefined(this.nodes)) {
 			generator.writeKey("nodes");
 			generator.writeStartObject();
 			for (Map.Entry<String, CompactNodeInfo> item0 : this.nodes.entrySet()) {
@@ -94,17 +101,16 @@ public class VerifyRepositoryResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link VerifyRepositoryResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<VerifyRepositoryResponse> {
 		private Map<String, CompactNodeInfo> nodes;
 
 		/**
 		 * Required - API name: {@code nodes}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>nodes</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>nodes</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>nodes</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder nodes(Map<String, CompactNodeInfo> map) {
 			this.nodes = _mapPutAll(this.nodes, map);

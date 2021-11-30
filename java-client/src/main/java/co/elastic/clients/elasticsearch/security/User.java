@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: security._types.User
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/_types/User.ts#L22-L29">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class User implements JsonpSerializable {
 	@Nullable
@@ -64,10 +71,10 @@ public class User implements JsonpSerializable {
 
 		this.email = builder.email;
 		this.fullName = builder.fullName;
-		this.metadata = ModelTypeHelper.unmodifiableRequired(builder.metadata, this, "metadata");
-		this.roles = ModelTypeHelper.unmodifiableRequired(builder.roles, this, "roles");
-		this.username = ModelTypeHelper.requireNonNull(builder.username, this, "username");
-		this.enabled = ModelTypeHelper.requireNonNull(builder.enabled, this, "enabled");
+		this.metadata = ApiTypeHelper.unmodifiableRequired(builder.metadata, this, "metadata");
+		this.roles = ApiTypeHelper.unmodifiableRequired(builder.roles, this, "roles");
+		this.username = ApiTypeHelper.requireNonNull(builder.username, this, "username");
+		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
 
 	}
 
@@ -136,7 +143,7 @@ public class User implements JsonpSerializable {
 			generator.write(this.fullName);
 
 		}
-		if (ModelTypeHelper.isDefined(this.metadata)) {
+		if (ApiTypeHelper.isDefined(this.metadata)) {
 			generator.writeKey("metadata");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
@@ -147,7 +154,7 @@ public class User implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.roles)) {
+		if (ApiTypeHelper.isDefined(this.roles)) {
 			generator.writeKey("roles");
 			generator.writeStartArray();
 			for (String item0 : this.roles) {
@@ -170,6 +177,7 @@ public class User implements JsonpSerializable {
 	/**
 	 * Builder for {@link User}.
 	 */
+
 	public static class Builder extends User.AbstractBuilder<Builder> implements ObjectBuilder<User> {
 		@Override
 		protected Builder self() {
@@ -225,11 +233,9 @@ public class User implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code metadata}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>metadata</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>metadata</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>metadata</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final BuilderT metadata(Map<String, JsonData> map) {
 			this.metadata = _mapPutAll(this.metadata, map);
@@ -249,11 +255,9 @@ public class User implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code roles}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>roles</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>roles</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>roles</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final BuilderT roles(List<String> list) {
 			this.roles = _listAddAll(this.roles, list);

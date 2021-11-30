@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.FuzzyQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/term.ts#L40-L51">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FuzzyQuery extends QueryBase implements QueryVariant {
 	// Single key dictionary
@@ -65,14 +72,14 @@ public class FuzzyQuery extends QueryBase implements QueryVariant {
 
 	private FuzzyQuery(Builder builder) {
 		super(builder);
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
 		this.maxExpansions = builder.maxExpansions;
 		this.prefixLength = builder.prefixLength;
 		this.rewrite = builder.rewrite;
 		this.transpositions = builder.transpositions;
 		this.fuzziness = builder.fuzziness;
-		this.value = ModelTypeHelper.requireNonNull(builder.value, this, "value");
+		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
 
 	}
 
@@ -183,6 +190,7 @@ public class FuzzyQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link FuzzyQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<FuzzyQuery> {
 		private String field;
 

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.status.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/snapshot/status/SnapshotStatusResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SnapshotStatusResponse implements JsonpSerializable {
 	private final List<Status> snapshots;
@@ -47,7 +54,7 @@ public class SnapshotStatusResponse implements JsonpSerializable {
 
 	private SnapshotStatusResponse(Builder builder) {
 
-		this.snapshots = ModelTypeHelper.unmodifiableRequired(builder.snapshots, this, "snapshots");
+		this.snapshots = ApiTypeHelper.unmodifiableRequired(builder.snapshots, this, "snapshots");
 
 	}
 
@@ -73,7 +80,7 @@ public class SnapshotStatusResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.snapshots)) {
+		if (ApiTypeHelper.isDefined(this.snapshots)) {
 			generator.writeKey("snapshots");
 			generator.writeStartArray();
 			for (Status item0 : this.snapshots) {
@@ -91,17 +98,16 @@ public class SnapshotStatusResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link SnapshotStatusResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SnapshotStatusResponse> {
 		private List<Status> snapshots;
 
 		/**
 		 * Required - API name: {@code snapshots}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>snapshots</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>snapshots</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>snapshots</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder snapshots(List<Status> list) {
 			this.snapshots = _listAddAll(this.snapshots, list);

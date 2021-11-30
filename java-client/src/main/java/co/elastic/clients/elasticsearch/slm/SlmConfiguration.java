@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,6 +43,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: slm._types.Configuration
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/slm/_types/SnapshotLifecycle.ts#L93-L123">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SlmConfiguration implements JsonpSerializable {
 	@Nullable
@@ -65,10 +72,10 @@ public class SlmConfiguration implements JsonpSerializable {
 	private SlmConfiguration(Builder builder) {
 
 		this.ignoreUnavailable = builder.ignoreUnavailable;
-		this.indices = ModelTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
+		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
 		this.includeGlobalState = builder.includeGlobalState;
-		this.featureStates = ModelTypeHelper.unmodifiable(builder.featureStates);
-		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
+		this.featureStates = ApiTypeHelper.unmodifiable(builder.featureStates);
+		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
 		this.partial = builder.partial;
 
 	}
@@ -165,7 +172,7 @@ public class SlmConfiguration implements JsonpSerializable {
 			generator.write(this.ignoreUnavailable);
 
 		}
-		if (ModelTypeHelper.isDefined(this.indices)) {
+		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartArray();
 			for (String item0 : this.indices) {
@@ -180,7 +187,7 @@ public class SlmConfiguration implements JsonpSerializable {
 			generator.write(this.includeGlobalState);
 
 		}
-		if (ModelTypeHelper.isDefined(this.featureStates)) {
+		if (ApiTypeHelper.isDefined(this.featureStates)) {
 			generator.writeKey("feature_states");
 			generator.writeStartArray();
 			for (String item0 : this.featureStates) {
@@ -190,7 +197,7 @@ public class SlmConfiguration implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.metadata)) {
+		if (ApiTypeHelper.isDefined(this.metadata)) {
 			generator.writeKey("metadata");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
@@ -214,6 +221,7 @@ public class SlmConfiguration implements JsonpSerializable {
 	/**
 	 * Builder for {@link SlmConfiguration}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SlmConfiguration> {
 		@Nullable
 		private Boolean ignoreUnavailable;
@@ -252,11 +260,9 @@ public class SlmConfiguration implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code indices}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>indices</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>indices</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder indices(List<String> list) {
 			this.indices = _listAddAll(this.indices, list);
@@ -300,11 +306,9 @@ public class SlmConfiguration implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code feature_states}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>featureStates</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>featureStates</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>featureStates</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder featureStates(List<String> list) {
 			this.featureStates = _listAddAll(this.featureStates, list);
@@ -337,11 +341,9 @@ public class SlmConfiguration implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code metadata}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>metadata</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>metadata</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>metadata</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder metadata(Map<String, JsonData> map) {
 			this.metadata = _mapPutAll(this.metadata, map);

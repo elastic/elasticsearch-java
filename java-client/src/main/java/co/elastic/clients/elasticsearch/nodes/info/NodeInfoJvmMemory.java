@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoJvmMemory
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/info/types.ts#L295-L306">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeInfoJvmMemory implements JsonpSerializable {
 	@Nullable
@@ -72,16 +79,15 @@ public class NodeInfoJvmMemory implements JsonpSerializable {
 	private NodeInfoJvmMemory(Builder builder) {
 
 		this.directMax = builder.directMax;
-		this.directMaxInBytes = ModelTypeHelper.requireNonNull(builder.directMaxInBytes, this, "directMaxInBytes");
+		this.directMaxInBytes = ApiTypeHelper.requireNonNull(builder.directMaxInBytes, this, "directMaxInBytes");
 		this.heapInit = builder.heapInit;
-		this.heapInitInBytes = ModelTypeHelper.requireNonNull(builder.heapInitInBytes, this, "heapInitInBytes");
+		this.heapInitInBytes = ApiTypeHelper.requireNonNull(builder.heapInitInBytes, this, "heapInitInBytes");
 		this.heapMax = builder.heapMax;
-		this.heapMaxInBytes = ModelTypeHelper.requireNonNull(builder.heapMaxInBytes, this, "heapMaxInBytes");
+		this.heapMaxInBytes = ApiTypeHelper.requireNonNull(builder.heapMaxInBytes, this, "heapMaxInBytes");
 		this.nonHeapInit = builder.nonHeapInit;
-		this.nonHeapInitInBytes = ModelTypeHelper.requireNonNull(builder.nonHeapInitInBytes, this,
-				"nonHeapInitInBytes");
+		this.nonHeapInitInBytes = ApiTypeHelper.requireNonNull(builder.nonHeapInitInBytes, this, "nonHeapInitInBytes");
 		this.nonHeapMax = builder.nonHeapMax;
-		this.nonHeapMaxInBytes = ModelTypeHelper.requireNonNull(builder.nonHeapMaxInBytes, this, "nonHeapMaxInBytes");
+		this.nonHeapMaxInBytes = ApiTypeHelper.requireNonNull(builder.nonHeapMaxInBytes, this, "nonHeapMaxInBytes");
 
 	}
 
@@ -222,6 +228,7 @@ public class NodeInfoJvmMemory implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoJvmMemory}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoJvmMemory> {
 		@Nullable
 		private String directMax;

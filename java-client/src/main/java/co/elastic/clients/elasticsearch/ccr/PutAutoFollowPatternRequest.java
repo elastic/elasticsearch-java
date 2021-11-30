@@ -35,7 +35,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -49,6 +49,16 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr.put_auto_follow_pattern.Request
+
+/**
+ * Creates a new named collection of auto-follow patterns against a specified
+ * remote cluster. Newly created indices on the remote cluster matching any of
+ * the specified patterns will be automatically configured as follower indices.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ccr/put_auto_follow_pattern/PutAutoFollowPatternRequest.ts#L27-L112">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -99,8 +109,8 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 	private PutAutoFollowPatternRequest(Builder builder) {
 
 		this.followIndexPattern = builder.followIndexPattern;
-		this.leaderIndexExclusionPatterns = ModelTypeHelper.unmodifiable(builder.leaderIndexExclusionPatterns);
-		this.leaderIndexPatterns = ModelTypeHelper.unmodifiable(builder.leaderIndexPatterns);
+		this.leaderIndexExclusionPatterns = ApiTypeHelper.unmodifiable(builder.leaderIndexExclusionPatterns);
+		this.leaderIndexPatterns = ApiTypeHelper.unmodifiable(builder.leaderIndexPatterns);
 		this.maxOutstandingReadRequests = builder.maxOutstandingReadRequests;
 		this.maxOutstandingWriteRequests = builder.maxOutstandingWriteRequests;
 		this.maxReadRequestOperationCount = builder.maxReadRequestOperationCount;
@@ -110,10 +120,10 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 		this.maxWriteBufferSize = builder.maxWriteBufferSize;
 		this.maxWriteRequestOperationCount = builder.maxWriteRequestOperationCount;
 		this.maxWriteRequestSize = builder.maxWriteRequestSize;
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.readPollTimeout = builder.readPollTimeout;
-		this.remoteCluster = ModelTypeHelper.requireNonNull(builder.remoteCluster, this, "remoteCluster");
-		this.settings = ModelTypeHelper.unmodifiable(builder.settings);
+		this.remoteCluster = ApiTypeHelper.requireNonNull(builder.remoteCluster, this, "remoteCluster");
+		this.settings = ApiTypeHelper.unmodifiable(builder.settings);
 
 	}
 
@@ -312,7 +322,7 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 			generator.write(this.followIndexPattern);
 
 		}
-		if (ModelTypeHelper.isDefined(this.leaderIndexExclusionPatterns)) {
+		if (ApiTypeHelper.isDefined(this.leaderIndexExclusionPatterns)) {
 			generator.writeKey("leader_index_exclusion_patterns");
 			generator.writeStartArray();
 			for (String item0 : this.leaderIndexExclusionPatterns) {
@@ -322,7 +332,7 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.leaderIndexPatterns)) {
+		if (ApiTypeHelper.isDefined(this.leaderIndexPatterns)) {
 			generator.writeKey("leader_index_patterns");
 			generator.writeStartArray();
 			for (String item0 : this.leaderIndexPatterns) {
@@ -385,7 +395,7 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 		generator.writeKey("remote_cluster");
 		generator.write(this.remoteCluster);
 
-		if (ModelTypeHelper.isDefined(this.settings)) {
+		if (ApiTypeHelper.isDefined(this.settings)) {
 			generator.writeKey("settings");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.settings.entrySet()) {
@@ -404,6 +414,7 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 	/**
 	 * Builder for {@link PutAutoFollowPatternRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutAutoFollowPatternRequest> {
 		@Nullable
 		private String followIndexPattern;
@@ -473,11 +484,9 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 		 * API name: {@code leader_index_exclusion_patterns}
 		 * <p>
 		 * Adds all elements of <code>list</code> to
-		 * <code>leaderIndexExclusionPatterns</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>leaderIndexExclusionPatterns</code> to <code>null</code>.
+		 * <code>leaderIndexExclusionPatterns</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder leaderIndexExclusionPatterns(List<String> list) {
 			this.leaderIndexExclusionPatterns = _listAddAll(this.leaderIndexExclusionPatterns, list);
@@ -506,10 +515,8 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 		 * API name: {@code leader_index_patterns}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>leaderIndexPatterns</code>.
-		 * Use <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>leaderIndexPatterns</code> to <code>null</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder leaderIndexPatterns(List<String> list) {
 			this.leaderIndexPatterns = _listAddAll(this.leaderIndexPatterns, list);
@@ -690,11 +697,9 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code settings}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>settings</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>settings</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>settings</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder settings(Map<String, JsonData> map) {
 			this.settings = _mapPutAll(this.settings, map);

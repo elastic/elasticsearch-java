@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.CustomNormalizer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/normalizers.ts#L30-L34">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CustomNormalizer implements NormalizerVariant, JsonpSerializable {
 	private final List<String> charFilter;
@@ -50,8 +57,8 @@ public class CustomNormalizer implements NormalizerVariant, JsonpSerializable {
 
 	private CustomNormalizer(Builder builder) {
 
-		this.charFilter = ModelTypeHelper.unmodifiable(builder.charFilter);
-		this.filter = ModelTypeHelper.unmodifiable(builder.filter);
+		this.charFilter = ApiTypeHelper.unmodifiable(builder.charFilter);
+		this.filter = ApiTypeHelper.unmodifiable(builder.filter);
 
 	}
 
@@ -94,7 +101,7 @@ public class CustomNormalizer implements NormalizerVariant, JsonpSerializable {
 
 		generator.write("type", "custom");
 
-		if (ModelTypeHelper.isDefined(this.charFilter)) {
+		if (ApiTypeHelper.isDefined(this.charFilter)) {
 			generator.writeKey("char_filter");
 			generator.writeStartArray();
 			for (String item0 : this.charFilter) {
@@ -104,7 +111,7 @@ public class CustomNormalizer implements NormalizerVariant, JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.filter)) {
+		if (ApiTypeHelper.isDefined(this.filter)) {
 			generator.writeKey("filter");
 			generator.writeStartArray();
 			for (String item0 : this.filter) {
@@ -122,6 +129,7 @@ public class CustomNormalizer implements NormalizerVariant, JsonpSerializable {
 	/**
 	 * Builder for {@link CustomNormalizer}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CustomNormalizer> {
 		@Nullable
 		private List<String> charFilter;
@@ -132,11 +140,9 @@ public class CustomNormalizer implements NormalizerVariant, JsonpSerializable {
 		/**
 		 * API name: {@code char_filter}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>charFilter</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>charFilter</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>charFilter</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder charFilter(List<String> list) {
 			this.charFilter = _listAddAll(this.charFilter, list);
@@ -156,11 +162,9 @@ public class CustomNormalizer implements NormalizerVariant, JsonpSerializable {
 		/**
 		 * API name: {@code filter}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>filter</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>filter</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>filter</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder filter(List<String> list) {
 			this.filter = _listAddAll(this.filter, list);

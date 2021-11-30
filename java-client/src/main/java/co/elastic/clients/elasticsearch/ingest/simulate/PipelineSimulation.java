@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest.simulate.PipelineSimulation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ingest/simulate/types.ts#L31-L37">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PipelineSimulation implements JsonpSerializable {
 	@Nullable
@@ -62,7 +69,7 @@ public class PipelineSimulation implements JsonpSerializable {
 	private PipelineSimulation(Builder builder) {
 
 		this.doc = builder.doc;
-		this.processorResults = ModelTypeHelper.unmodifiable(builder.processorResults);
+		this.processorResults = ApiTypeHelper.unmodifiable(builder.processorResults);
 		this.tag = builder.tag;
 		this.processorType = builder.processorType;
 		this.status = builder.status;
@@ -128,7 +135,7 @@ public class PipelineSimulation implements JsonpSerializable {
 			this.doc.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.processorResults)) {
+		if (ApiTypeHelper.isDefined(this.processorResults)) {
 			generator.writeKey("processor_results");
 			generator.writeStartArray();
 			for (PipelineSimulation item0 : this.processorResults) {
@@ -160,6 +167,7 @@ public class PipelineSimulation implements JsonpSerializable {
 	/**
 	 * Builder for {@link PipelineSimulation}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PipelineSimulation> {
 		@Nullable
 		private DocumentSimulation doc;
@@ -194,11 +202,9 @@ public class PipelineSimulation implements JsonpSerializable {
 		/**
 		 * API name: {@code processor_results}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>processorResults</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>processorResults</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>processorResults</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder processorResults(List<PipelineSimulation> list) {
 			this.processorResults = _listAddAll(this.processorResults, list);

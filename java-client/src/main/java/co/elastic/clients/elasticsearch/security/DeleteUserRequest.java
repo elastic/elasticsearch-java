@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -45,6 +45,14 @@ import javax.annotation.Nullable;
 
 // typedef: security.delete_user.Request
 
+/**
+ * Deletes users from the native realm.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/delete_user/SecurityDeleteUserRequest.ts#L23-L35">API
+ *      specification</a>
+ */
+
 public class DeleteUserRequest extends RequestBase {
 	@Nullable
 	private final Refresh refresh;
@@ -56,7 +64,7 @@ public class DeleteUserRequest extends RequestBase {
 	private DeleteUserRequest(Builder builder) {
 
 		this.refresh = builder.refresh;
-		this.username = ModelTypeHelper.requireNonNull(builder.username, this, "username");
+		this.username = ApiTypeHelper.requireNonNull(builder.username, this, "username");
 
 	}
 
@@ -91,6 +99,7 @@ public class DeleteUserRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteUserRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteUserRequest> {
 		@Nullable
 		private Refresh refresh;

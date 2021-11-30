@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_service_credentials.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/get_service_credentials/GetServiceCredentialsResponse.ts#L24-L32">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetServiceCredentialsResponse implements JsonpSerializable {
 	private final String serviceAccount;
@@ -58,11 +65,11 @@ public class GetServiceCredentialsResponse implements JsonpSerializable {
 
 	private GetServiceCredentialsResponse(Builder builder) {
 
-		this.serviceAccount = ModelTypeHelper.requireNonNull(builder.serviceAccount, this, "serviceAccount");
-		this.nodeName = ModelTypeHelper.requireNonNull(builder.nodeName, this, "nodeName");
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
-		this.tokens = ModelTypeHelper.unmodifiableRequired(builder.tokens, this, "tokens");
-		this.fileTokens = ModelTypeHelper.unmodifiableRequired(builder.fileTokens, this, "fileTokens");
+		this.serviceAccount = ApiTypeHelper.requireNonNull(builder.serviceAccount, this, "serviceAccount");
+		this.nodeName = ApiTypeHelper.requireNonNull(builder.nodeName, this, "nodeName");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.tokens = ApiTypeHelper.unmodifiableRequired(builder.tokens, this, "tokens");
+		this.fileTokens = ApiTypeHelper.unmodifiableRequired(builder.fileTokens, this, "fileTokens");
 
 	}
 
@@ -125,7 +132,7 @@ public class GetServiceCredentialsResponse implements JsonpSerializable {
 		generator.writeKey("count");
 		generator.write(this.count);
 
-		if (ModelTypeHelper.isDefined(this.tokens)) {
+		if (ApiTypeHelper.isDefined(this.tokens)) {
 			generator.writeKey("tokens");
 			generator.writeStartObject();
 			for (Map.Entry<String, EmptyObject> item0 : this.tokens.entrySet()) {
@@ -136,7 +143,7 @@ public class GetServiceCredentialsResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.fileTokens)) {
+		if (ApiTypeHelper.isDefined(this.fileTokens)) {
 			generator.writeKey("file_tokens");
 			generator.writeStartObject();
 			for (Map.Entry<String, EmptyObject> item0 : this.fileTokens.entrySet()) {
@@ -155,6 +162,7 @@ public class GetServiceCredentialsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetServiceCredentialsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetServiceCredentialsResponse> {
 		private String serviceAccount;
 
@@ -193,11 +201,9 @@ public class GetServiceCredentialsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code tokens}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>tokens</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>tokens</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>tokens</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder tokens(Map<String, EmptyObject> map) {
 			this.tokens = _mapPutAll(this.tokens, map);
@@ -226,11 +232,9 @@ public class GetServiceCredentialsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code file_tokens}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>fileTokens</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>fileTokens</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>fileTokens</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder fileTokens(Map<String, EmptyObject> map) {
 			this.fileTokens = _mapPutAll(this.fileTokens, map);

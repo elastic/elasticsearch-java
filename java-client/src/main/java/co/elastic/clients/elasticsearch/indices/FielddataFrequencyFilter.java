@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: indices._types.FielddataFrequencyFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/_types/FielddataFrequencyFilter.ts#L22-L26">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FielddataFrequencyFilter implements JsonpSerializable {
 	private final double max;
@@ -51,9 +58,9 @@ public class FielddataFrequencyFilter implements JsonpSerializable {
 
 	private FielddataFrequencyFilter(Builder builder) {
 
-		this.max = ModelTypeHelper.requireNonNull(builder.max, this, "max");
-		this.min = ModelTypeHelper.requireNonNull(builder.min, this, "min");
-		this.minSegmentSize = ModelTypeHelper.requireNonNull(builder.minSegmentSize, this, "minSegmentSize");
+		this.max = ApiTypeHelper.requireNonNull(builder.max, this, "max");
+		this.min = ApiTypeHelper.requireNonNull(builder.min, this, "min");
+		this.minSegmentSize = ApiTypeHelper.requireNonNull(builder.minSegmentSize, this, "minSegmentSize");
 
 	}
 
@@ -109,6 +116,7 @@ public class FielddataFrequencyFilter implements JsonpSerializable {
 	/**
 	 * Builder for {@link FielddataFrequencyFilter}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FielddataFrequencyFilter> {
 		private Double max;
 

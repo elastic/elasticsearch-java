@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexSettingsLifecycle
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/_types/IndexSettings.ts#L293-L295">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IndexSettingsLifecycle implements JsonpSerializable {
 	private final String name;
@@ -47,7 +54,7 @@ public class IndexSettingsLifecycle implements JsonpSerializable {
 
 	private IndexSettingsLifecycle(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
@@ -83,6 +90,7 @@ public class IndexSettingsLifecycle implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexSettingsLifecycle}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexSettingsLifecycle> {
 		private String name;
 

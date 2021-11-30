@@ -35,7 +35,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -49,6 +49,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.put_watch.Request
+
+/**
+ * Creates a new watch, or updates an existing one.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/put_watch/WatcherPutWatchRequest.ts#L30-L54">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutWatchRequest extends RequestBase implements JsonpSerializable {
 	private final Map<String, Action> actions;
@@ -88,14 +96,14 @@ public class PutWatchRequest extends RequestBase implements JsonpSerializable {
 
 	private PutWatchRequest(Builder builder) {
 
-		this.actions = ModelTypeHelper.unmodifiable(builder.actions);
+		this.actions = ApiTypeHelper.unmodifiable(builder.actions);
 		this.active = builder.active;
 		this.condition = builder.condition;
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.ifPrimaryTerm = builder.ifPrimaryTerm;
 		this.ifSeqNo = builder.ifSeqNo;
 		this.input = builder.input;
-		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
+		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
 		this.throttlePeriod = builder.throttlePeriod;
 		this.transform = builder.transform;
 		this.trigger = builder.trigger;
@@ -223,7 +231,7 @@ public class PutWatchRequest extends RequestBase implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.actions)) {
+		if (ApiTypeHelper.isDefined(this.actions)) {
 			generator.writeKey("actions");
 			generator.writeStartObject();
 			for (Map.Entry<String, Action> item0 : this.actions.entrySet()) {
@@ -244,7 +252,7 @@ public class PutWatchRequest extends RequestBase implements JsonpSerializable {
 			this.input.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.metadata)) {
+		if (ApiTypeHelper.isDefined(this.metadata)) {
 			generator.writeKey("metadata");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
@@ -278,6 +286,7 @@ public class PutWatchRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link PutWatchRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutWatchRequest> {
 		@Nullable
 		private Map<String, Action> actions;
@@ -317,11 +326,9 @@ public class PutWatchRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code actions}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>actions</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>actions</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>actions</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder actions(Map<String, Action> map) {
 			this.actions = _mapPutAll(this.actions, map);
@@ -422,11 +429,9 @@ public class PutWatchRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code metadata}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>metadata</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>metadata</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>metadata</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder metadata(Map<String, JsonData> map) {
 			this.metadata = _mapPutAll(this.metadata, map);

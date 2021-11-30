@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.Breaker
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/_types/Stats.ts#L77-L84">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Breaker implements JsonpSerializable {
 	private final String estimatedSize;
@@ -59,13 +66,13 @@ public class Breaker implements JsonpSerializable {
 
 	private Breaker(Builder builder) {
 
-		this.estimatedSize = ModelTypeHelper.requireNonNull(builder.estimatedSize, this, "estimatedSize");
-		this.estimatedSizeInBytes = ModelTypeHelper.requireNonNull(builder.estimatedSizeInBytes, this,
+		this.estimatedSize = ApiTypeHelper.requireNonNull(builder.estimatedSize, this, "estimatedSize");
+		this.estimatedSizeInBytes = ApiTypeHelper.requireNonNull(builder.estimatedSizeInBytes, this,
 				"estimatedSizeInBytes");
-		this.limitSize = ModelTypeHelper.requireNonNull(builder.limitSize, this, "limitSize");
-		this.limitSizeInBytes = ModelTypeHelper.requireNonNull(builder.limitSizeInBytes, this, "limitSizeInBytes");
-		this.overhead = ModelTypeHelper.requireNonNull(builder.overhead, this, "overhead");
-		this.tripped = ModelTypeHelper.requireNonNull(builder.tripped, this, "tripped");
+		this.limitSize = ApiTypeHelper.requireNonNull(builder.limitSize, this, "limitSize");
+		this.limitSizeInBytes = ApiTypeHelper.requireNonNull(builder.limitSizeInBytes, this, "limitSizeInBytes");
+		this.overhead = ApiTypeHelper.requireNonNull(builder.overhead, this, "overhead");
+		this.tripped = ApiTypeHelper.requireNonNull(builder.tripped, this, "tripped");
 
 	}
 
@@ -151,6 +158,7 @@ public class Breaker implements JsonpSerializable {
 	/**
 	 * Builder for {@link Breaker}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Breaker> {
 		private String estimatedSize;
 

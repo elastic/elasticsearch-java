@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.SearchProfile
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search/_types/profile.ts#L125-L129">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SearchProfile implements JsonpSerializable {
 	private final List<Collector> collector;
@@ -52,9 +59,9 @@ public class SearchProfile implements JsonpSerializable {
 
 	private SearchProfile(Builder builder) {
 
-		this.collector = ModelTypeHelper.unmodifiableRequired(builder.collector, this, "collector");
-		this.query = ModelTypeHelper.unmodifiableRequired(builder.query, this, "query");
-		this.rewriteTime = ModelTypeHelper.requireNonNull(builder.rewriteTime, this, "rewriteTime");
+		this.collector = ApiTypeHelper.unmodifiableRequired(builder.collector, this, "collector");
+		this.query = ApiTypeHelper.unmodifiableRequired(builder.query, this, "query");
+		this.rewriteTime = ApiTypeHelper.requireNonNull(builder.rewriteTime, this, "rewriteTime");
 
 	}
 
@@ -94,7 +101,7 @@ public class SearchProfile implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.collector)) {
+		if (ApiTypeHelper.isDefined(this.collector)) {
 			generator.writeKey("collector");
 			generator.writeStartArray();
 			for (Collector item0 : this.collector) {
@@ -104,7 +111,7 @@ public class SearchProfile implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.query)) {
+		if (ApiTypeHelper.isDefined(this.query)) {
 			generator.writeKey("query");
 			generator.writeStartArray();
 			for (QueryProfile item0 : this.query) {
@@ -124,6 +131,7 @@ public class SearchProfile implements JsonpSerializable {
 	/**
 	 * Builder for {@link SearchProfile}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SearchProfile> {
 		private List<Collector> collector;
 
@@ -134,11 +142,9 @@ public class SearchProfile implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code collector}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>collector</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>collector</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>collector</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder collector(List<Collector> list) {
 			this.collector = _listAddAll(this.collector, list);
@@ -167,11 +173,9 @@ public class SearchProfile implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code query}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>query</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>query</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>query</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder query(List<QueryProfile> list) {
 			this.query = _listAddAll(this.query, list);

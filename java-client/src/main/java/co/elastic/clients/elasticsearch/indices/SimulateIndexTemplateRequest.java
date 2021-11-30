@@ -36,7 +36,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -52,6 +52,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.simulate_index_template.Request
+
+/**
+ * Simulate matching the given index name against the index templates in the
+ * system
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/simulate_index_template/IndicesSimulateIndexTemplateRequest.ts#L33-L71">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSerializable {
 	private final Map<String, JsonData> meta;
@@ -87,14 +96,14 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 
 	private SimulateIndexTemplateRequest(Builder builder) {
 
-		this.meta = ModelTypeHelper.unmodifiable(builder.meta);
+		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 		this.allowAutoCreate = builder.allowAutoCreate;
-		this.composedOf = ModelTypeHelper.unmodifiable(builder.composedOf);
+		this.composedOf = ApiTypeHelper.unmodifiable(builder.composedOf);
 		this.create = builder.create;
 		this.dataStream = builder.dataStream;
-		this.indexPatterns = ModelTypeHelper.unmodifiable(builder.indexPatterns);
+		this.indexPatterns = ApiTypeHelper.unmodifiable(builder.indexPatterns);
 		this.masterTimeout = builder.masterTimeout;
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.priority = builder.priority;
 		this.template = builder.template;
 		this.version = builder.version;
@@ -211,7 +220,7 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.meta)) {
+		if (ApiTypeHelper.isDefined(this.meta)) {
 			generator.writeKey("_meta");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
@@ -227,7 +236,7 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 			generator.write(this.allowAutoCreate);
 
 		}
-		if (ModelTypeHelper.isDefined(this.composedOf)) {
+		if (ApiTypeHelper.isDefined(this.composedOf)) {
 			generator.writeKey("composed_of");
 			generator.writeStartArray();
 			for (String item0 : this.composedOf) {
@@ -242,7 +251,7 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 			this.dataStream.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.indexPatterns)) {
+		if (ApiTypeHelper.isDefined(this.indexPatterns)) {
 			generator.writeKey("index_patterns");
 			generator.writeStartArray();
 			for (String item0 : this.indexPatterns) {
@@ -275,6 +284,7 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 	/**
 	 * Builder for {@link SimulateIndexTemplateRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SimulateIndexTemplateRequest> {
 		@Nullable
 		private Map<String, JsonData> meta;
@@ -311,11 +321,9 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 		/**
 		 * API name: {@code _meta}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>meta</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>meta</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>meta</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder meta(Map<String, JsonData> map) {
 			this.meta = _mapPutAll(this.meta, map);
@@ -343,11 +351,9 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 		/**
 		 * API name: {@code composed_of}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>composedOf</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>composedOf</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>composedOf</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder composedOf(List<String> list) {
 			this.composedOf = _listAddAll(this.composedOf, list);
@@ -396,11 +402,9 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 		/**
 		 * API name: {@code index_patterns}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>indexPatterns</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>indexPatterns</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>indexPatterns</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder indexPatterns(List<String> list) {
 			this.indexPatterns = _listAddAll(this.indexPatterns, list);

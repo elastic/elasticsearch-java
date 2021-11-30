@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.GrokProcessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ingest/_types/Processors.ts#L220-L226">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
@@ -59,11 +66,11 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 	private GrokProcessor(Builder builder) {
 		super(builder);
 
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.ignoreMissing = builder.ignoreMissing;
-		this.patternDefinitions = ModelTypeHelper.unmodifiableRequired(builder.patternDefinitions, this,
+		this.patternDefinitions = ApiTypeHelper.unmodifiableRequired(builder.patternDefinitions, this,
 				"patternDefinitions");
-		this.patterns = ModelTypeHelper.unmodifiableRequired(builder.patterns, this, "patterns");
+		this.patterns = ApiTypeHelper.unmodifiableRequired(builder.patterns, this, "patterns");
 		this.traceMatch = builder.traceMatch;
 
 	}
@@ -128,7 +135,7 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 			generator.write(this.ignoreMissing);
 
 		}
-		if (ModelTypeHelper.isDefined(this.patternDefinitions)) {
+		if (ApiTypeHelper.isDefined(this.patternDefinitions)) {
 			generator.writeKey("pattern_definitions");
 			generator.writeStartObject();
 			for (Map.Entry<String, String> item0 : this.patternDefinitions.entrySet()) {
@@ -139,7 +146,7 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.patterns)) {
+		if (ApiTypeHelper.isDefined(this.patterns)) {
 			generator.writeKey("patterns");
 			generator.writeStartArray();
 			for (String item0 : this.patterns) {
@@ -162,6 +169,7 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 	/**
 	 * Builder for {@link GrokProcessor}.
 	 */
+
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder> implements ObjectBuilder<GrokProcessor> {
 		private String field;
 
@@ -194,11 +202,9 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 		/**
 		 * Required - API name: {@code pattern_definitions}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>patternDefinitions</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>patternDefinitions</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>patternDefinitions</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder patternDefinitions(Map<String, String> map) {
 			this.patternDefinitions = _mapPutAll(this.patternDefinitions, map);
@@ -218,11 +224,9 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 		/**
 		 * Required - API name: {@code patterns}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>patterns</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>patterns</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>patterns</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder patterns(List<String> list) {
 			this.patterns = _listAddAll(this.patterns, list);

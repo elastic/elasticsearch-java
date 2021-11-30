@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,6 +43,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.mget.Operation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/mget/types.ts#L33-L42">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MultiGetOperation implements JsonpSerializable {
 	private final String id;
@@ -71,11 +78,11 @@ public class MultiGetOperation implements JsonpSerializable {
 
 	private MultiGetOperation(Builder builder) {
 
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.index = builder.index;
 		this.routing = builder.routing;
 		this.source = builder.source;
-		this.storedFields = ModelTypeHelper.unmodifiable(builder.storedFields);
+		this.storedFields = ApiTypeHelper.unmodifiable(builder.storedFields);
 		this.type = builder.type;
 		this.version = builder.version;
 		this.versionType = builder.versionType;
@@ -177,7 +184,7 @@ public class MultiGetOperation implements JsonpSerializable {
 			this.source.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.storedFields)) {
+		if (ApiTypeHelper.isDefined(this.storedFields)) {
 			generator.writeKey("stored_fields");
 			generator.writeStartArray();
 			for (String item0 : this.storedFields) {
@@ -209,6 +216,7 @@ public class MultiGetOperation implements JsonpSerializable {
 	/**
 	 * Builder for {@link MultiGetOperation}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MultiGetOperation> {
 		private String id;
 
@@ -275,11 +283,9 @@ public class MultiGetOperation implements JsonpSerializable {
 		/**
 		 * API name: {@code stored_fields}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>storedFields</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>storedFields</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>storedFields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder storedFields(List<String> list) {
 			this.storedFields = _listAddAll(this.storedFields, list);

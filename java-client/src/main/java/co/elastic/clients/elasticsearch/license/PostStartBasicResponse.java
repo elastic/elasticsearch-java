@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: license.post_start_basic.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/license/post_start_basic/StartBasicLicenseResponse.ts#L23-L29">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PostStartBasicResponse extends AcknowledgedResponseBase {
 	private final Map<String, List<String>> acknowledge;
@@ -54,9 +61,9 @@ public class PostStartBasicResponse extends AcknowledgedResponseBase {
 	private PostStartBasicResponse(Builder builder) {
 		super(builder);
 
-		this.acknowledge = ModelTypeHelper.unmodifiableRequired(builder.acknowledge, this, "acknowledge");
-		this.basicWasStarted = ModelTypeHelper.requireNonNull(builder.basicWasStarted, this, "basicWasStarted");
-		this.errorMessage = ModelTypeHelper.requireNonNull(builder.errorMessage, this, "errorMessage");
+		this.acknowledge = ApiTypeHelper.unmodifiableRequired(builder.acknowledge, this, "acknowledge");
+		this.basicWasStarted = ApiTypeHelper.requireNonNull(builder.basicWasStarted, this, "basicWasStarted");
+		this.errorMessage = ApiTypeHelper.requireNonNull(builder.errorMessage, this, "errorMessage");
 
 	}
 
@@ -88,7 +95,7 @@ public class PostStartBasicResponse extends AcknowledgedResponseBase {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.acknowledge)) {
+		if (ApiTypeHelper.isDefined(this.acknowledge)) {
 			generator.writeKey("acknowledge");
 			generator.writeStartObject();
 			for (Map.Entry<String, List<String>> item0 : this.acknowledge.entrySet()) {
@@ -119,6 +126,7 @@ public class PostStartBasicResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link PostStartBasicResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PostStartBasicResponse> {
@@ -131,11 +139,9 @@ public class PostStartBasicResponse extends AcknowledgedResponseBase {
 		/**
 		 * Required - API name: {@code acknowledge}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>acknowledge</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>acknowledge</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>acknowledge</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder acknowledge(Map<String, List<String>> map) {
 			this.acknowledge = _mapPutAll(this.acknowledge, map);

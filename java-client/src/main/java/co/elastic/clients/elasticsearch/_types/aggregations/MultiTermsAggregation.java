@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
@@ -37,6 +37,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MultiTermsAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/bucket.ts#L237-L239">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MultiTermsAggregation extends BucketAggregationBase implements AggregationVariant {
 	private final List<MultiTermLookup> terms;
@@ -46,7 +53,7 @@ public class MultiTermsAggregation extends BucketAggregationBase implements Aggr
 	private MultiTermsAggregation(Builder builder) {
 		super(builder);
 
-		this.terms = ModelTypeHelper.unmodifiableRequired(builder.terms, this, "terms");
+		this.terms = ApiTypeHelper.unmodifiableRequired(builder.terms, this, "terms");
 
 	}
 
@@ -72,7 +79,7 @@ public class MultiTermsAggregation extends BucketAggregationBase implements Aggr
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.terms)) {
+		if (ApiTypeHelper.isDefined(this.terms)) {
 			generator.writeKey("terms");
 			generator.writeStartArray();
 			for (MultiTermLookup item0 : this.terms) {
@@ -90,6 +97,7 @@ public class MultiTermsAggregation extends BucketAggregationBase implements Aggr
 	/**
 	 * Builder for {@link MultiTermsAggregation}.
 	 */
+
 	public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<MultiTermsAggregation> {
@@ -98,11 +106,9 @@ public class MultiTermsAggregation extends BucketAggregationBase implements Aggr
 		/**
 		 * Required - API name: {@code terms}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>terms</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>terms</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>terms</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder terms(List<MultiTermLookup> list) {
 			this.terms = _listAddAll(this.terms, list);

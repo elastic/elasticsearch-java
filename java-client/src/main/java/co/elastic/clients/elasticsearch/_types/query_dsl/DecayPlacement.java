@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.DecayPlacement
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/compound.ts#L84-L89">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DecayPlacement implements JsonpSerializable {
 	@Nullable
@@ -139,6 +146,7 @@ public class DecayPlacement implements JsonpSerializable {
 	/**
 	 * Builder for {@link DecayPlacement}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DecayPlacement> {
 		@Nullable
 		private Double decay;

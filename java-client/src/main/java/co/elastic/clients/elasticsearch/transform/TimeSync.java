@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform._types.TimeSync
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/transform/_types/Transform.ts#L160-L172">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TimeSync implements SyncVariant, JsonpSerializable {
 	@Nullable
@@ -52,7 +59,7 @@ public class TimeSync implements SyncVariant, JsonpSerializable {
 	private TimeSync(Builder builder) {
 
 		this.delay = builder.delay;
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
 	}
 
@@ -80,7 +87,9 @@ public class TimeSync implements SyncVariant, JsonpSerializable {
 
 	/**
 	 * Required - The date field that is used to identify new documents in the
-	 * source.
+	 * source. In general, it’s a good idea to use a field that contains the ingest
+	 * timestamp. If you use a different field, you might need to set the delay such
+	 * that it accounts for data transmission delays.
 	 * <p>
 	 * API name: {@code field}
 	 */
@@ -114,6 +123,7 @@ public class TimeSync implements SyncVariant, JsonpSerializable {
 	/**
 	 * Builder for {@link TimeSync}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TimeSync> {
 		@Nullable
 		private Time delay;
@@ -141,7 +151,9 @@ public class TimeSync implements SyncVariant, JsonpSerializable {
 
 		/**
 		 * Required - The date field that is used to identify new documents in the
-		 * source.
+		 * source. In general, it’s a good idea to use a field that contains the ingest
+		 * timestamp. If you use a different field, you might need to set the delay such
+		 * that it accounts for data transmission delays.
 		 * <p>
 		 * API name: {@code field}
 		 */

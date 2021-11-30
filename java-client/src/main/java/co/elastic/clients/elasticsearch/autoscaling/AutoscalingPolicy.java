@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: autoscaling._types.AutoscalingPolicy
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/autoscaling/_types/AutoscalingPolicy.ts#L23-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AutoscalingPolicy implements JsonpSerializable {
 	private final List<String> roles;
@@ -51,8 +58,8 @@ public class AutoscalingPolicy implements JsonpSerializable {
 
 	protected AutoscalingPolicy(AbstractBuilder<?> builder) {
 
-		this.roles = ModelTypeHelper.unmodifiableRequired(builder.roles, this, "roles");
-		this.deciders = ModelTypeHelper.unmodifiableRequired(builder.deciders, this, "deciders");
+		this.roles = ApiTypeHelper.unmodifiableRequired(builder.roles, this, "roles");
+		this.deciders = ApiTypeHelper.unmodifiableRequired(builder.deciders, this, "deciders");
 
 	}
 
@@ -83,7 +90,7 @@ public class AutoscalingPolicy implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.roles)) {
+		if (ApiTypeHelper.isDefined(this.roles)) {
 			generator.writeKey("roles");
 			generator.writeStartArray();
 			for (String item0 : this.roles) {
@@ -93,7 +100,7 @@ public class AutoscalingPolicy implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.deciders)) {
+		if (ApiTypeHelper.isDefined(this.deciders)) {
 			generator.writeKey("deciders");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.deciders.entrySet()) {
@@ -112,6 +119,7 @@ public class AutoscalingPolicy implements JsonpSerializable {
 	/**
 	 * Builder for {@link AutoscalingPolicy}.
 	 */
+
 	public static class Builder extends AutoscalingPolicy.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<AutoscalingPolicy> {
@@ -143,11 +151,9 @@ public class AutoscalingPolicy implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code roles}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>roles</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>roles</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>roles</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final BuilderT roles(List<String> list) {
 			this.roles = _listAddAll(this.roles, list);
@@ -169,11 +175,9 @@ public class AutoscalingPolicy implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code deciders}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>deciders</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>deciders</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>deciders</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final BuilderT deciders(Map<String, JsonData> map) {
 			this.deciders = _mapPutAll(this.deciders, map);

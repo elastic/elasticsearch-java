@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.msearch_template.TemplateConfig
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/msearch_template/types.ts#L28-L45">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TemplateConfig implements JsonpSerializable {
 	@Nullable
@@ -64,7 +71,7 @@ public class TemplateConfig implements JsonpSerializable {
 
 		this.explain = builder.explain;
 		this.id = builder.id;
-		this.params = ModelTypeHelper.unmodifiable(builder.params);
+		this.params = ApiTypeHelper.unmodifiable(builder.params);
 		this.profile = builder.profile;
 		this.source = builder.source;
 
@@ -141,7 +148,7 @@ public class TemplateConfig implements JsonpSerializable {
 			generator.write(this.id);
 
 		}
-		if (ModelTypeHelper.isDefined(this.params)) {
+		if (ApiTypeHelper.isDefined(this.params)) {
 			generator.writeKey("params");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.params.entrySet()) {
@@ -170,6 +177,7 @@ public class TemplateConfig implements JsonpSerializable {
 	/**
 	 * Builder for {@link TemplateConfig}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TemplateConfig> {
 		@Nullable
 		private Boolean explain;
@@ -208,11 +216,9 @@ public class TemplateConfig implements JsonpSerializable {
 		/**
 		 * API name: {@code params}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>params</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>params</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>params</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder params(Map<String, JsonData> map) {
 			this.params = _mapPutAll(this.params, map);

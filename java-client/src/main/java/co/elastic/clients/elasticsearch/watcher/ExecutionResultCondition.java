@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ExecutionResultCondition
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/_types/Execution.ts#L67-L71">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ExecutionResultCondition implements JsonpSerializable {
 	private final boolean met;
@@ -51,9 +58,9 @@ public class ExecutionResultCondition implements JsonpSerializable {
 
 	private ExecutionResultCondition(Builder builder) {
 
-		this.met = ModelTypeHelper.requireNonNull(builder.met, this, "met");
-		this.status = ModelTypeHelper.requireNonNull(builder.status, this, "status");
-		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
+		this.met = ApiTypeHelper.requireNonNull(builder.met, this, "met");
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 
@@ -108,6 +115,7 @@ public class ExecutionResultCondition implements JsonpSerializable {
 	/**
 	 * Builder for {@link ExecutionResultCondition}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExecutionResultCondition> {
 		private Boolean met;
 

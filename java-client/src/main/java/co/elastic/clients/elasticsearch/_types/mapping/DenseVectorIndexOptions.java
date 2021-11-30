@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.DenseVectorIndexOptions
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/DenseVectorIndexOptions.ts#L22-L26">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DenseVectorIndexOptions implements JsonpSerializable {
 	private final String type;
@@ -52,9 +59,9 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 
 	private DenseVectorIndexOptions(Builder builder) {
 
-		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
-		this.m = ModelTypeHelper.requireNonNull(builder.m, this, "m");
-		this.efConstruction = ModelTypeHelper.requireNonNull(builder.efConstruction, this, "efConstruction");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.m = ApiTypeHelper.requireNonNull(builder.m, this, "m");
+		this.efConstruction = ApiTypeHelper.requireNonNull(builder.efConstruction, this, "efConstruction");
 
 	}
 
@@ -110,6 +117,7 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 	/**
 	 * Builder for {@link DenseVectorIndexOptions}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DenseVectorIndexOptions> {
 		private String type;
 

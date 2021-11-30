@@ -45,6 +45,14 @@ import javax.annotation.Nullable;
 
 // typedef: ingest.get_pipeline.Request
 
+/**
+ * Returns a pipeline.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ingest/get_pipeline/GetPipelineRequest.ts#L24-L39">API
+ *      specification</a>
+ */
+
 public class GetPipelineRequest extends RequestBase {
 	@Nullable
 	private final String id;
@@ -104,6 +112,7 @@ public class GetPipelineRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetPipelineRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetPipelineRequest> {
 		@Nullable
 		private String id;

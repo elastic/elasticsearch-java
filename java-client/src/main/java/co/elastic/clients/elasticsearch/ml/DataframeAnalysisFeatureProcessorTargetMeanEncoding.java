@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisFeatureProcessorTargetMeanEncoding
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/_types/DataframeAnalytics.ts#L294-L303">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeAnalysisFeatureProcessorTargetMeanEncoding
 		implements
@@ -59,10 +66,10 @@ public class DataframeAnalysisFeatureProcessorTargetMeanEncoding
 
 	private DataframeAnalysisFeatureProcessorTargetMeanEncoding(Builder builder) {
 
-		this.defaultValue = ModelTypeHelper.requireNonNull(builder.defaultValue, this, "defaultValue");
-		this.featureName = ModelTypeHelper.requireNonNull(builder.featureName, this, "featureName");
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
-		this.targetMap = ModelTypeHelper.unmodifiableRequired(builder.targetMap, this, "targetMap");
+		this.defaultValue = ApiTypeHelper.requireNonNull(builder.defaultValue, this, "defaultValue");
+		this.featureName = ApiTypeHelper.requireNonNull(builder.featureName, this, "featureName");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.targetMap = ApiTypeHelper.unmodifiableRequired(builder.targetMap, this, "targetMap");
 
 	}
 
@@ -135,7 +142,7 @@ public class DataframeAnalysisFeatureProcessorTargetMeanEncoding
 		generator.writeKey("field");
 		generator.write(this.field);
 
-		if (ModelTypeHelper.isDefined(this.targetMap)) {
+		if (ApiTypeHelper.isDefined(this.targetMap)) {
 			generator.writeKey("target_map");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.targetMap.entrySet()) {
@@ -154,6 +161,7 @@ public class DataframeAnalysisFeatureProcessorTargetMeanEncoding
 	/**
 	 * Builder for {@link DataframeAnalysisFeatureProcessorTargetMeanEncoding}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase
 			implements
 				ObjectBuilder<DataframeAnalysisFeatureProcessorTargetMeanEncoding> {
@@ -200,11 +208,9 @@ public class DataframeAnalysisFeatureProcessorTargetMeanEncoding
 		 * <p>
 		 * API name: {@code target_map}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>targetMap</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>targetMap</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>targetMap</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder targetMap(Map<String, JsonData> map) {
 			this.targetMap = _mapPutAll(this.targetMap, map);

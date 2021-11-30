@@ -33,7 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -48,6 +48,17 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_influencers.Request
+
+/**
+ * Retrieves anomaly detection job results for one or more influencers.
+ * Influencers are the entities that have contributed to, or are to blame for,
+ * the anomalies. Influencer results are available only if an
+ * <code>influencer_field_name</code> is specified in the job configuration.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/get_influencers/MlGetInfluencersRequest.ts#L26-L93">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetInfluencersRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -88,7 +99,7 @@ public class GetInfluencersRequest extends RequestBase implements JsonpSerializa
 		this.excludeInterim = builder.excludeInterim;
 		this.from = builder.from;
 		this.influencerScore = builder.influencerScore;
-		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.page = builder.page;
 		this.size = builder.size;
 		this.sort = builder.sort;
@@ -225,6 +236,7 @@ public class GetInfluencersRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Builder for {@link GetInfluencersRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetInfluencersRequest> {
 		@Nullable
 		private Boolean desc;

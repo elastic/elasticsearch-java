@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: ccr.follow.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ccr/follow/CreateFollowIndexResponse.ts#L20-L26">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FollowResponse implements JsonpSerializable {
 	private final boolean followIndexCreated;
@@ -50,11 +57,10 @@ public class FollowResponse implements JsonpSerializable {
 
 	private FollowResponse(Builder builder) {
 
-		this.followIndexCreated = ModelTypeHelper.requireNonNull(builder.followIndexCreated, this,
-				"followIndexCreated");
-		this.followIndexShardsAcked = ModelTypeHelper.requireNonNull(builder.followIndexShardsAcked, this,
+		this.followIndexCreated = ApiTypeHelper.requireNonNull(builder.followIndexCreated, this, "followIndexCreated");
+		this.followIndexShardsAcked = ApiTypeHelper.requireNonNull(builder.followIndexShardsAcked, this,
 				"followIndexShardsAcked");
-		this.indexFollowingStarted = ModelTypeHelper.requireNonNull(builder.indexFollowingStarted, this,
+		this.indexFollowingStarted = ApiTypeHelper.requireNonNull(builder.indexFollowingStarted, this,
 				"indexFollowingStarted");
 
 	}
@@ -111,6 +117,7 @@ public class FollowResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link FollowResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FollowResponse> {
 		private Boolean followIndexCreated;
 

@@ -27,6 +27,12 @@ import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Geo.ts#L51-L54">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public enum GeoDistanceType implements JsonEnum {
 	Arc("arc"),

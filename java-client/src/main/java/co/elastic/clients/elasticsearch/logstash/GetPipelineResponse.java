@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: logstash.get_pipeline.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/logstash/get_pipeline/LogstashGetPipelineResponse.ts#L24-L26">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetPipelineResponse implements JsonpSerializable {
 	private final Map<String, Pipeline> valueBody;
@@ -48,7 +55,7 @@ public class GetPipelineResponse implements JsonpSerializable {
 
 	private GetPipelineResponse(Builder builder) {
 
-		this.valueBody = ModelTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
+		this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
 
 	}
 
@@ -84,6 +91,7 @@ public class GetPipelineResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetPipelineResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetPipelineResponse> {
 		private Map<String, Pipeline> valueBody;
 
@@ -92,11 +100,9 @@ public class GetPipelineResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>valueBody</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>valueBody</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>valueBody</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder valueBody(Map<String, Pipeline> map) {
 			this.valueBody = _mapPutAll(this.valueBody, map);

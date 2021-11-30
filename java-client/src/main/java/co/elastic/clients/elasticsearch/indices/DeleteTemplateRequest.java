@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -44,6 +44,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.delete_template.Request
+
+/**
+ * Deletes an index template.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/delete_template/IndicesDeleteTemplateRequest.ts#L24-L37">API
+ *      specification</a>
+ */
 
 public class DeleteTemplateRequest extends RequestBase {
 	@Nullable
@@ -59,7 +67,7 @@ public class DeleteTemplateRequest extends RequestBase {
 	private DeleteTemplateRequest(Builder builder) {
 
 		this.masterTimeout = builder.masterTimeout;
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.timeout = builder.timeout;
 
 	}
@@ -102,6 +110,7 @@ public class DeleteTemplateRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteTemplateRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteTemplateRequest> {
 		@Nullable
 		private Time masterTimeout;

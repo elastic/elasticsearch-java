@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ArrayCompareCondition
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/_types/Conditions.ts#L25-L31">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ArrayCompareCondition implements ConditionVariant, JsonpSerializable {
 	private final String arrayPath;
@@ -56,11 +63,11 @@ public class ArrayCompareCondition implements ConditionVariant, JsonpSerializabl
 
 	private ArrayCompareCondition(Builder builder) {
 
-		this.arrayPath = ModelTypeHelper.requireNonNull(builder.arrayPath, this, "arrayPath");
-		this.comparison = ModelTypeHelper.requireNonNull(builder.comparison, this, "comparison");
-		this.path = ModelTypeHelper.requireNonNull(builder.path, this, "path");
-		this.quantifier = ModelTypeHelper.requireNonNull(builder.quantifier, this, "quantifier");
-		this.value = ModelTypeHelper.requireNonNull(builder.value, this, "value");
+		this.arrayPath = ApiTypeHelper.requireNonNull(builder.arrayPath, this, "arrayPath");
+		this.comparison = ApiTypeHelper.requireNonNull(builder.comparison, this, "comparison");
+		this.path = ApiTypeHelper.requireNonNull(builder.path, this, "path");
+		this.quantifier = ApiTypeHelper.requireNonNull(builder.quantifier, this, "quantifier");
+		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
 
 	}
 
@@ -143,6 +150,7 @@ public class ArrayCompareCondition implements ConditionVariant, JsonpSerializabl
 	/**
 	 * Builder for {@link ArrayCompareCondition}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ArrayCompareCondition> {
 		private String arrayPath;
 

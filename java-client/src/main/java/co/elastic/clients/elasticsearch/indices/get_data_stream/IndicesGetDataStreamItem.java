@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -45,6 +45,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_data_stream.IndicesGetDataStreamItem
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/get_data_stream/IndicesGetDataStreamResponse.ts#L35-L48">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IndicesGetDataStreamItem implements JsonpSerializable {
 	private final String name;
@@ -73,16 +80,16 @@ public class IndicesGetDataStreamItem implements JsonpSerializable {
 
 	private IndicesGetDataStreamItem(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
-		this.timestampField = ModelTypeHelper.requireNonNull(builder.timestampField, this, "timestampField");
-		this.indices = ModelTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
-		this.generation = ModelTypeHelper.requireNonNull(builder.generation, this, "generation");
-		this.template = ModelTypeHelper.requireNonNull(builder.template, this, "template");
-		this.hidden = ModelTypeHelper.requireNonNull(builder.hidden, this, "hidden");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.timestampField = ApiTypeHelper.requireNonNull(builder.timestampField, this, "timestampField");
+		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
+		this.generation = ApiTypeHelper.requireNonNull(builder.generation, this, "generation");
+		this.template = ApiTypeHelper.requireNonNull(builder.template, this, "template");
+		this.hidden = ApiTypeHelper.requireNonNull(builder.hidden, this, "hidden");
 		this.system = builder.system;
-		this.status = ModelTypeHelper.requireNonNull(builder.status, this, "status");
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 		this.ilmPolicy = builder.ilmPolicy;
-		this.meta = ModelTypeHelper.unmodifiable(builder.meta);
+		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 
 	}
 
@@ -179,7 +186,7 @@ public class IndicesGetDataStreamItem implements JsonpSerializable {
 		generator.writeKey("timestamp_field");
 		this.timestampField.serialize(generator, mapper);
 
-		if (ModelTypeHelper.isDefined(this.indices)) {
+		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartArray();
 			for (IndicesGetDataStreamItemIndex item0 : this.indices) {
@@ -210,7 +217,7 @@ public class IndicesGetDataStreamItem implements JsonpSerializable {
 			generator.write(this.ilmPolicy);
 
 		}
-		if (ModelTypeHelper.isDefined(this.meta)) {
+		if (ApiTypeHelper.isDefined(this.meta)) {
 			generator.writeKey("_meta");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
@@ -229,6 +236,7 @@ public class IndicesGetDataStreamItem implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndicesGetDataStreamItem}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndicesGetDataStreamItem> {
 		private String name;
 
@@ -280,11 +288,9 @@ public class IndicesGetDataStreamItem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code indices}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>indices</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>indices</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder indices(List<IndicesGetDataStreamItemIndex> list) {
 			this.indices = _listAddAll(this.indices, list);
@@ -362,11 +368,9 @@ public class IndicesGetDataStreamItem implements JsonpSerializable {
 		/**
 		 * API name: {@code _meta}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>meta</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>meta</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>meta</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder meta(Map<String, JsonData> map) {
 			this.meta = _mapPutAll(this.meta, map);

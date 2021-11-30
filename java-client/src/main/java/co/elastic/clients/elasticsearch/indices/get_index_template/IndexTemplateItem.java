@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_index_template.IndexTemplateItem
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/get_index_template/IndicesGetIndexTemplateResponse.ts#L33-L36">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IndexTemplateItem implements JsonpSerializable {
 	private final String name;
@@ -49,8 +56,8 @@ public class IndexTemplateItem implements JsonpSerializable {
 
 	private IndexTemplateItem(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
-		this.indexTemplate = ModelTypeHelper.requireNonNull(builder.indexTemplate, this, "indexTemplate");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.indexTemplate = ApiTypeHelper.requireNonNull(builder.indexTemplate, this, "indexTemplate");
 
 	}
 
@@ -96,6 +103,7 @@ public class IndexTemplateItem implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexTemplateItem}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexTemplateItem> {
 		private String name;
 

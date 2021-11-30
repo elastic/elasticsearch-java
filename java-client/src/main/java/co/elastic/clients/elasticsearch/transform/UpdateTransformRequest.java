@@ -36,7 +36,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -49,6 +49,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform.update_transform.Request
+
+/**
+ * Updates certain properties of a transform.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/transform/update_transform/UpdateTransformRequest.ts#L30-L63">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class UpdateTransformRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -89,7 +97,7 @@ public class UpdateTransformRequest extends RequestBase implements JsonpSerializ
 		this.settings = builder.settings;
 		this.source = builder.source;
 		this.sync = builder.sync;
-		this.transformId = ModelTypeHelper.requireNonNull(builder.transformId, this, "transformId");
+		this.transformId = ApiTypeHelper.requireNonNull(builder.transformId, this, "transformId");
 
 	}
 
@@ -247,6 +255,7 @@ public class UpdateTransformRequest extends RequestBase implements JsonpSerializ
 	/**
 	 * Builder for {@link UpdateTransformRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UpdateTransformRequest> {
 		@Nullable
 		private Boolean deferValidation;

@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -38,6 +38,13 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _global.bulk.WriteOperation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/bulk/types.ts#L68-L72">API
+ *      specification</a>
+ */
 
 public abstract class WriteOperation extends BulkOperationBase {
 	private final Map<String, String> dynamicTemplates;
@@ -53,7 +60,7 @@ public abstract class WriteOperation extends BulkOperationBase {
 	protected WriteOperation(AbstractBuilder<?> builder) {
 		super(builder);
 
-		this.dynamicTemplates = ModelTypeHelper.unmodifiable(builder.dynamicTemplates);
+		this.dynamicTemplates = ApiTypeHelper.unmodifiable(builder.dynamicTemplates);
 		this.pipeline = builder.pipeline;
 		this.requireAlias = builder.requireAlias;
 
@@ -85,7 +92,7 @@ public abstract class WriteOperation extends BulkOperationBase {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.dynamicTemplates)) {
+		if (ApiTypeHelper.isDefined(this.dynamicTemplates)) {
 			generator.writeKey("dynamic_templates");
 			generator.writeStartObject();
 			for (Map.Entry<String, String> item0 : this.dynamicTemplates.entrySet()) {
@@ -124,11 +131,9 @@ public abstract class WriteOperation extends BulkOperationBase {
 		/**
 		 * API name: {@code dynamic_templates}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>dynamicTemplates</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>dynamicTemplates</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>dynamicTemplates</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final BuilderT dynamicTemplates(Map<String, String> map) {
 			this.dynamicTemplates = _mapPutAll(this.dynamicTemplates, map);

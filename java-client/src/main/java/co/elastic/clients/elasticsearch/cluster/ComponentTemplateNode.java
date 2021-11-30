@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster._types.ComponentTemplateNode
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/_types/ComponentTemplate.ts#L31-L36">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ComponentTemplateNode implements JsonpSerializable {
 	private final ComponentTemplateSummary template;
@@ -55,9 +62,9 @@ public class ComponentTemplateNode implements JsonpSerializable {
 
 	private ComponentTemplateNode(Builder builder) {
 
-		this.template = ModelTypeHelper.requireNonNull(builder.template, this, "template");
+		this.template = ApiTypeHelper.requireNonNull(builder.template, this, "template");
 		this.version = builder.version;
-		this.meta = ModelTypeHelper.unmodifiable(builder.meta);
+		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 
 	}
 
@@ -106,7 +113,7 @@ public class ComponentTemplateNode implements JsonpSerializable {
 			generator.write(this.version);
 
 		}
-		if (ModelTypeHelper.isDefined(this.meta)) {
+		if (ApiTypeHelper.isDefined(this.meta)) {
 			generator.writeKey("_meta");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
@@ -125,6 +132,7 @@ public class ComponentTemplateNode implements JsonpSerializable {
 	/**
 	 * Builder for {@link ComponentTemplateNode}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ComponentTemplateNode> {
 		private ComponentTemplateSummary template;
 
@@ -161,11 +169,9 @@ public class ComponentTemplateNode implements JsonpSerializable {
 		/**
 		 * API name: {@code _meta}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>meta</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>meta</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>meta</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder meta(Map<String, JsonData> map) {
 			this.meta = _mapPutAll(this.meta, map);

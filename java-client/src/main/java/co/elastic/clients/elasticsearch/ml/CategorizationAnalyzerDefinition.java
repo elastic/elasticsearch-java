@@ -32,7 +32,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.CategorizationAnalyzerDefinition
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/_types/Analysis.ts#L126-L139">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CategorizationAnalyzerDefinition implements JsonpSerializable {
 	private final List<CharFilter> charFilter;
@@ -55,8 +62,8 @@ public class CategorizationAnalyzerDefinition implements JsonpSerializable {
 
 	private CategorizationAnalyzerDefinition(Builder builder) {
 
-		this.charFilter = ModelTypeHelper.unmodifiable(builder.charFilter);
-		this.filter = ModelTypeHelper.unmodifiable(builder.filter);
+		this.charFilter = ApiTypeHelper.unmodifiable(builder.charFilter);
+		this.filter = ApiTypeHelper.unmodifiable(builder.filter);
 		this.tokenizer = builder.tokenizer;
 
 	}
@@ -126,7 +133,7 @@ public class CategorizationAnalyzerDefinition implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.charFilter)) {
+		if (ApiTypeHelper.isDefined(this.charFilter)) {
 			generator.writeKey("char_filter");
 			generator.writeStartArray();
 			for (CharFilter item0 : this.charFilter) {
@@ -136,7 +143,7 @@ public class CategorizationAnalyzerDefinition implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.filter)) {
+		if (ApiTypeHelper.isDefined(this.filter)) {
 			generator.writeKey("filter");
 			generator.writeStartArray();
 			for (TokenFilter item0 : this.filter) {
@@ -159,6 +166,7 @@ public class CategorizationAnalyzerDefinition implements JsonpSerializable {
 	/**
 	 * Builder for {@link CategorizationAnalyzerDefinition}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CategorizationAnalyzerDefinition> {
 		@Nullable
 		private List<CharFilter> charFilter;
@@ -180,11 +188,9 @@ public class CategorizationAnalyzerDefinition implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code char_filter}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>charFilter</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>charFilter</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>charFilter</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder charFilter(List<CharFilter> list) {
 			this.charFilter = _listAddAll(this.charFilter, list);
@@ -233,11 +239,9 @@ public class CategorizationAnalyzerDefinition implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code filter}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>filter</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>filter</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>filter</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder filter(List<TokenFilter> list) {
 			this.filter = _listAddAll(this.filter, list);

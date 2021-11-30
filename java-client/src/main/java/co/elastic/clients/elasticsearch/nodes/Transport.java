@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.Transport
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/_types/Stats.ts#L221-L229">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Transport implements JsonpSerializable {
 	private final long rxCount;
@@ -61,13 +68,13 @@ public class Transport implements JsonpSerializable {
 
 	private Transport(Builder builder) {
 
-		this.rxCount = ModelTypeHelper.requireNonNull(builder.rxCount, this, "rxCount");
-		this.rxSize = ModelTypeHelper.requireNonNull(builder.rxSize, this, "rxSize");
-		this.rxSizeInBytes = ModelTypeHelper.requireNonNull(builder.rxSizeInBytes, this, "rxSizeInBytes");
-		this.serverOpen = ModelTypeHelper.requireNonNull(builder.serverOpen, this, "serverOpen");
-		this.txCount = ModelTypeHelper.requireNonNull(builder.txCount, this, "txCount");
-		this.txSize = ModelTypeHelper.requireNonNull(builder.txSize, this, "txSize");
-		this.txSizeInBytes = ModelTypeHelper.requireNonNull(builder.txSizeInBytes, this, "txSizeInBytes");
+		this.rxCount = ApiTypeHelper.requireNonNull(builder.rxCount, this, "rxCount");
+		this.rxSize = ApiTypeHelper.requireNonNull(builder.rxSize, this, "rxSize");
+		this.rxSizeInBytes = ApiTypeHelper.requireNonNull(builder.rxSizeInBytes, this, "rxSizeInBytes");
+		this.serverOpen = ApiTypeHelper.requireNonNull(builder.serverOpen, this, "serverOpen");
+		this.txCount = ApiTypeHelper.requireNonNull(builder.txCount, this, "txCount");
+		this.txSize = ApiTypeHelper.requireNonNull(builder.txSize, this, "txSize");
+		this.txSizeInBytes = ApiTypeHelper.requireNonNull(builder.txSizeInBytes, this, "txSizeInBytes");
 
 	}
 
@@ -163,6 +170,7 @@ public class Transport implements JsonpSerializable {
 	/**
 	 * Builder for {@link Transport}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Transport> {
 		private Long rxCount;
 

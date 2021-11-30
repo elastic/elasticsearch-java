@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.DataframeOutlierDetectionSummary
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/evaluate_data_frame/types.ts#L24-L29">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeOutlierDetectionSummary implements JsonpSerializable {
 	@Nullable
@@ -57,9 +64,9 @@ public class DataframeOutlierDetectionSummary implements JsonpSerializable {
 	private DataframeOutlierDetectionSummary(Builder builder) {
 
 		this.aucRoc = builder.aucRoc;
-		this.precision = ModelTypeHelper.unmodifiable(builder.precision);
-		this.recall = ModelTypeHelper.unmodifiable(builder.recall);
-		this.confusionMatrix = ModelTypeHelper.unmodifiable(builder.confusionMatrix);
+		this.precision = ApiTypeHelper.unmodifiable(builder.precision);
+		this.recall = ApiTypeHelper.unmodifiable(builder.recall);
+		this.confusionMatrix = ApiTypeHelper.unmodifiable(builder.confusionMatrix);
 
 	}
 
@@ -113,7 +120,7 @@ public class DataframeOutlierDetectionSummary implements JsonpSerializable {
 			this.aucRoc.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.precision)) {
+		if (ApiTypeHelper.isDefined(this.precision)) {
 			generator.writeKey("precision");
 			generator.writeStartObject();
 			for (Map.Entry<String, Double> item0 : this.precision.entrySet()) {
@@ -124,7 +131,7 @@ public class DataframeOutlierDetectionSummary implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.recall)) {
+		if (ApiTypeHelper.isDefined(this.recall)) {
 			generator.writeKey("recall");
 			generator.writeStartObject();
 			for (Map.Entry<String, Double> item0 : this.recall.entrySet()) {
@@ -135,7 +142,7 @@ public class DataframeOutlierDetectionSummary implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.confusionMatrix)) {
+		if (ApiTypeHelper.isDefined(this.confusionMatrix)) {
 			generator.writeKey("confusion_matrix");
 			generator.writeStartObject();
 			for (Map.Entry<String, ConfusionMatrixThreshold> item0 : this.confusionMatrix.entrySet()) {
@@ -154,6 +161,7 @@ public class DataframeOutlierDetectionSummary implements JsonpSerializable {
 	/**
 	 * Builder for {@link DataframeOutlierDetectionSummary}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframeOutlierDetectionSummary> {
 		@Nullable
 		private DataframeEvaluationSummaryAucRoc aucRoc;
@@ -186,11 +194,9 @@ public class DataframeOutlierDetectionSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code precision}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>precision</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>precision</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>precision</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder precision(Map<String, Double> map) {
 			this.precision = _mapPutAll(this.precision, map);
@@ -210,11 +216,9 @@ public class DataframeOutlierDetectionSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code recall}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>recall</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>recall</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>recall</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder recall(Map<String, Double> map) {
 			this.recall = _mapPutAll(this.recall, map);
@@ -234,11 +238,9 @@ public class DataframeOutlierDetectionSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code confusion_matrix}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>confusionMatrix</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>confusionMatrix</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>confusionMatrix</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder confusionMatrix(Map<String, ConfusionMatrixThreshold> map) {
 			this.confusionMatrix = _mapPutAll(this.confusionMatrix, map);

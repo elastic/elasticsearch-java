@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.HasParentQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/joining.ts#L53-L61">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class HasParentQuery extends QueryBase implements QueryVariant {
 	@Nullable
@@ -61,8 +68,8 @@ public class HasParentQuery extends QueryBase implements QueryVariant {
 
 		this.ignoreUnmapped = builder.ignoreUnmapped;
 		this.innerHits = builder.innerHits;
-		this.parentType = ModelTypeHelper.requireNonNull(builder.parentType, this, "parentType");
-		this.query = ModelTypeHelper.requireNonNull(builder.query, this, "query");
+		this.parentType = ApiTypeHelper.requireNonNull(builder.parentType, this, "parentType");
+		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 		this.score = builder.score;
 
 	}
@@ -149,6 +156,7 @@ public class HasParentQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link HasParentQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<HasParentQuery> {
 		@Nullable
 		private Boolean ignoreUnmapped;

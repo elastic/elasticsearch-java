@@ -34,7 +34,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -47,6 +47,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.Datafeed
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/_types/Datafeed.ts#L30-L47">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Datafeed implements JsonpSerializable {
 	private final Map<String, Aggregation> aggregations;
@@ -89,21 +96,21 @@ public class Datafeed implements JsonpSerializable {
 
 	private Datafeed(Builder builder) {
 
-		this.aggregations = ModelTypeHelper.unmodifiable(builder.aggregations);
+		this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);
 		this.chunkingConfig = builder.chunkingConfig;
-		this.datafeedId = ModelTypeHelper.requireNonNull(builder.datafeedId, this, "datafeedId");
+		this.datafeedId = ApiTypeHelper.requireNonNull(builder.datafeedId, this, "datafeedId");
 		this.frequency = builder.frequency;
-		this.indices = ModelTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
-		this.indexes = ModelTypeHelper.unmodifiable(builder.indexes);
-		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
+		this.indexes = ApiTypeHelper.unmodifiable(builder.indexes);
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.maxEmptySearches = builder.maxEmptySearches;
-		this.query = ModelTypeHelper.requireNonNull(builder.query, this, "query");
+		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 		this.queryDelay = builder.queryDelay;
-		this.scriptFields = ModelTypeHelper.unmodifiable(builder.scriptFields);
+		this.scriptFields = ApiTypeHelper.unmodifiable(builder.scriptFields);
 		this.scrollSize = builder.scrollSize;
-		this.delayedDataCheckConfig = ModelTypeHelper.requireNonNull(builder.delayedDataCheckConfig, this,
+		this.delayedDataCheckConfig = ApiTypeHelper.requireNonNull(builder.delayedDataCheckConfig, this,
 				"delayedDataCheckConfig");
-		this.runtimeMappings = ModelTypeHelper.unmodifiable(builder.runtimeMappings);
+		this.runtimeMappings = ApiTypeHelper.unmodifiable(builder.runtimeMappings);
 		this.indicesOptions = builder.indicesOptions;
 
 	}
@@ -234,7 +241,7 @@ public class Datafeed implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.aggregations)) {
+		if (ApiTypeHelper.isDefined(this.aggregations)) {
 			generator.writeKey("aggregations");
 			generator.writeStartObject();
 			for (Map.Entry<String, Aggregation> item0 : this.aggregations.entrySet()) {
@@ -258,7 +265,7 @@ public class Datafeed implements JsonpSerializable {
 			generator.write(this.frequency);
 
 		}
-		if (ModelTypeHelper.isDefined(this.indices)) {
+		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartArray();
 			for (String item0 : this.indices) {
@@ -268,7 +275,7 @@ public class Datafeed implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.indexes)) {
+		if (ApiTypeHelper.isDefined(this.indexes)) {
 			generator.writeKey("indexes");
 			generator.writeStartArray();
 			for (String item0 : this.indexes) {
@@ -294,7 +301,7 @@ public class Datafeed implements JsonpSerializable {
 			generator.write(this.queryDelay);
 
 		}
-		if (ModelTypeHelper.isDefined(this.scriptFields)) {
+		if (ApiTypeHelper.isDefined(this.scriptFields)) {
 			generator.writeKey("script_fields");
 			generator.writeStartObject();
 			for (Map.Entry<String, ScriptField> item0 : this.scriptFields.entrySet()) {
@@ -313,7 +320,7 @@ public class Datafeed implements JsonpSerializable {
 		generator.writeKey("delayed_data_check_config");
 		this.delayedDataCheckConfig.serialize(generator, mapper);
 
-		if (ModelTypeHelper.isDefined(this.runtimeMappings)) {
+		if (ApiTypeHelper.isDefined(this.runtimeMappings)) {
 			generator.writeKey("runtime_mappings");
 			generator.writeStartObject();
 			for (Map.Entry<String, RuntimeField> item0 : this.runtimeMappings.entrySet()) {
@@ -337,6 +344,7 @@ public class Datafeed implements JsonpSerializable {
 	/**
 	 * Builder for {@link Datafeed}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Datafeed> {
 		@Nullable
 		private Map<String, Aggregation> aggregations;
@@ -381,11 +389,9 @@ public class Datafeed implements JsonpSerializable {
 		/**
 		 * API name: {@code aggregations}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>aggregations</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>aggregations</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>aggregations</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder aggregations(Map<String, Aggregation> map) {
 			this.aggregations = _mapPutAll(this.aggregations, map);
@@ -445,11 +451,9 @@ public class Datafeed implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code indices}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>indices</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>indices</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder indices(List<String> list) {
 			this.indices = _listAddAll(this.indices, list);
@@ -469,11 +473,9 @@ public class Datafeed implements JsonpSerializable {
 		/**
 		 * API name: {@code indexes}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>indexes</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>indexes</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>indexes</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder indexes(List<String> list) {
 			this.indexes = _listAddAll(this.indexes, list);
@@ -532,11 +534,9 @@ public class Datafeed implements JsonpSerializable {
 		/**
 		 * API name: {@code script_fields}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>scriptFields</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>scriptFields</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>scriptFields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder scriptFields(Map<String, ScriptField> map) {
 			this.scriptFields = _mapPutAll(this.scriptFields, map);
@@ -589,11 +589,9 @@ public class Datafeed implements JsonpSerializable {
 		/**
 		 * API name: {@code runtime_mappings}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>runtimeMappings</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>runtimeMappings</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>runtimeMappings</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder runtimeMappings(Map<String, RuntimeField> map) {
 			this.runtimeMappings = _mapPutAll(this.runtimeMappings, map);

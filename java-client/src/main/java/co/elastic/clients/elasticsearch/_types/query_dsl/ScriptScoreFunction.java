@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -37,6 +37,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.ScriptScoreFunction
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/compound.ts#L68-L70">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ScriptScoreFunction extends ScoreFunctionBase implements FunctionScoreVariant {
 	private final Script script;
@@ -46,7 +53,7 @@ public class ScriptScoreFunction extends ScoreFunctionBase implements FunctionSc
 	private ScriptScoreFunction(Builder builder) {
 		super(builder);
 
-		this.script = ModelTypeHelper.requireNonNull(builder.script, this, "script");
+		this.script = ApiTypeHelper.requireNonNull(builder.script, this, "script");
 
 	}
 
@@ -82,6 +89,7 @@ public class ScriptScoreFunction extends ScoreFunctionBase implements FunctionSc
 	/**
 	 * Builder for {@link ScriptScoreFunction}.
 	 */
+
 	public static class Builder extends ScoreFunctionBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ScriptScoreFunction> {

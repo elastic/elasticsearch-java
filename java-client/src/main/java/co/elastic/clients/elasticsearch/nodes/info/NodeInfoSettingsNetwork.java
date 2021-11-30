@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoSettingsNetwork
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/info/types.ts#L205-L207">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeInfoSettingsNetwork implements JsonpSerializable {
 	private final String host;
@@ -47,7 +54,7 @@ public class NodeInfoSettingsNetwork implements JsonpSerializable {
 
 	private NodeInfoSettingsNetwork(Builder builder) {
 
-		this.host = ModelTypeHelper.requireNonNull(builder.host, this, "host");
+		this.host = ApiTypeHelper.requireNonNull(builder.host, this, "host");
 
 	}
 
@@ -83,6 +90,7 @@ public class NodeInfoSettingsNetwork implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoSettingsNetwork}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoSettingsNetwork> {
 		private String host;
 

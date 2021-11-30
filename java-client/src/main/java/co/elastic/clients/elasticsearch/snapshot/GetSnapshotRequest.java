@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -47,6 +47,14 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.get.Request
+
+/**
+ * Returns information about a snapshot.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/snapshot/get/SnapshotGetRequest.ts#L24-L67">API
+ *      specification</a>
+ */
 
 public class GetSnapshotRequest extends RequestBase {
 	@Nullable
@@ -80,8 +88,8 @@ public class GetSnapshotRequest extends RequestBase {
 		this.includeRepository = builder.includeRepository;
 		this.indexDetails = builder.indexDetails;
 		this.masterTimeout = builder.masterTimeout;
-		this.repository = ModelTypeHelper.requireNonNull(builder.repository, this, "repository");
-		this.snapshot = ModelTypeHelper.unmodifiableRequired(builder.snapshot, this, "snapshot");
+		this.repository = ApiTypeHelper.requireNonNull(builder.repository, this, "repository");
+		this.snapshot = ApiTypeHelper.unmodifiableRequired(builder.snapshot, this, "snapshot");
 		this.verbose = builder.verbose;
 
 	}
@@ -187,6 +195,7 @@ public class GetSnapshotRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetSnapshotRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetSnapshotRequest> {
 		@Nullable
 		private Boolean human;
@@ -297,11 +306,9 @@ public class GetSnapshotRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code snapshot}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>snapshot</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>snapshot</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>snapshot</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder snapshot(List<String> list) {
 			this.snapshot = _listAddAll(this.snapshot, list);

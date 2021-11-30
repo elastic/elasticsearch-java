@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.GeoPolygonPoints
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/geo.ts#L59-L61">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GeoPolygonPoints implements JsonpSerializable {
 	private final List<GeoLocation> points;
@@ -48,7 +55,7 @@ public class GeoPolygonPoints implements JsonpSerializable {
 
 	private GeoPolygonPoints(Builder builder) {
 
-		this.points = ModelTypeHelper.unmodifiableRequired(builder.points, this, "points");
+		this.points = ApiTypeHelper.unmodifiableRequired(builder.points, this, "points");
 
 	}
 
@@ -74,7 +81,7 @@ public class GeoPolygonPoints implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.points)) {
+		if (ApiTypeHelper.isDefined(this.points)) {
 			generator.writeKey("points");
 			generator.writeStartArray();
 			for (GeoLocation item0 : this.points) {
@@ -92,17 +99,16 @@ public class GeoPolygonPoints implements JsonpSerializable {
 	/**
 	 * Builder for {@link GeoPolygonPoints}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GeoPolygonPoints> {
 		private List<GeoLocation> points;
 
 		/**
 		 * Required - API name: {@code points}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>points</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>points</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>points</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder points(List<GeoLocation> list) {
 			this.points = _listAddAll(this.points, list);

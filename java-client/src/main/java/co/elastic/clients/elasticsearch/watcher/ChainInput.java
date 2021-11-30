@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ChainInput
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/_types/Input.ts#L36-L38">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ChainInput implements InputVariant, JsonpSerializable {
 	private final List<Input> inputs;
@@ -47,7 +54,7 @@ public class ChainInput implements InputVariant, JsonpSerializable {
 
 	private ChainInput(Builder builder) {
 
-		this.inputs = ModelTypeHelper.unmodifiableRequired(builder.inputs, this, "inputs");
+		this.inputs = ApiTypeHelper.unmodifiableRequired(builder.inputs, this, "inputs");
 
 	}
 
@@ -81,7 +88,7 @@ public class ChainInput implements InputVariant, JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.inputs)) {
+		if (ApiTypeHelper.isDefined(this.inputs)) {
 			generator.writeKey("inputs");
 			generator.writeStartArray();
 			for (Input item0 : this.inputs) {
@@ -99,17 +106,16 @@ public class ChainInput implements InputVariant, JsonpSerializable {
 	/**
 	 * Builder for {@link ChainInput}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ChainInput> {
 		private List<Input> inputs;
 
 		/**
 		 * Required - API name: {@code inputs}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>inputs</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>inputs</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>inputs</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder inputs(List<Input> list) {
 			this.inputs = _listAddAll(this.inputs, list);

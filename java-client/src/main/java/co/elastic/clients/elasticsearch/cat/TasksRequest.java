@@ -30,7 +30,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -47,6 +47,15 @@ import javax.annotation.Nullable;
 
 // typedef: cat.tasks.Request
 
+/**
+ * Returns information about the tasks currently executing on one or more nodes
+ * in the cluster.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/tasks/CatTasksRequest.ts#L23-L35">API
+ *      specification</a>
+ */
+
 public class TasksRequest extends CatRequestBase {
 	private final List<String> actions;
 
@@ -62,9 +71,9 @@ public class TasksRequest extends CatRequestBase {
 
 	private TasksRequest(Builder builder) {
 
-		this.actions = ModelTypeHelper.unmodifiable(builder.actions);
+		this.actions = ApiTypeHelper.unmodifiable(builder.actions);
 		this.detailed = builder.detailed;
-		this.nodeId = ModelTypeHelper.unmodifiable(builder.nodeId);
+		this.nodeId = ApiTypeHelper.unmodifiable(builder.nodeId);
 		this.parentTask = builder.parentTask;
 
 	}
@@ -113,6 +122,7 @@ public class TasksRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link TasksRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TasksRequest> {
 		@Nullable
 		private List<String> actions;
@@ -132,11 +142,9 @@ public class TasksRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code actions}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>actions</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>actions</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>actions</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder actions(List<String> list) {
 			this.actions = _listAddAll(this.actions, list);
@@ -169,11 +177,9 @@ public class TasksRequest extends CatRequestBase {
 		/**
 		 * API name: {@code node_id}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>nodeId</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>nodeId</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>nodeId</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder nodeId(List<String> list) {
 			this.nodeId = _listAddAll(this.nodeId, list);
@@ -241,10 +247,10 @@ public class TasksRequest extends CatRequestBase {
 				if (request.parentTask != null) {
 					params.put("parent_task", String.valueOf(request.parentTask));
 				}
-				if (ModelTypeHelper.isDefined(request.actions)) {
+				if (ApiTypeHelper.isDefined(request.actions)) {
 					params.put("actions", request.actions.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
-				if (ModelTypeHelper.isDefined(request.nodeId)) {
+				if (ApiTypeHelper.isDefined(request.nodeId)) {
 					params.put("node_id", request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				return params;

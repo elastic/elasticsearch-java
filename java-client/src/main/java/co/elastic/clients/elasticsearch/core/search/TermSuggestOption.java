@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.TermSuggestOption
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search/_types/suggester.ts#L90-L94">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TermSuggestOption implements JsonpSerializable {
 	private final String text;
@@ -54,9 +61,9 @@ public class TermSuggestOption implements JsonpSerializable {
 
 	private TermSuggestOption(Builder builder) {
 
-		this.text = ModelTypeHelper.requireNonNull(builder.text, this, "text");
+		this.text = ApiTypeHelper.requireNonNull(builder.text, this, "text");
 		this.freq = builder.freq;
-		this.score = ModelTypeHelper.requireNonNull(builder.score, this, "score");
+		this.score = ApiTypeHelper.requireNonNull(builder.score, this, "score");
 
 	}
 
@@ -115,6 +122,7 @@ public class TermSuggestOption implements JsonpSerializable {
 	/**
 	 * Builder for {@link TermSuggestOption}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TermSuggestOption> {
 		private String text;
 

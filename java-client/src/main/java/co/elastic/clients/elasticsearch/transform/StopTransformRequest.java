@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -45,6 +45,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform.stop_transform.Request
+
+/**
+ * Stops one or more transforms.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/transform/stop_transform/StopTransformRequest.ts#L24-L76">API
+ *      specification</a>
+ */
 
 public class StopTransformRequest extends RequestBase {
 	@Nullable
@@ -71,7 +79,7 @@ public class StopTransformRequest extends RequestBase {
 		this.allowNoMatch = builder.allowNoMatch;
 		this.force = builder.force;
 		this.timeout = builder.timeout;
-		this.transformId = ModelTypeHelper.requireNonNull(builder.transformId, this, "transformId");
+		this.transformId = ApiTypeHelper.requireNonNull(builder.transformId, this, "transformId");
 		this.waitForCheckpoint = builder.waitForCheckpoint;
 		this.waitForCompletion = builder.waitForCompletion;
 
@@ -82,8 +90,17 @@ public class StopTransformRequest extends RequestBase {
 	}
 
 	/**
-	 * Whether to ignore if a wildcard expression matches no transforms. (This
-	 * includes <code>_all</code> string or when no transforms have been specified)
+	 * Specifies what to do when the request: contains wildcard expressions and
+	 * there are no transforms that match; contains the <code>_all</code> string or
+	 * no identifiers and there are no matches; contains wildcard expressions and
+	 * there are only partial matches.
+	 * <p>
+	 * If it is true, the API returns a successful acknowledgement message when
+	 * there are no matches. When there are only partial matches, the API stops the
+	 * appropriate transforms.
+	 * <p>
+	 * If it is false, the request returns a 404 status code when there are no
+	 * matches or only partial matches.
 	 * <p>
 	 * API name: {@code allow_no_match}
 	 */
@@ -93,7 +110,7 @@ public class StopTransformRequest extends RequestBase {
 	}
 
 	/**
-	 * Whether to force stop a failed transform or not. Default to false
+	 * If it is true, the API forcefully stops the transforms.
 	 * <p>
 	 * API name: {@code force}
 	 */
@@ -103,8 +120,10 @@ public class StopTransformRequest extends RequestBase {
 	}
 
 	/**
-	 * Controls the time to wait until the transform has stopped. Default to 30
-	 * seconds
+	 * Period to wait for a response when <code>wait_for_completion</code> is
+	 * <code>true</code>. If no response is received before the timeout expires, the
+	 * request returns a timeout exception. However, the request continues
+	 * processing and eventually moves the transform to a STOPPED state.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -114,7 +133,9 @@ public class StopTransformRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The id of the transform to stop
+	 * Required - Identifier for the transform. To stop multiple transforms, use a
+	 * comma-separated list or a wildcard expression. To stop all transforms, use
+	 * <code>_all</code> or <code>*</code> as the identifier.
 	 * <p>
 	 * API name: {@code transform_id}
 	 */
@@ -123,8 +144,9 @@ public class StopTransformRequest extends RequestBase {
 	}
 
 	/**
-	 * Whether to wait for the transform to reach a checkpoint before stopping.
-	 * Default to false
+	 * If it is true, the transform does not completely stop until the current
+	 * checkpoint is completed. If it is false, the transform stops as soon as
+	 * possible.
 	 * <p>
 	 * API name: {@code wait_for_checkpoint}
 	 */
@@ -134,8 +156,9 @@ public class StopTransformRequest extends RequestBase {
 	}
 
 	/**
-	 * Whether to wait for the transform to fully stop before returning or not.
-	 * Default to false
+	 * If it is true, the API blocks until the indexer state completely stops. If it
+	 * is false, the API returns immediately and the indexer is stopped
+	 * asynchronously in the background.
 	 * <p>
 	 * API name: {@code wait_for_completion}
 	 */
@@ -149,6 +172,7 @@ public class StopTransformRequest extends RequestBase {
 	/**
 	 * Builder for {@link StopTransformRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StopTransformRequest> {
 		@Nullable
 		private Boolean allowNoMatch;
@@ -168,8 +192,17 @@ public class StopTransformRequest extends RequestBase {
 		private Boolean waitForCompletion;
 
 		/**
-		 * Whether to ignore if a wildcard expression matches no transforms. (This
-		 * includes <code>_all</code> string or when no transforms have been specified)
+		 * Specifies what to do when the request: contains wildcard expressions and
+		 * there are no transforms that match; contains the <code>_all</code> string or
+		 * no identifiers and there are no matches; contains wildcard expressions and
+		 * there are only partial matches.
+		 * <p>
+		 * If it is true, the API returns a successful acknowledgement message when
+		 * there are no matches. When there are only partial matches, the API stops the
+		 * appropriate transforms.
+		 * <p>
+		 * If it is false, the request returns a 404 status code when there are no
+		 * matches or only partial matches.
 		 * <p>
 		 * API name: {@code allow_no_match}
 		 */
@@ -179,7 +212,7 @@ public class StopTransformRequest extends RequestBase {
 		}
 
 		/**
-		 * Whether to force stop a failed transform or not. Default to false
+		 * If it is true, the API forcefully stops the transforms.
 		 * <p>
 		 * API name: {@code force}
 		 */
@@ -189,8 +222,10 @@ public class StopTransformRequest extends RequestBase {
 		}
 
 		/**
-		 * Controls the time to wait until the transform has stopped. Default to 30
-		 * seconds
+		 * Period to wait for a response when <code>wait_for_completion</code> is
+		 * <code>true</code>. If no response is received before the timeout expires, the
+		 * request returns a timeout exception. However, the request continues
+		 * processing and eventually moves the transform to a STOPPED state.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -200,8 +235,10 @@ public class StopTransformRequest extends RequestBase {
 		}
 
 		/**
-		 * Controls the time to wait until the transform has stopped. Default to 30
-		 * seconds
+		 * Period to wait for a response when <code>wait_for_completion</code> is
+		 * <code>true</code>. If no response is received before the timeout expires, the
+		 * request returns a timeout exception. However, the request continues
+		 * processing and eventually moves the transform to a STOPPED state.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -210,7 +247,9 @@ public class StopTransformRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - The id of the transform to stop
+		 * Required - Identifier for the transform. To stop multiple transforms, use a
+		 * comma-separated list or a wildcard expression. To stop all transforms, use
+		 * <code>_all</code> or <code>*</code> as the identifier.
 		 * <p>
 		 * API name: {@code transform_id}
 		 */
@@ -220,8 +259,9 @@ public class StopTransformRequest extends RequestBase {
 		}
 
 		/**
-		 * Whether to wait for the transform to reach a checkpoint before stopping.
-		 * Default to false
+		 * If it is true, the transform does not completely stop until the current
+		 * checkpoint is completed. If it is false, the transform stops as soon as
+		 * possible.
 		 * <p>
 		 * API name: {@code wait_for_checkpoint}
 		 */
@@ -231,8 +271,9 @@ public class StopTransformRequest extends RequestBase {
 		}
 
 		/**
-		 * Whether to wait for the transform to fully stop before returning or not.
-		 * Default to false
+		 * If it is true, the API blocks until the indexer state completely stops. If it
+		 * is false, the API returns immediately and the indexer is stopped
+		 * asynchronously in the background.
 		 * <p>
 		 * API name: {@code wait_for_completion}
 		 */

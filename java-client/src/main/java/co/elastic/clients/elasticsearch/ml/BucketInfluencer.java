@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,6 +43,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.BucketInfluencer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/_types/Bucket.ts#L68-L112">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class BucketInfluencer implements JsonpSerializable {
 	private final double anomalyScore;
@@ -69,18 +76,18 @@ public class BucketInfluencer implements JsonpSerializable {
 
 	private BucketInfluencer(Builder builder) {
 
-		this.anomalyScore = ModelTypeHelper.requireNonNull(builder.anomalyScore, this, "anomalyScore");
-		this.bucketSpan = ModelTypeHelper.requireNonNull(builder.bucketSpan, this, "bucketSpan");
-		this.influencerFieldName = ModelTypeHelper.requireNonNull(builder.influencerFieldName, this,
+		this.anomalyScore = ApiTypeHelper.requireNonNull(builder.anomalyScore, this, "anomalyScore");
+		this.bucketSpan = ApiTypeHelper.requireNonNull(builder.bucketSpan, this, "bucketSpan");
+		this.influencerFieldName = ApiTypeHelper.requireNonNull(builder.influencerFieldName, this,
 				"influencerFieldName");
-		this.initialAnomalyScore = ModelTypeHelper.requireNonNull(builder.initialAnomalyScore, this,
+		this.initialAnomalyScore = ApiTypeHelper.requireNonNull(builder.initialAnomalyScore, this,
 				"initialAnomalyScore");
-		this.isInterim = ModelTypeHelper.requireNonNull(builder.isInterim, this, "isInterim");
-		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
-		this.probability = ModelTypeHelper.requireNonNull(builder.probability, this, "probability");
-		this.rawAnomalyScore = ModelTypeHelper.requireNonNull(builder.rawAnomalyScore, this, "rawAnomalyScore");
-		this.resultType = ModelTypeHelper.requireNonNull(builder.resultType, this, "resultType");
-		this.timestamp = ModelTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+		this.isInterim = ApiTypeHelper.requireNonNull(builder.isInterim, this, "isInterim");
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.probability = ApiTypeHelper.requireNonNull(builder.probability, this, "probability");
+		this.rawAnomalyScore = ApiTypeHelper.requireNonNull(builder.rawAnomalyScore, this, "rawAnomalyScore");
+		this.resultType = ApiTypeHelper.requireNonNull(builder.resultType, this, "resultType");
+		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
 
 	}
 
@@ -235,6 +242,7 @@ public class BucketInfluencer implements JsonpSerializable {
 	/**
 	 * Builder for {@link BucketInfluencer}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<BucketInfluencer> {
 		private Double anomalyScore;
 

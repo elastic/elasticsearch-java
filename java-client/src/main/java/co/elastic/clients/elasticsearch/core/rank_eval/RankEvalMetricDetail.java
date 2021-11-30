@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,6 +43,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.RankEvalMetricDetail
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/rank_eval/types.ts#L125-L134">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RankEvalMetricDetail implements JsonpSerializable {
 	private final double metricScore;
@@ -57,10 +64,10 @@ public class RankEvalMetricDetail implements JsonpSerializable {
 
 	private RankEvalMetricDetail(Builder builder) {
 
-		this.metricScore = ModelTypeHelper.requireNonNull(builder.metricScore, this, "metricScore");
-		this.unratedDocs = ModelTypeHelper.unmodifiableRequired(builder.unratedDocs, this, "unratedDocs");
-		this.hits = ModelTypeHelper.unmodifiableRequired(builder.hits, this, "hits");
-		this.metricDetails = ModelTypeHelper.unmodifiableRequired(builder.metricDetails, this, "metricDetails");
+		this.metricScore = ApiTypeHelper.requireNonNull(builder.metricScore, this, "metricScore");
+		this.unratedDocs = ApiTypeHelper.unmodifiableRequired(builder.unratedDocs, this, "unratedDocs");
+		this.hits = ApiTypeHelper.unmodifiableRequired(builder.hits, this, "hits");
+		this.metricDetails = ApiTypeHelper.unmodifiableRequired(builder.metricDetails, this, "metricDetails");
 
 	}
 
@@ -125,7 +132,7 @@ public class RankEvalMetricDetail implements JsonpSerializable {
 		generator.writeKey("metric_score");
 		generator.write(this.metricScore);
 
-		if (ModelTypeHelper.isDefined(this.unratedDocs)) {
+		if (ApiTypeHelper.isDefined(this.unratedDocs)) {
 			generator.writeKey("unrated_docs");
 			generator.writeStartArray();
 			for (UnratedDocument item0 : this.unratedDocs) {
@@ -135,7 +142,7 @@ public class RankEvalMetricDetail implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.hits)) {
+		if (ApiTypeHelper.isDefined(this.hits)) {
 			generator.writeKey("hits");
 			generator.writeStartArray();
 			for (RankEvalHitItem item0 : this.hits) {
@@ -145,7 +152,7 @@ public class RankEvalMetricDetail implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.metricDetails)) {
+		if (ApiTypeHelper.isDefined(this.metricDetails)) {
 			generator.writeKey("metric_details");
 			generator.writeStartObject();
 			for (Map.Entry<String, Map<String, JsonData>> item0 : this.metricDetails.entrySet()) {
@@ -172,6 +179,7 @@ public class RankEvalMetricDetail implements JsonpSerializable {
 	/**
 	 * Builder for {@link RankEvalMetricDetail}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RankEvalMetricDetail> {
 		private Double metricScore;
 
@@ -199,11 +207,9 @@ public class RankEvalMetricDetail implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code unrated_docs}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>unratedDocs</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>unratedDocs</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>unratedDocs</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder unratedDocs(List<UnratedDocument> list) {
 			this.unratedDocs = _listAddAll(this.unratedDocs, list);
@@ -243,11 +249,9 @@ public class RankEvalMetricDetail implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code hits}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>hits</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>hits</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>hits</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder hits(List<RankEvalHitItem> list) {
 			this.hits = _listAddAll(this.hits, list);
@@ -287,11 +291,9 @@ public class RankEvalMetricDetail implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code metric_details}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>metricDetails</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>metricDetails</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>metricDetails</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder metricDetails(Map<String, Map<String, JsonData>> map) {
 			this.metricDetails = _mapPutAll(this.metricDetails, map);

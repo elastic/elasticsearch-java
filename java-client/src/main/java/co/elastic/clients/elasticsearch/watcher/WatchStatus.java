@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.WatchStatus
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/_types/Watch.ts#L49-L56">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class WatchStatus implements JsonpSerializable {
 	private final Map<String, ActionStatus> actions;
@@ -62,11 +69,11 @@ public class WatchStatus implements JsonpSerializable {
 
 	private WatchStatus(Builder builder) {
 
-		this.actions = ModelTypeHelper.unmodifiableRequired(builder.actions, this, "actions");
+		this.actions = ApiTypeHelper.unmodifiableRequired(builder.actions, this, "actions");
 		this.lastChecked = builder.lastChecked;
 		this.lastMetCondition = builder.lastMetCondition;
-		this.state = ModelTypeHelper.requireNonNull(builder.state, this, "state");
-		this.version = ModelTypeHelper.requireNonNull(builder.version, this, "version");
+		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
+		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
 		this.executionState = builder.executionState;
 
 	}
@@ -131,7 +138,7 @@ public class WatchStatus implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.actions)) {
+		if (ApiTypeHelper.isDefined(this.actions)) {
 			generator.writeKey("actions");
 			generator.writeStartObject();
 			for (Map.Entry<String, ActionStatus> item0 : this.actions.entrySet()) {
@@ -171,6 +178,7 @@ public class WatchStatus implements JsonpSerializable {
 	/**
 	 * Builder for {@link WatchStatus}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WatchStatus> {
 		private Map<String, ActionStatus> actions;
 
@@ -190,11 +198,9 @@ public class WatchStatus implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code actions}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>actions</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>actions</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>actions</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder actions(Map<String, ActionStatus> map) {
 			this.actions = _mapPutAll(this.actions, map);

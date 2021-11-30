@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,6 +43,14 @@ import javax.annotation.Nullable;
 
 // typedef: ccr.pause_auto_follow_pattern.Request
 
+/**
+ * Pauses an auto-follow pattern
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ccr/pause_auto_follow_pattern/PauseAutoFollowPatternRequest.ts#L23-L32">API
+ *      specification</a>
+ */
+
 public class PauseAutoFollowPatternRequest extends RequestBase {
 	private final String name;
 
@@ -50,7 +58,7 @@ public class PauseAutoFollowPatternRequest extends RequestBase {
 
 	private PauseAutoFollowPatternRequest(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
@@ -73,6 +81,7 @@ public class PauseAutoFollowPatternRequest extends RequestBase {
 	/**
 	 * Builder for {@link PauseAutoFollowPatternRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PauseAutoFollowPatternRequest> {
 		private String name;
 

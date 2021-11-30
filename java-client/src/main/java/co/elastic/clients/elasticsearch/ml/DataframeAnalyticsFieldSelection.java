@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsFieldSelection
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/_types/DataframeAnalytics.ts#L54-L67">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeAnalyticsFieldSelection implements JsonpSerializable {
 	private final boolean isIncluded;
@@ -61,11 +68,11 @@ public class DataframeAnalyticsFieldSelection implements JsonpSerializable {
 
 	private DataframeAnalyticsFieldSelection(Builder builder) {
 
-		this.isIncluded = ModelTypeHelper.requireNonNull(builder.isIncluded, this, "isIncluded");
-		this.isRequired = ModelTypeHelper.requireNonNull(builder.isRequired, this, "isRequired");
+		this.isIncluded = ApiTypeHelper.requireNonNull(builder.isIncluded, this, "isIncluded");
+		this.isRequired = ApiTypeHelper.requireNonNull(builder.isRequired, this, "isRequired");
 		this.featureType = builder.featureType;
-		this.mappingTypes = ModelTypeHelper.unmodifiableRequired(builder.mappingTypes, this, "mappingTypes");
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.mappingTypes = ApiTypeHelper.unmodifiableRequired(builder.mappingTypes, this, "mappingTypes");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.reason = builder.reason;
 
 	}
@@ -154,7 +161,7 @@ public class DataframeAnalyticsFieldSelection implements JsonpSerializable {
 			generator.write(this.featureType);
 
 		}
-		if (ModelTypeHelper.isDefined(this.mappingTypes)) {
+		if (ApiTypeHelper.isDefined(this.mappingTypes)) {
 			generator.writeKey("mapping_types");
 			generator.writeStartArray();
 			for (String item0 : this.mappingTypes) {
@@ -180,6 +187,7 @@ public class DataframeAnalyticsFieldSelection implements JsonpSerializable {
 	/**
 	 * Builder for {@link DataframeAnalyticsFieldSelection}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframeAnalyticsFieldSelection> {
 		private Boolean isIncluded;
 
@@ -231,11 +239,9 @@ public class DataframeAnalyticsFieldSelection implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code mapping_types}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>mappingTypes</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>mappingTypes</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>mappingTypes</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder mappingTypes(List<String> list) {
 			this.mappingTypes = _listAddAll(this.mappingTypes, list);

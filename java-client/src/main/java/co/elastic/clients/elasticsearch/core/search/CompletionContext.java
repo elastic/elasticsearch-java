@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.CompletionContext
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search/_types/suggester.ts#L124-L131">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CompletionContext implements JsonpSerializable {
 	@Nullable
@@ -62,8 +69,8 @@ public class CompletionContext implements JsonpSerializable {
 	private CompletionContext(Builder builder) {
 
 		this.boost = builder.boost;
-		this.context = ModelTypeHelper.requireNonNull(builder.context, this, "context");
-		this.neighbours = ModelTypeHelper.unmodifiable(builder.neighbours);
+		this.context = ApiTypeHelper.requireNonNull(builder.context, this, "context");
+		this.neighbours = ApiTypeHelper.unmodifiable(builder.neighbours);
 		this.precision = builder.precision;
 		this.prefix = builder.prefix;
 
@@ -130,7 +137,7 @@ public class CompletionContext implements JsonpSerializable {
 		generator.writeKey("context");
 		this.context.serialize(generator, mapper);
 
-		if (ModelTypeHelper.isDefined(this.neighbours)) {
+		if (ApiTypeHelper.isDefined(this.neighbours)) {
 			generator.writeKey("neighbours");
 			generator.writeStartArray();
 			for (GeoHashPrecision item0 : this.neighbours) {
@@ -158,6 +165,7 @@ public class CompletionContext implements JsonpSerializable {
 	/**
 	 * Builder for {@link CompletionContext}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CompletionContext> {
 		@Nullable
 		private Double boost;
@@ -199,11 +207,9 @@ public class CompletionContext implements JsonpSerializable {
 		/**
 		 * API name: {@code neighbours}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>neighbours</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>neighbours</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>neighbours</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder neighbours(List<GeoHashPrecision> list) {
 			this.neighbours = _listAddAll(this.neighbours, list);

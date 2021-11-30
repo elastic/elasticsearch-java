@@ -34,7 +34,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -45,6 +45,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.start_datafeed.Request
+
+/**
+ * Starts one or more datafeeds.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/start_datafeed/MlStartDatafeedRequest.ts#L24-L42">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class StartDatafeedRequest extends RequestBase implements JsonpSerializable {
 	private final String datafeedId;
@@ -62,7 +70,7 @@ public class StartDatafeedRequest extends RequestBase implements JsonpSerializab
 
 	private StartDatafeedRequest(Builder builder) {
 
-		this.datafeedId = ModelTypeHelper.requireNonNull(builder.datafeedId, this, "datafeedId");
+		this.datafeedId = ApiTypeHelper.requireNonNull(builder.datafeedId, this, "datafeedId");
 		this.end = builder.end;
 		this.start = builder.start;
 		this.timeout = builder.timeout;
@@ -140,6 +148,7 @@ public class StartDatafeedRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Builder for {@link StartDatafeedRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StartDatafeedRequest> {
 		private String datafeedId;
 

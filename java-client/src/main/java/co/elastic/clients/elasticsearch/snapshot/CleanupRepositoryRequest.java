@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -44,6 +44,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.cleanup_repository.Request
+
+/**
+ * Removes stale data from repository.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/snapshot/cleanup_repository/SnapshotCleanupRepositoryRequest.ts#L24-L38">API
+ *      specification</a>
+ */
 
 public class CleanupRepositoryRequest extends RequestBase {
 	@Nullable
@@ -59,7 +67,7 @@ public class CleanupRepositoryRequest extends RequestBase {
 	private CleanupRepositoryRequest(Builder builder) {
 
 		this.masterTimeout = builder.masterTimeout;
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.timeout = builder.timeout;
 
 	}
@@ -102,6 +110,7 @@ public class CleanupRepositoryRequest extends RequestBase {
 	/**
 	 * Builder for {@link CleanupRepositoryRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CleanupRepositoryRequest> {
 		@Nullable
 		private Time masterTimeout;

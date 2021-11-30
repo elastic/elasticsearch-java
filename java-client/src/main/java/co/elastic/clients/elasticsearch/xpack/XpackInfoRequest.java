@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -46,6 +46,14 @@ import javax.annotation.Nullable;
 
 // typedef: xpack.info.Request
 
+/**
+ * Retrieves information about the installed X-Pack features.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/xpack/info/XPackInfoRequest.ts#L22-L31">API
+ *      specification</a>
+ */
+
 public class XpackInfoRequest extends RequestBase {
 	private final List<String> categories;
 
@@ -53,7 +61,7 @@ public class XpackInfoRequest extends RequestBase {
 
 	private XpackInfoRequest(Builder builder) {
 
-		this.categories = ModelTypeHelper.unmodifiable(builder.categories);
+		this.categories = ApiTypeHelper.unmodifiable(builder.categories);
 
 	}
 
@@ -76,6 +84,7 @@ public class XpackInfoRequest extends RequestBase {
 	/**
 	 * Builder for {@link XpackInfoRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<XpackInfoRequest> {
 		@Nullable
 		private List<String> categories;
@@ -86,11 +95,9 @@ public class XpackInfoRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code categories}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>categories</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>categories</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>categories</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder categories(List<String> list) {
 			this.categories = _listAddAll(this.categories, list);
@@ -146,7 +153,7 @@ public class XpackInfoRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (ModelTypeHelper.isDefined(request.categories)) {
+				if (ApiTypeHelper.isDefined(request.categories)) {
 					params.put("categories", request.categories.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				return params;

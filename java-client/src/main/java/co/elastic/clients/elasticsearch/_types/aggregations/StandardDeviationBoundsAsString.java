@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.StandardDeviationBoundsAsString
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L255-L262">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class StandardDeviationBoundsAsString implements JsonpSerializable {
 	private final String upper;
@@ -57,12 +64,12 @@ public class StandardDeviationBoundsAsString implements JsonpSerializable {
 
 	private StandardDeviationBoundsAsString(Builder builder) {
 
-		this.upper = ModelTypeHelper.requireNonNull(builder.upper, this, "upper");
-		this.lower = ModelTypeHelper.requireNonNull(builder.lower, this, "lower");
-		this.upperPopulation = ModelTypeHelper.requireNonNull(builder.upperPopulation, this, "upperPopulation");
-		this.lowerPopulation = ModelTypeHelper.requireNonNull(builder.lowerPopulation, this, "lowerPopulation");
-		this.upperSampling = ModelTypeHelper.requireNonNull(builder.upperSampling, this, "upperSampling");
-		this.lowerSampling = ModelTypeHelper.requireNonNull(builder.lowerSampling, this, "lowerSampling");
+		this.upper = ApiTypeHelper.requireNonNull(builder.upper, this, "upper");
+		this.lower = ApiTypeHelper.requireNonNull(builder.lower, this, "lower");
+		this.upperPopulation = ApiTypeHelper.requireNonNull(builder.upperPopulation, this, "upperPopulation");
+		this.lowerPopulation = ApiTypeHelper.requireNonNull(builder.lowerPopulation, this, "lowerPopulation");
+		this.upperSampling = ApiTypeHelper.requireNonNull(builder.upperSampling, this, "upperSampling");
+		this.lowerSampling = ApiTypeHelper.requireNonNull(builder.lowerSampling, this, "lowerSampling");
 
 	}
 
@@ -149,6 +156,7 @@ public class StandardDeviationBoundsAsString implements JsonpSerializable {
 	/**
 	 * Builder for {@link StandardDeviationBoundsAsString}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StandardDeviationBoundsAsString> {
 		private String upper;
 

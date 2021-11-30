@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.query_dsl.RankFeatureFunctionSigmoid
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/specialized.ts#L151-L154">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RankFeatureFunctionSigmoid extends RankFeatureFunction implements JsonpSerializable {
 	private final float pivot;
@@ -48,8 +55,8 @@ public class RankFeatureFunctionSigmoid extends RankFeatureFunction implements J
 
 	private RankFeatureFunctionSigmoid(Builder builder) {
 
-		this.pivot = ModelTypeHelper.requireNonNull(builder.pivot, this, "pivot");
-		this.exponent = ModelTypeHelper.requireNonNull(builder.exponent, this, "exponent");
+		this.pivot = ApiTypeHelper.requireNonNull(builder.pivot, this, "pivot");
+		this.exponent = ApiTypeHelper.requireNonNull(builder.exponent, this, "exponent");
 
 	}
 
@@ -95,6 +102,7 @@ public class RankFeatureFunctionSigmoid extends RankFeatureFunction implements J
 	/**
 	 * Builder for {@link RankFeatureFunctionSigmoid}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RankFeatureFunctionSigmoid> {
 		private Float pivot;
 

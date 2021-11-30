@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.SlackDynamicAttachment
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/_types/Actions.ts#L104-L107">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SlackDynamicAttachment implements JsonpSerializable {
 	private final SlackAttachment attachmentTemplate;
@@ -49,9 +56,8 @@ public class SlackDynamicAttachment implements JsonpSerializable {
 
 	private SlackDynamicAttachment(Builder builder) {
 
-		this.attachmentTemplate = ModelTypeHelper.requireNonNull(builder.attachmentTemplate, this,
-				"attachmentTemplate");
-		this.listPath = ModelTypeHelper.requireNonNull(builder.listPath, this, "listPath");
+		this.attachmentTemplate = ApiTypeHelper.requireNonNull(builder.attachmentTemplate, this, "attachmentTemplate");
+		this.listPath = ApiTypeHelper.requireNonNull(builder.listPath, this, "listPath");
 
 	}
 
@@ -97,6 +103,7 @@ public class SlackDynamicAttachment implements JsonpSerializable {
 	/**
 	 * Builder for {@link SlackDynamicAttachment}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SlackDynamicAttachment> {
 		private SlackAttachment attachmentTemplate;
 

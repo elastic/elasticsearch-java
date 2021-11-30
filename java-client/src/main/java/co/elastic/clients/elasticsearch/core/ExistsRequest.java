@@ -35,7 +35,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.BooleanEndpoint;
 import co.elastic.clients.transport.endpoints.BooleanResponse;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -51,6 +51,14 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: _global.exists.Request
+
+/**
+ * Returns information about whether a document exists in an index.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/exists/DocumentExistsRequest.ts#L32-L55">API
+ *      specification</a>
+ */
 
 public class ExistsRequest extends RequestBase {
 	@Nullable
@@ -92,15 +100,15 @@ public class ExistsRequest extends RequestBase {
 	private ExistsRequest(Builder builder) {
 
 		this.source = builder.source;
-		this.sourceExcludes = ModelTypeHelper.unmodifiable(builder.sourceExcludes);
-		this.sourceIncludes = ModelTypeHelper.unmodifiable(builder.sourceIncludes);
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.sourceExcludes = ApiTypeHelper.unmodifiable(builder.sourceExcludes);
+		this.sourceIncludes = ApiTypeHelper.unmodifiable(builder.sourceIncludes);
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.preference = builder.preference;
 		this.realtime = builder.realtime;
 		this.refresh = builder.refresh;
 		this.routing = builder.routing;
-		this.storedFields = ModelTypeHelper.unmodifiable(builder.storedFields);
+		this.storedFields = ApiTypeHelper.unmodifiable(builder.storedFields);
 		this.type = builder.type;
 		this.version = builder.version;
 		this.versionType = builder.versionType;
@@ -244,6 +252,7 @@ public class ExistsRequest extends RequestBase {
 	/**
 	 * Builder for {@link ExistsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExistsRequest> {
 		@Nullable
 		private SourceConfigParam source;
@@ -308,11 +317,9 @@ public class ExistsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code _source_excludes}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>sourceExcludes</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>sourceExcludes</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>sourceExcludes</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder sourceExcludes(List<String> list) {
 			this.sourceExcludes = _listAddAll(this.sourceExcludes, list);
@@ -336,11 +343,9 @@ public class ExistsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code _source_includes}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>sourceIncludes</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>sourceIncludes</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>sourceIncludes</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder sourceIncludes(List<String> list) {
 			this.sourceIncludes = _listAddAll(this.sourceIncludes, list);
@@ -425,11 +430,9 @@ public class ExistsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code stored_fields}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>storedFields</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>storedFields</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>storedFields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder storedFields(List<String> list) {
 			this.storedFields = _listAddAll(this.storedFields, list);
@@ -554,7 +557,7 @@ public class ExistsRequest extends RequestBase {
 				if (request.versionType != null) {
 					params.put("version_type", request.versionType.jsonValue());
 				}
-				if (ModelTypeHelper.isDefined(request.storedFields)) {
+				if (ApiTypeHelper.isDefined(request.storedFields)) {
 					params.put("stored_fields",
 							request.storedFields.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
@@ -567,11 +570,11 @@ public class ExistsRequest extends RequestBase {
 				if (request.source != null) {
 					params.put("_source", request.source._toJsonString());
 				}
-				if (ModelTypeHelper.isDefined(request.sourceExcludes)) {
+				if (ApiTypeHelper.isDefined(request.sourceExcludes)) {
 					params.put("_source_excludes",
 							request.sourceExcludes.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
-				if (ModelTypeHelper.isDefined(request.sourceIncludes)) {
+				if (ApiTypeHelper.isDefined(request.sourceIncludes)) {
 					params.put("_source_includes",
 							request.sourceIncludes.stream().map(v -> v).collect(Collectors.joining(",")));
 				}

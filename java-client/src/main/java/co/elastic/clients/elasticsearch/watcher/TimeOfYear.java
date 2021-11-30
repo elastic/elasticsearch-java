@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.TimeOfYear
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/_types/Schedule.ts#L121-L125">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TimeOfYear implements JsonpSerializable {
 	private final List<String> at;
@@ -53,9 +60,9 @@ public class TimeOfYear implements JsonpSerializable {
 
 	private TimeOfYear(Builder builder) {
 
-		this.at = ModelTypeHelper.unmodifiableRequired(builder.at, this, "at");
-		this.int_ = ModelTypeHelper.unmodifiableRequired(builder.int_, this, "int_");
-		this.on = ModelTypeHelper.unmodifiableRequired(builder.on, this, "on");
+		this.at = ApiTypeHelper.unmodifiableRequired(builder.at, this, "at");
+		this.int_ = ApiTypeHelper.unmodifiableRequired(builder.int_, this, "int_");
+		this.on = ApiTypeHelper.unmodifiableRequired(builder.on, this, "on");
 
 	}
 
@@ -95,7 +102,7 @@ public class TimeOfYear implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.at)) {
+		if (ApiTypeHelper.isDefined(this.at)) {
 			generator.writeKey("at");
 			generator.writeStartArray();
 			for (String item0 : this.at) {
@@ -105,7 +112,7 @@ public class TimeOfYear implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.int_)) {
+		if (ApiTypeHelper.isDefined(this.int_)) {
 			generator.writeKey("int");
 			generator.writeStartArray();
 			for (Month item0 : this.int_) {
@@ -114,7 +121,7 @@ public class TimeOfYear implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.on)) {
+		if (ApiTypeHelper.isDefined(this.on)) {
 			generator.writeKey("on");
 			generator.writeStartArray();
 			for (Integer item0 : this.on) {
@@ -132,6 +139,7 @@ public class TimeOfYear implements JsonpSerializable {
 	/**
 	 * Builder for {@link TimeOfYear}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TimeOfYear> {
 		private List<String> at;
 
@@ -142,11 +150,9 @@ public class TimeOfYear implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code at}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>at</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset <code>at</code>
-		 * to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>at</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder at(List<String> list) {
 			this.at = _listAddAll(this.at, list);
@@ -166,11 +172,9 @@ public class TimeOfYear implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code int}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>int_</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>int_</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>int_</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder int_(List<Month> list) {
 			this.int_ = _listAddAll(this.int_, list);
@@ -190,11 +194,9 @@ public class TimeOfYear implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code on}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>on</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset <code>on</code>
-		 * to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>on</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder on(List<Integer> list) {
 			this.on = _listAddAll(this.on, list);

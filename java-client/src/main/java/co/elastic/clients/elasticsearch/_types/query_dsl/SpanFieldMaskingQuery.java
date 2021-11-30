@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,6 +37,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SpanFieldMaskingQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/span.ts#L30-L33">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SpanFieldMaskingQuery extends QueryBase implements SpanQueryVariant, QueryVariant {
 	private final String field;
@@ -48,8 +55,8 @@ public class SpanFieldMaskingQuery extends QueryBase implements SpanQueryVariant
 	private SpanFieldMaskingQuery(Builder builder) {
 		super(builder);
 
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
-		this.query = ModelTypeHelper.requireNonNull(builder.query, this, "query");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 
 	}
 
@@ -103,6 +110,7 @@ public class SpanFieldMaskingQuery extends QueryBase implements SpanQueryVariant
 	/**
 	 * Builder for {@link SpanFieldMaskingQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<SpanFieldMaskingQuery> {

@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform.get_transform_stats.TransformStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/transform/get_transform_stats/types.ts#L25-L32">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TransformStats implements JsonpSerializable {
 	private final Checkpointing checkpointing;
@@ -60,12 +67,12 @@ public class TransformStats implements JsonpSerializable {
 
 	private TransformStats(Builder builder) {
 
-		this.checkpointing = ModelTypeHelper.requireNonNull(builder.checkpointing, this, "checkpointing");
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.checkpointing = ApiTypeHelper.requireNonNull(builder.checkpointing, this, "checkpointing");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.node = builder.node;
 		this.reason = builder.reason;
-		this.state = ModelTypeHelper.requireNonNull(builder.state, this, "state");
-		this.stats = ModelTypeHelper.requireNonNull(builder.stats, this, "stats");
+		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
+		this.stats = ApiTypeHelper.requireNonNull(builder.stats, this, "stats");
 
 	}
 
@@ -157,6 +164,7 @@ public class TransformStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link TransformStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TransformStats> {
 		private Checkpointing checkpointing;
 

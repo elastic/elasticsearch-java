@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.HttpInputAuthentication
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/_types/Input.ts#L52-L54">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class HttpInputAuthentication implements JsonpSerializable {
 	private final HttpInputBasicAuthentication basic;
@@ -46,7 +53,7 @@ public class HttpInputAuthentication implements JsonpSerializable {
 
 	private HttpInputAuthentication(Builder builder) {
 
-		this.basic = ModelTypeHelper.requireNonNull(builder.basic, this, "basic");
+		this.basic = ApiTypeHelper.requireNonNull(builder.basic, this, "basic");
 
 	}
 
@@ -82,6 +89,7 @@ public class HttpInputAuthentication implements JsonpSerializable {
 	/**
 	 * Builder for {@link HttpInputAuthentication}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HttpInputAuthentication> {
 		private HttpInputBasicAuthentication basic;
 

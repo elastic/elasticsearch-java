@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.preview_data_frame_analytics.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/preview_data_frame_analytics/MlPreviewDataFrameAnalyticsResponse.ts#L23-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PreviewDataFrameAnalyticsResponse implements JsonpSerializable {
 	private final List<Map<String, String>> featureValues;
@@ -49,7 +56,7 @@ public class PreviewDataFrameAnalyticsResponse implements JsonpSerializable {
 
 	private PreviewDataFrameAnalyticsResponse(Builder builder) {
 
-		this.featureValues = ModelTypeHelper.unmodifiableRequired(builder.featureValues, this, "featureValues");
+		this.featureValues = ApiTypeHelper.unmodifiableRequired(builder.featureValues, this, "featureValues");
 
 	}
 
@@ -80,7 +87,7 @@ public class PreviewDataFrameAnalyticsResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.featureValues)) {
+		if (ApiTypeHelper.isDefined(this.featureValues)) {
 			generator.writeKey("feature_values");
 			generator.writeStartArray();
 			for (Map<String, String> item0 : this.featureValues) {
@@ -106,6 +113,7 @@ public class PreviewDataFrameAnalyticsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link PreviewDataFrameAnalyticsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PreviewDataFrameAnalyticsResponse> {
 		private List<Map<String, String>> featureValues;
 
@@ -116,11 +124,9 @@ public class PreviewDataFrameAnalyticsResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code feature_values}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>featureValues</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>featureValues</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>featureValues</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder featureValues(List<Map<String, String>> list) {
 			this.featureValues = _listAddAll(this.featureValues, list);

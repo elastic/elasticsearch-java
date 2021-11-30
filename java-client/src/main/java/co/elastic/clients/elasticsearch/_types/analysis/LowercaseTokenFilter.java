@@ -36,6 +36,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.LowercaseTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/token_filters.ts#L253-L256">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class LowercaseTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	@Nullable
@@ -87,6 +94,7 @@ public class LowercaseTokenFilter extends TokenFilterBase implements TokenFilter
 	/**
 	 * Builder for {@link LowercaseTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<LowercaseTokenFilter> {

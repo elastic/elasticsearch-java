@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.resolve_index.ResolveIndexDataStreamsItem
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/resolve_index/ResolveIndexResponse.ts#L42-L46">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ResolveIndexDataStreamsItem implements JsonpSerializable {
 	private final String name;
@@ -52,9 +59,9 @@ public class ResolveIndexDataStreamsItem implements JsonpSerializable {
 
 	private ResolveIndexDataStreamsItem(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
-		this.timestampField = ModelTypeHelper.requireNonNull(builder.timestampField, this, "timestampField");
-		this.backingIndices = ModelTypeHelper.unmodifiableRequired(builder.backingIndices, this, "backingIndices");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.timestampField = ApiTypeHelper.requireNonNull(builder.timestampField, this, "timestampField");
+		this.backingIndices = ApiTypeHelper.unmodifiableRequired(builder.backingIndices, this, "backingIndices");
 
 	}
 
@@ -100,7 +107,7 @@ public class ResolveIndexDataStreamsItem implements JsonpSerializable {
 		generator.writeKey("timestamp_field");
 		generator.write(this.timestampField);
 
-		if (ModelTypeHelper.isDefined(this.backingIndices)) {
+		if (ApiTypeHelper.isDefined(this.backingIndices)) {
 			generator.writeKey("backing_indices");
 			generator.writeStartArray();
 			for (String item0 : this.backingIndices) {
@@ -118,6 +125,7 @@ public class ResolveIndexDataStreamsItem implements JsonpSerializable {
 	/**
 	 * Builder for {@link ResolveIndexDataStreamsItem}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ResolveIndexDataStreamsItem> {
 		private String name;
 
@@ -144,11 +152,9 @@ public class ResolveIndexDataStreamsItem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code backing_indices}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>backingIndices</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>backingIndices</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>backingIndices</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder backingIndices(List<String> list) {
 			this.backingIndices = _listAddAll(this.backingIndices, list);

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.RefreshStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Stats.ts#L167-L174">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RefreshStats implements JsonpSerializable {
 	private final long externalTotal;
@@ -59,13 +66,13 @@ public class RefreshStats implements JsonpSerializable {
 
 	private RefreshStats(Builder builder) {
 
-		this.externalTotal = ModelTypeHelper.requireNonNull(builder.externalTotal, this, "externalTotal");
-		this.externalTotalTimeInMillis = ModelTypeHelper.requireNonNull(builder.externalTotalTimeInMillis, this,
+		this.externalTotal = ApiTypeHelper.requireNonNull(builder.externalTotal, this, "externalTotal");
+		this.externalTotalTimeInMillis = ApiTypeHelper.requireNonNull(builder.externalTotalTimeInMillis, this,
 				"externalTotalTimeInMillis");
-		this.listeners = ModelTypeHelper.requireNonNull(builder.listeners, this, "listeners");
-		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
+		this.listeners = ApiTypeHelper.requireNonNull(builder.listeners, this, "listeners");
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
 		this.totalTime = builder.totalTime;
-		this.totalTimeInMillis = ModelTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
+		this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
 
 	}
 
@@ -154,6 +161,7 @@ public class RefreshStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link RefreshStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RefreshStats> {
 		private Long externalTotal;
 

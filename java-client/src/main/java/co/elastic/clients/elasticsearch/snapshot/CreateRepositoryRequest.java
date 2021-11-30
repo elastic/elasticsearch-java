@@ -34,7 +34,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -47,6 +47,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.create_repository.Request
+
+/**
+ * Creates a repository.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/snapshot/create_repository/SnapshotCreateRepositoryRequest.ts#L28-L49">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CreateRepositoryRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -72,11 +80,11 @@ public class CreateRepositoryRequest extends RequestBase implements JsonpSeriali
 	private CreateRepositoryRequest(Builder builder) {
 
 		this.masterTimeout = builder.masterTimeout;
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.repository = builder.repository;
-		this.settings = ModelTypeHelper.requireNonNull(builder.settings, this, "settings");
+		this.settings = ApiTypeHelper.requireNonNull(builder.settings, this, "settings");
 		this.timeout = builder.timeout;
-		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 		this.verify = builder.verify;
 
 	}
@@ -175,6 +183,7 @@ public class CreateRepositoryRequest extends RequestBase implements JsonpSeriali
 	/**
 	 * Builder for {@link CreateRepositoryRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CreateRepositoryRequest> {
 		@Nullable
 		private Time masterTimeout;

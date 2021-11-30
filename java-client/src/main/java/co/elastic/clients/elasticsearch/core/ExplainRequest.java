@@ -36,7 +36,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -51,6 +51,14 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: _global.explain.Request
+
+/**
+ * Returns information about why a specific matches (or doesn't match) a query.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/explain/ExplainRequest.ts#L26-L54">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ExplainRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -101,20 +109,20 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 	private ExplainRequest(Builder builder) {
 
 		this.source = builder.source;
-		this.sourceExcludes = ModelTypeHelper.unmodifiable(builder.sourceExcludes);
-		this.sourceIncludes = ModelTypeHelper.unmodifiable(builder.sourceIncludes);
+		this.sourceExcludes = ApiTypeHelper.unmodifiable(builder.sourceExcludes);
+		this.sourceIncludes = ApiTypeHelper.unmodifiable(builder.sourceIncludes);
 		this.analyzeWildcard = builder.analyzeWildcard;
 		this.analyzer = builder.analyzer;
 		this.defaultOperator = builder.defaultOperator;
 		this.df = builder.df;
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.lenient = builder.lenient;
 		this.preference = builder.preference;
 		this.q = builder.q;
 		this.query = builder.query;
 		this.routing = builder.routing;
-		this.storedFields = ModelTypeHelper.unmodifiable(builder.storedFields);
+		this.storedFields = ApiTypeHelper.unmodifiable(builder.storedFields);
 		this.type = builder.type;
 
 	}
@@ -304,6 +312,7 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link ExplainRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExplainRequest> {
 		@Nullable
 		private SourceConfigParam source;
@@ -377,11 +386,9 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _source_excludes}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>sourceExcludes</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>sourceExcludes</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>sourceExcludes</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder sourceExcludes(List<String> list) {
 			this.sourceExcludes = _listAddAll(this.sourceExcludes, list);
@@ -405,11 +412,9 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _source_includes}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>sourceIncludes</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>sourceIncludes</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>sourceIncludes</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder sourceIncludes(List<String> list) {
 			this.sourceIncludes = _listAddAll(this.sourceIncludes, list);
@@ -551,11 +556,9 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code stored_fields}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>storedFields</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>storedFields</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>storedFields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder storedFields(List<String> list) {
 			this.storedFields = _listAddAll(this.storedFields, list);
@@ -679,7 +682,7 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 				if (request.analyzer != null) {
 					params.put("analyzer", request.analyzer);
 				}
-				if (ModelTypeHelper.isDefined(request.storedFields)) {
+				if (ApiTypeHelper.isDefined(request.storedFields)) {
 					params.put("stored_fields",
 							request.storedFields.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
@@ -692,11 +695,11 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 				if (request.source != null) {
 					params.put("_source", request.source._toJsonString());
 				}
-				if (ModelTypeHelper.isDefined(request.sourceExcludes)) {
+				if (ApiTypeHelper.isDefined(request.sourceExcludes)) {
 					params.put("_source_excludes",
 							request.sourceExcludes.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
-				if (ModelTypeHelper.isDefined(request.sourceIncludes)) {
+				if (ApiTypeHelper.isDefined(request.sourceIncludes)) {
 					params.put("_source_includes",
 							request.sourceIncludes.stream().map(v -> v).collect(Collectors.joining(",")));
 				}

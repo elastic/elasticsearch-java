@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
@@ -42,10 +42,19 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisContainer
-// union type: Container[]
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/_types/DataframeAnalytics.ts#L83-L100">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeAnalysis implements TaggedUnion<DataframeAnalysis.Kind, Object>, JsonpSerializable {
 
+	/**
+	 * {@link DataframeAnalysis} variant kinds.
+	 */
 	/**
 	 * {@link DataframeAnalysis} variant kinds.
 	 */
@@ -86,15 +95,15 @@ public class DataframeAnalysis implements TaggedUnion<DataframeAnalysis.Kind, Ob
 
 	public DataframeAnalysis(DataframeAnalysisVariant value) {
 
-		this._kind = ModelTypeHelper.requireNonNull(value._dataframeAnalysisKind(), this, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(value._dataframeAnalysisKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
 	private DataframeAnalysis(Builder builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 

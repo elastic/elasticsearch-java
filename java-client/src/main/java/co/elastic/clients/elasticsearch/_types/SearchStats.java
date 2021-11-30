@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.SearchStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Stats.ts#L184-L199">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SearchStats implements JsonpSerializable {
 	private final long fetchCurrent;
@@ -76,22 +83,21 @@ public class SearchStats implements JsonpSerializable {
 
 	private SearchStats(Builder builder) {
 
-		this.fetchCurrent = ModelTypeHelper.requireNonNull(builder.fetchCurrent, this, "fetchCurrent");
-		this.fetchTimeInMillis = ModelTypeHelper.requireNonNull(builder.fetchTimeInMillis, this, "fetchTimeInMillis");
-		this.fetchTotal = ModelTypeHelper.requireNonNull(builder.fetchTotal, this, "fetchTotal");
+		this.fetchCurrent = ApiTypeHelper.requireNonNull(builder.fetchCurrent, this, "fetchCurrent");
+		this.fetchTimeInMillis = ApiTypeHelper.requireNonNull(builder.fetchTimeInMillis, this, "fetchTimeInMillis");
+		this.fetchTotal = ApiTypeHelper.requireNonNull(builder.fetchTotal, this, "fetchTotal");
 		this.openContexts = builder.openContexts;
-		this.queryCurrent = ModelTypeHelper.requireNonNull(builder.queryCurrent, this, "queryCurrent");
-		this.queryTimeInMillis = ModelTypeHelper.requireNonNull(builder.queryTimeInMillis, this, "queryTimeInMillis");
-		this.queryTotal = ModelTypeHelper.requireNonNull(builder.queryTotal, this, "queryTotal");
-		this.scrollCurrent = ModelTypeHelper.requireNonNull(builder.scrollCurrent, this, "scrollCurrent");
-		this.scrollTimeInMillis = ModelTypeHelper.requireNonNull(builder.scrollTimeInMillis, this,
-				"scrollTimeInMillis");
-		this.scrollTotal = ModelTypeHelper.requireNonNull(builder.scrollTotal, this, "scrollTotal");
-		this.suggestCurrent = ModelTypeHelper.requireNonNull(builder.suggestCurrent, this, "suggestCurrent");
-		this.suggestTimeInMillis = ModelTypeHelper.requireNonNull(builder.suggestTimeInMillis, this,
+		this.queryCurrent = ApiTypeHelper.requireNonNull(builder.queryCurrent, this, "queryCurrent");
+		this.queryTimeInMillis = ApiTypeHelper.requireNonNull(builder.queryTimeInMillis, this, "queryTimeInMillis");
+		this.queryTotal = ApiTypeHelper.requireNonNull(builder.queryTotal, this, "queryTotal");
+		this.scrollCurrent = ApiTypeHelper.requireNonNull(builder.scrollCurrent, this, "scrollCurrent");
+		this.scrollTimeInMillis = ApiTypeHelper.requireNonNull(builder.scrollTimeInMillis, this, "scrollTimeInMillis");
+		this.scrollTotal = ApiTypeHelper.requireNonNull(builder.scrollTotal, this, "scrollTotal");
+		this.suggestCurrent = ApiTypeHelper.requireNonNull(builder.suggestCurrent, this, "suggestCurrent");
+		this.suggestTimeInMillis = ApiTypeHelper.requireNonNull(builder.suggestTimeInMillis, this,
 				"suggestTimeInMillis");
-		this.suggestTotal = ModelTypeHelper.requireNonNull(builder.suggestTotal, this, "suggestTotal");
-		this.groups = ModelTypeHelper.unmodifiable(builder.groups);
+		this.suggestTotal = ApiTypeHelper.requireNonNull(builder.suggestTotal, this, "suggestTotal");
+		this.groups = ApiTypeHelper.unmodifiable(builder.groups);
 
 	}
 
@@ -250,7 +256,7 @@ public class SearchStats implements JsonpSerializable {
 		generator.writeKey("suggest_total");
 		generator.write(this.suggestTotal);
 
-		if (ModelTypeHelper.isDefined(this.groups)) {
+		if (ApiTypeHelper.isDefined(this.groups)) {
 			generator.writeKey("groups");
 			generator.writeStartObject();
 			for (Map.Entry<String, SearchStats> item0 : this.groups.entrySet()) {
@@ -269,6 +275,7 @@ public class SearchStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link SearchStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SearchStats> {
 		private Long fetchCurrent;
 
@@ -407,11 +414,9 @@ public class SearchStats implements JsonpSerializable {
 		/**
 		 * API name: {@code groups}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>groups</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>groups</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>groups</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder groups(Map<String, SearchStats> map) {
 			this.groups = _mapPutAll(this.groups, map);

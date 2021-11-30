@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.FieldValueFactorScoreFunction
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/compound.ts#L77-L82">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FieldValueFactorScoreFunction extends ScoreFunctionBase implements FunctionScoreVariant {
 	private final String field;
@@ -56,7 +63,7 @@ public class FieldValueFactorScoreFunction extends ScoreFunctionBase implements 
 	private FieldValueFactorScoreFunction(Builder builder) {
 		super(builder);
 
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.factor = builder.factor;
 		this.missing = builder.missing;
 		this.modifier = builder.modifier;
@@ -134,6 +141,7 @@ public class FieldValueFactorScoreFunction extends ScoreFunctionBase implements 
 	/**
 	 * Builder for {@link FieldValueFactorScoreFunction}.
 	 */
+
 	public static class Builder extends ScoreFunctionBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<FieldValueFactorScoreFunction> {

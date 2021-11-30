@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: cluster.stats.OperatingSystemMemoryInfo
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/stats/types.ts#L278-L284">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class OperatingSystemMemoryInfo implements JsonpSerializable {
 	private final long freeInBytes;
@@ -55,11 +62,11 @@ public class OperatingSystemMemoryInfo implements JsonpSerializable {
 
 	private OperatingSystemMemoryInfo(Builder builder) {
 
-		this.freeInBytes = ModelTypeHelper.requireNonNull(builder.freeInBytes, this, "freeInBytes");
-		this.freePercent = ModelTypeHelper.requireNonNull(builder.freePercent, this, "freePercent");
-		this.totalInBytes = ModelTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes");
-		this.usedInBytes = ModelTypeHelper.requireNonNull(builder.usedInBytes, this, "usedInBytes");
-		this.usedPercent = ModelTypeHelper.requireNonNull(builder.usedPercent, this, "usedPercent");
+		this.freeInBytes = ApiTypeHelper.requireNonNull(builder.freeInBytes, this, "freeInBytes");
+		this.freePercent = ApiTypeHelper.requireNonNull(builder.freePercent, this, "freePercent");
+		this.totalInBytes = ApiTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes");
+		this.usedInBytes = ApiTypeHelper.requireNonNull(builder.usedInBytes, this, "usedInBytes");
+		this.usedPercent = ApiTypeHelper.requireNonNull(builder.usedPercent, this, "usedPercent");
 
 	}
 
@@ -135,6 +142,7 @@ public class OperatingSystemMemoryInfo implements JsonpSerializable {
 	/**
 	 * Builder for {@link OperatingSystemMemoryInfo}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<OperatingSystemMemoryInfo> {
 		private Long freeInBytes;
 

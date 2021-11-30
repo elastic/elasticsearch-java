@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,6 +43,15 @@ import javax.annotation.Nullable;
 
 // typedef: ccr.unfollow.Request
 
+/**
+ * Stops the following task associated with a follower index and removes index
+ * metadata and settings associated with cross-cluster replication.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ccr/unfollow/UnfollowIndexRequest.ts#L23-L32">API
+ *      specification</a>
+ */
+
 public class UnfollowRequest extends RequestBase {
 	private final String index;
 
@@ -50,7 +59,7 @@ public class UnfollowRequest extends RequestBase {
 
 	private UnfollowRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 
 	}
 
@@ -73,6 +82,7 @@ public class UnfollowRequest extends RequestBase {
 	/**
 	 * Builder for {@link UnfollowRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UnfollowRequest> {
 		private String index;
 

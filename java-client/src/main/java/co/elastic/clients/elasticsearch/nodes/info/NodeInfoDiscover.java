@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoDiscover
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/info/types.ts#L162-L164">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeInfoDiscover implements JsonpSerializable {
 	private final String seedHosts;
@@ -47,7 +54,7 @@ public class NodeInfoDiscover implements JsonpSerializable {
 
 	private NodeInfoDiscover(Builder builder) {
 
-		this.seedHosts = ModelTypeHelper.requireNonNull(builder.seedHosts, this, "seedHosts");
+		this.seedHosts = ApiTypeHelper.requireNonNull(builder.seedHosts, this, "seedHosts");
 
 	}
 
@@ -83,6 +90,7 @@ public class NodeInfoDiscover implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoDiscover}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoDiscover> {
 		private String seedHosts;
 

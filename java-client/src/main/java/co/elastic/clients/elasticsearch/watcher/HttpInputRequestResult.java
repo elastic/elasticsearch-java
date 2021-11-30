@@ -33,6 +33,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: watcher._types.HttpInputRequestResult
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/_types/Actions.ts#L203-L203">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class HttpInputRequestResult extends HttpInputRequestDefinition {
 	// ---------------------------------------------------------------------------------------------
@@ -51,6 +58,7 @@ public class HttpInputRequestResult extends HttpInputRequestDefinition {
 	/**
 	 * Builder for {@link HttpInputRequestResult}.
 	 */
+
 	public static class Builder extends HttpInputRequestDefinition.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<HttpInputRequestResult> {

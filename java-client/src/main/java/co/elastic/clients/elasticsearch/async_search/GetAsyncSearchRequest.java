@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -44,6 +44,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: async_search.get.Request
+
+/**
+ * Retrieves the results of a previously submitted async search request given
+ * its ID.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/async_search/get/AsyncSearchGetRequest.ts#L24-L38">API
+ *      specification</a>
+ */
 
 public class GetAsyncSearchRequest extends RequestBase {
 	private final String id;
@@ -58,7 +67,7 @@ public class GetAsyncSearchRequest extends RequestBase {
 
 	private GetAsyncSearchRequest(Builder builder) {
 
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.keepAlive = builder.keepAlive;
 		this.waitForCompletionTimeout = builder.waitForCompletionTimeout;
 
@@ -103,6 +112,7 @@ public class GetAsyncSearchRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetAsyncSearchRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetAsyncSearchRequest> {
 		private String id;
 

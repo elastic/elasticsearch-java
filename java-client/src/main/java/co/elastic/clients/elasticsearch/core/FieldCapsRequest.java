@@ -36,7 +36,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -51,6 +51,15 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: _global.field_caps.Request
+
+/**
+ * Returns the information about the capabilities of fields among multiple
+ * indices.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/field_caps/FieldCapabilitiesRequest.ts#L25-L46">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -78,13 +87,13 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 	private FieldCapsRequest(Builder builder) {
 
 		this.allowNoIndices = builder.allowNoIndices;
-		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
+		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.includeUnmapped = builder.includeUnmapped;
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
+		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.indexFilter = builder.indexFilter;
-		this.runtimeMappings = ModelTypeHelper.unmodifiable(builder.runtimeMappings);
+		this.runtimeMappings = ApiTypeHelper.unmodifiable(builder.runtimeMappings);
 
 	}
 
@@ -185,7 +194,7 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 			this.indexFilter.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.runtimeMappings)) {
+		if (ApiTypeHelper.isDefined(this.runtimeMappings)) {
 			generator.writeKey("runtime_mappings");
 			generator.writeStartObject();
 			for (Map.Entry<String, RuntimeField> item0 : this.runtimeMappings.entrySet()) {
@@ -204,6 +213,7 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link FieldCapsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldCapsRequest> {
 		@Nullable
 		private Boolean allowNoIndices;
@@ -247,11 +257,9 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>expandWildcards</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder expandWildcards(List<ExpandWildcard> list) {
 			this.expandWildcards = _listAddAll(this.expandWildcards, list);
@@ -276,11 +284,9 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code fields}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>fields</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>fields</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>fields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder fields(List<String> list) {
 			this.fields = _listAddAll(this.fields, list);
@@ -326,11 +332,9 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>index</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>index</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder index(List<String> list) {
 			this.index = _listAddAll(this.index, list);
@@ -368,11 +372,9 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code runtime_mappings}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>runtimeMappings</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>runtimeMappings</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>runtimeMappings</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder runtimeMappings(Map<String, RuntimeField> map) {
 			this.runtimeMappings = _mapPutAll(this.runtimeMappings, map);
@@ -448,7 +450,7 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 
 				int propsSet = 0;
 
-				if (ModelTypeHelper.isDefined(request.index()))
+				if (ApiTypeHelper.isDefined(request.index()))
 					propsSet |= _index;
 
 				if (propsSet == 0) {
@@ -470,7 +472,7 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (ModelTypeHelper.isDefined(request.expandWildcards)) {
+				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
@@ -480,7 +482,7 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 				if (request.allowNoIndices != null) {
 					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
-				if (ModelTypeHelper.isDefined(request.fields)) {
+				if (ApiTypeHelper.isDefined(request.fields)) {
 					params.put("fields", request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.includeUnmapped != null) {

@@ -36,7 +36,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -51,6 +51,14 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: indices.validate_query.Request
+
+/**
+ * Allows a user to validate a potentially expensive query without executing it.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/validate_query/IndicesValidateQueryRequest.ts#L25-L52">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ValidateQueryRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -105,15 +113,15 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 		this.analyzer = builder.analyzer;
 		this.defaultOperator = builder.defaultOperator;
 		this.df = builder.df;
-		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
+		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.explain = builder.explain;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
+		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.lenient = builder.lenient;
 		this.q = builder.q;
 		this.query = builder.query;
 		this.rewrite = builder.rewrite;
-		this.type = ModelTypeHelper.unmodifiable(builder.type);
+		this.type = ApiTypeHelper.unmodifiable(builder.type);
 
 	}
 
@@ -300,6 +308,7 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Builder for {@link ValidateQueryRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ValidateQueryRequest> {
 		@Nullable
 		private Boolean allShards;
@@ -416,11 +425,9 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>expandWildcards</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder expandWildcards(List<ExpandWildcard> list) {
 			this.expandWildcards = _listAddAll(this.expandWildcards, list);
@@ -467,11 +474,9 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>index</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>index</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder index(List<String> list) {
 			this.index = _listAddAll(this.index, list);
@@ -544,11 +549,9 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code type}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>type</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>type</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>type</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder type(List<String> list) {
 			this.type = _listAddAll(this.type, list);
@@ -616,9 +619,9 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 
 				int propsSet = 0;
 
-				if (ModelTypeHelper.isDefined(request.index()))
+				if (ApiTypeHelper.isDefined(request.index()))
 					propsSet |= _index;
-				if (ModelTypeHelper.isDefined(request.type()))
+				if (ApiTypeHelper.isDefined(request.type()))
 					propsSet |= _type;
 
 				if (propsSet == 0) {
@@ -667,7 +670,7 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 				if (request.allShards != null) {
 					params.put("all_shards", String.valueOf(request.allShards));
 				}
-				if (ModelTypeHelper.isDefined(request.expandWildcards)) {
+				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}

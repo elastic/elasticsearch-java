@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.recovery.RecoveryStartStatus
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/recovery/types.ts#L86-L89">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RecoveryStartStatus implements JsonpSerializable {
 	private final long checkIndexTime;
@@ -50,8 +57,8 @@ public class RecoveryStartStatus implements JsonpSerializable {
 
 	private RecoveryStartStatus(Builder builder) {
 
-		this.checkIndexTime = ModelTypeHelper.requireNonNull(builder.checkIndexTime, this, "checkIndexTime");
-		this.totalTimeInMillis = ModelTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
+		this.checkIndexTime = ApiTypeHelper.requireNonNull(builder.checkIndexTime, this, "checkIndexTime");
+		this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
 
 	}
 
@@ -97,6 +104,7 @@ public class RecoveryStartStatus implements JsonpSerializable {
 	/**
 	 * Builder for {@link RecoveryStartStatus}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RecoveryStartStatus> {
 		private Long checkIndexTime;
 

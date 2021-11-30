@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest.simulate.Ingest
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ingest/simulate/types.ts#L26-L29">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Ingest implements JsonpSerializable {
 	private final String timestamp;
@@ -50,7 +57,7 @@ public class Ingest implements JsonpSerializable {
 
 	private Ingest(Builder builder) {
 
-		this.timestamp = ModelTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
 		this.pipeline = builder.pipeline;
 
 	}
@@ -101,6 +108,7 @@ public class Ingest implements JsonpSerializable {
 	/**
 	 * Builder for {@link Ingest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Ingest> {
 		private String timestamp;
 

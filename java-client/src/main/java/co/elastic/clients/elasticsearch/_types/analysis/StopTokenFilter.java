@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.StopTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/token_filters.ts#L96-L102">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class StopTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	@Nullable
@@ -59,7 +66,7 @@ public class StopTokenFilter extends TokenFilterBase implements TokenFilterDefin
 
 		this.ignoreCase = builder.ignoreCase;
 		this.removeTrailing = builder.removeTrailing;
-		this.stopwords = ModelTypeHelper.unmodifiableRequired(builder.stopwords, this, "stopwords");
+		this.stopwords = ApiTypeHelper.unmodifiableRequired(builder.stopwords, this, "stopwords");
 		this.stopwordsPath = builder.stopwordsPath;
 
 	}
@@ -121,7 +128,7 @@ public class StopTokenFilter extends TokenFilterBase implements TokenFilterDefin
 			generator.write(this.removeTrailing);
 
 		}
-		if (ModelTypeHelper.isDefined(this.stopwords)) {
+		if (ApiTypeHelper.isDefined(this.stopwords)) {
 			generator.writeKey("stopwords");
 			generator.writeStartArray();
 			for (String item0 : this.stopwords) {
@@ -144,6 +151,7 @@ public class StopTokenFilter extends TokenFilterBase implements TokenFilterDefin
 	/**
 	 * Builder for {@link StopTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<StopTokenFilter> {
@@ -177,11 +185,9 @@ public class StopTokenFilter extends TokenFilterBase implements TokenFilterDefin
 		/**
 		 * Required - API name: {@code stopwords}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>stopwords</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>stopwords</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>stopwords</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder stopwords(List<String> list) {
 			this.stopwords = _listAddAll(this.stopwords, list);

@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: graph._types.Hop
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/graph/_types/Hop.ts#L23-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Hop implements JsonpSerializable {
 	@Nullable
@@ -54,8 +61,8 @@ public class Hop implements JsonpSerializable {
 	private Hop(Builder builder) {
 
 		this.connections = builder.connections;
-		this.query = ModelTypeHelper.requireNonNull(builder.query, this, "query");
-		this.vertices = ModelTypeHelper.unmodifiableRequired(builder.vertices, this, "vertices");
+		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
+		this.vertices = ApiTypeHelper.unmodifiableRequired(builder.vertices, this, "vertices");
 
 	}
 
@@ -104,7 +111,7 @@ public class Hop implements JsonpSerializable {
 		generator.writeKey("query");
 		this.query.serialize(generator, mapper);
 
-		if (ModelTypeHelper.isDefined(this.vertices)) {
+		if (ApiTypeHelper.isDefined(this.vertices)) {
 			generator.writeKey("vertices");
 			generator.writeStartArray();
 			for (VertexDefinition item0 : this.vertices) {
@@ -122,6 +129,7 @@ public class Hop implements JsonpSerializable {
 	/**
 	 * Builder for {@link Hop}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Hop> {
 		@Nullable
 		private Hop connections;
@@ -163,11 +171,9 @@ public class Hop implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code vertices}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>vertices</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>vertices</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>vertices</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder vertices(List<VertexDefinition> list) {
 			this.vertices = _listAddAll(this.vertices, list);

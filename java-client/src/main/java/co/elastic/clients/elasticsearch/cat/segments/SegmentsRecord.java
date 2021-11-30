@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.segments.SegmentsRecord
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/segments/types.ts#L22-L96">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SegmentsRecord implements JsonpSerializable {
 	@Nullable
@@ -355,6 +362,7 @@ public class SegmentsRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link SegmentsRecord}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SegmentsRecord> {
 		@Nullable
 		private String index;

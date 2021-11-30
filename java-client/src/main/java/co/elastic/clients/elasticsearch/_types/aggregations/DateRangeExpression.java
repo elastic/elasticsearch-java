@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.DateRangeExpression
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/bucket.ts#L144-L148">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DateRangeExpression implements JsonpSerializable {
 	@Nullable
@@ -121,6 +128,7 @@ public class DateRangeExpression implements JsonpSerializable {
 	/**
 	 * Builder for {@link DateRangeExpression}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DateRangeExpression> {
 		@Nullable
 		private FieldDateMath from;

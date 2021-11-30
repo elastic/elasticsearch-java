@@ -36,6 +36,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: rollup.get_rollup_index_caps.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/rollup/get_rollup_index_caps/GetRollupIndexCapabilitiesResponse.ts#L24-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetRollupIndexCapsResponse extends DictionaryResponse<String, IndexCapabilities> {
 	// ---------------------------------------------------------------------------------------------
@@ -54,6 +61,7 @@ public class GetRollupIndexCapsResponse extends DictionaryResponse<String, Index
 	/**
 	 * Builder for {@link GetRollupIndexCapsResponse}.
 	 */
+
 	public static class Builder extends DictionaryResponse.AbstractBuilder<String, IndexCapabilities, Builder>
 			implements
 				ObjectBuilder<GetRollupIndexCapsResponse> {

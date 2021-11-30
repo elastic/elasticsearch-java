@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,6 +43,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.Influencer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/_types/Influencer.ts#L24-L76">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Influencer implements JsonpSerializable {
 	private final long bucketSpan;
@@ -72,19 +79,19 @@ public class Influencer implements JsonpSerializable {
 
 	private Influencer(Builder builder) {
 
-		this.bucketSpan = ModelTypeHelper.requireNonNull(builder.bucketSpan, this, "bucketSpan");
-		this.influencerScore = ModelTypeHelper.requireNonNull(builder.influencerScore, this, "influencerScore");
-		this.influencerFieldName = ModelTypeHelper.requireNonNull(builder.influencerFieldName, this,
+		this.bucketSpan = ApiTypeHelper.requireNonNull(builder.bucketSpan, this, "bucketSpan");
+		this.influencerScore = ApiTypeHelper.requireNonNull(builder.influencerScore, this, "influencerScore");
+		this.influencerFieldName = ApiTypeHelper.requireNonNull(builder.influencerFieldName, this,
 				"influencerFieldName");
-		this.influencerFieldValue = ModelTypeHelper.requireNonNull(builder.influencerFieldValue, this,
+		this.influencerFieldValue = ApiTypeHelper.requireNonNull(builder.influencerFieldValue, this,
 				"influencerFieldValue");
-		this.initialInfluencerScore = ModelTypeHelper.requireNonNull(builder.initialInfluencerScore, this,
+		this.initialInfluencerScore = ApiTypeHelper.requireNonNull(builder.initialInfluencerScore, this,
 				"initialInfluencerScore");
-		this.isInterim = ModelTypeHelper.requireNonNull(builder.isInterim, this, "isInterim");
-		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
-		this.probability = ModelTypeHelper.requireNonNull(builder.probability, this, "probability");
-		this.resultType = ModelTypeHelper.requireNonNull(builder.resultType, this, "resultType");
-		this.timestamp = ModelTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+		this.isInterim = ApiTypeHelper.requireNonNull(builder.isInterim, this, "isInterim");
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.probability = ApiTypeHelper.requireNonNull(builder.probability, this, "probability");
+		this.resultType = ApiTypeHelper.requireNonNull(builder.resultType, this, "resultType");
+		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
 		this.foo = builder.foo;
 
 	}
@@ -262,6 +269,7 @@ public class Influencer implements JsonpSerializable {
 	/**
 	 * Builder for {@link Influencer}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Influencer> {
 		private Long bucketSpan;
 

@@ -34,6 +34,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: indices.flush.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/flush/IndicesFlushResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FlushResponse extends ShardsOperationResponseBase {
 	// ---------------------------------------------------------------------------------------------
@@ -52,6 +59,7 @@ public class FlushResponse extends ShardsOperationResponseBase {
 	/**
 	 * Builder for {@link FlushResponse}.
 	 */
+
 	public static class Builder extends ShardsOperationResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<FlushResponse> {

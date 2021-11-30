@@ -38,6 +38,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterIndicesShards
+
+/**
+ * Contains statistics about shards assigned to selected nodes.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/stats/types.ts#L48-L60">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ClusterIndicesShards implements JsonpSerializable {
 	@Nullable
@@ -146,6 +154,7 @@ public class ClusterIndicesShards implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClusterIndicesShards}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterIndicesShards> {
 		@Nullable
 		private ClusterIndicesShardsIndex index;

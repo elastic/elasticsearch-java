@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.stats.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/stats/NodesStatsResponse.ts#L25-L30">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodesStatsResponse extends NodesResponseBase {
 	private final String clusterName;
@@ -49,8 +56,8 @@ public class NodesStatsResponse extends NodesResponseBase {
 	private NodesStatsResponse(Builder builder) {
 		super(builder);
 
-		this.clusterName = ModelTypeHelper.requireNonNull(builder.clusterName, this, "clusterName");
-		this.nodes = ModelTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
+		this.clusterName = ApiTypeHelper.requireNonNull(builder.clusterName, this, "clusterName");
+		this.nodes = ApiTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
 
 	}
 
@@ -78,7 +85,7 @@ public class NodesStatsResponse extends NodesResponseBase {
 		generator.writeKey("cluster_name");
 		generator.write(this.clusterName);
 
-		if (ModelTypeHelper.isDefined(this.nodes)) {
+		if (ApiTypeHelper.isDefined(this.nodes)) {
 			generator.writeKey("nodes");
 			generator.writeStartObject();
 			for (Map.Entry<String, Stats> item0 : this.nodes.entrySet()) {
@@ -97,6 +104,7 @@ public class NodesStatsResponse extends NodesResponseBase {
 	/**
 	 * Builder for {@link NodesStatsResponse}.
 	 */
+
 	public static class Builder extends NodesResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<NodesStatsResponse> {
@@ -115,11 +123,9 @@ public class NodesStatsResponse extends NodesResponseBase {
 		/**
 		 * Required - API name: {@code nodes}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>nodes</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>nodes</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>nodes</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder nodes(Map<String, Stats> map) {
 			this.nodes = _mapPutAll(this.nodes, map);

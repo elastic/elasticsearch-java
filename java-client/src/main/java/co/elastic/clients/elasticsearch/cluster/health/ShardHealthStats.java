@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.health.ShardHealthStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/health/types.ts#L36-L43">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ShardHealthStats implements JsonpSerializable {
 	private final int activeShards;
@@ -59,13 +66,12 @@ public class ShardHealthStats implements JsonpSerializable {
 
 	private ShardHealthStats(Builder builder) {
 
-		this.activeShards = ModelTypeHelper.requireNonNull(builder.activeShards, this, "activeShards");
-		this.initializingShards = ModelTypeHelper.requireNonNull(builder.initializingShards, this,
-				"initializingShards");
-		this.primaryActive = ModelTypeHelper.requireNonNull(builder.primaryActive, this, "primaryActive");
-		this.relocatingShards = ModelTypeHelper.requireNonNull(builder.relocatingShards, this, "relocatingShards");
-		this.status = ModelTypeHelper.requireNonNull(builder.status, this, "status");
-		this.unassignedShards = ModelTypeHelper.requireNonNull(builder.unassignedShards, this, "unassignedShards");
+		this.activeShards = ApiTypeHelper.requireNonNull(builder.activeShards, this, "activeShards");
+		this.initializingShards = ApiTypeHelper.requireNonNull(builder.initializingShards, this, "initializingShards");
+		this.primaryActive = ApiTypeHelper.requireNonNull(builder.primaryActive, this, "primaryActive");
+		this.relocatingShards = ApiTypeHelper.requireNonNull(builder.relocatingShards, this, "relocatingShards");
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
+		this.unassignedShards = ApiTypeHelper.requireNonNull(builder.unassignedShards, this, "unassignedShards");
 
 	}
 
@@ -150,6 +156,7 @@ public class ShardHealthStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardHealthStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardHealthStats> {
 		private Integer activeShards;
 

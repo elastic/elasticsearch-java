@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.termvectors.Term
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/termvectors/types.ts#L34-L40">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Term implements JsonpSerializable {
 	@Nullable
@@ -62,8 +69,8 @@ public class Term implements JsonpSerializable {
 
 		this.docFreq = builder.docFreq;
 		this.score = builder.score;
-		this.termFreq = ModelTypeHelper.requireNonNull(builder.termFreq, this, "termFreq");
-		this.tokens = ModelTypeHelper.unmodifiableRequired(builder.tokens, this, "tokens");
+		this.termFreq = ApiTypeHelper.requireNonNull(builder.termFreq, this, "termFreq");
+		this.tokens = ApiTypeHelper.unmodifiableRequired(builder.tokens, this, "tokens");
 		this.ttf = builder.ttf;
 
 	}
@@ -134,7 +141,7 @@ public class Term implements JsonpSerializable {
 		generator.writeKey("term_freq");
 		generator.write(this.termFreq);
 
-		if (ModelTypeHelper.isDefined(this.tokens)) {
+		if (ApiTypeHelper.isDefined(this.tokens)) {
 			generator.writeKey("tokens");
 			generator.writeStartArray();
 			for (Token item0 : this.tokens) {
@@ -157,6 +164,7 @@ public class Term implements JsonpSerializable {
 	/**
 	 * Builder for {@link Term}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Term> {
 		@Nullable
 		private Integer docFreq;
@@ -198,11 +206,9 @@ public class Term implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code tokens}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>tokens</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>tokens</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>tokens</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder tokens(List<Token> list) {
 			this.tokens = _listAddAll(this.tokens, list);

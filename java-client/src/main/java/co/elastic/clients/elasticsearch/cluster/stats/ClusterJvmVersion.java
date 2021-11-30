@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterJvmVersion
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/stats/types.ts#L160-L168">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ClusterJvmVersion implements JsonpSerializable {
 	private final boolean bundledJdk;
@@ -61,13 +68,13 @@ public class ClusterJvmVersion implements JsonpSerializable {
 
 	private ClusterJvmVersion(Builder builder) {
 
-		this.bundledJdk = ModelTypeHelper.requireNonNull(builder.bundledJdk, this, "bundledJdk");
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
-		this.usingBundledJdk = ModelTypeHelper.requireNonNull(builder.usingBundledJdk, this, "usingBundledJdk");
-		this.version = ModelTypeHelper.requireNonNull(builder.version, this, "version");
-		this.vmName = ModelTypeHelper.requireNonNull(builder.vmName, this, "vmName");
-		this.vmVendor = ModelTypeHelper.requireNonNull(builder.vmVendor, this, "vmVendor");
-		this.vmVersion = ModelTypeHelper.requireNonNull(builder.vmVersion, this, "vmVersion");
+		this.bundledJdk = ApiTypeHelper.requireNonNull(builder.bundledJdk, this, "bundledJdk");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.usingBundledJdk = ApiTypeHelper.requireNonNull(builder.usingBundledJdk, this, "usingBundledJdk");
+		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
+		this.vmName = ApiTypeHelper.requireNonNull(builder.vmName, this, "vmName");
+		this.vmVendor = ApiTypeHelper.requireNonNull(builder.vmVendor, this, "vmVendor");
+		this.vmVersion = ApiTypeHelper.requireNonNull(builder.vmVersion, this, "vmVersion");
 
 	}
 
@@ -163,6 +170,7 @@ public class ClusterJvmVersion implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClusterJvmVersion}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterJvmVersion> {
 		private Boolean bundledJdk;
 

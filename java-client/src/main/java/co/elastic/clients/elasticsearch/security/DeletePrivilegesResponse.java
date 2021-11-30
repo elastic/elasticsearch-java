@@ -37,6 +37,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: security.delete_privileges.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/delete_privileges/SecurityDeletePrivilegesResponse.ts#L24-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DeletePrivilegesResponse extends DictionaryResponse<String, Map<String, FoundStatus>> {
 	// ---------------------------------------------------------------------------------------------
@@ -55,6 +62,7 @@ public class DeletePrivilegesResponse extends DictionaryResponse<String, Map<Str
 	/**
 	 * Builder for {@link DeletePrivilegesResponse}.
 	 */
+
 	public static class Builder extends DictionaryResponse.AbstractBuilder<String, Map<String, FoundStatus>, Builder>
 			implements
 				ObjectBuilder<DeletePrivilegesResponse> {

@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.get_jobs.RollupJobStatus
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/rollup/get_jobs/types.ts#L60-L64">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RollupJobStatus implements JsonpSerializable {
 	private final Map<String, JsonData> currentPosition;
@@ -55,8 +62,8 @@ public class RollupJobStatus implements JsonpSerializable {
 
 	private RollupJobStatus(Builder builder) {
 
-		this.currentPosition = ModelTypeHelper.unmodifiable(builder.currentPosition);
-		this.jobState = ModelTypeHelper.requireNonNull(builder.jobState, this, "jobState");
+		this.currentPosition = ApiTypeHelper.unmodifiable(builder.currentPosition);
+		this.jobState = ApiTypeHelper.requireNonNull(builder.jobState, this, "jobState");
 		this.upgradedDocId = builder.upgradedDocId;
 
 	}
@@ -98,7 +105,7 @@ public class RollupJobStatus implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.currentPosition)) {
+		if (ApiTypeHelper.isDefined(this.currentPosition)) {
 			generator.writeKey("current_position");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.currentPosition.entrySet()) {
@@ -124,6 +131,7 @@ public class RollupJobStatus implements JsonpSerializable {
 	/**
 	 * Builder for {@link RollupJobStatus}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RollupJobStatus> {
 		@Nullable
 		private Map<String, JsonData> currentPosition;
@@ -136,11 +144,9 @@ public class RollupJobStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code current_position}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>currentPosition</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>currentPosition</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>currentPosition</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder currentPosition(Map<String, JsonData> map) {
 			this.currentPosition = _mapPutAll(this.currentPosition, map);

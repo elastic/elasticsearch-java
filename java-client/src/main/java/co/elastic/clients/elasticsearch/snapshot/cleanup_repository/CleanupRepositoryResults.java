@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: snapshot.cleanup_repository.CleanupRepositoryResults
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/snapshot/cleanup_repository/SnapshotCleanupRepositoryResponse.ts#L26-L29">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CleanupRepositoryResults implements JsonpSerializable {
 	private final long deletedBlobs;
@@ -48,8 +55,8 @@ public class CleanupRepositoryResults implements JsonpSerializable {
 
 	private CleanupRepositoryResults(Builder builder) {
 
-		this.deletedBlobs = ModelTypeHelper.requireNonNull(builder.deletedBlobs, this, "deletedBlobs");
-		this.deletedBytes = ModelTypeHelper.requireNonNull(builder.deletedBytes, this, "deletedBytes");
+		this.deletedBlobs = ApiTypeHelper.requireNonNull(builder.deletedBlobs, this, "deletedBlobs");
+		this.deletedBytes = ApiTypeHelper.requireNonNull(builder.deletedBytes, this, "deletedBytes");
 
 	}
 
@@ -95,6 +102,7 @@ public class CleanupRepositoryResults implements JsonpSerializable {
 	/**
 	 * Builder for {@link CleanupRepositoryResults}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CleanupRepositoryResults> {
 		private Long deletedBlobs;
 

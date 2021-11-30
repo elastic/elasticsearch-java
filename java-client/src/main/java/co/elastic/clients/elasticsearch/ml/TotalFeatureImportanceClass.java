@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.TotalFeatureImportanceClass
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/_types/TrainedModel.ts#L127-L132">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TotalFeatureImportanceClass implements JsonpSerializable {
 	private final String className;
@@ -50,8 +57,8 @@ public class TotalFeatureImportanceClass implements JsonpSerializable {
 
 	private TotalFeatureImportanceClass(Builder builder) {
 
-		this.className = ModelTypeHelper.requireNonNull(builder.className, this, "className");
-		this.importance = ModelTypeHelper.unmodifiableRequired(builder.importance, this, "importance");
+		this.className = ApiTypeHelper.requireNonNull(builder.className, this, "className");
+		this.importance = ApiTypeHelper.unmodifiableRequired(builder.importance, this, "importance");
 
 	}
 
@@ -92,7 +99,7 @@ public class TotalFeatureImportanceClass implements JsonpSerializable {
 		generator.writeKey("class_name");
 		generator.write(this.className);
 
-		if (ModelTypeHelper.isDefined(this.importance)) {
+		if (ApiTypeHelper.isDefined(this.importance)) {
 			generator.writeKey("importance");
 			generator.writeStartArray();
 			for (TotalFeatureImportanceStatistics item0 : this.importance) {
@@ -110,6 +117,7 @@ public class TotalFeatureImportanceClass implements JsonpSerializable {
 	/**
 	 * Builder for {@link TotalFeatureImportanceClass}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TotalFeatureImportanceClass> {
 		private String className;
 
@@ -131,11 +139,9 @@ public class TotalFeatureImportanceClass implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code importance}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>importance</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>importance</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>importance</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder importance(List<TotalFeatureImportanceStatistics> list) {
 			this.importance = _listAddAll(this.importance, list);

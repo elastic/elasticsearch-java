@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.UnionDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
@@ -43,7 +43,17 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.TrackHits
-// union type: Union[]
+
+/**
+ * Number of hits matching the query to count accurately. If true, the exact
+ * number of hits is returned at the cost of some performance. If false, the
+ * response does not include the total number of hits matching the query.
+ * Defaults to 10,000 hits.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search/_types/hits.ts#L126-L134">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TrackHits implements TaggedUnion<TrackHits.Kind, Object>, JsonpSerializable {
 
@@ -84,8 +94,8 @@ public class TrackHits implements TaggedUnion<TrackHits.Kind, Object>, JsonpSeri
 
 	private TrackHits(Builder builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 

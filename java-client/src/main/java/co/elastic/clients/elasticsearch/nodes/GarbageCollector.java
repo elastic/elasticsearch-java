@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.GarbageCollector
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/_types/Stats.ts#L183-L185">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GarbageCollector implements JsonpSerializable {
 	private final Map<String, GarbageCollectorTotal> collectors;
@@ -48,7 +55,7 @@ public class GarbageCollector implements JsonpSerializable {
 
 	private GarbageCollector(Builder builder) {
 
-		this.collectors = ModelTypeHelper.unmodifiableRequired(builder.collectors, this, "collectors");
+		this.collectors = ApiTypeHelper.unmodifiableRequired(builder.collectors, this, "collectors");
 
 	}
 
@@ -74,7 +81,7 @@ public class GarbageCollector implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.collectors)) {
+		if (ApiTypeHelper.isDefined(this.collectors)) {
 			generator.writeKey("collectors");
 			generator.writeStartObject();
 			for (Map.Entry<String, GarbageCollectorTotal> item0 : this.collectors.entrySet()) {
@@ -93,17 +100,16 @@ public class GarbageCollector implements JsonpSerializable {
 	/**
 	 * Builder for {@link GarbageCollector}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GarbageCollector> {
 		private Map<String, GarbageCollectorTotal> collectors;
 
 		/**
 		 * Required - API name: {@code collectors}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>collectors</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>collectors</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>collectors</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder collectors(Map<String, GarbageCollectorTotal> map) {
 			this.collectors = _mapPutAll(this.collectors, map);

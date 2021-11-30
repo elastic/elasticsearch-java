@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,6 +43,15 @@ import javax.annotation.Nullable;
 
 // typedef: ml.delete_trained_model.Request
 
+/**
+ * Deletes an existing trained inference model that is currently not referenced
+ * by an ingest pipeline.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/delete_trained_model/MlDeleteTrainedModelRequest.ts#L23-L38">API
+ *      specification</a>
+ */
+
 public class DeleteTrainedModelRequest extends RequestBase {
 	private final String modelId;
 
@@ -50,7 +59,7 @@ public class DeleteTrainedModelRequest extends RequestBase {
 
 	private DeleteTrainedModelRequest(Builder builder) {
 
-		this.modelId = ModelTypeHelper.requireNonNull(builder.modelId, this, "modelId");
+		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
 
 	}
 
@@ -72,6 +81,7 @@ public class DeleteTrainedModelRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteTrainedModelRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteTrainedModelRequest> {
 		private String modelId;
 

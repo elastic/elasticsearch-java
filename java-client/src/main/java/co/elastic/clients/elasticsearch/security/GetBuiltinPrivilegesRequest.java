@@ -38,6 +38,15 @@ import java.util.Objects;
 
 // typedef: security.get_builtin_privileges.Request
 
+/**
+ * Retrieves the list of cluster privileges and index privileges that are
+ * available in this version of Elasticsearch.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/get_builtin_privileges/SecurityGetBuiltinPrivilegesRequest.ts#L22-L27">API
+ *      specification</a>
+ */
+
 public class GetBuiltinPrivilegesRequest extends RequestBase {
 	public GetBuiltinPrivilegesRequest() {
 	}

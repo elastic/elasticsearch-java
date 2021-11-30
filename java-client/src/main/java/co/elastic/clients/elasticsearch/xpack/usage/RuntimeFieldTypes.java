@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
@@ -37,6 +37,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.RuntimeFieldTypes
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/xpack/usage/types.ts#L230-L232">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RuntimeFieldTypes extends Base {
 	private final List<RuntimeFieldsType> fieldTypes;
@@ -46,7 +53,7 @@ public class RuntimeFieldTypes extends Base {
 	private RuntimeFieldTypes(Builder builder) {
 		super(builder);
 
-		this.fieldTypes = ModelTypeHelper.unmodifiableRequired(builder.fieldTypes, this, "fieldTypes");
+		this.fieldTypes = ApiTypeHelper.unmodifiableRequired(builder.fieldTypes, this, "fieldTypes");
 
 	}
 
@@ -64,7 +71,7 @@ public class RuntimeFieldTypes extends Base {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.fieldTypes)) {
+		if (ApiTypeHelper.isDefined(this.fieldTypes)) {
 			generator.writeKey("field_types");
 			generator.writeStartArray();
 			for (RuntimeFieldsType item0 : this.fieldTypes) {
@@ -82,17 +89,16 @@ public class RuntimeFieldTypes extends Base {
 	/**
 	 * Builder for {@link RuntimeFieldTypes}.
 	 */
+
 	public static class Builder extends Base.AbstractBuilder<Builder> implements ObjectBuilder<RuntimeFieldTypes> {
 		private List<RuntimeFieldsType> fieldTypes;
 
 		/**
 		 * Required - API name: {@code field_types}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>fieldTypes</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>fieldTypes</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>fieldTypes</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder fieldTypes(List<RuntimeFieldsType> list) {
 			this.fieldTypes = _listAddAll(this.fieldTypes, list);

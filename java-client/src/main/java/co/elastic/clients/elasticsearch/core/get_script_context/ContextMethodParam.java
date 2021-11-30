@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.get_script_context.ContextMethodParam
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/get_script_context/types.ts#L33-L36">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ContextMethodParam implements JsonpSerializable {
 	private final String name;
@@ -49,8 +56,8 @@ public class ContextMethodParam implements JsonpSerializable {
 
 	private ContextMethodParam(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
-		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 
@@ -96,6 +103,7 @@ public class ContextMethodParam implements JsonpSerializable {
 	/**
 	 * Builder for {@link ContextMethodParam}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ContextMethodParam> {
 		private String name;
 

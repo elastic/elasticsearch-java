@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/evaluate_data_frame/MlEvaluateDataFrameResponse.ts#L26-L33">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class EvaluateDataFrameResponse implements JsonpSerializable {
 	@Nullable
@@ -123,6 +130,7 @@ public class EvaluateDataFrameResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link EvaluateDataFrameResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<EvaluateDataFrameResponse> {
 		@Nullable
 		private DataframeClassificationSummary classification;

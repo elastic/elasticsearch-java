@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,6 +43,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.Watch
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/_types/Watch.ts#L37-L47">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Watch implements JsonpSerializable {
 	private final Map<String, Action> actions;
@@ -71,14 +78,14 @@ public class Watch implements JsonpSerializable {
 
 	private Watch(Builder builder) {
 
-		this.actions = ModelTypeHelper.unmodifiableRequired(builder.actions, this, "actions");
-		this.condition = ModelTypeHelper.requireNonNull(builder.condition, this, "condition");
-		this.input = ModelTypeHelper.requireNonNull(builder.input, this, "input");
-		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
+		this.actions = ApiTypeHelper.unmodifiableRequired(builder.actions, this, "actions");
+		this.condition = ApiTypeHelper.requireNonNull(builder.condition, this, "condition");
+		this.input = ApiTypeHelper.requireNonNull(builder.input, this, "input");
+		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
 		this.status = builder.status;
 		this.throttlePeriod = builder.throttlePeriod;
 		this.transform = builder.transform;
-		this.trigger = ModelTypeHelper.requireNonNull(builder.trigger, this, "trigger");
+		this.trigger = ApiTypeHelper.requireNonNull(builder.trigger, this, "trigger");
 		this.throttlePeriodInMillis = builder.throttlePeriodInMillis;
 
 	}
@@ -165,7 +172,7 @@ public class Watch implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.actions)) {
+		if (ApiTypeHelper.isDefined(this.actions)) {
 			generator.writeKey("actions");
 			generator.writeStartObject();
 			for (Map.Entry<String, Action> item0 : this.actions.entrySet()) {
@@ -182,7 +189,7 @@ public class Watch implements JsonpSerializable {
 		generator.writeKey("input");
 		this.input.serialize(generator, mapper);
 
-		if (ModelTypeHelper.isDefined(this.metadata)) {
+		if (ApiTypeHelper.isDefined(this.metadata)) {
 			generator.writeKey("metadata");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
@@ -224,6 +231,7 @@ public class Watch implements JsonpSerializable {
 	/**
 	 * Builder for {@link Watch}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Watch> {
 		private Map<String, Action> actions;
 
@@ -251,11 +259,9 @@ public class Watch implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code actions}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>actions</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>actions</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>actions</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder actions(Map<String, Action> map) {
 			this.actions = _mapPutAll(this.actions, map);
@@ -314,11 +320,9 @@ public class Watch implements JsonpSerializable {
 		/**
 		 * API name: {@code metadata}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>metadata</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>metadata</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>metadata</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder metadata(Map<String, JsonData> map) {
 			this.metadata = _mapPutAll(this.metadata, map);

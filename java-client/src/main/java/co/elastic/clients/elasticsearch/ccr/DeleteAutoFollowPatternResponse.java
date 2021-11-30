@@ -34,6 +34,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: ccr.delete_auto_follow_pattern.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ccr/delete_auto_follow_pattern/DeleteAutoFollowPatternResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DeleteAutoFollowPatternResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +60,7 @@ public class DeleteAutoFollowPatternResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link DeleteAutoFollowPatternResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeleteAutoFollowPatternResponse> {

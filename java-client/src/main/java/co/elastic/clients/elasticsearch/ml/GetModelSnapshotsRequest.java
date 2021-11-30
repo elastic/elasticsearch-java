@@ -34,7 +34,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -48,6 +48,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_model_snapshots.Request
+
+/**
+ * Retrieves information about model snapshots.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/get_model_snapshots/MlGetModelSnapshotsRequest.ts#L26-L96">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetModelSnapshotsRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -83,7 +91,7 @@ public class GetModelSnapshotsRequest extends RequestBase implements JsonpSerial
 		this.desc = builder.desc;
 		this.end = builder.end;
 		this.from = builder.from;
-		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.page = builder.page;
 		this.size = builder.size;
 		this.snapshotId = builder.snapshotId;
@@ -231,6 +239,7 @@ public class GetModelSnapshotsRequest extends RequestBase implements JsonpSerial
 	/**
 	 * Builder for {@link GetModelSnapshotsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetModelSnapshotsRequest> {
 		@Nullable
 		private Boolean desc;

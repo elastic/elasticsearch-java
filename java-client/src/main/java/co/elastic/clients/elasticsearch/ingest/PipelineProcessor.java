@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,6 +37,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.PipelineProcessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ingest/_types/Processors.ts#L283-L285">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PipelineProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String name;
@@ -46,7 +53,7 @@ public class PipelineProcessor extends ProcessorBase implements ProcessorVariant
 	private PipelineProcessor(Builder builder) {
 		super(builder);
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
@@ -82,6 +89,7 @@ public class PipelineProcessor extends ProcessorBase implements ProcessorVariant
 	/**
 	 * Builder for {@link PipelineProcessor}.
 	 */
+
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PipelineProcessor> {

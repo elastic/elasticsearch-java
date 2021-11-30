@@ -42,6 +42,14 @@ import javax.annotation.Nullable;
 
 // typedef: indices.get_upgrade.Request
 
+/**
+ * DEPRECATED Returns a progress status of current upgrade.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/get_upgrade/IndicesGetUpgradeRequest.ts#L23-L32">API
+ *      specification</a>
+ */
+
 public class GetUpgradeRequest extends RequestBase {
 	@Nullable
 	private final String index;
@@ -74,6 +82,7 @@ public class GetUpgradeRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetUpgradeRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetUpgradeRequest> {
 		@Nullable
 		private String index;

@@ -37,6 +37,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.DataframeClassificationSummary
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/evaluate_data_frame/types.ts#L31-L37">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeClassificationSummary implements JsonpSerializable {
 	@Nullable
@@ -155,6 +162,7 @@ public class DataframeClassificationSummary implements JsonpSerializable {
 	/**
 	 * Builder for {@link DataframeClassificationSummary}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframeClassificationSummary> {
 		@Nullable
 		private DataframeEvaluationSummaryAucRoc aucRoc;

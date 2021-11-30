@@ -34,7 +34,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -45,6 +45,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.rollup.Request
+
+/**
+ * Rollup an index
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/rollup/rollup/RollupRequest.ts#L24-L36">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RollupRequest extends RequestBase implements JsonpSerializable {
 	private final String index;
@@ -57,9 +65,9 @@ public class RollupRequest extends RequestBase implements JsonpSerializable {
 
 	private RollupRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
-		this.rollupIndex = ModelTypeHelper.requireNonNull(builder.rollupIndex, this, "rollupIndex");
-		this.config = ModelTypeHelper.requireNonNull(builder.config, this, "config");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.rollupIndex = ApiTypeHelper.requireNonNull(builder.rollupIndex, this, "rollupIndex");
+		this.config = ApiTypeHelper.requireNonNull(builder.config, this, "config");
 
 	}
 
@@ -107,6 +115,7 @@ public class RollupRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link RollupRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RollupRequest> {
 		private String index;
 

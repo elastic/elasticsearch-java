@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.SearchTransform
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Transform.ts#L45-L48">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SearchTransform implements TransformVariant, JsonpSerializable {
 	private final SearchInputRequestDefinition request;
@@ -49,8 +56,8 @@ public class SearchTransform implements TransformVariant, JsonpSerializable {
 
 	private SearchTransform(Builder builder) {
 
-		this.request = ModelTypeHelper.requireNonNull(builder.request, this, "request");
-		this.timeout = ModelTypeHelper.requireNonNull(builder.timeout, this, "timeout");
+		this.request = ApiTypeHelper.requireNonNull(builder.request, this, "request");
+		this.timeout = ApiTypeHelper.requireNonNull(builder.timeout, this, "timeout");
 
 	}
 
@@ -104,6 +111,7 @@ public class SearchTransform implements TransformVariant, JsonpSerializable {
 	/**
 	 * Builder for {@link SearchTransform}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SearchTransform> {
 		private SearchInputRequestDefinition request;
 

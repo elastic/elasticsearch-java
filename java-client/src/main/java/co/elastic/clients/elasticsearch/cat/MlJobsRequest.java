@@ -44,6 +44,14 @@ import javax.annotation.Nullable;
 
 // typedef: cat.ml_jobs.Request
 
+/**
+ * Gets configuration and usage information about anomaly detection jobs.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/ml_jobs/CatJobsRequest.ts#L23-L39">API
+ *      specification</a>
+ */
+
 public class MlJobsRequest extends CatRequestBase {
 	@Nullable
 	private final Boolean allowNoJobs;
@@ -73,7 +81,10 @@ public class MlJobsRequest extends CatRequestBase {
 	 * <code>_all</code> string or when no jobs have been specified)
 	 * <p>
 	 * API name: {@code allow_no_jobs}
+	 * 
+	 * @deprecated 7.10.0 Use <code>allow_no_match</code> instead.
 	 */
+	@Deprecated
 	@Nullable
 	public final Boolean allowNoJobs() {
 		return this.allowNoJobs;
@@ -104,6 +115,7 @@ public class MlJobsRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link MlJobsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MlJobsRequest> {
 		@Nullable
 		private Boolean allowNoJobs;
@@ -119,7 +131,10 @@ public class MlJobsRequest extends CatRequestBase {
 		 * <code>_all</code> string or when no jobs have been specified)
 		 * <p>
 		 * API name: {@code allow_no_jobs}
+		 * 
+		 * @deprecated 7.10.0 Use <code>allow_no_match</code> instead.
 		 */
+		@Deprecated
 		public final Builder allowNoJobs(@Nullable Boolean value) {
 			this.allowNoJobs = value;
 			return this;

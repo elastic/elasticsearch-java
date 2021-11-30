@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -47,6 +47,14 @@ import javax.annotation.Nullable;
 
 // typedef: nodes.usage.Request
 
+/**
+ * Returns low-level information about REST actions usage on nodes.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/usage/NodesUsageRequest.ts#L24-L37">API
+ *      specification</a>
+ */
+
 public class NodesUsageRequest extends RequestBase {
 	private final List<String> metric;
 
@@ -59,8 +67,8 @@ public class NodesUsageRequest extends RequestBase {
 
 	private NodesUsageRequest(Builder builder) {
 
-		this.metric = ModelTypeHelper.unmodifiable(builder.metric);
-		this.nodeId = ModelTypeHelper.unmodifiable(builder.nodeId);
+		this.metric = ApiTypeHelper.unmodifiable(builder.metric);
+		this.nodeId = ApiTypeHelper.unmodifiable(builder.nodeId);
 		this.timeout = builder.timeout;
 
 	}
@@ -104,6 +112,7 @@ public class NodesUsageRequest extends RequestBase {
 	/**
 	 * Builder for {@link NodesUsageRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodesUsageRequest> {
 		@Nullable
 		private List<String> metric;
@@ -119,11 +128,9 @@ public class NodesUsageRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code metric}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>metric</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>metric</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>metric</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder metric(List<String> list) {
 			this.metric = _listAddAll(this.metric, list);
@@ -149,11 +156,9 @@ public class NodesUsageRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code node_id}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>nodeId</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>nodeId</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>nodeId</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder nodeId(List<String> list) {
 			this.nodeId = _listAddAll(this.nodeId, list);
@@ -227,9 +232,9 @@ public class NodesUsageRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (ModelTypeHelper.isDefined(request.metric()))
+				if (ApiTypeHelper.isDefined(request.metric()))
 					propsSet |= _metric;
-				if (ModelTypeHelper.isDefined(request.nodeId()))
+				if (ApiTypeHelper.isDefined(request.nodeId()))
 					propsSet |= _nodeId;
 
 				if (propsSet == 0) {

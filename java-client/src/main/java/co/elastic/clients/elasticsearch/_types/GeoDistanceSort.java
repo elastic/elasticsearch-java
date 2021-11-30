@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.GeoDistanceSort
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/sort.ts#L57-L65">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GeoDistanceSort implements SortOptionsVariant, JsonpSerializable {
 	private final String field;
@@ -66,8 +73,8 @@ public class GeoDistanceSort implements SortOptionsVariant, JsonpSerializable {
 
 	private GeoDistanceSort(Builder builder) {
 
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
-		this.location = ModelTypeHelper.unmodifiableRequired(builder.location, this, "location");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.location = ApiTypeHelper.unmodifiableRequired(builder.location, this, "location");
 
 		this.mode = builder.mode;
 		this.distanceType = builder.distanceType;
@@ -190,6 +197,7 @@ public class GeoDistanceSort implements SortOptionsVariant, JsonpSerializable {
 	/**
 	 * Builder for {@link GeoDistanceSort}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GeoDistanceSort> {
 		private String field;
 
@@ -205,10 +213,8 @@ public class GeoDistanceSort implements SortOptionsVariant, JsonpSerializable {
 
 		/**
 		 * Required - Adds all elements of <code>list</code> to <code>location</code>.
-		 * Use <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>location</code> to <code>null</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder location(List<GeoLocation> list) {
 			this.location = _listAddAll(this.location, list);

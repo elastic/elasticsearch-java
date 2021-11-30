@@ -45,6 +45,14 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.delete_voting_config_exclusions.Request
 
+/**
+ * Clears cluster voting config exclusions.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/delete_voting_config_exclusions/ClusterDeleteVotingConfigExclusionsRequest.ts#L22-L40">API
+ *      specification</a>
+ */
+
 public class DeleteVotingConfigExclusionsRequest extends RequestBase {
 	@Nullable
 	private final Boolean waitForRemoval;
@@ -82,6 +90,7 @@ public class DeleteVotingConfigExclusionsRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteVotingConfigExclusionsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase
 			implements
 				ObjectBuilder<DeleteVotingConfigExclusionsRequest> {

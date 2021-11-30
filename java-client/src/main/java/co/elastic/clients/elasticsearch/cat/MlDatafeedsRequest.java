@@ -43,6 +43,14 @@ import javax.annotation.Nullable;
 
 // typedef: cat.ml_datafeeds.Request
 
+/**
+ * Gets configuration and usage information about datafeeds.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/ml_datafeeds/CatDatafeedsRequest.ts#L23-L38">API
+ *      specification</a>
+ */
+
 public class MlDatafeedsRequest extends CatRequestBase {
 	@Nullable
 	private final Boolean allowNoDatafeeds;
@@ -68,7 +76,10 @@ public class MlDatafeedsRequest extends CatRequestBase {
 	 * includes <code>_all</code> string or when no datafeeds have been specified)
 	 * <p>
 	 * API name: {@code allow_no_datafeeds}
+	 * 
+	 * @deprecated 7.10.0 Use <code>allow_no_match</code> instead.
 	 */
+	@Deprecated
 	@Nullable
 	public final Boolean allowNoDatafeeds() {
 		return this.allowNoDatafeeds;
@@ -89,6 +100,7 @@ public class MlDatafeedsRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link MlDatafeedsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MlDatafeedsRequest> {
 		@Nullable
 		private Boolean allowNoDatafeeds;
@@ -101,7 +113,10 @@ public class MlDatafeedsRequest extends CatRequestBase {
 		 * includes <code>_all</code> string or when no datafeeds have been specified)
 		 * <p>
 		 * API name: {@code allow_no_datafeeds}
+		 * 
+		 * @deprecated 7.10.0 Use <code>allow_no_match</code> instead.
 		 */
+		@Deprecated
 		public final Builder allowNoDatafeeds(@Nullable Boolean value) {
 			this.allowNoDatafeeds = value;
 			return this;

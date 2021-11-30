@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.CommandCancelAction
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/reroute/types.ts#L47-L52">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CommandCancelAction implements JsonpSerializable {
 	private final String index;
@@ -56,9 +63,9 @@ public class CommandCancelAction implements JsonpSerializable {
 
 	private CommandCancelAction(Builder builder) {
 
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
-		this.shard = ModelTypeHelper.requireNonNull(builder.shard, this, "shard");
-		this.node = ModelTypeHelper.requireNonNull(builder.node, this, "node");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard");
+		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
 		this.allowPrimary = builder.allowPrimary;
 
 	}
@@ -129,6 +136,7 @@ public class CommandCancelAction implements JsonpSerializable {
 	/**
 	 * Builder for {@link CommandCancelAction}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CommandCancelAction> {
 		private String index;
 

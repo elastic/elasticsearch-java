@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TopHitsAggregate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L591-L594">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TopHitsAggregate extends AggregateBase implements AggregateVariant {
 	private final HitsMetadata<JsonData> hits;
@@ -47,7 +54,7 @@ public class TopHitsAggregate extends AggregateBase implements AggregateVariant 
 	private TopHitsAggregate(Builder builder) {
 		super(builder);
 
-		this.hits = ModelTypeHelper.requireNonNull(builder.hits, this, "hits");
+		this.hits = ApiTypeHelper.requireNonNull(builder.hits, this, "hits");
 
 	}
 
@@ -83,6 +90,7 @@ public class TopHitsAggregate extends AggregateBase implements AggregateVariant 
 	/**
 	 * Builder for {@link TopHitsAggregate}.
 	 */
+
 	public static class Builder extends AggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<TopHitsAggregate> {

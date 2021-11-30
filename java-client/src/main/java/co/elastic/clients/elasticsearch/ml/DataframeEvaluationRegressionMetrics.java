@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationRegressionMetrics
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/_types/DataframeEvaluation.ts#L92-L110">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeEvaluationRegressionMetrics implements JsonpSerializable {
 	private final Map<String, JsonData> mse;
@@ -57,10 +64,10 @@ public class DataframeEvaluationRegressionMetrics implements JsonpSerializable {
 
 	private DataframeEvaluationRegressionMetrics(Builder builder) {
 
-		this.mse = ModelTypeHelper.unmodifiable(builder.mse);
+		this.mse = ApiTypeHelper.unmodifiable(builder.mse);
 		this.msle = builder.msle;
 		this.huber = builder.huber;
-		this.rSquared = ModelTypeHelper.unmodifiable(builder.rSquared);
+		this.rSquared = ApiTypeHelper.unmodifiable(builder.rSquared);
 
 	}
 
@@ -121,7 +128,7 @@ public class DataframeEvaluationRegressionMetrics implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.mse)) {
+		if (ApiTypeHelper.isDefined(this.mse)) {
 			generator.writeKey("mse");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.mse.entrySet()) {
@@ -142,7 +149,7 @@ public class DataframeEvaluationRegressionMetrics implements JsonpSerializable {
 			this.huber.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.rSquared)) {
+		if (ApiTypeHelper.isDefined(this.rSquared)) {
 			generator.writeKey("r_squared");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.rSquared.entrySet()) {
@@ -161,6 +168,7 @@ public class DataframeEvaluationRegressionMetrics implements JsonpSerializable {
 	/**
 	 * Builder for {@link DataframeEvaluationRegressionMetrics}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase
 			implements
 				ObjectBuilder<DataframeEvaluationRegressionMetrics> {
@@ -182,11 +190,9 @@ public class DataframeEvaluationRegressionMetrics implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code mse}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>mse</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset <code>mse</code>
-		 * to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>mse</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder mse(Map<String, JsonData> map) {
 			this.mse = _mapPutAll(this.mse, map);
@@ -254,11 +260,9 @@ public class DataframeEvaluationRegressionMetrics implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code r_squared}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>rSquared</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>rSquared</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>rSquared</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder rSquared(Map<String, JsonData> map) {
 			this.rSquared = _mapPutAll(this.rSquared, map);

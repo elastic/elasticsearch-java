@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsSummary
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/_types/DataframeAnalytics.ts#L305-L317">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeAnalyticsSummary implements JsonpSerializable {
 	private final String id;
@@ -77,10 +84,10 @@ public class DataframeAnalyticsSummary implements JsonpSerializable {
 
 	private DataframeAnalyticsSummary(Builder builder) {
 
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
-		this.source = ModelTypeHelper.requireNonNull(builder.source, this, "source");
-		this.dest = ModelTypeHelper.requireNonNull(builder.dest, this, "dest");
-		this.analysis = ModelTypeHelper.requireNonNull(builder.analysis, this, "analysis");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
+		this.dest = ApiTypeHelper.requireNonNull(builder.dest, this, "dest");
+		this.analysis = ApiTypeHelper.requireNonNull(builder.analysis, this, "analysis");
 		this.description = builder.description;
 		this.modelMemoryLimit = builder.modelMemoryLimit;
 		this.maxNumThreads = builder.maxNumThreads;
@@ -245,6 +252,7 @@ public class DataframeAnalyticsSummary implements JsonpSerializable {
 	/**
 	 * Builder for {@link DataframeAnalyticsSummary}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframeAnalyticsSummary> {
 		private String id;
 

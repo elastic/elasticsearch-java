@@ -27,6 +27,12 @@ import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ingest/_types/Processors.ts#L316-L319">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public enum ShapeType implements JsonEnum {
 	GeoShape("geo_shape"),

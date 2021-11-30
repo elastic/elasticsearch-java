@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: ml.stop_datafeed.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/stop_datafeed/MlStopDatafeedResponse.ts#L20-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class StopDatafeedResponse implements JsonpSerializable {
 	private final boolean stopped;
@@ -46,7 +53,7 @@ public class StopDatafeedResponse implements JsonpSerializable {
 
 	private StopDatafeedResponse(Builder builder) {
 
-		this.stopped = ModelTypeHelper.requireNonNull(builder.stopped, this, "stopped");
+		this.stopped = ApiTypeHelper.requireNonNull(builder.stopped, this, "stopped");
 
 	}
 
@@ -82,6 +89,7 @@ public class StopDatafeedResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link StopDatafeedResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StopDatafeedResponse> {
 		private Boolean stopped;
 

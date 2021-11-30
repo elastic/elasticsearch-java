@@ -33,7 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -46,6 +46,21 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.flush_job.Request
+
+/**
+ * Forces any buffered data to be processed by the job. The flush jobs API is
+ * only applicable when sending data for analysis using the post data API.
+ * Depending on the content of the buffer, then it might additionally calculate
+ * new results. Both flush and close operations are similar, however the flush
+ * is more efficient if you are expecting to send more data for analysis. When
+ * flushing, the job remains open and is available to continue analyzing data. A
+ * close operation additionally prunes and persists the model state to disk and
+ * the job must be opened again before analyzing further data.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/flush_job/MlFlushJobRequest.ts#L24-L75">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FlushJobRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -72,7 +87,7 @@ public class FlushJobRequest extends RequestBase implements JsonpSerializable {
 		this.advanceTime = builder.advanceTime;
 		this.calcInterim = builder.calcInterim;
 		this.end = builder.end;
-		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.skipTime = builder.skipTime;
 		this.start = builder.start;
 
@@ -185,6 +200,7 @@ public class FlushJobRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link FlushJobRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FlushJobRequest> {
 		@Nullable
 		private String advanceTime;

@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.update_aliases.AddAction
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/update_aliases/types.ts#L30-L42">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AddAction implements ActionVariant, JsonpSerializable {
 	@Nullable
@@ -77,10 +84,10 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 	private AddAction(Builder builder) {
 
 		this.alias = builder.alias;
-		this.aliases = ModelTypeHelper.unmodifiable(builder.aliases);
+		this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
 		this.filter = builder.filter;
 		this.index = builder.index;
-		this.indices = ModelTypeHelper.unmodifiable(builder.indices);
+		this.indices = ApiTypeHelper.unmodifiable(builder.indices);
 		this.indexRouting = builder.indexRouting;
 		this.isHidden = builder.isHidden;
 		this.isWriteIndex = builder.isWriteIndex;
@@ -195,7 +202,7 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 			generator.write(this.alias);
 
 		}
-		if (ModelTypeHelper.isDefined(this.aliases)) {
+		if (ApiTypeHelper.isDefined(this.aliases)) {
 			generator.writeKey("aliases");
 			generator.writeStartArray();
 			for (String item0 : this.aliases) {
@@ -215,7 +222,7 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 			generator.write(this.index);
 
 		}
-		if (ModelTypeHelper.isDefined(this.indices)) {
+		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartArray();
 			for (String item0 : this.indices) {
@@ -258,6 +265,7 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 	/**
 	 * Builder for {@link AddAction}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AddAction> {
 		@Nullable
 		private String alias;
@@ -300,11 +308,9 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 		/**
 		 * API name: {@code aliases}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>aliases</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>aliases</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>aliases</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder aliases(List<String> list) {
 			this.aliases = _listAddAll(this.aliases, list);
@@ -347,11 +353,9 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 		/**
 		 * API name: {@code indices}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>indices</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>indices</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder indices(List<String> list) {
 			this.indices = _listAddAll(this.indices, list);

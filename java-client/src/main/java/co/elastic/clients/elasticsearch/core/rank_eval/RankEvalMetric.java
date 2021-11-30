@@ -37,6 +37,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.RankEvalMetric
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/rank_eval/types.ts#L90-L96">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RankEvalMetric implements JsonpSerializable {
 	@Nullable
@@ -154,6 +161,7 @@ public class RankEvalMetric implements JsonpSerializable {
 	/**
 	 * Builder for {@link RankEvalMetric}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RankEvalMetric> {
 		@Nullable
 		private RankEvalMetricPrecision precision;

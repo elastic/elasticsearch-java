@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GoogleNormalizedDistanceHeuristic
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/bucket.ts#L290-L292">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GoogleNormalizedDistanceHeuristic implements JsonpSerializable {
 	@Nullable
@@ -88,6 +95,7 @@ public class GoogleNormalizedDistanceHeuristic implements JsonpSerializable {
 	/**
 	 * Builder for {@link GoogleNormalizedDistanceHeuristic}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GoogleNormalizedDistanceHeuristic> {
 		@Nullable
 		private Boolean backgroundIsSuperset;

@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,6 +43,15 @@ import javax.annotation.Nullable;
 
 // typedef: ilm.delete_lifecycle.Request
 
+/**
+ * Deletes the specified lifecycle policy definition. A currently used policy
+ * cannot be deleted.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ilm/delete_lifecycle/DeleteLifecycleRequest.ts#L23-L33">API
+ *      specification</a>
+ */
+
 public class DeleteLifecycleRequest extends RequestBase {
 	private final String name;
 
@@ -50,7 +59,7 @@ public class DeleteLifecycleRequest extends RequestBase {
 
 	private DeleteLifecycleRequest(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
@@ -72,6 +81,7 @@ public class DeleteLifecycleRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteLifecycleRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteLifecycleRequest> {
 		private String name;
 

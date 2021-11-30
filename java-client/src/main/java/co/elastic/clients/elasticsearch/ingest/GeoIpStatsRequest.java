@@ -38,6 +38,14 @@ import java.util.Objects;
 
 // typedef: ingest.geo_ip_stats.Request
 
+/**
+ * Returns statistical information about geoip databases
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ingest/geo_ip_stats/IngestGeoIpStatsRequest.ts#L22-L27">API
+ *      specification</a>
+ */
+
 public class GeoIpStatsRequest extends RequestBase {
 	public GeoIpStatsRequest() {
 	}

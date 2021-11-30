@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.DenseVectorProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/complex.ts#L50-L56">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DenseVectorProperty extends PropertyBase implements PropertyVariant {
 	private final int dims;
@@ -57,7 +64,7 @@ public class DenseVectorProperty extends PropertyBase implements PropertyVariant
 	private DenseVectorProperty(Builder builder) {
 		super(builder);
 
-		this.dims = ModelTypeHelper.requireNonNull(builder.dims, this, "dims");
+		this.dims = ApiTypeHelper.requireNonNull(builder.dims, this, "dims");
 		this.similarity = builder.similarity;
 		this.index = builder.index;
 		this.indexOptions = builder.indexOptions;
@@ -137,6 +144,7 @@ public class DenseVectorProperty extends PropertyBase implements PropertyVariant
 	/**
 	 * Builder for {@link DenseVectorProperty}.
 	 */
+
 	public static class Builder extends PropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DenseVectorProperty> {

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.Jvm
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/_types/Stats.ts#L161-L170">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Jvm implements JsonpSerializable {
 	private final Map<String, NodeBufferPool> bufferPools;
@@ -63,14 +70,14 @@ public class Jvm implements JsonpSerializable {
 
 	private Jvm(Builder builder) {
 
-		this.bufferPools = ModelTypeHelper.unmodifiableRequired(builder.bufferPools, this, "bufferPools");
-		this.classes = ModelTypeHelper.requireNonNull(builder.classes, this, "classes");
-		this.gc = ModelTypeHelper.requireNonNull(builder.gc, this, "gc");
-		this.mem = ModelTypeHelper.requireNonNull(builder.mem, this, "mem");
-		this.threads = ModelTypeHelper.requireNonNull(builder.threads, this, "threads");
-		this.timestamp = ModelTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
-		this.uptime = ModelTypeHelper.requireNonNull(builder.uptime, this, "uptime");
-		this.uptimeInMillis = ModelTypeHelper.requireNonNull(builder.uptimeInMillis, this, "uptimeInMillis");
+		this.bufferPools = ApiTypeHelper.unmodifiableRequired(builder.bufferPools, this, "bufferPools");
+		this.classes = ApiTypeHelper.requireNonNull(builder.classes, this, "classes");
+		this.gc = ApiTypeHelper.requireNonNull(builder.gc, this, "gc");
+		this.mem = ApiTypeHelper.requireNonNull(builder.mem, this, "mem");
+		this.threads = ApiTypeHelper.requireNonNull(builder.threads, this, "threads");
+		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+		this.uptime = ApiTypeHelper.requireNonNull(builder.uptime, this, "uptime");
+		this.uptimeInMillis = ApiTypeHelper.requireNonNull(builder.uptimeInMillis, this, "uptimeInMillis");
 
 	}
 
@@ -145,7 +152,7 @@ public class Jvm implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.bufferPools)) {
+		if (ApiTypeHelper.isDefined(this.bufferPools)) {
 			generator.writeKey("buffer_pools");
 			generator.writeStartObject();
 			for (Map.Entry<String, NodeBufferPool> item0 : this.bufferPools.entrySet()) {
@@ -184,6 +191,7 @@ public class Jvm implements JsonpSerializable {
 	/**
 	 * Builder for {@link Jvm}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Jvm> {
 		private Map<String, NodeBufferPool> bufferPools;
 
@@ -204,11 +212,9 @@ public class Jvm implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code buffer_pools}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>bufferPools</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>bufferPools</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>bufferPools</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder bufferPools(Map<String, NodeBufferPool> map) {
 			this.bufferPools = _mapPutAll(this.bufferPools, map);

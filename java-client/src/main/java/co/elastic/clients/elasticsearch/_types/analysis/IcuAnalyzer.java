@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.IcuAnalyzer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/icu-plugin.ts#L66-L70">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IcuAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	private final IcuNormalizationType method;
@@ -48,8 +55,8 @@ public class IcuAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
 	private IcuAnalyzer(Builder builder) {
 
-		this.method = ModelTypeHelper.requireNonNull(builder.method, this, "method");
-		this.mode = ModelTypeHelper.requireNonNull(builder.mode, this, "mode");
+		this.method = ApiTypeHelper.requireNonNull(builder.method, this, "method");
+		this.mode = ApiTypeHelper.requireNonNull(builder.mode, this, "mode");
 
 	}
 
@@ -104,6 +111,7 @@ public class IcuAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	/**
 	 * Builder for {@link IcuAnalyzer}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IcuAnalyzer> {
 		private IcuNormalizationType method;
 

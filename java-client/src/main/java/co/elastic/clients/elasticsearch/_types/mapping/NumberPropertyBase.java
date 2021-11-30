@@ -36,6 +36,13 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.NumberPropertyBase
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/core.ts#L141-L144">API
+ *      specification</a>
+ */
+
 public abstract class NumberPropertyBase extends DocValuesPropertyBase {
 	@Nullable
 	private final Boolean index;

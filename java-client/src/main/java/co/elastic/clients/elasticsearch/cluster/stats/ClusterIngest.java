@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterIngest
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/stats/types.ts#L143-L146">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ClusterIngest implements JsonpSerializable {
 	private final int numberOfPipelines;
@@ -51,8 +58,8 @@ public class ClusterIngest implements JsonpSerializable {
 
 	private ClusterIngest(Builder builder) {
 
-		this.numberOfPipelines = ModelTypeHelper.requireNonNull(builder.numberOfPipelines, this, "numberOfPipelines");
-		this.processorStats = ModelTypeHelper.unmodifiableRequired(builder.processorStats, this, "processorStats");
+		this.numberOfPipelines = ApiTypeHelper.requireNonNull(builder.numberOfPipelines, this, "numberOfPipelines");
+		this.processorStats = ApiTypeHelper.unmodifiableRequired(builder.processorStats, this, "processorStats");
 
 	}
 
@@ -88,7 +95,7 @@ public class ClusterIngest implements JsonpSerializable {
 		generator.writeKey("number_of_pipelines");
 		generator.write(this.numberOfPipelines);
 
-		if (ModelTypeHelper.isDefined(this.processorStats)) {
+		if (ApiTypeHelper.isDefined(this.processorStats)) {
 			generator.writeKey("processor_stats");
 			generator.writeStartObject();
 			for (Map.Entry<String, ClusterProcessor> item0 : this.processorStats.entrySet()) {
@@ -107,6 +114,7 @@ public class ClusterIngest implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClusterIngest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterIngest> {
 		private Integer numberOfPipelines;
 
@@ -123,11 +131,9 @@ public class ClusterIngest implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code processor_stats}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>processorStats</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>processorStats</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>processorStats</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder processorStats(Map<String, ClusterProcessor> map) {
 			this.processorStats = _mapPutAll(this.processorStats, map);

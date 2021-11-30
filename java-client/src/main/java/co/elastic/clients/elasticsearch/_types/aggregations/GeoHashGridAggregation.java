@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GeoHashGridAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/bucket.ts#L179-L185">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GeoHashGridAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
@@ -157,6 +164,7 @@ public class GeoHashGridAggregation extends BucketAggregationBase implements Agg
 	/**
 	 * Builder for {@link GeoHashGridAggregation}.
 	 */
+
 	public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<GeoHashGridAggregation> {

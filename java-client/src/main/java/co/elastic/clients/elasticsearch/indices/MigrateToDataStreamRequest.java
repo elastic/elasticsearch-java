@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,6 +43,14 @@ import javax.annotation.Nullable;
 
 // typedef: indices.migrate_to_data_stream.Request
 
+/**
+ * Migrates an alias to a data stream
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/migrate_to_data_stream/IndicesMigrateToDataStreamRequest.ts#L23-L32">API
+ *      specification</a>
+ */
+
 public class MigrateToDataStreamRequest extends RequestBase {
 	private final String name;
 
@@ -50,7 +58,7 @@ public class MigrateToDataStreamRequest extends RequestBase {
 
 	private MigrateToDataStreamRequest(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
@@ -72,6 +80,7 @@ public class MigrateToDataStreamRequest extends RequestBase {
 	/**
 	 * Builder for {@link MigrateToDataStreamRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MigrateToDataStreamRequest> {
 		private String name;
 

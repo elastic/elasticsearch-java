@@ -32,7 +32,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,6 +43,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.put_index_template.IndexTemplateMapping
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/put_index_template/IndicesPutIndexTemplateRequest.ts#L57-L61">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IndexTemplateMapping implements JsonpSerializable {
 	private final Map<String, Alias> aliases;
@@ -57,7 +64,7 @@ public class IndexTemplateMapping implements JsonpSerializable {
 
 	private IndexTemplateMapping(Builder builder) {
 
-		this.aliases = ModelTypeHelper.unmodifiable(builder.aliases);
+		this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
 		this.mappings = builder.mappings;
 		this.settings = builder.settings;
 
@@ -101,7 +108,7 @@ public class IndexTemplateMapping implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.aliases)) {
+		if (ApiTypeHelper.isDefined(this.aliases)) {
 			generator.writeKey("aliases");
 			generator.writeStartObject();
 			for (Map.Entry<String, Alias> item0 : this.aliases.entrySet()) {
@@ -130,6 +137,7 @@ public class IndexTemplateMapping implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexTemplateMapping}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexTemplateMapping> {
 		@Nullable
 		private Map<String, Alias> aliases;
@@ -143,11 +151,9 @@ public class IndexTemplateMapping implements JsonpSerializable {
 		/**
 		 * API name: {@code aliases}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>aliases</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>aliases</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>aliases</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder aliases(Map<String, Alias> map) {
 			this.aliases = _mapPutAll(this.aliases, map);

@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TopMetrics
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L668-L672">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TopMetrics implements JsonpSerializable {
 	private final List<FieldValue> sort;
@@ -52,8 +59,8 @@ public class TopMetrics implements JsonpSerializable {
 
 	private TopMetrics(Builder builder) {
 
-		this.sort = ModelTypeHelper.unmodifiableRequired(builder.sort, this, "sort");
-		this.metrics = ModelTypeHelper.unmodifiableRequired(builder.metrics, this, "metrics");
+		this.sort = ApiTypeHelper.unmodifiableRequired(builder.sort, this, "sort");
+		this.metrics = ApiTypeHelper.unmodifiableRequired(builder.metrics, this, "metrics");
 
 	}
 
@@ -86,7 +93,7 @@ public class TopMetrics implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.sort)) {
+		if (ApiTypeHelper.isDefined(this.sort)) {
 			generator.writeKey("sort");
 			generator.writeStartArray();
 			for (FieldValue item0 : this.sort) {
@@ -96,7 +103,7 @@ public class TopMetrics implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.metrics)) {
+		if (ApiTypeHelper.isDefined(this.metrics)) {
 			generator.writeKey("metrics");
 			generator.writeStartObject();
 			for (Map.Entry<String, FieldValue> item0 : this.metrics.entrySet()) {
@@ -115,6 +122,7 @@ public class TopMetrics implements JsonpSerializable {
 	/**
 	 * Builder for {@link TopMetrics}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TopMetrics> {
 		private List<FieldValue> sort;
 
@@ -123,11 +131,9 @@ public class TopMetrics implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code sort}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>sort</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>sort</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>sort</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder sort(List<FieldValue> list) {
 			this.sort = _listAddAll(this.sort, list);
@@ -156,11 +162,9 @@ public class TopMetrics implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code metrics}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>metrics</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>metrics</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>metrics</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder metrics(Map<String, FieldValue> map) {
 			this.metrics = _mapPutAll(this.metrics, map);

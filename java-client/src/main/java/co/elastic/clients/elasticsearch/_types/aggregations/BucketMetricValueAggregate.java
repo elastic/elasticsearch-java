@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.BucketMetricValueAggregate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L219-L222">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class BucketMetricValueAggregate extends SingleMetricAggregateBase implements AggregateVariant {
 	private final List<String> keys;
@@ -47,7 +54,7 @@ public class BucketMetricValueAggregate extends SingleMetricAggregateBase implem
 	private BucketMetricValueAggregate(Builder builder) {
 		super(builder);
 
-		this.keys = ModelTypeHelper.unmodifiableRequired(builder.keys, this, "keys");
+		this.keys = ApiTypeHelper.unmodifiableRequired(builder.keys, this, "keys");
 
 	}
 
@@ -73,7 +80,7 @@ public class BucketMetricValueAggregate extends SingleMetricAggregateBase implem
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.keys)) {
+		if (ApiTypeHelper.isDefined(this.keys)) {
 			generator.writeKey("keys");
 			generator.writeStartArray();
 			for (String item0 : this.keys) {
@@ -91,6 +98,7 @@ public class BucketMetricValueAggregate extends SingleMetricAggregateBase implem
 	/**
 	 * Builder for {@link BucketMetricValueAggregate}.
 	 */
+
 	public static class Builder extends SingleMetricAggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<BucketMetricValueAggregate> {
@@ -99,11 +107,9 @@ public class BucketMetricValueAggregate extends SingleMetricAggregateBase implem
 		/**
 		 * Required - API name: {@code keys}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>keys</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>keys</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>keys</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder keys(List<String> list) {
 			this.keys = _listAddAll(this.keys, list);

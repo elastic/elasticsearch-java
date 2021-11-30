@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,6 +43,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.mtermvectors.TermVectorsResult
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/mtermvectors/types.ts#L50-L57">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MultiTermVectorsResult implements JsonpSerializable {
 	private final boolean found;
@@ -61,12 +68,12 @@ public class MultiTermVectorsResult implements JsonpSerializable {
 
 	private MultiTermVectorsResult(Builder builder) {
 
-		this.found = ModelTypeHelper.requireNonNull(builder.found, this, "found");
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
-		this.termVectors = ModelTypeHelper.unmodifiableRequired(builder.termVectors, this, "termVectors");
-		this.took = ModelTypeHelper.requireNonNull(builder.took, this, "took");
-		this.version = ModelTypeHelper.requireNonNull(builder.version, this, "version");
+		this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.termVectors = ApiTypeHelper.unmodifiableRequired(builder.termVectors, this, "termVectors");
+		this.took = ApiTypeHelper.requireNonNull(builder.took, this, "took");
+		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
 
 	}
 
@@ -136,7 +143,7 @@ public class MultiTermVectorsResult implements JsonpSerializable {
 		generator.writeKey("index");
 		generator.write(this.index);
 
-		if (ModelTypeHelper.isDefined(this.termVectors)) {
+		if (ApiTypeHelper.isDefined(this.termVectors)) {
 			generator.writeKey("term_vectors");
 			generator.writeStartObject();
 			for (Map.Entry<String, TermVector> item0 : this.termVectors.entrySet()) {
@@ -160,6 +167,7 @@ public class MultiTermVectorsResult implements JsonpSerializable {
 	/**
 	 * Builder for {@link MultiTermVectorsResult}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MultiTermVectorsResult> {
 		private Boolean found;
 
@@ -200,11 +208,9 @@ public class MultiTermVectorsResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code term_vectors}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>termVectors</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>termVectors</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>termVectors</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder termVectors(Map<String, TermVector> map) {
 			this.termVectors = _mapPutAll(this.termVectors, map);

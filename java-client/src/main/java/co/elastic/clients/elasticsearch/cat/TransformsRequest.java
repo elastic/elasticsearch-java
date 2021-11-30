@@ -44,6 +44,14 @@ import javax.annotation.Nullable;
 
 // typedef: cat.transforms.Request
 
+/**
+ * Gets configuration and usage information about transforms.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/transforms/CatTransformsRequest.ts#L24-L38">API
+ *      specification</a>
+ */
+
 public class TransformsRequest extends CatRequestBase {
 	@Nullable
 	private final Boolean allowNoMatch;
@@ -119,6 +127,7 @@ public class TransformsRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link TransformsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TransformsRequest> {
 		@Nullable
 		private Boolean allowNoMatch;

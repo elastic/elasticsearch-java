@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: ml.put_trained_model.Weights
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/put_trained_model/types.ts#L108-L110">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Weights implements JsonpSerializable {
 	private final double weights;
@@ -46,7 +53,7 @@ public class Weights implements JsonpSerializable {
 
 	private Weights(Builder builder) {
 
-		this.weights = ModelTypeHelper.requireNonNull(builder.weights, this, "weights");
+		this.weights = ApiTypeHelper.requireNonNull(builder.weights, this, "weights");
 
 	}
 
@@ -82,6 +89,7 @@ public class Weights implements JsonpSerializable {
 	/**
 	 * Builder for {@link Weights}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Weights> {
 		private Double weights;
 

@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.ShapeFieldQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/specialized.ts#L185-L189">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ShapeFieldQuery implements JsonpSerializable {
 	@Nullable
@@ -121,6 +128,7 @@ public class ShapeFieldQuery implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShapeFieldQuery}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShapeFieldQuery> {
 		@Nullable
 		private FieldLookup indexedShape;

@@ -32,7 +32,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: enrich.stats.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/enrich/stats/EnrichStatsResponse.ts#L22-L29">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class EnrichStatsResponse implements JsonpSerializable {
 	private final List<CoordinatorStats> coordinatorStats;
@@ -54,11 +61,10 @@ public class EnrichStatsResponse implements JsonpSerializable {
 
 	private EnrichStatsResponse(Builder builder) {
 
-		this.coordinatorStats = ModelTypeHelper.unmodifiableRequired(builder.coordinatorStats, this,
-				"coordinatorStats");
-		this.executingPolicies = ModelTypeHelper.unmodifiableRequired(builder.executingPolicies, this,
+		this.coordinatorStats = ApiTypeHelper.unmodifiableRequired(builder.coordinatorStats, this, "coordinatorStats");
+		this.executingPolicies = ApiTypeHelper.unmodifiableRequired(builder.executingPolicies, this,
 				"executingPolicies");
-		this.cacheStats = ModelTypeHelper.unmodifiable(builder.cacheStats);
+		this.cacheStats = ApiTypeHelper.unmodifiable(builder.cacheStats);
 
 	}
 
@@ -98,7 +104,7 @@ public class EnrichStatsResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.coordinatorStats)) {
+		if (ApiTypeHelper.isDefined(this.coordinatorStats)) {
 			generator.writeKey("coordinator_stats");
 			generator.writeStartArray();
 			for (CoordinatorStats item0 : this.coordinatorStats) {
@@ -108,7 +114,7 @@ public class EnrichStatsResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.executingPolicies)) {
+		if (ApiTypeHelper.isDefined(this.executingPolicies)) {
 			generator.writeKey("executing_policies");
 			generator.writeStartArray();
 			for (ExecutingPolicy item0 : this.executingPolicies) {
@@ -118,7 +124,7 @@ public class EnrichStatsResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.cacheStats)) {
+		if (ApiTypeHelper.isDefined(this.cacheStats)) {
 			generator.writeKey("cache_stats");
 			generator.writeStartArray();
 			for (CacheStats item0 : this.cacheStats) {
@@ -136,6 +142,7 @@ public class EnrichStatsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link EnrichStatsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<EnrichStatsResponse> {
 		private List<CoordinatorStats> coordinatorStats;
 
@@ -147,11 +154,9 @@ public class EnrichStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code coordinator_stats}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>coordinatorStats</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>coordinatorStats</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>coordinatorStats</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder coordinatorStats(List<CoordinatorStats> list) {
 			this.coordinatorStats = _listAddAll(this.coordinatorStats, list);
@@ -180,11 +185,9 @@ public class EnrichStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code executing_policies}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>executingPolicies</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>executingPolicies</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>executingPolicies</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder executingPolicies(List<ExecutingPolicy> list) {
 			this.executingPolicies = _listAddAll(this.executingPolicies, list);
@@ -213,11 +216,9 @@ public class EnrichStatsResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code cache_stats}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>cacheStats</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>cacheStats</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>cacheStats</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder cacheStats(List<CacheStats> list) {
 			this.cacheStats = _listAddAll(this.cacheStats, list);

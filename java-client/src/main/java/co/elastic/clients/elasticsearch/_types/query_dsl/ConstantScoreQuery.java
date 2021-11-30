@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -36,6 +36,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.ConstantScoreQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/compound.ts#L42-L44">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ConstantScoreQuery extends QueryBase implements QueryVariant {
 	private final Query filter;
@@ -45,7 +52,7 @@ public class ConstantScoreQuery extends QueryBase implements QueryVariant {
 	private ConstantScoreQuery(Builder builder) {
 		super(builder);
 
-		this.filter = ModelTypeHelper.requireNonNull(builder.filter, this, "filter");
+		this.filter = ApiTypeHelper.requireNonNull(builder.filter, this, "filter");
 
 	}
 
@@ -81,6 +88,7 @@ public class ConstantScoreQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link ConstantScoreQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ConstantScoreQuery> {

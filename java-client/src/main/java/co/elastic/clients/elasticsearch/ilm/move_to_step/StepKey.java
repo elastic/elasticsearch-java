@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm.move_to_step.StepKey
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ilm/move_to_step/types.ts#L20-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class StepKey implements JsonpSerializable {
 	private final String action;
@@ -51,9 +58,9 @@ public class StepKey implements JsonpSerializable {
 
 	private StepKey(Builder builder) {
 
-		this.action = ModelTypeHelper.requireNonNull(builder.action, this, "action");
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
-		this.phase = ModelTypeHelper.requireNonNull(builder.phase, this, "phase");
+		this.action = ApiTypeHelper.requireNonNull(builder.action, this, "action");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.phase = ApiTypeHelper.requireNonNull(builder.phase, this, "phase");
 
 	}
 
@@ -109,6 +116,7 @@ public class StepKey implements JsonpSerializable {
 	/**
 	 * Builder for {@link StepKey}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StepKey> {
 		private String action;
 

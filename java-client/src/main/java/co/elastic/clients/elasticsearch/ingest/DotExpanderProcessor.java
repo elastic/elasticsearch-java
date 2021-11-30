@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,6 +37,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.DotExpanderProcessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ingest/_types/Processors.ts#L193-L196">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DotExpanderProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
@@ -49,7 +56,7 @@ public class DotExpanderProcessor extends ProcessorBase implements ProcessorVari
 	private DotExpanderProcessor(Builder builder) {
 		super(builder);
 
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.path = builder.path;
 
 	}
@@ -100,6 +107,7 @@ public class DotExpanderProcessor extends ProcessorBase implements ProcessorVari
 	/**
 	 * Builder for {@link DotExpanderProcessor}.
 	 */
+
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DotExpanderProcessor> {

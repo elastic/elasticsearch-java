@@ -33,6 +33,14 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.aggregations.ValueCountAggregate
+
+/**
+ * Value count aggregation result. <code>value</code> is always present.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L204-L208">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ValueCountAggregate extends SingleMetricAggregateBase implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -59,6 +67,7 @@ public class ValueCountAggregate extends SingleMetricAggregateBase implements Ag
 	/**
 	 * Builder for {@link ValueCountAggregate}.
 	 */
+
 	public static class Builder extends SingleMetricAggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ValueCountAggregate> {

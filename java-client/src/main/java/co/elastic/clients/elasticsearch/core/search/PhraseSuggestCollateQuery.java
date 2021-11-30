@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.PhraseSuggestCollateQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search/_types/suggester.ts#L155-L158">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PhraseSuggestCollateQuery implements JsonpSerializable {
 	@Nullable
@@ -104,6 +111,7 @@ public class PhraseSuggestCollateQuery implements JsonpSerializable {
 	/**
 	 * Builder for {@link PhraseSuggestCollateQuery}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PhraseSuggestCollateQuery> {
 		@Nullable
 		private String id;

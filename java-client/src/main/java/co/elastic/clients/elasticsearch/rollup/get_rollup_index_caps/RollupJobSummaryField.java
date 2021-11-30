@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.get_rollup_index_caps.RollupJobSummaryField
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/rollup/get_rollup_index_caps/types.ts#L35-L39">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RollupJobSummaryField implements JsonpSerializable {
 	private final String agg;
@@ -54,7 +61,7 @@ public class RollupJobSummaryField implements JsonpSerializable {
 
 	private RollupJobSummaryField(Builder builder) {
 
-		this.agg = ModelTypeHelper.requireNonNull(builder.agg, this, "agg");
+		this.agg = ApiTypeHelper.requireNonNull(builder.agg, this, "agg");
 		this.timeZone = builder.timeZone;
 		this.calendarInterval = builder.calendarInterval;
 
@@ -119,6 +126,7 @@ public class RollupJobSummaryField implements JsonpSerializable {
 	/**
 	 * Builder for {@link RollupJobSummaryField}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RollupJobSummaryField> {
 		private String agg;
 

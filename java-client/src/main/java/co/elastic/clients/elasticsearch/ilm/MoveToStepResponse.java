@@ -34,6 +34,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: ilm.move_to_step.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ilm/move_to_step/MoveToStepResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MoveToStepResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
@@ -52,6 +59,7 @@ public class MoveToStepResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link MoveToStepResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<MoveToStepResponse> {

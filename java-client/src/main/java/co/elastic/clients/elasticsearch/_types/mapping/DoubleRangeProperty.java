@@ -34,6 +34,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.mapping.DoubleRangeProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/range.ts#L42-L44">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DoubleRangeProperty extends RangePropertyBase implements PropertyVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -67,6 +74,7 @@ public class DoubleRangeProperty extends RangePropertyBase implements PropertyVa
 	/**
 	 * Builder for {@link DoubleRangeProperty}.
 	 */
+
 	public static class Builder extends RangePropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DoubleRangeProperty> {

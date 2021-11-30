@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security._types.GlobalPrivilege
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/_types/Privileges.ts#L123-L125">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GlobalPrivilege implements JsonpSerializable {
 	private final ApplicationGlobalUserPrivileges application;
@@ -46,7 +53,7 @@ public class GlobalPrivilege implements JsonpSerializable {
 
 	private GlobalPrivilege(Builder builder) {
 
-		this.application = ModelTypeHelper.requireNonNull(builder.application, this, "application");
+		this.application = ApiTypeHelper.requireNonNull(builder.application, this, "application");
 
 	}
 
@@ -82,6 +89,7 @@ public class GlobalPrivilege implements JsonpSerializable {
 	/**
 	 * Builder for {@link GlobalPrivilege}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GlobalPrivilege> {
 		private ApplicationGlobalUserPrivileges application;
 

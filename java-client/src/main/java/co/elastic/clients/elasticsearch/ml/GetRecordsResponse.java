@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_records.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/get_records/MlGetAnomalyRecordsResponse.ts#L23-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetRecordsResponse implements JsonpSerializable {
 	private final long count;
@@ -50,8 +57,8 @@ public class GetRecordsResponse implements JsonpSerializable {
 
 	private GetRecordsResponse(Builder builder) {
 
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
-		this.records = ModelTypeHelper.unmodifiableRequired(builder.records, this, "records");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.records = ApiTypeHelper.unmodifiableRequired(builder.records, this, "records");
 
 	}
 
@@ -87,7 +94,7 @@ public class GetRecordsResponse implements JsonpSerializable {
 		generator.writeKey("count");
 		generator.write(this.count);
 
-		if (ModelTypeHelper.isDefined(this.records)) {
+		if (ApiTypeHelper.isDefined(this.records)) {
 			generator.writeKey("records");
 			generator.writeStartArray();
 			for (Anomaly item0 : this.records) {
@@ -105,6 +112,7 @@ public class GetRecordsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetRecordsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetRecordsResponse> {
 		private Long count;
 
@@ -121,11 +129,9 @@ public class GetRecordsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code records}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>records</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>records</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>records</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder records(List<Anomaly> list) {
 			this.records = _listAddAll(this.records, list);

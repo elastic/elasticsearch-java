@@ -51,7 +51,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -69,6 +69,14 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: _global.search.Request
+
+/**
+ * Returns results matching a query.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search/SearchRequest.ts#L51-L235">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SearchRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -221,7 +229,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	private SearchRequest(Builder builder) {
 
 		this.source = builder.source;
-		this.aggregations = ModelTypeHelper.unmodifiable(builder.aggregations);
+		this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);
 		this.allowNoIndices = builder.allowNoIndices;
 		this.allowPartialSearchResults = builder.allowPartialSearchResults;
 		this.analyzeWildcard = builder.analyzeWildcard;
@@ -231,16 +239,16 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		this.collapse = builder.collapse;
 		this.defaultOperator = builder.defaultOperator;
 		this.df = builder.df;
-		this.docvalueFields = ModelTypeHelper.unmodifiable(builder.docvalueFields);
-		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
+		this.docvalueFields = ApiTypeHelper.unmodifiable(builder.docvalueFields);
+		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.explain = builder.explain;
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 		this.from = builder.from;
 		this.highlight = builder.highlight;
 		this.ignoreThrottled = builder.ignoreThrottled;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
-		this.indicesBoost = ModelTypeHelper.unmodifiable(builder.indicesBoost);
+		this.index = ApiTypeHelper.unmodifiable(builder.index);
+		this.indicesBoost = ApiTypeHelper.unmodifiable(builder.indicesBoost);
 		this.lenient = builder.lenient;
 		this.maxConcurrentShardRequests = builder.maxConcurrentShardRequests;
 		this.minCompatibleShardNode = builder.minCompatibleShardNode;
@@ -253,25 +261,25 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		this.q = builder.q;
 		this.query = builder.query;
 		this.requestCache = builder.requestCache;
-		this.rescore = ModelTypeHelper.unmodifiable(builder.rescore);
+		this.rescore = ApiTypeHelper.unmodifiable(builder.rescore);
 		this.routing = builder.routing;
-		this.runtimeMappings = ModelTypeHelper.unmodifiable(builder.runtimeMappings);
-		this.scriptFields = ModelTypeHelper.unmodifiable(builder.scriptFields);
+		this.runtimeMappings = ApiTypeHelper.unmodifiable(builder.runtimeMappings);
+		this.scriptFields = ApiTypeHelper.unmodifiable(builder.scriptFields);
 		this.scroll = builder.scroll;
-		this.searchAfter = ModelTypeHelper.unmodifiable(builder.searchAfter);
+		this.searchAfter = ApiTypeHelper.unmodifiable(builder.searchAfter);
 		this.searchType = builder.searchType;
 		this.seqNoPrimaryTerm = builder.seqNoPrimaryTerm;
 		this.size = builder.size;
 		this.slice = builder.slice;
-		this.sort = ModelTypeHelper.unmodifiable(builder.sort);
-		this.stats = ModelTypeHelper.unmodifiable(builder.stats);
-		this.storedFields = ModelTypeHelper.unmodifiable(builder.storedFields);
+		this.sort = ApiTypeHelper.unmodifiable(builder.sort);
+		this.stats = ApiTypeHelper.unmodifiable(builder.stats);
+		this.storedFields = ApiTypeHelper.unmodifiable(builder.storedFields);
 		this.suggest = builder.suggest;
 		this.terminateAfter = builder.terminateAfter;
 		this.timeout = builder.timeout;
 		this.trackScores = builder.trackScores;
 		this.trackTotalHits = builder.trackTotalHits;
-		this.type = ModelTypeHelper.unmodifiable(builder.type);
+		this.type = ApiTypeHelper.unmodifiable(builder.type);
 		this.version = builder.version;
 
 	}
@@ -844,7 +852,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 			this.source.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.aggregations)) {
+		if (ApiTypeHelper.isDefined(this.aggregations)) {
 			generator.writeKey("aggregations");
 			generator.writeStartObject();
 			for (Map.Entry<String, Aggregation> item0 : this.aggregations.entrySet()) {
@@ -860,7 +868,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 			this.collapse.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.docvalueFields)) {
+		if (ApiTypeHelper.isDefined(this.docvalueFields)) {
 			generator.writeKey("docvalue_fields");
 			generator.writeStartArray();
 			for (FieldAndFormat item0 : this.docvalueFields) {
@@ -875,7 +883,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 			generator.write(this.explain);
 
 		}
-		if (ModelTypeHelper.isDefined(this.fields)) {
+		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartArray();
 			for (FieldAndFormat item0 : this.fields) {
@@ -895,7 +903,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 			this.highlight.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.indicesBoost)) {
+		if (ApiTypeHelper.isDefined(this.indicesBoost)) {
 			generator.writeKey("indices_boost");
 			generator.writeStartArray();
 			for (Map<String, Double> item0 : this.indicesBoost) {
@@ -938,7 +946,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 			this.query.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.rescore)) {
+		if (ApiTypeHelper.isDefined(this.rescore)) {
 			generator.writeKey("rescore");
 			generator.writeStartArray();
 			for (Rescore item0 : this.rescore) {
@@ -948,7 +956,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.runtimeMappings)) {
+		if (ApiTypeHelper.isDefined(this.runtimeMappings)) {
 			generator.writeKey("runtime_mappings");
 			generator.writeStartObject();
 			for (Map.Entry<String, RuntimeField> item0 : this.runtimeMappings.entrySet()) {
@@ -959,7 +967,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.scriptFields)) {
+		if (ApiTypeHelper.isDefined(this.scriptFields)) {
 			generator.writeKey("script_fields");
 			generator.writeStartObject();
 			for (Map.Entry<String, ScriptField> item0 : this.scriptFields.entrySet()) {
@@ -970,7 +978,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.searchAfter)) {
+		if (ApiTypeHelper.isDefined(this.searchAfter)) {
 			generator.writeKey("search_after");
 			generator.writeStartArray();
 			for (String item0 : this.searchAfter) {
@@ -995,7 +1003,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 			this.slice.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.sort)) {
+		if (ApiTypeHelper.isDefined(this.sort)) {
 			generator.writeKey("sort");
 			generator.writeStartArray();
 			for (SortOptions item0 : this.sort) {
@@ -1005,7 +1013,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.stats)) {
+		if (ApiTypeHelper.isDefined(this.stats)) {
 			generator.writeKey("stats");
 			generator.writeStartArray();
 			for (String item0 : this.stats) {
@@ -1015,7 +1023,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.storedFields)) {
+		if (ApiTypeHelper.isDefined(this.storedFields)) {
 			generator.writeKey("stored_fields");
 			generator.writeStartArray();
 			for (String item0 : this.storedFields) {
@@ -1063,6 +1071,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link SearchRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SearchRequest> {
 		@Nullable
 		private SourceConfig source;
@@ -1247,11 +1256,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code aggregations}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>aggregations</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>aggregations</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>aggregations</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder aggregations(Map<String, Aggregation> map) {
 			this.aggregations = _mapPutAll(this.aggregations, map);
@@ -1387,11 +1394,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code docvalue_fields}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>docvalueFields</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>docvalueFields</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>docvalueFields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder docvalueFields(List<FieldAndFormat> list) {
 			this.docvalueFields = _listAddAll(this.docvalueFields, list);
@@ -1429,11 +1434,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>expandWildcards</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder expandWildcards(List<ExpandWildcard> list) {
 			this.expandWildcards = _listAddAll(this.expandWildcards, list);
@@ -1470,11 +1473,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code fields}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>fields</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>fields</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>fields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder fields(List<FieldAndFormat> list) {
 			this.fields = _listAddAll(this.fields, list);
@@ -1561,11 +1562,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>index</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>index</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder index(List<String> list) {
 			this.index = _listAddAll(this.index, list);
@@ -1590,11 +1589,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code indices_boost}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>indicesBoost</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>indicesBoost</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>indicesBoost</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder indicesBoost(List<Map<String, Double>> list) {
 			this.indicesBoost = _listAddAll(this.indicesBoost, list);
@@ -1771,11 +1768,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code rescore}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>rescore</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>rescore</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>rescore</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder rescore(List<Rescore> list) {
 			this.rescore = _listAddAll(this.rescore, list);
@@ -1817,11 +1812,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code runtime_mappings}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>runtimeMappings</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>runtimeMappings</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>runtimeMappings</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder runtimeMappings(Map<String, RuntimeField> map) {
 			this.runtimeMappings = _mapPutAll(this.runtimeMappings, map);
@@ -1859,11 +1852,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code script_fields}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>scriptFields</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>scriptFields</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>scriptFields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder scriptFields(Map<String, ScriptField> map) {
 			this.scriptFields = _mapPutAll(this.scriptFields, map);
@@ -1917,11 +1908,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code search_after}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>searchAfter</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>searchAfter</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>searchAfter</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder searchAfter(List<String> list) {
 			this.searchAfter = _listAddAll(this.searchAfter, list);
@@ -1989,11 +1978,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code sort}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>sort</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>sort</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>sort</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder sort(List<SortOptions> list) {
 			this.sort = _listAddAll(this.sort, list);
@@ -2026,11 +2013,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code stats}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>stats</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>stats</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>stats</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder stats(List<String> list) {
 			this.stats = _listAddAll(this.stats, list);
@@ -2059,11 +2044,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code stored_fields}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>storedFields</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>storedFields</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>storedFields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder storedFields(List<String> list) {
 			this.storedFields = _listAddAll(this.storedFields, list);
@@ -2167,11 +2150,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code type}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>type</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>type</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>type</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder type(List<String> list) {
 			this.type = _listAddAll(this.type, list);
@@ -2286,9 +2267,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 
 				int propsSet = 0;
 
-				if (ModelTypeHelper.isDefined(request.index()))
+				if (ApiTypeHelper.isDefined(request.index()))
 					propsSet |= _index;
-				if (ModelTypeHelper.isDefined(request.type()))
+				if (ApiTypeHelper.isDefined(request.type()))
 					propsSet |= _type;
 
 				if (propsSet == 0) {
@@ -2353,7 +2334,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 				if (request.allowPartialSearchResults != null) {
 					params.put("allow_partial_search_results", String.valueOf(request.allowPartialSearchResults));
 				}
-				if (ModelTypeHelper.isDefined(request.expandWildcards)) {
+				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot._types.IndexDetails
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/snapshot/_types/SnapshotIndexDetails.ts#L23-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IndexDetails implements JsonpSerializable {
 	private final int shardCount;
@@ -56,10 +63,10 @@ public class IndexDetails implements JsonpSerializable {
 
 	private IndexDetails(Builder builder) {
 
-		this.shardCount = ModelTypeHelper.requireNonNull(builder.shardCount, this, "shardCount");
+		this.shardCount = ApiTypeHelper.requireNonNull(builder.shardCount, this, "shardCount");
 		this.size = builder.size;
-		this.sizeInBytes = ModelTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
-		this.maxSegmentsPerShard = ModelTypeHelper.requireNonNull(builder.maxSegmentsPerShard, this,
+		this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
+		this.maxSegmentsPerShard = ApiTypeHelper.requireNonNull(builder.maxSegmentsPerShard, this,
 				"maxSegmentsPerShard");
 
 	}
@@ -129,6 +136,7 @@ public class IndexDetails implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexDetails}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexDetails> {
 		private Integer shardCount;
 

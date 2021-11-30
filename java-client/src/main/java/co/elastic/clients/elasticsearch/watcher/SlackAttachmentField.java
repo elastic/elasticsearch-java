@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.SlackAttachmentField
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/_types/Actions.ts#L98-L102">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SlackAttachmentField implements JsonpSerializable {
 	private final boolean short_;
@@ -52,9 +59,9 @@ public class SlackAttachmentField implements JsonpSerializable {
 
 	private SlackAttachmentField(Builder builder) {
 
-		this.short_ = ModelTypeHelper.requireNonNull(builder.short_, this, "short_");
-		this.title = ModelTypeHelper.requireNonNull(builder.title, this, "title");
-		this.value = ModelTypeHelper.requireNonNull(builder.value, this, "value");
+		this.short_ = ApiTypeHelper.requireNonNull(builder.short_, this, "short_");
+		this.title = ApiTypeHelper.requireNonNull(builder.title, this, "title");
+		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
 
 	}
 
@@ -110,6 +117,7 @@ public class SlackAttachmentField implements JsonpSerializable {
 	/**
 	 * Builder for {@link SlackAttachmentField}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SlackAttachmentField> {
 		private Boolean short_;
 

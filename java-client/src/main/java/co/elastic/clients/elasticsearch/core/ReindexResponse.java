@@ -32,7 +32,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -46,6 +46,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.reindex.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/reindex/ReindexResponse.ts#L26-L45">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ReindexResponse implements JsonpSerializable {
 	@Nullable
@@ -102,7 +109,7 @@ public class ReindexResponse implements JsonpSerializable {
 		this.batches = builder.batches;
 		this.created = builder.created;
 		this.deleted = builder.deleted;
-		this.failures = ModelTypeHelper.unmodifiable(builder.failures);
+		this.failures = ApiTypeHelper.unmodifiable(builder.failures);
 		this.noops = builder.noops;
 		this.retries = builder.retries;
 		this.requestsPerSecond = builder.requestsPerSecond;
@@ -275,7 +282,7 @@ public class ReindexResponse implements JsonpSerializable {
 			generator.write(this.deleted);
 
 		}
-		if (ModelTypeHelper.isDefined(this.failures)) {
+		if (ApiTypeHelper.isDefined(this.failures)) {
 			generator.writeKey("failures");
 			generator.writeStartArray();
 			for (BulkIndexByScrollFailure item0 : this.failures) {
@@ -353,6 +360,7 @@ public class ReindexResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link ReindexResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ReindexResponse> {
 		@Nullable
 		private Long batches;
@@ -429,11 +437,9 @@ public class ReindexResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code failures}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>failures</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>failures</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>failures</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder failures(List<BulkIndexByScrollFailure> list) {
 			this.failures = _listAddAll(this.failures, list);

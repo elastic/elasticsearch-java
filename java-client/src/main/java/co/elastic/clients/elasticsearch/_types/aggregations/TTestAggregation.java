@@ -35,6 +35,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TTestAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/metric.ts#L144-L148">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TTestAggregation extends AggregationBase implements AggregationVariant {
 	@Nullable
@@ -118,6 +125,7 @@ public class TTestAggregation extends AggregationBase implements AggregationVari
 	/**
 	 * Builder for {@link TTestAggregation}.
 	 */
+
 	public static class Builder extends AggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<TTestAggregation> {

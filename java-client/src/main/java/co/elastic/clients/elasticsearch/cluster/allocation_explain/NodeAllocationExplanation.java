@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.NodeAllocationExplanation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/allocation_explain/types.ts#L97-L106">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeAllocationExplanation implements JsonpSerializable {
 	private final List<AllocationDecision> deciders;
@@ -65,14 +72,14 @@ public class NodeAllocationExplanation implements JsonpSerializable {
 
 	private NodeAllocationExplanation(Builder builder) {
 
-		this.deciders = ModelTypeHelper.unmodifiableRequired(builder.deciders, this, "deciders");
-		this.nodeAttributes = ModelTypeHelper.unmodifiableRequired(builder.nodeAttributes, this, "nodeAttributes");
-		this.nodeDecision = ModelTypeHelper.requireNonNull(builder.nodeDecision, this, "nodeDecision");
-		this.nodeId = ModelTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
-		this.nodeName = ModelTypeHelper.requireNonNull(builder.nodeName, this, "nodeName");
+		this.deciders = ApiTypeHelper.unmodifiableRequired(builder.deciders, this, "deciders");
+		this.nodeAttributes = ApiTypeHelper.unmodifiableRequired(builder.nodeAttributes, this, "nodeAttributes");
+		this.nodeDecision = ApiTypeHelper.requireNonNull(builder.nodeDecision, this, "nodeDecision");
+		this.nodeId = ApiTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
+		this.nodeName = ApiTypeHelper.requireNonNull(builder.nodeName, this, "nodeName");
 		this.store = builder.store;
-		this.transportAddress = ModelTypeHelper.requireNonNull(builder.transportAddress, this, "transportAddress");
-		this.weightRanking = ModelTypeHelper.requireNonNull(builder.weightRanking, this, "weightRanking");
+		this.transportAddress = ApiTypeHelper.requireNonNull(builder.transportAddress, this, "transportAddress");
+		this.weightRanking = ApiTypeHelper.requireNonNull(builder.weightRanking, this, "weightRanking");
 
 	}
 
@@ -148,7 +155,7 @@ public class NodeAllocationExplanation implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.deciders)) {
+		if (ApiTypeHelper.isDefined(this.deciders)) {
 			generator.writeKey("deciders");
 			generator.writeStartArray();
 			for (AllocationDecision item0 : this.deciders) {
@@ -158,7 +165,7 @@ public class NodeAllocationExplanation implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.nodeAttributes)) {
+		if (ApiTypeHelper.isDefined(this.nodeAttributes)) {
 			generator.writeKey("node_attributes");
 			generator.writeStartObject();
 			for (Map.Entry<String, String> item0 : this.nodeAttributes.entrySet()) {
@@ -195,6 +202,7 @@ public class NodeAllocationExplanation implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeAllocationExplanation}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeAllocationExplanation> {
 		private List<AllocationDecision> deciders;
 
@@ -216,11 +224,9 @@ public class NodeAllocationExplanation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code deciders}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>deciders</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>deciders</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>deciders</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder deciders(List<AllocationDecision> list) {
 			this.deciders = _listAddAll(this.deciders, list);
@@ -249,11 +255,9 @@ public class NodeAllocationExplanation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code node_attributes}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>nodeAttributes</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>nodeAttributes</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>nodeAttributes</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder nodeAttributes(Map<String, String> map) {
 			this.nodeAttributes = _mapPutAll(this.nodeAttributes, map);

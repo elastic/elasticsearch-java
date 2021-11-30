@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeThreadPoolInfo
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/info/types.ts#L279-L286">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeThreadPoolInfo implements JsonpSerializable {
 	@Nullable
@@ -65,9 +72,9 @@ public class NodeThreadPoolInfo implements JsonpSerializable {
 		this.core = builder.core;
 		this.keepAlive = builder.keepAlive;
 		this.max = builder.max;
-		this.queueSize = ModelTypeHelper.requireNonNull(builder.queueSize, this, "queueSize");
+		this.queueSize = ApiTypeHelper.requireNonNull(builder.queueSize, this, "queueSize");
 		this.size = builder.size;
-		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 
@@ -165,6 +172,7 @@ public class NodeThreadPoolInfo implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeThreadPoolInfo}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeThreadPoolInfo> {
 		@Nullable
 		private Integer core;

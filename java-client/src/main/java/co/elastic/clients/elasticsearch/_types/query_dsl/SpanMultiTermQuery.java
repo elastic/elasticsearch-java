@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -36,6 +36,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SpanMultiTermQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/span.ts#L44-L47">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SpanMultiTermQuery extends QueryBase implements SpanQueryVariant, QueryVariant {
 	private final Query match;
@@ -45,7 +52,7 @@ public class SpanMultiTermQuery extends QueryBase implements SpanQueryVariant, Q
 	private SpanMultiTermQuery(Builder builder) {
 		super(builder);
 
-		this.match = ModelTypeHelper.requireNonNull(builder.match, this, "match");
+		this.match = ApiTypeHelper.requireNonNull(builder.match, this, "match");
 
 	}
 
@@ -92,6 +99,7 @@ public class SpanMultiTermQuery extends QueryBase implements SpanQueryVariant, Q
 	/**
 	 * Builder for {@link SpanMultiTermQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<SpanMultiTermQuery> {

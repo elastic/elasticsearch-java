@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_categories.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/get_categories/MlGetCategoriesResponse.ts#L23-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetCategoriesResponse implements JsonpSerializable {
 	private final List<Category> categories;
@@ -50,8 +57,8 @@ public class GetCategoriesResponse implements JsonpSerializable {
 
 	private GetCategoriesResponse(Builder builder) {
 
-		this.categories = ModelTypeHelper.unmodifiableRequired(builder.categories, this, "categories");
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
+		this.categories = ApiTypeHelper.unmodifiableRequired(builder.categories, this, "categories");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
 
 	}
 
@@ -84,7 +91,7 @@ public class GetCategoriesResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.categories)) {
+		if (ApiTypeHelper.isDefined(this.categories)) {
 			generator.writeKey("categories");
 			generator.writeStartArray();
 			for (Category item0 : this.categories) {
@@ -104,6 +111,7 @@ public class GetCategoriesResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetCategoriesResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetCategoriesResponse> {
 		private List<Category> categories;
 
@@ -112,11 +120,9 @@ public class GetCategoriesResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code categories}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>categories</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>categories</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>categories</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder categories(List<Category> list) {
 			this.categories = _listAddAll(this.categories, list);

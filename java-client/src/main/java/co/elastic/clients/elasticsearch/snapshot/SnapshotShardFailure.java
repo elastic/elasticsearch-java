@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot._types.SnapshotShardFailure
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/snapshot/_types/SnapshotShardFailure.ts#L22-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SnapshotShardFailure implements JsonpSerializable {
 	private final String index;
@@ -55,11 +62,11 @@ public class SnapshotShardFailure implements JsonpSerializable {
 
 	private SnapshotShardFailure(Builder builder) {
 
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
-		this.nodeId = ModelTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
-		this.reason = ModelTypeHelper.requireNonNull(builder.reason, this, "reason");
-		this.shardId = ModelTypeHelper.requireNonNull(builder.shardId, this, "shardId");
-		this.status = ModelTypeHelper.requireNonNull(builder.status, this, "status");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.nodeId = ApiTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
+		this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
+		this.shardId = ApiTypeHelper.requireNonNull(builder.shardId, this, "shardId");
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 
 	}
 
@@ -135,6 +142,7 @@ public class SnapshotShardFailure implements JsonpSerializable {
 	/**
 	 * Builder for {@link SnapshotShardFailure}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SnapshotShardFailure> {
 		private String index;
 

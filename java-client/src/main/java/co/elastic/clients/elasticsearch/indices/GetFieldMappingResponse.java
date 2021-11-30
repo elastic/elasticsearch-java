@@ -36,6 +36,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: indices.get_field_mapping.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/get_field_mapping/IndicesGetFieldMappingResponse.ts#L24-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetFieldMappingResponse extends DictionaryResponse<String, TypeFieldMappings> {
 	// ---------------------------------------------------------------------------------------------
@@ -54,6 +61,7 @@ public class GetFieldMappingResponse extends DictionaryResponse<String, TypeFiel
 	/**
 	 * Builder for {@link GetFieldMappingResponse}.
 	 */
+
 	public static class Builder extends DictionaryResponse.AbstractBuilder<String, TypeFieldMappings, Builder>
 			implements
 				ObjectBuilder<GetFieldMappingResponse> {

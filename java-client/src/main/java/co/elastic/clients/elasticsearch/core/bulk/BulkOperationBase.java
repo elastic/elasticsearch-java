@@ -40,6 +40,13 @@ import javax.annotation.Nullable;
 
 // typedef: _global.bulk.OperationBase
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/bulk/types.ts#L58-L66">API
+ *      specification</a>
+ */
+
 public abstract class BulkOperationBase implements JsonpSerializable {
 	@Nullable
 	private final String id;

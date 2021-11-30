@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterProcess
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/stats/types.ts#L244-L247">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ClusterProcess implements JsonpSerializable {
 	private final ClusterProcessCpu cpu;
@@ -48,8 +55,8 @@ public class ClusterProcess implements JsonpSerializable {
 
 	private ClusterProcess(Builder builder) {
 
-		this.cpu = ModelTypeHelper.requireNonNull(builder.cpu, this, "cpu");
-		this.openFileDescriptors = ModelTypeHelper.requireNonNull(builder.openFileDescriptors, this,
+		this.cpu = ApiTypeHelper.requireNonNull(builder.cpu, this, "cpu");
+		this.openFileDescriptors = ApiTypeHelper.requireNonNull(builder.openFileDescriptors, this,
 				"openFileDescriptors");
 
 	}
@@ -96,6 +103,7 @@ public class ClusterProcess implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClusterProcess}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterProcess> {
 		private ClusterProcessCpu cpu;
 

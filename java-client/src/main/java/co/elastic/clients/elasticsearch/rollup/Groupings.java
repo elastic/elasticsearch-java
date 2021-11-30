@@ -37,6 +37,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup._types.Groupings
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/rollup/_types/Groupings.ts#L24-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Groupings implements JsonpSerializable {
 	@Nullable
@@ -120,6 +127,7 @@ public class Groupings implements JsonpSerializable {
 	/**
 	 * Builder for {@link Groupings}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Groupings> {
 		@Nullable
 		private DateHistogramGrouping dateHistogram;

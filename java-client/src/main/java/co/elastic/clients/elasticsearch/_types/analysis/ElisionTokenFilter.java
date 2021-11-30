@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.ElisionTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/token_filters.ts#L186-L190">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ElisionTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final List<String> articles;
@@ -50,8 +57,8 @@ public class ElisionTokenFilter extends TokenFilterBase implements TokenFilterDe
 	private ElisionTokenFilter(Builder builder) {
 		super(builder);
 
-		this.articles = ModelTypeHelper.unmodifiableRequired(builder.articles, this, "articles");
-		this.articlesCase = ModelTypeHelper.requireNonNull(builder.articlesCase, this, "articlesCase");
+		this.articles = ApiTypeHelper.unmodifiableRequired(builder.articles, this, "articles");
+		this.articlesCase = ApiTypeHelper.requireNonNull(builder.articlesCase, this, "articlesCase");
 
 	}
 
@@ -85,7 +92,7 @@ public class ElisionTokenFilter extends TokenFilterBase implements TokenFilterDe
 
 		generator.write("type", "elision");
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.articles)) {
+		if (ApiTypeHelper.isDefined(this.articles)) {
 			generator.writeKey("articles");
 			generator.writeStartArray();
 			for (String item0 : this.articles) {
@@ -105,6 +112,7 @@ public class ElisionTokenFilter extends TokenFilterBase implements TokenFilterDe
 	/**
 	 * Builder for {@link ElisionTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ElisionTokenFilter> {
@@ -115,11 +123,9 @@ public class ElisionTokenFilter extends TokenFilterBase implements TokenFilterDe
 		/**
 		 * Required - API name: {@code articles}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>articles</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>articles</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>articles</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder articles(List<String> list) {
 			this.articles = _listAddAll(this.articles, list);

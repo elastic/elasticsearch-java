@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.transforms.TransformsRecord
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/transforms/types.ts#L22-L187">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TransformsRecord implements JsonpSerializable {
 	@Nullable
@@ -697,6 +704,7 @@ public class TransformsRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link TransformsRecord}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TransformsRecord> {
 		@Nullable
 		private String id;

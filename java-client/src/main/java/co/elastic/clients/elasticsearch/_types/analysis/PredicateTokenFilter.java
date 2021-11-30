@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -37,6 +37,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.PredicateTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/token_filters.ts#L293-L296">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PredicateTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final Script script;
@@ -46,7 +53,7 @@ public class PredicateTokenFilter extends TokenFilterBase implements TokenFilter
 	private PredicateTokenFilter(Builder builder) {
 		super(builder);
 
-		this.script = ModelTypeHelper.requireNonNull(builder.script, this, "script");
+		this.script = ApiTypeHelper.requireNonNull(builder.script, this, "script");
 
 	}
 
@@ -83,6 +90,7 @@ public class PredicateTokenFilter extends TokenFilterBase implements TokenFilter
 	/**
 	 * Builder for {@link PredicateTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PredicateTokenFilter> {

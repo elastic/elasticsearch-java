@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: cluster.stats.ClusterProcessOpenFileDescriptors
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/stats/types.ts#L253-L257">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ClusterProcessOpenFileDescriptors implements JsonpSerializable {
 	private final long avg;
@@ -50,9 +57,9 @@ public class ClusterProcessOpenFileDescriptors implements JsonpSerializable {
 
 	private ClusterProcessOpenFileDescriptors(Builder builder) {
 
-		this.avg = ModelTypeHelper.requireNonNull(builder.avg, this, "avg");
-		this.max = ModelTypeHelper.requireNonNull(builder.max, this, "max");
-		this.min = ModelTypeHelper.requireNonNull(builder.min, this, "min");
+		this.avg = ApiTypeHelper.requireNonNull(builder.avg, this, "avg");
+		this.max = ApiTypeHelper.requireNonNull(builder.max, this, "max");
+		this.min = ApiTypeHelper.requireNonNull(builder.min, this, "min");
 
 	}
 
@@ -109,6 +116,7 @@ public class ClusterProcessOpenFileDescriptors implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClusterProcessOpenFileDescriptors}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterProcessOpenFileDescriptors> {
 		private Long avg;
 

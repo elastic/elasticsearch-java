@@ -42,6 +42,14 @@ import javax.annotation.Nullable;
 
 // typedef: security.get_role_mapping.Request
 
+/**
+ * Retrieves role mappings.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/get_role_mapping/SecurityGetRoleMappingRequest.ts#L23-L32">API
+ *      specification</a>
+ */
+
 public class GetRoleMappingRequest extends RequestBase {
 	@Nullable
 	private final String name;
@@ -73,6 +81,7 @@ public class GetRoleMappingRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetRoleMappingRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetRoleMappingRequest> {
 		@Nullable
 		private String name;

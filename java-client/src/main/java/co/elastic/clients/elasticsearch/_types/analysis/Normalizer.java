@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
@@ -41,10 +41,22 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.Normalizer
-// union type: InternalTag[tag=type]
+
+/**
+ *
+ * @see <a href=
+ *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-normalizers.html">Documentation
+ *      on elastic.co</a>
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/normalizers.ts#L20-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Normalizer implements TaggedUnion<Normalizer.Kind, NormalizerVariant>, JsonpSerializable {
 
+	/**
+	 * {@link Normalizer} variant kinds.
+	 */
 	/**
 	 * {@link Normalizer} variant kinds.
 	 */
@@ -83,15 +95,15 @@ public class Normalizer implements TaggedUnion<Normalizer.Kind, NormalizerVarian
 
 	public Normalizer(NormalizerVariant value) {
 
-		this._kind = ModelTypeHelper.requireNonNull(value._normalizerKind(), this, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(value._normalizerKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
 	private Normalizer(Builder builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 

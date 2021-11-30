@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.create.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/create/IndicesCreateResponse.ts#L22-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CreateIndexResponse implements JsonpSerializable {
 	private final String index;
@@ -53,9 +60,8 @@ public class CreateIndexResponse implements JsonpSerializable {
 
 	private CreateIndexResponse(Builder builder) {
 
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
-		this.shardsAcknowledged = ModelTypeHelper.requireNonNull(builder.shardsAcknowledged, this,
-				"shardsAcknowledged");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.shardsAcknowledged = ApiTypeHelper.requireNonNull(builder.shardsAcknowledged, this, "shardsAcknowledged");
 		this.acknowledged = builder.acknowledged;
 
 	}
@@ -116,6 +122,7 @@ public class CreateIndexResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link CreateIndexResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CreateIndexResponse> {
 		private String index;
 

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.info.Features
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/xpack/info/types.ts#L42-L70">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Features implements JsonpSerializable {
 	private final Feature aggregateMetric;
@@ -103,34 +110,34 @@ public class Features implements JsonpSerializable {
 
 	private Features(Builder builder) {
 
-		this.aggregateMetric = ModelTypeHelper.requireNonNull(builder.aggregateMetric, this, "aggregateMetric");
-		this.analytics = ModelTypeHelper.requireNonNull(builder.analytics, this, "analytics");
-		this.ccr = ModelTypeHelper.requireNonNull(builder.ccr, this, "ccr");
+		this.aggregateMetric = ApiTypeHelper.requireNonNull(builder.aggregateMetric, this, "aggregateMetric");
+		this.analytics = ApiTypeHelper.requireNonNull(builder.analytics, this, "analytics");
+		this.ccr = ApiTypeHelper.requireNonNull(builder.ccr, this, "ccr");
 		this.dataFrame = builder.dataFrame;
 		this.dataScience = builder.dataScience;
-		this.dataStreams = ModelTypeHelper.requireNonNull(builder.dataStreams, this, "dataStreams");
-		this.dataTiers = ModelTypeHelper.requireNonNull(builder.dataTiers, this, "dataTiers");
-		this.enrich = ModelTypeHelper.requireNonNull(builder.enrich, this, "enrich");
-		this.eql = ModelTypeHelper.requireNonNull(builder.eql, this, "eql");
+		this.dataStreams = ApiTypeHelper.requireNonNull(builder.dataStreams, this, "dataStreams");
+		this.dataTiers = ApiTypeHelper.requireNonNull(builder.dataTiers, this, "dataTiers");
+		this.enrich = ApiTypeHelper.requireNonNull(builder.enrich, this, "enrich");
+		this.eql = ApiTypeHelper.requireNonNull(builder.eql, this, "eql");
 		this.flattened = builder.flattened;
-		this.frozenIndices = ModelTypeHelper.requireNonNull(builder.frozenIndices, this, "frozenIndices");
-		this.graph = ModelTypeHelper.requireNonNull(builder.graph, this, "graph");
-		this.ilm = ModelTypeHelper.requireNonNull(builder.ilm, this, "ilm");
-		this.logstash = ModelTypeHelper.requireNonNull(builder.logstash, this, "logstash");
-		this.ml = ModelTypeHelper.requireNonNull(builder.ml, this, "ml");
-		this.monitoring = ModelTypeHelper.requireNonNull(builder.monitoring, this, "monitoring");
-		this.rollup = ModelTypeHelper.requireNonNull(builder.rollup, this, "rollup");
+		this.frozenIndices = ApiTypeHelper.requireNonNull(builder.frozenIndices, this, "frozenIndices");
+		this.graph = ApiTypeHelper.requireNonNull(builder.graph, this, "graph");
+		this.ilm = ApiTypeHelper.requireNonNull(builder.ilm, this, "ilm");
+		this.logstash = ApiTypeHelper.requireNonNull(builder.logstash, this, "logstash");
+		this.ml = ApiTypeHelper.requireNonNull(builder.ml, this, "ml");
+		this.monitoring = ApiTypeHelper.requireNonNull(builder.monitoring, this, "monitoring");
+		this.rollup = ApiTypeHelper.requireNonNull(builder.rollup, this, "rollup");
 		this.runtimeFields = builder.runtimeFields;
-		this.searchableSnapshots = ModelTypeHelper.requireNonNull(builder.searchableSnapshots, this,
+		this.searchableSnapshots = ApiTypeHelper.requireNonNull(builder.searchableSnapshots, this,
 				"searchableSnapshots");
-		this.security = ModelTypeHelper.requireNonNull(builder.security, this, "security");
-		this.slm = ModelTypeHelper.requireNonNull(builder.slm, this, "slm");
-		this.spatial = ModelTypeHelper.requireNonNull(builder.spatial, this, "spatial");
-		this.sql = ModelTypeHelper.requireNonNull(builder.sql, this, "sql");
-		this.transform = ModelTypeHelper.requireNonNull(builder.transform, this, "transform");
+		this.security = ApiTypeHelper.requireNonNull(builder.security, this, "security");
+		this.slm = ApiTypeHelper.requireNonNull(builder.slm, this, "slm");
+		this.spatial = ApiTypeHelper.requireNonNull(builder.spatial, this, "spatial");
+		this.sql = ApiTypeHelper.requireNonNull(builder.sql, this, "sql");
+		this.transform = ApiTypeHelper.requireNonNull(builder.transform, this, "transform");
 		this.vectors = builder.vectors;
-		this.votingOnly = ModelTypeHelper.requireNonNull(builder.votingOnly, this, "votingOnly");
-		this.watcher = ModelTypeHelper.requireNonNull(builder.watcher, this, "watcher");
+		this.votingOnly = ApiTypeHelper.requireNonNull(builder.votingOnly, this, "votingOnly");
+		this.watcher = ApiTypeHelper.requireNonNull(builder.watcher, this, "watcher");
 
 	}
 
@@ -441,6 +448,7 @@ public class Features implements JsonpSerializable {
 	/**
 	 * Builder for {@link Features}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Features> {
 		private Feature aggregateMetric;
 

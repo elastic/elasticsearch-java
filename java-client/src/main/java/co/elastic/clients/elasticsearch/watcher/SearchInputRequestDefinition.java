@@ -32,7 +32,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -44,6 +44,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.SearchInputRequestDefinition
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/_types/Input.ts#L120-L127">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SearchInputRequestDefinition implements JsonpSerializable {
 	@Nullable
@@ -68,7 +75,7 @@ public class SearchInputRequestDefinition implements JsonpSerializable {
 	private SearchInputRequestDefinition(Builder builder) {
 
 		this.body = builder.body;
-		this.indices = ModelTypeHelper.unmodifiable(builder.indices);
+		this.indices = ApiTypeHelper.unmodifiable(builder.indices);
 		this.indicesOptions = builder.indicesOptions;
 		this.searchType = builder.searchType;
 		this.template = builder.template;
@@ -143,7 +150,7 @@ public class SearchInputRequestDefinition implements JsonpSerializable {
 			this.body.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.indices)) {
+		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartArray();
 			for (String item0 : this.indices) {
@@ -180,6 +187,7 @@ public class SearchInputRequestDefinition implements JsonpSerializable {
 	/**
 	 * Builder for {@link SearchInputRequestDefinition}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SearchInputRequestDefinition> {
 		@Nullable
 		private SearchInputRequestBody body;
@@ -217,11 +225,9 @@ public class SearchInputRequestDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code indices}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>indices</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>indices</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder indices(List<String> list) {
 			this.indices = _listAddAll(this.indices, list);

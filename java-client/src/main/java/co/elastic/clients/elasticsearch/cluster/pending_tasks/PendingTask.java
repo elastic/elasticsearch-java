@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.pending_tasks.PendingTask
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/pending_tasks/types.ts#L22-L29">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PendingTask implements JsonpSerializable {
 	private final boolean executing;
@@ -59,12 +66,12 @@ public class PendingTask implements JsonpSerializable {
 
 	private PendingTask(Builder builder) {
 
-		this.executing = ModelTypeHelper.requireNonNull(builder.executing, this, "executing");
-		this.insertOrder = ModelTypeHelper.requireNonNull(builder.insertOrder, this, "insertOrder");
-		this.priority = ModelTypeHelper.requireNonNull(builder.priority, this, "priority");
-		this.source = ModelTypeHelper.requireNonNull(builder.source, this, "source");
-		this.timeInQueue = ModelTypeHelper.requireNonNull(builder.timeInQueue, this, "timeInQueue");
-		this.timeInQueueMillis = ModelTypeHelper.requireNonNull(builder.timeInQueueMillis, this, "timeInQueueMillis");
+		this.executing = ApiTypeHelper.requireNonNull(builder.executing, this, "executing");
+		this.insertOrder = ApiTypeHelper.requireNonNull(builder.insertOrder, this, "insertOrder");
+		this.priority = ApiTypeHelper.requireNonNull(builder.priority, this, "priority");
+		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
+		this.timeInQueue = ApiTypeHelper.requireNonNull(builder.timeInQueue, this, "timeInQueue");
+		this.timeInQueueMillis = ApiTypeHelper.requireNonNull(builder.timeInQueueMillis, this, "timeInQueueMillis");
 
 	}
 
@@ -150,6 +157,7 @@ public class PendingTask implements JsonpSerializable {
 	/**
 	 * Builder for {@link PendingTask}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PendingTask> {
 		private Boolean executing;
 

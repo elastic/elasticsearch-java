@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: xpack.usage.DataTierPhaseStatistics
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/xpack/usage/types.ts#L76-L87">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataTierPhaseStatistics implements JsonpSerializable {
 	private final long nodeCount;
@@ -64,18 +71,18 @@ public class DataTierPhaseStatistics implements JsonpSerializable {
 
 	private DataTierPhaseStatistics(Builder builder) {
 
-		this.nodeCount = ModelTypeHelper.requireNonNull(builder.nodeCount, this, "nodeCount");
-		this.indexCount = ModelTypeHelper.requireNonNull(builder.indexCount, this, "indexCount");
-		this.totalShardCount = ModelTypeHelper.requireNonNull(builder.totalShardCount, this, "totalShardCount");
-		this.primaryShardCount = ModelTypeHelper.requireNonNull(builder.primaryShardCount, this, "primaryShardCount");
-		this.docCount = ModelTypeHelper.requireNonNull(builder.docCount, this, "docCount");
-		this.totalSizeBytes = ModelTypeHelper.requireNonNull(builder.totalSizeBytes, this, "totalSizeBytes");
-		this.primarySizeBytes = ModelTypeHelper.requireNonNull(builder.primarySizeBytes, this, "primarySizeBytes");
-		this.primaryShardSizeAvgBytes = ModelTypeHelper.requireNonNull(builder.primaryShardSizeAvgBytes, this,
+		this.nodeCount = ApiTypeHelper.requireNonNull(builder.nodeCount, this, "nodeCount");
+		this.indexCount = ApiTypeHelper.requireNonNull(builder.indexCount, this, "indexCount");
+		this.totalShardCount = ApiTypeHelper.requireNonNull(builder.totalShardCount, this, "totalShardCount");
+		this.primaryShardCount = ApiTypeHelper.requireNonNull(builder.primaryShardCount, this, "primaryShardCount");
+		this.docCount = ApiTypeHelper.requireNonNull(builder.docCount, this, "docCount");
+		this.totalSizeBytes = ApiTypeHelper.requireNonNull(builder.totalSizeBytes, this, "totalSizeBytes");
+		this.primarySizeBytes = ApiTypeHelper.requireNonNull(builder.primarySizeBytes, this, "primarySizeBytes");
+		this.primaryShardSizeAvgBytes = ApiTypeHelper.requireNonNull(builder.primaryShardSizeAvgBytes, this,
 				"primaryShardSizeAvgBytes");
-		this.primaryShardSizeMedianBytes = ModelTypeHelper.requireNonNull(builder.primaryShardSizeMedianBytes, this,
+		this.primaryShardSizeMedianBytes = ApiTypeHelper.requireNonNull(builder.primaryShardSizeMedianBytes, this,
 				"primaryShardSizeMedianBytes");
-		this.primaryShardSizeMadBytes = ModelTypeHelper.requireNonNull(builder.primaryShardSizeMadBytes, this,
+		this.primaryShardSizeMadBytes = ApiTypeHelper.requireNonNull(builder.primaryShardSizeMadBytes, this,
 				"primaryShardSizeMadBytes");
 
 	}
@@ -202,6 +209,7 @@ public class DataTierPhaseStatistics implements JsonpSerializable {
 	/**
 	 * Builder for {@link DataTierPhaseStatistics}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataTierPhaseStatistics> {
 		private Long nodeCount;
 

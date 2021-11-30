@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -37,6 +37,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MultiBucketAggregateBase
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L311-L313">API
+ *      specification</a>
+ */
 
 public abstract class MultiBucketAggregateBase<TBucket> extends AggregateBase {
 	private final Buckets<TBucket> buckets;
@@ -49,7 +56,7 @@ public abstract class MultiBucketAggregateBase<TBucket> extends AggregateBase {
 	protected MultiBucketAggregateBase(AbstractBuilder<TBucket, ?> builder) {
 		super(builder);
 
-		this.buckets = ModelTypeHelper.requireNonNull(builder.buckets, this, "buckets");
+		this.buckets = ApiTypeHelper.requireNonNull(builder.buckets, this, "buckets");
 		this.tBucketSerializer = builder.tBucketSerializer;
 
 	}

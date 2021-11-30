@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterOperatingSystem
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/stats/types.ts#L225-L232">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ClusterOperatingSystem implements JsonpSerializable {
 	private final int allocatedProcessors;
@@ -58,14 +65,14 @@ public class ClusterOperatingSystem implements JsonpSerializable {
 
 	private ClusterOperatingSystem(Builder builder) {
 
-		this.allocatedProcessors = ModelTypeHelper.requireNonNull(builder.allocatedProcessors, this,
+		this.allocatedProcessors = ApiTypeHelper.requireNonNull(builder.allocatedProcessors, this,
 				"allocatedProcessors");
-		this.availableProcessors = ModelTypeHelper.requireNonNull(builder.availableProcessors, this,
+		this.availableProcessors = ApiTypeHelper.requireNonNull(builder.availableProcessors, this,
 				"availableProcessors");
-		this.mem = ModelTypeHelper.requireNonNull(builder.mem, this, "mem");
-		this.names = ModelTypeHelper.unmodifiableRequired(builder.names, this, "names");
-		this.prettyNames = ModelTypeHelper.unmodifiableRequired(builder.prettyNames, this, "prettyNames");
-		this.architectures = ModelTypeHelper.unmodifiable(builder.architectures);
+		this.mem = ApiTypeHelper.requireNonNull(builder.mem, this, "mem");
+		this.names = ApiTypeHelper.unmodifiableRequired(builder.names, this, "names");
+		this.prettyNames = ApiTypeHelper.unmodifiableRequired(builder.prettyNames, this, "prettyNames");
+		this.architectures = ApiTypeHelper.unmodifiable(builder.architectures);
 
 	}
 
@@ -135,7 +142,7 @@ public class ClusterOperatingSystem implements JsonpSerializable {
 		generator.writeKey("mem");
 		this.mem.serialize(generator, mapper);
 
-		if (ModelTypeHelper.isDefined(this.names)) {
+		if (ApiTypeHelper.isDefined(this.names)) {
 			generator.writeKey("names");
 			generator.writeStartArray();
 			for (ClusterOperatingSystemName item0 : this.names) {
@@ -145,7 +152,7 @@ public class ClusterOperatingSystem implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.prettyNames)) {
+		if (ApiTypeHelper.isDefined(this.prettyNames)) {
 			generator.writeKey("pretty_names");
 			generator.writeStartArray();
 			for (ClusterOperatingSystemPrettyName item0 : this.prettyNames) {
@@ -155,7 +162,7 @@ public class ClusterOperatingSystem implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.architectures)) {
+		if (ApiTypeHelper.isDefined(this.architectures)) {
 			generator.writeKey("architectures");
 			generator.writeStartArray();
 			for (ClusterOperatingSystemArchitecture item0 : this.architectures) {
@@ -173,6 +180,7 @@ public class ClusterOperatingSystem implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClusterOperatingSystem}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterOperatingSystem> {
 		private Integer allocatedProcessors;
 
@@ -222,11 +230,9 @@ public class ClusterOperatingSystem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code names}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>names</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>names</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>names</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder names(List<ClusterOperatingSystemName> list) {
 			this.names = _listAddAll(this.names, list);
@@ -256,11 +262,9 @@ public class ClusterOperatingSystem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code pretty_names}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>prettyNames</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>prettyNames</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>prettyNames</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder prettyNames(List<ClusterOperatingSystemPrettyName> list) {
 			this.prettyNames = _listAddAll(this.prettyNames, list);
@@ -291,11 +295,9 @@ public class ClusterOperatingSystem implements JsonpSerializable {
 		/**
 		 * API name: {@code architectures}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>architectures</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>architectures</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>architectures</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder architectures(List<ClusterOperatingSystemArchitecture> list) {
 			this.architectures = _listAddAll(this.architectures, list);

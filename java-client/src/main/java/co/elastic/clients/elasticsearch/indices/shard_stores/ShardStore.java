@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.shard_stores.ShardStore
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/shard_stores/types.ts#L29-L38">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ShardStore implements JsonpSerializable {
 	private final ShardStoreAllocation allocation;
@@ -64,14 +71,14 @@ public class ShardStore implements JsonpSerializable {
 
 	private ShardStore(Builder builder) {
 
-		this.allocation = ModelTypeHelper.requireNonNull(builder.allocation, this, "allocation");
-		this.allocationId = ModelTypeHelper.requireNonNull(builder.allocationId, this, "allocationId");
-		this.attributes = ModelTypeHelper.unmodifiableRequired(builder.attributes, this, "attributes");
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
-		this.legacyVersion = ModelTypeHelper.requireNonNull(builder.legacyVersion, this, "legacyVersion");
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
-		this.storeException = ModelTypeHelper.requireNonNull(builder.storeException, this, "storeException");
-		this.transportAddress = ModelTypeHelper.requireNonNull(builder.transportAddress, this, "transportAddress");
+		this.allocation = ApiTypeHelper.requireNonNull(builder.allocation, this, "allocation");
+		this.allocationId = ApiTypeHelper.requireNonNull(builder.allocationId, this, "allocationId");
+		this.attributes = ApiTypeHelper.unmodifiableRequired(builder.attributes, this, "attributes");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.legacyVersion = ApiTypeHelper.requireNonNull(builder.legacyVersion, this, "legacyVersion");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.storeException = ApiTypeHelper.requireNonNull(builder.storeException, this, "storeException");
+		this.transportAddress = ApiTypeHelper.requireNonNull(builder.transportAddress, this, "transportAddress");
 
 	}
 
@@ -151,7 +158,7 @@ public class ShardStore implements JsonpSerializable {
 		generator.writeKey("allocation_id");
 		generator.write(this.allocationId);
 
-		if (ModelTypeHelper.isDefined(this.attributes)) {
+		if (ApiTypeHelper.isDefined(this.attributes)) {
 			generator.writeKey("attributes");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.attributes.entrySet()) {
@@ -184,6 +191,7 @@ public class ShardStore implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardStore}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardStore> {
 		private ShardStoreAllocation allocation;
 
@@ -220,11 +228,9 @@ public class ShardStore implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code attributes}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>attributes</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>attributes</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>attributes</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder attributes(Map<String, JsonData> map) {
 			this.attributes = _mapPutAll(this.attributes, map);

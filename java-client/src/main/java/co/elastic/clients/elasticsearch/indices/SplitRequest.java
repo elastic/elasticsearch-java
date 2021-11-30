@@ -36,7 +36,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -48,6 +48,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.split.Request
+
+/**
+ * Allows you to split an existing index into a new index with more primary
+ * shards.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/split/IndicesSplitRequest.ts#L27-L46">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SplitRequest extends RequestBase implements JsonpSerializable {
 	private final Map<String, Alias> aliases;
@@ -71,11 +80,11 @@ public class SplitRequest extends RequestBase implements JsonpSerializable {
 
 	private SplitRequest(Builder builder) {
 
-		this.aliases = ModelTypeHelper.unmodifiable(builder.aliases);
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.masterTimeout = builder.masterTimeout;
-		this.settings = ModelTypeHelper.unmodifiable(builder.settings);
-		this.target = ModelTypeHelper.requireNonNull(builder.target, this, "target");
+		this.settings = ApiTypeHelper.unmodifiable(builder.settings);
+		this.target = ApiTypeHelper.requireNonNull(builder.target, this, "target");
 		this.timeout = builder.timeout;
 		this.waitForActiveShards = builder.waitForActiveShards;
 
@@ -159,7 +168,7 @@ public class SplitRequest extends RequestBase implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.aliases)) {
+		if (ApiTypeHelper.isDefined(this.aliases)) {
 			generator.writeKey("aliases");
 			generator.writeStartObject();
 			for (Map.Entry<String, Alias> item0 : this.aliases.entrySet()) {
@@ -170,7 +179,7 @@ public class SplitRequest extends RequestBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.settings)) {
+		if (ApiTypeHelper.isDefined(this.settings)) {
 			generator.writeKey("settings");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.settings.entrySet()) {
@@ -189,6 +198,7 @@ public class SplitRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link SplitRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SplitRequest> {
 		@Nullable
 		private Map<String, Alias> aliases;
@@ -212,11 +222,9 @@ public class SplitRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code aliases}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>aliases</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>aliases</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>aliases</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder aliases(Map<String, Alias> map) {
 			this.aliases = _mapPutAll(this.aliases, map);
@@ -274,11 +282,9 @@ public class SplitRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code settings}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>settings</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>settings</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>settings</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder settings(Map<String, JsonData> map) {
 			this.settings = _mapPutAll(this.settings, map);

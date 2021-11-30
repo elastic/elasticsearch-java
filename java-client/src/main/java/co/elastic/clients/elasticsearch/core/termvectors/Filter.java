@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.termvectors.Filter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/termvectors/types.ts#L49-L57">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Filter implements JsonpSerializable {
 	@Nullable
@@ -189,6 +196,7 @@ public class Filter implements JsonpSerializable {
 	/**
 	 * Builder for {@link Filter}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Filter> {
 		@Nullable
 		private Integer maxDocFreq;

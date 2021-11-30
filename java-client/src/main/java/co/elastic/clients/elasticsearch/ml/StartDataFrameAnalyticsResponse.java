@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.start_data_frame_analytics.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/start_data_frame_analytics/MlStartDataFrameAnalyticsResponse.ts#L23-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class StartDataFrameAnalyticsResponse extends AcknowledgedResponseBase {
 	private final String node;
@@ -47,7 +54,7 @@ public class StartDataFrameAnalyticsResponse extends AcknowledgedResponseBase {
 	private StartDataFrameAnalyticsResponse(Builder builder) {
 		super(builder);
 
-		this.node = ModelTypeHelper.requireNonNull(builder.node, this, "node");
+		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
 
 	}
 
@@ -80,6 +87,7 @@ public class StartDataFrameAnalyticsResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link StartDataFrameAnalyticsResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<StartDataFrameAnalyticsResponse> {

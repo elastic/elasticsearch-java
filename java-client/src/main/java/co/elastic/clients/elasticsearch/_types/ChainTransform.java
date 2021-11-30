@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.ChainTransform
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Transform.ts#L36-L38">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ChainTransform implements TransformVariant, JsonpSerializable {
 	private final List<Transform> transforms;
@@ -47,7 +54,7 @@ public class ChainTransform implements TransformVariant, JsonpSerializable {
 
 	private ChainTransform(Builder builder) {
 
-		this.transforms = ModelTypeHelper.unmodifiableRequired(builder.transforms, this, "transforms");
+		this.transforms = ApiTypeHelper.unmodifiableRequired(builder.transforms, this, "transforms");
 
 	}
 
@@ -81,7 +88,7 @@ public class ChainTransform implements TransformVariant, JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.transforms)) {
+		if (ApiTypeHelper.isDefined(this.transforms)) {
 			generator.writeKey("transforms");
 			generator.writeStartArray();
 			for (Transform item0 : this.transforms) {
@@ -99,17 +106,16 @@ public class ChainTransform implements TransformVariant, JsonpSerializable {
 	/**
 	 * Builder for {@link ChainTransform}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ChainTransform> {
 		private List<Transform> transforms;
 
 		/**
 		 * Required - API name: {@code transforms}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>transforms</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>transforms</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>transforms</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder transforms(List<Transform> list) {
 			this.transforms = _listAddAll(this.transforms, list);

@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,6 +37,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.RankFeatureQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/specialized.ts#L156-L164">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RankFeatureQuery extends QueryBase implements QueryVariant {
 	private final String field;
@@ -58,7 +65,7 @@ public class RankFeatureQuery extends QueryBase implements QueryVariant {
 	private RankFeatureQuery(Builder builder) {
 		super(builder);
 
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.saturation = builder.saturation;
 		this.log = builder.log;
 		this.linear = builder.linear;
@@ -151,6 +158,7 @@ public class RankFeatureQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link RankFeatureQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<RankFeatureQuery> {
 		private String field;
 

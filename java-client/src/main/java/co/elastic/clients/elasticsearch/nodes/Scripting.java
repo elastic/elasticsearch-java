@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: nodes._types.Scripting
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/_types/Stats.ts#L207-L210">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Scripting implements JsonpSerializable {
 	private final long cacheEvictions;
@@ -48,8 +55,8 @@ public class Scripting implements JsonpSerializable {
 
 	private Scripting(Builder builder) {
 
-		this.cacheEvictions = ModelTypeHelper.requireNonNull(builder.cacheEvictions, this, "cacheEvictions");
-		this.compilations = ModelTypeHelper.requireNonNull(builder.compilations, this, "compilations");
+		this.cacheEvictions = ApiTypeHelper.requireNonNull(builder.cacheEvictions, this, "cacheEvictions");
+		this.compilations = ApiTypeHelper.requireNonNull(builder.compilations, this, "compilations");
 
 	}
 
@@ -95,6 +102,7 @@ public class Scripting implements JsonpSerializable {
 	/**
 	 * Builder for {@link Scripting}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Scripting> {
 		private Long cacheEvictions;
 

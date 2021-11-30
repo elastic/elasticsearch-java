@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.has_privileges.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/has_privileges/SecurityHasPrivilegesResponse.ts#L24-L32">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class HasPrivilegesResponse implements JsonpSerializable {
 	private final Map<String, Map<String, Map<String, Boolean>>> application;
@@ -57,11 +64,11 @@ public class HasPrivilegesResponse implements JsonpSerializable {
 
 	private HasPrivilegesResponse(Builder builder) {
 
-		this.application = ModelTypeHelper.unmodifiableRequired(builder.application, this, "application");
-		this.cluster = ModelTypeHelper.unmodifiableRequired(builder.cluster, this, "cluster");
-		this.hasAllRequested = ModelTypeHelper.requireNonNull(builder.hasAllRequested, this, "hasAllRequested");
-		this.index = ModelTypeHelper.unmodifiableRequired(builder.index, this, "index");
-		this.username = ModelTypeHelper.requireNonNull(builder.username, this, "username");
+		this.application = ApiTypeHelper.unmodifiableRequired(builder.application, this, "application");
+		this.cluster = ApiTypeHelper.unmodifiableRequired(builder.cluster, this, "cluster");
+		this.hasAllRequested = ApiTypeHelper.requireNonNull(builder.hasAllRequested, this, "hasAllRequested");
+		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
+		this.username = ApiTypeHelper.requireNonNull(builder.username, this, "username");
 
 	}
 
@@ -115,7 +122,7 @@ public class HasPrivilegesResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.application)) {
+		if (ApiTypeHelper.isDefined(this.application)) {
 			generator.writeKey("application");
 			generator.writeStartObject();
 			for (Map.Entry<String, Map<String, Map<String, Boolean>>> item0 : this.application.entrySet()) {
@@ -142,7 +149,7 @@ public class HasPrivilegesResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.cluster)) {
+		if (ApiTypeHelper.isDefined(this.cluster)) {
 			generator.writeKey("cluster");
 			generator.writeStartObject();
 			for (Map.Entry<String, Boolean> item0 : this.cluster.entrySet()) {
@@ -156,7 +163,7 @@ public class HasPrivilegesResponse implements JsonpSerializable {
 		generator.writeKey("has_all_requested");
 		generator.write(this.hasAllRequested);
 
-		if (ModelTypeHelper.isDefined(this.index)) {
+		if (ApiTypeHelper.isDefined(this.index)) {
 			generator.writeKey("index");
 			generator.writeStartObject();
 			for (Map.Entry<String, Map<String, Boolean>> item0 : this.index.entrySet()) {
@@ -185,6 +192,7 @@ public class HasPrivilegesResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link HasPrivilegesResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HasPrivilegesResponse> {
 		private Map<String, Map<String, Map<String, Boolean>>> application;
 
@@ -199,11 +207,9 @@ public class HasPrivilegesResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code application}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>application</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>application</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>application</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder application(Map<String, Map<String, Map<String, Boolean>>> map) {
 			this.application = _mapPutAll(this.application, map);
@@ -223,11 +229,9 @@ public class HasPrivilegesResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code cluster}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>cluster</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>cluster</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>cluster</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder cluster(Map<String, Boolean> map) {
 			this.cluster = _mapPutAll(this.cluster, map);
@@ -255,11 +259,9 @@ public class HasPrivilegesResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>index</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>index</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>index</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder index(Map<String, Map<String, Boolean>> map) {
 			this.index = _mapPutAll(this.index, map);

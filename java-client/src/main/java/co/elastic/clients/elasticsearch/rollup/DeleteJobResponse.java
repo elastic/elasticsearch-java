@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.delete_job.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/rollup/delete_job/DeleteRollupJobResponse.ts#L23-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DeleteJobResponse extends AcknowledgedResponseBase {
 	private final List<TaskFailure> taskFailures;
@@ -48,7 +55,7 @@ public class DeleteJobResponse extends AcknowledgedResponseBase {
 	private DeleteJobResponse(Builder builder) {
 		super(builder);
 
-		this.taskFailures = ModelTypeHelper.unmodifiable(builder.taskFailures);
+		this.taskFailures = ApiTypeHelper.unmodifiable(builder.taskFailures);
 
 	}
 
@@ -66,7 +73,7 @@ public class DeleteJobResponse extends AcknowledgedResponseBase {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.taskFailures)) {
+		if (ApiTypeHelper.isDefined(this.taskFailures)) {
 			generator.writeKey("task_failures");
 			generator.writeStartArray();
 			for (TaskFailure item0 : this.taskFailures) {
@@ -84,6 +91,7 @@ public class DeleteJobResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link DeleteJobResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeleteJobResponse> {
@@ -93,11 +101,9 @@ public class DeleteJobResponse extends AcknowledgedResponseBase {
 		/**
 		 * API name: {@code task_failures}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>taskFailures</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>taskFailures</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>taskFailures</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder taskFailures(List<TaskFailure> list) {
 			this.taskFailures = _listAddAll(this.taskFailures, list);

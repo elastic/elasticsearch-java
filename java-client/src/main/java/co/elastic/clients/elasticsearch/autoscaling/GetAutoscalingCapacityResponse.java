@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: autoscaling.get_autoscaling_capacity.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/autoscaling/get_autoscaling_capacity/GetAutoscalingCapacityResponse.ts#L25-L29">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetAutoscalingCapacityResponse implements JsonpSerializable {
 	private final Map<String, AutoscalingDeciders> policies;
@@ -49,7 +56,7 @@ public class GetAutoscalingCapacityResponse implements JsonpSerializable {
 
 	private GetAutoscalingCapacityResponse(Builder builder) {
 
-		this.policies = ModelTypeHelper.unmodifiableRequired(builder.policies, this, "policies");
+		this.policies = ApiTypeHelper.unmodifiableRequired(builder.policies, this, "policies");
 
 	}
 
@@ -76,7 +83,7 @@ public class GetAutoscalingCapacityResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.policies)) {
+		if (ApiTypeHelper.isDefined(this.policies)) {
 			generator.writeKey("policies");
 			generator.writeStartObject();
 			for (Map.Entry<String, AutoscalingDeciders> item0 : this.policies.entrySet()) {
@@ -95,17 +102,16 @@ public class GetAutoscalingCapacityResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetAutoscalingCapacityResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetAutoscalingCapacityResponse> {
 		private Map<String, AutoscalingDeciders> policies;
 
 		/**
 		 * Required - API name: {@code policies}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>policies</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>policies</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>policies</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder policies(Map<String, AutoscalingDeciders> map) {
 			this.policies = _mapPutAll(this.policies, map);

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _global.termvectors.FieldStatistics
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/termvectors/types.ts#L28-L32">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FieldStatistics implements JsonpSerializable {
 	private final int docCount;
@@ -51,9 +58,9 @@ public class FieldStatistics implements JsonpSerializable {
 
 	private FieldStatistics(Builder builder) {
 
-		this.docCount = ModelTypeHelper.requireNonNull(builder.docCount, this, "docCount");
-		this.sumDocFreq = ModelTypeHelper.requireNonNull(builder.sumDocFreq, this, "sumDocFreq");
-		this.sumTtf = ModelTypeHelper.requireNonNull(builder.sumTtf, this, "sumTtf");
+		this.docCount = ApiTypeHelper.requireNonNull(builder.docCount, this, "docCount");
+		this.sumDocFreq = ApiTypeHelper.requireNonNull(builder.sumDocFreq, this, "sumDocFreq");
+		this.sumTtf = ApiTypeHelper.requireNonNull(builder.sumTtf, this, "sumTtf");
 
 	}
 
@@ -109,6 +116,7 @@ public class FieldStatistics implements JsonpSerializable {
 	/**
 	 * Builder for {@link FieldStatistics}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldStatistics> {
 		private Integer docCount;
 

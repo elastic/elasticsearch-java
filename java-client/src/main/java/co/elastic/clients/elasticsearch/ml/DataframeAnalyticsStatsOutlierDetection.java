@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsStatsOutlierDetection
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/_types/DataframeAnalytics.ts#L384-L388">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeAnalyticsStatsOutlierDetection implements DataframeAnalyticsStatsVariant, JsonpSerializable {
 	private final OutlierDetectionParameters parameters;
@@ -51,9 +58,9 @@ public class DataframeAnalyticsStatsOutlierDetection implements DataframeAnalyti
 
 	private DataframeAnalyticsStatsOutlierDetection(Builder builder) {
 
-		this.parameters = ModelTypeHelper.requireNonNull(builder.parameters, this, "parameters");
-		this.timestamp = ModelTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
-		this.timingStats = ModelTypeHelper.requireNonNull(builder.timingStats, this, "timingStats");
+		this.parameters = ApiTypeHelper.requireNonNull(builder.parameters, this, "parameters");
+		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+		this.timingStats = ApiTypeHelper.requireNonNull(builder.timingStats, this, "timingStats");
 
 	}
 
@@ -118,6 +125,7 @@ public class DataframeAnalyticsStatsOutlierDetection implements DataframeAnalyti
 	/**
 	 * Builder for {@link DataframeAnalyticsStatsOutlierDetection}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase
 			implements
 				ObjectBuilder<DataframeAnalyticsStatsOutlierDetection> {

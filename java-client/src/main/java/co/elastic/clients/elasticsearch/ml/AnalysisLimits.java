@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.AnalysisLimits
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/_types/Analysis.ts#L103-L114">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AnalysisLimits implements JsonpSerializable {
 	@Nullable
@@ -130,6 +137,7 @@ public class AnalysisLimits implements JsonpSerializable {
 	/**
 	 * Builder for {@link AnalysisLimits}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AnalysisLimits> {
 		@Nullable
 		private Long categorizationExamplesLimit;

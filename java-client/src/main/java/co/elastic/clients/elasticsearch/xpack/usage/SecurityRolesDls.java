@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.SecurityRolesDls
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/xpack/usage/types.ts#L263-L265">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SecurityRolesDls implements JsonpSerializable {
 	private final SecurityRolesDlsBitSetCache bitSetCache;
@@ -46,7 +53,7 @@ public class SecurityRolesDls implements JsonpSerializable {
 
 	private SecurityRolesDls(Builder builder) {
 
-		this.bitSetCache = ModelTypeHelper.requireNonNull(builder.bitSetCache, this, "bitSetCache");
+		this.bitSetCache = ApiTypeHelper.requireNonNull(builder.bitSetCache, this, "bitSetCache");
 
 	}
 
@@ -82,6 +89,7 @@ public class SecurityRolesDls implements JsonpSerializable {
 	/**
 	 * Builder for {@link SecurityRolesDls}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SecurityRolesDls> {
 		private SecurityRolesDlsBitSetCache bitSetCache;
 

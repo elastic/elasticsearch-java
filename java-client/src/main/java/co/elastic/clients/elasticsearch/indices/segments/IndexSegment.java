@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.segments.IndexSegment
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/segments/types.ts#L24-L26">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IndexSegment implements JsonpSerializable {
 	private final Map<String, List<ShardsSegment>> shards;
@@ -49,7 +56,7 @@ public class IndexSegment implements JsonpSerializable {
 
 	private IndexSegment(Builder builder) {
 
-		this.shards = ModelTypeHelper.unmodifiableRequired(builder.shards, this, "shards");
+		this.shards = ApiTypeHelper.unmodifiableRequired(builder.shards, this, "shards");
 
 	}
 
@@ -75,7 +82,7 @@ public class IndexSegment implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.shards)) {
+		if (ApiTypeHelper.isDefined(this.shards)) {
 			generator.writeKey("shards");
 			generator.writeStartObject();
 			for (Map.Entry<String, List<ShardsSegment>> item0 : this.shards.entrySet()) {
@@ -101,17 +108,16 @@ public class IndexSegment implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexSegment}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexSegment> {
 		private Map<String, List<ShardsSegment>> shards;
 
 		/**
 		 * Required - API name: {@code shards}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>shards</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>shards</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>shards</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder shards(Map<String, List<ShardsSegment>> map) {
 			this.shards = _mapPutAll(this.shards, map);

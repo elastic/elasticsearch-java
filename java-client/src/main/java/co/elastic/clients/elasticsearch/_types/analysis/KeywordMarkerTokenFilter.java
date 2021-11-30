@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.KeywordMarkerTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/token_filters.ts#L229-L235">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class KeywordMarkerTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	@Nullable
@@ -58,7 +65,7 @@ public class KeywordMarkerTokenFilter extends TokenFilterBase implements TokenFi
 		super(builder);
 
 		this.ignoreCase = builder.ignoreCase;
-		this.keywords = ModelTypeHelper.unmodifiable(builder.keywords);
+		this.keywords = ApiTypeHelper.unmodifiable(builder.keywords);
 		this.keywordsPath = builder.keywordsPath;
 		this.keywordsPattern = builder.keywordsPattern;
 
@@ -116,7 +123,7 @@ public class KeywordMarkerTokenFilter extends TokenFilterBase implements TokenFi
 			generator.write(this.ignoreCase);
 
 		}
-		if (ModelTypeHelper.isDefined(this.keywords)) {
+		if (ApiTypeHelper.isDefined(this.keywords)) {
 			generator.writeKey("keywords");
 			generator.writeStartArray();
 			for (String item0 : this.keywords) {
@@ -144,6 +151,7 @@ public class KeywordMarkerTokenFilter extends TokenFilterBase implements TokenFi
 	/**
 	 * Builder for {@link KeywordMarkerTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<KeywordMarkerTokenFilter> {
@@ -170,11 +178,9 @@ public class KeywordMarkerTokenFilter extends TokenFilterBase implements TokenFi
 		/**
 		 * API name: {@code keywords}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>keywords</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>keywords</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>keywords</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder keywords(List<String> list) {
 			this.keywords = _listAddAll(this.keywords, list);

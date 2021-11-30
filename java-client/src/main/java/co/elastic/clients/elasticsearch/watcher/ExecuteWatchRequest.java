@@ -34,7 +34,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -47,6 +47,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.execute_watch.Request
+
+/**
+ * Forces the execution of a stored watch.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/execute_watch/WatcherExecuteWatchRequest.ts#L28-L49">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ExecuteWatchRequest extends RequestBase implements JsonpSerializable {
 	private final Map<String, ActionExecutionMode> actionModes;
@@ -78,8 +86,8 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 
 	private ExecuteWatchRequest(Builder builder) {
 
-		this.actionModes = ModelTypeHelper.unmodifiable(builder.actionModes);
-		this.alternativeInput = ModelTypeHelper.unmodifiable(builder.alternativeInput);
+		this.actionModes = ApiTypeHelper.unmodifiable(builder.actionModes);
+		this.alternativeInput = ApiTypeHelper.unmodifiable(builder.alternativeInput);
 		this.debug = builder.debug;
 		this.id = builder.id;
 		this.ignoreCondition = builder.ignoreCondition;
@@ -179,7 +187,7 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.actionModes)) {
+		if (ApiTypeHelper.isDefined(this.actionModes)) {
 			generator.writeKey("action_modes");
 			generator.writeStartObject();
 			for (Map.Entry<String, ActionExecutionMode> item0 : this.actionModes.entrySet()) {
@@ -189,7 +197,7 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.alternativeInput)) {
+		if (ApiTypeHelper.isDefined(this.alternativeInput)) {
 			generator.writeKey("alternative_input");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.alternativeInput.entrySet()) {
@@ -233,6 +241,7 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Builder for {@link ExecuteWatchRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExecuteWatchRequest> {
 		@Nullable
 		private Map<String, ActionExecutionMode> actionModes;
@@ -264,11 +273,9 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code action_modes}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>actionModes</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>actionModes</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>actionModes</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder actionModes(Map<String, ActionExecutionMode> map) {
 			this.actionModes = _mapPutAll(this.actionModes, map);
@@ -288,11 +295,9 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code alternative_input}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>alternativeInput</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>alternativeInput</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>alternativeInput</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder alternativeInput(Map<String, JsonData> map) {
 			this.alternativeInput = _mapPutAll(this.alternativeInput, map);

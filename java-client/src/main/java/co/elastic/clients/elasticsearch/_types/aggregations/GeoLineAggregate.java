@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GeoLineAggregate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L727-L731">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GeoLineAggregate extends AggregateBase implements AggregateVariant {
 	private final String type;
@@ -49,8 +56,8 @@ public class GeoLineAggregate extends AggregateBase implements AggregateVariant 
 	private GeoLineAggregate(Builder builder) {
 		super(builder);
 
-		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
-		this.geometry = ModelTypeHelper.requireNonNull(builder.geometry, this, "geometry");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.geometry = ApiTypeHelper.requireNonNull(builder.geometry, this, "geometry");
 
 	}
 
@@ -96,6 +103,7 @@ public class GeoLineAggregate extends AggregateBase implements AggregateVariant 
 	/**
 	 * Builder for {@link GeoLineAggregate}.
 	 */
+
 	public static class Builder extends AggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<GeoLineAggregate> {

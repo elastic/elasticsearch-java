@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_data_frame_analytics.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/get_data_frame_analytics/MlGetDataFrameAnalyticsResponse.ts#L23-L29">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetDataFrameAnalyticsResponse implements JsonpSerializable {
 	private final int count;
@@ -50,8 +57,8 @@ public class GetDataFrameAnalyticsResponse implements JsonpSerializable {
 
 	private GetDataFrameAnalyticsResponse(Builder builder) {
 
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
-		this.dataFrameAnalytics = ModelTypeHelper.unmodifiableRequired(builder.dataFrameAnalytics, this,
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.dataFrameAnalytics = ApiTypeHelper.unmodifiableRequired(builder.dataFrameAnalytics, this,
 				"dataFrameAnalytics");
 
 	}
@@ -91,7 +98,7 @@ public class GetDataFrameAnalyticsResponse implements JsonpSerializable {
 		generator.writeKey("count");
 		generator.write(this.count);
 
-		if (ModelTypeHelper.isDefined(this.dataFrameAnalytics)) {
+		if (ApiTypeHelper.isDefined(this.dataFrameAnalytics)) {
 			generator.writeKey("data_frame_analytics");
 			generator.writeStartArray();
 			for (DataframeAnalyticsSummary item0 : this.dataFrameAnalytics) {
@@ -109,6 +116,7 @@ public class GetDataFrameAnalyticsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetDataFrameAnalyticsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetDataFrameAnalyticsResponse> {
 		private Integer count;
 
@@ -129,10 +137,8 @@ public class GetDataFrameAnalyticsResponse implements JsonpSerializable {
 		 * API name: {@code data_frame_analytics}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>dataFrameAnalytics</code>.
-		 * Use <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>dataFrameAnalytics</code> to <code>null</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder dataFrameAnalytics(List<DataframeAnalyticsSummary> list) {
 			this.dataFrameAnalytics = _listAddAll(this.dataFrameAnalytics, list);

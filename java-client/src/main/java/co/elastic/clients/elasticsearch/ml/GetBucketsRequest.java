@@ -33,7 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -48,6 +48,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_buckets.Request
+
+/**
+ * Retrieves anomaly detection job results for one or more buckets. The API
+ * presents a chronological view of the records, grouped by bucket.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/get_buckets/MlGetBucketsRequest.ts#L26-L133">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetBucketsRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -95,7 +104,7 @@ public class GetBucketsRequest extends RequestBase implements JsonpSerializable 
 		this.excludeInterim = builder.excludeInterim;
 		this.expand = builder.expand;
 		this.from = builder.from;
-		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.page = builder.page;
 		this.size = builder.size;
 		this.sort = builder.sort;
@@ -286,6 +295,7 @@ public class GetBucketsRequest extends RequestBase implements JsonpSerializable 
 	/**
 	 * Builder for {@link GetBucketsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetBucketsRequest> {
 		@Nullable
 		private Double anomalyScore;

@@ -34,7 +34,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -45,6 +45,19 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.open_job.Request
+
+/**
+ * Opens one or more anomaly detection jobs. An anomaly detection job must be
+ * opened in order for it to be ready to receive and analyze data. It can be
+ * opened and closed multiple times throughout its lifecycle. When you open a
+ * new job, it starts with an empty model. When you open an existing job, the
+ * most recent model state is automatically loaded. The job is ready to resume
+ * its analysis from where it left off, once new data is received.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/open_job/MlOpenJobRequest.ts#L24-L59">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class OpenJobRequest extends RequestBase implements JsonpSerializable {
 	private final String jobId;
@@ -56,7 +69,7 @@ public class OpenJobRequest extends RequestBase implements JsonpSerializable {
 
 	private OpenJobRequest(Builder builder) {
 
-		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.timeout = builder.timeout;
 
 	}
@@ -108,6 +121,7 @@ public class OpenJobRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link OpenJobRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<OpenJobRequest> {
 		private String jobId;
 

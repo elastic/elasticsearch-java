@@ -32,6 +32,13 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 
 // typedef: _types.aggregations.RangeAggregate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L499-L500">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RangeAggregate extends MultiBucketAggregateBase<RangeBucket> implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -54,6 +61,7 @@ public class RangeAggregate extends MultiBucketAggregateBase<RangeBucket> implem
 	/**
 	 * Builder for {@link RangeAggregate}.
 	 */
+
 	public static class Builder extends RangeAggregate.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<RangeAggregate> {

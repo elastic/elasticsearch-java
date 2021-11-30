@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -44,6 +44,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.Highlight
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search/_types/highlighting.ts#L31-L54">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Highlight implements JsonpSerializable {
 	private final Map<String, HighlightField> fields;
@@ -107,7 +114,7 @@ public class Highlight implements JsonpSerializable {
 
 	private Highlight(Builder builder) {
 
-		this.fields = ModelTypeHelper.unmodifiableRequired(builder.fields, this, "fields");
+		this.fields = ApiTypeHelper.unmodifiableRequired(builder.fields, this, "fields");
 		this.type = builder.type;
 		this.boundaryChars = builder.boundaryChars;
 		this.boundaryMaxScan = builder.boundaryMaxScan;
@@ -121,8 +128,8 @@ public class Highlight implements JsonpSerializable {
 		this.noMatchSize = builder.noMatchSize;
 		this.numberOfFragments = builder.numberOfFragments;
 		this.order = builder.order;
-		this.postTags = ModelTypeHelper.unmodifiable(builder.postTags);
-		this.preTags = ModelTypeHelper.unmodifiable(builder.preTags);
+		this.postTags = ApiTypeHelper.unmodifiable(builder.postTags);
+		this.preTags = ApiTypeHelper.unmodifiable(builder.preTags);
 		this.requireFieldMatch = builder.requireFieldMatch;
 		this.tagsSchema = builder.tagsSchema;
 		this.highlightQuery = builder.highlightQuery;
@@ -302,7 +309,7 @@ public class Highlight implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.fields)) {
+		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartObject();
 			for (Map.Entry<String, HighlightField> item0 : this.fields.entrySet()) {
@@ -374,7 +381,7 @@ public class Highlight implements JsonpSerializable {
 			generator.writeKey("order");
 			this.order.serialize(generator, mapper);
 		}
-		if (ModelTypeHelper.isDefined(this.postTags)) {
+		if (ApiTypeHelper.isDefined(this.postTags)) {
 			generator.writeKey("post_tags");
 			generator.writeStartArray();
 			for (String item0 : this.postTags) {
@@ -384,7 +391,7 @@ public class Highlight implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.preTags)) {
+		if (ApiTypeHelper.isDefined(this.preTags)) {
 			generator.writeKey("pre_tags");
 			generator.writeStartArray();
 			for (String item0 : this.preTags) {
@@ -421,6 +428,7 @@ public class Highlight implements JsonpSerializable {
 	/**
 	 * Builder for {@link Highlight}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Highlight> {
 		private Map<String, HighlightField> fields;
 
@@ -484,11 +492,9 @@ public class Highlight implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code fields}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>fields</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>fields</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>fields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder fields(Map<String, HighlightField> map) {
 			this.fields = _mapPutAll(this.fields, map);
@@ -628,11 +634,9 @@ public class Highlight implements JsonpSerializable {
 		/**
 		 * API name: {@code post_tags}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>postTags</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>postTags</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>postTags</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder postTags(List<String> list) {
 			this.postTags = _listAddAll(this.postTags, list);
@@ -652,11 +656,9 @@ public class Highlight implements JsonpSerializable {
 		/**
 		 * API name: {@code pre_tags}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>preTags</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>preTags</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>preTags</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder preTags(List<String> list) {
 			this.preTags = _listAddAll(this.preTags, list);

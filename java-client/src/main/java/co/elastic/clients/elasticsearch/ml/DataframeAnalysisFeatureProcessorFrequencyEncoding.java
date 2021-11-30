@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisFeatureProcessorFrequencyEncoding
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/_types/DataframeAnalytics.ts#L259-L266">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeAnalysisFeatureProcessorFrequencyEncoding
 		implements
@@ -56,9 +63,9 @@ public class DataframeAnalysisFeatureProcessorFrequencyEncoding
 
 	private DataframeAnalysisFeatureProcessorFrequencyEncoding(Builder builder) {
 
-		this.featureName = ModelTypeHelper.requireNonNull(builder.featureName, this, "featureName");
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
-		this.frequencyMap = ModelTypeHelper.unmodifiableRequired(builder.frequencyMap, this, "frequencyMap");
+		this.featureName = ApiTypeHelper.requireNonNull(builder.featureName, this, "featureName");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.frequencyMap = ApiTypeHelper.unmodifiableRequired(builder.frequencyMap, this, "frequencyMap");
 
 	}
 
@@ -118,7 +125,7 @@ public class DataframeAnalysisFeatureProcessorFrequencyEncoding
 		generator.writeKey("field");
 		generator.write(this.field);
 
-		if (ModelTypeHelper.isDefined(this.frequencyMap)) {
+		if (ApiTypeHelper.isDefined(this.frequencyMap)) {
 			generator.writeKey("frequency_map");
 			generator.writeStartObject();
 			for (Map.Entry<String, Double> item0 : this.frequencyMap.entrySet()) {
@@ -137,6 +144,7 @@ public class DataframeAnalysisFeatureProcessorFrequencyEncoding
 	/**
 	 * Builder for {@link DataframeAnalysisFeatureProcessorFrequencyEncoding}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase
 			implements
 				ObjectBuilder<DataframeAnalysisFeatureProcessorFrequencyEncoding> {
@@ -170,11 +178,9 @@ public class DataframeAnalysisFeatureProcessorFrequencyEncoding
 		 * <p>
 		 * API name: {@code frequency_map}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>frequencyMap</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>frequencyMap</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>frequencyMap</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder frequencyMap(Map<String, Double> map) {
 			this.frequencyMap = _mapPutAll(this.frequencyMap, map);

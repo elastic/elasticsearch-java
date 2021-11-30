@@ -33,6 +33,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.aggregations.MedianAbsoluteDeviationAggregate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L180-L181">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MedianAbsoluteDeviationAggregate extends SingleMetricAggregateBase implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -60,6 +67,7 @@ public class MedianAbsoluteDeviationAggregate extends SingleMetricAggregateBase 
 	/**
 	 * Builder for {@link MedianAbsoluteDeviationAggregate}.
 	 */
+
 	public static class Builder extends SingleMetricAggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<MedianAbsoluteDeviationAggregate> {

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr._types.FollowIndexStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ccr/_types/FollowIndexStats.ts#L30-L33">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FollowIndexStats implements JsonpSerializable {
 	private final String index;
@@ -50,8 +57,8 @@ public class FollowIndexStats implements JsonpSerializable {
 
 	private FollowIndexStats(Builder builder) {
 
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
-		this.shards = ModelTypeHelper.unmodifiableRequired(builder.shards, this, "shards");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.shards = ApiTypeHelper.unmodifiableRequired(builder.shards, this, "shards");
 
 	}
 
@@ -87,7 +94,7 @@ public class FollowIndexStats implements JsonpSerializable {
 		generator.writeKey("index");
 		generator.write(this.index);
 
-		if (ModelTypeHelper.isDefined(this.shards)) {
+		if (ApiTypeHelper.isDefined(this.shards)) {
 			generator.writeKey("shards");
 			generator.writeStartArray();
 			for (ShardStats item0 : this.shards) {
@@ -105,6 +112,7 @@ public class FollowIndexStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link FollowIndexStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FollowIndexStats> {
 		private String index;
 
@@ -121,11 +129,9 @@ public class FollowIndexStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code shards}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>shards</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>shards</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>shards</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder shards(List<ShardStats> list) {
 			this.shards = _listAddAll(this.shards, list);

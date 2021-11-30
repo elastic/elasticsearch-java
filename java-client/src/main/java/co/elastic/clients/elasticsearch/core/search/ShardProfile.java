@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.ShardProfile
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search/_types/profile.ts#L131-L136">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ShardProfile implements JsonpSerializable {
 	private final List<AggregationProfile> aggregations;
@@ -55,9 +62,9 @@ public class ShardProfile implements JsonpSerializable {
 
 	private ShardProfile(Builder builder) {
 
-		this.aggregations = ModelTypeHelper.unmodifiableRequired(builder.aggregations, this, "aggregations");
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
-		this.searches = ModelTypeHelper.unmodifiableRequired(builder.searches, this, "searches");
+		this.aggregations = ApiTypeHelper.unmodifiableRequired(builder.aggregations, this, "aggregations");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.searches = ApiTypeHelper.unmodifiableRequired(builder.searches, this, "searches");
 		this.fetch = builder.fetch;
 
 	}
@@ -106,7 +113,7 @@ public class ShardProfile implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.aggregations)) {
+		if (ApiTypeHelper.isDefined(this.aggregations)) {
 			generator.writeKey("aggregations");
 			generator.writeStartArray();
 			for (AggregationProfile item0 : this.aggregations) {
@@ -119,7 +126,7 @@ public class ShardProfile implements JsonpSerializable {
 		generator.writeKey("id");
 		generator.write(this.id);
 
-		if (ModelTypeHelper.isDefined(this.searches)) {
+		if (ApiTypeHelper.isDefined(this.searches)) {
 			generator.writeKey("searches");
 			generator.writeStartArray();
 			for (SearchProfile item0 : this.searches) {
@@ -142,6 +149,7 @@ public class ShardProfile implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardProfile}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardProfile> {
 		private List<AggregationProfile> aggregations;
 
@@ -155,11 +163,9 @@ public class ShardProfile implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code aggregations}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>aggregations</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>aggregations</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>aggregations</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder aggregations(List<AggregationProfile> list) {
 			this.aggregations = _listAddAll(this.aggregations, list);
@@ -196,11 +202,9 @@ public class ShardProfile implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code searches}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>searches</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>searches</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>searches</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder searches(List<SearchProfile> list) {
 			this.searches = _listAddAll(this.searches, list);

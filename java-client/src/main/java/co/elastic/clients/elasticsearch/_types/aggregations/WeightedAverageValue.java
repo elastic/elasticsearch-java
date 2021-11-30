@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.WeightedAverageValue
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/metric.ts#L209-L213">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class WeightedAverageValue implements JsonpSerializable {
 	@Nullable
@@ -123,6 +130,7 @@ public class WeightedAverageValue implements JsonpSerializable {
 	/**
 	 * Builder for {@link WeightedAverageValue}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WeightedAverageValue> {
 		@Nullable
 		private String field;

@@ -33,6 +33,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.aggregations.ExtendedStatsBucketAggregate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L282-L283">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ExtendedStatsBucketAggregate extends ExtendedStatsAggregate implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -59,6 +66,7 @@ public class ExtendedStatsBucketAggregate extends ExtendedStatsAggregate impleme
 	/**
 	 * Builder for {@link ExtendedStatsBucketAggregate}.
 	 */
+
 	public static class Builder extends ExtendedStatsAggregate.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ExtendedStatsBucketAggregate> {

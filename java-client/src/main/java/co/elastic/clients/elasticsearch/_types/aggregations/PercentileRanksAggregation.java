@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.PercentileRanksAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/metric.ts#L96-L101">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PercentileRanksAggregation extends FormatMetricAggregationBase implements AggregationVariant {
 	@Nullable
@@ -58,7 +65,7 @@ public class PercentileRanksAggregation extends FormatMetricAggregationBase impl
 		super(builder);
 
 		this.keyed = builder.keyed;
-		this.values = ModelTypeHelper.unmodifiable(builder.values);
+		this.values = ApiTypeHelper.unmodifiable(builder.values);
 		this.hdr = builder.hdr;
 		this.tdigest = builder.tdigest;
 
@@ -115,7 +122,7 @@ public class PercentileRanksAggregation extends FormatMetricAggregationBase impl
 			generator.write(this.keyed);
 
 		}
-		if (ModelTypeHelper.isDefined(this.values)) {
+		if (ApiTypeHelper.isDefined(this.values)) {
 			generator.writeKey("values");
 			generator.writeStartArray();
 			for (Double item0 : this.values) {
@@ -143,6 +150,7 @@ public class PercentileRanksAggregation extends FormatMetricAggregationBase impl
 	/**
 	 * Builder for {@link PercentileRanksAggregation}.
 	 */
+
 	public static class Builder extends FormatMetricAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PercentileRanksAggregation> {
@@ -169,11 +177,9 @@ public class PercentileRanksAggregation extends FormatMetricAggregationBase impl
 		/**
 		 * API name: {@code values}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>values</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>values</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>values</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder values(List<Double> list) {
 			this.values = _listAddAll(this.values, list);

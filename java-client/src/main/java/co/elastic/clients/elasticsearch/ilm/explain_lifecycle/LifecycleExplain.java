@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
@@ -41,13 +41,22 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm.explain_lifecycle.LifecycleExplain
-// union type: InternalTag[tag=managed]
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ilm/explain_lifecycle/types.ts#L50-L53">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class LifecycleExplain
 		implements
 			TaggedUnion<LifecycleExplain.Kind, LifecycleExplainVariant>,
 			JsonpSerializable {
 
+	/**
+	 * {@link LifecycleExplain} variant kinds.
+	 */
 	/**
 	 * {@link LifecycleExplain} variant kinds.
 	 */
@@ -86,15 +95,15 @@ public class LifecycleExplain
 
 	public LifecycleExplain(LifecycleExplainVariant value) {
 
-		this._kind = ModelTypeHelper.requireNonNull(value._lifecycleExplainKind(), this, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(value._lifecycleExplainKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
 	private LifecycleExplain(Builder builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 

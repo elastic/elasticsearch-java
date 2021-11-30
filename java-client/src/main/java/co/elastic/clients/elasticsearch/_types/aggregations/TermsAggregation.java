@@ -32,7 +32,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -45,6 +45,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TermsAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/bucket.ts#L341-L357">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TermsAggregation extends BucketAggregationBase implements AggregationVariant, PivotGroupByVariant {
 	@Nullable
@@ -106,7 +113,7 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		this.missingOrder = builder.missingOrder;
 		this.missingBucket = builder.missingBucket;
 		this.valueType = builder.valueType;
-		this.order = ModelTypeHelper.unmodifiable(builder.order);
+		this.order = ApiTypeHelper.unmodifiable(builder.order);
 		this.script = builder.script;
 		this.shardSize = builder.shardSize;
 		this.showTermDocCountError = builder.showTermDocCountError;
@@ -303,7 +310,7 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 			generator.write(this.valueType);
 
 		}
-		if (ModelTypeHelper.isDefined(this.order)) {
+		if (ApiTypeHelper.isDefined(this.order)) {
 			generator.writeKey("order");
 			generator.writeStartArray();
 			for (Map<String, SortOrder> item0 : this.order) {
@@ -348,6 +355,7 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 	/**
 	 * Builder for {@link TermsAggregation}.
 	 */
+
 	public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<TermsAggregation> {
@@ -493,11 +501,9 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		/**
 		 * API name: {@code order}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>order</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>order</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>order</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder order(List<Map<String, SortOrder>> list) {
 			this.order = _listAddAll(this.order, list);

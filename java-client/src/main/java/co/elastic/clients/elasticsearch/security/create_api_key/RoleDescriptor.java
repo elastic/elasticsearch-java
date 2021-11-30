@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.create_api_key.RoleDescriptor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/create_api_key/types.ts#L26-L30">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RoleDescriptor implements JsonpSerializable {
 	private final List<String> cluster;
@@ -53,9 +60,9 @@ public class RoleDescriptor implements JsonpSerializable {
 
 	private RoleDescriptor(Builder builder) {
 
-		this.cluster = ModelTypeHelper.unmodifiableRequired(builder.cluster, this, "cluster");
-		this.index = ModelTypeHelper.unmodifiableRequired(builder.index, this, "index");
-		this.applications = ModelTypeHelper.unmodifiable(builder.applications);
+		this.cluster = ApiTypeHelper.unmodifiableRequired(builder.cluster, this, "cluster");
+		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
+		this.applications = ApiTypeHelper.unmodifiable(builder.applications);
 
 	}
 
@@ -95,7 +102,7 @@ public class RoleDescriptor implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.cluster)) {
+		if (ApiTypeHelper.isDefined(this.cluster)) {
 			generator.writeKey("cluster");
 			generator.writeStartArray();
 			for (String item0 : this.cluster) {
@@ -105,7 +112,7 @@ public class RoleDescriptor implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.index)) {
+		if (ApiTypeHelper.isDefined(this.index)) {
 			generator.writeKey("index");
 			generator.writeStartArray();
 			for (IndexPrivileges item0 : this.index) {
@@ -115,7 +122,7 @@ public class RoleDescriptor implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.applications)) {
+		if (ApiTypeHelper.isDefined(this.applications)) {
 			generator.writeKey("applications");
 			generator.writeStartArray();
 			for (ApplicationPrivileges item0 : this.applications) {
@@ -133,6 +140,7 @@ public class RoleDescriptor implements JsonpSerializable {
 	/**
 	 * Builder for {@link RoleDescriptor}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RoleDescriptor> {
 		private List<String> cluster;
 
@@ -144,11 +152,9 @@ public class RoleDescriptor implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code cluster}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>cluster</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>cluster</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>cluster</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder cluster(List<String> list) {
 			this.cluster = _listAddAll(this.cluster, list);
@@ -168,11 +174,9 @@ public class RoleDescriptor implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>index</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>index</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder index(List<IndexPrivileges> list) {
 			this.index = _listAddAll(this.index, list);
@@ -201,11 +205,9 @@ public class RoleDescriptor implements JsonpSerializable {
 		/**
 		 * API name: {@code applications}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>applications</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>applications</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>applications</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder applications(List<ApplicationPrivileges> list) {
 			this.applications = _listAddAll(this.applications, list);

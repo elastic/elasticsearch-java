@@ -35,6 +35,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: security.get_user.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/get_user/SecurityGetUserResponse.ts#L23-L23">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetUserResponse extends DictionaryResponse<String, User> {
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +60,7 @@ public class GetUserResponse extends DictionaryResponse<String, User> {
 	/**
 	 * Builder for {@link GetUserResponse}.
 	 */
+
 	public static class Builder extends DictionaryResponse.AbstractBuilder<String, User, Builder>
 			implements
 				ObjectBuilder<GetUserResponse> {

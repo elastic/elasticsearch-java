@@ -35,7 +35,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.BooleanEndpoint;
 import co.elastic.clients.transport.endpoints.BooleanResponse;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -46,6 +46,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: logstash.put_pipeline.Request
+
+/**
+ * Adds and updates Logstash Pipelines used for Central Management
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/logstash/put_pipeline/LogstashPutPipelineRequest.ts#L24-L35">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutPipelineRequest extends RequestBase implements JsonpSerializable {
 	private final String id;
@@ -56,8 +64,8 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 
 	private PutPipelineRequest(Builder builder) {
 
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
-		this.pipeline = ModelTypeHelper.requireNonNull(builder.pipeline, this, "pipeline");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.pipeline = ApiTypeHelper.requireNonNull(builder.pipeline, this, "pipeline");
 
 	}
 
@@ -96,6 +104,7 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 	/**
 	 * Builder for {@link PutPipelineRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutPipelineRequest> {
 		private String id;
 

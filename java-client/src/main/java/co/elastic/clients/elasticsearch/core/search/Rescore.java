@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.Rescore
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search/_types/rescoring.ts#L23-L26">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Rescore implements JsonpSerializable {
 	private final RescoreQuery query;
@@ -50,7 +57,7 @@ public class Rescore implements JsonpSerializable {
 
 	private Rescore(Builder builder) {
 
-		this.query = ModelTypeHelper.requireNonNull(builder.query, this, "query");
+		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 		this.windowSize = builder.windowSize;
 
 	}
@@ -101,6 +108,7 @@ public class Rescore implements JsonpSerializable {
 	/**
 	 * Builder for {@link Rescore}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Rescore> {
 		private RescoreQuery query;
 

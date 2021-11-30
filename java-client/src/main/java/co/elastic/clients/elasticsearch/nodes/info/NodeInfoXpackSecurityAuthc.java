@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoXpackSecurityAuthc
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/info/types.ts#L238-L241">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeInfoXpackSecurityAuthc implements JsonpSerializable {
 	private final NodeInfoXpackSecurityAuthcRealms realms;
@@ -48,8 +55,8 @@ public class NodeInfoXpackSecurityAuthc implements JsonpSerializable {
 
 	private NodeInfoXpackSecurityAuthc(Builder builder) {
 
-		this.realms = ModelTypeHelper.requireNonNull(builder.realms, this, "realms");
-		this.token = ModelTypeHelper.requireNonNull(builder.token, this, "token");
+		this.realms = ApiTypeHelper.requireNonNull(builder.realms, this, "realms");
+		this.token = ApiTypeHelper.requireNonNull(builder.token, this, "token");
 
 	}
 
@@ -95,6 +102,7 @@ public class NodeInfoXpackSecurityAuthc implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoXpackSecurityAuthc}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoXpackSecurityAuthc> {
 		private NodeInfoXpackSecurityAuthcRealms realms;
 

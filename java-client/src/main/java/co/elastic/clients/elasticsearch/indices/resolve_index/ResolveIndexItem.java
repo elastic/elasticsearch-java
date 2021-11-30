@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.resolve_index.ResolveIndexItem
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/resolve_index/ResolveIndexResponse.ts#L30-L35">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ResolveIndexItem implements JsonpSerializable {
 	private final String name;
@@ -55,9 +62,9 @@ public class ResolveIndexItem implements JsonpSerializable {
 
 	private ResolveIndexItem(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
-		this.aliases = ModelTypeHelper.unmodifiable(builder.aliases);
-		this.attributes = ModelTypeHelper.unmodifiableRequired(builder.attributes, this, "attributes");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
+		this.attributes = ApiTypeHelper.unmodifiableRequired(builder.attributes, this, "attributes");
 		this.dataStream = builder.dataStream;
 
 	}
@@ -109,7 +116,7 @@ public class ResolveIndexItem implements JsonpSerializable {
 		generator.writeKey("name");
 		generator.write(this.name);
 
-		if (ModelTypeHelper.isDefined(this.aliases)) {
+		if (ApiTypeHelper.isDefined(this.aliases)) {
 			generator.writeKey("aliases");
 			generator.writeStartArray();
 			for (String item0 : this.aliases) {
@@ -119,7 +126,7 @@ public class ResolveIndexItem implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.attributes)) {
+		if (ApiTypeHelper.isDefined(this.attributes)) {
 			generator.writeKey("attributes");
 			generator.writeStartArray();
 			for (String item0 : this.attributes) {
@@ -142,6 +149,7 @@ public class ResolveIndexItem implements JsonpSerializable {
 	/**
 	 * Builder for {@link ResolveIndexItem}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ResolveIndexItem> {
 		private String name;
 
@@ -164,11 +172,9 @@ public class ResolveIndexItem implements JsonpSerializable {
 		/**
 		 * API name: {@code aliases}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>aliases</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>aliases</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>aliases</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder aliases(List<String> list) {
 			this.aliases = _listAddAll(this.aliases, list);
@@ -188,11 +194,9 @@ public class ResolveIndexItem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code attributes}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>attributes</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>attributes</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>attributes</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder attributes(List<String> list) {
 			this.attributes = _listAddAll(this.attributes, list);

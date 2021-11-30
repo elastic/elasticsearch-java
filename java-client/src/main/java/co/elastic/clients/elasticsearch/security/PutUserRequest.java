@@ -35,7 +35,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -49,6 +49,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.put_user.Request
+
+/**
+ * Adds and updates users in the native realm. These users are commonly referred
+ * to as native users.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/put_user/SecurityPutUserRequest.ts#L23-L45">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutUserRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -82,12 +91,12 @@ public class PutUserRequest extends RequestBase implements JsonpSerializable {
 		this.email = builder.email;
 		this.enabled = builder.enabled;
 		this.fullName = builder.fullName;
-		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
+		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
 		this.password = builder.password;
 		this.passwordHash = builder.passwordHash;
 		this.refresh = builder.refresh;
-		this.roles = ModelTypeHelper.unmodifiable(builder.roles);
-		this.username = ModelTypeHelper.requireNonNull(builder.username, this, "username");
+		this.roles = ApiTypeHelper.unmodifiable(builder.roles);
+		this.username = ApiTypeHelper.requireNonNull(builder.username, this, "username");
 
 	}
 
@@ -197,7 +206,7 @@ public class PutUserRequest extends RequestBase implements JsonpSerializable {
 			generator.write(this.fullName);
 
 		}
-		if (ModelTypeHelper.isDefined(this.metadata)) {
+		if (ApiTypeHelper.isDefined(this.metadata)) {
 			generator.writeKey("metadata");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
@@ -218,7 +227,7 @@ public class PutUserRequest extends RequestBase implements JsonpSerializable {
 			generator.write(this.passwordHash);
 
 		}
-		if (ModelTypeHelper.isDefined(this.roles)) {
+		if (ApiTypeHelper.isDefined(this.roles)) {
 			generator.writeKey("roles");
 			generator.writeStartArray();
 			for (String item0 : this.roles) {
@@ -236,6 +245,7 @@ public class PutUserRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link PutUserRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutUserRequest> {
 		@Nullable
 		private String email;
@@ -290,11 +300,9 @@ public class PutUserRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code metadata}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>metadata</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>metadata</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>metadata</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder metadata(Map<String, JsonData> map) {
 			this.metadata = _mapPutAll(this.metadata, map);
@@ -343,11 +351,9 @@ public class PutUserRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code roles}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>roles</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>roles</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>roles</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder roles(List<String> list) {
 			this.roles = _listAddAll(this.roles, list);

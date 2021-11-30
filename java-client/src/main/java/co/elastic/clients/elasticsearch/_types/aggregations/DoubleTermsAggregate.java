@@ -33,6 +33,15 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.aggregations.DoubleTermsAggregate
+
+/**
+ * Result of a <code>terms</code> aggregation when the field is some kind of
+ * decimal number like a float, double, or distance.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L395-L400">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DoubleTermsAggregate extends TermsAggregateBase<DoubleTermsBucket> implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -59,6 +68,7 @@ public class DoubleTermsAggregate extends TermsAggregateBase<DoubleTermsBucket> 
 	/**
 	 * Builder for {@link DoubleTermsAggregate}.
 	 */
+
 	public static class Builder extends TermsAggregateBase.AbstractBuilder<DoubleTermsBucket, Builder>
 			implements
 				ObjectBuilder<DoubleTermsAggregate> {

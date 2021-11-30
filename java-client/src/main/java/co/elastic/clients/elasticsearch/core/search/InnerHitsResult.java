@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.InnerHitsResult
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search/_types/hits.ts#L84-L86">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class InnerHitsResult implements JsonpSerializable {
 	private final HitsMetadata<JsonData> hits;
@@ -47,7 +54,7 @@ public class InnerHitsResult implements JsonpSerializable {
 
 	private InnerHitsResult(Builder builder) {
 
-		this.hits = ModelTypeHelper.requireNonNull(builder.hits, this, "hits");
+		this.hits = ApiTypeHelper.requireNonNull(builder.hits, this, "hits");
 
 	}
 
@@ -83,6 +90,7 @@ public class InnerHitsResult implements JsonpSerializable {
 	/**
 	 * Builder for {@link InnerHitsResult}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<InnerHitsResult> {
 		private HitsMetadata<JsonData> hits;
 

@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -44,6 +44,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.delete_service_token.Request
+
+/**
+ * Deletes a service account token.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/delete_service_token/DeleteServiceTokenRequest.ts#L23-L37">API
+ *      specification</a>
+ */
 
 public class DeleteServiceTokenRequest extends RequestBase {
 	private final String name;
@@ -59,10 +67,10 @@ public class DeleteServiceTokenRequest extends RequestBase {
 
 	private DeleteServiceTokenRequest(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
-		this.namespace = ModelTypeHelper.requireNonNull(builder.namespace, this, "namespace");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.namespace = ApiTypeHelper.requireNonNull(builder.namespace, this, "namespace");
 		this.refresh = builder.refresh;
-		this.service = ModelTypeHelper.requireNonNull(builder.service, this, "service");
+		this.service = ApiTypeHelper.requireNonNull(builder.service, this, "service");
 
 	}
 
@@ -115,6 +123,7 @@ public class DeleteServiceTokenRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteServiceTokenRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteServiceTokenRequest> {
 		private String name;
 

@@ -37,6 +37,13 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.RangePropertyBase
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/range.ts#L23-L27">API
+ *      specification</a>
+ */
+
 public abstract class RangePropertyBase extends DocValuesPropertyBase {
 	@Nullable
 	private final Double boost;

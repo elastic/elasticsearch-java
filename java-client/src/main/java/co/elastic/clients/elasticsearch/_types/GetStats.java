@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.GetStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Stats.ts#L87-L98">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetStats implements JsonpSerializable {
 	private final long current;
@@ -69,18 +76,17 @@ public class GetStats implements JsonpSerializable {
 
 	private GetStats(Builder builder) {
 
-		this.current = ModelTypeHelper.requireNonNull(builder.current, this, "current");
+		this.current = ApiTypeHelper.requireNonNull(builder.current, this, "current");
 		this.existsTime = builder.existsTime;
-		this.existsTimeInMillis = ModelTypeHelper.requireNonNull(builder.existsTimeInMillis, this,
-				"existsTimeInMillis");
-		this.existsTotal = ModelTypeHelper.requireNonNull(builder.existsTotal, this, "existsTotal");
+		this.existsTimeInMillis = ApiTypeHelper.requireNonNull(builder.existsTimeInMillis, this, "existsTimeInMillis");
+		this.existsTotal = ApiTypeHelper.requireNonNull(builder.existsTotal, this, "existsTotal");
 		this.missingTime = builder.missingTime;
-		this.missingTimeInMillis = ModelTypeHelper.requireNonNull(builder.missingTimeInMillis, this,
+		this.missingTimeInMillis = ApiTypeHelper.requireNonNull(builder.missingTimeInMillis, this,
 				"missingTimeInMillis");
-		this.missingTotal = ModelTypeHelper.requireNonNull(builder.missingTotal, this, "missingTotal");
+		this.missingTotal = ApiTypeHelper.requireNonNull(builder.missingTotal, this, "missingTotal");
 		this.time = builder.time;
-		this.timeInMillis = ModelTypeHelper.requireNonNull(builder.timeInMillis, this, "timeInMillis");
-		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
+		this.timeInMillis = ApiTypeHelper.requireNonNull(builder.timeInMillis, this, "timeInMillis");
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
 
 	}
 
@@ -215,6 +221,7 @@ public class GetStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetStats> {
 		private Long current;
 

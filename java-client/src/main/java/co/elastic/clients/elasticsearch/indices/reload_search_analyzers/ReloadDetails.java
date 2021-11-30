@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.reload_search_analyzers.ReloadDetails
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/reload_search_analyzers/types.ts#L20-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ReloadDetails implements JsonpSerializable {
 	private final String index;
@@ -52,10 +59,10 @@ public class ReloadDetails implements JsonpSerializable {
 
 	private ReloadDetails(Builder builder) {
 
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
-		this.reloadedAnalyzers = ModelTypeHelper.unmodifiableRequired(builder.reloadedAnalyzers, this,
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.reloadedAnalyzers = ApiTypeHelper.unmodifiableRequired(builder.reloadedAnalyzers, this,
 				"reloadedAnalyzers");
-		this.reloadedNodeIds = ModelTypeHelper.unmodifiableRequired(builder.reloadedNodeIds, this, "reloadedNodeIds");
+		this.reloadedNodeIds = ApiTypeHelper.unmodifiableRequired(builder.reloadedNodeIds, this, "reloadedNodeIds");
 
 	}
 
@@ -98,7 +105,7 @@ public class ReloadDetails implements JsonpSerializable {
 		generator.writeKey("index");
 		generator.write(this.index);
 
-		if (ModelTypeHelper.isDefined(this.reloadedAnalyzers)) {
+		if (ApiTypeHelper.isDefined(this.reloadedAnalyzers)) {
 			generator.writeKey("reloaded_analyzers");
 			generator.writeStartArray();
 			for (String item0 : this.reloadedAnalyzers) {
@@ -108,7 +115,7 @@ public class ReloadDetails implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.reloadedNodeIds)) {
+		if (ApiTypeHelper.isDefined(this.reloadedNodeIds)) {
 			generator.writeKey("reloaded_node_ids");
 			generator.writeStartArray();
 			for (String item0 : this.reloadedNodeIds) {
@@ -126,6 +133,7 @@ public class ReloadDetails implements JsonpSerializable {
 	/**
 	 * Builder for {@link ReloadDetails}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ReloadDetails> {
 		private String index;
 
@@ -144,11 +152,9 @@ public class ReloadDetails implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code reloaded_analyzers}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>reloadedAnalyzers</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>reloadedAnalyzers</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>reloadedAnalyzers</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder reloadedAnalyzers(List<String> list) {
 			this.reloadedAnalyzers = _listAddAll(this.reloadedAnalyzers, list);
@@ -168,11 +174,9 @@ public class ReloadDetails implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code reloaded_node_ids}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>reloadedNodeIds</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>reloadedNodeIds</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>reloadedNodeIds</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder reloadedNodeIds(List<String> list) {
 			this.reloadedNodeIds = _listAddAll(this.reloadedNodeIds, list);

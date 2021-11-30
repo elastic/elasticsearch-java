@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.segments.ShardsSegment
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/segments/types.ts#L47-L52">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ShardsSegment implements JsonpSerializable {
 	private final int numCommittedSegments;
@@ -55,11 +62,11 @@ public class ShardsSegment implements JsonpSerializable {
 
 	private ShardsSegment(Builder builder) {
 
-		this.numCommittedSegments = ModelTypeHelper.requireNonNull(builder.numCommittedSegments, this,
+		this.numCommittedSegments = ApiTypeHelper.requireNonNull(builder.numCommittedSegments, this,
 				"numCommittedSegments");
-		this.routing = ModelTypeHelper.requireNonNull(builder.routing, this, "routing");
-		this.numSearchSegments = ModelTypeHelper.requireNonNull(builder.numSearchSegments, this, "numSearchSegments");
-		this.segments = ModelTypeHelper.unmodifiableRequired(builder.segments, this, "segments");
+		this.routing = ApiTypeHelper.requireNonNull(builder.routing, this, "routing");
+		this.numSearchSegments = ApiTypeHelper.requireNonNull(builder.numSearchSegments, this, "numSearchSegments");
+		this.segments = ApiTypeHelper.unmodifiableRequired(builder.segments, this, "segments");
 
 	}
 
@@ -115,7 +122,7 @@ public class ShardsSegment implements JsonpSerializable {
 		generator.writeKey("num_search_segments");
 		generator.write(this.numSearchSegments);
 
-		if (ModelTypeHelper.isDefined(this.segments)) {
+		if (ApiTypeHelper.isDefined(this.segments)) {
 			generator.writeKey("segments");
 			generator.writeStartObject();
 			for (Map.Entry<String, Segment> item0 : this.segments.entrySet()) {
@@ -134,6 +141,7 @@ public class ShardsSegment implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardsSegment}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardsSegment> {
 		private Integer numCommittedSegments;
 
@@ -177,11 +185,9 @@ public class ShardsSegment implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code segments}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>segments</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>segments</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>segments</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder segments(Map<String, Segment> map) {
 			this.segments = _mapPutAll(this.segments, map);

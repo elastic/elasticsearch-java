@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.UnionDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
@@ -43,7 +43,18 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.Time
-// union type: Union[]
+
+/**
+ * Whenever durations need to be specified, e.g. for a timeout parameter, the
+ * duration must specify the unit, like 2d for 2 days.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch/blob/master/libs/core/src/main/java/org/elasticsearch/core/TimeValue.java">Documentation
+ *      on elastic.co</a>
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Time.ts#L62-L68">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Time implements TaggedUnion<Time.Kind, Object>, JsonpSerializable {
 
@@ -84,8 +95,8 @@ public class Time implements TaggedUnion<Time.Kind, Object>, JsonpSerializable {
 
 	private Time(Builder builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 

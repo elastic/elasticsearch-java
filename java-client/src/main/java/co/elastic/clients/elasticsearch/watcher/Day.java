@@ -27,6 +27,12 @@ import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/_types/Schedule.ts#L37-L45">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public enum Day implements JsonEnum {
 	Sunday("sunday"),

@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.NdJsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -51,8 +51,8 @@ public class RequestItem implements NdJsonpSerializable, JsonpSerializable {
 
 	private RequestItem(Builder builder) {
 
-		this.header = ModelTypeHelper.requireNonNull(builder.header, this, "header");
-		this.body = ModelTypeHelper.requireNonNull(builder.body, this, "body");
+		this.header = ApiTypeHelper.requireNonNull(builder.header, this, "header");
+		this.body = ApiTypeHelper.requireNonNull(builder.body, this, "body");
 
 	}
 
@@ -103,6 +103,7 @@ public class RequestItem implements NdJsonpSerializable, JsonpSerializable {
 	/**
 	 * Builder for {@link RequestItem}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RequestItem> {
 		private MultisearchHeader header;
 

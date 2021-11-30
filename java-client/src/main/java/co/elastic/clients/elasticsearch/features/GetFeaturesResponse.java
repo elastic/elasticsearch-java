@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: features.get_features.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/features/get_features/GetFeaturesResponse.ts#L22-L26">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetFeaturesResponse implements JsonpSerializable {
 	private final List<Feature> features;
@@ -47,7 +54,7 @@ public class GetFeaturesResponse implements JsonpSerializable {
 
 	private GetFeaturesResponse(Builder builder) {
 
-		this.features = ModelTypeHelper.unmodifiableRequired(builder.features, this, "features");
+		this.features = ApiTypeHelper.unmodifiableRequired(builder.features, this, "features");
 
 	}
 
@@ -73,7 +80,7 @@ public class GetFeaturesResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.features)) {
+		if (ApiTypeHelper.isDefined(this.features)) {
 			generator.writeKey("features");
 			generator.writeStartArray();
 			for (Feature item0 : this.features) {
@@ -91,17 +98,16 @@ public class GetFeaturesResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetFeaturesResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetFeaturesResponse> {
 		private List<Feature> features;
 
 		/**
 		 * Required - API name: {@code features}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>features</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>features</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>features</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder features(List<Feature> list) {
 			this.features = _listAddAll(this.features, list);

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.OverlappingIndexTemplate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/_types/OverlappingIndexTemplate.ts#L22-L25">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class OverlappingIndexTemplate implements JsonpSerializable {
 	private final String name;
@@ -50,8 +57,8 @@ public class OverlappingIndexTemplate implements JsonpSerializable {
 
 	private OverlappingIndexTemplate(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
-		this.indexPatterns = ModelTypeHelper.unmodifiable(builder.indexPatterns);
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.indexPatterns = ApiTypeHelper.unmodifiable(builder.indexPatterns);
 
 	}
 
@@ -87,7 +94,7 @@ public class OverlappingIndexTemplate implements JsonpSerializable {
 		generator.writeKey("name");
 		generator.write(this.name);
 
-		if (ModelTypeHelper.isDefined(this.indexPatterns)) {
+		if (ApiTypeHelper.isDefined(this.indexPatterns)) {
 			generator.writeKey("index_patterns");
 			generator.writeStartArray();
 			for (String item0 : this.indexPatterns) {
@@ -105,6 +112,7 @@ public class OverlappingIndexTemplate implements JsonpSerializable {
 	/**
 	 * Builder for {@link OverlappingIndexTemplate}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<OverlappingIndexTemplate> {
 		private String name;
 
@@ -122,11 +130,9 @@ public class OverlappingIndexTemplate implements JsonpSerializable {
 		/**
 		 * API name: {@code index_patterns}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>indexPatterns</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>indexPatterns</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>indexPatterns</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder indexPatterns(List<String> list) {
 			this.indexPatterns = _listAddAll(this.indexPatterns, list);

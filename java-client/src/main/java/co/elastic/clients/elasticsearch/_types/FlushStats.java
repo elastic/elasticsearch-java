@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.FlushStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Stats.ts#L80-L85">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FlushStats implements JsonpSerializable {
 	private final long periodic;
@@ -55,10 +62,10 @@ public class FlushStats implements JsonpSerializable {
 
 	private FlushStats(Builder builder) {
 
-		this.periodic = ModelTypeHelper.requireNonNull(builder.periodic, this, "periodic");
-		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
+		this.periodic = ApiTypeHelper.requireNonNull(builder.periodic, this, "periodic");
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
 		this.totalTime = builder.totalTime;
-		this.totalTimeInMillis = ModelTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
+		this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
 
 	}
 
@@ -127,6 +134,7 @@ public class FlushStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link FlushStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FlushStats> {
 		private Long periodic;
 

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ActionStatus
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/_types/Action.ts#L102-L107">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ActionStatus implements JsonpSerializable {
 	private final AcknowledgeState ack;
@@ -55,7 +62,7 @@ public class ActionStatus implements JsonpSerializable {
 
 	private ActionStatus(Builder builder) {
 
-		this.ack = ModelTypeHelper.requireNonNull(builder.ack, this, "ack");
+		this.ack = ApiTypeHelper.requireNonNull(builder.ack, this, "ack");
 		this.lastExecution = builder.lastExecution;
 		this.lastSuccessfulExecution = builder.lastSuccessfulExecution;
 		this.lastThrottle = builder.lastThrottle;
@@ -134,6 +141,7 @@ public class ActionStatus implements JsonpSerializable {
 	/**
 	 * Builder for {@link ActionStatus}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ActionStatus> {
 		private AcknowledgeState ack;
 

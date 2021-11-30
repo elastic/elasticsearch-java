@@ -35,7 +35,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -47,6 +47,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.execute_watch.WatchRecord
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/execute_watch/types.ts#L26-L37">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class WatchRecord implements JsonpSerializable {
 	private final Condition condition;
@@ -73,16 +80,16 @@ public class WatchRecord implements JsonpSerializable {
 
 	private WatchRecord(Builder builder) {
 
-		this.condition = ModelTypeHelper.requireNonNull(builder.condition, this, "condition");
-		this.input = ModelTypeHelper.requireNonNull(builder.input, this, "input");
-		this.messages = ModelTypeHelper.unmodifiableRequired(builder.messages, this, "messages");
-		this.metadata = ModelTypeHelper.unmodifiableRequired(builder.metadata, this, "metadata");
-		this.node = ModelTypeHelper.requireNonNull(builder.node, this, "node");
-		this.result = ModelTypeHelper.requireNonNull(builder.result, this, "result");
-		this.state = ModelTypeHelper.requireNonNull(builder.state, this, "state");
-		this.triggerEvent = ModelTypeHelper.requireNonNull(builder.triggerEvent, this, "triggerEvent");
-		this.user = ModelTypeHelper.requireNonNull(builder.user, this, "user");
-		this.watchId = ModelTypeHelper.requireNonNull(builder.watchId, this, "watchId");
+		this.condition = ApiTypeHelper.requireNonNull(builder.condition, this, "condition");
+		this.input = ApiTypeHelper.requireNonNull(builder.input, this, "input");
+		this.messages = ApiTypeHelper.unmodifiableRequired(builder.messages, this, "messages");
+		this.metadata = ApiTypeHelper.unmodifiableRequired(builder.metadata, this, "metadata");
+		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
+		this.result = ApiTypeHelper.requireNonNull(builder.result, this, "result");
+		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
+		this.triggerEvent = ApiTypeHelper.requireNonNull(builder.triggerEvent, this, "triggerEvent");
+		this.user = ApiTypeHelper.requireNonNull(builder.user, this, "user");
+		this.watchId = ApiTypeHelper.requireNonNull(builder.watchId, this, "watchId");
 
 	}
 
@@ -177,7 +184,7 @@ public class WatchRecord implements JsonpSerializable {
 		generator.writeKey("input");
 		this.input.serialize(generator, mapper);
 
-		if (ModelTypeHelper.isDefined(this.messages)) {
+		if (ApiTypeHelper.isDefined(this.messages)) {
 			generator.writeKey("messages");
 			generator.writeStartArray();
 			for (String item0 : this.messages) {
@@ -187,7 +194,7 @@ public class WatchRecord implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.metadata)) {
+		if (ApiTypeHelper.isDefined(this.metadata)) {
 			generator.writeKey("metadata");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
@@ -222,6 +229,7 @@ public class WatchRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link WatchRecord}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WatchRecord> {
 		private Condition condition;
 
@@ -276,11 +284,9 @@ public class WatchRecord implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code messages}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>messages</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>messages</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>messages</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder messages(List<String> list) {
 			this.messages = _listAddAll(this.messages, list);
@@ -300,11 +306,9 @@ public class WatchRecord implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code metadata}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>metadata</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>metadata</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>metadata</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder metadata(Map<String, JsonData> map) {
 			this.metadata = _mapPutAll(this.metadata, map);

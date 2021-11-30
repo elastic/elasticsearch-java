@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.Filter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/_types/Filter.ts#L22-L26">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Filter implements JsonpSerializable {
 	@Nullable
@@ -54,8 +61,8 @@ public class Filter implements JsonpSerializable {
 	private Filter(Builder builder) {
 
 		this.description = builder.description;
-		this.filterId = ModelTypeHelper.requireNonNull(builder.filterId, this, "filterId");
-		this.items = ModelTypeHelper.unmodifiableRequired(builder.items, this, "items");
+		this.filterId = ApiTypeHelper.requireNonNull(builder.filterId, this, "filterId");
+		this.items = ApiTypeHelper.unmodifiableRequired(builder.items, this, "items");
 
 	}
 
@@ -104,7 +111,7 @@ public class Filter implements JsonpSerializable {
 		generator.writeKey("filter_id");
 		generator.write(this.filterId);
 
-		if (ModelTypeHelper.isDefined(this.items)) {
+		if (ApiTypeHelper.isDefined(this.items)) {
 			generator.writeKey("items");
 			generator.writeStartArray();
 			for (String item0 : this.items) {
@@ -122,6 +129,7 @@ public class Filter implements JsonpSerializable {
 	/**
 	 * Builder for {@link Filter}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Filter> {
 		@Nullable
 		private String description;
@@ -149,11 +157,9 @@ public class Filter implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code items}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>items</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>items</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>items</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder items(List<String> list) {
 			this.items = _listAddAll(this.items, list);

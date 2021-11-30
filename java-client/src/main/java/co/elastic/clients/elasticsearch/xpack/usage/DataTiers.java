@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -36,6 +36,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.DataTiers
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/xpack/usage/types.ts#L294-L301">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataTiers extends Base {
 	private final DataTierPhaseStatistics dataWarm;
@@ -54,11 +61,11 @@ public class DataTiers extends Base {
 	private DataTiers(Builder builder) {
 		super(builder);
 
-		this.dataWarm = ModelTypeHelper.requireNonNull(builder.dataWarm, this, "dataWarm");
+		this.dataWarm = ApiTypeHelper.requireNonNull(builder.dataWarm, this, "dataWarm");
 		this.dataFrozen = builder.dataFrozen;
-		this.dataCold = ModelTypeHelper.requireNonNull(builder.dataCold, this, "dataCold");
-		this.dataContent = ModelTypeHelper.requireNonNull(builder.dataContent, this, "dataContent");
-		this.dataHot = ModelTypeHelper.requireNonNull(builder.dataHot, this, "dataHot");
+		this.dataCold = ApiTypeHelper.requireNonNull(builder.dataCold, this, "dataCold");
+		this.dataContent = ApiTypeHelper.requireNonNull(builder.dataContent, this, "dataContent");
+		this.dataHot = ApiTypeHelper.requireNonNull(builder.dataHot, this, "dataHot");
 
 	}
 
@@ -129,6 +136,7 @@ public class DataTiers extends Base {
 	/**
 	 * Builder for {@link DataTiers}.
 	 */
+
 	public static class Builder extends Base.AbstractBuilder<Builder> implements ObjectBuilder<DataTiers> {
 		private DataTierPhaseStatistics dataWarm;
 

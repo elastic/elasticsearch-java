@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -45,6 +45,24 @@ import javax.annotation.Nullable;
 
 // typedef: ml.start_data_frame_analytics.Request
 
+/**
+ * Starts a data frame analytics job. A data frame analytics job can be started
+ * and stopped multiple times throughout its lifecycle. If the destination index
+ * does not exist, it is created automatically the first time you start the data
+ * frame analytics job. The <code>index.number_of_shards</code> and
+ * <code>index.number_of_replicas</code> settings for the destination index are
+ * copied from the source index. If there are multiple source indices, the
+ * destination index copies the highest setting values. The mappings for the
+ * destination index are also copied from the source indices. If there are any
+ * mapping conflicts, the job fails to start. If the destination index exists,
+ * it is used as is. You can therefore set up the destination index in advance
+ * with custom settings and mappings.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/start_data_frame_analytics/MlStartDataFrameAnalyticsRequest.ts#L24-L60">API
+ *      specification</a>
+ */
+
 public class StartDataFrameAnalyticsRequest extends RequestBase {
 	private final String id;
 
@@ -55,7 +73,7 @@ public class StartDataFrameAnalyticsRequest extends RequestBase {
 
 	private StartDataFrameAnalyticsRequest(Builder builder) {
 
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.timeout = builder.timeout;
 
 	}
@@ -92,6 +110,7 @@ public class StartDataFrameAnalyticsRequest extends RequestBase {
 	/**
 	 * Builder for {@link StartDataFrameAnalyticsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StartDataFrameAnalyticsRequest> {
 		private String id;
 

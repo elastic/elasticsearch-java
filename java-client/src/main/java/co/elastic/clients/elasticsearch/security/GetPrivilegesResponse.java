@@ -37,6 +37,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: security.get_privileges.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/get_privileges/SecurityGetPrivilegesResponse.ts#L24-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetPrivilegesResponse extends DictionaryResponse<String, Map<String, Actions>> {
 	// ---------------------------------------------------------------------------------------------
@@ -55,6 +62,7 @@ public class GetPrivilegesResponse extends DictionaryResponse<String, Map<String
 	/**
 	 * Builder for {@link GetPrivilegesResponse}.
 	 */
+
 	public static class Builder extends DictionaryResponse.AbstractBuilder<String, Map<String, Actions>, Builder>
 			implements
 				ObjectBuilder<GetPrivilegesResponse> {

@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.tasks.TasksRecord
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/tasks/types.ts#L22-L101">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TasksRecord implements JsonpSerializable {
 	@Nullable
@@ -374,6 +381,7 @@ public class TasksRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link TasksRecord}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TasksRecord> {
 		@Nullable
 		private String id;

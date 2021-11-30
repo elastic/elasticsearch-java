@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.NumericFielddata
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/_types/NumericFielddata.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NumericFielddata implements JsonpSerializable {
 	private final NumericFielddataFormat format;
@@ -46,7 +53,7 @@ public class NumericFielddata implements JsonpSerializable {
 
 	private NumericFielddata(Builder builder) {
 
-		this.format = ModelTypeHelper.requireNonNull(builder.format, this, "format");
+		this.format = ApiTypeHelper.requireNonNull(builder.format, this, "format");
 
 	}
 
@@ -82,6 +89,7 @@ public class NumericFielddata implements JsonpSerializable {
 	/**
 	 * Builder for {@link NumericFielddata}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NumericFielddata> {
 		private NumericFielddataFormat format;
 

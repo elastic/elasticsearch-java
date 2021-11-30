@@ -34,6 +34,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.mapping.Murmur3HashProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/specialized.ts#L83-L85">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Murmur3HashProperty extends DocValuesPropertyBase implements PropertyVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -67,6 +74,7 @@ public class Murmur3HashProperty extends DocValuesPropertyBase implements Proper
 	/**
 	 * Builder for {@link Murmur3HashProperty}.
 	 */
+
 	public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<Murmur3HashProperty> {

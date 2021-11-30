@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,6 +43,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: tasks._types.State
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/tasks/_types/TaskState.ts#L24-L36">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class State implements JsonpSerializable {
 	private final String action;
@@ -74,18 +81,17 @@ public class State implements JsonpSerializable {
 
 	private State(Builder builder) {
 
-		this.action = ModelTypeHelper.requireNonNull(builder.action, this, "action");
-		this.cancellable = ModelTypeHelper.requireNonNull(builder.cancellable, this, "cancellable");
+		this.action = ApiTypeHelper.requireNonNull(builder.action, this, "action");
+		this.cancellable = ApiTypeHelper.requireNonNull(builder.cancellable, this, "cancellable");
 		this.description = builder.description;
-		this.headers = ModelTypeHelper.unmodifiableRequired(builder.headers, this, "headers");
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
-		this.node = ModelTypeHelper.requireNonNull(builder.node, this, "node");
+		this.headers = ApiTypeHelper.unmodifiableRequired(builder.headers, this, "headers");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
 		this.parentTaskId = builder.parentTaskId;
-		this.runningTimeInNanos = ModelTypeHelper.requireNonNull(builder.runningTimeInNanos, this,
-				"runningTimeInNanos");
-		this.startTimeInMillis = ModelTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
+		this.runningTimeInNanos = ApiTypeHelper.requireNonNull(builder.runningTimeInNanos, this, "runningTimeInNanos");
+		this.startTimeInMillis = ApiTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
 		this.status = builder.status;
-		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 
@@ -195,7 +201,7 @@ public class State implements JsonpSerializable {
 			generator.write(this.description);
 
 		}
-		if (ModelTypeHelper.isDefined(this.headers)) {
+		if (ApiTypeHelper.isDefined(this.headers)) {
 			generator.writeKey("headers");
 			generator.writeStartObject();
 			for (Map.Entry<String, List<String>> item0 : this.headers.entrySet()) {
@@ -245,6 +251,7 @@ public class State implements JsonpSerializable {
 	/**
 	 * Builder for {@link State}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<State> {
 		private String action;
 
@@ -298,11 +305,9 @@ public class State implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code headers}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>headers</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>headers</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>headers</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder headers(Map<String, List<String>> map) {
 			this.headers = _mapPutAll(this.headers, map);

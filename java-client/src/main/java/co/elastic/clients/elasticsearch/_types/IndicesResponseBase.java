@@ -36,6 +36,13 @@ import javax.annotation.Nullable;
 
 // typedef: _types.IndicesResponseBase
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Base.ts#L81-L83">API
+ *      specification</a>
+ */
+
 public abstract class IndicesResponseBase extends AcknowledgedResponseBase {
 	@Nullable
 	private final ShardStatistics shards;

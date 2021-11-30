@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr._types.ReadException
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ccr/_types/FollowIndexStats.ts#L67-L71">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ReadException implements JsonpSerializable {
 	private final ErrorCause exception;
@@ -53,9 +60,9 @@ public class ReadException implements JsonpSerializable {
 
 	private ReadException(Builder builder) {
 
-		this.exception = ModelTypeHelper.requireNonNull(builder.exception, this, "exception");
-		this.fromSeqNo = ModelTypeHelper.requireNonNull(builder.fromSeqNo, this, "fromSeqNo");
-		this.retries = ModelTypeHelper.requireNonNull(builder.retries, this, "retries");
+		this.exception = ApiTypeHelper.requireNonNull(builder.exception, this, "exception");
+		this.fromSeqNo = ApiTypeHelper.requireNonNull(builder.fromSeqNo, this, "fromSeqNo");
+		this.retries = ApiTypeHelper.requireNonNull(builder.retries, this, "retries");
 
 	}
 
@@ -111,6 +118,7 @@ public class ReadException implements JsonpSerializable {
 	/**
 	 * Builder for {@link ReadException}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ReadException> {
 		private ErrorCause exception;
 

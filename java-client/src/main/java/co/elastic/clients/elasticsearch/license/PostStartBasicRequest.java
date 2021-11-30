@@ -43,6 +43,14 @@ import javax.annotation.Nullable;
 
 // typedef: license.post_start_basic.Request
 
+/**
+ * Starts an indefinite basic license.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/license/post_start_basic/StartBasicLicenseRequest.ts#L22-L31">API
+ *      specification</a>
+ */
+
 public class PostStartBasicRequest extends RequestBase {
 	@Nullable
 	private final Boolean acknowledge;
@@ -74,6 +82,7 @@ public class PostStartBasicRequest extends RequestBase {
 	/**
 	 * Builder for {@link PostStartBasicRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PostStartBasicRequest> {
 		@Nullable
 		private Boolean acknowledge;

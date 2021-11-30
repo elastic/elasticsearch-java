@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.stats.ShardRouting
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/stats/types.ts#L138-L143">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ShardRouting implements JsonpSerializable {
 	private final String node;
@@ -55,10 +62,10 @@ public class ShardRouting implements JsonpSerializable {
 
 	private ShardRouting(Builder builder) {
 
-		this.node = ModelTypeHelper.requireNonNull(builder.node, this, "node");
-		this.primary = ModelTypeHelper.requireNonNull(builder.primary, this, "primary");
+		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
+		this.primary = ApiTypeHelper.requireNonNull(builder.primary, this, "primary");
 		this.relocatingNode = builder.relocatingNode;
-		this.state = ModelTypeHelper.requireNonNull(builder.state, this, "state");
+		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
 
 	}
 
@@ -127,6 +134,7 @@ public class ShardRouting implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardRouting}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardRouting> {
 		private String node;
 

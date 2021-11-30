@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.ConditionTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/token_filters.ts#L180-L184">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ConditionTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final List<String> filter;
@@ -50,8 +57,8 @@ public class ConditionTokenFilter extends TokenFilterBase implements TokenFilter
 	private ConditionTokenFilter(Builder builder) {
 		super(builder);
 
-		this.filter = ModelTypeHelper.unmodifiableRequired(builder.filter, this, "filter");
-		this.script = ModelTypeHelper.requireNonNull(builder.script, this, "script");
+		this.filter = ApiTypeHelper.unmodifiableRequired(builder.filter, this, "filter");
+		this.script = ApiTypeHelper.requireNonNull(builder.script, this, "script");
 
 	}
 
@@ -85,7 +92,7 @@ public class ConditionTokenFilter extends TokenFilterBase implements TokenFilter
 
 		generator.write("type", "condition");
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.filter)) {
+		if (ApiTypeHelper.isDefined(this.filter)) {
 			generator.writeKey("filter");
 			generator.writeStartArray();
 			for (String item0 : this.filter) {
@@ -105,6 +112,7 @@ public class ConditionTokenFilter extends TokenFilterBase implements TokenFilter
 	/**
 	 * Builder for {@link ConditionTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ConditionTokenFilter> {
@@ -115,11 +123,9 @@ public class ConditionTokenFilter extends TokenFilterBase implements TokenFilter
 		/**
 		 * Required - API name: {@code filter}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>filter</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>filter</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>filter</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder filter(List<String> list) {
 			this.filter = _listAddAll(this.filter, list);

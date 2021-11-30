@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -45,6 +45,14 @@ import javax.annotation.Nullable;
 
 // typedef: security.clear_cached_service_tokens.Request
 
+/**
+ * Evicts tokens from the service account token caches.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/clear_cached_service_tokens/ClearCachedServiceTokensRequest.ts#L23-L34">API
+ *      specification</a>
+ */
+
 public class ClearCachedServiceTokensRequest extends RequestBase {
 	private final List<String> name;
 
@@ -56,9 +64,9 @@ public class ClearCachedServiceTokensRequest extends RequestBase {
 
 	private ClearCachedServiceTokensRequest(Builder builder) {
 
-		this.name = ModelTypeHelper.unmodifiableRequired(builder.name, this, "name");
-		this.namespace = ModelTypeHelper.requireNonNull(builder.namespace, this, "namespace");
-		this.service = ModelTypeHelper.requireNonNull(builder.service, this, "service");
+		this.name = ApiTypeHelper.unmodifiableRequired(builder.name, this, "name");
+		this.namespace = ApiTypeHelper.requireNonNull(builder.namespace, this, "namespace");
+		this.service = ApiTypeHelper.requireNonNull(builder.service, this, "service");
 
 	}
 
@@ -99,6 +107,7 @@ public class ClearCachedServiceTokensRequest extends RequestBase {
 	/**
 	 * Builder for {@link ClearCachedServiceTokensRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClearCachedServiceTokensRequest> {
 		private List<String> name;
 
@@ -111,11 +120,9 @@ public class ClearCachedServiceTokensRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code name}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>name</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>name</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>name</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder name(List<String> list) {
 			this.name = _listAddAll(this.name, list);

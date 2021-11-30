@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.terms_enum.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/terms_enum/TermsEnumResponse.ts#L22-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TermsEnumResponse implements JsonpSerializable {
 	private final ShardStatistics shards;
@@ -54,9 +61,9 @@ public class TermsEnumResponse implements JsonpSerializable {
 
 	private TermsEnumResponse(Builder builder) {
 
-		this.shards = ModelTypeHelper.requireNonNull(builder.shards, this, "shards");
-		this.terms = ModelTypeHelper.unmodifiableRequired(builder.terms, this, "terms");
-		this.complete = ModelTypeHelper.requireNonNull(builder.complete, this, "complete");
+		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
+		this.terms = ApiTypeHelper.unmodifiableRequired(builder.terms, this, "terms");
+		this.complete = ApiTypeHelper.requireNonNull(builder.complete, this, "complete");
 
 	}
 
@@ -99,7 +106,7 @@ public class TermsEnumResponse implements JsonpSerializable {
 		generator.writeKey("_shards");
 		this.shards.serialize(generator, mapper);
 
-		if (ModelTypeHelper.isDefined(this.terms)) {
+		if (ApiTypeHelper.isDefined(this.terms)) {
 			generator.writeKey("terms");
 			generator.writeStartArray();
 			for (String item0 : this.terms) {
@@ -119,6 +126,7 @@ public class TermsEnumResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link TermsEnumResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TermsEnumResponse> {
 		private ShardStatistics shards;
 
@@ -144,11 +152,9 @@ public class TermsEnumResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code terms}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>terms</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>terms</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>terms</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder terms(List<String> list) {
 			this.terms = _listAddAll(this.terms, list);

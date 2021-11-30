@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,6 +43,16 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexSettings
+
+/**
+ *
+ * @see <a href=
+ *      "https://www.elastic.co/guide/en/elasticsearch/reference/7.8/index-modules.html#index-modules-settings">Documentation
+ *      on elastic.co</a>
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/_types/IndexSettings.ts#L36-L273">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IndexSettings implements JsonpSerializable {
 	@Nullable
@@ -218,7 +228,7 @@ public class IndexSettings implements JsonpSerializable {
 
 		this.index = builder.index;
 		this.mode = builder.mode;
-		this.routingPath = ModelTypeHelper.unmodifiable(builder.routingPath);
+		this.routingPath = ApiTypeHelper.unmodifiable(builder.routingPath);
 		this.softDeletes = builder.softDeletes;
 		this.sort = builder.sort;
 		this.numberOfShards = builder.numberOfShards;
@@ -747,7 +757,7 @@ public class IndexSettings implements JsonpSerializable {
 			generator.write(this.mode);
 
 		}
-		if (ModelTypeHelper.isDefined(this.routingPath)) {
+		if (ApiTypeHelper.isDefined(this.routingPath)) {
 			generator.writeKey("routing_path");
 			generator.writeStartArray();
 			for (String item0 : this.routingPath) {
@@ -1029,6 +1039,7 @@ public class IndexSettings implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexSettings}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexSettings> {
 		@Nullable
 		private IndexSettings index;
@@ -1224,11 +1235,9 @@ public class IndexSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code routing_path}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>routingPath</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>routingPath</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>routingPath</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder routingPath(List<String> list) {
 			this.routingPath = _listAddAll(this.routingPath, list);

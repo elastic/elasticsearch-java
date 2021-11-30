@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -46,6 +46,19 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_jobs.Request
+
+/**
+ * Retrieves configuration information for anomaly detection jobs. You can get
+ * information for multiple anomaly detection jobs in a single API request by
+ * using a group name, a comma-separated list of jobs, or a wildcard expression.
+ * You can get information for all anomaly detection jobs by using
+ * <code>_all</code>, by specifying <code>*</code> as the
+ * <code>&lt;job_id&gt;</code>, or by omitting the <code>&lt;job_id&gt;</code>.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/get_jobs/MlGetJobsRequest.ts#L23-L70">API
+ *      specification</a>
+ */
 
 public class GetJobsRequest extends RequestBase {
 	@Nullable
@@ -66,7 +79,7 @@ public class GetJobsRequest extends RequestBase {
 		this.allowNoJobs = builder.allowNoJobs;
 		this.allowNoMatch = builder.allowNoMatch;
 		this.excludeGenerated = builder.excludeGenerated;
-		this.jobId = ModelTypeHelper.unmodifiable(builder.jobId);
+		this.jobId = ApiTypeHelper.unmodifiable(builder.jobId);
 
 	}
 
@@ -79,7 +92,10 @@ public class GetJobsRequest extends RequestBase {
 	 * <code>_all</code> string or when no jobs have been specified)
 	 * <p>
 	 * API name: {@code allow_no_jobs}
+	 * 
+	 * @deprecated 7.10.0 Use <code>allow_no_match</code> instead.
 	 */
+	@Deprecated
 	@Nullable
 	public final Boolean allowNoJobs() {
 		return this.allowNoJobs;
@@ -134,6 +150,7 @@ public class GetJobsRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetJobsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetJobsRequest> {
 		@Nullable
 		private Boolean allowNoJobs;
@@ -152,7 +169,10 @@ public class GetJobsRequest extends RequestBase {
 		 * <code>_all</code> string or when no jobs have been specified)
 		 * <p>
 		 * API name: {@code allow_no_jobs}
+		 * 
+		 * @deprecated 7.10.0 Use <code>allow_no_match</code> instead.
 		 */
+		@Deprecated
 		public final Builder allowNoJobs(@Nullable Boolean value) {
 			this.allowNoJobs = value;
 			return this;
@@ -198,11 +218,9 @@ public class GetJobsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code job_id}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>jobId</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>jobId</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>jobId</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder jobId(List<String> list) {
 			this.jobId = _listAddAll(this.jobId, list);
@@ -256,7 +274,7 @@ public class GetJobsRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (ModelTypeHelper.isDefined(request.jobId()))
+				if (ApiTypeHelper.isDefined(request.jobId()))
 					propsSet |= _jobId;
 
 				if (propsSet == (_jobId)) {

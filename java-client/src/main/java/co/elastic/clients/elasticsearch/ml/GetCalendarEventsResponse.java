@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_calendar_events.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/get_calendar_events/MlGetCalendarEventsResponse.ts#L23-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetCalendarEventsResponse implements JsonpSerializable {
 	private final long count;
@@ -50,8 +57,8 @@ public class GetCalendarEventsResponse implements JsonpSerializable {
 
 	private GetCalendarEventsResponse(Builder builder) {
 
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
-		this.events = ModelTypeHelper.unmodifiableRequired(builder.events, this, "events");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.events = ApiTypeHelper.unmodifiableRequired(builder.events, this, "events");
 
 	}
 
@@ -87,7 +94,7 @@ public class GetCalendarEventsResponse implements JsonpSerializable {
 		generator.writeKey("count");
 		generator.write(this.count);
 
-		if (ModelTypeHelper.isDefined(this.events)) {
+		if (ApiTypeHelper.isDefined(this.events)) {
 			generator.writeKey("events");
 			generator.writeStartArray();
 			for (CalendarEvent item0 : this.events) {
@@ -105,6 +112,7 @@ public class GetCalendarEventsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetCalendarEventsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetCalendarEventsResponse> {
 		private Long count;
 
@@ -121,11 +129,9 @@ public class GetCalendarEventsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code events}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>events</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>events</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>events</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder events(List<CalendarEvent> list) {
 			this.events = _listAddAll(this.events, list);

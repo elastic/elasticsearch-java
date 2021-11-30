@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsMemoryEstimation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/_types/DataframeAnalytics.ts#L69-L74">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeAnalyticsMemoryEstimation implements JsonpSerializable {
 	private final String expectedMemoryWithDisk;
@@ -49,9 +56,9 @@ public class DataframeAnalyticsMemoryEstimation implements JsonpSerializable {
 
 	private DataframeAnalyticsMemoryEstimation(Builder builder) {
 
-		this.expectedMemoryWithDisk = ModelTypeHelper.requireNonNull(builder.expectedMemoryWithDisk, this,
+		this.expectedMemoryWithDisk = ApiTypeHelper.requireNonNull(builder.expectedMemoryWithDisk, this,
 				"expectedMemoryWithDisk");
-		this.expectedMemoryWithoutDisk = ModelTypeHelper.requireNonNull(builder.expectedMemoryWithoutDisk, this,
+		this.expectedMemoryWithoutDisk = ApiTypeHelper.requireNonNull(builder.expectedMemoryWithoutDisk, this,
 				"expectedMemoryWithoutDisk");
 
 	}
@@ -107,6 +114,7 @@ public class DataframeAnalyticsMemoryEstimation implements JsonpSerializable {
 	/**
 	 * Builder for {@link DataframeAnalyticsMemoryEstimation}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframeAnalyticsMemoryEstimation> {
 		private String expectedMemoryWithDisk;
 

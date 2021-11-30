@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.put_role_mapping.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/put_role_mapping/SecurityPutRoleMappingResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutRoleMappingResponse implements JsonpSerializable {
 	@Nullable
@@ -51,7 +58,7 @@ public class PutRoleMappingResponse implements JsonpSerializable {
 	private PutRoleMappingResponse(Builder builder) {
 
 		this.created = builder.created;
-		this.roleMapping = ModelTypeHelper.requireNonNull(builder.roleMapping, this, "roleMapping");
+		this.roleMapping = ApiTypeHelper.requireNonNull(builder.roleMapping, this, "roleMapping");
 
 	}
 
@@ -100,6 +107,7 @@ public class PutRoleMappingResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link PutRoleMappingResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutRoleMappingResponse> {
 		@Nullable
 		private Boolean created;

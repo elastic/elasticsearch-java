@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
@@ -38,6 +38,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GeoCentroidAggregate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L292-L296">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GeoCentroidAggregate extends AggregateBase implements AggregateVariant {
 	private final long count;
@@ -50,7 +57,7 @@ public class GeoCentroidAggregate extends AggregateBase implements AggregateVari
 	private GeoCentroidAggregate(Builder builder) {
 		super(builder);
 
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
 		this.location = builder.location;
 
 	}
@@ -101,6 +108,7 @@ public class GeoCentroidAggregate extends AggregateBase implements AggregateVari
 	/**
 	 * Builder for {@link GeoCentroidAggregate}.
 	 */
+
 	public static class Builder extends AggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<GeoCentroidAggregate> {

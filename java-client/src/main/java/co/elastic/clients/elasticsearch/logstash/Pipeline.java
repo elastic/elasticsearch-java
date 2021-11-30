@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: logstash._types.Pipeline
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/logstash/_types/Pipeline.ts#L37-L44">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Pipeline implements JsonpSerializable {
 	private final String description;
@@ -57,12 +64,12 @@ public class Pipeline implements JsonpSerializable {
 
 	private Pipeline(Builder builder) {
 
-		this.description = ModelTypeHelper.requireNonNull(builder.description, this, "description");
-		this.lastModified = ModelTypeHelper.requireNonNull(builder.lastModified, this, "lastModified");
-		this.pipelineMetadata = ModelTypeHelper.requireNonNull(builder.pipelineMetadata, this, "pipelineMetadata");
-		this.username = ModelTypeHelper.requireNonNull(builder.username, this, "username");
-		this.pipeline = ModelTypeHelper.requireNonNull(builder.pipeline, this, "pipeline");
-		this.pipelineSettings = ModelTypeHelper.requireNonNull(builder.pipelineSettings, this, "pipelineSettings");
+		this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
+		this.lastModified = ApiTypeHelper.requireNonNull(builder.lastModified, this, "lastModified");
+		this.pipelineMetadata = ApiTypeHelper.requireNonNull(builder.pipelineMetadata, this, "pipelineMetadata");
+		this.username = ApiTypeHelper.requireNonNull(builder.username, this, "username");
+		this.pipeline = ApiTypeHelper.requireNonNull(builder.pipeline, this, "pipeline");
+		this.pipelineSettings = ApiTypeHelper.requireNonNull(builder.pipelineSettings, this, "pipelineSettings");
 
 	}
 
@@ -148,6 +155,7 @@ public class Pipeline implements JsonpSerializable {
 	/**
 	 * Builder for {@link Pipeline}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Pipeline> {
 		private String description;
 

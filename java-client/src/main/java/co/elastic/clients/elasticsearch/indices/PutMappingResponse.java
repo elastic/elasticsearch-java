@@ -34,6 +34,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: indices.put_mapping.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/put_mapping/IndicesPutMappingResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutMappingResponse extends IndicesResponseBase {
 	// ---------------------------------------------------------------------------------------------
@@ -52,6 +59,7 @@ public class PutMappingResponse extends IndicesResponseBase {
 	/**
 	 * Builder for {@link PutMappingResponse}.
 	 */
+
 	public static class Builder extends IndicesResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PutMappingResponse> {

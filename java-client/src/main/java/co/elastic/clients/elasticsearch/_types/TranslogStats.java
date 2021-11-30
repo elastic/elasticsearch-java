@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.TranslogStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Stats.ts#L237-L245">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TranslogStats implements JsonpSerializable {
 	private final long earliestLastModifiedAge;
@@ -63,15 +70,15 @@ public class TranslogStats implements JsonpSerializable {
 
 	private TranslogStats(Builder builder) {
 
-		this.earliestLastModifiedAge = ModelTypeHelper.requireNonNull(builder.earliestLastModifiedAge, this,
+		this.earliestLastModifiedAge = ApiTypeHelper.requireNonNull(builder.earliestLastModifiedAge, this,
 				"earliestLastModifiedAge");
-		this.operations = ModelTypeHelper.requireNonNull(builder.operations, this, "operations");
+		this.operations = ApiTypeHelper.requireNonNull(builder.operations, this, "operations");
 		this.size = builder.size;
-		this.sizeInBytes = ModelTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
-		this.uncommittedOperations = ModelTypeHelper.requireNonNull(builder.uncommittedOperations, this,
+		this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
+		this.uncommittedOperations = ApiTypeHelper.requireNonNull(builder.uncommittedOperations, this,
 				"uncommittedOperations");
 		this.uncommittedSize = builder.uncommittedSize;
-		this.uncommittedSizeInBytes = ModelTypeHelper.requireNonNull(builder.uncommittedSizeInBytes, this,
+		this.uncommittedSizeInBytes = ApiTypeHelper.requireNonNull(builder.uncommittedSizeInBytes, this,
 				"uncommittedSizeInBytes");
 
 	}
@@ -174,6 +181,7 @@ public class TranslogStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link TranslogStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TranslogStats> {
 		private Long earliestLastModifiedAge;
 

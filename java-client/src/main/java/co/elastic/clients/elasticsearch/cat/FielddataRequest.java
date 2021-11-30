@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -46,6 +46,15 @@ import javax.annotation.Nullable;
 
 // typedef: cat.fielddata.Request
 
+/**
+ * Shows how much heap memory is currently being used by fielddata on every data
+ * node in the cluster.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/fielddata/CatFielddataRequest.ts#L23-L35">API
+ *      specification</a>
+ */
+
 public class FielddataRequest extends CatRequestBase {
 	@Nullable
 	private final Bytes bytes;
@@ -57,7 +66,7 @@ public class FielddataRequest extends CatRequestBase {
 	private FielddataRequest(Builder builder) {
 
 		this.bytes = builder.bytes;
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 
 	}
 
@@ -89,6 +98,7 @@ public class FielddataRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link FielddataRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FielddataRequest> {
 		@Nullable
 		private Bytes bytes;
@@ -111,11 +121,9 @@ public class FielddataRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code fields}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>fields</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>fields</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>fields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder fields(List<String> list) {
 			this.fields = _listAddAll(this.fields, list);
@@ -167,7 +175,7 @@ public class FielddataRequest extends CatRequestBase {
 
 				int propsSet = 0;
 
-				if (ModelTypeHelper.isDefined(request.fields()))
+				if (ApiTypeHelper.isDefined(request.fields()))
 					propsSet |= _fields;
 
 				if (propsSet == 0) {

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.query_watches.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/query_watches/WatcherQueryWatchesResponse.ts#L23-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class QueryWatchesResponse implements JsonpSerializable {
 	private final int count;
@@ -50,8 +57,8 @@ public class QueryWatchesResponse implements JsonpSerializable {
 
 	private QueryWatchesResponse(Builder builder) {
 
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
-		this.watches = ModelTypeHelper.unmodifiableRequired(builder.watches, this, "watches");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.watches = ApiTypeHelper.unmodifiableRequired(builder.watches, this, "watches");
 
 	}
 
@@ -87,7 +94,7 @@ public class QueryWatchesResponse implements JsonpSerializable {
 		generator.writeKey("count");
 		generator.write(this.count);
 
-		if (ModelTypeHelper.isDefined(this.watches)) {
+		if (ApiTypeHelper.isDefined(this.watches)) {
 			generator.writeKey("watches");
 			generator.writeStartArray();
 			for (QueryWatch item0 : this.watches) {
@@ -105,6 +112,7 @@ public class QueryWatchesResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link QueryWatchesResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<QueryWatchesResponse> {
 		private Integer count;
 
@@ -121,11 +129,9 @@ public class QueryWatchesResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code watches}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>watches</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>watches</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>watches</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder watches(List<QueryWatch> list) {
 			this.watches = _listAddAll(this.watches, list);

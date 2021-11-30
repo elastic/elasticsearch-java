@@ -35,7 +35,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -49,6 +49,15 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: graph.explore.Request
+
+/**
+ * Explore extracted and summarized information about the documents and terms in
+ * an index.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/graph/explore/GraphExploreRequest.ts#L28-L48">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ExploreRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -78,12 +87,12 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 
 		this.connections = builder.connections;
 		this.controls = builder.controls;
-		this.index = ModelTypeHelper.unmodifiableRequired(builder.index, this, "index");
+		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
 		this.query = builder.query;
 		this.routing = builder.routing;
 		this.timeout = builder.timeout;
-		this.type = ModelTypeHelper.unmodifiable(builder.type);
-		this.vertices = ModelTypeHelper.unmodifiable(builder.vertices);
+		this.type = ApiTypeHelper.unmodifiable(builder.type);
+		this.vertices = ApiTypeHelper.unmodifiable(builder.vertices);
 
 	}
 
@@ -188,7 +197,7 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 			this.query.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.vertices)) {
+		if (ApiTypeHelper.isDefined(this.vertices)) {
 			generator.writeKey("vertices");
 			generator.writeStartArray();
 			for (VertexDefinition item0 : this.vertices) {
@@ -206,6 +215,7 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link ExploreRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExploreRequest> {
 		@Nullable
 		private Hop connections;
@@ -266,11 +276,9 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>index</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>index</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder index(List<String> list) {
 			this.index = _listAddAll(this.index, list);
@@ -340,11 +348,9 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code type}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>type</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>type</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>type</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder type(List<String> list) {
 			this.type = _listAddAll(this.type, list);
@@ -367,11 +373,9 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code vertices}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>vertices</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>vertices</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>vertices</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder vertices(List<VertexDefinition> list) {
 			this.vertices = _listAddAll(this.vertices, list);
@@ -449,7 +453,7 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 				int propsSet = 0;
 
 				propsSet |= _index;
-				if (ModelTypeHelper.isDefined(request.type()))
+				if (ApiTypeHelper.isDefined(request.type()))
 					propsSet |= _type;
 
 				if (propsSet == (_index)) {

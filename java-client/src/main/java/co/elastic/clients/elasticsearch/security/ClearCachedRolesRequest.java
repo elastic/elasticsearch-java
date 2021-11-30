@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -45,6 +45,14 @@ import javax.annotation.Nullable;
 
 // typedef: security.clear_cached_roles.Request
 
+/**
+ * Evicts roles from the native role cache.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/clear_cached_roles/ClearCachedRolesRequest.ts#L23-L32">API
+ *      specification</a>
+ */
+
 public class ClearCachedRolesRequest extends RequestBase {
 	private final List<String> name;
 
@@ -52,7 +60,7 @@ public class ClearCachedRolesRequest extends RequestBase {
 
 	private ClearCachedRolesRequest(Builder builder) {
 
-		this.name = ModelTypeHelper.unmodifiableRequired(builder.name, this, "name");
+		this.name = ApiTypeHelper.unmodifiableRequired(builder.name, this, "name");
 
 	}
 
@@ -74,6 +82,7 @@ public class ClearCachedRolesRequest extends RequestBase {
 	/**
 	 * Builder for {@link ClearCachedRolesRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClearCachedRolesRequest> {
 		private List<String> name;
 
@@ -82,11 +91,9 @@ public class ClearCachedRolesRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code name}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>name</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>name</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>name</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder name(List<String> list) {
 			this.name = _listAddAll(this.name, list);

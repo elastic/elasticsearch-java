@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.invalidate_api_key.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/invalidate_api_key/SecurityInvalidateApiKeyResponse.ts#L23-L30">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class InvalidateApiKeyResponse implements JsonpSerializable {
 	private final int errorCount;
@@ -56,11 +63,11 @@ public class InvalidateApiKeyResponse implements JsonpSerializable {
 
 	private InvalidateApiKeyResponse(Builder builder) {
 
-		this.errorCount = ModelTypeHelper.requireNonNull(builder.errorCount, this, "errorCount");
-		this.errorDetails = ModelTypeHelper.unmodifiable(builder.errorDetails);
-		this.invalidatedApiKeys = ModelTypeHelper.unmodifiableRequired(builder.invalidatedApiKeys, this,
+		this.errorCount = ApiTypeHelper.requireNonNull(builder.errorCount, this, "errorCount");
+		this.errorDetails = ApiTypeHelper.unmodifiable(builder.errorDetails);
+		this.invalidatedApiKeys = ApiTypeHelper.unmodifiableRequired(builder.invalidatedApiKeys, this,
 				"invalidatedApiKeys");
-		this.previouslyInvalidatedApiKeys = ModelTypeHelper.unmodifiableRequired(builder.previouslyInvalidatedApiKeys,
+		this.previouslyInvalidatedApiKeys = ApiTypeHelper.unmodifiableRequired(builder.previouslyInvalidatedApiKeys,
 				this, "previouslyInvalidatedApiKeys");
 
 	}
@@ -111,7 +118,7 @@ public class InvalidateApiKeyResponse implements JsonpSerializable {
 		generator.writeKey("error_count");
 		generator.write(this.errorCount);
 
-		if (ModelTypeHelper.isDefined(this.errorDetails)) {
+		if (ApiTypeHelper.isDefined(this.errorDetails)) {
 			generator.writeKey("error_details");
 			generator.writeStartArray();
 			for (ErrorCause item0 : this.errorDetails) {
@@ -121,7 +128,7 @@ public class InvalidateApiKeyResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.invalidatedApiKeys)) {
+		if (ApiTypeHelper.isDefined(this.invalidatedApiKeys)) {
 			generator.writeKey("invalidated_api_keys");
 			generator.writeStartArray();
 			for (String item0 : this.invalidatedApiKeys) {
@@ -131,7 +138,7 @@ public class InvalidateApiKeyResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.previouslyInvalidatedApiKeys)) {
+		if (ApiTypeHelper.isDefined(this.previouslyInvalidatedApiKeys)) {
 			generator.writeKey("previously_invalidated_api_keys");
 			generator.writeStartArray();
 			for (String item0 : this.previouslyInvalidatedApiKeys) {
@@ -149,6 +156,7 @@ public class InvalidateApiKeyResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link InvalidateApiKeyResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<InvalidateApiKeyResponse> {
 		private Integer errorCount;
 
@@ -170,11 +178,9 @@ public class InvalidateApiKeyResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code error_details}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>errorDetails</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>errorDetails</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>errorDetails</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder errorDetails(List<ErrorCause> list) {
 			this.errorDetails = _listAddAll(this.errorDetails, list);
@@ -204,10 +210,8 @@ public class InvalidateApiKeyResponse implements JsonpSerializable {
 		 * Required - API name: {@code invalidated_api_keys}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>invalidatedApiKeys</code>.
-		 * Use <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>invalidatedApiKeys</code> to <code>null</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder invalidatedApiKeys(List<String> list) {
 			this.invalidatedApiKeys = _listAddAll(this.invalidatedApiKeys, list);
@@ -228,11 +232,9 @@ public class InvalidateApiKeyResponse implements JsonpSerializable {
 		 * Required - API name: {@code previously_invalidated_api_keys}
 		 * <p>
 		 * Adds all elements of <code>list</code> to
-		 * <code>previouslyInvalidatedApiKeys</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>previouslyInvalidatedApiKeys</code> to <code>null</code>.
+		 * <code>previouslyInvalidatedApiKeys</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder previouslyInvalidatedApiKeys(List<String> list) {
 			this.previouslyInvalidatedApiKeys = _listAddAll(this.previouslyInvalidatedApiKeys, list);

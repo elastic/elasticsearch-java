@@ -32,7 +32,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -45,6 +45,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.mtermvectors.Operation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/mtermvectors/types.ts#L34-L48">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MultiTermVectorsOperation implements JsonpSerializable {
 	private final JsonData doc;
@@ -77,19 +84,19 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 
 	private MultiTermVectorsOperation(Builder builder) {
 
-		this.doc = ModelTypeHelper.requireNonNull(builder.doc, this, "doc");
-		this.fields = ModelTypeHelper.unmodifiableRequired(builder.fields, this, "fields");
-		this.fieldStatistics = ModelTypeHelper.requireNonNull(builder.fieldStatistics, this, "fieldStatistics");
-		this.filter = ModelTypeHelper.requireNonNull(builder.filter, this, "filter");
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
-		this.offsets = ModelTypeHelper.requireNonNull(builder.offsets, this, "offsets");
-		this.payloads = ModelTypeHelper.requireNonNull(builder.payloads, this, "payloads");
-		this.positions = ModelTypeHelper.requireNonNull(builder.positions, this, "positions");
-		this.routing = ModelTypeHelper.requireNonNull(builder.routing, this, "routing");
-		this.termStatistics = ModelTypeHelper.requireNonNull(builder.termStatistics, this, "termStatistics");
-		this.version = ModelTypeHelper.requireNonNull(builder.version, this, "version");
-		this.versionType = ModelTypeHelper.requireNonNull(builder.versionType, this, "versionType");
+		this.doc = ApiTypeHelper.requireNonNull(builder.doc, this, "doc");
+		this.fields = ApiTypeHelper.unmodifiableRequired(builder.fields, this, "fields");
+		this.fieldStatistics = ApiTypeHelper.requireNonNull(builder.fieldStatistics, this, "fieldStatistics");
+		this.filter = ApiTypeHelper.requireNonNull(builder.filter, this, "filter");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.offsets = ApiTypeHelper.requireNonNull(builder.offsets, this, "offsets");
+		this.payloads = ApiTypeHelper.requireNonNull(builder.payloads, this, "payloads");
+		this.positions = ApiTypeHelper.requireNonNull(builder.positions, this, "positions");
+		this.routing = ApiTypeHelper.requireNonNull(builder.routing, this, "routing");
+		this.termStatistics = ApiTypeHelper.requireNonNull(builder.termStatistics, this, "termStatistics");
+		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
+		this.versionType = ApiTypeHelper.requireNonNull(builder.versionType, this, "versionType");
 
 	}
 
@@ -202,7 +209,7 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 		generator.writeKey("doc");
 		this.doc.serialize(generator, mapper);
 
-		if (ModelTypeHelper.isDefined(this.fields)) {
+		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartArray();
 			for (String item0 : this.fields) {
@@ -252,6 +259,7 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 	/**
 	 * Builder for {@link MultiTermVectorsOperation}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MultiTermVectorsOperation> {
 		private JsonData doc;
 
@@ -290,11 +298,9 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code fields}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>fields</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>fields</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>fields</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder fields(List<String> list) {
 			this.fields = _listAddAll(this.fields, list);

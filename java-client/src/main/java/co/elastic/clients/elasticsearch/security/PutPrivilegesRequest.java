@@ -35,7 +35,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -47,6 +47,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.put_privileges.Request
+
+/**
+ * Adds or updates application privileges.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/put_privileges/SecurityPutPrivilegesRequest.ts#L25-L37">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutPrivilegesRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -59,7 +67,7 @@ public class PutPrivilegesRequest extends RequestBase implements JsonpSerializab
 	private PutPrivilegesRequest(Builder builder) {
 
 		this.refresh = builder.refresh;
-		this.privileges = ModelTypeHelper.unmodifiableRequired(builder.privileges, this, "privileges");
+		this.privileges = ApiTypeHelper.unmodifiableRequired(builder.privileges, this, "privileges");
 
 	}
 
@@ -116,6 +124,7 @@ public class PutPrivilegesRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Builder for {@link PutPrivilegesRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutPrivilegesRequest> {
 		@Nullable
 		private Refresh refresh;
@@ -140,11 +149,9 @@ public class PutPrivilegesRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code _value_body}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>privileges</code>. Use
-		 * <code>ModelTypeHelper.resetMap()</code> if you need to reset
-		 * <code>privileges</code> to <code>null</code>.
+		 * Adds all entries of <code>map</code> to <code>privileges</code>.
 		 * 
-		 * @see ModelTypeHelper#resetMap()
+		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder privileges(Map<String, Map<String, Actions>> map) {
 			this.privileges = _mapPutAll(this.privileges, map);

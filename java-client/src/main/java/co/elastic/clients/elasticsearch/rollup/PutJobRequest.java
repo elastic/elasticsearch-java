@@ -33,7 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -46,6 +46,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.put_job.Request
+
+/**
+ * Creates a rollup job.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/rollup/put_job/CreateRollupJobRequest.ts#L26-L43">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutJobRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -73,9 +81,9 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 
 		this.cron = builder.cron;
 		this.groups = builder.groups;
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.indexPattern = builder.indexPattern;
-		this.metrics = ModelTypeHelper.unmodifiable(builder.metrics);
+		this.metrics = ApiTypeHelper.unmodifiable(builder.metrics);
 		this.pageSize = builder.pageSize;
 		this.rollupIndex = builder.rollupIndex;
 
@@ -167,7 +175,7 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 			generator.write(this.indexPattern);
 
 		}
-		if (ModelTypeHelper.isDefined(this.metrics)) {
+		if (ApiTypeHelper.isDefined(this.metrics)) {
 			generator.writeKey("metrics");
 			generator.writeStartArray();
 			for (FieldMetric item0 : this.metrics) {
@@ -195,6 +203,7 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link PutJobRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutJobRequest> {
 		@Nullable
 		private String cron;
@@ -260,11 +269,9 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code metrics}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>metrics</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>metrics</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>metrics</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder metrics(List<FieldMetric> list) {
 			this.metrics = _listAddAll(this.metrics, list);

@@ -31,8 +31,8 @@ public class SuggestOptionBuilders {
 	}
 
 	/**
-	 * Creates a builder for the {@link CompletionSuggestOption<TDocument>
-	 * completion} {@code SuggestOption} variant.
+	 * Creates a builder for the {@link CompletionSuggestOption completion}
+	 * {@code SuggestOption} variant.
 	 */
 	public static <TDocument> CompletionSuggestOption.Builder<TDocument> completion() {
 		return new CompletionSuggestOption.Builder<TDocument>();

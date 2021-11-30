@@ -38,6 +38,14 @@ import java.util.Objects;
 
 // typedef: license.delete.Request
 
+/**
+ * Deletes licensing information for the cluster
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/license/delete/DeleteLicenseRequest.ts#L22-L27">API
+ *      specification</a>
+ */
+
 public class DeleteLicenseRequest extends RequestBase {
 	public DeleteLicenseRequest() {
 	}

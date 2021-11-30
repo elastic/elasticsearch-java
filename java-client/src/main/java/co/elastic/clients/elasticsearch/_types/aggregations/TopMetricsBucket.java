@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
@@ -37,6 +37,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TopMetricsBucket
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L664-L666">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TopMetricsBucket extends MultiBucketBase {
 	private final List<TopMetrics> top;
@@ -46,7 +53,7 @@ public class TopMetricsBucket extends MultiBucketBase {
 	private TopMetricsBucket(Builder builder) {
 		super(builder);
 
-		this.top = ModelTypeHelper.unmodifiableRequired(builder.top, this, "top");
+		this.top = ApiTypeHelper.unmodifiableRequired(builder.top, this, "top");
 
 	}
 
@@ -64,7 +71,7 @@ public class TopMetricsBucket extends MultiBucketBase {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.top)) {
+		if (ApiTypeHelper.isDefined(this.top)) {
 			generator.writeKey("top");
 			generator.writeStartArray();
 			for (TopMetrics item0 : this.top) {
@@ -82,6 +89,7 @@ public class TopMetricsBucket extends MultiBucketBase {
 	/**
 	 * Builder for {@link TopMetricsBucket}.
 	 */
+
 	public static class Builder extends MultiBucketBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<TopMetricsBucket> {
@@ -90,11 +98,9 @@ public class TopMetricsBucket extends MultiBucketBase {
 		/**
 		 * Required - API name: {@code top}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>top</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>top</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>top</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder top(List<TopMetrics> list) {
 			this.top = _listAddAll(this.top, list);

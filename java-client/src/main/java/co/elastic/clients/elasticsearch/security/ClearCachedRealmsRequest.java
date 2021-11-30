@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -46,6 +46,15 @@ import javax.annotation.Nullable;
 
 // typedef: security.clear_cached_realms.Request
 
+/**
+ * Evicts users from the user cache. Can completely clear the cache or evict
+ * specific users.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/clear_cached_realms/SecurityClearCachedRealmsRequest.ts#L23-L35">API
+ *      specification</a>
+ */
+
 public class ClearCachedRealmsRequest extends RequestBase {
 	private final List<String> realms;
 
@@ -55,8 +64,8 @@ public class ClearCachedRealmsRequest extends RequestBase {
 
 	private ClearCachedRealmsRequest(Builder builder) {
 
-		this.realms = ModelTypeHelper.unmodifiableRequired(builder.realms, this, "realms");
-		this.usernames = ModelTypeHelper.unmodifiable(builder.usernames);
+		this.realms = ApiTypeHelper.unmodifiableRequired(builder.realms, this, "realms");
+		this.usernames = ApiTypeHelper.unmodifiable(builder.usernames);
 
 	}
 
@@ -87,6 +96,7 @@ public class ClearCachedRealmsRequest extends RequestBase {
 	/**
 	 * Builder for {@link ClearCachedRealmsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClearCachedRealmsRequest> {
 		private List<String> realms;
 
@@ -98,11 +108,9 @@ public class ClearCachedRealmsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code realms}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>realms</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>realms</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>realms</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder realms(List<String> list) {
 			this.realms = _listAddAll(this.realms, list);
@@ -126,11 +134,9 @@ public class ClearCachedRealmsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code usernames}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>usernames</code>. Use
-		 * <code>ModelTypeHelper.resetList()</code> if you need to reset
-		 * <code>usernames</code> to <code>null</code>.
+		 * Adds all elements of <code>list</code> to <code>usernames</code>.
 		 * 
-		 * @see ModelTypeHelper#resetList()
+		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder usernames(List<String> list) {
 			this.usernames = _listAddAll(this.usernames, list);
@@ -201,7 +207,7 @@ public class ClearCachedRealmsRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (ModelTypeHelper.isDefined(request.usernames)) {
+				if (ApiTypeHelper.isDefined(request.usernames)) {
 					params.put("usernames", request.usernames.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				return params;

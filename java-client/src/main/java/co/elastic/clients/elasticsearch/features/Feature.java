@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: features._types.Feature
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/features/_types/Feature.ts#L20-L23">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Feature implements JsonpSerializable {
 	private final String name;
@@ -49,8 +56,8 @@ public class Feature implements JsonpSerializable {
 
 	private Feature(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
-		this.description = ModelTypeHelper.requireNonNull(builder.description, this, "description");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
 
 	}
 
@@ -96,6 +103,7 @@ public class Feature implements JsonpSerializable {
 	/**
 	 * Builder for {@link Feature}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Feature> {
 		private String name;
 
