@@ -177,7 +177,7 @@ public class JsonpUtils {
                 return value.toString();
 
             default:
-                throw new IllegalArgumentException("Unknown json value type: '" + value + "'");
+                throw new IllegalArgumentException("Unknown JSON value type: '" + value + "'");
         }
     }
 }

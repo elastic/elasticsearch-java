@@ -32,8 +32,8 @@ import co.elastic.clients.transport.endpoints.BooleanResponse;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.TransportOptions;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.MissingRequiredPropertyException;
-import co.elastic.clients.util.ModelTypeHelper;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 import org.apache.http.HttpEntity;
@@ -154,13 +154,13 @@ public class RestClientTransport implements ElasticsearchTransport {
         RequestFuture<ResponseT> future = new RequestFuture<>();
 
         // Propagate required property checks to the thread that will decode the response
-        boolean disableRequiredChecks = ModelTypeHelper.requiredPropertiesCheckDisabled();
+        boolean disableRequiredChecks = ApiTypeHelper.requiredPropertiesCheckDisabled();
 
         future.cancellable = restClient.performRequestAsync(clientReq, new ResponseListener() {
             @Override
             public void onSuccess(Response clientResp) {
-                try (ModelTypeHelper.DisabledChecksHandle h =
-                         ModelTypeHelper.DANGEROUS_disableRequiredPropertiesCheck(disableRequiredChecks)) {
+                try (ApiTypeHelper.DisabledChecksHandle h =
+                         ApiTypeHelper.DANGEROUS_disableRequiredPropertiesCheck(disableRequiredChecks)) {
 
                     ResponseT response = getHighLevelResponse(clientResp, endpoint);
                     future.complete(response);

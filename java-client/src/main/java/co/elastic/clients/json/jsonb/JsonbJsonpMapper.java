@@ -65,7 +65,7 @@ public class JsonbJsonpMapper extends JsonpMapperBase {
             return;
         }
 
-        // Jsonb doesn't offer a way to serialize to a json generator, so we have to roundtrip via a string representation.
+        // JSON-B doesn't offer a way to serialize to a JSON generator, so we have to roundtrip via a string representation.
         CharArrayWriter caw = new CharArrayWriter();
         jsonb.toJson(value, caw);
 
@@ -92,7 +92,7 @@ public class JsonbJsonpMapper extends JsonpMapperBase {
             // TODO: Add a runtime check to use Yasson's JsonB extensions
             // JsonB doesn't provide methods to deserialize from a JsonParser or a JsonValue. We therefore have
             // to roundtrip through a string, which is far from efficient. Yasson addresses this with an additional
-            // `YassonJsonb` that extends the base Jsonb interface with additional mapping functions. We should check
+            // `YassonJsonb` that extends the base JSON-B interface with additional mapping functions. We should check
             // here at runtime if the mapper implements this interface and use it if present.
             CharArrayWriter caw = new CharArrayWriter();
             JsonGenerator generator = jsonProvider.createGenerator(caw);

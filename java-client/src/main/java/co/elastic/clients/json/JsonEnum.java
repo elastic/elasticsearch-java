@@ -30,7 +30,8 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 
 /**
- * Base interface for enumerations.
+ * Base interface for enumerations in API types. Members have a JSON representation and also accept
+ * aliases when parsed from a string value.
  */
 public interface JsonEnum extends JsonpSerializable {
     String jsonValue();
@@ -74,9 +75,9 @@ public interface JsonEnum extends JsonpSerializable {
         }
 
         /**
-         * Get the enum member for a json string value
+         * Get the enum member for a JSON string value
          *
-         * @param value the json value
+         * @param value the JSON value
          * @param parser parsing context
          * @return the enum member
          * @throws JsonParsingException if no matching enum was found
@@ -90,9 +91,9 @@ public interface JsonEnum extends JsonpSerializable {
         }
 
         /**
-         * Get the enum member for a json string value
+         * Get the enum member for a JSON string value
          *
-         * @param value the json value
+         * @param value the JSON value
          * @return the enum member
          * @throws IllegalArgumentException if no matching enum was found
          */

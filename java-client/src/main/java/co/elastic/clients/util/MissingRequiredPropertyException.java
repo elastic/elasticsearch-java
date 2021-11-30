@@ -23,7 +23,7 @@ package co.elastic.clients.util;
  * Thrown by {@link ObjectBuilder#build()} when a required property is missing.
  * <p>
  * If you think this is an error and that the reported property is actually optional, a workaround is
- * available in {@link ModelTypeHelper} to disable checks. Use with caution.
+ * available in {@link ApiTypeHelper} to disable checks. Use with caution.
  */
 public class MissingRequiredPropertyException extends RuntimeException {
     private Class<?> clazz;

@@ -115,7 +115,7 @@ public class UnionDeserializer<Union, Kind, Member> implements JsonpDeserializer
         private final boolean allowAmbiguousPrimitive;
 
         public Builder(BiFunction<Kind, Member, Union> buildFn, boolean allowAmbiguities) {
-            // If we allow ambiguities, multiple handlers for a given json value event will be allowed
+            // If we allow ambiguities, multiple handlers for a given JSON value event will be allowed
             this.allowAmbiguousPrimitive = allowAmbiguities;
             this.buildFn = buildFn;
         }
