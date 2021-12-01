@@ -130,8 +130,6 @@ public class GetJobStatsResponse implements JsonpSerializable {
 		 * Required - API name: {@code jobs}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>jobs</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder jobs(List<JobStats> list) {
 			this.jobs = _listAddAll(this.jobs, list);

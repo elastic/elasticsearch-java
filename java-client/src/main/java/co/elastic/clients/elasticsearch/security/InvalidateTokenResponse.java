@@ -162,8 +162,6 @@ public class InvalidateTokenResponse implements JsonpSerializable {
 		 * API name: {@code error_details}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>errorDetails</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder errorDetails(List<ErrorCause> list) {
 			this.errorDetails = _listAddAll(this.errorDetails, list);

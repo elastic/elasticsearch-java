@@ -451,8 +451,6 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 		 * API name: {@code step_info}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>stepInfo</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder stepInfo(Map<String, JsonData> map) {
 			this.stepInfo = _mapPutAll(this.stepInfo, map);

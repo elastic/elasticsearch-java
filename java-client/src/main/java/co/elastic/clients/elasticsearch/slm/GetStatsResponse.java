@@ -321,8 +321,6 @@ public class GetStatsResponse implements JsonpSerializable {
 		 * Required - API name: {@code policy_stats}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>policyStats</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder policyStats(List<String> list) {
 			this.policyStats = _listAddAll(this.policyStats, list);

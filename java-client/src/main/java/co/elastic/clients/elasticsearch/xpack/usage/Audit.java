@@ -99,8 +99,6 @@ public class Audit extends FeatureToggle {
 		 * API name: {@code outputs}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>outputs</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder outputs(List<String> list) {
 			this.outputs = _listAddAll(this.outputs, list);

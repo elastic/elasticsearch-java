@@ -208,8 +208,6 @@ public class HasPrivilegesResponse implements JsonpSerializable {
 		 * Required - API name: {@code application}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>application</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder application(Map<String, Map<String, Map<String, Boolean>>> map) {
 			this.application = _mapPutAll(this.application, map);
@@ -230,8 +228,6 @@ public class HasPrivilegesResponse implements JsonpSerializable {
 		 * Required - API name: {@code cluster}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>cluster</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder cluster(Map<String, Boolean> map) {
 			this.cluster = _mapPutAll(this.cluster, map);
@@ -260,8 +256,6 @@ public class HasPrivilegesResponse implements JsonpSerializable {
 		 * Required - API name: {@code index}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>index</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder index(Map<String, Map<String, Boolean>> map) {
 			this.index = _mapPutAll(this.index, map);

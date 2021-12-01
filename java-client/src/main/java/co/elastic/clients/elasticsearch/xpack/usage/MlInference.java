@@ -122,8 +122,6 @@ public class MlInference implements JsonpSerializable {
 		 * Required - API name: {@code ingest_processors}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>ingestProcessors</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder ingestProcessors(Map<String, MlInferenceIngestProcessor> map) {
 			this.ingestProcessors = _mapPutAll(this.ingestProcessors, map);

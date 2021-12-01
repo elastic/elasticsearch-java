@@ -138,8 +138,6 @@ public class TermVector implements JsonpSerializable {
 		 * Required - API name: {@code terms}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>terms</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder terms(Map<String, Term> map) {
 			this.terms = _mapPutAll(this.terms, map);

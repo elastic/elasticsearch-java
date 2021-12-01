@@ -262,8 +262,6 @@ public class CharFilterTypes implements JsonpSerializable {
 		 * Required - API name: {@code char_filter_types}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>charFilterTypes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder charFilterTypes(List<FieldTypes> list) {
 			this.charFilterTypes = _listAddAll(this.charFilterTypes, list);
@@ -293,8 +291,6 @@ public class CharFilterTypes implements JsonpSerializable {
 		 * Required - API name: {@code tokenizer_types}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>tokenizerTypes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder tokenizerTypes(List<FieldTypes> list) {
 			this.tokenizerTypes = _listAddAll(this.tokenizerTypes, list);
@@ -324,8 +320,6 @@ public class CharFilterTypes implements JsonpSerializable {
 		 * Required - API name: {@code filter_types}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>filterTypes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder filterTypes(List<FieldTypes> list) {
 			this.filterTypes = _listAddAll(this.filterTypes, list);
@@ -355,8 +349,6 @@ public class CharFilterTypes implements JsonpSerializable {
 		 * Required - API name: {@code analyzer_types}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>analyzerTypes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder analyzerTypes(List<FieldTypes> list) {
 			this.analyzerTypes = _listAddAll(this.analyzerTypes, list);
@@ -386,8 +378,6 @@ public class CharFilterTypes implements JsonpSerializable {
 		 * Required - API name: {@code built_in_char_filters}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>builtInCharFilters</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder builtInCharFilters(List<FieldTypes> list) {
 			this.builtInCharFilters = _listAddAll(this.builtInCharFilters, list);
@@ -417,8 +407,6 @@ public class CharFilterTypes implements JsonpSerializable {
 		 * Required - API name: {@code built_in_tokenizers}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>builtInTokenizers</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder builtInTokenizers(List<FieldTypes> list) {
 			this.builtInTokenizers = _listAddAll(this.builtInTokenizers, list);
@@ -448,8 +436,6 @@ public class CharFilterTypes implements JsonpSerializable {
 		 * Required - API name: {@code built_in_filters}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>builtInFilters</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder builtInFilters(List<FieldTypes> list) {
 			this.builtInFilters = _listAddAll(this.builtInFilters, list);
@@ -479,8 +465,6 @@ public class CharFilterTypes implements JsonpSerializable {
 		 * Required - API name: {@code built_in_analyzers}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>builtInAnalyzers</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder builtInAnalyzers(List<FieldTypes> list) {
 			this.builtInAnalyzers = _listAddAll(this.builtInAnalyzers, list);

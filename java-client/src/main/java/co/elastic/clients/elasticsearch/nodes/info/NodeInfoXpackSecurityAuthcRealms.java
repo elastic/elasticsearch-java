@@ -158,8 +158,6 @@ public class NodeInfoXpackSecurityAuthcRealms implements JsonpSerializable {
 		 * API name: {@code file}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>file</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder file(Map<String, NodeInfoXpackSecurityAuthcRealmsStatus> map) {
 			this.file = _mapPutAll(this.file, map);
@@ -190,8 +188,6 @@ public class NodeInfoXpackSecurityAuthcRealms implements JsonpSerializable {
 		 * API name: {@code native}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>native_</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder native_(Map<String, NodeInfoXpackSecurityAuthcRealmsStatus> map) {
 			this.native_ = _mapPutAll(this.native_, map);
@@ -222,8 +218,6 @@ public class NodeInfoXpackSecurityAuthcRealms implements JsonpSerializable {
 		 * API name: {@code pki}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>pki</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder pki(Map<String, NodeInfoXpackSecurityAuthcRealmsStatus> map) {
 			this.pki = _mapPutAll(this.pki, map);

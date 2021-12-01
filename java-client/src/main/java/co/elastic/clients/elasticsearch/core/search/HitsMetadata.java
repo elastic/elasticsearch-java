@@ -166,8 +166,6 @@ public class HitsMetadata<T> implements JsonpSerializable {
 		 * Required - API name: {@code hits}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>hits</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder<T> hits(List<Hit<T>> list) {
 			this.hits = _listAddAll(this.hits, list);

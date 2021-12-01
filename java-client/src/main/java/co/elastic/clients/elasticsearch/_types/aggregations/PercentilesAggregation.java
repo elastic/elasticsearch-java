@@ -178,8 +178,6 @@ public class PercentilesAggregation extends FormatMetricAggregationBase implemen
 		 * API name: {@code percents}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>percents</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder percents(List<Double> list) {
 			this.percents = _listAddAll(this.percents, list);

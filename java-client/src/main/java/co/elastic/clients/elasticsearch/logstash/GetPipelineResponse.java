@@ -101,8 +101,6 @@ public class GetPipelineResponse implements JsonpSerializable {
 		 * API name: {@code _value_body}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>valueBody</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder valueBody(Map<String, Pipeline> map) {
 			this.valueBody = _mapPutAll(this.valueBody, map);

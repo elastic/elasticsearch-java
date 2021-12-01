@@ -129,8 +129,6 @@ public class HourAndMinute implements JsonpSerializable {
 		 * Required - API name: {@code hour}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>hour</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder hour(List<Integer> list) {
 			this.hour = _listAddAll(this.hour, list);
@@ -151,8 +149,6 @@ public class HourAndMinute implements JsonpSerializable {
 		 * Required - API name: {@code minute}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>minute</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder minute(List<Integer> list) {
 			this.minute = _listAddAll(this.minute, list);

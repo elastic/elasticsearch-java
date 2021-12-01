@@ -129,8 +129,6 @@ public class ShardStoreIndex implements JsonpSerializable {
 		 * API name: {@code aliases}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>aliases</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder aliases(List<String> list) {
 			this.aliases = _listAddAll(this.aliases, list);

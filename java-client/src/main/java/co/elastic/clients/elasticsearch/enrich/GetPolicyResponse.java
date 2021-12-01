@@ -106,8 +106,6 @@ public class GetPolicyResponse implements JsonpSerializable {
 		 * Required - API name: {@code policies}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>policies</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder policies(List<EnrichSummary> list) {
 			this.policies = _listAddAll(this.policies, list);

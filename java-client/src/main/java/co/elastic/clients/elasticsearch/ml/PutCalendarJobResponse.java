@@ -170,8 +170,6 @@ public class PutCalendarJobResponse implements JsonpSerializable {
 		 * API name: {@code job_ids}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>jobIds</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder jobIds(List<String> list) {
 			this.jobIds = _listAddAll(this.jobIds, list);

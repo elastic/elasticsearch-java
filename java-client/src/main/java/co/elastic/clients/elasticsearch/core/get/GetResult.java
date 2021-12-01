@@ -41,6 +41,7 @@ import java.lang.Long;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
@@ -99,6 +100,11 @@ public class GetResult<TDocument> implements JsonpSerializable {
 		this.version = builder.version;
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
+	}
+
+	public static <TDocument> GetResult<TDocument> getResultOf(
+			Function<Builder<TDocument>, ObjectBuilder<GetResult<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
@@ -316,8 +322,6 @@ public class GetResult<TDocument> implements JsonpSerializable {
 		 * API name: {@code fields}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>fields</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final BuilderT fields(Map<String, JsonData> map) {
 			this.fields = _mapPutAll(this.fields, map);

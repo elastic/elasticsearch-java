@@ -176,8 +176,6 @@ public class WatchRecordStats extends WatchRecordQueuedStats {
 		 * API name: {@code executed_actions}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>executedActions</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder executedActions(List<String> list) {
 			this.executedActions = _listAddAll(this.executedActions, list);

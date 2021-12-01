@@ -197,8 +197,6 @@ public class ShardStatistics implements JsonpSerializable {
 		 * API name: {@code failures}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>failures</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder failures(List<ShardFailure> list) {
 			this.failures = _listAddAll(this.failures, list);

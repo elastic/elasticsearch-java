@@ -107,8 +107,6 @@ public class GetApiKeyResponse implements JsonpSerializable {
 		 * Required - API name: {@code api_keys}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>apiKeys</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder apiKeys(List<ApiKey> list) {
 			this.apiKeys = _listAddAll(this.apiKeys, list);

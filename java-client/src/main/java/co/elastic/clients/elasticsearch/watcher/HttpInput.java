@@ -190,8 +190,6 @@ public class HttpInput implements InputVariant, JsonpSerializable {
 		 * API name: {@code extract}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>extract</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder extract(List<String> list) {
 			this.extract = _listAddAll(this.extract, list);

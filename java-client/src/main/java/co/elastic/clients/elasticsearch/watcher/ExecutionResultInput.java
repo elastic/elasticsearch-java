@@ -137,8 +137,6 @@ public class ExecutionResultInput implements JsonpSerializable {
 		 * Required - API name: {@code payload}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>payload</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder payload(Map<String, JsonData> map) {
 			this.payload = _mapPutAll(this.payload, map);

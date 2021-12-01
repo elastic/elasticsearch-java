@@ -701,8 +701,6 @@ public class ShardStats implements JsonpSerializable {
 		 * Required - API name: {@code read_exceptions}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>readExceptions</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder readExceptions(List<ReadException> list) {
 			this.readExceptions = _listAddAll(this.readExceptions, list);

@@ -126,8 +126,6 @@ public class DisMaxQuery extends QueryBase implements QueryVariant {
 		 * Required - API name: {@code queries}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>queries</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder queries(List<Query> list) {
 			this.queries = _listAddAll(this.queries, list);

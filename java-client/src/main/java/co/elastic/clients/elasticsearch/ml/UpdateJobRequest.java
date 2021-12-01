@@ -521,8 +521,6 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code categorization_filters}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>categorizationFilters</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder categorizationFilters(List<String> list) {
 			this.categorizationFilters = _listAddAll(this.categorizationFilters, list);
@@ -547,8 +545,6 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code custom_settings}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>customSettings</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder customSettings(Map<String, JsonData> map) {
 			this.customSettings = _mapPutAll(this.customSettings, map);
@@ -601,8 +597,6 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code detectors}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>detectors</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder detectors(List<Detector> list) {
 			this.detectors = _listAddAll(this.detectors, list);
@@ -638,8 +632,6 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code groups}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>groups</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder groups(List<String> list) {
 			this.groups = _listAddAll(this.groups, list);

@@ -146,8 +146,6 @@ public class StoredScript implements JsonpSerializable {
 		 * API name: {@code options}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>options</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder options(Map<String, String> map) {
 			this.options = _mapPutAll(this.options, map);

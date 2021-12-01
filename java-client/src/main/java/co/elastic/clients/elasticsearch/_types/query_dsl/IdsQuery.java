@@ -107,8 +107,6 @@ public class IdsQuery extends QueryBase implements QueryVariant {
 		 * API name: {@code values}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>values</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder values(List<String> list) {
 			this.values = _listAddAll(this.values, list);

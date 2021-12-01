@@ -261,8 +261,6 @@ public class SlmConfiguration implements JsonpSerializable {
 		 * API name: {@code indices}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>indices</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder indices(List<String> list) {
 			this.indices = _listAddAll(this.indices, list);
@@ -307,8 +305,6 @@ public class SlmConfiguration implements JsonpSerializable {
 		 * API name: {@code feature_states}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>featureStates</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder featureStates(List<String> list) {
 			this.featureStates = _listAddAll(this.featureStates, list);
@@ -342,8 +338,6 @@ public class SlmConfiguration implements JsonpSerializable {
 		 * API name: {@code metadata}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>metadata</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder metadata(Map<String, JsonData> map) {
 			this.metadata = _mapPutAll(this.metadata, map);

@@ -125,8 +125,6 @@ public class PreviewDataFrameAnalyticsResponse implements JsonpSerializable {
 		 * API name: {@code feature_values}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>featureValues</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder featureValues(List<Map<String, String>> list) {
 			this.featureValues = _listAddAll(this.featureValues, list);

@@ -138,8 +138,6 @@ public class GeoIpNodeDatabases implements JsonpSerializable {
 		 * API name: {@code databases}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>databases</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder databases(List<GeoIpNodeDatabaseName> list) {
 			this.databases = _listAddAll(this.databases, list);
@@ -178,8 +176,6 @@ public class GeoIpNodeDatabases implements JsonpSerializable {
 		 * API name: {@code files_in_temp}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>filesInTemp</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder filesInTemp(List<String> list) {
 			this.filesInTemp = _listAddAll(this.filesInTemp, list);

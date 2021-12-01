@@ -177,8 +177,6 @@ public class ApiKey implements JsonpSerializable {
 		 * API name: {@code role_descriptors}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>roleDescriptors</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder roleDescriptors(List<Map<String, JsonData>> list) {
 			this.roleDescriptors = _listAddAll(this.roleDescriptors, list);

@@ -107,8 +107,6 @@ public class HotThreadsResponse implements JsonpSerializable {
 		 * Required - API name: {@code hot_threads}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>hotThreads</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder hotThreads(List<HotThread> list) {
 			this.hotThreads = _listAddAll(this.hotThreads, list);

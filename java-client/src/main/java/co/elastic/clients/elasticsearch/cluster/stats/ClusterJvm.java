@@ -183,8 +183,6 @@ public class ClusterJvm implements JsonpSerializable {
 		 * Required - API name: {@code versions}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>versions</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder versions(List<ClusterJvmVersion> list) {
 			this.versions = _listAddAll(this.versions, list);

@@ -143,8 +143,6 @@ public class SearchProfile implements JsonpSerializable {
 		 * Required - API name: {@code collector}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>collector</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder collector(List<Collector> list) {
 			this.collector = _listAddAll(this.collector, list);
@@ -174,8 +172,6 @@ public class SearchProfile implements JsonpSerializable {
 		 * Required - API name: {@code query}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>query</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder query(List<QueryProfile> list) {
 			this.query = _listAddAll(this.query, list);

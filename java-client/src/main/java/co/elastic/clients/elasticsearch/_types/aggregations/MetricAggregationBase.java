@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
+import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -52,7 +53,7 @@ public abstract class MetricAggregationBase implements JsonpSerializable {
 	private final String field;
 
 	@Nullable
-	private final String missing;
+	private final FieldValue missing;
 
 	@Nullable
 	private final Script script;
@@ -79,7 +80,7 @@ public abstract class MetricAggregationBase implements JsonpSerializable {
 	 * API name: {@code missing}
 	 */
 	@Nullable
-	public final String missing() {
+	public final FieldValue missing() {
 		return this.missing;
 	}
 
@@ -109,7 +110,7 @@ public abstract class MetricAggregationBase implements JsonpSerializable {
 		}
 		if (this.missing != null) {
 			generator.writeKey("missing");
-			generator.write(this.missing);
+			this.missing.serialize(generator, mapper);
 
 		}
 		if (this.script != null) {
@@ -127,7 +128,7 @@ public abstract class MetricAggregationBase implements JsonpSerializable {
 		private String field;
 
 		@Nullable
-		private String missing;
+		private FieldValue missing;
 
 		@Nullable
 		private Script script;
@@ -143,9 +144,16 @@ public abstract class MetricAggregationBase implements JsonpSerializable {
 		/**
 		 * API name: {@code missing}
 		 */
-		public final BuilderT missing(@Nullable String value) {
+		public final BuilderT missing(@Nullable FieldValue value) {
 			this.missing = value;
 			return self();
+		}
+
+		/**
+		 * API name: {@code missing}
+		 */
+		public final BuilderT missing(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
+			return this.missing(fn.apply(new FieldValue.Builder()).build());
 		}
 
 		/**
@@ -172,7 +180,7 @@ public abstract class MetricAggregationBase implements JsonpSerializable {
 			ObjectDeserializer<BuilderT> op) {
 
 		op.add(AbstractBuilder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(AbstractBuilder::missing, JsonpDeserializer.stringDeserializer(), "missing");
+		op.add(AbstractBuilder::missing, FieldValue._DESERIALIZER, "missing");
 		op.add(AbstractBuilder::script, Script._DESERIALIZER, "script");
 
 	}

@@ -189,8 +189,6 @@ public class DateProcessor extends ProcessorBase implements ProcessorVariant {
 		 * Required - API name: {@code formats}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>formats</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder formats(List<String> list) {
 			this.formats = _listAddAll(this.formats, list);

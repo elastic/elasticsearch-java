@@ -129,8 +129,6 @@ public class FieldTypesMappings implements JsonpSerializable {
 		 * Required - API name: {@code field_types}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>fieldTypes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder fieldTypes(List<FieldTypes> list) {
 			this.fieldTypes = _listAddAll(this.fieldTypes, list);
@@ -160,8 +158,6 @@ public class FieldTypesMappings implements JsonpSerializable {
 		 * API name: {@code runtime_field_types}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>runtimeFieldTypes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder runtimeFieldTypes(List<RuntimeFieldTypes> list) {
 			this.runtimeFieldTypes = _listAddAll(this.runtimeFieldTypes, list);

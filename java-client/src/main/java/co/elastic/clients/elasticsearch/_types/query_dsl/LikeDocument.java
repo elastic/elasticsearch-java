@@ -283,8 +283,6 @@ public class LikeDocument implements JsonpSerializable {
 		 * API name: {@code fields}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>fields</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder fields(List<String> list) {
 			this.fields = _listAddAll(this.fields, list);
@@ -329,8 +327,6 @@ public class LikeDocument implements JsonpSerializable {
 		 * API name: {@code per_field_analyzer}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>perFieldAnalyzer</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder perFieldAnalyzer(Map<String, String> map) {
 			this.perFieldAnalyzer = _mapPutAll(this.perFieldAnalyzer, map);

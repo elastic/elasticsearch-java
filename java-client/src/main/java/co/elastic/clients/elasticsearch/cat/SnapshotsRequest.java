@@ -121,8 +121,6 @@ public class SnapshotsRequest extends CatRequestBase {
 		 * API name: {@code repository}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>repository</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder repository(List<String> list) {
 			this.repository = _listAddAll(this.repository, list);

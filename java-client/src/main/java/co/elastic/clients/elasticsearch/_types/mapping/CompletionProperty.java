@@ -220,8 +220,6 @@ public class CompletionProperty extends DocValuesPropertyBase implements Propert
 		 * API name: {@code contexts}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>contexts</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder contexts(List<SuggestContext> list) {
 			this.contexts = _listAddAll(this.contexts, list);

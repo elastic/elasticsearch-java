@@ -145,8 +145,6 @@ public class Explanation implements JsonpSerializable {
 		 * Required - API name: {@code details}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>details</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder details(List<ExplanationDetail> list) {
 			this.details = _listAddAll(this.details, list);

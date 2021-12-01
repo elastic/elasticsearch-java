@@ -219,8 +219,6 @@ public class GetJobsRequest extends RequestBase {
 		 * API name: {@code job_id}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>jobId</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder jobId(List<String> list) {
 			this.jobId = _listAddAll(this.jobId, list);

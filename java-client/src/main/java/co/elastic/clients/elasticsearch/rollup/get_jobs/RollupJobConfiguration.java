@@ -254,8 +254,6 @@ public class RollupJobConfiguration implements JsonpSerializable {
 		 * Required - API name: {@code metrics}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>metrics</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder metrics(List<FieldMetric> list) {
 			this.metrics = _listAddAll(this.metrics, list);

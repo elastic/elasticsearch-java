@@ -153,8 +153,6 @@ public class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 		 * Required - API name: {@code value}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>value</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder value(List<JsonData> list) {
 			this.value = _listAddAll(this.value, list);

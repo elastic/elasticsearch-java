@@ -213,8 +213,6 @@ public class Jvm implements JsonpSerializable {
 		 * Required - API name: {@code buffer_pools}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>bufferPools</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder bufferPools(Map<String, NodeBufferPool> map) {
 			this.bufferPools = _mapPutAll(this.bufferPools, map);

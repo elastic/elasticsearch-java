@@ -130,8 +130,6 @@ public class GetCalendarEventsResponse implements JsonpSerializable {
 		 * Required - API name: {@code events}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>events</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder events(List<CalendarEvent> list) {
 			this.events = _listAddAll(this.events, list);

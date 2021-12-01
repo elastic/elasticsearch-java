@@ -132,8 +132,6 @@ public class ClusterNetworkTypes implements JsonpSerializable {
 		 * Required - API name: {@code http_types}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>httpTypes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder httpTypes(Map<String, Integer> map) {
 			this.httpTypes = _mapPutAll(this.httpTypes, map);
@@ -154,8 +152,6 @@ public class ClusterNetworkTypes implements JsonpSerializable {
 		 * Required - API name: {@code transport_types}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>transportTypes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder transportTypes(Map<String, Integer> map) {
 			this.transportTypes = _mapPutAll(this.transportTypes, map);

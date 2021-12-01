@@ -107,8 +107,6 @@ public class FollowInfoResponse implements JsonpSerializable {
 		 * Required - API name: {@code follower_indices}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>followerIndices</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder followerIndices(List<FollowerIndex> list) {
 			this.followerIndices = _listAddAll(this.followerIndices, list);

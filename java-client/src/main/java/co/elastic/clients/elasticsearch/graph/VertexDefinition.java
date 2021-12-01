@@ -208,8 +208,6 @@ public class VertexDefinition implements JsonpSerializable {
 		 * API name: {@code exclude}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>exclude</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder exclude(List<String> list) {
 			this.exclude = _listAddAll(this.exclude, list);
@@ -238,8 +236,6 @@ public class VertexDefinition implements JsonpSerializable {
 		 * API name: {@code include}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>include</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder include(List<VertexInclude> list) {
 			this.include = _listAddAll(this.include, list);

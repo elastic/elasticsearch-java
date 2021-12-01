@@ -161,8 +161,6 @@ public class RollupCapabilitySummary implements JsonpSerializable {
 		 * Required - API name: {@code fields}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>fields</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder fields(Map<String, Map<String, JsonData>> map) {
 			this.fields = _mapPutAll(this.fields, map);

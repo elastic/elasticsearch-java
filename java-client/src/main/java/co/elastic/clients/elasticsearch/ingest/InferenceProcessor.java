@@ -177,8 +177,6 @@ public class InferenceProcessor extends ProcessorBase implements ProcessorVarian
 		 * API name: {@code field_map}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>fieldMap</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder fieldMap(Map<String, JsonData> map) {
 			this.fieldMap = _mapPutAll(this.fieldMap, map);

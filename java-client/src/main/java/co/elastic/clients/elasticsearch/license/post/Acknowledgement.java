@@ -121,8 +121,6 @@ public class Acknowledgement implements JsonpSerializable {
 		 * Required - API name: {@code license}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>license</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder license(List<String> list) {
 			this.license = _listAddAll(this.license, list);

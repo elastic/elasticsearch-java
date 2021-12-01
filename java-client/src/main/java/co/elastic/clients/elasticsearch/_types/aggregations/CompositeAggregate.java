@@ -111,8 +111,6 @@ public class CompositeAggregate extends MultiBucketAggregateBase<CompositeBucket
 		 * API name: {@code after_key}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>afterKey</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder afterKey(Map<String, JsonData> map) {
 			this.afterKey = _mapPutAll(this.afterKey, map);

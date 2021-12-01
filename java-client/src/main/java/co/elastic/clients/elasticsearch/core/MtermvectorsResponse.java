@@ -107,8 +107,6 @@ public class MtermvectorsResponse implements JsonpSerializable {
 		 * Required - API name: {@code docs}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>docs</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder docs(List<MultiTermVectorsResult> list) {
 			this.docs = _listAddAll(this.docs, list);

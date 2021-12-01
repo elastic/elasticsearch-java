@@ -171,8 +171,6 @@ public class DetectionRule implements JsonpSerializable {
 		 * API name: {@code actions}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>actions</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder actions(List<RuleAction> list) {
 			this.actions = _listAddAll(this.actions, list);
@@ -200,8 +198,6 @@ public class DetectionRule implements JsonpSerializable {
 		 * API name: {@code conditions}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>conditions</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder conditions(List<RuleCondition> list) {
 			this.conditions = _listAddAll(this.conditions, list);
@@ -245,8 +241,6 @@ public class DetectionRule implements JsonpSerializable {
 		 * API name: {@code scope}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>scope</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder scope(Map<String, FilterRef> map) {
 			this.scope = _mapPutAll(this.scope, map);

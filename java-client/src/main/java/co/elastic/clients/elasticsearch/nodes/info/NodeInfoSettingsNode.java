@@ -152,8 +152,6 @@ public class NodeInfoSettingsNode implements JsonpSerializable {
 		 * Required - API name: {@code attr}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>attr</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder attr(Map<String, JsonData> map) {
 			this.attr = _mapPutAll(this.attr, map);

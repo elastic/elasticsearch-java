@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
+import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -85,7 +86,7 @@ public class MatchQuery extends QueryBase implements QueryVariant {
 	@Nullable
 	private final Integer prefixLength;
 
-	private final String query;
+	private final FieldValue query;
 
 	@Nullable
 	private final ZeroTermsQuery zeroTermsQuery;
@@ -225,7 +226,7 @@ public class MatchQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Required - API name: {@code query}
 	 */
-	public final String query() {
+	public final FieldValue query() {
 		return this.query;
 	}
 
@@ -296,7 +297,7 @@ public class MatchQuery extends QueryBase implements QueryVariant {
 
 		}
 		generator.writeKey("query");
-		generator.write(this.query);
+		this.query.serialize(generator, mapper);
 
 		if (this.zeroTermsQuery != null) {
 			generator.writeKey("zero_terms_query");
@@ -357,7 +358,7 @@ public class MatchQuery extends QueryBase implements QueryVariant {
 		@Nullable
 		private Integer prefixLength;
 
-		private String query;
+		private FieldValue query;
 
 		@Nullable
 		private ZeroTermsQuery zeroTermsQuery;
@@ -456,9 +457,16 @@ public class MatchQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - API name: {@code query}
 		 */
-		public final Builder query(String value) {
+		public final Builder query(FieldValue value) {
 			this.query = value;
 			return this;
+		}
+
+		/**
+		 * Required - API name: {@code query}
+		 */
+		public final Builder query(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
+			return this.query(fn.apply(new FieldValue.Builder()).build());
 		}
 
 		/**
@@ -509,7 +517,7 @@ public class MatchQuery extends QueryBase implements QueryVariant {
 		op.add(Builder::minimumShouldMatch, JsonpDeserializer.stringDeserializer(), "minimum_should_match");
 		op.add(Builder::operator, Operator._DESERIALIZER, "operator");
 		op.add(Builder::prefixLength, JsonpDeserializer.integerDeserializer(), "prefix_length");
-		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
+		op.add(Builder::query, FieldValue._DESERIALIZER, "query");
 		op.add(Builder::zeroTermsQuery, ZeroTermsQuery._DESERIALIZER, "zero_terms_query");
 
 		op.setKey(Builder::field, JsonpDeserializer.stringDeserializer());

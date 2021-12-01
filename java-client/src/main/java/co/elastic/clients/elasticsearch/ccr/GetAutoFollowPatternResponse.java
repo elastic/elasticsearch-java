@@ -107,8 +107,6 @@ public class GetAutoFollowPatternResponse implements JsonpSerializable {
 		 * Required - API name: {@code patterns}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>patterns</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder patterns(List<AutoFollowPattern> list) {
 			this.patterns = _listAddAll(this.patterns, list);

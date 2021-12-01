@@ -265,8 +265,6 @@ public class DataframeAnalysisFeatureProcessorNGramEncoding
 		 * API name: {@code n_grams}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>nGrams</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder nGrams(List<Integer> list) {
 			this.nGrams = _listAddAll(this.nGrams, list);

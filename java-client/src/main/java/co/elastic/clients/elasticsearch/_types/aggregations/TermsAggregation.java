@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
+import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.elasticsearch._types.SortOrder;
 import co.elastic.clients.elasticsearch.transform.PivotGroupBy;
@@ -73,7 +74,7 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 	private final Integer minDocCount;
 
 	@Nullable
-	private final String missing;
+	private final FieldValue missing;
 
 	@Nullable
 	private final MissingOrder missingOrder;
@@ -193,7 +194,7 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 	 * API name: {@code missing}
 	 */
 	@Nullable
-	public final String missing() {
+	public final FieldValue missing() {
 		return this.missing;
 	}
 
@@ -293,7 +294,7 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		}
 		if (this.missing != null) {
 			generator.writeKey("missing");
-			generator.write(this.missing);
+			this.missing.serialize(generator, mapper);
 
 		}
 		if (this.missingOrder != null) {
@@ -378,7 +379,7 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		private Integer minDocCount;
 
 		@Nullable
-		private String missing;
+		private FieldValue missing;
 
 		@Nullable
 		private MissingOrder missingOrder;
@@ -469,9 +470,16 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		/**
 		 * API name: {@code missing}
 		 */
-		public final Builder missing(@Nullable String value) {
+		public final Builder missing(@Nullable FieldValue value) {
 			this.missing = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code missing}
+		 */
+		public final Builder missing(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
+			return this.missing(fn.apply(new FieldValue.Builder()).build());
 		}
 
 		/**
@@ -502,8 +510,6 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		 * API name: {@code order}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>order</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder order(List<Map<String, SortOrder>> list) {
 			this.order = _listAddAll(this.order, list);
@@ -593,7 +599,7 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::include, TermsInclude._DESERIALIZER, "include");
 		op.add(Builder::minDocCount, JsonpDeserializer.integerDeserializer(), "min_doc_count");
-		op.add(Builder::missing, JsonpDeserializer.stringDeserializer(), "missing");
+		op.add(Builder::missing, FieldValue._DESERIALIZER, "missing");
 		op.add(Builder::missingOrder, MissingOrder._DESERIALIZER, "missing_order");
 		op.add(Builder::missingBucket, JsonpDeserializer.booleanDeserializer(), "missing_bucket");
 		op.add(Builder::valueType, JsonpDeserializer.stringDeserializer(), "value_type");

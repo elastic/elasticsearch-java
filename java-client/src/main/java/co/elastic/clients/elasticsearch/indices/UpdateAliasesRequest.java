@@ -150,8 +150,6 @@ public class UpdateAliasesRequest extends RequestBase implements JsonpSerializab
 		 * API name: {@code actions}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>actions</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder actions(List<Action> list) {
 			this.actions = _listAddAll(this.actions, list);

@@ -179,8 +179,6 @@ public class KeywordMarkerTokenFilter extends TokenFilterBase implements TokenFi
 		 * API name: {@code keywords}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>keywords</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder keywords(List<String> list) {
 			this.keywords = _listAddAll(this.keywords, list);

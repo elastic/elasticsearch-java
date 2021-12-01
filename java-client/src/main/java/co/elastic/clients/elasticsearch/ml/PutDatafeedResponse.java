@@ -345,8 +345,6 @@ public class PutDatafeedResponse implements JsonpSerializable {
 		 * Required - API name: {@code aggregations}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>aggregations</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder aggregations(Map<String, Aggregation> map) {
 			this.aggregations = _mapPutAll(this.aggregations, map);
@@ -430,8 +428,6 @@ public class PutDatafeedResponse implements JsonpSerializable {
 		 * Required - API name: {@code indices}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>indices</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder indices(List<String> list) {
 			this.indices = _listAddAll(this.indices, list);
@@ -513,8 +509,6 @@ public class PutDatafeedResponse implements JsonpSerializable {
 		 * API name: {@code runtime_mappings}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>runtimeMappings</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder runtimeMappings(Map<String, RuntimeField> map) {
 			this.runtimeMappings = _mapPutAll(this.runtimeMappings, map);
@@ -545,8 +539,6 @@ public class PutDatafeedResponse implements JsonpSerializable {
 		 * API name: {@code script_fields}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>scriptFields</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder scriptFields(Map<String, ScriptField> map) {
 			this.scriptFields = _mapPutAll(this.scriptFields, map);

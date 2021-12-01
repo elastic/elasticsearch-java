@@ -130,8 +130,6 @@ public class ExplainDataFrameAnalyticsResponse implements JsonpSerializable {
 		 * API name: {@code field_selection}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>fieldSelection</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder fieldSelection(List<DataframeAnalyticsFieldSelection> list) {
 			this.fieldSelection = _listAddAll(this.fieldSelection, list);

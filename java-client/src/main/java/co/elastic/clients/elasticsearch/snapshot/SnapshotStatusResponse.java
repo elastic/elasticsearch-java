@@ -106,8 +106,6 @@ public class SnapshotStatusResponse implements JsonpSerializable {
 		 * Required - API name: {@code snapshots}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>snapshots</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder snapshots(List<Status> list) {
 			this.snapshots = _listAddAll(this.snapshots, list);

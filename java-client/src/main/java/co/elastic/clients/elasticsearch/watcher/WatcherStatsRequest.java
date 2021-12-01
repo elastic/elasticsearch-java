@@ -122,8 +122,6 @@ public class WatcherStatsRequest extends RequestBase {
 		 * API name: {@code metric}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>metric</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder metric(List<WatcherMetric> list) {
 			this.metric = _listAddAll(this.metric, list);

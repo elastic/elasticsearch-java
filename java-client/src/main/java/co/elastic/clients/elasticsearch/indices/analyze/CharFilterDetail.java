@@ -121,8 +121,6 @@ public class CharFilterDetail implements JsonpSerializable {
 		 * Required - API name: {@code filtered_text}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>filteredText</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder filteredText(List<String> list) {
 			this.filteredText = _listAddAll(this.filteredText, list);

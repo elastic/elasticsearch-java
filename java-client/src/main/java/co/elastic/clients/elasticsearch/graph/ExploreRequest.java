@@ -277,8 +277,6 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code index}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>index</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder index(List<String> list) {
 			this.index = _listAddAll(this.index, list);
@@ -349,8 +347,6 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code type}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>type</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder type(List<String> list) {
 			this.type = _listAddAll(this.type, list);
@@ -374,8 +370,6 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code vertices}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>vertices</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder vertices(List<VertexDefinition> list) {
 			this.vertices = _listAddAll(this.vertices, list);

@@ -130,8 +130,6 @@ public class GetDatafeedStatsResponse implements JsonpSerializable {
 		 * Required - API name: {@code datafeeds}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>datafeeds</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder datafeeds(List<DatafeedStats> list) {
 			this.datafeeds = _listAddAll(this.datafeeds, list);

@@ -199,8 +199,6 @@ public class PhoneticTokenFilter extends TokenFilterBase implements TokenFilterD
 		 * Required - API name: {@code languageset}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>languageset</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder languageset(List<PhoneticLanguage> list) {
 			this.languageset = _listAddAll(this.languageset, list);

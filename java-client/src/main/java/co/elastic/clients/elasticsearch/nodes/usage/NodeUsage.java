@@ -163,8 +163,6 @@ public class NodeUsage implements JsonpSerializable {
 		 * Required - API name: {@code rest_actions}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>restActions</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder restActions(Map<String, Integer> map) {
 			this.restActions = _mapPutAll(this.restActions, map);
@@ -201,8 +199,6 @@ public class NodeUsage implements JsonpSerializable {
 		 * Required - API name: {@code aggregations}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>aggregations</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder aggregations(Map<String, JsonData> map) {
 			this.aggregations = _mapPutAll(this.aggregations, map);

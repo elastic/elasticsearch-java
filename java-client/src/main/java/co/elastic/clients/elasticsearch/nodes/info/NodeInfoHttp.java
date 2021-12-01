@@ -158,8 +158,6 @@ public class NodeInfoHttp implements JsonpSerializable {
 		 * Required - API name: {@code bound_address}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>boundAddress</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder boundAddress(List<String> list) {
 			this.boundAddress = _listAddAll(this.boundAddress, list);

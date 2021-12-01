@@ -477,8 +477,6 @@ public class ClusterIndices implements JsonpSerializable {
 		 * API name: {@code versions}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>versions</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder versions(List<IndicesVersions> list) {
 			this.versions = _listAddAll(this.versions, list);

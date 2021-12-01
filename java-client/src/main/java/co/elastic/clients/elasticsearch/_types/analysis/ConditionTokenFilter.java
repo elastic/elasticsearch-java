@@ -124,8 +124,6 @@ public class ConditionTokenFilter extends TokenFilterBase implements TokenFilter
 		 * Required - API name: {@code filter}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>filter</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder filter(List<String> list) {
 			this.filter = _listAddAll(this.filter, list);

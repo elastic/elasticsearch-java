@@ -261,8 +261,6 @@ public class DocumentSimulation implements JsonpSerializable {
 		 * Required - API name: {@code _source}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>source</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder source(Map<String, JsonData> map) {
 			this.source = _mapPutAll(this.source, map);

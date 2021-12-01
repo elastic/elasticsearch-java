@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch._types.aggregations;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
@@ -66,6 +67,8 @@ public abstract class SingleMetricAggregateBase extends AggregateBase {
 	 * no data to aggregate, unless specified otherwise.
 	 * <p>
 	 * API name: {@code value}
+	 * <p>
+	 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
 	 */
 	public final double value() {
 		return this.value;
@@ -83,8 +86,7 @@ public abstract class SingleMetricAggregateBase extends AggregateBase {
 
 		super.serializeInternal(generator, mapper);
 		generator.writeKey("value");
-		generator.write(this.value);
-
+		JsonpUtils.serializeDoubleOrNull(generator, this.value, 0);
 		if (this.valueAsString != null) {
 			generator.writeKey("value_as_string");
 			generator.write(this.valueAsString);
@@ -106,6 +108,8 @@ public abstract class SingleMetricAggregateBase extends AggregateBase {
 		 * no data to aggregate, unless specified otherwise.
 		 * <p>
 		 * API name: {@code value}
+		 * <p>
+		 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
 		 */
 		public final BuilderT value(double value) {
 			this.value = value;
@@ -126,7 +130,7 @@ public abstract class SingleMetricAggregateBase extends AggregateBase {
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupSingleMetricAggregateBaseDeserializer(
 			ObjectDeserializer<BuilderT> op) {
 		AggregateBase.setupAggregateBaseDeserializer(op);
-		op.add(AbstractBuilder::value, JsonpDeserializer.doubleDeserializer(), "value");
+		op.add(AbstractBuilder::value, JsonpDeserializer.doubleOrNullDeserializer(0), "value");
 		op.add(AbstractBuilder::valueAsString, JsonpDeserializer.stringDeserializer(), "value_as_string");
 
 	}

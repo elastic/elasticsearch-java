@@ -106,8 +106,6 @@ public class ShardStoreWrapper implements JsonpSerializable {
 		 * Required - API name: {@code stores}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>stores</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder stores(List<ShardStore> list) {
 			this.stores = _listAddAll(this.stores, list);

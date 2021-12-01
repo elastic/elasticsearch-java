@@ -109,8 +109,6 @@ public class ReindexRethrottleResponse implements JsonpSerializable {
 		 * Required - API name: {@code nodes}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>nodes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder nodes(Map<String, ReindexNode> map) {
 			this.nodes = _mapPutAll(this.nodes, map);

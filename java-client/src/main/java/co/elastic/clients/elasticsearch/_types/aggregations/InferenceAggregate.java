@@ -183,8 +183,6 @@ public class InferenceAggregate extends AggregateBase implements AggregateVarian
 		 * Additional data
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>data</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder data(Map<String, JsonData> map) {
 			this.data = _mapPutAll(this.data, map);
@@ -232,8 +230,6 @@ public class InferenceAggregate extends AggregateBase implements AggregateVarian
 		 * API name: {@code feature_importance}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>featureImportance</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder featureImportance(List<InferenceFeatureImportance> list) {
 			this.featureImportance = _listAddAll(this.featureImportance, list);
@@ -264,8 +260,6 @@ public class InferenceAggregate extends AggregateBase implements AggregateVarian
 		 * API name: {@code top_classes}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>topClasses</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder topClasses(List<InferenceTopClassEntry> list) {
 			this.topClasses = _listAddAll(this.topClasses, list);

@@ -186,8 +186,6 @@ public class WatcherStatsResponse implements JsonpSerializable {
 		 * Required - API name: {@code stats}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>stats</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder stats(List<WatcherNodeStats> list) {
 			this.stats = _listAddAll(this.stats, list);

@@ -541,8 +541,6 @@ public class SegmentsStats implements JsonpSerializable {
 		 * Required - API name: {@code file_sizes}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>fileSizes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder fileSizes(Map<String, ShardFileSizeInfo> map) {
 			this.fileSizes = _mapPutAll(this.fileSizes, map);

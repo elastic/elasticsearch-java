@@ -103,8 +103,6 @@ public class UpdateByQueryRethrottleNode extends BaseNode {
 		 * Required - API name: {@code tasks}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>tasks</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder tasks(Map<String, Info> map) {
 			this.tasks = _mapPutAll(this.tasks, map);

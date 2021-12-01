@@ -171,8 +171,6 @@ public class SimulateRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code docs}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>docs</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder docs(List<Document> list) {
 			this.docs = _listAddAll(this.docs, list);

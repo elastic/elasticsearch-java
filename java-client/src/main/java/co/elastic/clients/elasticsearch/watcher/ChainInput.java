@@ -114,8 +114,6 @@ public class ChainInput implements InputVariant, JsonpSerializable {
 		 * Required - API name: {@code inputs}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>inputs</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder inputs(List<Input> list) {
 			this.inputs = _listAddAll(this.inputs, list);

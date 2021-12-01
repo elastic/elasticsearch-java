@@ -124,8 +124,6 @@ public class ElisionTokenFilter extends TokenFilterBase implements TokenFilterDe
 		 * Required - API name: {@code articles}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>articles</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder articles(List<String> list) {
 			this.articles = _listAddAll(this.articles, list);

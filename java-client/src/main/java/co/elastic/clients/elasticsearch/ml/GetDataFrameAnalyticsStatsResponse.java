@@ -138,8 +138,6 @@ public class GetDataFrameAnalyticsStatsResponse implements JsonpSerializable {
 		 * API name: {@code data_frame_analytics}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>dataFrameAnalytics</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder dataFrameAnalytics(List<DataframeAnalytics> list) {
 			this.dataFrameAnalytics = _listAddAll(this.dataFrameAnalytics, list);

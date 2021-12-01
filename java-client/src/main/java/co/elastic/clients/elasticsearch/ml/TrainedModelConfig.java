@@ -111,6 +111,10 @@ public class TrainedModelConfig implements JsonpSerializable {
 
 	}
 
+	public static TrainedModelConfig trainedModelConfigOf(Function<Builder, ObjectBuilder<TrainedModelConfig>> fn) {
+		return fn.apply(new Builder()).build();
+	}
+
 	/**
 	 * Required - Idetifier for the trained model.
 	 * <p>
@@ -422,8 +426,6 @@ public class TrainedModelConfig implements JsonpSerializable {
 		 * API name: {@code tags}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>tags</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final BuilderT tags(List<String> list) {
 			this.tags = _listAddAll(this.tags, list);
@@ -496,8 +498,6 @@ public class TrainedModelConfig implements JsonpSerializable {
 		 * API name: {@code default_field_map}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>defaultFieldMap</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final BuilderT defaultFieldMap(Map<String, String> map) {
 			this.defaultFieldMap = _mapPutAll(this.defaultFieldMap, map);

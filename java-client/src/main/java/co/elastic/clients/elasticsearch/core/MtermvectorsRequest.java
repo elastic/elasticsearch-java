@@ -377,8 +377,6 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 		 * API name: {@code docs}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>docs</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder docs(List<MultiTermVectorsOperation> list) {
 			this.docs = _listAddAll(this.docs, list);
@@ -424,8 +422,6 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 		 * API name: {@code fields}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>fields</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder fields(List<String> list) {
 			this.fields = _listAddAll(this.fields, list);
@@ -449,8 +445,6 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 		 * API name: {@code ids}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>ids</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder ids(List<String> list) {
 			this.ids = _listAddAll(this.ids, list);

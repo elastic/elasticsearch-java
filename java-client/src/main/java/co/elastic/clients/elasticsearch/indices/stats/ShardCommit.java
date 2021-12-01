@@ -179,8 +179,6 @@ public class ShardCommit implements JsonpSerializable {
 		 * Required - API name: {@code user_data}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>userData</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder userData(Map<String, String> map) {
 			this.userData = _mapPutAll(this.userData, map);

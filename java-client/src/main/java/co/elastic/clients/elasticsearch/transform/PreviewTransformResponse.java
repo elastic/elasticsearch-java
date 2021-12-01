@@ -152,8 +152,6 @@ public class PreviewTransformResponse<TTransform> implements JsonpSerializable {
 		 * Required - API name: {@code preview}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>preview</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder<TTransform> preview(List<TTransform> list) {
 			this.preview = _listAddAll(this.preview, list);

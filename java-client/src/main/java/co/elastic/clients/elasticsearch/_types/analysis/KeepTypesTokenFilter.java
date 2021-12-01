@@ -137,8 +137,6 @@ public class KeepTypesTokenFilter extends TokenFilterBase implements TokenFilter
 		 * API name: {@code types}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>types</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder types(List<String> list) {
 			this.types = _listAddAll(this.types, list);

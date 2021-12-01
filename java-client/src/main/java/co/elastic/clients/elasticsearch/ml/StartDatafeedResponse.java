@@ -122,8 +122,6 @@ public class StartDatafeedResponse implements JsonpSerializable {
 		 * Required - API name: {@code node}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>node</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder node(List<String> list) {
 			this.node = _listAddAll(this.node, list);

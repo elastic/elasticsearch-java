@@ -191,8 +191,6 @@ public class DataframeEvaluationRegressionMetrics implements JsonpSerializable {
 		 * API name: {@code mse}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>mse</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder mse(Map<String, JsonData> map) {
 			this.mse = _mapPutAll(this.mse, map);
@@ -261,8 +259,6 @@ public class DataframeEvaluationRegressionMetrics implements JsonpSerializable {
 		 * API name: {@code r_squared}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>rSquared</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder rSquared(Map<String, JsonData> map) {
 			this.rSquared = _mapPutAll(this.rSquared, map);

@@ -30,6 +30,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: _types.aggregations.RangeAggregate
 
@@ -46,6 +47,10 @@ public class RangeAggregate extends MultiBucketAggregateBase<RangeBucket> implem
 	protected RangeAggregate(AbstractBuilder<?> builder) {
 		super(builder);
 
+	}
+
+	public static RangeAggregate rangeAggregateOf(Function<Builder, ObjectBuilder<RangeAggregate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

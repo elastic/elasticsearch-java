@@ -225,8 +225,6 @@ public class NodeAllocationExplanation implements JsonpSerializable {
 		 * Required - API name: {@code deciders}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>deciders</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder deciders(List<AllocationDecision> list) {
 			this.deciders = _listAddAll(this.deciders, list);
@@ -256,8 +254,6 @@ public class NodeAllocationExplanation implements JsonpSerializable {
 		 * Required - API name: {@code node_attributes}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>nodeAttributes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder nodeAttributes(Map<String, String> map) {
 			this.nodeAttributes = _mapPutAll(this.nodeAttributes, map);

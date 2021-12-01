@@ -177,8 +177,6 @@ public class ReservedSize implements JsonpSerializable {
 		 * Required - API name: {@code shards}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>shards</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder shards(List<String> list) {
 			this.shards = _listAddAll(this.shards, list);

@@ -124,8 +124,6 @@ public class PatternCaptureTokenFilter extends TokenFilterBase implements TokenF
 		 * Required - API name: {@code patterns}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>patterns</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder patterns(List<String> list) {
 			this.patterns = _listAddAll(this.patterns, list);

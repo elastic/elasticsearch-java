@@ -121,8 +121,6 @@ public class GetBucketsResponse implements JsonpSerializable {
 		 * Required - API name: {@code buckets}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>buckets</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder buckets(List<BucketSummary> list) {
 			this.buckets = _listAddAll(this.buckets, list);

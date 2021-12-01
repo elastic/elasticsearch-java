@@ -500,8 +500,6 @@ public class SignificantTextAggregation extends BucketAggregationBase implements
 		 * API name: {@code include}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>include</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder include(List<String> list) {
 			this.include = _listAddAll(this.include, list);
@@ -601,8 +599,6 @@ public class SignificantTextAggregation extends BucketAggregationBase implements
 		 * API name: {@code source_fields}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>sourceFields</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder sourceFields(List<String> list) {
 			this.sourceFields = _listAddAll(this.sourceFields, list);

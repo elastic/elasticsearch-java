@@ -343,8 +343,6 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code ignore_index_settings}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>ignoreIndexSettings</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder ignoreIndexSettings(List<String> list) {
 			this.ignoreIndexSettings = _listAddAll(this.ignoreIndexSettings, list);
@@ -405,8 +403,6 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code indices}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>indices</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder indices(List<String> list) {
 			this.indices = _listAddAll(this.indices, list);

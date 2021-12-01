@@ -151,8 +151,6 @@ public class KeepWordsTokenFilter extends TokenFilterBase implements TokenFilter
 		 * API name: {@code keep_words}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>keepWords</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder keepWords(List<String> list) {
 			this.keepWords = _listAddAll(this.keepWords, list);

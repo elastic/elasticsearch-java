@@ -145,8 +145,6 @@ public class RollupJobStatus implements JsonpSerializable {
 		 * API name: {@code current_position}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>currentPosition</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder currentPosition(Map<String, JsonData> map) {
 			this.currentPosition = _mapPutAll(this.currentPosition, map);

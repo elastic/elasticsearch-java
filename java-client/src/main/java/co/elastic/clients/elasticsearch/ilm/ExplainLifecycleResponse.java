@@ -109,8 +109,6 @@ public class ExplainLifecycleResponse implements JsonpSerializable {
 		 * Required - API name: {@code indices}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>indices</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder indices(Map<String, LifecycleExplain> map) {
 			this.indices = _mapPutAll(this.indices, map);

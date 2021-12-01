@@ -114,8 +114,6 @@ public class DailySchedule implements ScheduleVariant, JsonpSerializable {
 		 * Required - API name: {@code at}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>at</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder at(List<TimeOfDay> list) {
 			this.at = _listAddAll(this.at, list);

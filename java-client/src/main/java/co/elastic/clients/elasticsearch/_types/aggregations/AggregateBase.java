@@ -101,8 +101,6 @@ public abstract class AggregateBase implements JsonpSerializable {
 		 * API name: {@code meta}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>meta</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final BuilderT meta(Map<String, JsonData> map) {
 			this.meta = _mapPutAll(this.meta, map);

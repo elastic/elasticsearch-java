@@ -122,8 +122,6 @@ public class RemovePolicyResponse implements JsonpSerializable {
 		 * Required - API name: {@code failed_indexes}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>failedIndexes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder failedIndexes(List<String> list) {
 			this.failedIndexes = _listAddAll(this.failedIndexes, list);

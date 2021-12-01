@@ -233,8 +233,6 @@ public class IndicesPrivileges implements JsonpSerializable {
 		 * API name: {@code names}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>names</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder names(List<String> list) {
 			this.names = _listAddAll(this.names, list);
@@ -261,8 +259,6 @@ public class IndicesPrivileges implements JsonpSerializable {
 		 * API name: {@code privileges}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>privileges</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder privileges(List<IndexPrivilege> list) {
 			this.privileges = _listAddAll(this.privileges, list);
@@ -290,8 +286,6 @@ public class IndicesPrivileges implements JsonpSerializable {
 		 * API name: {@code query}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>query</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder query(List<String> list) {
 			this.query = _listAddAll(this.query, list);

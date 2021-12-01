@@ -322,8 +322,6 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 		 * API name: {@code _meta}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>meta</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder meta(Map<String, JsonData> map) {
 			this.meta = _mapPutAll(this.meta, map);
@@ -352,8 +350,6 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 		 * API name: {@code composed_of}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>composedOf</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder composedOf(List<String> list) {
 			this.composedOf = _listAddAll(this.composedOf, list);
@@ -403,8 +399,6 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 		 * API name: {@code index_patterns}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>indexPatterns</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder indexPatterns(List<String> list) {
 			this.indexPatterns = _listAddAll(this.indexPatterns, list);

@@ -231,8 +231,6 @@ public class ClusterOperatingSystem implements JsonpSerializable {
 		 * Required - API name: {@code names}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>names</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder names(List<ClusterOperatingSystemName> list) {
 			this.names = _listAddAll(this.names, list);
@@ -263,8 +261,6 @@ public class ClusterOperatingSystem implements JsonpSerializable {
 		 * Required - API name: {@code pretty_names}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>prettyNames</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder prettyNames(List<ClusterOperatingSystemPrettyName> list) {
 			this.prettyNames = _listAddAll(this.prettyNames, list);
@@ -296,8 +292,6 @@ public class ClusterOperatingSystem implements JsonpSerializable {
 		 * API name: {@code architectures}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>architectures</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder architectures(List<ClusterOperatingSystemArchitecture> list) {
 			this.architectures = _listAddAll(this.architectures, list);

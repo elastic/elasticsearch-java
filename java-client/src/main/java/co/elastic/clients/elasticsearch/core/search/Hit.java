@@ -545,8 +545,6 @@ public class Hit<TDocument> implements JsonpSerializable {
 		 * API name: {@code fields}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>fields</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder<TDocument> fields(Map<String, JsonData> map) {
 			this.fields = _mapPutAll(this.fields, map);
@@ -567,8 +565,6 @@ public class Hit<TDocument> implements JsonpSerializable {
 		 * API name: {@code highlight}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>highlight</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder<TDocument> highlight(Map<String, List<String>> map) {
 			this.highlight = _mapPutAll(this.highlight, map);
@@ -589,8 +585,6 @@ public class Hit<TDocument> implements JsonpSerializable {
 		 * API name: {@code inner_hits}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>innerHits</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder<TDocument> innerHits(Map<String, InnerHitsResult> map) {
 			this.innerHits = _mapPutAll(this.innerHits, map);
@@ -621,8 +615,6 @@ public class Hit<TDocument> implements JsonpSerializable {
 		 * API name: {@code matched_queries}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>matchedQueries</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder<TDocument> matchedQueries(List<String> list) {
 			this.matchedQueries = _listAddAll(this.matchedQueries, list);
@@ -658,8 +650,6 @@ public class Hit<TDocument> implements JsonpSerializable {
 		 * API name: {@code _ignored}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>ignored</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder<TDocument> ignored(List<String> list) {
 			this.ignored = _listAddAll(this.ignored, list);
@@ -736,8 +726,6 @@ public class Hit<TDocument> implements JsonpSerializable {
 		 * API name: {@code sort}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>sort</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder<TDocument> sort(List<String> list) {
 			this.sort = _listAddAll(this.sort, list);

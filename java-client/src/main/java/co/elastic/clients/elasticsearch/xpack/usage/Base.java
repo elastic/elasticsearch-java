@@ -35,6 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: xpack.usage.Base
 
@@ -57,6 +58,10 @@ public class Base implements JsonpSerializable {
 		this.available = ApiTypeHelper.requireNonNull(builder.available, this, "available");
 		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
 
+	}
+
+	public static Base baseOf(Function<Builder, ObjectBuilder<Base>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

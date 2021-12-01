@@ -107,8 +107,6 @@ public class PendingTasksResponse implements JsonpSerializable {
 		 * Required - API name: {@code tasks}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>tasks</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder tasks(List<PendingTask> list) {
 			this.tasks = _listAddAll(this.tasks, list);

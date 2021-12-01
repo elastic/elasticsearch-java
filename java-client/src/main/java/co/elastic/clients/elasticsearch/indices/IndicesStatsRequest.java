@@ -280,8 +280,6 @@ public class IndicesStatsRequest extends RequestBase {
 		 * API name: {@code completion_fields}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>completionFields</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder completionFields(List<String> list) {
 			this.completionFields = _listAddAll(this.completionFields, list);
@@ -308,8 +306,6 @@ public class IndicesStatsRequest extends RequestBase {
 		 * API name: {@code expand_wildcards}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder expandWildcards(List<ExpandWildcard> list) {
 			this.expandWildcards = _listAddAll(this.expandWildcards, list);
@@ -336,8 +332,6 @@ public class IndicesStatsRequest extends RequestBase {
 		 * API name: {@code fielddata_fields}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>fielddataFields</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder fielddataFields(List<String> list) {
 			this.fielddataFields = _listAddAll(this.fielddataFields, list);
@@ -364,8 +358,6 @@ public class IndicesStatsRequest extends RequestBase {
 		 * API name: {@code fields}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>fields</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder fields(List<String> list) {
 			this.fields = _listAddAll(this.fields, list);
@@ -402,8 +394,6 @@ public class IndicesStatsRequest extends RequestBase {
 		 * API name: {@code groups}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>groups</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder groups(List<String> list) {
 			this.groups = _listAddAll(this.groups, list);
@@ -451,8 +441,6 @@ public class IndicesStatsRequest extends RequestBase {
 		 * API name: {@code index}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>index</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder index(List<String> list) {
 			this.index = _listAddAll(this.index, list);
@@ -488,8 +476,6 @@ public class IndicesStatsRequest extends RequestBase {
 		 * API name: {@code metric}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>metric</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder metric(List<String> list) {
 			this.metric = _listAddAll(this.metric, list);
@@ -515,8 +501,6 @@ public class IndicesStatsRequest extends RequestBase {
 		 * API name: {@code types}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>types</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder types(List<String> list) {
 			this.types = _listAddAll(this.types, list);

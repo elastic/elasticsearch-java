@@ -124,8 +124,6 @@ public class Monitoring extends Base {
 		 * Required - API name: {@code enabled_exporters}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>enabledExporters</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder enabledExporters(Map<String, Long> map) {
 			this.enabledExporters = _mapPutAll(this.enabledExporters, map);

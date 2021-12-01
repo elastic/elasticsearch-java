@@ -203,8 +203,6 @@ public class PipelineSimulation implements JsonpSerializable {
 		 * API name: {@code processor_results}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>processorResults</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder processorResults(List<PipelineSimulation> list) {
 			this.processorResults = _listAddAll(this.processorResults, list);

@@ -420,8 +420,6 @@ public class Stats implements JsonpSerializable {
 		 * Required - API name: {@code adaptive_selection}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>adaptiveSelection</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder adaptiveSelection(Map<String, AdaptiveSelection> map) {
 			this.adaptiveSelection = _mapPutAll(this.adaptiveSelection, map);
@@ -452,8 +450,6 @@ public class Stats implements JsonpSerializable {
 		 * Required - API name: {@code breakers}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>breakers</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder breakers(Map<String, Breaker> map) {
 			this.breakers = _mapPutAll(this.breakers, map);
@@ -551,8 +547,6 @@ public class Stats implements JsonpSerializable {
 		 * Required - API name: {@code ip}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>ip</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder ip(List<String> list) {
 			this.ip = _listAddAll(this.ip, list);
@@ -626,8 +620,6 @@ public class Stats implements JsonpSerializable {
 		 * Required - API name: {@code roles}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>roles</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder roles(List<NodeRole> list) {
 			this.roles = _listAddAll(this.roles, list);
@@ -663,8 +655,6 @@ public class Stats implements JsonpSerializable {
 		 * Required - API name: {@code thread_pool}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>threadPool</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder threadPool(Map<String, ThreadCount> map) {
 			this.threadPool = _mapPutAll(this.threadPool, map);
@@ -725,8 +715,6 @@ public class Stats implements JsonpSerializable {
 		 * Required - API name: {@code attributes}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>attributes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder attributes(Map<String, String> map) {
 			this.attributes = _mapPutAll(this.attributes, map);

@@ -144,8 +144,6 @@ public class AnalyzeResponse implements JsonpSerializable {
 		 * API name: {@code tokens}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>tokens</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder tokens(List<AnalyzeToken> list) {
 			this.tokens = _listAddAll(this.tokens, list);

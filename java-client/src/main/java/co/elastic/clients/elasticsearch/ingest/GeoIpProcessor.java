@@ -215,8 +215,6 @@ public class GeoIpProcessor extends ProcessorBase implements ProcessorVariant {
 		 * Required - API name: {@code properties}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>properties</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder properties(List<String> list) {
 			this.properties = _listAddAll(this.properties, list);

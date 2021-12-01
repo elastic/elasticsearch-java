@@ -132,8 +132,6 @@ public class ClusterIngest implements JsonpSerializable {
 		 * Required - API name: {@code processor_stats}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>processorStats</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder processorStats(Map<String, ClusterProcessor> map) {
 			this.processorStats = _mapPutAll(this.processorStats, map);

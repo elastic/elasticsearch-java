@@ -35,6 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.stats.WatchRecordQueuedStats
@@ -55,6 +56,11 @@ public class WatchRecordQueuedStats implements JsonpSerializable {
 
 		this.executionTime = ApiTypeHelper.requireNonNull(builder.executionTime, this, "executionTime");
 
+	}
+
+	public static WatchRecordQueuedStats watchRecordQueuedStatsOf(
+			Function<Builder, ObjectBuilder<WatchRecordQueuedStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

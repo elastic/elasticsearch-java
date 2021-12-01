@@ -448,8 +448,6 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 		 * API name: {@code include}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>include</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder include(List<String> list) {
 			this.include = _listAddAll(this.include, list);

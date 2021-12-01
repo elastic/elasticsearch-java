@@ -192,8 +192,6 @@ public class WatcherNodeStats implements JsonpSerializable {
 		 * API name: {@code current_watches}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>currentWatches</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder currentWatches(List<WatchRecordStats> list) {
 			this.currentWatches = _listAddAll(this.currentWatches, list);
@@ -239,8 +237,6 @@ public class WatcherNodeStats implements JsonpSerializable {
 		 * API name: {@code queued_watches}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>queuedWatches</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder queuedWatches(List<WatchRecordQueuedStats> list) {
 			this.queuedWatches = _listAddAll(this.queuedWatches, list);

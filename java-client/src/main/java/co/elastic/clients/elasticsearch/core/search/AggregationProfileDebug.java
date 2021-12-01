@@ -706,8 +706,6 @@ public class AggregationProfileDebug implements JsonpSerializable {
 		 * API name: {@code deferred_aggregators}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>deferredAggregators</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder deferredAggregators(List<String> list) {
 			this.deferredAggregators = _listAddAll(this.deferredAggregators, list);

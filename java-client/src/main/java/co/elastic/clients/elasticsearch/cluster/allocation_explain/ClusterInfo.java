@@ -202,8 +202,6 @@ public class ClusterInfo implements JsonpSerializable {
 		 * Required - API name: {@code nodes}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>nodes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder nodes(Map<String, NodeDiskUsage> map) {
 			this.nodes = _mapPutAll(this.nodes, map);
@@ -233,8 +231,6 @@ public class ClusterInfo implements JsonpSerializable {
 		 * Required - API name: {@code shard_sizes}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>shardSizes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder shardSizes(Map<String, Long> map) {
 			this.shardSizes = _mapPutAll(this.shardSizes, map);
@@ -255,8 +251,6 @@ public class ClusterInfo implements JsonpSerializable {
 		 * API name: {@code shard_data_set_sizes}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>shardDataSetSizes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder shardDataSetSizes(Map<String, String> map) {
 			this.shardDataSetSizes = _mapPutAll(this.shardDataSetSizes, map);
@@ -277,8 +271,6 @@ public class ClusterInfo implements JsonpSerializable {
 		 * Required - API name: {@code shard_paths}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>shardPaths</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder shardPaths(Map<String, String> map) {
 			this.shardPaths = _mapPutAll(this.shardPaths, map);
@@ -299,8 +291,6 @@ public class ClusterInfo implements JsonpSerializable {
 		 * Required - API name: {@code reserved_sizes}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>reservedSizes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder reservedSizes(List<ReservedSize> list) {
 			this.reservedSizes = _listAddAll(this.reservedSizes, list);

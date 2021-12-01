@@ -179,8 +179,6 @@ public class DataframeAnalysisFeatureProcessorFrequencyEncoding
 		 * API name: {@code frequency_map}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>frequencyMap</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder frequencyMap(Map<String, Double> map) {
 			this.frequencyMap = _mapPutAll(this.frequencyMap, map);

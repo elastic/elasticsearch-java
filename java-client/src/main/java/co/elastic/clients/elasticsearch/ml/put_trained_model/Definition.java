@@ -127,8 +127,6 @@ public class Definition implements JsonpSerializable {
 		 * API name: {@code preprocessors}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>preprocessors</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder preprocessors(List<Preprocessor> list) {
 			this.preprocessors = _listAddAll(this.preprocessors, list);

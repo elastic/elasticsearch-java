@@ -208,8 +208,6 @@ public class CompletionContext implements JsonpSerializable {
 		 * API name: {@code neighbours}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>neighbours</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder neighbours(List<GeoHashPrecision> list) {
 			this.neighbours = _listAddAll(this.neighbours, list);

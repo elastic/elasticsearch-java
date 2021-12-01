@@ -92,8 +92,6 @@ public class GetPipelineRequest extends RequestBase {
 		 * API name: {@code id}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>id</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder id(List<String> list) {
 			this.id = _listAddAll(this.id, list);

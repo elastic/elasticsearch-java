@@ -203,8 +203,6 @@ public class DateIndexNameProcessor extends ProcessorBase implements ProcessorVa
 		 * Required - API name: {@code date_formats}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>dateFormats</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder dateFormats(List<String> list) {
 			this.dateFormats = _listAddAll(this.dateFormats, list);

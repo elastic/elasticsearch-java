@@ -1236,8 +1236,6 @@ public class IndexSettings implements JsonpSerializable {
 		 * API name: {@code routing_path}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>routingPath</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder routingPath(List<String> list) {
 			this.routingPath = _listAddAll(this.routingPath, list);

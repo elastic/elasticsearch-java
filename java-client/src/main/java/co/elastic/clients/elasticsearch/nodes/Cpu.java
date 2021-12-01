@@ -303,8 +303,6 @@ public class Cpu implements JsonpSerializable {
 		 * API name: {@code load_average}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>loadAverage</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder loadAverage(Map<String, Double> map) {
 			this.loadAverage = _mapPutAll(this.loadAverage, map);

@@ -180,8 +180,6 @@ public class AutoFollowStats implements JsonpSerializable {
 		 * Required - API name: {@code auto_followed_clusters}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>autoFollowedClusters</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder autoFollowedClusters(List<AutoFollowedCluster> list) {
 			this.autoFollowedClusters = _listAddAll(this.autoFollowedClusters, list);
@@ -237,8 +235,6 @@ public class AutoFollowStats implements JsonpSerializable {
 		 * <p>
 		 * Adds all elements of <code>list</code> to
 		 * <code>recentAutoFollowErrors</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder recentAutoFollowErrors(List<ErrorCause> list) {
 			this.recentAutoFollowErrors = _listAddAll(this.recentAutoFollowErrors, list);

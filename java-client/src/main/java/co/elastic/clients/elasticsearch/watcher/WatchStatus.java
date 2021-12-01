@@ -199,8 +199,6 @@ public class WatchStatus implements JsonpSerializable {
 		 * Required - API name: {@code actions}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>actions</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder actions(Map<String, ActionStatus> map) {
 			this.actions = _mapPutAll(this.actions, map);

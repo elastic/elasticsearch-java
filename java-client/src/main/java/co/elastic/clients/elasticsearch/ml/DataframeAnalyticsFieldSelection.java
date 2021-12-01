@@ -240,8 +240,6 @@ public class DataframeAnalyticsFieldSelection implements JsonpSerializable {
 		 * API name: {@code mapping_types}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>mappingTypes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder mappingTypes(List<String> list) {
 			this.mappingTypes = _listAddAll(this.mappingTypes, list);

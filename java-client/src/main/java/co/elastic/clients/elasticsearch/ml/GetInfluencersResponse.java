@@ -134,8 +134,6 @@ public class GetInfluencersResponse implements JsonpSerializable {
 		 * API name: {@code influencers}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>influencers</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder influencers(List<Influencer> list) {
 			this.influencers = _listAddAll(this.influencers, list);

@@ -254,8 +254,6 @@ public class SynonymGraphTokenFilter extends TokenFilterBase implements TokenFil
 		 * API name: {@code synonyms}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>synonyms</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder synonyms(List<String> list) {
 			this.synonyms = _listAddAll(this.synonyms, list);

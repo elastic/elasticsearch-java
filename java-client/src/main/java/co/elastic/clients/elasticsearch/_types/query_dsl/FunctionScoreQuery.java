@@ -215,8 +215,6 @@ public class FunctionScoreQuery extends QueryBase implements QueryVariant {
 		 * API name: {@code functions}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>functions</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder functions(List<FunctionScore> list) {
 			this.functions = _listAddAll(this.functions, list);

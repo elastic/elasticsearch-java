@@ -101,8 +101,6 @@ public class DataframeEvaluationSummaryAucRoc extends DataframeEvaluationValue {
 		 * API name: {@code curve}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>curve</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder curve(List<DataframeEvaluationSummaryAucRocCurveItem> list) {
 			this.curve = _listAddAll(this.curve, list);

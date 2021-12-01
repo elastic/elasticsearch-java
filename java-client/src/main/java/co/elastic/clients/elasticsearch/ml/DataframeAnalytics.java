@@ -356,8 +356,6 @@ public class DataframeAnalytics implements JsonpSerializable {
 		 * API name: {@code progress}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>progress</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder progress(List<DataframeAnalyticsStatsProgress> list) {
 			this.progress = _listAddAll(this.progress, list);

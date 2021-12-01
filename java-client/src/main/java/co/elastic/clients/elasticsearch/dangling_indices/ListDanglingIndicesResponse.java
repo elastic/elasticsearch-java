@@ -107,8 +107,6 @@ public class ListDanglingIndicesResponse implements JsonpSerializable {
 		 * Required - API name: {@code dangling_indices}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>danglingIndices</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder danglingIndices(List<DanglingIndex> list) {
 			this.danglingIndices = _listAddAll(this.danglingIndices, list);

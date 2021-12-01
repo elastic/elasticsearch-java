@@ -299,8 +299,6 @@ public class NodesStatsRequest extends RequestBase {
 		 * API name: {@code completion_fields}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>completionFields</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder completionFields(List<String> list) {
 			this.completionFields = _listAddAll(this.completionFields, list);
@@ -327,8 +325,6 @@ public class NodesStatsRequest extends RequestBase {
 		 * API name: {@code fielddata_fields}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>fielddataFields</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder fielddataFields(List<String> list) {
 			this.fielddataFields = _listAddAll(this.fielddataFields, list);
@@ -355,8 +351,6 @@ public class NodesStatsRequest extends RequestBase {
 		 * API name: {@code fields}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>fields</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder fields(List<String> list) {
 			this.fields = _listAddAll(this.fields, list);
@@ -415,8 +409,6 @@ public class NodesStatsRequest extends RequestBase {
 		 * API name: {@code index_metric}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>indexMetric</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder indexMetric(List<String> list) {
 			this.indexMetric = _listAddAll(this.indexMetric, list);
@@ -474,8 +466,6 @@ public class NodesStatsRequest extends RequestBase {
 		 * API name: {@code metric}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>metric</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder metric(List<String> list) {
 			this.metric = _listAddAll(this.metric, list);
@@ -500,8 +490,6 @@ public class NodesStatsRequest extends RequestBase {
 		 * API name: {@code node_id}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>nodeId</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder nodeId(List<String> list) {
 			this.nodeId = _listAddAll(this.nodeId, list);
@@ -547,8 +535,6 @@ public class NodesStatsRequest extends RequestBase {
 		 * API name: {@code types}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>types</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder types(List<String> list) {
 			this.types = _listAddAll(this.types, list);

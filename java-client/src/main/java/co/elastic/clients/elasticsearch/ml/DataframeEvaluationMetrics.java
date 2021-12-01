@@ -180,8 +180,6 @@ public abstract class DataframeEvaluationMetrics implements JsonpSerializable {
 		 * API name: {@code precision}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>precision</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final BuilderT precision(Map<String, JsonData> map) {
 			this.precision = _mapPutAll(this.precision, map);
@@ -206,8 +204,6 @@ public abstract class DataframeEvaluationMetrics implements JsonpSerializable {
 		 * API name: {@code recall}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>recall</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final BuilderT recall(Map<String, JsonData> map) {
 			this.recall = _mapPutAll(this.recall, map);

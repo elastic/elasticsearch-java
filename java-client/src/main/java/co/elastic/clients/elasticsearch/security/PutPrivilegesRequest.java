@@ -150,8 +150,6 @@ public class PutPrivilegesRequest extends RequestBase implements JsonpSerializab
 		 * API name: {@code _value_body}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>privileges</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder privileges(Map<String, Map<String, Actions>> map) {
 			this.privileges = _mapPutAll(this.privileges, map);

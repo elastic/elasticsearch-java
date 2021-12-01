@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
+import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -60,7 +61,7 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 	private final Long maxDocCount;
 
 	@Nullable
-	private final String missing;
+	private final FieldValue missing;
 
 	@Nullable
 	private final Double precision;
@@ -131,7 +132,7 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 	 * API name: {@code missing}
 	 */
 	@Nullable
-	public final String missing() {
+	public final FieldValue missing() {
 		return this.missing;
 	}
 
@@ -176,7 +177,7 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 		}
 		if (this.missing != null) {
 			generator.writeKey("missing");
-			generator.write(this.missing);
+			this.missing.serialize(generator, mapper);
 
 		}
 		if (this.precision != null) {
@@ -214,7 +215,7 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 		private Long maxDocCount;
 
 		@Nullable
-		private String missing;
+		private FieldValue missing;
 
 		@Nullable
 		private Double precision;
@@ -271,9 +272,16 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 		/**
 		 * API name: {@code missing}
 		 */
-		public final Builder missing(@Nullable String value) {
+		public final Builder missing(@Nullable FieldValue value) {
 			this.missing = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code missing}
+		 */
+		public final Builder missing(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
+			return this.missing(fn.apply(new FieldValue.Builder()).build());
 		}
 
 		/**
@@ -324,7 +332,7 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::include, TermsInclude._DESERIALIZER, "include");
 		op.add(Builder::maxDocCount, JsonpDeserializer.longDeserializer(), "max_doc_count");
-		op.add(Builder::missing, JsonpDeserializer.stringDeserializer(), "missing");
+		op.add(Builder::missing, FieldValue._DESERIALIZER, "missing");
 		op.add(Builder::precision, JsonpDeserializer.doubleDeserializer(), "precision");
 		op.add(Builder::valueType, JsonpDeserializer.stringDeserializer(), "value_type");
 

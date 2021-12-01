@@ -172,8 +172,6 @@ public class TrainedModelTree implements JsonpSerializable {
 		 * API name: {@code classification_labels}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>classificationLabels</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder classificationLabels(List<String> list) {
 			this.classificationLabels = _listAddAll(this.classificationLabels, list);
@@ -194,8 +192,6 @@ public class TrainedModelTree implements JsonpSerializable {
 		 * Required - API name: {@code feature_names}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>featureNames</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder featureNames(List<String> list) {
 			this.featureNames = _listAddAll(this.featureNames, list);
@@ -224,8 +220,6 @@ public class TrainedModelTree implements JsonpSerializable {
 		 * Required - API name: {@code tree_structure}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>treeStructure</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder treeStructure(List<TrainedModelTreeNode> list) {
 			this.treeStructure = _listAddAll(this.treeStructure, list);

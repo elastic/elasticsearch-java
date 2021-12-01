@@ -268,8 +268,6 @@ public class PluginStats implements JsonpSerializable {
 		 * Required - API name: {@code extended_plugins}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>extendedPlugins</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder extendedPlugins(List<String> list) {
 			this.extendedPlugins = _listAddAll(this.extendedPlugins, list);

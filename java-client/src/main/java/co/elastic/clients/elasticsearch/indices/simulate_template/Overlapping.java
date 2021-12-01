@@ -130,8 +130,6 @@ public class Overlapping implements JsonpSerializable {
 		 * Required - API name: {@code index_patterns}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>indexPatterns</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder indexPatterns(List<String> list) {
 			this.indexPatterns = _listAddAll(this.indexPatterns, list);

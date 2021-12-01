@@ -600,8 +600,6 @@ public class HighlightField implements JsonpSerializable {
 		 * API name: {@code matched_fields}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>matchedFields</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder matchedFields(List<String> list) {
 			this.matchedFields = _listAddAll(this.matchedFields, list);
@@ -662,8 +660,6 @@ public class HighlightField implements JsonpSerializable {
 		 * API name: {@code post_tags}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>postTags</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder postTags(List<String> list) {
 			this.postTags = _listAddAll(this.postTags, list);
@@ -684,8 +680,6 @@ public class HighlightField implements JsonpSerializable {
 		 * API name: {@code pre_tags}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>preTags</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder preTags(List<String> list) {
 			this.preTags = _listAddAll(this.preTags, list);

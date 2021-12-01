@@ -199,8 +199,6 @@ public class SlackMessage implements JsonpSerializable {
 		 * Required - API name: {@code attachments}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>attachments</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder attachments(List<SlackAttachment> list) {
 			this.attachments = _listAddAll(this.attachments, list);
@@ -270,8 +268,6 @@ public class SlackMessage implements JsonpSerializable {
 		 * Required - API name: {@code to}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>to</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder to(List<String> list) {
 			this.to = _listAddAll(this.to, list);

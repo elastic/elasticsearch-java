@@ -565,8 +565,6 @@ public class NodeInfo implements JsonpSerializable {
 		 * Required - API name: {@code attributes}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>attributes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder attributes(Map<String, String> map) {
 			this.attributes = _mapPutAll(this.attributes, map);
@@ -703,8 +701,6 @@ public class NodeInfo implements JsonpSerializable {
 		 * API name: {@code plugins}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>plugins</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder plugins(List<PluginStats> list) {
 			this.plugins = _listAddAll(this.plugins, list);
@@ -749,8 +745,6 @@ public class NodeInfo implements JsonpSerializable {
 		 * Required - API name: {@code roles}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>roles</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder roles(List<NodeRole> list) {
 			this.roles = _listAddAll(this.roles, list);
@@ -786,8 +780,6 @@ public class NodeInfo implements JsonpSerializable {
 		 * API name: {@code thread_pool}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>threadPool</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder threadPool(Map<String, NodeThreadPoolInfo> map) {
 			this.threadPool = _mapPutAll(this.threadPool, map);
@@ -875,8 +867,6 @@ public class NodeInfo implements JsonpSerializable {
 		 * API name: {@code modules}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>modules</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder modules(List<PluginStats> list) {
 			this.modules = _listAddAll(this.modules, list);
@@ -921,8 +911,6 @@ public class NodeInfo implements JsonpSerializable {
 		 * API name: {@code aggregations}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>aggregations</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder aggregations(Map<String, NodeInfoAggregation> map) {
 			this.aggregations = _mapPutAll(this.aggregations, map);

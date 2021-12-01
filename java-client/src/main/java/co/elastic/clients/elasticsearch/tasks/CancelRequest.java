@@ -167,8 +167,6 @@ public class CancelRequest extends RequestBase {
 		 * API name: {@code actions}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>actions</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder actions(List<String> list) {
 			this.actions = _listAddAll(this.actions, list);
@@ -196,8 +194,6 @@ public class CancelRequest extends RequestBase {
 		 * API name: {@code nodes}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>nodes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder nodes(List<String> list) {
 			this.nodes = _listAddAll(this.nodes, list);

@@ -130,8 +130,6 @@ public class GetModelSnapshotsResponse implements JsonpSerializable {
 		 * Required - API name: {@code model_snapshots}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>modelSnapshots</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder modelSnapshots(List<ModelSnapshot> list) {
 			this.modelSnapshots = _listAddAll(this.modelSnapshots, list);

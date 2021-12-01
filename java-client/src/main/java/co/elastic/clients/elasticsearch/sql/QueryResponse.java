@@ -159,8 +159,6 @@ public class QueryResponse implements JsonpSerializable {
 		 * API name: {@code columns}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>columns</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder columns(List<Column> list) {
 			this.columns = _listAddAll(this.columns, list);
@@ -198,8 +196,6 @@ public class QueryResponse implements JsonpSerializable {
 		 * Required - API name: {@code rows}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>rows</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder rows(List<List<JsonData>> list) {
 			this.rows = _listAddAll(this.rows, list);

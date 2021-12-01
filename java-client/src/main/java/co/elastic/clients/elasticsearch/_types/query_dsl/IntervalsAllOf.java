@@ -184,8 +184,6 @@ public class IntervalsAllOf implements IntervalsQueryVariant, IntervalsVariant, 
 		 * Required - API name: {@code intervals}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>intervals</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder intervals(List<Intervals> list) {
 			this.intervals = _listAddAll(this.intervals, list);

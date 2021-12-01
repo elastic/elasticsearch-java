@@ -67,6 +67,10 @@ public class ListResponse implements JsonpSerializable {
 
 	}
 
+	public static ListResponse listResponseOf(Function<Builder, ObjectBuilder<ListResponse>> fn) {
+		return fn.apply(new Builder()).build();
+	}
+
 	/**
 	 * API name: {@code node_failures}
 	 */
@@ -175,8 +179,6 @@ public class ListResponse implements JsonpSerializable {
 		 * API name: {@code node_failures}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>nodeFailures</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final BuilderT nodeFailures(List<ErrorCause> list) {
 			this.nodeFailures = _listAddAll(this.nodeFailures, list);
@@ -206,8 +208,6 @@ public class ListResponse implements JsonpSerializable {
 		 * API name: {@code nodes}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>nodes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final BuilderT nodes(Map<String, TaskExecutingNode> map) {
 			this.nodes = _mapPutAll(this.nodes, map);
@@ -238,8 +238,6 @@ public class ListResponse implements JsonpSerializable {
 		 * API name: {@code tasks}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>tasks</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final BuilderT tasks(Map<String, Info> map) {
 			this.tasks = _mapPutAll(this.tasks, map);

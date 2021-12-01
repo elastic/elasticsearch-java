@@ -113,8 +113,6 @@ public class SpanOrQuery extends QueryBase implements SpanQueryVariant, QueryVar
 		 * Required - API name: {@code clauses}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>clauses</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder clauses(List<SpanQuery> list) {
 			this.clauses = _listAddAll(this.clauses, list);

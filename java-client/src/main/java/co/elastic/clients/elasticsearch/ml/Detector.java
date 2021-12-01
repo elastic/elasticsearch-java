@@ -338,8 +338,6 @@ public class Detector implements JsonpSerializable {
 		 * API name: {@code custom_rules}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>customRules</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder customRules(List<DetectionRule> list) {
 			this.customRules = _listAddAll(this.customRules, list);

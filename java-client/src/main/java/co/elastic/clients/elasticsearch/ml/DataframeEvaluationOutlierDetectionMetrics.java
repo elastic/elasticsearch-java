@@ -108,8 +108,6 @@ public class DataframeEvaluationOutlierDetectionMetrics extends DataframeEvaluat
 		 * API name: {@code confusion_matrix}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>confusionMatrix</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder confusionMatrix(Map<String, JsonData> map) {
 			this.confusionMatrix = _mapPutAll(this.confusionMatrix, map);

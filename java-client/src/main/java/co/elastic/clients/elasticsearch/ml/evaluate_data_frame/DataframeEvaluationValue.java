@@ -35,6 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: ml.evaluate_data_frame.DataframeEvaluationValue
 
@@ -54,6 +55,11 @@ public class DataframeEvaluationValue implements JsonpSerializable {
 
 		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
 
+	}
+
+	public static DataframeEvaluationValue dataframeEvaluationValueOf(
+			Function<Builder, ObjectBuilder<DataframeEvaluationValue>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

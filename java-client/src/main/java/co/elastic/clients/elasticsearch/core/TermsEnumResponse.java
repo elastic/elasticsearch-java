@@ -153,8 +153,6 @@ public class TermsEnumResponse implements JsonpSerializable {
 		 * Required - API name: {@code terms}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>terms</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder terms(List<String> list) {
 			this.terms = _listAddAll(this.terms, list);

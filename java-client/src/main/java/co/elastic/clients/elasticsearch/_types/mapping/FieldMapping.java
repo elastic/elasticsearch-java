@@ -156,8 +156,6 @@ public class FieldMapping implements JsonpSerializable {
 		 * Required - API name: {@code mapping}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>mapping</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder mapping(Map<String, Property> map) {
 			this.mapping = _mapPutAll(this.mapping, map);

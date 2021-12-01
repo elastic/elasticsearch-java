@@ -299,8 +299,6 @@ public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 		 * API name: {@code contexts}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>contexts</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder<TDocument> contexts(Map<String, List<Context>> map) {
 			this.contexts = _mapPutAll(this.contexts, map);
@@ -321,8 +319,6 @@ public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 		 * API name: {@code fields}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>fields</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder<TDocument> fields(Map<String, JsonData> map) {
 			this.fields = _mapPutAll(this.fields, map);

@@ -172,8 +172,6 @@ public class Template implements JsonpSerializable {
 		 * Required - API name: {@code aliases}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>aliases</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder aliases(Map<String, Alias> map) {
 			this.aliases = _mapPutAll(this.aliases, map);
@@ -218,8 +216,6 @@ public class Template implements JsonpSerializable {
 		 * Required - API name: {@code settings}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>settings</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder settings(Map<String, JsonData> map) {
 			this.settings = _mapPutAll(this.settings, map);
@@ -240,8 +236,6 @@ public class Template implements JsonpSerializable {
 		 * Required - API name: {@code overlapping}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>overlapping</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder overlapping(List<Overlapping> list) {
 			this.overlapping = _listAddAll(this.overlapping, list);

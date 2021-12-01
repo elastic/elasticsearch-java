@@ -102,8 +102,6 @@ public class CompositeBucket extends MultiBucketBase {
 		 * Required - API name: {@code key}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>key</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder key(Map<String, JsonData> map) {
 			this.key = _mapPutAll(this.key, map);

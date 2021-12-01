@@ -134,8 +134,6 @@ public class GetUpgradeResponse implements JsonpSerializable {
 		 * API name: {@code overlapping}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>overlapping</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder overlapping(List<OverlappingIndexTemplate> list) {
 			this.overlapping = _listAddAll(this.overlapping, list);

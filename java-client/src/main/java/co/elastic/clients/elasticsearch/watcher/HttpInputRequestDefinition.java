@@ -108,6 +108,11 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 
 	}
 
+	public static HttpInputRequestDefinition httpInputRequestDefinitionOf(
+			Function<Builder, ObjectBuilder<HttpInputRequestDefinition>> fn) {
+		return fn.apply(new Builder()).build();
+	}
+
 	/**
 	 * API name: {@code auth}
 	 */
@@ -411,8 +416,6 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 		 * API name: {@code headers}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>headers</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final BuilderT headers(Map<String, String> map) {
 			this.headers = _mapPutAll(this.headers, map);
@@ -449,8 +452,6 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 		 * API name: {@code params}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>params</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final BuilderT params(Map<String, String> map) {
 			this.params = _mapPutAll(this.params, map);

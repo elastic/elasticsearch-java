@@ -121,8 +121,6 @@ public class GetCategoriesResponse implements JsonpSerializable {
 		 * Required - API name: {@code categories}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>categories</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder categories(List<Category> list) {
 			this.categories = _listAddAll(this.categories, list);

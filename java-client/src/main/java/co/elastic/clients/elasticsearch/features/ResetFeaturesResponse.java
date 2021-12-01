@@ -106,8 +106,6 @@ public class ResetFeaturesResponse implements JsonpSerializable {
 		 * Required - API name: {@code features}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>features</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder features(List<Feature> list) {
 			this.features = _listAddAll(this.features, list);

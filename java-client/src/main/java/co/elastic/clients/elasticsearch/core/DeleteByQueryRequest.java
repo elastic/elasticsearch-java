@@ -771,8 +771,6 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		 * API name: {@code _source_excludes}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>sourceExcludes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder sourceExcludes(List<String> list) {
 			this.sourceExcludes = _listAddAll(this.sourceExcludes, list);
@@ -797,8 +795,6 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		 * API name: {@code _source_includes}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>sourceIncludes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder sourceIncludes(List<String> list) {
 			this.sourceIncludes = _listAddAll(this.sourceIncludes, list);
@@ -888,8 +884,6 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		 * API name: {@code expand_wildcards}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder expandWildcards(List<ExpandWildcard> list) {
 			this.expandWildcards = _listAddAll(this.expandWildcards, list);
@@ -937,8 +931,6 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		 * API name: {@code index}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>index</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder index(List<String> list) {
 			this.index = _listAddAll(this.index, list);
@@ -1157,8 +1149,6 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		 * API name: {@code sort}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>sort</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder sort(List<String> list) {
 			this.sort = _listAddAll(this.sort, list);
@@ -1183,8 +1173,6 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		 * API name: {@code stats}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>stats</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder stats(List<String> list) {
 			this.stats = _listAddAll(this.stats, list);
@@ -1242,8 +1230,6 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		 * API name: {@code type}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>type</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder type(List<String> list) {
 			this.type = _listAddAll(this.type, list);

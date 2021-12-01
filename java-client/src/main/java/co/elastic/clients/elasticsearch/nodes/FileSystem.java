@@ -136,8 +136,6 @@ public class FileSystem implements JsonpSerializable {
 		 * Required - API name: {@code data}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>data</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder data(List<DataPathStats> list) {
 			this.data = _listAddAll(this.data, list);

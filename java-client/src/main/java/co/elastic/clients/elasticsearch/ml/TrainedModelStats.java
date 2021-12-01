@@ -215,8 +215,6 @@ public class TrainedModelStats implements JsonpSerializable {
 		 * API name: {@code ingest}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>ingest</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder ingest(Map<String, JsonData> map) {
 			this.ingest = _mapPutAll(this.ingest, map);

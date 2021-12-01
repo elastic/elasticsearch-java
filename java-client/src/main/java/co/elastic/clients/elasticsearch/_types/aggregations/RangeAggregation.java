@@ -208,8 +208,6 @@ public class RangeAggregation extends BucketAggregationBase implements Aggregati
 		 * API name: {@code ranges}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>ranges</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder ranges(List<AggregationRange> list) {
 			this.ranges = _listAddAll(this.ranges, list);

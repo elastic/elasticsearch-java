@@ -100,8 +100,6 @@ public class PluginsResponse implements JsonpSerializable {
 		 * API name: {@code _value_body}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>valueBody</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder valueBody(List<PluginsRecord> list) {
 			this.valueBody = _listAddAll(this.valueBody, list);

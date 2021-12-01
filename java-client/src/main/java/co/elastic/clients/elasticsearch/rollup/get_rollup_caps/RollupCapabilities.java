@@ -106,8 +106,6 @@ public class RollupCapabilities implements JsonpSerializable {
 		 * Required - API name: {@code rollup_jobs}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>rollupJobs</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder rollupJobs(List<RollupCapabilitySummary> list) {
 			this.rollupJobs = _listAddAll(this.rollupJobs, list);

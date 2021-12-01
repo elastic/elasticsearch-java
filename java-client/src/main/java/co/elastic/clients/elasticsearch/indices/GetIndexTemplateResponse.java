@@ -107,8 +107,6 @@ public class GetIndexTemplateResponse implements JsonpSerializable {
 		 * Required - API name: {@code index_templates}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>indexTemplates</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder indexTemplates(List<IndexTemplateItem> list) {
 			this.indexTemplates = _listAddAll(this.indexTemplates, list);

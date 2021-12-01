@@ -140,8 +140,6 @@ public class PostStartBasicResponse extends AcknowledgedResponseBase {
 		 * Required - API name: {@code acknowledge}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>acknowledge</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder acknowledge(Map<String, List<String>> map) {
 			this.acknowledge = _mapPutAll(this.acknowledge, map);

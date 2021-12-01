@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch._types.aggregations;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
@@ -109,6 +110,8 @@ public class StringStatsAggregate extends AggregateBase implements AggregateVari
 
 	/**
 	 * Required - API name: {@code min_length}
+	 * <p>
+	 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
 	 */
 	public final int minLength() {
 		return this.minLength;
@@ -116,6 +119,8 @@ public class StringStatsAggregate extends AggregateBase implements AggregateVari
 
 	/**
 	 * Required - API name: {@code max_length}
+	 * <p>
+	 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
 	 */
 	public final int maxLength() {
 		return this.maxLength;
@@ -123,6 +128,8 @@ public class StringStatsAggregate extends AggregateBase implements AggregateVari
 
 	/**
 	 * Required - API name: {@code avg_length}
+	 * <p>
+	 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
 	 */
 	public final double avgLength() {
 		return this.avgLength;
@@ -130,6 +137,8 @@ public class StringStatsAggregate extends AggregateBase implements AggregateVari
 
 	/**
 	 * Required - API name: {@code entropy}
+	 * <p>
+	 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
 	 */
 	public final double entropy() {
 		return this.entropy;
@@ -174,17 +183,13 @@ public class StringStatsAggregate extends AggregateBase implements AggregateVari
 		generator.write(this.count);
 
 		generator.writeKey("min_length");
-		generator.write(this.minLength);
-
+		JsonpUtils.serializeIntOrNull(generator, this.minLength, 0);
 		generator.writeKey("max_length");
-		generator.write(this.maxLength);
-
+		JsonpUtils.serializeIntOrNull(generator, this.maxLength, 0);
 		generator.writeKey("avg_length");
-		generator.write(this.avgLength);
-
+		JsonpUtils.serializeDoubleOrNull(generator, this.avgLength, 0);
 		generator.writeKey("entropy");
-		generator.write(this.entropy);
-
+		JsonpUtils.serializeDoubleOrNull(generator, this.entropy, 0);
 		if (this.distribution != null) {
 			generator.writeKey("distribution");
 			generator.write(this.distribution);
@@ -249,6 +254,8 @@ public class StringStatsAggregate extends AggregateBase implements AggregateVari
 
 		/**
 		 * Required - API name: {@code min_length}
+		 * <p>
+		 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
 		 */
 		public final Builder minLength(int value) {
 			this.minLength = value;
@@ -257,6 +264,8 @@ public class StringStatsAggregate extends AggregateBase implements AggregateVari
 
 		/**
 		 * Required - API name: {@code max_length}
+		 * <p>
+		 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
 		 */
 		public final Builder maxLength(int value) {
 			this.maxLength = value;
@@ -265,6 +274,8 @@ public class StringStatsAggregate extends AggregateBase implements AggregateVari
 
 		/**
 		 * Required - API name: {@code avg_length}
+		 * <p>
+		 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
 		 */
 		public final Builder avgLength(double value) {
 			this.avgLength = value;
@@ -273,6 +284,8 @@ public class StringStatsAggregate extends AggregateBase implements AggregateVari
 
 		/**
 		 * Required - API name: {@code entropy}
+		 * <p>
+		 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
 		 */
 		public final Builder entropy(double value) {
 			this.entropy = value;
@@ -340,10 +353,10 @@ public class StringStatsAggregate extends AggregateBase implements AggregateVari
 	protected static void setupStringStatsAggregateDeserializer(ObjectDeserializer<StringStatsAggregate.Builder> op) {
 		AggregateBase.setupAggregateBaseDeserializer(op);
 		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
-		op.add(Builder::minLength, JsonpDeserializer.integerDeserializer(), "min_length");
-		op.add(Builder::maxLength, JsonpDeserializer.integerDeserializer(), "max_length");
-		op.add(Builder::avgLength, JsonpDeserializer.doubleDeserializer(), "avg_length");
-		op.add(Builder::entropy, JsonpDeserializer.doubleDeserializer(), "entropy");
+		op.add(Builder::minLength, JsonpDeserializer.intOrNullDeserializer(0), "min_length");
+		op.add(Builder::maxLength, JsonpDeserializer.intOrNullDeserializer(0), "max_length");
+		op.add(Builder::avgLength, JsonpDeserializer.doubleOrNullDeserializer(0), "avg_length");
+		op.add(Builder::entropy, JsonpDeserializer.doubleOrNullDeserializer(0), "entropy");
 		op.add(Builder::distribution, JsonpDeserializer.stringDeserializer(), "distribution");
 		op.add(Builder::minLengthAsString, JsonpDeserializer.stringDeserializer(), "min_length_as_string");
 		op.add(Builder::maxLengthAsString, JsonpDeserializer.stringDeserializer(), "max_length_as_string");

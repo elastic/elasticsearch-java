@@ -186,8 +186,6 @@ public class ShardsSegment implements JsonpSerializable {
 		 * Required - API name: {@code segments}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>segments</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder segments(Map<String, Segment> map) {
 			this.segments = _mapPutAll(this.segments, map);

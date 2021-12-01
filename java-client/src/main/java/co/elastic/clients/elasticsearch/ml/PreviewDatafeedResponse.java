@@ -120,8 +120,6 @@ public class PreviewDatafeedResponse<TDocument> implements JsonpSerializable {
 		 * Required - API name: {@code data}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>data</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder<TDocument> data(List<TDocument> list) {
 			this.data = _listAddAll(this.data, list);

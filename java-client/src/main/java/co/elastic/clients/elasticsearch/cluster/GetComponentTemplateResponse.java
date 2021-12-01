@@ -107,8 +107,6 @@ public class GetComponentTemplateResponse implements JsonpSerializable {
 		 * Required - API name: {@code component_templates}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>componentTemplates</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder componentTemplates(List<ComponentTemplate> list) {
 			this.componentTemplates = _listAddAll(this.componentTemplates, list);

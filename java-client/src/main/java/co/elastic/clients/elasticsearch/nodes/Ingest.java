@@ -122,8 +122,6 @@ public class Ingest implements JsonpSerializable {
 		 * Required - API name: {@code pipelines}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>pipelines</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder pipelines(Map<String, IngestTotal> map) {
 			this.pipelines = _mapPutAll(this.pipelines, map);

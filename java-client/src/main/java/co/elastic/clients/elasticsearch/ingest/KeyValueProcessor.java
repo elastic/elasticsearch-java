@@ -297,8 +297,6 @@ public class KeyValueProcessor extends ProcessorBase implements ProcessorVariant
 		 * API name: {@code exclude_keys}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>excludeKeys</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder excludeKeys(List<String> list) {
 			this.excludeKeys = _listAddAll(this.excludeKeys, list);
@@ -343,8 +341,6 @@ public class KeyValueProcessor extends ProcessorBase implements ProcessorVariant
 		 * API name: {@code include_keys}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>includeKeys</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder includeKeys(List<String> list) {
 			this.includeKeys = _listAddAll(this.includeKeys, list);

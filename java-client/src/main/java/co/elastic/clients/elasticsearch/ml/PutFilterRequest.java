@@ -166,8 +166,6 @@ public class PutFilterRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code items}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>items</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder items(List<String> list) {
 			this.items = _listAddAll(this.items, list);

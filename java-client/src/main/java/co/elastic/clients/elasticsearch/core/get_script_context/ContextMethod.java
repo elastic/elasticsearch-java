@@ -153,8 +153,6 @@ public class ContextMethod implements JsonpSerializable {
 		 * Required - API name: {@code params}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>params</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder params(List<ContextMethodParam> list) {
 			this.params = _listAddAll(this.params, list);

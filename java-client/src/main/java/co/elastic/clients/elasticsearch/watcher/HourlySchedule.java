@@ -115,8 +115,6 @@ public class HourlySchedule implements ScheduleVariant, JsonpSerializable {
 		 * Required - API name: {@code minute}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>minute</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder minute(List<Integer> list) {
 			this.minute = _listAddAll(this.minute, list);

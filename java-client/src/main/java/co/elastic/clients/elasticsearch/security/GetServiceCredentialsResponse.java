@@ -202,8 +202,6 @@ public class GetServiceCredentialsResponse implements JsonpSerializable {
 		 * Required - API name: {@code tokens}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>tokens</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder tokens(Map<String, EmptyObject> map) {
 			this.tokens = _mapPutAll(this.tokens, map);
@@ -233,8 +231,6 @@ public class GetServiceCredentialsResponse implements JsonpSerializable {
 		 * Required - API name: {@code file_tokens}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>fileTokens</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder fileTokens(Map<String, EmptyObject> map) {
 			this.fileTokens = _mapPutAll(this.fileTokens, map);

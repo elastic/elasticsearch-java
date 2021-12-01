@@ -108,8 +108,6 @@ public class GarbageCollector implements JsonpSerializable {
 		 * Required - API name: {@code collectors}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>collectors</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder collectors(Map<String, GarbageCollectorTotal> map) {
 			this.collectors = _mapPutAll(this.collectors, map);

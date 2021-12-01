@@ -272,8 +272,6 @@ public class PercolateQuery extends QueryBase implements QueryVariant {
 		 * API name: {@code documents}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>documents</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder documents(List<JsonData> list) {
 			this.documents = _listAddAll(this.documents, list);

@@ -160,8 +160,6 @@ public class MachineLearning extends Base {
 		 * Required - API name: {@code datafeeds}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>datafeeds</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder datafeeds(Map<String, Datafeed> map) {
 			this.datafeeds = _mapPutAll(this.datafeeds, map);

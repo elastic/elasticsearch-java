@@ -252,8 +252,6 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 		 * API name: {@code word_list}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>wordList</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final BuilderT wordList(List<String> list) {
 			this.wordList = _listAddAll(this.wordList, list);

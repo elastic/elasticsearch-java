@@ -164,8 +164,6 @@ public class ShardProfile implements JsonpSerializable {
 		 * Required - API name: {@code aggregations}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>aggregations</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder aggregations(List<AggregationProfile> list) {
 			this.aggregations = _listAddAll(this.aggregations, list);
@@ -203,8 +201,6 @@ public class ShardProfile implements JsonpSerializable {
 		 * Required - API name: {@code searches}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>searches</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder searches(List<SearchProfile> list) {
 			this.searches = _listAddAll(this.searches, list);

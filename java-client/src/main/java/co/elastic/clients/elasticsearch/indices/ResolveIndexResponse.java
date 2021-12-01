@@ -153,8 +153,6 @@ public class ResolveIndexResponse implements JsonpSerializable {
 		 * Required - API name: {@code indices}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>indices</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder indices(List<ResolveIndexItem> list) {
 			this.indices = _listAddAll(this.indices, list);
@@ -184,8 +182,6 @@ public class ResolveIndexResponse implements JsonpSerializable {
 		 * Required - API name: {@code aliases}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>aliases</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder aliases(List<ResolveIndexAliasItem> list) {
 			this.aliases = _listAddAll(this.aliases, list);
@@ -215,8 +211,6 @@ public class ResolveIndexResponse implements JsonpSerializable {
 		 * Required - API name: {@code data_streams}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>dataStreams</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder dataStreams(List<ResolveIndexDataStreamsItem> list) {
 			this.dataStreams = _listAddAll(this.dataStreams, list);

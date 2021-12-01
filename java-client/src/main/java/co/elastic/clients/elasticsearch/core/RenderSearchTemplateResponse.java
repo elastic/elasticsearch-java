@@ -109,8 +109,6 @@ public class RenderSearchTemplateResponse implements JsonpSerializable {
 		 * Required - API name: {@code template_output}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>templateOutput</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder templateOutput(Map<String, JsonData> map) {
 			this.templateOutput = _mapPutAll(this.templateOutput, map);

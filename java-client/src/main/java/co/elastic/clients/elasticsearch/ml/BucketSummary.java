@@ -288,8 +288,6 @@ public class BucketSummary implements JsonpSerializable {
 		 * Required - API name: {@code bucket_influencers}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>bucketInfluencers</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder bucketInfluencers(List<BucketInfluencer> list) {
 			this.bucketInfluencers = _listAddAll(this.bucketInfluencers, list);

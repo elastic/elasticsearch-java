@@ -110,8 +110,6 @@ public class GetAutoscalingCapacityResponse implements JsonpSerializable {
 		 * Required - API name: {@code policies}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>policies</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder policies(Map<String, AutoscalingDeciders> map) {
 			this.policies = _mapPutAll(this.policies, map);

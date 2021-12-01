@@ -245,8 +245,6 @@ public class JobForecastStatistics implements JsonpSerializable {
 		 * API name: {@code status}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>status</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder status(Map<String, Long> map) {
 			this.status = _mapPutAll(this.status, map);

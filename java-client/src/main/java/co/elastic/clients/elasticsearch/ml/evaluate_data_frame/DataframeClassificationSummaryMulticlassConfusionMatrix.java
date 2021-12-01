@@ -125,8 +125,6 @@ public class DataframeClassificationSummaryMulticlassConfusionMatrix implements 
 		 * Required - API name: {@code confusion_matrix}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>confusionMatrix</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder confusionMatrix(List<ConfusionMatrixItem> list) {
 			this.confusionMatrix = _listAddAll(this.confusionMatrix, list);

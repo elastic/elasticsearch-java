@@ -97,8 +97,6 @@ public class GetUserRequest extends RequestBase {
 		 * API name: {@code username}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>username</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder username(List<String> list) {
 			this.username = _listAddAll(this.username, list);

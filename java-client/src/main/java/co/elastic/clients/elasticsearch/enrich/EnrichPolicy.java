@@ -184,8 +184,6 @@ public class EnrichPolicy implements JsonpSerializable {
 		 * Required - API name: {@code enrich_fields}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>enrichFields</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder enrichFields(List<String> list) {
 			this.enrichFields = _listAddAll(this.enrichFields, list);
@@ -206,8 +204,6 @@ public class EnrichPolicy implements JsonpSerializable {
 		 * Required - API name: {@code indices}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>indices</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder indices(List<String> list) {
 			this.indices = _listAddAll(this.indices, list);

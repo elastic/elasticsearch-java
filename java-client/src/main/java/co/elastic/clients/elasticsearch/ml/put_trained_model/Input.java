@@ -107,8 +107,6 @@ public class Input implements JsonpSerializable {
 		 * Required - API name: {@code field_names}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>fieldNames</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder fieldNames(List<String> list) {
 			this.fieldNames = _listAddAll(this.fieldNames, list);

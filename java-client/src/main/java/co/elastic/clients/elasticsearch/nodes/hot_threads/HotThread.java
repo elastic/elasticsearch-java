@@ -159,8 +159,6 @@ public class HotThread implements JsonpSerializable {
 		 * Required - API name: {@code hosts}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>hosts</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder hosts(List<String> list) {
 			this.hosts = _listAddAll(this.hosts, list);
@@ -197,8 +195,6 @@ public class HotThread implements JsonpSerializable {
 		 * Required - API name: {@code threads}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>threads</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder threads(List<String> list) {
 			this.threads = _listAddAll(this.threads, list);

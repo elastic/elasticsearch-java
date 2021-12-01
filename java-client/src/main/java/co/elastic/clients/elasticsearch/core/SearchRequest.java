@@ -1257,8 +1257,6 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code aggregations}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>aggregations</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder aggregations(Map<String, Aggregation> map) {
 			this.aggregations = _mapPutAll(this.aggregations, map);
@@ -1395,8 +1393,6 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code docvalue_fields}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>docvalueFields</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder docvalueFields(List<FieldAndFormat> list) {
 			this.docvalueFields = _listAddAll(this.docvalueFields, list);
@@ -1435,8 +1431,6 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code expand_wildcards}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder expandWildcards(List<ExpandWildcard> list) {
 			this.expandWildcards = _listAddAll(this.expandWildcards, list);
@@ -1474,8 +1468,6 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code fields}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>fields</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder fields(List<FieldAndFormat> list) {
 			this.fields = _listAddAll(this.fields, list);
@@ -1563,8 +1555,6 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code index}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>index</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder index(List<String> list) {
 			this.index = _listAddAll(this.index, list);
@@ -1590,8 +1580,6 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code indices_boost}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>indicesBoost</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder indicesBoost(List<Map<String, Double>> list) {
 			this.indicesBoost = _listAddAll(this.indicesBoost, list);
@@ -1769,8 +1757,6 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code rescore}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>rescore</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder rescore(List<Rescore> list) {
 			this.rescore = _listAddAll(this.rescore, list);
@@ -1813,8 +1799,6 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code runtime_mappings}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>runtimeMappings</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder runtimeMappings(Map<String, RuntimeField> map) {
 			this.runtimeMappings = _mapPutAll(this.runtimeMappings, map);
@@ -1853,8 +1837,6 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code script_fields}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>scriptFields</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder scriptFields(Map<String, ScriptField> map) {
 			this.scriptFields = _mapPutAll(this.scriptFields, map);
@@ -1909,8 +1891,6 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code search_after}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>searchAfter</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder searchAfter(List<String> list) {
 			this.searchAfter = _listAddAll(this.searchAfter, list);
@@ -1979,8 +1959,6 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code sort}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>sort</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder sort(List<SortOptions> list) {
 			this.sort = _listAddAll(this.sort, list);
@@ -2014,8 +1992,6 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code stats}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>stats</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder stats(List<String> list) {
 			this.stats = _listAddAll(this.stats, list);
@@ -2045,8 +2021,6 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code stored_fields}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>storedFields</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder storedFields(List<String> list) {
 			this.storedFields = _listAddAll(this.storedFields, list);
@@ -2151,8 +2125,6 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code type}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>type</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder type(List<String> list) {
 			this.type = _listAddAll(this.type, list);

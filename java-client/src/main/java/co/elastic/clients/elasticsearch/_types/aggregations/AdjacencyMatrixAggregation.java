@@ -111,8 +111,6 @@ public class AdjacencyMatrixAggregation extends BucketAggregationBase implements
 		 * API name: {@code filters}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>filters</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder filters(Map<String, Query> map) {
 			this.filters = _mapPutAll(this.filters, map);

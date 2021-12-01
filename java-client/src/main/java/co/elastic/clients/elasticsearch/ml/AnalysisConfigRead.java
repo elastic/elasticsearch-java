@@ -468,8 +468,6 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		 * API name: {@code categorization_filters}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>categorizationFilters</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder categorizationFilters(List<String> list) {
 			this.categorizationFilters = _listAddAll(this.categorizationFilters, list);
@@ -509,8 +507,6 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		 * API name: {@code detectors}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>detectors</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder detectors(List<Detector> list) {
 			this.detectors = _listAddAll(this.detectors, list);
@@ -557,8 +553,6 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		 * API name: {@code influencers}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>influencers</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder influencers(List<String> list) {
 			this.influencers = _listAddAll(this.influencers, list);

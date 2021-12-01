@@ -147,8 +147,6 @@ public class GeoLine implements JsonpSerializable {
 		 * API name: {@code coordinates}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>coordinates</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder coordinates(List<List<Double>> list) {
 			this.coordinates = _listAddAll(this.coordinates, list);

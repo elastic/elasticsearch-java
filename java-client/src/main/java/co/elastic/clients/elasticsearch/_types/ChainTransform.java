@@ -114,8 +114,6 @@ public class ChainTransform implements TransformVariant, JsonpSerializable {
 		 * Required - API name: {@code transforms}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>transforms</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder transforms(List<Transform> list) {
 			this.transforms = _listAddAll(this.transforms, list);

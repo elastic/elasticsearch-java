@@ -137,8 +137,6 @@ public class GetTrainedModelsResponse implements JsonpSerializable {
 		 * API name: {@code trained_model_configs}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>trainedModelConfigs</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder trainedModelConfigs(List<TrainedModelConfig> list) {
 			this.trainedModelConfigs = _listAddAll(this.trainedModelConfigs, list);

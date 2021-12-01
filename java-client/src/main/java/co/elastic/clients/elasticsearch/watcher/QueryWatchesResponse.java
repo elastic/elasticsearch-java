@@ -130,8 +130,6 @@ public class QueryWatchesResponse implements JsonpSerializable {
 		 * Required - API name: {@code watches}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>watches</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder watches(List<QueryWatch> list) {
 			this.watches = _listAddAll(this.watches, list);

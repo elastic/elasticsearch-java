@@ -127,8 +127,6 @@ public class DataframeAnalysisFeatureProcessorMultiEncoding
 		 * API name: {@code processors}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>processors</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder processors(List<Integer> list) {
 			this.processors = _listAddAll(this.processors, list);

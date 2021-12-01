@@ -379,8 +379,6 @@ public class AsyncSearch<TDocument> implements JsonpSerializable {
 		 * API name: {@code aggregations}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>aggregations</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder<TDocument> aggregations(Map<String, Aggregate> map) {
 			this.aggregations = _mapPutAll(this.aggregations, map);
@@ -427,8 +425,6 @@ public class AsyncSearch<TDocument> implements JsonpSerializable {
 		 * API name: {@code fields}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>fields</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder<TDocument> fields(Map<String, JsonData> map) {
 			this.fields = _mapPutAll(this.fields, map);
@@ -527,8 +523,6 @@ public class AsyncSearch<TDocument> implements JsonpSerializable {
 		 * API name: {@code suggest}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>suggest</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder<TDocument> suggest(Map<String, List<Suggestion<TDocument>>> map) {
 			this.suggest = _mapPutAll(this.suggest, map);

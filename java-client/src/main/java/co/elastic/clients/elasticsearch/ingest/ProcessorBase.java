@@ -177,8 +177,6 @@ public abstract class ProcessorBase implements JsonpSerializable {
 		 * API name: {@code on_failure}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>onFailure</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final BuilderT onFailure(List<Processor> list) {
 			this.onFailure = _listAddAll(this.onFailure, list);

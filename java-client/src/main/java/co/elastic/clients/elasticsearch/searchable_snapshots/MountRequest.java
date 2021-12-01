@@ -258,8 +258,6 @@ public class MountRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code ignore_index_settings}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>ignoreIndexSettings</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder ignoreIndexSettings(List<String> list) {
 			this.ignoreIndexSettings = _listAddAll(this.ignoreIndexSettings, list);
@@ -288,8 +286,6 @@ public class MountRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code index_settings}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>indexSettings</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder indexSettings(Map<String, JsonData> map) {
 			this.indexSettings = _mapPutAll(this.indexSettings, map);

@@ -130,8 +130,6 @@ public class GetFiltersResponse implements JsonpSerializable {
 		 * Required - API name: {@code filters}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>filters</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder filters(List<Filter> list) {
 			this.filters = _listAddAll(this.filters, list);

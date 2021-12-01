@@ -209,8 +209,6 @@ public class GetDatafeedsRequest extends RequestBase {
 		 * API name: {@code datafeed_id}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>datafeedId</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder datafeedId(List<String> list) {
 			this.datafeedId = _listAddAll(this.datafeedId, list);

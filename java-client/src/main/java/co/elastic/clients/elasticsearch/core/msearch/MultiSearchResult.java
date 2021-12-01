@@ -130,8 +130,6 @@ public abstract class MultiSearchResult<TDocument> implements JsonpSerializable 
 		 * Required - API name: {@code responses}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>responses</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final BuilderT responses(List<MultiSearchResponseItem<TDocument>> list) {
 			this.responses = _listAddAll(this.responses, list);

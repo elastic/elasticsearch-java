@@ -129,8 +129,6 @@ public class MappingCharFilter extends CharFilterBase implements CharFilterDefin
 		 * Required - API name: {@code mappings}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>mappings</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder mappings(List<String> list) {
 			this.mappings = _listAddAll(this.mappings, list);

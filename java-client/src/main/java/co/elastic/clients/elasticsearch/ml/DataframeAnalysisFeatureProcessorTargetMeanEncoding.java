@@ -209,8 +209,6 @@ public class DataframeAnalysisFeatureProcessorTargetMeanEncoding
 		 * API name: {@code target_map}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>targetMap</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder targetMap(Map<String, JsonData> map) {
 			this.targetMap = _mapPutAll(this.targetMap, map);

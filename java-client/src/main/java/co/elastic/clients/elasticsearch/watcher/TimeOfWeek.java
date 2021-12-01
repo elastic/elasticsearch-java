@@ -128,8 +128,6 @@ public class TimeOfWeek implements JsonpSerializable {
 		 * Required - API name: {@code at}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>at</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder at(List<String> list) {
 			this.at = _listAddAll(this.at, list);
@@ -150,8 +148,6 @@ public class TimeOfWeek implements JsonpSerializable {
 		 * Required - API name: {@code on}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>on</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder on(List<Day> list) {
 			this.on = _listAddAll(this.on, list);

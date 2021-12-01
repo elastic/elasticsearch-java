@@ -130,8 +130,6 @@ public class GetRecordsResponse implements JsonpSerializable {
 		 * Required - API name: {@code records}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>records</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder records(List<Anomaly> list) {
 			this.records = _listAddAll(this.records, list);

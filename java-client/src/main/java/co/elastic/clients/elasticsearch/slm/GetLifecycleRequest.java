@@ -94,8 +94,6 @@ public class GetLifecycleRequest extends RequestBase {
 		 * API name: {@code policy_id}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>policyId</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder policyId(List<String> list) {
 			this.policyId = _listAddAll(this.policyId, list);

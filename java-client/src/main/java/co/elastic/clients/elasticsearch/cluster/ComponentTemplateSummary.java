@@ -201,8 +201,6 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 		 * API name: {@code _meta}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>meta</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder meta(Map<String, JsonData> map) {
 			this.meta = _mapPutAll(this.meta, map);
@@ -231,8 +229,6 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 		 * Required - API name: {@code settings}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>settings</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder settings(Map<String, IndexSettings> map) {
 			this.settings = _mapPutAll(this.settings, map);
@@ -277,8 +273,6 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 		 * API name: {@code aliases}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>aliases</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder aliases(Map<String, AliasDefinition> map) {
 			this.aliases = _mapPutAll(this.aliases, map);

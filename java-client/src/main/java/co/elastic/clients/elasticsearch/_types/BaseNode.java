@@ -181,8 +181,6 @@ public abstract class BaseNode implements JsonpSerializable {
 		 * Required - API name: {@code attributes}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>attributes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final BuilderT attributes(Map<String, String> map) {
 			this.attributes = _mapPutAll(this.attributes, map);
@@ -227,8 +225,6 @@ public abstract class BaseNode implements JsonpSerializable {
 		 * API name: {@code roles}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>roles</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final BuilderT roles(List<NodeRole> list) {
 			this.roles = _listAddAll(this.roles, list);

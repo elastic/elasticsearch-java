@@ -110,8 +110,6 @@ public class KuromojiPartOfSpeechTokenFilter extends TokenFilterBase implements 
 		 * Required - API name: {@code stoptags}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>stoptags</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder stoptags(List<String> list) {
 			this.stoptags = _listAddAll(this.stoptags, list);

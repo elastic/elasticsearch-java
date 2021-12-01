@@ -212,8 +212,6 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 		 * API name: {@code index}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>index</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder index(List<String> list) {
 			this.index = _listAddAll(this.index, list);
@@ -259,8 +257,6 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 		 * API name: {@code type}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>type</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder type(List<String> list) {
 			this.type = _listAddAll(this.type, list);
@@ -285,8 +281,6 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 		 * API name: {@code _value_body}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>searchTemplates</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder searchTemplates(List<RequestItem> list) {
 			this.searchTemplates = _listAddAll(this.searchTemplates, list);

@@ -130,8 +130,6 @@ public class GetScriptLanguagesResponse implements JsonpSerializable {
 		 * Required - API name: {@code language_contexts}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>languageContexts</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder languageContexts(List<LanguageContext> list) {
 			this.languageContexts = _listAddAll(this.languageContexts, list);
@@ -161,8 +159,6 @@ public class GetScriptLanguagesResponse implements JsonpSerializable {
 		 * Required - API name: {@code types_allowed}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>typesAllowed</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder typesAllowed(List<String> list) {
 			this.typesAllowed = _listAddAll(this.typesAllowed, list);

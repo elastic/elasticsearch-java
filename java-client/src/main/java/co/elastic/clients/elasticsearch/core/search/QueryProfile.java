@@ -208,8 +208,6 @@ public class QueryProfile implements JsonpSerializable {
 		 * API name: {@code children}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>children</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder children(List<QueryProfile> list) {
 			this.children = _listAddAll(this.children, list);

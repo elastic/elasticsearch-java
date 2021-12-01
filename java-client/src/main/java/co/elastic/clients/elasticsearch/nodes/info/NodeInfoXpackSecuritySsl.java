@@ -108,8 +108,6 @@ public class NodeInfoXpackSecuritySsl implements JsonpSerializable {
 		 * Required - API name: {@code ssl}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>ssl</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder ssl(Map<String, String> map) {
 			this.ssl = _mapPutAll(this.ssl, map);

@@ -176,8 +176,6 @@ public class DanglingIndex implements JsonpSerializable {
 		 * Required - API name: {@code node_ids}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>nodeIds</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder nodeIds(List<String> list) {
 			this.nodeIds = _listAddAll(this.nodeIds, list);

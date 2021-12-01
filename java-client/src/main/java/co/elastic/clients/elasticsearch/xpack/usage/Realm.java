@@ -262,8 +262,6 @@ public class Realm extends Base {
 		 * API name: {@code name}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>name</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder name(List<String> list) {
 			this.name = _listAddAll(this.name, list);
@@ -284,8 +282,6 @@ public class Realm extends Base {
 		 * API name: {@code order}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>order</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder order(List<Long> list) {
 			this.order = _listAddAll(this.order, list);
@@ -306,8 +302,6 @@ public class Realm extends Base {
 		 * API name: {@code size}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>size</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder size(List<Long> list) {
 			this.size = _listAddAll(this.size, list);
@@ -328,8 +322,6 @@ public class Realm extends Base {
 		 * API name: {@code cache}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>cache</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder cache(List<RealmCache> list) {
 			this.cache = _listAddAll(this.cache, list);
@@ -360,8 +352,6 @@ public class Realm extends Base {
 		 * <p>
 		 * Adds all elements of <code>list</code> to
 		 * <code>hasAuthorizationRealms</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder hasAuthorizationRealms(List<Boolean> list) {
 			this.hasAuthorizationRealms = _listAddAll(this.hasAuthorizationRealms, list);
@@ -383,8 +373,6 @@ public class Realm extends Base {
 		 * <p>
 		 * Adds all elements of <code>list</code> to
 		 * <code>hasDefaultUsernamePattern</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder hasDefaultUsernamePattern(List<Boolean> list) {
 			this.hasDefaultUsernamePattern = _listAddAll(this.hasDefaultUsernamePattern, list);
@@ -405,8 +393,6 @@ public class Realm extends Base {
 		 * API name: {@code has_truststore}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>hasTruststore</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder hasTruststore(List<Boolean> list) {
 			this.hasTruststore = _listAddAll(this.hasTruststore, list);
@@ -428,8 +414,6 @@ public class Realm extends Base {
 		 * <p>
 		 * Adds all elements of <code>list</code> to
 		 * <code>isAuthenticationDelegated</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder isAuthenticationDelegated(List<Boolean> list) {
 			this.isAuthenticationDelegated = _listAddAll(this.isAuthenticationDelegated, list);

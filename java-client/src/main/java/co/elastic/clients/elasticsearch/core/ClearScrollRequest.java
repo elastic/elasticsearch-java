@@ -114,8 +114,6 @@ public class ClearScrollRequest extends RequestBase implements JsonpSerializable
 		 * API name: {@code scroll_id}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>scrollId</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder scrollId(List<String> list) {
 			this.scrollId = _listAddAll(this.scrollId, list);

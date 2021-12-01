@@ -124,8 +124,6 @@ public class Jobs implements JsonpSerializable {
 		 * Detailed job data
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>jobs</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder jobs(Map<String, Job> map) {
 			this.jobs = _mapPutAll(this.jobs, map);

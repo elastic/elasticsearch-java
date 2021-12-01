@@ -129,8 +129,6 @@ public class RemoveProcessor extends ProcessorBase implements ProcessorVariant {
 		 * Required - API name: {@code field}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>field</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder field(List<String> list) {
 			this.field = _listAddAll(this.field, list);

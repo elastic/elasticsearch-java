@@ -176,8 +176,6 @@ public class NodeInfoXpack implements JsonpSerializable {
 		 * API name: {@code notification}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>notification</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder notification(Map<String, JsonData> map) {
 			this.notification = _mapPutAll(this.notification, map);

@@ -195,8 +195,6 @@ public class GetUserPrivilegesResponse implements JsonpSerializable {
 		 * Required - API name: {@code applications}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>applications</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder applications(List<ApplicationPrivileges> list) {
 			this.applications = _listAddAll(this.applications, list);
@@ -227,8 +225,6 @@ public class GetUserPrivilegesResponse implements JsonpSerializable {
 		 * Required - API name: {@code cluster}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>cluster</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder cluster(List<String> list) {
 			this.cluster = _listAddAll(this.cluster, list);
@@ -249,8 +245,6 @@ public class GetUserPrivilegesResponse implements JsonpSerializable {
 		 * Required - API name: {@code global}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>global</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder global(List<GlobalPrivilege> list) {
 			this.global = _listAddAll(this.global, list);
@@ -280,8 +274,6 @@ public class GetUserPrivilegesResponse implements JsonpSerializable {
 		 * Required - API name: {@code indices}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>indices</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder indices(List<IndicesPrivileges> list) {
 			this.indices = _listAddAll(this.indices, list);
@@ -311,8 +303,6 @@ public class GetUserPrivilegesResponse implements JsonpSerializable {
 		 * Required - API name: {@code run_as}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>runAs</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder runAs(List<String> list) {
 			this.runAs = _listAddAll(this.runAs, list);

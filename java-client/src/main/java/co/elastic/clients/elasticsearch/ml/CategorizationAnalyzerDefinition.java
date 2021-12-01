@@ -189,8 +189,6 @@ public class CategorizationAnalyzerDefinition implements JsonpSerializable {
 		 * API name: {@code char_filter}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>charFilter</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder charFilter(List<CharFilter> list) {
 			this.charFilter = _listAddAll(this.charFilter, list);
@@ -240,8 +238,6 @@ public class CategorizationAnalyzerDefinition implements JsonpSerializable {
 		 * API name: {@code filter}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>filter</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder filter(List<TokenFilter> list) {
 			this.filter = _listAddAll(this.filter, list);

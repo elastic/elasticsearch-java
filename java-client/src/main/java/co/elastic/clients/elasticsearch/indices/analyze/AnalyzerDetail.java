@@ -130,8 +130,6 @@ public class AnalyzerDetail implements JsonpSerializable {
 		 * Required - API name: {@code tokens}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>tokens</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder tokens(List<ExplainAnalyzeToken> list) {
 			this.tokens = _listAddAll(this.tokens, list);

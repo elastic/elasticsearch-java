@@ -122,8 +122,6 @@ public class ReloadSearchAnalyzersResponse implements JsonpSerializable {
 		 * Required - API name: {@code reload_details}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>reloadDetails</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder reloadDetails(List<ReloadDetails> list) {
 			this.reloadDetails = _listAddAll(this.reloadDetails, list);

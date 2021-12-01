@@ -35,6 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: xpack.usage.Counter
 
@@ -57,6 +58,10 @@ public class Counter implements JsonpSerializable {
 		this.active = ApiTypeHelper.requireNonNull(builder.active, this, "active");
 		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
 
+	}
+
+	public static Counter counterOf(Function<Builder, ObjectBuilder<Counter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

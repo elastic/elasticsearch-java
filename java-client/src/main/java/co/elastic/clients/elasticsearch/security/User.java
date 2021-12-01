@@ -39,6 +39,7 @@ import java.lang.String;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security._types.User
@@ -76,6 +77,10 @@ public class User implements JsonpSerializable {
 		this.username = ApiTypeHelper.requireNonNull(builder.username, this, "username");
 		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
 
+	}
+
+	public static User userOf(Function<Builder, ObjectBuilder<User>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -234,8 +239,6 @@ public class User implements JsonpSerializable {
 		 * Required - API name: {@code metadata}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>metadata</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final BuilderT metadata(Map<String, JsonData> map) {
 			this.metadata = _mapPutAll(this.metadata, map);
@@ -256,8 +259,6 @@ public class User implements JsonpSerializable {
 		 * Required - API name: {@code roles}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>roles</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final BuilderT roles(List<String> list) {
 			this.roles = _listAddAll(this.roles, list);

@@ -213,8 +213,6 @@ public class GeoDistanceSort implements SortOptionsVariant, JsonpSerializable {
 
 		/**
 		 * Required - Adds all elements of <code>list</code> to <code>location</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder location(List<GeoLocation> list) {
 			this.location = _listAddAll(this.location, list);

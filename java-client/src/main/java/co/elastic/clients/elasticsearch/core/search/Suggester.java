@@ -126,8 +126,6 @@ public class Suggester implements JsonpSerializable {
 		 * The named suggesters
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>suggesters</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder suggesters(Map<String, FieldSuggester> map) {
 			this.suggesters = _mapPutAll(this.suggesters, map);

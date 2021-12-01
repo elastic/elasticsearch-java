@@ -153,8 +153,6 @@ public class ResolveIndexDataStreamsItem implements JsonpSerializable {
 		 * Required - API name: {@code backing_indices}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>backingIndices</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder backingIndices(List<String> list) {
 			this.backingIndices = _listAddAll(this.backingIndices, list);

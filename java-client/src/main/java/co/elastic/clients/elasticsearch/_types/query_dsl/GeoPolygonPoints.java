@@ -107,8 +107,6 @@ public class GeoPolygonPoints implements JsonpSerializable {
 		 * Required - API name: {@code points}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>points</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder points(List<GeoLocation> list) {
 			this.points = _listAddAll(this.points, list);

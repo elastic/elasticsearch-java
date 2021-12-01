@@ -155,8 +155,6 @@ public class EnrichStatsResponse implements JsonpSerializable {
 		 * Required - API name: {@code coordinator_stats}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>coordinatorStats</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder coordinatorStats(List<CoordinatorStats> list) {
 			this.coordinatorStats = _listAddAll(this.coordinatorStats, list);
@@ -186,8 +184,6 @@ public class EnrichStatsResponse implements JsonpSerializable {
 		 * Required - API name: {@code executing_policies}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>executingPolicies</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder executingPolicies(List<ExecutingPolicy> list) {
 			this.executingPolicies = _listAddAll(this.executingPolicies, list);
@@ -217,8 +213,6 @@ public class EnrichStatsResponse implements JsonpSerializable {
 		 * API name: {@code cache_stats}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>cacheStats</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder cacheStats(List<CacheStats> list) {
 			this.cacheStats = _listAddAll(this.cacheStats, list);

@@ -171,8 +171,6 @@ public class CommonGramsTokenFilter extends TokenFilterBase implements TokenFilt
 		 * API name: {@code common_words}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>commonWords</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder commonWords(List<String> list) {
 			this.commonWords = _listAddAll(this.commonWords, list);

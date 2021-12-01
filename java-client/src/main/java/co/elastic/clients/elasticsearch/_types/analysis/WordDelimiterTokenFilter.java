@@ -402,8 +402,6 @@ public class WordDelimiterTokenFilter extends TokenFilterBase implements TokenFi
 		 * API name: {@code protected_words}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>protectedWords</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder protectedWords(List<String> list) {
 			this.protectedWords = _listAddAll(this.protectedWords, list);
@@ -456,8 +454,6 @@ public class WordDelimiterTokenFilter extends TokenFilterBase implements TokenFi
 		 * API name: {@code type_table}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>typeTable</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder typeTable(List<String> list) {
 			this.typeTable = _listAddAll(this.typeTable, list);

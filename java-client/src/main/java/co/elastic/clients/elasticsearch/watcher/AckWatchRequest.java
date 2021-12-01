@@ -108,8 +108,6 @@ public class AckWatchRequest extends RequestBase {
 		 * API name: {@code action_id}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>actionId</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder actionId(List<String> list) {
 			this.actionId = _listAddAll(this.actionId, list);

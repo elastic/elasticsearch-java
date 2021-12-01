@@ -243,8 +243,6 @@ public class PagerDutyEvent implements JsonpSerializable {
 		 * Required - API name: {@code context}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>context</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder context(List<PagerDutyContext> list) {
 			this.context = _listAddAll(this.context, list);

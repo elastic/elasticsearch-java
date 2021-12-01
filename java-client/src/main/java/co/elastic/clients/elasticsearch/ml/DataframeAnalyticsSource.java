@@ -197,8 +197,6 @@ public class DataframeAnalyticsSource implements JsonpSerializable {
 		 * API name: {@code index}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>index</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder index(List<String> list) {
 			this.index = _listAddAll(this.index, list);
@@ -254,8 +252,6 @@ public class DataframeAnalyticsSource implements JsonpSerializable {
 		 * API name: {@code runtime_mappings}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>runtimeMappings</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder runtimeMappings(Map<String, RuntimeField> map) {
 			this.runtimeMappings = _mapPutAll(this.runtimeMappings, map);

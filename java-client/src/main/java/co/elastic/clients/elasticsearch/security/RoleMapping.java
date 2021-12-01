@@ -195,8 +195,6 @@ public class RoleMapping implements JsonpSerializable {
 		 * Required - API name: {@code metadata}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>metadata</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder metadata(Map<String, JsonData> map) {
 			this.metadata = _mapPutAll(this.metadata, map);
@@ -217,8 +215,6 @@ public class RoleMapping implements JsonpSerializable {
 		 * Required - API name: {@code roles}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>roles</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder roles(List<String> list) {
 			this.roles = _listAddAll(this.roles, list);
@@ -254,8 +250,6 @@ public class RoleMapping implements JsonpSerializable {
 		 * API name: {@code role_templates}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>roleTemplates</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder roleTemplates(List<RoleTemplate> list) {
 			this.roleTemplates = _listAddAll(this.roleTemplates, list);

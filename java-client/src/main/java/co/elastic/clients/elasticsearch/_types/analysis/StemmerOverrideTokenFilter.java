@@ -130,8 +130,6 @@ public class StemmerOverrideTokenFilter extends TokenFilterBase implements Token
 		 * API name: {@code rules}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>rules</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder rules(List<String> list) {
 			this.rules = _listAddAll(this.rules, list);

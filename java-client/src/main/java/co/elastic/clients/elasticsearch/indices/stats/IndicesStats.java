@@ -182,8 +182,6 @@ public class IndicesStats implements JsonpSerializable {
 		 * API name: {@code shards}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>shards</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder shards(Map<String, List<ShardStats>> map) {
 			this.shards = _mapPutAll(this.shards, map);

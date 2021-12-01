@@ -199,8 +199,6 @@ public class CompletionSuggester extends SuggesterBase implements FieldSuggester
 		 * API name: {@code contexts}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>contexts</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder contexts(Map<String, List<CompletionContext>> map) {
 			this.contexts = _mapPutAll(this.contexts, map);

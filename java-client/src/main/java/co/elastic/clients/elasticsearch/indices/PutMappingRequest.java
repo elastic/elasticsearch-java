@@ -558,8 +558,6 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		 * API name: {@code _meta}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>meta</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder meta(Map<String, JsonData> map) {
 			this.meta = _mapPutAll(this.meta, map);
@@ -658,8 +656,6 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		 * API name: {@code dynamic_date_formats}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>dynamicDateFormats</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder dynamicDateFormats(List<String> list) {
 			this.dynamicDateFormats = _listAddAll(this.dynamicDateFormats, list);
@@ -686,8 +682,6 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		 * API name: {@code dynamic_templates}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>dynamicTemplates</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder dynamicTemplates(List<Map<String, DynamicTemplate>> list) {
 			this.dynamicTemplates = _listAddAll(this.dynamicTemplates, list);
@@ -714,8 +708,6 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		 * API name: {@code expand_wildcards}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder expandWildcards(List<ExpandWildcard> list) {
 			this.expandWildcards = _listAddAll(this.expandWildcards, list);
@@ -764,8 +756,6 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		 * API name: {@code index}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>index</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder index(List<String> list) {
 			this.index = _listAddAll(this.index, list);
@@ -826,8 +816,6 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		 * API name: {@code properties}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>properties</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder properties(Map<String, Property> map) {
 			this.properties = _mapPutAll(this.properties, map);
@@ -873,8 +861,6 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		 * API name: {@code runtime}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>runtime</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder runtime(Map<String, RuntimeField> map) {
 			this.runtime = _mapPutAll(this.runtime, map);

@@ -207,8 +207,6 @@ public class Term implements JsonpSerializable {
 		 * Required - API name: {@code tokens}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>tokens</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder tokens(List<Token> list) {
 			this.tokens = _listAddAll(this.tokens, list);

@@ -375,8 +375,6 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 		 * API name: {@code direct_generator}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>directGenerator</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder directGenerator(List<DirectGenerator> list) {
 			this.directGenerator = _listAddAll(this.directGenerator, list);

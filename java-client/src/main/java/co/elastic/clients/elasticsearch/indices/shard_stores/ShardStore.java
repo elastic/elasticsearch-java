@@ -229,8 +229,6 @@ public class ShardStore implements JsonpSerializable {
 		 * Required - API name: {@code attributes}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>attributes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder attributes(Map<String, JsonData> map) {
 			this.attributes = _mapPutAll(this.attributes, map);

@@ -183,8 +183,6 @@ public class DeprecationsResponse implements JsonpSerializable {
 		 * Required - API name: {@code cluster_settings}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>clusterSettings</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder clusterSettings(List<Deprecation> list) {
 			this.clusterSettings = _listAddAll(this.clusterSettings, list);
@@ -214,8 +212,6 @@ public class DeprecationsResponse implements JsonpSerializable {
 		 * Required - API name: {@code index_settings}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>indexSettings</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder indexSettings(Map<String, List<Deprecation>> map) {
 			this.indexSettings = _mapPutAll(this.indexSettings, map);
@@ -236,8 +232,6 @@ public class DeprecationsResponse implements JsonpSerializable {
 		 * Required - API name: {@code node_settings}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>nodeSettings</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder nodeSettings(List<Deprecation> list) {
 			this.nodeSettings = _listAddAll(this.nodeSettings, list);
@@ -267,8 +261,6 @@ public class DeprecationsResponse implements JsonpSerializable {
 		 * Required - API name: {@code ml_settings}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>mlSettings</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder mlSettings(List<Deprecation> list) {
 			this.mlSettings = _listAddAll(this.mlSettings, list);

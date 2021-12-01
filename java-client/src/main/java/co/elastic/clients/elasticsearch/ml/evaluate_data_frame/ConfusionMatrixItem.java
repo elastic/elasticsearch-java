@@ -170,8 +170,6 @@ public class ConfusionMatrixItem implements JsonpSerializable {
 		 * Required - API name: {@code predicted_classes}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>predictedClasses</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder predictedClasses(List<ConfusionMatrixPrediction> list) {
 			this.predictedClasses = _listAddAll(this.predictedClasses, list);

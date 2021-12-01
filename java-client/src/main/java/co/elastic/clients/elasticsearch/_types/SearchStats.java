@@ -415,8 +415,6 @@ public class SearchStats implements JsonpSerializable {
 		 * API name: {@code groups}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>groups</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder groups(Map<String, SearchStats> map) {
 			this.groups = _mapPutAll(this.groups, map);

@@ -266,8 +266,6 @@ public class KuromojiTokenizer extends TokenizerBase implements TokenizerDefinit
 		 * API name: {@code user_dictionary_rules}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>userDictionaryRules</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder userDictionaryRules(List<String> list) {
 			this.userDictionaryRules = _listAddAll(this.userDictionaryRules, list);

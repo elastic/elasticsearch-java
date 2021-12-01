@@ -183,8 +183,6 @@ public class EdgeNGramTokenizer extends TokenizerBase implements TokenizerDefini
 		 * Required - API name: {@code token_chars}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>tokenChars</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder tokenChars(List<TokenChar> list) {
 			this.tokenChars = _listAddAll(this.tokenChars, list);

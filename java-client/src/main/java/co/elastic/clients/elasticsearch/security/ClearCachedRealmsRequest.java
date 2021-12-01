@@ -109,8 +109,6 @@ public class ClearCachedRealmsRequest extends RequestBase {
 		 * API name: {@code realms}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>realms</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder realms(List<String> list) {
 			this.realms = _listAddAll(this.realms, list);
@@ -135,8 +133,6 @@ public class ClearCachedRealmsRequest extends RequestBase {
 		 * API name: {@code usernames}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>usernames</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder usernames(List<String> list) {
 			this.usernames = _listAddAll(this.usernames, list);

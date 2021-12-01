@@ -108,8 +108,6 @@ public class ProcessorGrokResponse implements JsonpSerializable {
 		 * Required - API name: {@code patterns}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>patterns</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder patterns(Map<String, String> map) {
 			this.patterns = _mapPutAll(this.patterns, map);

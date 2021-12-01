@@ -131,8 +131,6 @@ public abstract class CorePropertyBase extends PropertyBase {
 		 * API name: {@code copy_to}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>copyTo</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final BuilderT copyTo(List<String> list) {
 			this.copyTo = _listAddAll(this.copyTo, list);

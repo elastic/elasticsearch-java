@@ -107,8 +107,6 @@ public class ManageUserPrivileges implements JsonpSerializable {
 		 * Required - API name: {@code applications}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>applications</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder applications(List<String> list) {
 			this.applications = _listAddAll(this.applications, list);

@@ -177,8 +177,6 @@ public class RolloverResponse extends AcknowledgedResponseBase {
 		 * Required - API name: {@code conditions}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>conditions</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder conditions(Map<String, Boolean> map) {
 			this.conditions = _mapPutAll(this.conditions, map);

@@ -183,8 +183,6 @@ public class UserAgentProcessor extends ProcessorBase implements ProcessorVarian
 		 * Required - API name: {@code options}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>options</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder options(List<UserAgentProperty> list) {
 			this.options = _listAddAll(this.options, list);

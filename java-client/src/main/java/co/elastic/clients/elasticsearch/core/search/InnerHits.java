@@ -466,8 +466,6 @@ public class InnerHits implements JsonpSerializable {
 		 * API name: {@code docvalue_fields}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>docvalueFields</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder docvalueFields(List<FieldAndFormat> list) {
 			this.docvalueFields = _listAddAll(this.docvalueFields, list);
@@ -528,8 +526,6 @@ public class InnerHits implements JsonpSerializable {
 		 * API name: {@code script_fields}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>scriptFields</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder scriptFields(Map<String, ScriptField> map) {
 			this.scriptFields = _mapPutAll(this.scriptFields, map);
@@ -567,8 +563,6 @@ public class InnerHits implements JsonpSerializable {
 		 * API name: {@code fields}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>fields</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder fields(List<String> list) {
 			this.fields = _listAddAll(this.fields, list);
@@ -589,8 +583,6 @@ public class InnerHits implements JsonpSerializable {
 		 * API name: {@code sort}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>sort</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder sort(List<SortOptions> list) {
 			this.sort = _listAddAll(this.sort, list);
@@ -635,8 +627,6 @@ public class InnerHits implements JsonpSerializable {
 		 * API name: {@code stored_field}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>storedField</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder storedField(List<String> list) {
 			this.storedField = _listAddAll(this.storedField, list);

@@ -107,8 +107,6 @@ public class GetNodeResponse implements JsonpSerializable {
 		 * Required - API name: {@code nodes}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>nodes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder nodes(List<NodeShutdownStatus> list) {
 			this.nodes = _listAddAll(this.nodes, list);

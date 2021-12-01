@@ -229,8 +229,6 @@ public class RankEvalRequestItem implements JsonpSerializable {
 		 * API name: {@code ratings}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>ratings</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder ratings(List<DocumentRating> list) {
 			this.ratings = _listAddAll(this.ratings, list);
@@ -276,8 +274,6 @@ public class RankEvalRequestItem implements JsonpSerializable {
 		 * API name: {@code params}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>params</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder params(Map<String, JsonData> map) {
 			this.params = _mapPutAll(this.params, map);

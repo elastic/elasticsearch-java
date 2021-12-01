@@ -188,8 +188,6 @@ public class SnapshotStatusRequest extends RequestBase {
 		 * API name: {@code snapshot}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>snapshot</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder snapshot(List<String> list) {
 			this.snapshot = _listAddAll(this.snapshot, list);

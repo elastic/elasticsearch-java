@@ -166,8 +166,6 @@ public class ValidateQueryResponse implements JsonpSerializable {
 		 * API name: {@code explanations}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>explanations</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder explanations(List<IndicesValidationExplanation> list) {
 			this.explanations = _listAddAll(this.explanations, list);

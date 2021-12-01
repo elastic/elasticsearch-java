@@ -306,8 +306,6 @@ public class State implements JsonpSerializable {
 		 * Required - API name: {@code headers}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>headers</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder headers(Map<String, List<String>> map) {
 			this.headers = _mapPutAll(this.headers, map);

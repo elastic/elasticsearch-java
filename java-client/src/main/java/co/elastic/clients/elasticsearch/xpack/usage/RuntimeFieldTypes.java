@@ -97,8 +97,6 @@ public class RuntimeFieldTypes extends Base {
 		 * Required - API name: {@code field_types}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>fieldTypes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder fieldTypes(List<RuntimeFieldsType> list) {
 			this.fieldTypes = _listAddAll(this.fieldTypes, list);

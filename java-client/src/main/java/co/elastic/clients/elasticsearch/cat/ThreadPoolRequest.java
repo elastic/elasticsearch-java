@@ -124,8 +124,6 @@ public class ThreadPoolRequest extends CatRequestBase {
 		 * API name: {@code thread_pool_patterns}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>threadPoolPatterns</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder threadPoolPatterns(List<String> list) {
 			this.threadPoolPatterns = _listAddAll(this.threadPoolPatterns, list);

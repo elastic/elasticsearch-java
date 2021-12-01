@@ -234,8 +234,6 @@ public abstract class PropertyBase implements JsonpSerializable {
 		 * API name: {@code local_metadata}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>localMetadata</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final BuilderT localMetadata(Map<String, JsonData> map) {
 			this.localMetadata = _mapPutAll(this.localMetadata, map);
@@ -256,8 +254,6 @@ public abstract class PropertyBase implements JsonpSerializable {
 		 * API name: {@code meta}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>meta</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final BuilderT meta(Map<String, String> map) {
 			this.meta = _mapPutAll(this.meta, map);
@@ -286,8 +282,6 @@ public abstract class PropertyBase implements JsonpSerializable {
 		 * API name: {@code properties}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>properties</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final BuilderT properties(Map<String, Property> map) {
 			this.properties = _mapPutAll(this.properties, map);
@@ -333,8 +327,6 @@ public abstract class PropertyBase implements JsonpSerializable {
 		 * API name: {@code fields}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>fields</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final BuilderT fields(Map<String, Property> map) {
 			this.fields = _mapPutAll(this.fields, map);

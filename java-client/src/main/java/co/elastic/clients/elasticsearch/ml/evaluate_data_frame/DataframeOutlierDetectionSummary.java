@@ -195,8 +195,6 @@ public class DataframeOutlierDetectionSummary implements JsonpSerializable {
 		 * API name: {@code precision}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>precision</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder precision(Map<String, Double> map) {
 			this.precision = _mapPutAll(this.precision, map);
@@ -217,8 +215,6 @@ public class DataframeOutlierDetectionSummary implements JsonpSerializable {
 		 * API name: {@code recall}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>recall</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder recall(Map<String, Double> map) {
 			this.recall = _mapPutAll(this.recall, map);
@@ -239,8 +235,6 @@ public class DataframeOutlierDetectionSummary implements JsonpSerializable {
 		 * API name: {@code confusion_matrix}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>confusionMatrix</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder confusionMatrix(Map<String, ConfusionMatrixThreshold> map) {
 			this.confusionMatrix = _mapPutAll(this.confusionMatrix, map);

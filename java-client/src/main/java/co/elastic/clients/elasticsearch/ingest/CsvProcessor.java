@@ -280,8 +280,6 @@ public class CsvProcessor extends ProcessorBase implements ProcessorVariant {
 		 * Required - API name: {@code target_fields}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>targetFields</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder targetFields(List<String> list) {
 			this.targetFields = _listAddAll(this.targetFields, list);

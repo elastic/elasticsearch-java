@@ -195,8 +195,6 @@ public class PostDataRequest<TData> extends RequestBase implements JsonpSerializ
 		 * API name: {@code _value_body}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>data</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder<TData> data(List<TData> list) {
 			this.data = _listAddAll(this.data, list);

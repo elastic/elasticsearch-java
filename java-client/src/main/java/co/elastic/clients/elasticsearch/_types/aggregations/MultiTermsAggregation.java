@@ -107,8 +107,6 @@ public class MultiTermsAggregation extends BucketAggregationBase implements Aggr
 		 * Required - API name: {@code terms}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>terms</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder terms(List<MultiTermLookup> list) {
 			this.terms = _listAddAll(this.terms, list);
