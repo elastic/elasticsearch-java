@@ -38,6 +38,7 @@ import java.lang.String;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: autoscaling._types.AutoscalingPolicy
@@ -45,7 +46,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/autoscaling/_types/AutoscalingPolicy.ts#L23-L27">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/autoscaling/_types/AutoscalingPolicy.ts#L23-L27">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -61,6 +62,10 @@ public class AutoscalingPolicy implements JsonpSerializable {
 		this.roles = ApiTypeHelper.unmodifiableRequired(builder.roles, this, "roles");
 		this.deciders = ApiTypeHelper.unmodifiableRequired(builder.deciders, this, "deciders");
 
+	}
+
+	public static AutoscalingPolicy autoscalingPolicyOf(Function<Builder, ObjectBuilder<AutoscalingPolicy>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -152,8 +157,6 @@ public class AutoscalingPolicy implements JsonpSerializable {
 		 * Required - API name: {@code roles}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>roles</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final BuilderT roles(List<String> list) {
 			this.roles = _listAddAll(this.roles, list);
@@ -176,8 +179,6 @@ public class AutoscalingPolicy implements JsonpSerializable {
 		 * API name: {@code deciders}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>deciders</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final BuilderT deciders(Map<String, JsonData> map) {
 			this.deciders = _mapPutAll(this.deciders, map);

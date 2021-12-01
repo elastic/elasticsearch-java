@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
  * by an ingest pipeline.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/delete_trained_model/MlDeleteTrainedModelRequest.ts#L23-L38">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/delete_trained_model/MlDeleteTrainedModelRequest.ts#L23-L38">API
  *      specification</a>
  */
 

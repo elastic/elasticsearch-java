@@ -36,7 +36,7 @@ import java.util.Objects;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/simulate_index_template/IndicesSimulateIndexTemplateResponse.ts#L20-L22">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/simulate_index_template/IndicesSimulateIndexTemplateResponse.ts#L20-L22">API
  *      specification</a>
  */
 

@@ -61,7 +61,7 @@ import javax.annotation.Nullable;
  * request.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/bulk/BulkRequest.ts#L33-L58">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/bulk/BulkRequest.ts#L33-L58">API
  *      specification</a>
  */
 
@@ -336,8 +336,6 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		 * API name: {@code _source_excludes}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>sourceExcludes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder sourceExcludes(List<String> list) {
 			this.sourceExcludes = _listAddAll(this.sourceExcludes, list);
@@ -364,8 +362,6 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		 * API name: {@code _source_includes}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>sourceIncludes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder sourceIncludes(List<String> list) {
 			this.sourceIncludes = _listAddAll(this.sourceIncludes, list);
@@ -501,8 +497,6 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		 * API name: {@code _value_body}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>operations</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder operations(List<BulkOperation> list) {
 			this.operations = _listAddAll(this.operations, list);

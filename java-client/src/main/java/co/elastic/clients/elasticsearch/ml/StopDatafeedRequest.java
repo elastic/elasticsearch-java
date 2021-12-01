@@ -53,7 +53,7 @@ import javax.annotation.Nullable;
  * throughout its lifecycle.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/stop_datafeed/MlStopDatafeedRequest.ts#L24-L78">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/stop_datafeed/MlStopDatafeedRequest.ts#L24-L78">API
  *      specification</a>
  */
 @JsonpDeserializable

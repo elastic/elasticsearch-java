@@ -55,7 +55,7 @@ import javax.annotation.Nullable;
  * not created by data frame analytics.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/put_trained_model/MlPutTrainedModelRequest.ts#L27-L82">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/put_trained_model/MlPutTrainedModelRequest.ts#L27-L82">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -400,8 +400,6 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 		 * API name: {@code tags}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>tags</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder tags(List<String> list) {
 			this.tags = _listAddAll(this.tags, list);

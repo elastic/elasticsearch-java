@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
  * Returns data streams.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/get_data_stream/IndicesGetDataStreamRequest.ts#L23-L35">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/get_data_stream/IndicesGetDataStreamRequest.ts#L23-L35">API
  *      specification</a>
  */
 
@@ -113,8 +113,6 @@ public class GetDataStreamRequest extends RequestBase {
 		 * API name: {@code expand_wildcards}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder expandWildcards(List<ExpandWildcard> list) {
 			this.expandWildcards = _listAddAll(this.expandWildcards, list);
@@ -141,8 +139,6 @@ public class GetDataStreamRequest extends RequestBase {
 		 * API name: {@code name}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>name</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder name(List<String> list) {
 			this.name = _listAddAll(this.name, list);

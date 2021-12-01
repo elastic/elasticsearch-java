@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/security/create_api_key/types.ts#L26-L30">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/create_api_key/types.ts#L26-L30">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -153,8 +153,6 @@ public class RoleDescriptor implements JsonpSerializable {
 		 * Required - API name: {@code cluster}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>cluster</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder cluster(List<String> list) {
 			this.cluster = _listAddAll(this.cluster, list);
@@ -175,8 +173,6 @@ public class RoleDescriptor implements JsonpSerializable {
 		 * Required - API name: {@code index}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>index</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder index(List<IndexPrivileges> list) {
 			this.index = _listAddAll(this.index, list);
@@ -206,8 +202,6 @@ public class RoleDescriptor implements JsonpSerializable {
 		 * API name: {@code applications}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>applications</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder applications(List<ApplicationPrivileges> list) {
 			this.applications = _listAddAll(this.applications, list);

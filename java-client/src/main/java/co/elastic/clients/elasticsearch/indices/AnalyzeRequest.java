@@ -55,7 +55,7 @@ import javax.annotation.Nullable;
  * the text.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/analyze/IndicesAnalyzeRequest.ts#L27-L47">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/analyze/IndicesAnalyzeRequest.ts#L27-L47">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -313,8 +313,6 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code attributes}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>attributes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder attributes(List<String> list) {
 			this.attributes = _listAddAll(this.attributes, list);
@@ -335,8 +333,6 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code char_filter}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>charFilter</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder charFilter(List<CharFilter> list) {
 			this.charFilter = _listAddAll(this.charFilter, list);
@@ -382,8 +378,6 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code filter}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>filter</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder filter(List<TokenFilter> list) {
 			this.filter = _listAddAll(this.filter, list);
@@ -431,8 +425,6 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code text}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>text</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder text(List<String> list) {
 			this.text = _listAddAll(this.text, list);

@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/analysis/token_filters.ts#L311-L315">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L311-L315">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -130,8 +130,6 @@ public class StemmerOverrideTokenFilter extends TokenFilterBase implements Token
 		 * API name: {@code rules}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>rules</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder rules(List<String> list) {
 			this.rules = _listAddAll(this.rules, list);

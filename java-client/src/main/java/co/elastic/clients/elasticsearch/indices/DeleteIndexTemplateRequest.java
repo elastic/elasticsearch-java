@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  * Deletes an index template.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/delete_index_template/IndicesDeleteIndexTemplateRequest.ts#L23-L32">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/delete_index_template/IndicesDeleteIndexTemplateRequest.ts#L23-L32">API
  *      specification</a>
  */
 

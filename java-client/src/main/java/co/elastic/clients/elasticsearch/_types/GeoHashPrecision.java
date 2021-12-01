@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  * distance measure like &quot;1km&quot;, &quot;10m&quot;.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/Geo.ts#L76-L80">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Geo.ts#L76-L80">API
  *      specification</a>
  */
 @JsonpDeserializable

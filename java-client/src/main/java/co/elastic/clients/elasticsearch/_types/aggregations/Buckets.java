@@ -53,7 +53,7 @@ import javax.annotation.Nullable;
  * dictionary.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/Aggregate.ts#L300-L309">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L300-L309">API
  *      specification</a>
  */
 

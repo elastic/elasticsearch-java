@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/mget/MultiGetResponse.ts#L22-L26">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/mget/MultiGetResponse.ts#L22-L26">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -118,8 +118,6 @@ public class MgetResponse<TDocument> implements JsonpSerializable {
 		 * Required - API name: {@code docs}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>docs</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder<TDocument> docs(List<MultiGetResponseItem<TDocument>> list) {
 			this.docs = _listAddAll(this.docs, list);

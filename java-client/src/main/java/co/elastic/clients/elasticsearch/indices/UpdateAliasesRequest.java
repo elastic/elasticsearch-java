@@ -52,7 +52,7 @@ import javax.annotation.Nullable;
  * Updates index aliases.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/update_aliases/IndicesUpdateAliasesRequest.ts#L24-L37">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/update_aliases/IndicesUpdateAliasesRequest.ts#L24-L37">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -150,8 +150,6 @@ public class UpdateAliasesRequest extends RequestBase implements JsonpSerializab
 		 * API name: {@code actions}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>actions</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder actions(List<Action> list) {
 			this.actions = _listAddAll(this.actions, list);

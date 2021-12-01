@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/mapping/core.ts#L54-L58">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/core.ts#L54-L58">API
  *      specification</a>
  */
 
@@ -131,8 +131,6 @@ public abstract class CorePropertyBase extends PropertyBase {
 		 * API name: {@code copy_to}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>copyTo</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final BuilderT copyTo(List<String> list) {
 			this.copyTo = _listAddAll(this.copyTo, list);

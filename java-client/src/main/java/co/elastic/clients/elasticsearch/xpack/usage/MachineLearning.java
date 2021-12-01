@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/xpack/usage/types.ts#L332-L340">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L332-L340">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -160,8 +160,6 @@ public class MachineLearning extends Base {
 		 * Required - API name: {@code datafeeds}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>datafeeds</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder datafeeds(Map<String, Datafeed> map) {
 			this.datafeeds = _mapPutAll(this.datafeeds, map);

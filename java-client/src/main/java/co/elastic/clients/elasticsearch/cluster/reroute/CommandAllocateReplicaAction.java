@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-cluster.html">Documentation
  *      on elastic.co</a>
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cluster/reroute/types.ts#L71-L78">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/reroute/types.ts#L71-L78">API
  *      specification</a>
  */
 @JsonpDeserializable

@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
  * Invalidates one or more API keys.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/security/invalidate_api_key/SecurityInvalidateApiKeyRequest.ts#L23-L37">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/invalidate_api_key/SecurityInvalidateApiKeyRequest.ts#L23-L37">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -223,8 +223,6 @@ public class InvalidateApiKeyRequest extends RequestBase implements JsonpSeriali
 		 * API name: {@code ids}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>ids</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder ids(List<String> list) {
 			this.ids = _listAddAll(this.ids, list);

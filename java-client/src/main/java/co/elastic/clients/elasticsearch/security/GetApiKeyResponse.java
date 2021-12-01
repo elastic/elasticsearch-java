@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/security/get_api_key/SecurityGetApiKeyResponse.ts#L22-L24">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_api_key/SecurityGetApiKeyResponse.ts#L22-L24">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -107,8 +107,6 @@ public class GetApiKeyResponse implements JsonpSerializable {
 		 * Required - API name: {@code api_keys}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>apiKeys</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder apiKeys(List<ApiKey> list) {
 			this.apiKeys = _listAddAll(this.apiKeys, list);

@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/TrainedModel.ts#L58-L88">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/TrainedModel.ts#L58-L88">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -112,6 +112,10 @@ public class TrainedModelConfig implements JsonpSerializable {
 		this.licenseLevel = builder.licenseLevel;
 		this.metadata = builder.metadata;
 
+	}
+
+	public static TrainedModelConfig trainedModelConfigOf(Function<Builder, ObjectBuilder<TrainedModelConfig>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -448,8 +452,6 @@ public class TrainedModelConfig implements JsonpSerializable {
 		 * API name: {@code tags}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>tags</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final BuilderT tags(List<String> list) {
 			this.tags = _listAddAll(this.tags, list);
@@ -522,8 +524,6 @@ public class TrainedModelConfig implements JsonpSerializable {
 		 * API name: {@code default_field_map}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>defaultFieldMap</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final BuilderT defaultFieldMap(Map<String, String> map) {
 			this.defaultFieldMap = _mapPutAll(this.defaultFieldMap, map);

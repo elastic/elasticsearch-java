@@ -35,13 +35,14 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: xpack.usage.Counter
 
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/xpack/usage/types.ts#L33-L36">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L33-L36">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -57,6 +58,10 @@ public class Counter implements JsonpSerializable {
 		this.active = ApiTypeHelper.requireNonNull(builder.active, this, "active");
 		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
 
+	}
+
+	public static Counter counterOf(Function<Builder, ObjectBuilder<Counter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

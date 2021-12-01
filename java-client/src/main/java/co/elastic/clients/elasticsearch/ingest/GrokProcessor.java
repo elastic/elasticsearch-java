@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ingest/_types/Processors.ts#L220-L226">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/_types/Processors.ts#L220-L226">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -203,8 +203,6 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 		 * Required - API name: {@code pattern_definitions}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>patternDefinitions</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder patternDefinitions(Map<String, String> map) {
 			this.patternDefinitions = _mapPutAll(this.patternDefinitions, map);
@@ -225,8 +223,6 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 		 * Required - API name: {@code patterns}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>patterns</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder patterns(List<String> list) {
 			this.patterns = _listAddAll(this.patterns, list);

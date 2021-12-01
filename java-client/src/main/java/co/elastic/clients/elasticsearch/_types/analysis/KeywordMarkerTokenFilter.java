@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/analysis/token_filters.ts#L229-L235">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L229-L235">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -179,8 +179,6 @@ public class KeywordMarkerTokenFilter extends TokenFilterBase implements TokenFi
 		 * API name: {@code keywords}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>keywords</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder keywords(List<String> list) {
 			this.keywords = _listAddAll(this.keywords, list);

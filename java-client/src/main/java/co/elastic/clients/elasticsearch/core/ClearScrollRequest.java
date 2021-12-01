@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
  * Explicitly clears the search context for a scroll.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/clear_scroll/ClearScrollRequest.ts#L23-L35">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/clear_scroll/ClearScrollRequest.ts#L23-L35">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -114,8 +114,6 @@ public class ClearScrollRequest extends RequestBase implements JsonpSerializable
 		 * API name: {@code scroll_id}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>scrollId</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder scrollId(List<String> list) {
 			this.scrollId = _listAddAll(this.scrollId, list);

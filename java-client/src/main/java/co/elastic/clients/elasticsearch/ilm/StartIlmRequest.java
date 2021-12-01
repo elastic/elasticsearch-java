@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  * Start the index lifecycle management (ILM) plugin.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ilm/start/StartIlmRequest.ts#L23-L33">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ilm/start/StartIlmRequest.ts#L23-L33">API
  *      specification</a>
  */
 

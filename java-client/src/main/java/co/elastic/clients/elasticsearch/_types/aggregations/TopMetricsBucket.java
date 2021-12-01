@@ -41,7 +41,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/Aggregate.ts#L664-L666">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L664-L666">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -99,8 +99,6 @@ public class TopMetricsBucket extends MultiBucketBase {
 		 * Required - API name: {@code top}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>top</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder top(List<TopMetrics> list) {
 			this.top = _listAddAll(this.top, list);

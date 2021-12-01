@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cat/pending_tasks/CatPendingTasksResponse.ts#L22-L24">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/pending_tasks/CatPendingTasksResponse.ts#L22-L24">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -100,8 +100,6 @@ public class PendingTasksResponse implements JsonpSerializable {
 		 * API name: {@code _value_body}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>valueBody</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder valueBody(List<PendingTasksRecord> list) {
 			this.valueBody = _listAddAll(this.valueBody, list);

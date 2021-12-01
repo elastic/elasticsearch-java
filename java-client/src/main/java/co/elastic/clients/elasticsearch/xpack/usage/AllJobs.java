@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/xpack/usage/types.ts#L316-L322">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L316-L322">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -201,8 +201,6 @@ public class AllJobs implements JsonpSerializable {
 		 * Required - API name: {@code detectors}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>detectors</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder detectors(Map<String, Integer> map) {
 			this.detectors = _mapPutAll(this.detectors, map);
@@ -223,8 +221,6 @@ public class AllJobs implements JsonpSerializable {
 		 * Required - API name: {@code created_by}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>createdBy</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder createdBy(Map<String, String> map) {
 			this.createdBy = _mapPutAll(this.createdBy, map);
@@ -245,8 +241,6 @@ public class AllJobs implements JsonpSerializable {
 		 * Required - API name: {@code model_size}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>modelSize</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder modelSize(Map<String, Integer> map) {
 			this.modelSize = _mapPutAll(this.modelSize, map);
@@ -267,8 +261,6 @@ public class AllJobs implements JsonpSerializable {
 		 * Required - API name: {@code forecasts}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>forecasts</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder forecasts(Map<String, Integer> map) {
 			this.forecasts = _mapPutAll(this.forecasts, map);

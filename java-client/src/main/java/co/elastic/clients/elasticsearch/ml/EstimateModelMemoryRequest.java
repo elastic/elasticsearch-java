@@ -53,7 +53,7 @@ import javax.annotation.Nullable;
  * estimates for the fields it references.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/estimate_model_memory/MlEstimateModelMemoryRequest.ts#L26-L61">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/estimate_model_memory/MlEstimateModelMemoryRequest.ts#L26-L61">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -207,8 +207,6 @@ public class EstimateModelMemoryRequest extends RequestBase implements JsonpSeri
 		 * API name: {@code max_bucket_cardinality}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>maxBucketCardinality</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder maxBucketCardinality(Map<String, Long> map) {
 			this.maxBucketCardinality = _mapPutAll(this.maxBucketCardinality, map);
@@ -244,8 +242,6 @@ public class EstimateModelMemoryRequest extends RequestBase implements JsonpSeri
 		 * API name: {@code overall_cardinality}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>overallCardinality</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder overallCardinality(Map<String, Long> map) {
 			this.overallCardinality = _mapPutAll(this.overallCardinality, map);

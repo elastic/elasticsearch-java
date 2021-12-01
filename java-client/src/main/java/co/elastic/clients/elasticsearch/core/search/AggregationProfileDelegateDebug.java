@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/search/_types/profile.ts#L62-L68">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/profile.ts#L62-L68">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -205,8 +205,6 @@ public class AggregationProfileDelegateDebug implements JsonpSerializable {
 		 * API name: {@code filters}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>filters</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder filters(List<AggregationProfileDelegateDebugFilter> list) {
 			this.filters = _listAddAll(this.filters, list);

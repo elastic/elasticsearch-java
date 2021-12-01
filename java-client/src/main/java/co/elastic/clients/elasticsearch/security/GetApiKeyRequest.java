@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
  * Retrieves information for one or more API keys.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/security/get_api_key/SecurityGetApiKeyRequest.ts#L23-L36">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_api_key/SecurityGetApiKeyRequest.ts#L23-L36">API
  *      specification</a>
  */
 

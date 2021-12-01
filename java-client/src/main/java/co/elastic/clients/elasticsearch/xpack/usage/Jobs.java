@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/xpack/usage/types.ts#L328-L330">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L328-L330">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -124,8 +124,6 @@ public class Jobs implements JsonpSerializable {
 		 * Detailed job data
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>jobs</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder jobs(Map<String, Job> map) {
 			this.jobs = _mapPutAll(this.jobs, map);

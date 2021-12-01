@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
  * Resumes a follower index that has been paused
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ccr/resume_follow/ResumeFollowIndexRequest.ts#L25-L46">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ccr/resume_follow/ResumeFollowIndexRequest.ts#L25-L46">API
  *      specification</a>
  */
 @JsonpDeserializable

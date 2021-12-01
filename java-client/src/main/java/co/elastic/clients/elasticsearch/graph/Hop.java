@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/graph/_types/Hop.ts#L23-L27">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/graph/_types/Hop.ts#L23-L27">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -172,8 +172,6 @@ public class Hop implements JsonpSerializable {
 		 * Required - API name: {@code vertices}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>vertices</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder vertices(List<VertexDefinition> list) {
 			this.vertices = _listAddAll(this.vertices, list);

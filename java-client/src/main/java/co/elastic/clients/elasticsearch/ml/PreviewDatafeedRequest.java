@@ -57,7 +57,7 @@ import javax.annotation.Nullable;
  * use secondary authorization headers to supply the credentials.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/preview_datafeed/MlPreviewDatafeedRequest.ts#L25-L64">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/preview_datafeed/MlPreviewDatafeedRequest.ts#L25-L64">API
  *      specification</a>
  */
 @JsonpDeserializable

@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/DataframeEvaluation.ts#L64-L71">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/DataframeEvaluation.ts#L64-L71">API
  *      specification</a>
  */
 
@@ -180,8 +180,6 @@ public abstract class DataframeEvaluationMetrics implements JsonpSerializable {
 		 * API name: {@code precision}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>precision</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final BuilderT precision(Map<String, JsonData> map) {
 			this.precision = _mapPutAll(this.precision, map);
@@ -206,8 +204,6 @@ public abstract class DataframeEvaluationMetrics implements JsonpSerializable {
 		 * API name: {@code recall}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>recall</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final BuilderT recall(Map<String, JsonData> map) {
 			this.recall = _mapPutAll(this.recall, map);

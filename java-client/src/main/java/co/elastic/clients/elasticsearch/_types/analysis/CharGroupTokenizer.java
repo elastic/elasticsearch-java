@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/analysis/tokenizers.ts#L55-L59">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/tokenizers.ts#L55-L59">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -130,8 +130,6 @@ public class CharGroupTokenizer extends TokenizerBase implements TokenizerDefini
 		 * Required - API name: {@code tokenize_on_chars}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>tokenizeOnChars</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder tokenizeOnChars(List<String> list) {
 			this.tokenizeOnChars = _listAddAll(this.tokenizeOnChars, list);

@@ -38,7 +38,7 @@ import java.util.function.Function;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/delete_forecast/MlDeleteForecastResponse.ts#L22-L22">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/delete_forecast/MlDeleteForecastResponse.ts#L22-L22">API
  *      specification</a>
  */
 @JsonpDeserializable

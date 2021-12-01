@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ingest/_types/Processors.ts#L287-L290">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/_types/Processors.ts#L287-L290">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -129,8 +129,6 @@ public class RemoveProcessor extends ProcessorBase implements ProcessorVariant {
 		 * Required - API name: {@code field}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>field</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder field(List<String> list) {
 			this.field = _listAddAll(this.field, list);

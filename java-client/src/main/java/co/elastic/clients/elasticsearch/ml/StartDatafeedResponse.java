@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/start_datafeed/MlStartDatafeedResponse.ts#L22-L34">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/start_datafeed/MlStartDatafeedResponse.ts#L22-L34">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -133,8 +133,6 @@ public class StartDatafeedResponse implements JsonpSerializable {
 		 * API name: {@code node}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>node</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder node(List<String> list) {
 			this.node = _listAddAll(this.node, list);

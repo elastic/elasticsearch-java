@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
  * Adds scheduled events to a calendar.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/post_calendar_events/MlPostCalendarEventsRequest.ts#L24-L40">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/post_calendar_events/MlPostCalendarEventsRequest.ts#L24-L40">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -145,8 +145,6 @@ public class PostCalendarEventsRequest extends RequestBase implements JsonpSeria
 		 * API name: {@code events}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>events</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder events(List<CalendarEvent> list) {
 			this.events = _listAddAll(this.events, list);

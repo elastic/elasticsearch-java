@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/dangling_indices/list_dangling_indices/ListDanglingIndicesResponse.ts#L23-L27">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/dangling_indices/list_dangling_indices/ListDanglingIndicesResponse.ts#L23-L27">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -107,8 +107,6 @@ public class ListDanglingIndicesResponse implements JsonpSerializable {
 		 * Required - API name: {@code dangling_indices}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>danglingIndices</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder danglingIndices(List<DanglingIndex> list) {
 			this.danglingIndices = _listAddAll(this.danglingIndices, list);

@@ -30,13 +30,14 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: _types.aggregations.RangeAggregate
 
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/Aggregate.ts#L499-L500">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L499-L500">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -46,6 +47,10 @@ public class RangeAggregate extends MultiBucketAggregateBase<RangeBucket> implem
 	protected RangeAggregate(AbstractBuilder<?> builder) {
 		super(builder);
 
+	}
+
+	public static RangeAggregate rangeAggregateOf(Function<Builder, ObjectBuilder<RangeAggregate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

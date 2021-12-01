@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/explain_data_frame_analytics/MlExplainDataFrameAnalyticsResponse.ts#L25-L32">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/explain_data_frame_analytics/MlExplainDataFrameAnalyticsResponse.ts#L25-L32">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -130,8 +130,6 @@ public class ExplainDataFrameAnalyticsResponse implements JsonpSerializable {
 		 * API name: {@code field_selection}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>fieldSelection</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder fieldSelection(List<DataframeAnalyticsFieldSelection> list) {
 			this.fieldSelection = _listAddAll(this.fieldSelection, list);

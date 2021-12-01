@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/Aggregate.ts#L668-L672">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L668-L672">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -132,8 +132,6 @@ public class TopMetrics implements JsonpSerializable {
 		 * Required - API name: {@code sort}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>sort</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder sort(List<FieldValue> list) {
 			this.sort = _listAddAll(this.sort, list);
@@ -163,8 +161,6 @@ public class TopMetrics implements JsonpSerializable {
 		 * Required - API name: {@code metrics}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>metrics</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder metrics(Map<String, FieldValue> map) {
 			this.metrics = _mapPutAll(this.metrics, map);

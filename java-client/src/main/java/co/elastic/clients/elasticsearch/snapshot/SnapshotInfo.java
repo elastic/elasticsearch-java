@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/snapshot/_types/SnapshotInfo.ts#L35-L59">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/snapshot/_types/SnapshotInfo.ts#L35-L59">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -519,8 +519,6 @@ public class SnapshotInfo implements JsonpSerializable {
 		 * Required - API name: {@code data_streams}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>dataStreams</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder dataStreams(List<String> list) {
 			this.dataStreams = _listAddAll(this.dataStreams, list);
@@ -587,8 +585,6 @@ public class SnapshotInfo implements JsonpSerializable {
 		 * API name: {@code failures}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>failures</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder failures(List<SnapshotShardFailure> list) {
 			this.failures = _listAddAll(this.failures, list);
@@ -626,8 +622,6 @@ public class SnapshotInfo implements JsonpSerializable {
 		 * Required - API name: {@code indices}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>indices</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder indices(List<String> list) {
 			this.indices = _listAddAll(this.indices, list);
@@ -648,8 +642,6 @@ public class SnapshotInfo implements JsonpSerializable {
 		 * API name: {@code index_details}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>indexDetails</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder indexDetails(Map<String, IndexDetails> map) {
 			this.indexDetails = _mapPutAll(this.indexDetails, map);
@@ -679,8 +671,6 @@ public class SnapshotInfo implements JsonpSerializable {
 		 * API name: {@code metadata}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>metadata</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder metadata(Map<String, JsonData> map) {
 			this.metadata = _mapPutAll(this.metadata, map);
@@ -795,8 +785,6 @@ public class SnapshotInfo implements JsonpSerializable {
 		 * API name: {@code feature_states}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>featureStates</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder featureStates(List<InfoFeatureState> list) {
 			this.featureStates = _listAddAll(this.featureStates, list);

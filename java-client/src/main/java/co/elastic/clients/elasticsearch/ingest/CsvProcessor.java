@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ingest/_types/Processors.ts#L152-L161">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/_types/Processors.ts#L152-L161">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -280,8 +280,6 @@ public class CsvProcessor extends ProcessorBase implements ProcessorVariant {
 		 * Required - API name: {@code target_fields}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>targetFields</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder targetFields(List<String> list) {
 			this.targetFields = _listAddAll(this.targetFields, list);

@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/Node.ts#L52-L61">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Node.ts#L52-L61">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -276,8 +276,6 @@ public class NodeShard implements JsonpSerializable {
 		 * API name: {@code allocation_id}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>allocationId</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder allocationId(Map<String, String> map) {
 			this.allocationId = _mapPutAll(this.allocationId, map);
@@ -298,8 +296,6 @@ public class NodeShard implements JsonpSerializable {
 		 * API name: {@code recovery_source}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>recoverySource</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder recoverySource(Map<String, String> map) {
 			this.recoverySource = _mapPutAll(this.recoverySource, map);

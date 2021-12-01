@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/bucket.ts#L305-L320">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/bucket.ts#L305-L320">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -448,8 +448,6 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 		 * API name: {@code include}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>include</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder include(List<String> list) {
 			this.include = _listAddAll(this.include, list);

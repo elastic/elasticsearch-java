@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  * pattern collection.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ccr/get_auto_follow_pattern/GetAutoFollowPatternRequest.ts#L23-L33">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ccr/get_auto_follow_pattern/GetAutoFollowPatternRequest.ts#L23-L33">API
  *      specification</a>
  */
 

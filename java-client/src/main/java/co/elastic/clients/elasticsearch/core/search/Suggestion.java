@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/search/_types/suggester.ts#L35-L40">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/suggester.ts#L35-L40">API
  *      specification</a>
  */
 
@@ -177,8 +177,6 @@ public class Suggestion<T> implements JsonpSerializable {
 		 * Required - API name: {@code options}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>options</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder<T> options(List<SuggestOption<T>> list) {
 			this.options = _listAddAll(this.options, list);

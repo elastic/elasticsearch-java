@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/nodes/info/types.ts#L335-L339">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L335-L339">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -146,8 +146,6 @@ public class NodeInfoTransport implements JsonpSerializable {
 		 * Required - API name: {@code bound_address}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>boundAddress</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder boundAddress(List<String> list) {
 			this.boundAddress = _listAddAll(this.boundAddress, list);
@@ -176,8 +174,6 @@ public class NodeInfoTransport implements JsonpSerializable {
 		 * Required - API name: {@code profiles}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>profiles</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder profiles(Map<String, String> map) {
 			this.profiles = _mapPutAll(this.profiles, map);

@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
  * regular data stream
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/promote_data_stream/IndicesPromoteDataStreamRequest.ts#L23-L32">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/promote_data_stream/IndicesPromoteDataStreamRequest.ts#L23-L32">API
  *      specification</a>
  */
 

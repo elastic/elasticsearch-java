@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
  * Updates the license for the cluster.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/license/post/PostLicenseRequest.ts#L23-L36">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/license/post/PostLicenseRequest.ts#L23-L36">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -177,8 +177,6 @@ public class PostRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code licenses}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>licenses</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder licenses(List<License> list) {
 			this.licenses = _listAddAll(this.licenses, list);

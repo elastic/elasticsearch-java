@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/Aggregate.ts#L702-L711">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L702-L711">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -271,8 +271,6 @@ public class MatrixStatsFields implements JsonpSerializable {
 		 * Required - API name: {@code covariance}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>covariance</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder covariance(Map<String, Double> map) {
 			this.covariance = _mapPutAll(this.covariance, map);
@@ -293,8 +291,6 @@ public class MatrixStatsFields implements JsonpSerializable {
 		 * Required - API name: {@code correlation}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>correlation</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder correlation(Map<String, Double> map) {
 			this.correlation = _mapPutAll(this.correlation, map);

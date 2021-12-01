@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/put_trained_model/types.ts#L49-L54">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/put_trained_model/types.ts#L49-L54">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -178,8 +178,6 @@ public class TargetMeanEncodingPreprocessor implements PreprocessorVariant, Json
 		 * Required - API name: {@code target_map}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>targetMap</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder targetMap(Map<String, Double> map) {
 			this.targetMap = _mapPutAll(this.targetMap, map);

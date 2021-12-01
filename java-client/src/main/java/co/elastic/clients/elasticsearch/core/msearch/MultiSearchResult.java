@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/msearch/types.ts#L61-L64">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/msearch/types.ts#L61-L64">API
  *      specification</a>
  */
 
@@ -130,8 +130,6 @@ public abstract class MultiSearchResult<TDocument> implements JsonpSerializable 
 		 * Required - API name: {@code responses}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>responses</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final BuilderT responses(List<MultiSearchResponseItem<TDocument>> list) {
 			this.responses = _listAddAll(this.responses, list);

@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/field_caps/types.ts#L23-L32">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/field_caps/types.ts#L23-L32">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -260,8 +260,6 @@ public class FieldCapability implements JsonpSerializable {
 		 * API name: {@code indices}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>indices</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder indices(List<String> list) {
 			this.indices = _listAddAll(this.indices, list);
@@ -282,8 +280,6 @@ public class FieldCapability implements JsonpSerializable {
 		 * API name: {@code meta}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>meta</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder meta(Map<String, List<String>> map) {
 			this.meta = _mapPutAll(this.meta, map);
@@ -305,8 +301,6 @@ public class FieldCapability implements JsonpSerializable {
 		 * <p>
 		 * Adds all elements of <code>list</code> to
 		 * <code>nonAggregatableIndices</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder nonAggregatableIndices(List<String> list) {
 			this.nonAggregatableIndices = _listAddAll(this.nonAggregatableIndices, list);
@@ -327,8 +321,6 @@ public class FieldCapability implements JsonpSerializable {
 		 * API name: {@code non_searchable_indices}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>nonSearchableIndices</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder nonSearchableIndices(List<String> list) {
 			this.nonSearchableIndices = _listAddAll(this.nonSearchableIndices, list);

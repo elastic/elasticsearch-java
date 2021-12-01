@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/watcher/_types/Input.ts#L74-L88">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Input.ts#L74-L88">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -106,6 +106,11 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 		this.scheme = builder.scheme;
 		this.url = builder.url;
 
+	}
+
+	public static HttpInputRequestDefinition httpInputRequestDefinitionOf(
+			Function<Builder, ObjectBuilder<HttpInputRequestDefinition>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -411,8 +416,6 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 		 * API name: {@code headers}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>headers</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final BuilderT headers(Map<String, String> map) {
 			this.headers = _mapPutAll(this.headers, map);
@@ -449,8 +452,6 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 		 * API name: {@code params}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>params</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final BuilderT params(Map<String, String> map) {
 			this.params = _mapPutAll(this.params, map);

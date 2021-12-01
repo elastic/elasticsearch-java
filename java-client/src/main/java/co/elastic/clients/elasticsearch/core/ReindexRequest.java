@@ -58,7 +58,7 @@ import javax.annotation.Nullable;
  * fetching the documents from a remote cluster.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/reindex/ReindexRequest.ts#L27-L51">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/reindex/ReindexRequest.ts#L27-L51">API
  *      specification</a>
  */
 @JsonpDeserializable

@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
  * supported.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/shutdown/get_node/ShutdownGetNodeRequest.ts#L23-L32">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/shutdown/get_node/ShutdownGetNodeRequest.ts#L23-L32">API
  *      specification</a>
  */
 
@@ -95,8 +95,6 @@ public class GetNodeRequest extends RequestBase {
 		 * API name: {@code node_id}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>nodeId</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder nodeId(List<String> list) {
 			this.nodeId = _listAddAll(this.nodeId, list);

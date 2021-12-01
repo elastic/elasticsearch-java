@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  * Removes the assigned lifecycle policy and stops managing the specified index
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ilm/remove_policy/RemovePolicyRequest.ts#L23-L32">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ilm/remove_policy/RemovePolicyRequest.ts#L23-L32">API
  *      specification</a>
  */
 

@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/nodes/info/types.ts#L147-L152">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L147-L152">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -176,8 +176,6 @@ public class NodeInfoPath implements JsonpSerializable {
 		 * Required - API name: {@code repo}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>repo</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder repo(List<String> list) {
 			this.repo = _listAddAll(this.repo, list);
@@ -198,8 +196,6 @@ public class NodeInfoPath implements JsonpSerializable {
 		 * API name: {@code data}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>data</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder data(List<String> list) {
 			this.data = _listAddAll(this.data, list);

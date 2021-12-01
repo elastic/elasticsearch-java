@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/xpack/usage/types.ts#L347-L350">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L347-L350">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -123,8 +123,6 @@ public class Sql extends Base {
 		 * Required - API name: {@code features}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>features</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder features(Map<String, Integer> map) {
 			this.features = _mapPutAll(this.features, map);
@@ -145,8 +143,6 @@ public class Sql extends Base {
 		 * Required - API name: {@code queries}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>queries</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder queries(Map<String, XpackUsageQuery> map) {
 			this.queries = _mapPutAll(this.queries, map);

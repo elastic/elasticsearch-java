@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
  * Defaults to 10,000 hits.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/search/_types/hits.ts#L126-L134">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/hits.ts#L126-L134">API
  *      specification</a>
  */
 @JsonpDeserializable

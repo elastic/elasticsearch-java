@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/analysis/token_filters.ts#L172-L178">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L172-L178">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -171,8 +171,6 @@ public class CommonGramsTokenFilter extends TokenFilterBase implements TokenFilt
 		 * API name: {@code common_words}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>commonWords</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder commonWords(List<String> list) {
 			this.commonWords = _listAddAll(this.commonWords, list);

@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/Category.ts#L23-L49">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/Category.ts#L23-L49">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -388,8 +388,6 @@ public class Category implements JsonpSerializable {
 		 * API name: {@code examples}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>examples</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder examples(List<String> list) {
 			this.examples = _listAddAll(this.examples, list);
@@ -510,8 +508,6 @@ public class Category implements JsonpSerializable {
 		 * API name: {@code preferred_to_categories}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>preferredToCategories</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder preferredToCategories(List<String> list) {
 			this.preferredToCategories = _listAddAll(this.preferredToCategories, list);

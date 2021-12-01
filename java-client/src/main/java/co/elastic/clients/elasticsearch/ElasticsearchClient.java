@@ -94,6 +94,8 @@ import co.elastic.clients.elasticsearch.core.RenderSearchTemplateRequest;
 import co.elastic.clients.elasticsearch.core.RenderSearchTemplateResponse;
 import co.elastic.clients.elasticsearch.core.ScriptsPainlessExecuteRequest;
 import co.elastic.clients.elasticsearch.core.ScriptsPainlessExecuteResponse;
+import co.elastic.clients.elasticsearch.core.ScrollRequest;
+import co.elastic.clients.elasticsearch.core.ScrollResponse;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.elasticsearch.core.SearchShardsRequest;
@@ -1465,6 +1467,43 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 			Function<ScriptsPainlessExecuteRequest.Builder, ObjectBuilder<ScriptsPainlessExecuteRequest>> fn,
 			Class<TResult> tResultClass) throws IOException, ElasticsearchException {
 		return scriptsPainlessExecute(fn.apply(new ScriptsPainlessExecuteRequest.Builder()).build(), tResultClass);
+	}
+
+	// ----- Endpoint: scroll
+
+	/**
+	 * Allows to retrieve a large numbers of results from a single search request.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-request-body.html#request-body-search-scroll">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public <TDocument> ScrollResponse<TDocument> scroll(ScrollRequest request, Class<TDocument> tDocumentClass)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ScrollRequest, ScrollResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<ScrollRequest, ScrollResponse<TDocument>, ErrorResponse>) ScrollRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:_global.scroll.TDocument", getDeserializer(tDocumentClass));
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Allows to retrieve a large numbers of results from a single search request.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link ScrollRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-request-body.html#request-body-search-scroll">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final <TDocument> ScrollResponse<TDocument> scroll(
+			Function<ScrollRequest.Builder, ObjectBuilder<ScrollRequest>> fn, Class<TDocument> tDocumentClass)
+			throws IOException, ElasticsearchException {
+		return scroll(fn.apply(new ScrollRequest.Builder()).build(), tDocumentClass);
 	}
 
 	// ----- Endpoint: search

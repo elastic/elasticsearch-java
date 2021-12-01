@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/xpack/usage/types.ts#L395-L408">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L395-L408">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -351,8 +351,6 @@ public class Security extends Base {
 		 * Required - API name: {@code realms}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>realms</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder realms(Map<String, Realm> map) {
 			this.realms = _mapPutAll(this.realms, map);
@@ -382,8 +380,6 @@ public class Security extends Base {
 		 * Required - API name: {@code role_mapping}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>roleMapping</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder roleMapping(Map<String, RoleMapping> map) {
 			this.roleMapping = _mapPutAll(this.roleMapping, map);

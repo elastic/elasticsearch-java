@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/watcher/query_watches/WatcherQueryWatchesResponse.ts#L23-L28">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/query_watches/WatcherQueryWatchesResponse.ts#L23-L28">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -130,8 +130,6 @@ public class QueryWatchesResponse implements JsonpSerializable {
 		 * Required - API name: {@code watches}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>watches</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder watches(List<QueryWatch> list) {
 			this.watches = _listAddAll(this.watches, list);

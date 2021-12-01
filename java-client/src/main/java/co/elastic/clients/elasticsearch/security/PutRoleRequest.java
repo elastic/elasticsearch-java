@@ -54,7 +54,7 @@ import javax.annotation.Nullable;
  * Adds and updates roles in the native realm.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/security/put_role/SecurityPutRoleRequest.ts#L31-L74">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/put_role/SecurityPutRoleRequest.ts#L31-L74">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -313,8 +313,6 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code applications}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>applications</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder applications(List<ApplicationPrivileges> list) {
 			this.applications = _listAddAll(this.applications, list);
@@ -352,8 +350,6 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code cluster}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>cluster</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder cluster(List<ClusterPrivilege> list) {
 			this.cluster = _listAddAll(this.cluster, list);
@@ -381,8 +377,6 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code global}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>global</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder global(Map<String, JsonData> map) {
 			this.global = _mapPutAll(this.global, map);
@@ -409,8 +403,6 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code indices}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>indices</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder indices(List<IndicesPrivileges> list) {
 			this.indices = _listAddAll(this.indices, list);
@@ -447,8 +439,6 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code metadata}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>metadata</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder metadata(Map<String, JsonData> map) {
 			this.metadata = _mapPutAll(this.metadata, map);
@@ -497,8 +487,6 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code run_as}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>runAs</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder runAs(List<String> list) {
 			this.runAs = _listAddAll(this.runAs, list);

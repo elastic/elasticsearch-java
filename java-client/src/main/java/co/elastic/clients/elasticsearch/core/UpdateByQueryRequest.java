@@ -65,7 +65,7 @@ import javax.annotation.Nullable;
  * source, for example to pick up a mapping change.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/update_by_query/UpdateByQueryRequest.ts#L38-L89">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/update_by_query/UpdateByQueryRequest.ts#L38-L89">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -796,8 +796,6 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		 * API name: {@code _source_excludes}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>sourceExcludes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder sourceExcludes(List<String> list) {
 			this.sourceExcludes = _listAddAll(this.sourceExcludes, list);
@@ -822,8 +820,6 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		 * API name: {@code _source_includes}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>sourceIncludes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder sourceIncludes(List<String> list) {
 			this.sourceIncludes = _listAddAll(this.sourceIncludes, list);
@@ -911,8 +907,6 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		 * API name: {@code expand_wildcards}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder expandWildcards(List<ExpandWildcard> list) {
 			this.expandWildcards = _listAddAll(this.expandWildcards, list);
@@ -960,8 +954,6 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		 * API name: {@code index}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>index</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder index(List<String> list) {
 			this.index = _listAddAll(this.index, list);
@@ -1193,8 +1185,6 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		 * API name: {@code sort}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>sort</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder sort(List<String> list) {
 			this.sort = _listAddAll(this.sort, list);
@@ -1219,8 +1209,6 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		 * API name: {@code stats}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>stats</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder stats(List<String> list) {
 			this.stats = _listAddAll(this.stats, list);

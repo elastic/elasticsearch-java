@@ -43,7 +43,7 @@ import java.util.function.Function;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/snapshot/_types/FileCountSnapshotStats.ts#L22-L25">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/snapshot/_types/FileCountSnapshotStats.ts#L22-L25">API
  *      specification</a>
  */
 @JsonpDeserializable

@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/graph/explore/GraphExploreResponse.ts#L25-L33">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/graph/explore/GraphExploreResponse.ts#L25-L33">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -183,8 +183,6 @@ public class ExploreResponse implements JsonpSerializable {
 		 * Required - API name: {@code connections}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>connections</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder connections(List<Connection> list) {
 			this.connections = _listAddAll(this.connections, list);
@@ -214,8 +212,6 @@ public class ExploreResponse implements JsonpSerializable {
 		 * Required - API name: {@code failures}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>failures</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder failures(List<ShardFailure> list) {
 			this.failures = _listAddAll(this.failures, list);
@@ -261,8 +257,6 @@ public class ExploreResponse implements JsonpSerializable {
 		 * Required - API name: {@code vertices}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>vertices</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder vertices(List<Vertex> list) {
 			this.vertices = _listAddAll(this.vertices, list);

@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  * Retrieves licensing information for the cluster
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/license/get/GetLicenseRequest.ts#L22-L32">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/license/get/GetLicenseRequest.ts#L22-L32">API
  *      specification</a>
  */
 

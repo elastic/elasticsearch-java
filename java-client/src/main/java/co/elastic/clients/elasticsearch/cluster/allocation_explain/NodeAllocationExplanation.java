@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cluster/allocation_explain/types.ts#L97-L106">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/allocation_explain/types.ts#L97-L106">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -225,8 +225,6 @@ public class NodeAllocationExplanation implements JsonpSerializable {
 		 * Required - API name: {@code deciders}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>deciders</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder deciders(List<AllocationDecision> list) {
 			this.deciders = _listAddAll(this.deciders, list);
@@ -256,8 +254,6 @@ public class NodeAllocationExplanation implements JsonpSerializable {
 		 * Required - API name: {@code node_attributes}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>nodeAttributes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder nodeAttributes(Map<String, String> map) {
 			this.nodeAttributes = _mapPutAll(this.nodeAttributes, map);

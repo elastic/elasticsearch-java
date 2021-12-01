@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/security/get_api_key/types.ts#L23-L33">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_api_key/types.ts#L23-L33">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -278,8 +278,6 @@ public class ApiKey implements JsonpSerializable {
 		 * API name: {@code metadata}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>metadata</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder metadata(Map<String, JsonData> map) {
 			this.metadata = _mapPutAll(this.metadata, map);

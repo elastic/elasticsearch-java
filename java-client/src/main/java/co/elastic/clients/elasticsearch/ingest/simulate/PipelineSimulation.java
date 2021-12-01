@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ingest/simulate/types.ts#L31-L37">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/simulate/types.ts#L31-L37">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -203,8 +203,6 @@ public class PipelineSimulation implements JsonpSerializable {
 		 * API name: {@code processor_results}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>processorResults</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder processorResults(List<PipelineSimulation> list) {
 			this.processorResults = _listAddAll(this.processorResults, list);

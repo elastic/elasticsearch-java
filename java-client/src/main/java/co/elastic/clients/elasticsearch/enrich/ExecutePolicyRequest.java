@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  * Creates the enrich index for an existing enrich policy.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/enrich/execute_policy/ExecuteEnrichPolicyRequest.ts#L23-L35">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/enrich/execute_policy/ExecuteEnrichPolicyRequest.ts#L23-L35">API
  *      specification</a>
  */
 

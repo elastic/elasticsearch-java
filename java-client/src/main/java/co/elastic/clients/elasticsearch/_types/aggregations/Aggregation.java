@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/AggregationContainer.ts#L99-L185">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/AggregationContainer.ts#L99-L185">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -1514,8 +1514,6 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 		 * API name: {@code aggregations}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>aggregations</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder aggregations(Map<String, Aggregation> map) {
 			this.aggregations = _mapPutAll(this.aggregations, map);
@@ -1549,8 +1547,6 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 		 * API name: {@code meta}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>meta</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder meta(Map<String, JsonData> map) {
 			this.meta = _mapPutAll(this.meta, map);
@@ -2318,8 +2314,6 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			 * API name: {@code aggregations}
 			 * <p>
 			 * Adds all entries of <code>map</code> to <code>aggregations</code>.
-			 * 
-			 * @see ApiTypeHelper#resetMap() Resetting the value to null
 			 */
 			public final ContainerBuilder aggregations(Map<String, Aggregation> map) {
 				Builder.this.aggregations = _mapPutAll(Builder.this.aggregations, map);
@@ -2354,8 +2348,6 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			 * API name: {@code meta}
 			 * <p>
 			 * Adds all entries of <code>map</code> to <code>meta</code>.
-			 * 
-			 * @see ApiTypeHelper#resetMap() Resetting the value to null
 			 */
 			public final ContainerBuilder meta(Map<String, JsonData> map) {
 				Builder.this.meta = _mapPutAll(Builder.this.meta, map);

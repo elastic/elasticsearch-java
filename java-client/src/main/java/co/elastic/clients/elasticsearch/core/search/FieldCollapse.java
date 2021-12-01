@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/search/_types/FieldCollapse.ts#L24-L28">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/FieldCollapse.ts#L24-L28">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -152,8 +152,6 @@ public class FieldCollapse implements JsonpSerializable {
 		 * API name: {@code inner_hits}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>innerHits</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder innerHits(List<InnerHits> list) {
 			this.innerHits = _listAddAll(this.innerHits, list);

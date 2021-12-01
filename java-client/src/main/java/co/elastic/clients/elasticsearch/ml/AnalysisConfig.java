@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/Analysis.ts#L29-L76">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/Analysis.ts#L29-L76">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -470,8 +470,6 @@ public class AnalysisConfig implements JsonpSerializable {
 		 * API name: {@code categorization_filters}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>categorizationFilters</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder categorizationFilters(List<String> list) {
 			this.categorizationFilters = _listAddAll(this.categorizationFilters, list);
@@ -511,8 +509,6 @@ public class AnalysisConfig implements JsonpSerializable {
 		 * API name: {@code detectors}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>detectors</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder detectors(List<Detector> list) {
 			this.detectors = _listAddAll(this.detectors, list);
@@ -559,8 +555,6 @@ public class AnalysisConfig implements JsonpSerializable {
 		 * API name: {@code influencers}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>influencers</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder influencers(List<String> list) {
 			this.influencers = _listAddAll(this.influencers, list);

@@ -54,7 +54,7 @@ import javax.annotation.Nullable;
  * Creates or updates a pipeline.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ingest/put_pipeline/PutPipelineRequest.ts#L25-L70">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/put_pipeline/PutPipelineRequest.ts#L25-L70">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -277,8 +277,6 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 		 * API name: {@code _meta}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>meta</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder meta(Map<String, JsonData> map) {
 			this.meta = _mapPutAll(this.meta, map);
@@ -350,8 +348,6 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 		 * API name: {@code on_failure}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>onFailure</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder onFailure(List<Processor> list) {
 			this.onFailure = _listAddAll(this.onFailure, list);
@@ -398,8 +394,6 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 		 * API name: {@code processors}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>processors</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder processors(List<Processor> list) {
 			this.processors = _listAddAll(this.processors, list);

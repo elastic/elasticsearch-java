@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/nodes/info/types.ts#L217-L219">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L217-L219">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -107,8 +107,6 @@ public class NodeInfoAggregation implements JsonpSerializable {
 		 * Required - API name: {@code types}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>types</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder types(List<String> list) {
 			this.types = _listAddAll(this.types, list);

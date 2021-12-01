@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/DataframeAnalytics.ts#L259-L266">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/DataframeAnalytics.ts#L259-L266">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -179,8 +179,6 @@ public class DataframeAnalysisFeatureProcessorFrequencyEncoding
 		 * API name: {@code frequency_map}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>frequencyMap</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder frequencyMap(Map<String, Double> map) {
 			this.frequencyMap = _mapPutAll(this.frequencyMap, map);

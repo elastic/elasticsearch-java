@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/analysis/token_filters.ts#L276-L280">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L276-L280">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -124,8 +124,6 @@ public class PatternCaptureTokenFilter extends TokenFilterBase implements TokenF
 		 * Required - API name: {@code patterns}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>patterns</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder patterns(List<String> list) {
 			this.patterns = _listAddAll(this.patterns, list);

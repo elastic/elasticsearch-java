@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
  * and ECK. Direct use is not supported.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/shutdown/delete_node/ShutdownDeleteNodeRequest.ts#L23-L32">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/shutdown/delete_node/ShutdownDeleteNodeRequest.ts#L23-L32">API
  *      specification</a>
  */
 

@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/bucket.ts#L221-L224">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/bucket.ts#L221-L224">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -137,8 +137,6 @@ public class IpRangeAggregation extends BucketAggregationBase implements Aggrega
 		 * API name: {@code ranges}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>ranges</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder ranges(List<IpRangeAggregationRange> list) {
 			this.ranges = _listAddAll(this.ranges, list);

@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/put_index_template/IndicesPutIndexTemplateRequest.ts#L57-L61">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/put_index_template/IndicesPutIndexTemplateRequest.ts#L57-L61">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -152,8 +152,6 @@ public class IndexTemplateMapping implements JsonpSerializable {
 		 * API name: {@code aliases}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>aliases</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder aliases(Map<String, Alias> map) {
 			this.aliases = _mapPutAll(this.aliases, map);

@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  * Retrieves Logstash Pipelines used by Central Management
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/logstash/get_pipeline/LogstashGetPipelineRequest.ts#L23-L32">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/logstash/get_pipeline/LogstashGetPipelineRequest.ts#L23-L32">API
  *      specification</a>
  */
 
@@ -92,8 +92,6 @@ public class GetPipelineRequest extends RequestBase {
 		 * API name: {@code id}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>id</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder id(List<String> list) {
 			this.id = _listAddAll(this.id, list);

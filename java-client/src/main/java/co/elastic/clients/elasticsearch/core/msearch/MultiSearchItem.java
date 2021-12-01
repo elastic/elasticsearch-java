@@ -42,7 +42,7 @@ import java.util.function.Supplier;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/msearch/types.ts#L71-L73">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/msearch/types.ts#L71-L73">API
  *      specification</a>
  */
 

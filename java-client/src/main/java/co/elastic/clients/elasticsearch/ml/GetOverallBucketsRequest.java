@@ -68,7 +68,7 @@ import javax.annotation.Nullable;
  * the overall buckets that have a span equal to the jobs' largest bucket span.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/get_overall_buckets/MlGetOverallBucketsRequest.ts#L25-L143">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_overall_buckets/MlGetOverallBucketsRequest.ts#L25-L143">API
  *      specification</a>
  */
 @JsonpDeserializable

@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
  * list.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/update_filter/MlUpdateFilterRequest.ts#L23-L51">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/update_filter/MlUpdateFilterRequest.ts#L23-L51">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -180,8 +180,6 @@ public class UpdateFilterRequest extends RequestBase implements JsonpSerializabl
 		 * API name: {@code add_items}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>addItems</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder addItems(List<String> list) {
 			this.addItems = _listAddAll(this.addItems, list);
@@ -226,8 +224,6 @@ public class UpdateFilterRequest extends RequestBase implements JsonpSerializabl
 		 * API name: {@code remove_items}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>removeItems</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder removeItems(List<String> list) {
 			this.removeItems = _listAddAll(this.removeItems, list);

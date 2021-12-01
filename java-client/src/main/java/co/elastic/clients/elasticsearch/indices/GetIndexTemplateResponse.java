@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/get_index_template/IndicesGetIndexTemplateResponse.ts#L27-L31">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/get_index_template/IndicesGetIndexTemplateResponse.ts#L27-L31">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -107,8 +107,6 @@ public class GetIndexTemplateResponse implements JsonpSerializable {
 		 * Required - API name: {@code index_templates}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>indexTemplates</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder indexTemplates(List<IndexTemplateItem> list) {
 			this.indexTemplates = _listAddAll(this.indexTemplates, list);

@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
  * Retrieves anomaly detection job results for one or more categories.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/get_categories/MlGetCategoriesRequest.ts#L25-L65">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_categories/MlGetCategoriesRequest.ts#L25-L65">API
  *      specification</a>
  */
 @JsonpDeserializable

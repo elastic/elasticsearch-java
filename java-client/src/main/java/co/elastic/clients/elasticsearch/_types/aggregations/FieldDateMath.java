@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  * expressed according to the target field's precision.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/bucket.ts#L135-L142">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/bucket.ts#L135-L142">API
  *      specification</a>
  */
 @JsonpDeserializable

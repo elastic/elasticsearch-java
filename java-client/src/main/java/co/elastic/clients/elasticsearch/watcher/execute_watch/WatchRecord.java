@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/watcher/execute_watch/types.ts#L26-L37">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/execute_watch/types.ts#L26-L37">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -285,8 +285,6 @@ public class WatchRecord implements JsonpSerializable {
 		 * Required - API name: {@code messages}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>messages</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder messages(List<String> list) {
 			this.messages = _listAddAll(this.messages, list);
@@ -307,8 +305,6 @@ public class WatchRecord implements JsonpSerializable {
 		 * Required - API name: {@code metadata}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>metadata</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder metadata(Map<String, JsonData> map) {
 			this.metadata = _mapPutAll(this.metadata, map);

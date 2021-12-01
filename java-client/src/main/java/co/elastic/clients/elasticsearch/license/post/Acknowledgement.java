@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/license/post/types.ts#L20-L23">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/license/post/types.ts#L20-L23">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -121,8 +121,6 @@ public class Acknowledgement implements JsonpSerializable {
 		 * Required - API name: {@code license}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>license</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder license(List<String> list) {
 			this.license = _listAddAll(this.license, list);

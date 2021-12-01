@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  * Starts an indefinite basic license.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/license/post_start_basic/StartBasicLicenseRequest.ts#L22-L31">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/license/post_start_basic/StartBasicLicenseRequest.ts#L22-L31">API
  *      specification</a>
  */
 

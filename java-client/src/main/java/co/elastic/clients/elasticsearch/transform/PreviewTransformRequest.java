@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
  * Previews a transform.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/transform/preview_transform/PreviewTransformRequest.ts#L32-L64">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/transform/preview_transform/PreviewTransformRequest.ts#L32-L64">API
  *      specification</a>
  */
 @JsonpDeserializable

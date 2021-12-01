@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  * Starts one or more transforms.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/transform/start_transform/StartTransformRequest.ts#L24-L36">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/transform/start_transform/StartTransformRequest.ts#L24-L36">API
  *      specification</a>
  */
 

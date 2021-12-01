@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
  *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/sort-search-results.html">Documentation
  *      on elastic.co</a>
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/sort.ts#L80-L89">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/sort.ts#L80-L89">API
  *      specification</a>
  */
 @JsonpDeserializable

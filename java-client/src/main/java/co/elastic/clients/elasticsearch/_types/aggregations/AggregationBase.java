@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/Aggregation.ts#L23-L26">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregation.ts#L23-L26">API
  *      specification</a>
  */
 
@@ -121,8 +121,6 @@ public abstract class AggregationBase implements JsonpSerializable {
 		 * API name: {@code meta}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>meta</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final BuilderT meta(Map<String, JsonData> map) {
 			this.meta = _mapPutAll(this.meta, map);

@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
  * about the latest snapshot attempts.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/slm/get_lifecycle/GetSnapshotLifecycleRequest.ts#L23-L32">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/slm/get_lifecycle/GetSnapshotLifecycleRequest.ts#L23-L32">API
  *      specification</a>
  */
 
@@ -94,8 +94,6 @@ public class GetLifecycleRequest extends RequestBase {
 		 * API name: {@code policy_id}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>policyId</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder policyId(List<String> list) {
 			this.policyId = _listAddAll(this.policyId, list);

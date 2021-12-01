@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/tasks/cancel/CancelTasksResponse.ts#L24-L29">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/tasks/cancel/CancelTasksResponse.ts#L24-L29">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -133,8 +133,6 @@ public class CancelResponse implements JsonpSerializable {
 		 * API name: {@code node_failures}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>nodeFailures</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder nodeFailures(List<ErrorCause> list) {
 			this.nodeFailures = _listAddAll(this.nodeFailures, list);
@@ -164,8 +162,6 @@ public class CancelResponse implements JsonpSerializable {
 		 * Required - API name: {@code nodes}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>nodes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder nodes(Map<String, TaskExecutingNode> map) {
 			this.nodes = _mapPutAll(this.nodes, map);

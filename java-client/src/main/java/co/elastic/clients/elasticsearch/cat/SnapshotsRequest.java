@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
  * Returns all snapshots in a specific repository.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cat/snapshots/CatSnapshotsRequest.ts#L23-L35">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/snapshots/CatSnapshotsRequest.ts#L23-L35">API
  *      specification</a>
  */
 
@@ -121,8 +121,6 @@ public class SnapshotsRequest extends CatRequestBase {
 		 * API name: {@code repository}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>repository</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder repository(List<String> list) {
 			this.repository = _listAddAll(this.repository, list);

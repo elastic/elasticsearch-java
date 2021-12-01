@@ -44,7 +44,7 @@ import java.util.Objects;
  * Returns whether the cluster is running.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/ping/PingRequest.ts#L22-L27">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/ping/PingRequest.ts#L22-L27">API
  *      specification</a>
  */
 

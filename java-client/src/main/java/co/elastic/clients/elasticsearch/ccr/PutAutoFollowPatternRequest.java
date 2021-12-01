@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
  * the specified patterns will be automatically configured as follower indices.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ccr/put_auto_follow_pattern/PutAutoFollowPatternRequest.ts#L27-L112">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ccr/put_auto_follow_pattern/PutAutoFollowPatternRequest.ts#L27-L112">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -485,8 +485,6 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * Adds all elements of <code>list</code> to
 		 * <code>leaderIndexExclusionPatterns</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder leaderIndexExclusionPatterns(List<String> list) {
 			this.leaderIndexExclusionPatterns = _listAddAll(this.leaderIndexExclusionPatterns, list);
@@ -515,8 +513,6 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 		 * API name: {@code leader_index_patterns}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>leaderIndexPatterns</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder leaderIndexPatterns(List<String> list) {
 			this.leaderIndexPatterns = _listAddAll(this.leaderIndexPatterns, list);
@@ -698,8 +694,6 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 		 * API name: {@code settings}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>settings</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder settings(Map<String, JsonData> map) {
 			this.settings = _mapPutAll(this.settings, map);

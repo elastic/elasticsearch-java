@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/search_shards/SearchShardsResponse.ts#L25-L31">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search_shards/SearchShardsResponse.ts#L25-L31">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -164,8 +164,6 @@ public class SearchShardsResponse implements JsonpSerializable {
 		 * Required - API name: {@code nodes}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>nodes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder nodes(Map<String, NodeAttributes> map) {
 			this.nodes = _mapPutAll(this.nodes, map);
@@ -195,8 +193,6 @@ public class SearchShardsResponse implements JsonpSerializable {
 		 * Required - API name: {@code shards}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>shards</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder shards(List<List<NodeShard>> list) {
 			this.shards = _listAddAll(this.shards, list);
@@ -217,8 +213,6 @@ public class SearchShardsResponse implements JsonpSerializable {
 		 * Required - API name: {@code indices}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>indices</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder indices(Map<String, ShardStoreIndex> map) {
 			this.indices = _mapPutAll(this.indices, map);

@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/security/get_role/types.ts#L27-L35">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_role/types.ts#L27-L35">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -238,8 +238,6 @@ public class Role implements JsonpSerializable {
 		 * Required - API name: {@code cluster}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>cluster</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder cluster(List<String> list) {
 			this.cluster = _listAddAll(this.cluster, list);
@@ -260,8 +258,6 @@ public class Role implements JsonpSerializable {
 		 * Required - API name: {@code indices}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>indices</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder indices(List<IndicesPrivileges> list) {
 			this.indices = _listAddAll(this.indices, list);
@@ -291,8 +287,6 @@ public class Role implements JsonpSerializable {
 		 * Required - API name: {@code metadata}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>metadata</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder metadata(Map<String, JsonData> map) {
 			this.metadata = _mapPutAll(this.metadata, map);
@@ -313,8 +307,6 @@ public class Role implements JsonpSerializable {
 		 * Required - API name: {@code run_as}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>runAs</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder runAs(List<String> list) {
 			this.runAs = _listAddAll(this.runAs, list);
@@ -351,8 +343,6 @@ public class Role implements JsonpSerializable {
 		 * Required - API name: {@code applications}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>applications</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder applications(List<ApplicationPrivileges> list) {
 			this.applications = _listAddAll(this.applications, list);
@@ -383,8 +373,6 @@ public class Role implements JsonpSerializable {
 		 * API name: {@code role_templates}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>roleTemplates</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder roleTemplates(List<RoleTemplate> list) {
 			this.roleTemplates = _listAddAll(this.roleTemplates, list);

@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/Aggregate.ts#L219-L222">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L219-L222">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -108,8 +108,6 @@ public class BucketMetricValueAggregate extends SingleMetricAggregateBase implem
 		 * Required - API name: {@code keys}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>keys</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder keys(List<String> list) {
 			this.keys = _listAddAll(this.keys, list);

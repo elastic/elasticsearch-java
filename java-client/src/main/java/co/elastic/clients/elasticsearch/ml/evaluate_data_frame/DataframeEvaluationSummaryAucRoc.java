@@ -41,7 +41,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/evaluate_data_frame/types.ts#L50-L52">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/evaluate_data_frame/types.ts#L50-L52">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -101,8 +101,6 @@ public class DataframeEvaluationSummaryAucRoc extends DataframeEvaluationValue {
 		 * API name: {@code curve}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>curve</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder curve(List<DataframeEvaluationSummaryAucRocCurveItem> list) {
 			this.curve = _listAddAll(this.curve, list);

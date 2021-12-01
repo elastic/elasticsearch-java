@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/Aggregate.ts#L696-L700">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L696-L700">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -131,8 +131,6 @@ public class MatrixStatsAggregate extends AggregateBase implements AggregateVari
 		 * Required - API name: {@code fields}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>fields</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder fields(List<MatrixStatsFields> list) {
 			this.fields = _listAddAll(this.fields, list);

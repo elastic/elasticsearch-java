@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/add_block/IndicesAddBlockResponse.ts#L23-L28">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/add_block/IndicesAddBlockResponse.ts#L23-L28">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -125,8 +125,6 @@ public class AddBlockResponse extends AcknowledgedResponseBase {
 		 * Required - API name: {@code indices}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>indices</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder indices(List<IndicesBlockStatus> list) {
 			this.indices = _listAddAll(this.indices, list);

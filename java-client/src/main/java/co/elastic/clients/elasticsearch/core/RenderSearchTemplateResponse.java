@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/render_search_template/RenderSearchTemplateResponse.ts#L23-L25">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/render_search_template/RenderSearchTemplateResponse.ts#L23-L25">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -109,8 +109,6 @@ public class RenderSearchTemplateResponse implements JsonpSerializable {
 		 * Required - API name: {@code template_output}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>templateOutput</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder templateOutput(Map<String, JsonData> map) {
 			this.templateOutput = _mapPutAll(this.templateOutput, map);

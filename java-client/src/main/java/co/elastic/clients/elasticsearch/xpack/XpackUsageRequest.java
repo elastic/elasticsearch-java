@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  * Retrieves usage information about the installed X-Pack features.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/xpack/usage/XPackUsageRequest.ts#L23-L32">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/XPackUsageRequest.ts#L23-L32">API
  *      specification</a>
  */
 

@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/mapping/specialized.ts#L28-L36">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/specialized.ts#L28-L36">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -220,8 +220,6 @@ public class CompletionProperty extends DocValuesPropertyBase implements Propert
 		 * API name: {@code contexts}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>contexts</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder contexts(List<SuggestContext> list) {
 			this.contexts = _listAddAll(this.contexts, list);

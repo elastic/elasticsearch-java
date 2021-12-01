@@ -54,7 +54,7 @@ import javax.annotation.Nullable;
  * Used by the monitoring features to send monitoring data.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/monitoring/bulk/BulkMonitoringRequest.ts#L24-L57">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/monitoring/bulk/BulkMonitoringRequest.ts#L24-L57">API
  *      specification</a>
  */
 
@@ -219,8 +219,6 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		 * API name: {@code _value_body}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>operations</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder operations(List<BulkOperation> list) {
 			this.operations = _listAddAll(this.operations, list);

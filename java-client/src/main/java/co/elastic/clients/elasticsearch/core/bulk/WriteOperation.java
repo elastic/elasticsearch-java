@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/bulk/types.ts#L68-L72">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/bulk/types.ts#L68-L72">API
  *      specification</a>
  */
 
@@ -132,8 +132,6 @@ public abstract class WriteOperation extends BulkOperationBase {
 		 * API name: {@code dynamic_templates}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>dynamicTemplates</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final BuilderT dynamicTemplates(Map<String, String> map) {
 			this.dynamicTemplates = _mapPutAll(this.dynamicTemplates, map);

@@ -57,7 +57,7 @@ import javax.annotation.Nullable;
  * or by omitting the &lt;job_id&gt;.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/delete_expired_data/MlDeleteExpiredDataRequest.ts#L25-L72">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/delete_expired_data/MlDeleteExpiredDataRequest.ts#L25-L72">API
  *      specification</a>
  */
 @JsonpDeserializable

@@ -52,7 +52,7 @@ import javax.annotation.Nullable;
  * Determines whether the specified user has a specified list of privileges.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/security/has_privileges/SecurityHasPrivilegesRequest.ts#L25-L39">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/has_privileges/SecurityHasPrivilegesRequest.ts#L25-L39">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -178,8 +178,6 @@ public class HasPrivilegesRequest extends RequestBase implements JsonpSerializab
 		 * API name: {@code application}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>application</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder application(List<ApplicationPrivilegesCheck> list) {
 			this.application = _listAddAll(this.application, list);
@@ -210,8 +208,6 @@ public class HasPrivilegesRequest extends RequestBase implements JsonpSerializab
 		 * API name: {@code cluster}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>cluster</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder cluster(List<ClusterPrivilege> list) {
 			this.cluster = _listAddAll(this.cluster, list);
@@ -232,8 +228,6 @@ public class HasPrivilegesRequest extends RequestBase implements JsonpSerializab
 		 * API name: {@code index}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>index</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder index(List<IndexPrivilegesCheck> list) {
 			this.index = _listAddAll(this.index, list);

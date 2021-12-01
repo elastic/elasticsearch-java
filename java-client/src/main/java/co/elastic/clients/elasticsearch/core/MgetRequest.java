@@ -55,7 +55,7 @@ import javax.annotation.Nullable;
  * Allows to get multiple documents in one request.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/mget/MultiGetRequest.ts#L25-L49">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/mget/MultiGetRequest.ts#L25-L49">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -314,8 +314,6 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code _source_excludes}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>sourceExcludes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder sourceExcludes(List<String> list) {
 			this.sourceExcludes = _listAddAll(this.sourceExcludes, list);
@@ -340,8 +338,6 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code _source_includes}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>sourceIncludes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder sourceIncludes(List<String> list) {
 			this.sourceIncludes = _listAddAll(this.sourceIncludes, list);
@@ -364,8 +360,6 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code docs}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>docs</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder docs(List<MultiGetOperation> list) {
 			this.docs = _listAddAll(this.docs, list);
@@ -395,8 +389,6 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code ids}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>ids</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder ids(List<String> list) {
 			this.ids = _listAddAll(this.ids, list);
@@ -470,8 +462,6 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code stored_fields}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>storedFields</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder storedFields(List<String> list) {
 			this.storedFields = _listAddAll(this.storedFields, list);

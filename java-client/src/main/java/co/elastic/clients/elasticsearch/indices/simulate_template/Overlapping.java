@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/simulate_template/IndicesSimulateTemplateResponse.ts#L39-L42">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/simulate_template/IndicesSimulateTemplateResponse.ts#L39-L42">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -130,8 +130,6 @@ public class Overlapping implements JsonpSerializable {
 		 * Required - API name: {@code index_patterns}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>indexPatterns</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder indexPatterns(List<String> list) {
 			this.indexPatterns = _listAddAll(this.indexPatterns, list);

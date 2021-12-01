@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
  * Contains statistics about shards assigned to selected nodes.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cluster/stats/types.ts#L48-L60">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/stats/types.ts#L48-L60">API
  *      specification</a>
  */
 @JsonpDeserializable

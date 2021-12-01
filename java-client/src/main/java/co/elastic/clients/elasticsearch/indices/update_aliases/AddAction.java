@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/update_aliases/types.ts#L30-L42">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/update_aliases/types.ts#L30-L42">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -309,8 +309,6 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 		 * API name: {@code aliases}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>aliases</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder aliases(List<String> list) {
 			this.aliases = _listAddAll(this.aliases, list);
@@ -354,8 +352,6 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 		 * API name: {@code indices}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>indices</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder indices(List<String> list) {
 			this.indices = _listAddAll(this.indices, list);

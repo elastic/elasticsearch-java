@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/security/_types/Privileges.ts#L24-L37">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/_types/Privileges.ts#L24-L37">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -164,8 +164,6 @@ public class ApplicationPrivileges implements JsonpSerializable {
 		 * API name: {@code privileges}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>privileges</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder privileges(List<String> list) {
 			this.privileges = _listAddAll(this.privileges, list);
@@ -191,8 +189,6 @@ public class ApplicationPrivileges implements JsonpSerializable {
 		 * API name: {@code resources}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>resources</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder resources(List<String> list) {
 			this.resources = _listAddAll(this.resources, list);

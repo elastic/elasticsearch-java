@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/query_dsl/compound.ts#L28-L34">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/compound.ts#L28-L34">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -196,8 +196,6 @@ public class BoolQuery extends QueryBase implements QueryVariant {
 		 * API name: {@code filter}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>filter</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder filter(List<Query> list) {
 			this.filter = _listAddAll(this.filter, list);
@@ -235,8 +233,6 @@ public class BoolQuery extends QueryBase implements QueryVariant {
 		 * API name: {@code must}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>must</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder must(List<Query> list) {
 			this.must = _listAddAll(this.must, list);
@@ -266,8 +262,6 @@ public class BoolQuery extends QueryBase implements QueryVariant {
 		 * API name: {@code must_not}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>mustNot</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder mustNot(List<Query> list) {
 			this.mustNot = _listAddAll(this.mustNot, list);
@@ -297,8 +291,6 @@ public class BoolQuery extends QueryBase implements QueryVariant {
 		 * API name: {@code should}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>should</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder should(List<Query> list) {
 			this.should = _listAddAll(this.should, list);

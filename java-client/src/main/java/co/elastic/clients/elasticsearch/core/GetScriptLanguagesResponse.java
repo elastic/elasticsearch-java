@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/get_script_languages/GetScriptLanguagesResponse.ts#L22-L27">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/get_script_languages/GetScriptLanguagesResponse.ts#L22-L27">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -130,8 +130,6 @@ public class GetScriptLanguagesResponse implements JsonpSerializable {
 		 * Required - API name: {@code language_contexts}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>languageContexts</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder languageContexts(List<LanguageContext> list) {
 			this.languageContexts = _listAddAll(this.languageContexts, list);
@@ -161,8 +159,6 @@ public class GetScriptLanguagesResponse implements JsonpSerializable {
 		 * Required - API name: {@code types_allowed}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>typesAllowed</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder typesAllowed(List<String> list) {
 			this.typesAllowed = _listAddAll(this.typesAllowed, list);

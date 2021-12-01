@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
  * Cancels a task, if it can be cancelled through an API.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/tasks/cancel/CancelTasksRequest.ts#L23-L38">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/tasks/cancel/CancelTasksRequest.ts#L23-L38">API
  *      specification</a>
  */
 
@@ -167,8 +167,6 @@ public class CancelRequest extends RequestBase {
 		 * API name: {@code actions}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>actions</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder actions(List<String> list) {
 			this.actions = _listAddAll(this.actions, list);
@@ -196,8 +194,6 @@ public class CancelRequest extends RequestBase {
 		 * API name: {@code nodes}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>nodes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder nodes(List<String> list) {
 			this.nodes = _listAddAll(this.nodes, list);

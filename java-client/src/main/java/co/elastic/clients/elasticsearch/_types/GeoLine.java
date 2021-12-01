@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
  * A GeoJson GeoLine.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/Geo.ts#L59-L65">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Geo.ts#L59-L65">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -147,8 +147,6 @@ public class GeoLine implements JsonpSerializable {
 		 * API name: {@code coordinates}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>coordinates</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder coordinates(List<List<Double>> list) {
 			this.coordinates = _listAddAll(this.coordinates, list);

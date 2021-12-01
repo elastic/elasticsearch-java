@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/security/_types/Privileges.ts#L77-L100">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/_types/Privileges.ts#L77-L100">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -216,8 +216,6 @@ public class IndicesPrivileges implements JsonpSerializable {
 		 * API name: {@code field_security}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>fieldSecurity</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder fieldSecurity(List<FieldSecurity> list) {
 			this.fieldSecurity = _listAddAll(this.fieldSecurity, list);
@@ -254,8 +252,6 @@ public class IndicesPrivileges implements JsonpSerializable {
 		 * API name: {@code names}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>names</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder names(List<String> list) {
 			this.names = _listAddAll(this.names, list);
@@ -282,8 +278,6 @@ public class IndicesPrivileges implements JsonpSerializable {
 		 * API name: {@code privileges}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>privileges</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder privileges(List<IndexPrivilege> list) {
 			this.privileges = _listAddAll(this.privileges, list);
@@ -311,8 +305,6 @@ public class IndicesPrivileges implements JsonpSerializable {
 		 * API name: {@code query}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>query</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder query(List<String> list) {
 			this.query = _listAddAll(this.query, list);

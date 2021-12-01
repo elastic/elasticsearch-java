@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
  * Stops one or more transforms.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/transform/stop_transform/StopTransformRequest.ts#L24-L40">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/transform/stop_transform/StopTransformRequest.ts#L24-L40">API
  *      specification</a>
  */
 

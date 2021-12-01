@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ingest/_types/Pipeline.ts#L23-L28">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/_types/Pipeline.ts#L23-L28">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -180,8 +180,6 @@ public class Pipeline implements JsonpSerializable {
 		 * API name: {@code on_failure}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>onFailure</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder onFailure(List<Processor> list) {
 			this.onFailure = _listAddAll(this.onFailure, list);
@@ -211,8 +209,6 @@ public class Pipeline implements JsonpSerializable {
 		 * API name: {@code processors}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>processors</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder processors(List<Processor> list) {
 			this.processors = _listAddAll(this.processors, list);

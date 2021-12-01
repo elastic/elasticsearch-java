@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/metric.ts#L128-L134">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/metric.ts#L128-L134">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -237,8 +237,6 @@ public class ScriptedMetricAggregation extends MetricAggregationBase implements 
 		 * API name: {@code params}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>params</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder params(Map<String, JsonData> map) {
 			this.params = _mapPutAll(this.params, map);

@@ -54,7 +54,7 @@ import javax.annotation.Nullable;
  * Adds a block to an index.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/add_block/IndicesAddBlockRequest.ts#L24-L41">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/add_block/IndicesAddBlockRequest.ts#L24-L41">API
  *      specification</a>
  */
 
@@ -221,8 +221,6 @@ public class AddBlockRequest extends RequestBase {
 		 * API name: {@code expand_wildcards}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder expandWildcards(List<ExpandWildcard> list) {
 			this.expandWildcards = _listAddAll(this.expandWildcards, list);

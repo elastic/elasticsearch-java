@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/nodes/info/types.ts#L341-L355">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L341-L355">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -309,8 +309,6 @@ public class NodeJvmInfo implements JsonpSerializable {
 		 * Required - API name: {@code gc_collectors}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>gcCollectors</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder gcCollectors(List<String> list) {
 			this.gcCollectors = _listAddAll(this.gcCollectors, list);
@@ -346,8 +344,6 @@ public class NodeJvmInfo implements JsonpSerializable {
 		 * Required - API name: {@code memory_pools}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>memoryPools</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder memoryPools(List<String> list) {
 			this.memoryPools = _listAddAll(this.memoryPools, list);
@@ -440,8 +436,6 @@ public class NodeJvmInfo implements JsonpSerializable {
 		 * Required - API name: {@code input_arguments}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>inputArguments</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder inputArguments(List<String> list) {
 			this.inputArguments = _listAddAll(this.inputArguments, list);

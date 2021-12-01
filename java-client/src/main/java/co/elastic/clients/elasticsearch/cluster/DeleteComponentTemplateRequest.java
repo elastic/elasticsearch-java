@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  * Deletes a component template
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cluster/delete_component_template/ClusterDeleteComponentTemplateRequest.ts#L24-L39">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/delete_component_template/ClusterDeleteComponentTemplateRequest.ts#L24-L39">API
  *      specification</a>
  */
 

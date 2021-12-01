@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/matrix.ts#L26-L29">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/matrix.ts#L26-L29">API
  *      specification</a>
  */
 
@@ -116,8 +116,6 @@ public abstract class MatrixAggregation extends AggregationBase {
 		 * API name: {@code fields}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>fields</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final BuilderT fields(List<String> list) {
 			this.fields = _listAddAll(this.fields, list);
@@ -138,8 +136,6 @@ public abstract class MatrixAggregation extends AggregationBase {
 		 * API name: {@code missing}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>missing</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final BuilderT missing(Map<String, Double> map) {
 			this.missing = _mapPutAll(this.missing, map);

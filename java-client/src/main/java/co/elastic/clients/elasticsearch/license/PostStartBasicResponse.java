@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/license/post_start_basic/StartBasicLicenseResponse.ts#L23-L29">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/license/post_start_basic/StartBasicLicenseResponse.ts#L23-L29">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -140,8 +140,6 @@ public class PostStartBasicResponse extends AcknowledgedResponseBase {
 		 * Required - API name: {@code acknowledge}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>acknowledge</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder acknowledge(Map<String, List<String>> map) {
 			this.acknowledge = _mapPutAll(this.acknowledge, map);

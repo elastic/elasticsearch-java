@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/search/_types/SourceFilter.ts#L23-L31">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/SourceFilter.ts#L23-L31">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -131,8 +131,6 @@ public class SourceFilter implements JsonpSerializable {
 		 * API name: {@code excludes}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>excludes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder excludes(List<String> list) {
 			this.excludes = _listAddAll(this.excludes, list);
@@ -153,8 +151,6 @@ public class SourceFilter implements JsonpSerializable {
 		 * API name: {@code includes}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>includes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder includes(List<String> list) {
 			this.includes = _listAddAll(this.includes, list);

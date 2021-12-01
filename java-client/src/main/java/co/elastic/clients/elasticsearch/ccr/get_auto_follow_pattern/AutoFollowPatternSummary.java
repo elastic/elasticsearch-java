@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ccr/get_auto_follow_pattern/types.ts#L28-L51">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ccr/get_auto_follow_pattern/types.ts#L28-L51">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -242,8 +242,6 @@ public class AutoFollowPatternSummary implements JsonpSerializable {
 		 * API name: {@code leader_index_patterns}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>leaderIndexPatterns</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder leaderIndexPatterns(List<String> list) {
 			this.leaderIndexPatterns = _listAddAll(this.leaderIndexPatterns, list);
@@ -271,8 +269,6 @@ public class AutoFollowPatternSummary implements JsonpSerializable {
 		 * <p>
 		 * Adds all elements of <code>list</code> to
 		 * <code>leaderIndexExclusionPatterns</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder leaderIndexExclusionPatterns(List<String> list) {
 			this.leaderIndexExclusionPatterns = _listAddAll(this.leaderIndexExclusionPatterns, list);

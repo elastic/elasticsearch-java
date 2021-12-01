@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/get_data_stream/IndicesGetDataStreamResponse.ts#L54-L57">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/get_data_stream/IndicesGetDataStreamResponse.ts#L54-L57">API
  *      specification</a>
  */
 @JsonpDeserializable

@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  * Deletes an existing enrich policy and its enrich index.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/enrich/delete_policy/DeleteEnrichPolicyRequest.ts#L23-L32">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/enrich/delete_policy/DeleteEnrichPolicyRequest.ts#L23-L32">API
  *      specification</a>
  */
 

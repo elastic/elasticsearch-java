@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/analysis/token_filters.ts#L96-L102">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L96-L102">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -186,8 +186,6 @@ public class StopTokenFilter extends TokenFilterBase implements TokenFilterDefin
 		 * Required - API name: {@code stopwords}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>stopwords</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder stopwords(List<String> list) {
 			this.stopwords = _listAddAll(this.stopwords, list);

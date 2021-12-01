@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
  * Returns information about existing templates.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cat/templates/CatTemplatesRequest.ts#L23-L32">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/templates/CatTemplatesRequest.ts#L23-L32">API
  *      specification</a>
  */
 

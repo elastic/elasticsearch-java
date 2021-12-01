@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/nodes/info/types.ts#L234-L236">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L234-L236">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -108,8 +108,6 @@ public class NodeInfoXpackSecuritySsl implements JsonpSerializable {
 		 * Required - API name: {@code ssl}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>ssl</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder ssl(Map<String, String> map) {
 			this.ssl = _mapPutAll(this.ssl, map);

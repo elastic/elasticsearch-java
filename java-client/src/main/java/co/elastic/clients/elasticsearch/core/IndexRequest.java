@@ -59,7 +59,7 @@ import javax.annotation.Nullable;
  * Creates or updates a document in an index.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/index/IndexRequest.ts#L35-L60">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/index/IndexRequest.ts#L35-L60">API
  *      specification</a>
  */
 

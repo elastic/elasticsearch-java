@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/Aggregate.ts#L449-L453">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L449-L453">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -141,8 +141,6 @@ public class MultiTermsBucket extends MultiBucketBase {
 		 * Required - API name: {@code key}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>key</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder key(List<String> list) {
 			this.key = _listAddAll(this.key, list);

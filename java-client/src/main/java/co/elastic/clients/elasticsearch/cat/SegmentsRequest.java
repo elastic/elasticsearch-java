@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
  * Provides low-level information about the segments in the shards of an index.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cat/segments/CatSegmentsRequest.ts#L23-L35">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/segments/CatSegmentsRequest.ts#L23-L35">API
  *      specification</a>
  */
 
@@ -121,8 +121,6 @@ public class SegmentsRequest extends CatRequestBase {
 		 * API name: {@code index}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>index</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder index(List<String> list) {
 			this.index = _listAddAll(this.index, list);

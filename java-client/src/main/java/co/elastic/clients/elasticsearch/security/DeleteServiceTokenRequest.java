@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  * Deletes a service account token.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/security/delete_service_token/DeleteServiceTokenRequest.ts#L23-L37">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/delete_service_token/DeleteServiceTokenRequest.ts#L23-L37">API
  *      specification</a>
  */
 

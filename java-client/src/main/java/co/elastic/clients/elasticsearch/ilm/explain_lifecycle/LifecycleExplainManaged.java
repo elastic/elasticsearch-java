@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ilm/explain_lifecycle/types.ts#L26-L43">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ilm/explain_lifecycle/types.ts#L26-L43">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -451,8 +451,6 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 		 * API name: {@code step_info}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>stepInfo</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder stepInfo(Map<String, JsonData> map) {
 			this.stepInfo = _mapPutAll(this.stepInfo, map);

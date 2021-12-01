@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/slm/get_stats/GetSnapshotLifecycleStatsResponse.ts#L23-L36">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/slm/get_stats/GetSnapshotLifecycleStatsResponse.ts#L23-L36">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -321,8 +321,6 @@ public class GetStatsResponse implements JsonpSerializable {
 		 * Required - API name: {@code policy_stats}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>policyStats</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder policyStats(List<String> list) {
 			this.policyStats = _listAddAll(this.policyStats, list);

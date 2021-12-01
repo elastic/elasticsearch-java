@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/DataframeAnalytics.ts#L423-L428">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/DataframeAnalytics.ts#L423-L428">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -129,8 +129,6 @@ public class ValidationLoss implements JsonpSerializable {
 		 * API name: {@code fold_values}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>foldValues</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder foldValues(List<String> list) {
 			this.foldValues = _listAddAll(this.foldValues, list);

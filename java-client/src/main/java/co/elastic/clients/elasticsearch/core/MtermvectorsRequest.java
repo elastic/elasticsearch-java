@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
  * Returns multiple termvectors in one request.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/mtermvectors/MultiTermVectorsRequest.ts#L31-L58">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/mtermvectors/MultiTermVectorsRequest.ts#L31-L58">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -360,8 +360,6 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 		 * API name: {@code docs}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>docs</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder docs(List<MultiTermVectorsOperation> list) {
 			this.docs = _listAddAll(this.docs, list);
@@ -407,8 +405,6 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 		 * API name: {@code fields}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>fields</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder fields(List<String> list) {
 			this.fields = _listAddAll(this.fields, list);
@@ -432,8 +428,6 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 		 * API name: {@code ids}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>ids</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder ids(List<String> list) {
 			this.ids = _listAddAll(this.ids, list);

@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/nodes/info/types.ts#L141-L145">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L141-L145">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -152,8 +152,6 @@ public class NodeInfoSettingsNode implements JsonpSerializable {
 		 * Required - API name: {@code attr}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>attr</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder attr(Map<String, JsonData> map) {
 			this.attr = _mapPutAll(this.attr, map);

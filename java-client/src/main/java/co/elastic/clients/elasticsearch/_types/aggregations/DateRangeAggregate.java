@@ -41,7 +41,7 @@ import java.util.function.Function;
  * floating point number.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/Aggregate.ts#L509-L514">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L509-L514">API
  *      specification</a>
  */
 @JsonpDeserializable

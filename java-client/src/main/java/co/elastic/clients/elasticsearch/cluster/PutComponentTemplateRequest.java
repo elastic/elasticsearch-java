@@ -58,7 +58,7 @@ import javax.annotation.Nullable;
  * Creates or updates a component template
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cluster/put_component_template/ClusterPutComponentTemplateRequest.ts#L29-L53">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/put_component_template/ClusterPutComponentTemplateRequest.ts#L29-L53">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -271,8 +271,6 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 		 * API name: {@code _meta}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>meta</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder meta(Map<String, JsonData> map) {
 			this.meta = _mapPutAll(this.meta, map);
@@ -293,8 +291,6 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 		 * API name: {@code aliases}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>aliases</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder aliases(Map<String, AliasDefinition> map) {
 			this.aliases = _mapPutAll(this.aliases, map);

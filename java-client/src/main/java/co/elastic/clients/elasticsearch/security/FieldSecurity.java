@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/security/_types/FieldSecurity.ts#L22-L25">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/_types/FieldSecurity.ts#L22-L25">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -130,8 +130,6 @@ public class FieldSecurity implements JsonpSerializable {
 		 * API name: {@code except}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>except</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder except(List<String> list) {
 			this.except = _listAddAll(this.except, list);
@@ -152,8 +150,6 @@ public class FieldSecurity implements JsonpSerializable {
 		 * Required - API name: {@code grant}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>grant</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder grant(List<String> list) {
 			this.grant = _listAddAll(this.grant, list);

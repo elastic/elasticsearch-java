@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  * Deletes an existing snapshot lifecycle policy.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/slm/delete_lifecycle/DeleteSnapshotLifecycleRequest.ts#L23-L32">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/slm/delete_lifecycle/DeleteSnapshotLifecycleRequest.ts#L23-L32">API
  *      specification</a>
  */
 

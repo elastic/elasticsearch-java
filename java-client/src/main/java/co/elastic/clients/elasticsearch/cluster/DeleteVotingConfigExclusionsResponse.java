@@ -36,7 +36,7 @@ import java.util.Objects;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cluster/delete_voting_config_exclusions/ClusterDeleteVotingConfigExclusionsResponse.ts#L22-L24">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/delete_voting_config_exclusions/ClusterDeleteVotingConfigExclusionsResponse.ts#L22-L24">API
  *      specification</a>
  */
 

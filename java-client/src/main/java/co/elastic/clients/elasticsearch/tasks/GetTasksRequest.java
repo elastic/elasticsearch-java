@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
  * Returns information about a task.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/tasks/get/GetTaskRequest.ts#L24-L37">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/tasks/get/GetTaskRequest.ts#L24-L37">API
  *      specification</a>
  */
 

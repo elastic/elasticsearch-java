@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/TrainedModel.ts#L121-L128">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/TrainedModel.ts#L121-L128">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -165,8 +165,6 @@ public class TotalFeatureImportance implements JsonpSerializable {
 		 * API name: {@code importance}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>importance</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder importance(List<TotalFeatureImportanceStatistics> list) {
 			this.importance = _listAddAll(this.importance, list);
@@ -207,8 +205,6 @@ public class TotalFeatureImportance implements JsonpSerializable {
 		 * API name: {@code classes}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>classes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder classes(List<TotalFeatureImportanceClass> list) {
 			this.classes = _listAddAll(this.classes, list);

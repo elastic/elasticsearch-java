@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
  * learning node.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/start_trained_model_deployment/MlStartTrainedModelDeploymentRequest.ts#L26-L71">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/start_trained_model_deployment/MlStartTrainedModelDeploymentRequest.ts#L26-L71">API
  *      specification</a>
  */
 

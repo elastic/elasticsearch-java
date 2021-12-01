@@ -55,7 +55,7 @@ import javax.annotation.Nullable;
  * <code>over_field_name</code> in its configuration.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/forecast/MlForecastJobRequest.ts#L24-L87">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/forecast/MlForecastJobRequest.ts#L24-L87">API
  *      specification</a>
  */
 @JsonpDeserializable

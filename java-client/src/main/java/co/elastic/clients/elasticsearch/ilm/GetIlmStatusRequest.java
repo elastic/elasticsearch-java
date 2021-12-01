@@ -42,7 +42,7 @@ import java.util.Objects;
  * Retrieves the current index lifecycle management (ILM) status.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ilm/get_status/GetIlmStatusRequest.ts#L22-L27">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ilm/get_status/GetIlmStatusRequest.ts#L22-L27">API
  *      specification</a>
  */
 

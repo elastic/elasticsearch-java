@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/watcher/_types/Action.ts#L68-L72">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Action.ts#L68-L72">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -137,8 +137,6 @@ public class SimulatedActions implements JsonpSerializable {
 		 * Required - API name: {@code actions}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>actions</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder actions(List<String> list) {
 			this.actions = _listAddAll(this.actions, list);

@@ -52,7 +52,7 @@ import javax.annotation.Nullable;
  * in the cluster.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cat/tasks/CatTasksRequest.ts#L23-L35">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/tasks/CatTasksRequest.ts#L23-L35">API
  *      specification</a>
  */
 
@@ -143,8 +143,6 @@ public class TasksRequest extends CatRequestBase {
 		 * API name: {@code actions}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>actions</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder actions(List<String> list) {
 			this.actions = _listAddAll(this.actions, list);
@@ -178,8 +176,6 @@ public class TasksRequest extends CatRequestBase {
 		 * API name: {@code node_id}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>nodeId</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder nodeId(List<String> list) {
 			this.nodeId = _listAddAll(this.nodeId, list);

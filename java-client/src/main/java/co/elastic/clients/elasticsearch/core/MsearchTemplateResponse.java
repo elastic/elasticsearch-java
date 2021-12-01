@@ -40,7 +40,7 @@ import java.util.function.Supplier;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/msearch_template/MultiSearchTemplateResponse.ts#L22-L24">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/msearch_template/MultiSearchTemplateResponse.ts#L22-L24">API
  *      specification</a>
  */
 @JsonpDeserializable

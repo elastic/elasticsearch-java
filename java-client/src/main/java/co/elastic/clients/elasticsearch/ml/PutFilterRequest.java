@@ -52,7 +52,7 @@ import javax.annotation.Nullable;
  * the <code>custom_rules</code> property of detector configuration objects.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/put_filter/MlPutFilterRequest.ts#L23-L50">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/put_filter/MlPutFilterRequest.ts#L23-L50">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -180,8 +180,6 @@ public class PutFilterRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code items}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>items</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder items(List<String> list) {
 			this.items = _listAddAll(this.items, list);

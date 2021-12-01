@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/evaluate_data_frame/types.ts#L84-L89">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/evaluate_data_frame/types.ts#L84-L89">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -170,8 +170,6 @@ public class ConfusionMatrixItem implements JsonpSerializable {
 		 * Required - API name: {@code predicted_classes}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>predictedClasses</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder predictedClasses(List<ConfusionMatrixPrediction> list) {
 			this.predictedClasses = _listAddAll(this.predictedClasses, list);

@@ -44,7 +44,7 @@ import java.util.function.Function;
  *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-rank-eval.html#_expected_reciprocal_rank_err">Documentation
  *      on elastic.co</a>
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/rank_eval/types.ts#L79-L88">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/rank_eval/types.ts#L79-L88">API
  *      specification</a>
  */
 @JsonpDeserializable

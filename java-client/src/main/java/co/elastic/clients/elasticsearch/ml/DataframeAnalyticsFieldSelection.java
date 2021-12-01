@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/DataframeAnalytics.ts#L54-L67">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/DataframeAnalytics.ts#L54-L67">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -240,8 +240,6 @@ public class DataframeAnalyticsFieldSelection implements JsonpSerializable {
 		 * API name: {@code mapping_types}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>mappingTypes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder mappingTypes(List<String> list) {
 			this.mappingTypes = _listAddAll(this.mappingTypes, list);

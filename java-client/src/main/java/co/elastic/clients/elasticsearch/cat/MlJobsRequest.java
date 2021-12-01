@@ -53,7 +53,7 @@ import javax.annotation.Nullable;
  * API.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cat/ml_jobs/CatJobsRequest.ts#L24-L64">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/ml_jobs/CatJobsRequest.ts#L24-L64">API
  *      specification</a>
  */
 

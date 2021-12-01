@@ -54,7 +54,7 @@ import javax.annotation.Nullable;
  * Creates and updates role mappings.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/security/put_role_mapping/SecurityPutRoleMappingRequest.ts#L24-L43">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/put_role_mapping/SecurityPutRoleMappingRequest.ts#L24-L43">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -247,8 +247,6 @@ public class PutRoleMappingRequest extends RequestBase implements JsonpSerializa
 		 * API name: {@code metadata}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>metadata</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder metadata(Map<String, JsonData> map) {
 			this.metadata = _mapPutAll(this.metadata, map);
@@ -292,8 +290,6 @@ public class PutRoleMappingRequest extends RequestBase implements JsonpSerializa
 		 * API name: {@code roles}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>roles</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder roles(List<String> list) {
 			this.roles = _listAddAll(this.roles, list);
@@ -329,8 +325,6 @@ public class PutRoleMappingRequest extends RequestBase implements JsonpSerializa
 		 * API name: {@code run_as}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>runAs</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder runAs(List<String> list) {
 			this.runAs = _listAddAll(this.runAs, list);

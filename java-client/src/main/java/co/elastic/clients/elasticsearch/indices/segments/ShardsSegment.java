@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/segments/types.ts#L47-L52">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/segments/types.ts#L47-L52">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -186,8 +186,6 @@ public class ShardsSegment implements JsonpSerializable {
 		 * Required - API name: {@code segments}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>segments</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder segments(Map<String, Segment> map) {
 			this.segments = _mapPutAll(this.segments, map);

@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/rollup/_types/Groupings.ts#L44-L47">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/rollup/_types/Groupings.ts#L44-L47">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -122,8 +122,6 @@ public class HistogramGrouping implements JsonpSerializable {
 		 * Required - API name: {@code fields}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>fields</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder fields(List<String> list) {
 			this.fields = _listAddAll(this.fields, list);

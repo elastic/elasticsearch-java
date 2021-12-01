@@ -53,7 +53,7 @@ import javax.annotation.Nullable;
  * Executes a SQL request
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/sql/query/QuerySqlRequest.ts#L25-L76">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/sql/query/QuerySqlRequest.ts#L25-L76">API
  *      specification</a>
  */
 @JsonpDeserializable

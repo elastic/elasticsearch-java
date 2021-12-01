@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/analysis/token_filters.ts#L258-L262">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L258-L262">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -124,8 +124,6 @@ public class MultiplexerTokenFilter extends TokenFilterBase implements TokenFilt
 		 * Required - API name: {@code filters}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>filters</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder filters(List<String> list) {
 			this.filters = _listAddAll(this.filters, list);

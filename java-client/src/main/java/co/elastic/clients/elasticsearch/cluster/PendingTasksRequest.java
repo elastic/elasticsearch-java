@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  * mapping, allocate or fail shard) which have not yet been executed.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cluster/pending_tasks/ClusterPendingTasksRequest.ts#L23-L34">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/pending_tasks/ClusterPendingTasksRequest.ts#L23-L34">API
  *      specification</a>
  */
 

@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  * Validates an anomaly detection job.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/validate/MlValidateJobRequest.ts#L27-L44">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/validate/MlValidateJobRequest.ts#L27-L44">API
  *      specification</a>
  */
 @JsonpDeserializable

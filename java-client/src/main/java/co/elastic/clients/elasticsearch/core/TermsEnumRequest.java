@@ -55,7 +55,7 @@ import javax.annotation.Nullable;
  * auto-complete scenarios.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/terms_enum/TermsEnumRequest.ts#L26-L65">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/terms_enum/TermsEnumRequest.ts#L26-L65">API
  *      specification</a>
  */
 @JsonpDeserializable

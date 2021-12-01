@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
  * Invalidates one or more access tokens or refresh tokens.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/security/invalidate_token/SecurityInvalidateTokenRequest.ts#L23-L35">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/invalidate_token/SecurityInvalidateTokenRequest.ts#L23-L35">API
  *      specification</a>
  */
 @JsonpDeserializable

@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/DataframeEvaluation.ts#L80-L83">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/DataframeEvaluation.ts#L80-L83">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -108,8 +108,6 @@ public class DataframeEvaluationOutlierDetectionMetrics extends DataframeEvaluat
 		 * API name: {@code confusion_matrix}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>confusionMatrix</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder confusionMatrix(Map<String, JsonData> map) {
 			this.confusionMatrix = _mapPutAll(this.confusionMatrix, map);

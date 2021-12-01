@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/sort.ts#L57-L65">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/sort.ts#L57-L65">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -213,8 +213,6 @@ public class GeoDistanceSort implements SortOptionsVariant, JsonpSerializable {
 
 		/**
 		 * Required - Adds all elements of <code>list</code> to <code>location</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder location(List<GeoLocation> list) {
 			this.location = _listAddAll(this.location, list);

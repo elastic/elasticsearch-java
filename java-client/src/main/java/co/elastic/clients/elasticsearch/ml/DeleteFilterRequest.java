@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  * delete the filter.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/delete_filter/MlDeleteFilterRequest.ts#L23-L39">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/delete_filter/MlDeleteFilterRequest.ts#L23-L39">API
  *      specification</a>
  */
 

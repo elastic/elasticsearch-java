@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/watcher/stats/WatcherStatsResponse.ts#L24-L32">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/stats/WatcherStatsResponse.ts#L24-L32">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -186,8 +186,6 @@ public class WatcherStatsResponse implements JsonpSerializable {
 		 * Required - API name: {@code stats}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>stats</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder stats(List<WatcherNodeStats> list) {
 			this.stats = _listAddAll(this.stats, list);

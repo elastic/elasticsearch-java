@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch._types.aggregations;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
@@ -42,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/Aggregate.ts#L674-L678">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L674-L678">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -76,6 +77,8 @@ public class TTestAggregate extends AggregateBase implements AggregateVariant {
 
 	/**
 	 * Required - API name: {@code value}
+	 * <p>
+	 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
 	 */
 	public final double value() {
 		return this.value;
@@ -93,8 +96,7 @@ public class TTestAggregate extends AggregateBase implements AggregateVariant {
 
 		super.serializeInternal(generator, mapper);
 		generator.writeKey("value");
-		generator.write(this.value);
-
+		JsonpUtils.serializeDoubleOrNull(generator, this.value, 0);
 		if (this.valueAsString != null) {
 			generator.writeKey("value_as_string");
 			generator.write(this.valueAsString);
@@ -119,6 +121,8 @@ public class TTestAggregate extends AggregateBase implements AggregateVariant {
 
 		/**
 		 * Required - API name: {@code value}
+		 * <p>
+		 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
 		 */
 		public final Builder value(double value) {
 			this.value = value;
@@ -161,7 +165,7 @@ public class TTestAggregate extends AggregateBase implements AggregateVariant {
 
 	protected static void setupTTestAggregateDeserializer(ObjectDeserializer<TTestAggregate.Builder> op) {
 		AggregateBase.setupAggregateBaseDeserializer(op);
-		op.add(Builder::value, JsonpDeserializer.doubleDeserializer(), "value");
+		op.add(Builder::value, JsonpDeserializer.doubleOrNullDeserializer(0), "value");
 		op.add(Builder::valueAsString, JsonpDeserializer.stringDeserializer(), "value_as_string");
 
 	}

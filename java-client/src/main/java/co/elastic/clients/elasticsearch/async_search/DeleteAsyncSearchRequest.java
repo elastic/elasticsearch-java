@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
  * request will be cancelled. Otherwise, the saved search results are deleted.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/async_search/delete/AsyncSearchDeleteRequest.ts#L23-L32">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/async_search/delete/AsyncSearchDeleteRequest.ts#L23-L32">API
  *      specification</a>
  */
 

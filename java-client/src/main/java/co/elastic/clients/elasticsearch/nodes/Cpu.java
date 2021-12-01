@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/nodes/_types/Stats.ts#L86-L95">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/_types/Stats.ts#L86-L95">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -303,8 +303,6 @@ public class Cpu implements JsonpSerializable {
 		 * API name: {@code load_average}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>loadAverage</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder loadAverage(Map<String, Double> map) {
 			this.loadAverage = _mapPutAll(this.loadAverage, map);

@@ -54,7 +54,7 @@ import javax.annotation.Nullable;
  * Mount a snapshot as a searchable index.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/searchable_snapshots/mount/SearchableSnapshotsMountRequest.ts#L26-L50">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/searchable_snapshots/mount/SearchableSnapshotsMountRequest.ts#L26-L50">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -258,8 +258,6 @@ public class MountRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code ignore_index_settings}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>ignoreIndexSettings</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder ignoreIndexSettings(List<String> list) {
 			this.ignoreIndexSettings = _listAddAll(this.ignoreIndexSettings, list);
@@ -288,8 +286,6 @@ public class MountRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code index_settings}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>indexSettings</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder indexSettings(Map<String, JsonData> map) {
 			this.indexSettings = _mapPutAll(this.indexSettings, map);

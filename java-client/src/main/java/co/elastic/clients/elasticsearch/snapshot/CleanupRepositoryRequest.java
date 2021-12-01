@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  * Removes stale data from repository.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/snapshot/cleanup_repository/SnapshotCleanupRepositoryRequest.ts#L24-L38">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/snapshot/cleanup_repository/SnapshotCleanupRepositoryRequest.ts#L24-L38">API
  *      specification</a>
  */
 

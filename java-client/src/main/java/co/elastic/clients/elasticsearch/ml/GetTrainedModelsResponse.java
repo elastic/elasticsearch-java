@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/get_trained_models/MlGetTrainedModelResponse.ts#L23-L35">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_trained_models/MlGetTrainedModelResponse.ts#L23-L35">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -137,8 +137,6 @@ public class GetTrainedModelsResponse implements JsonpSerializable {
 		 * API name: {@code trained_model_configs}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>trainedModelConfigs</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder trainedModelConfigs(List<TrainedModelConfig> list) {
 			this.trainedModelConfigs = _listAddAll(this.trainedModelConfigs, list);

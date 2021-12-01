@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/tasks/_types/TaskInfo.ts#L24-L37">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/tasks/_types/TaskInfo.ts#L24-L37">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -322,8 +322,6 @@ public class Info implements JsonpSerializable {
 		 * API name: {@code children}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>children</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder children(List<Info> list) {
 			this.children = _listAddAll(this.children, list);
@@ -361,8 +359,6 @@ public class Info implements JsonpSerializable {
 		 * Required - API name: {@code headers}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>headers</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder headers(Map<String, List<String>> map) {
 			this.headers = _mapPutAll(this.headers, map);

@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
+import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -43,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/query_dsl/term.ts#L40-L51">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/term.ts#L40-L51">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -66,7 +67,7 @@ public class FuzzyQuery extends QueryBase implements QueryVariant {
 	@Nullable
 	private final String fuzziness;
 
-	private final String value;
+	private final FieldValue value;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -145,7 +146,7 @@ public class FuzzyQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Required - API name: {@code value}
 	 */
-	public final String value() {
+	public final FieldValue value() {
 		return this.value;
 	}
 
@@ -179,7 +180,7 @@ public class FuzzyQuery extends QueryBase implements QueryVariant {
 
 		}
 		generator.writeKey("value");
-		generator.write(this.value);
+		this.value.serialize(generator, mapper);
 
 		generator.writeEnd();
 
@@ -217,7 +218,7 @@ public class FuzzyQuery extends QueryBase implements QueryVariant {
 		@Nullable
 		private String fuzziness;
 
-		private String value;
+		private FieldValue value;
 
 		/**
 		 * API name: {@code max_expansions}
@@ -262,9 +263,16 @@ public class FuzzyQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - API name: {@code value}
 		 */
-		public final Builder value(String value) {
+		public final Builder value(FieldValue value) {
 			this.value = value;
 			return this;
+		}
+
+		/**
+		 * Required - API name: {@code value}
+		 */
+		public final Builder value(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
+			return this.value(fn.apply(new FieldValue.Builder()).build());
 		}
 
 		@Override
@@ -300,7 +308,7 @@ public class FuzzyQuery extends QueryBase implements QueryVariant {
 		op.add(Builder::rewrite, JsonpDeserializer.stringDeserializer(), "rewrite");
 		op.add(Builder::transpositions, JsonpDeserializer.booleanDeserializer(), "transpositions");
 		op.add(Builder::fuzziness, JsonpDeserializer.stringDeserializer(), "fuzziness");
-		op.add(Builder::value, JsonpDeserializer.stringDeserializer(), "value");
+		op.add(Builder::value, FieldValue._DESERIALIZER, "value");
 
 		op.setKey(Builder::field, JsonpDeserializer.stringDeserializer());
 		op.shortcutProperty("value");

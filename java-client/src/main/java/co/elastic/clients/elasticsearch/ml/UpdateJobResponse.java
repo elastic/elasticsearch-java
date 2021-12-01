@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/update_job/MlUpdateJobResponse.ts#L29-L53">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/update_job/MlUpdateJobResponse.ts#L29-L53">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -533,8 +533,6 @@ public class UpdateJobResponse implements JsonpSerializable {
 		 * API name: {@code custom_settings}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>customSettings</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder customSettings(Map<String, String> map) {
 			this.customSettings = _mapPutAll(this.customSettings, map);
@@ -601,8 +599,6 @@ public class UpdateJobResponse implements JsonpSerializable {
 		 * API name: {@code groups}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>groups</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder groups(List<String> list) {
 			this.groups = _listAddAll(this.groups, list);

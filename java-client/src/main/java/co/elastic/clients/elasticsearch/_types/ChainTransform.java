@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/Transform.ts#L36-L38">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Transform.ts#L36-L38">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -114,8 +114,6 @@ public class ChainTransform implements TransformVariant, JsonpSerializable {
 		 * Required - API name: {@code transforms}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>transforms</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder transforms(List<Transform> list) {
 			this.transforms = _listAddAll(this.transforms, list);

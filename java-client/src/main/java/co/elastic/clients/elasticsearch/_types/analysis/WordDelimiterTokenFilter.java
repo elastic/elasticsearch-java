@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/analysis/token_filters.ts#L131-L146">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L131-L146">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -402,8 +402,6 @@ public class WordDelimiterTokenFilter extends TokenFilterBase implements TokenFi
 		 * API name: {@code protected_words}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>protectedWords</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder protectedWords(List<String> list) {
 			this.protectedWords = _listAddAll(this.protectedWords, list);
@@ -456,8 +454,6 @@ public class WordDelimiterTokenFilter extends TokenFilterBase implements TokenFi
 		 * API name: {@code type_table}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>typeTable</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder typeTable(List<String> list) {
 			this.typeTable = _listAddAll(this.typeTable, list);

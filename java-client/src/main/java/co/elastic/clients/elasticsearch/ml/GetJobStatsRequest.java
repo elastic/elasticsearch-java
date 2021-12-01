@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
  * Retrieves usage information for anomaly detection jobs.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/get_job_stats/MlGetJobStatsRequest.ts#L23-L56">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_job_stats/MlGetJobStatsRequest.ts#L23-L56">API
  *      specification</a>
  */
 

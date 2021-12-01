@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  * Close a point in time
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/close_point_in_time/ClosePointInTimeRequest.ts#L23-L32">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/close_point_in_time/ClosePointInTimeRequest.ts#L23-L32">API
  *      specification</a>
  */
 @JsonpDeserializable

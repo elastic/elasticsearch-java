@@ -54,7 +54,7 @@ import javax.annotation.Nullable;
  * shards.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/split/IndicesSplitRequest.ts#L27-L46">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/split/IndicesSplitRequest.ts#L27-L46">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -223,8 +223,6 @@ public class SplitRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code aliases}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>aliases</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder aliases(Map<String, Alias> map) {
 			this.aliases = _mapPutAll(this.aliases, map);
@@ -283,8 +281,6 @@ public class SplitRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code settings}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>settings</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder settings(Map<String, JsonData> map) {
 			this.settings = _mapPutAll(this.settings, map);

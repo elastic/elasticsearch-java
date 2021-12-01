@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  * Creates a bearer token for access without requiring basic authentication.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/security/get_token/GetUserAccessTokenRequest.ts#L25-L39">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_token/GetUserAccessTokenRequest.ts#L25-L39">API
  *      specification</a>
  */
 @JsonpDeserializable

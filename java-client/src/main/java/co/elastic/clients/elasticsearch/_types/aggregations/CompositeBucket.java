@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/Aggregate.ts#L580-L582">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L580-L582">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -102,8 +102,6 @@ public class CompositeBucket extends MultiBucketBase {
 		 * Required - API name: {@code key}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>key</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder key(Map<String, JsonData> map) {
 			this.key = _mapPutAll(this.key, map);

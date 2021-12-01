@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/shard_stores/types.ts#L29-L38">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/shard_stores/types.ts#L29-L38">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -229,8 +229,6 @@ public class ShardStore implements JsonpSerializable {
 		 * Required - API name: {@code attributes}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>attributes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder attributes(Map<String, JsonData> map) {
 			this.attributes = _mapPutAll(this.attributes, map);

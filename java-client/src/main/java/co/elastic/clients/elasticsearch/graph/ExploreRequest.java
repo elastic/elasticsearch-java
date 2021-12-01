@@ -55,7 +55,7 @@ import javax.annotation.Nullable;
  * an index.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/graph/explore/GraphExploreRequest.ts#L28-L47">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/graph/explore/GraphExploreRequest.ts#L28-L47">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -261,8 +261,6 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code index}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>index</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder index(List<String> list) {
 			this.index = _listAddAll(this.index, list);
@@ -330,8 +328,6 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code vertices}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>vertices</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder vertices(List<VertexDefinition> list) {
 			this.vertices = _listAddAll(this.vertices, list);

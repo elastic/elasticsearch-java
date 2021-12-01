@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/shard_stores/types.ts#L51-L53">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/shard_stores/types.ts#L51-L53">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -106,8 +106,6 @@ public class ShardStoreWrapper implements JsonpSerializable {
 		 * Required - API name: {@code stores}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>stores</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder stores(List<ShardStore> list) {
 			this.stores = _listAddAll(this.stores, list);

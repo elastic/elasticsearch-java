@@ -54,7 +54,7 @@ import javax.annotation.Nullable;
  * Returns information about whether a particular index exists.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/exists/IndicesExistsRequest.ts#L23-L40">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/exists/IndicesExistsRequest.ts#L23-L40">API
  *      specification</a>
  */
 
@@ -212,8 +212,6 @@ public class ExistsRequest extends RequestBase {
 		 * API name: {@code expand_wildcards}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder expandWildcards(List<ExpandWildcard> list) {
 			this.expandWildcards = _listAddAll(this.expandWildcards, list);
@@ -269,8 +267,6 @@ public class ExistsRequest extends RequestBase {
 		 * API name: {@code index}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>index</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder index(List<String> list) {
 			this.index = _listAddAll(this.index, list);

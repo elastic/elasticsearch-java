@@ -42,7 +42,7 @@ import java.util.Objects;
  * Returns statistical information about geoip databases
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ingest/geo_ip_stats/IngestGeoIpStatsRequest.ts#L22-L27">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/geo_ip_stats/IngestGeoIpStatsRequest.ts#L22-L27">API
  *      specification</a>
  */
 

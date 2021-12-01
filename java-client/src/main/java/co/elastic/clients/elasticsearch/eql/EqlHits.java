@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/eql/_types/EqlHits.ts#L25-L39">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/eql/_types/EqlHits.ts#L25-L39">API
  *      specification</a>
  */
 
@@ -189,8 +189,6 @@ public class EqlHits<TEvent> implements JsonpSerializable {
 		 * API name: {@code events}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>events</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder<TEvent> events(List<HitsEvent<TEvent>> list) {
 			this.events = _listAddAll(this.events, list);
@@ -228,8 +226,6 @@ public class EqlHits<TEvent> implements JsonpSerializable {
 		 * API name: {@code sequences}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>sequences</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder<TEvent> sequences(List<HitsSequence<TEvent>> list) {
 			this.sequences = _listAddAll(this.sequences, list);

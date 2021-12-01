@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
  * search
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/eql/get/EqlGetRequest.ts#L24-L46">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/eql/get/EqlGetRequest.ts#L24-L46">API
  *      specification</a>
  */
 

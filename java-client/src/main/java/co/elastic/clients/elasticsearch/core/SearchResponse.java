@@ -59,7 +59,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/search/SearchResponse.ts#L30-L47">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/SearchResponse.ts#L30-L47">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -122,6 +122,11 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 		this.terminatedEarly = builder.terminatedEarly;
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
+	}
+
+	public static <TDocument> SearchResponse<TDocument> searchResponseOf(
+			Function<Builder<TDocument>, ObjectBuilder<SearchResponse<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
@@ -446,8 +451,6 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 		 * API name: {@code aggregations}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>aggregations</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final BuilderT aggregations(Map<String, Aggregate> map) {
 			this.aggregations = _mapPutAll(this.aggregations, map);
@@ -492,8 +495,6 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 		 * API name: {@code fields}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>fields</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final BuilderT fields(Map<String, JsonData> map) {
 			this.fields = _mapPutAll(this.fields, map);
@@ -561,8 +562,6 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 		 * API name: {@code suggest}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>suggest</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final BuilderT suggest(Map<String, List<Suggestion<TDocument>>> map) {
 			this.suggest = _mapPutAll(this.suggest, map);

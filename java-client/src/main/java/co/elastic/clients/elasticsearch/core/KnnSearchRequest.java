@@ -55,7 +55,7 @@ import javax.annotation.Nullable;
  * Performs a kNN search.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/knn_search/KnnSearchRequest.ts#L26-L71">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/knn_search/KnnSearchRequest.ts#L26-L71">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -272,8 +272,6 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code docvalue_fields}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>docvalueFields</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder docvalueFields(List<FieldAndFormat> list) {
 			this.docvalueFields = _listAddAll(this.docvalueFields, list);
@@ -312,8 +310,6 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code fields}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>fields</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder fields(List<String> list) {
 			this.fields = _listAddAll(this.fields, list);
@@ -340,8 +336,6 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code index}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>index</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder index(List<String> list) {
 			this.index = _listAddAll(this.index, list);
@@ -399,8 +393,6 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code stored_fields}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>storedFields</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder storedFields(List<String> list) {
 			this.storedFields = _listAddAll(this.storedFields, list);

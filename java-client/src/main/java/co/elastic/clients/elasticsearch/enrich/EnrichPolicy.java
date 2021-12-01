@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/enrich/_types/Policy.ts#L31-L37">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/enrich/_types/Policy.ts#L31-L37">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -184,8 +184,6 @@ public class EnrichPolicy implements JsonpSerializable {
 		 * Required - API name: {@code enrich_fields}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>enrichFields</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder enrichFields(List<String> list) {
 			this.enrichFields = _listAddAll(this.enrichFields, list);
@@ -206,8 +204,6 @@ public class EnrichPolicy implements JsonpSerializable {
 		 * Required - API name: {@code indices}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>indices</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder indices(List<String> list) {
 			this.indices = _listAddAll(this.indices, list);

@@ -54,7 +54,7 @@ import javax.annotation.Nullable;
  * Returns information about whether a particular index template exists.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/exists_template/IndicesExistsTemplateRequest.ts#L24-L38">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/exists_template/IndicesExistsTemplateRequest.ts#L24-L38">API
  *      specification</a>
  */
 
@@ -189,8 +189,6 @@ public class ExistsTemplateRequest extends RequestBase {
 		 * API name: {@code name}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>name</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder name(List<String> list) {
 			this.name = _listAddAll(this.name, list);

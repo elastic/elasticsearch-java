@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
  *      "https://www.elastic.co/guide/en/elasticsearch/reference/7.15/query-dsl-simple-query-string-query.html#supported-flags">Documentation
  *      on elastic.co</a>
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/query_dsl/fulltext.ts#L271-L276">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/fulltext.ts#L271-L276">API
  *      specification</a>
  */
 @JsonpDeserializable

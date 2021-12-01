@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ilm/remove_policy/RemovePolicyResponse.ts#L22-L27">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ilm/remove_policy/RemovePolicyResponse.ts#L22-L27">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -122,8 +122,6 @@ public class RemovePolicyResponse implements JsonpSerializable {
 		 * Required - API name: {@code failed_indexes}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>failedIndexes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder failedIndexes(List<String> list) {
 			this.failedIndexes = _listAddAll(this.failedIndexes, list);

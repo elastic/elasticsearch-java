@@ -52,7 +52,7 @@ import javax.annotation.Nullable;
  * Returns information about a snapshot.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/snapshot/get/SnapshotGetRequest.ts#L24-L67">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/snapshot/get/SnapshotGetRequest.ts#L24-L67">API
  *      specification</a>
  */
 
@@ -307,8 +307,6 @@ public class GetSnapshotRequest extends RequestBase {
 		 * API name: {@code snapshot}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>snapshot</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder snapshot(List<String> list) {
 			this.snapshot = _listAddAll(this.snapshot, list);

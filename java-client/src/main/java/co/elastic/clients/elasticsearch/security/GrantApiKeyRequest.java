@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
  * Creates an API key on behalf of another user.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/security/grant_api_key/SecurityGrantApiKeyRequest.ts#L24-L37">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/grant_api_key/SecurityGrantApiKeyRequest.ts#L24-L37">API
  *      specification</a>
  */
 @JsonpDeserializable

@@ -42,7 +42,7 @@ import java.util.Objects;
  * Returns a list of the built-in patterns.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ingest/processor_grok/GrokProcessorPatternsRequest.ts#L22-L27">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/processor_grok/GrokProcessorPatternsRequest.ts#L22-L27">API
  *      specification</a>
  */
 

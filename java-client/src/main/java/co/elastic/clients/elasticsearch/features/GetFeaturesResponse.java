@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/features/get_features/GetFeaturesResponse.ts#L22-L26">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/features/get_features/GetFeaturesResponse.ts#L22-L26">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -106,8 +106,6 @@ public class GetFeaturesResponse implements JsonpSerializable {
 		 * Required - API name: {@code features}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>features</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder features(List<Feature> list) {
 			this.features = _listAddAll(this.features, list);

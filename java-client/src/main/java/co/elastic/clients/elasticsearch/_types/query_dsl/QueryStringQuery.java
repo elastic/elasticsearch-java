@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/query_dsl/fulltext.ts#L233-L269">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/fulltext.ts#L233-L269">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -647,8 +647,6 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 		 * API name: {@code fields}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>fields</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder fields(List<String> list) {
 			this.fields = _listAddAll(this.fields, list);

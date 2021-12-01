@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/TrainedModel.ts#L28-L40">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/TrainedModel.ts#L28-L40">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -215,8 +215,6 @@ public class TrainedModelStats implements JsonpSerializable {
 		 * API name: {@code ingest}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>ingest</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder ingest(Map<String, JsonData> map) {
 			this.ingest = _mapPutAll(this.ingest, map);

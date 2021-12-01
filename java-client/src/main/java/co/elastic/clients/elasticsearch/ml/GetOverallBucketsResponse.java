@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/get_overall_buckets/MlGetOverallBucketsResponse.ts#L23-L29">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_overall_buckets/MlGetOverallBucketsResponse.ts#L23-L29">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -134,8 +134,6 @@ public class GetOverallBucketsResponse implements JsonpSerializable {
 		 * API name: {@code overall_buckets}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>overallBuckets</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder overallBuckets(List<OverallBucket> list) {
 			this.overallBuckets = _listAddAll(this.overallBuckets, list);

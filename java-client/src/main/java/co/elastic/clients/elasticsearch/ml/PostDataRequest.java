@@ -57,7 +57,7 @@ import javax.annotation.Nullable;
  * wildcards or a comma-separated list.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/post_data/MlPostJobDataRequest.ts#L24-L69">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/post_data/MlPostJobDataRequest.ts#L24-L69">API
  *      specification</a>
  * @deprecated 7.11.0 Posting data directly to anomaly detection jobs is
  *             deprecated, in a future major version a datafeed will be
@@ -204,8 +204,6 @@ public class PostDataRequest<TData> extends RequestBase implements JsonpSerializ
 		 * API name: {@code _value_body}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>data</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder<TData> data(List<TData> list) {
 			this.data = _listAddAll(this.data, list);

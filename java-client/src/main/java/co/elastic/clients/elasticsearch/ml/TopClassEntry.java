@@ -41,12 +41,6 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.TopClassEntry
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/TrainedModel.ts#L245-L249">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class TopClassEntry implements JsonpSerializable {
 	private final String className;

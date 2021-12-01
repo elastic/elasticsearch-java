@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/tasks/_types/TaskExecutingNode.ts#L25-L27">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/tasks/_types/TaskExecutingNode.ts#L25-L27">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -100,8 +100,6 @@ public class TaskExecutingNode extends BaseNode {
 		 * Required - API name: {@code tasks}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>tasks</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder tasks(Map<String, State> map) {
 			this.tasks = _mapPutAll(this.tasks, map);

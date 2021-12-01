@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/watcher/_types/Input.ts#L120-L127">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Input.ts#L120-L127">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -226,8 +226,6 @@ public class SearchInputRequestDefinition implements JsonpSerializable {
 		 * API name: {@code indices}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>indices</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder indices(List<String> list) {
 			this.indices = _listAddAll(this.indices, list);

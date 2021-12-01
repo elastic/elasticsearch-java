@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/autoscaling/get_autoscaling_capacity/GetAutoscalingCapacityResponse.ts#L31-L36">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/autoscaling/get_autoscaling_capacity/GetAutoscalingCapacityResponse.ts#L31-L36">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -193,8 +193,6 @@ public class AutoscalingDeciders implements JsonpSerializable {
 		 * Required - API name: {@code current_nodes}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>currentNodes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder currentNodes(List<AutoscalingNode> list) {
 			this.currentNodes = _listAddAll(this.currentNodes, list);
@@ -224,8 +222,6 @@ public class AutoscalingDeciders implements JsonpSerializable {
 		 * Required - API name: {@code deciders}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>deciders</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder deciders(Map<String, AutoscalingDecider> map) {
 			this.deciders = _mapPutAll(this.deciders, map);

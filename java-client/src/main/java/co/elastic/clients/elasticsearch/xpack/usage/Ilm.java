@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/xpack/usage/types.ts#L148-L151">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L148-L151">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -130,8 +130,6 @@ public class Ilm implements JsonpSerializable {
 		 * Required - API name: {@code policy_stats}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>policyStats</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder policyStats(List<IlmPolicyStatistics> list) {
 			this.policyStats = _listAddAll(this.policyStats, list);

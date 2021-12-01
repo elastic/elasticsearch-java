@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  * Removes role mappings.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/security/delete_role_mapping/SecurityDeleteRoleMappingRequest.ts#L23-L35">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/delete_role_mapping/SecurityDeleteRoleMappingRequest.ts#L23-L35">API
  *      specification</a>
  */
 

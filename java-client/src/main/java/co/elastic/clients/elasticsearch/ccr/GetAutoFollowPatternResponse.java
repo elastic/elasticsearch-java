@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ccr/get_auto_follow_pattern/GetAutoFollowPatternResponse.ts#L22-L24">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ccr/get_auto_follow_pattern/GetAutoFollowPatternResponse.ts#L22-L24">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -107,8 +107,6 @@ public class GetAutoFollowPatternResponse implements JsonpSerializable {
 		 * Required - API name: {@code patterns}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>patterns</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder patterns(List<AutoFollowPattern> list) {
 			this.patterns = _listAddAll(this.patterns, list);

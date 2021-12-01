@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
  * Deletes an existing data frame analytics job.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/delete_data_frame_analytics/MlDeleteDataFrameAnalyticsRequest.ts#L24-L48">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/delete_data_frame_analytics/MlDeleteDataFrameAnalyticsRequest.ts#L24-L48">API
  *      specification</a>
  */
 

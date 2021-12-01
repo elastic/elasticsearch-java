@@ -58,7 +58,7 @@ import javax.annotation.Nullable;
  * Allows to execute several search template operations in one request.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/msearch_template/MultiSearchTemplateRequest.ts#L25-L44">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/msearch_template/MultiSearchTemplateRequest.ts#L25-L44">API
  *      specification</a>
  */
 
@@ -197,8 +197,6 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 		 * API name: {@code index}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>index</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder index(List<String> list) {
 			this.index = _listAddAll(this.index, list);
@@ -244,8 +242,6 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 		 * API name: {@code _value_body}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>searchTemplates</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder searchTemplates(List<RequestItem> list) {
 			this.searchTemplates = _listAddAll(this.searchTemplates, list);

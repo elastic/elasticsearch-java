@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
  * Provides explanations for shard allocations in the cluster.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cluster/allocation_explain/ClusterAllocationExplainRequest.ts#L24-L60">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/allocation_explain/ClusterAllocationExplainRequest.ts#L24-L60">API
  *      specification</a>
  */
 @JsonpDeserializable

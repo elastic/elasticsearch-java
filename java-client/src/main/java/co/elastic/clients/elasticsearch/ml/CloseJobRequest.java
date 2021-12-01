@@ -64,7 +64,7 @@ import javax.annotation.Nullable;
  * date stops, it automatically closes its associated job.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/close_job/MlCloseJobRequest.ts#L24-L76">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/close_job/MlCloseJobRequest.ts#L24-L76">API
  *      specification</a>
  */
 @JsonpDeserializable

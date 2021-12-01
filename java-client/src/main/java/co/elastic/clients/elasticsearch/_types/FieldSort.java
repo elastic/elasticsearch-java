@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/sort.ts#L43-L52">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/sort.ts#L43-L52">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -53,7 +53,7 @@ public class FieldSort implements JsonpSerializable {
 	private final String field;
 
 	@Nullable
-	private final String missing;
+	private final FieldValue missing;
 
 	@Nullable
 	private final SortMode mode;
@@ -104,7 +104,7 @@ public class FieldSort implements JsonpSerializable {
 	 * API name: {@code missing}
 	 */
 	@Nullable
-	public final String missing() {
+	public final FieldValue missing() {
 		return this.missing;
 	}
 
@@ -170,7 +170,7 @@ public class FieldSort implements JsonpSerializable {
 
 		if (this.missing != null) {
 			generator.writeKey("missing");
-			generator.write(this.missing);
+			this.missing.serialize(generator, mapper);
 
 		}
 		if (this.mode != null) {
@@ -222,7 +222,7 @@ public class FieldSort implements JsonpSerializable {
 		}
 
 		@Nullable
-		private String missing;
+		private FieldValue missing;
 
 		@Nullable
 		private SortMode mode;
@@ -245,9 +245,16 @@ public class FieldSort implements JsonpSerializable {
 		/**
 		 * API name: {@code missing}
 		 */
-		public final Builder missing(@Nullable String value) {
+		public final Builder missing(@Nullable FieldValue value) {
 			this.missing = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code missing}
+		 */
+		public final Builder missing(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
+			return this.missing(fn.apply(new FieldValue.Builder()).build());
 		}
 
 		/**
@@ -328,7 +335,7 @@ public class FieldSort implements JsonpSerializable {
 
 	protected static void setupFieldSortDeserializer(ObjectDeserializer<FieldSort.Builder> op) {
 
-		op.add(Builder::missing, JsonpDeserializer.stringDeserializer(), "missing");
+		op.add(Builder::missing, FieldValue._DESERIALIZER, "missing");
 		op.add(Builder::mode, SortMode._DESERIALIZER, "mode");
 		op.add(Builder::nested, NestedSortValue._DESERIALIZER, "nested");
 		op.add(Builder::order, SortOrder._DESERIALIZER, "order");

@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
  * actions.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/watcher/ack_watch/WatcherAckWatchRequest.ts#L23-L33">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/ack_watch/WatcherAckWatchRequest.ts#L23-L33">API
  *      specification</a>
  */
 
@@ -108,8 +108,6 @@ public class AckWatchRequest extends RequestBase {
 		 * API name: {@code action_id}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>actionId</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder actionId(List<String> list) {
 			this.actionId = _listAddAll(this.actionId, list);

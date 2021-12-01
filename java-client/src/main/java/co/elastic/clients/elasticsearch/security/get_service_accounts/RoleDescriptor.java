@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/security/get_service_accounts/types.ts#L33-L41">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_service_accounts/types.ts#L33-L41">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -251,8 +251,6 @@ public class RoleDescriptor implements JsonpSerializable {
 		 * Required - API name: {@code cluster}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>cluster</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder cluster(List<String> list) {
 			this.cluster = _listAddAll(this.cluster, list);
@@ -273,8 +271,6 @@ public class RoleDescriptor implements JsonpSerializable {
 		 * Required - API name: {@code indices}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>indices</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder indices(List<IndicesPrivileges> list) {
 			this.indices = _listAddAll(this.indices, list);
@@ -304,8 +300,6 @@ public class RoleDescriptor implements JsonpSerializable {
 		 * API name: {@code global}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>global</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder global(List<GlobalPrivilege> list) {
 			this.global = _listAddAll(this.global, list);
@@ -335,8 +329,6 @@ public class RoleDescriptor implements JsonpSerializable {
 		 * API name: {@code applications}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>applications</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder applications(List<ApplicationPrivileges> list) {
 			this.applications = _listAddAll(this.applications, list);
@@ -367,8 +359,6 @@ public class RoleDescriptor implements JsonpSerializable {
 		 * API name: {@code metadata}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>metadata</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder metadata(Map<String, JsonData> map) {
 			this.metadata = _mapPutAll(this.metadata, map);
@@ -389,8 +379,6 @@ public class RoleDescriptor implements JsonpSerializable {
 		 * API name: {@code run_as}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>runAs</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder runAs(List<String> list) {
 			this.runAs = _listAddAll(this.runAs, list);
@@ -411,8 +399,6 @@ public class RoleDescriptor implements JsonpSerializable {
 		 * API name: {@code transient_metadata}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>transientMetadata</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder transientMetadata(Map<String, JsonData> map) {
 			this.transientMetadata = _mapPutAll(this.transientMetadata, map);

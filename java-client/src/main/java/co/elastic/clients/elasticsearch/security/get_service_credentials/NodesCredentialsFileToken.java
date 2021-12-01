@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/security/get_service_credentials/types.ts#L30-L32">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_service_credentials/types.ts#L30-L32">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -107,8 +107,6 @@ public class NodesCredentialsFileToken implements JsonpSerializable {
 		 * Required - API name: {@code nodes}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>nodes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder nodes(List<String> list) {
 			this.nodes = _listAddAll(this.nodes, list);

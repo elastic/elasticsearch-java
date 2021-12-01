@@ -38,7 +38,7 @@ import java.util.function.Function;
  * Result of a <code>terms</code> aggregation when the field is a string.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/Aggregate.ts#L368-L373">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L368-L373">API
  *      specification</a>
  */
 @JsonpDeserializable

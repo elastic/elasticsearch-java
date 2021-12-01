@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/get_model_snapshots/MlGetModelSnapshotsResponse.ts#L23-L28">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_model_snapshots/MlGetModelSnapshotsResponse.ts#L23-L28">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -130,8 +130,6 @@ public class GetModelSnapshotsResponse implements JsonpSerializable {
 		 * Required - API name: {@code model_snapshots}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>modelSnapshots</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder modelSnapshots(List<ModelSnapshot> list) {
 			this.modelSnapshots = _listAddAll(this.modelSnapshots, list);

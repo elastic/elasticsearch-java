@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/analyze/types.ts#L22-L28">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/analyze/types.ts#L22-L28">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -201,8 +201,6 @@ public class AnalyzeDetail implements JsonpSerializable {
 		 * API name: {@code charfilters}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>charfilters</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder charfilters(List<CharFilterDetail> list) {
 			this.charfilters = _listAddAll(this.charfilters, list);
@@ -240,8 +238,6 @@ public class AnalyzeDetail implements JsonpSerializable {
 		 * API name: {@code tokenfilters}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>tokenfilters</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder tokenfilters(List<TokenDetail> list) {
 			this.tokenfilters = _listAddAll(this.tokenfilters, list);

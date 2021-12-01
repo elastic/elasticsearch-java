@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/get_script_context/types.ts#L22-L25">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/get_script_context/types.ts#L22-L25">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -121,8 +121,6 @@ public class Context implements JsonpSerializable {
 		 * Required - API name: {@code methods}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>methods</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder methods(List<ContextMethod> list) {
 			this.methods = _listAddAll(this.methods, list);

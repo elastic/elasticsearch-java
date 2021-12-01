@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/watcher/_types/Schedule.ts#L33-L35">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Schedule.ts#L33-L35">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -114,8 +114,6 @@ public class DailySchedule implements ScheduleVariant, JsonpSerializable {
 		 * Required - API name: {@code at}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>at</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder at(List<TimeOfDay> list) {
 			this.at = _listAddAll(this.at, list);

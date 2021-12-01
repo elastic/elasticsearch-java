@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  * Deletes a transform.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/transform/delete_transform/DeleteTransformRequest.ts#L23-L45">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/transform/delete_transform/DeleteTransformRequest.ts#L23-L45">API
  *      specification</a>
  */
 

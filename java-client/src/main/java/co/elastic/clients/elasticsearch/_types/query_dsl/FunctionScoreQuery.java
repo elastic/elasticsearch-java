@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/query_dsl/compound.ts#L52-L59">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/compound.ts#L52-L59">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -215,8 +215,6 @@ public class FunctionScoreQuery extends QueryBase implements QueryVariant {
 		 * API name: {@code functions}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>functions</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder functions(List<FunctionScore> list) {
 			this.functions = _listAddAll(this.functions, list);

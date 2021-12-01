@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/evaluate_data_frame/types.ts#L79-L82">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/evaluate_data_frame/types.ts#L79-L82">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -125,8 +125,6 @@ public class DataframeClassificationSummaryMulticlassConfusionMatrix implements 
 		 * Required - API name: {@code confusion_matrix}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>confusionMatrix</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder confusionMatrix(List<ConfusionMatrixItem> list) {
 			this.confusionMatrix = _listAddAll(this.confusionMatrix, list);

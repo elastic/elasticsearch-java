@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cluster/stats/types.ts#L62-L93">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/stats/types.ts#L62-L93">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -477,8 +477,6 @@ public class ClusterIndices implements JsonpSerializable {
 		 * API name: {@code versions}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>versions</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder versions(List<IndicesVersions> list) {
 			this.versions = _listAddAll(this.versions, list);

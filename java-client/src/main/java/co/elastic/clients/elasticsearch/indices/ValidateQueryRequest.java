@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
  * Allows a user to validate a potentially expensive query without executing it.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/validate_query/IndicesValidateQueryRequest.ts#L25-L52">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/validate_query/IndicesValidateQueryRequest.ts#L25-L52">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -426,8 +426,6 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 		 * API name: {@code expand_wildcards}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder expandWildcards(List<ExpandWildcard> list) {
 			this.expandWildcards = _listAddAll(this.expandWildcards, list);
@@ -475,8 +473,6 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 		 * API name: {@code index}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>index</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder index(List<String> list) {
 			this.index = _listAddAll(this.index, list);
@@ -550,8 +546,6 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 		 * API name: {@code type}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>type</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder type(List<String> list) {
 			this.type = _listAddAll(this.type, list);

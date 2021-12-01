@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/bucket.ts#L76-L80">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/bucket.ts#L76-L80">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -163,8 +163,6 @@ public class CompositeAggregation extends BucketAggregationBase implements Aggre
 		 * API name: {@code after}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>after</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder after(Map<String, String> map) {
 			this.after = _mapPutAll(this.after, map);
@@ -193,8 +191,6 @@ public class CompositeAggregation extends BucketAggregationBase implements Aggre
 		 * API name: {@code sources}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>sources</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder sources(List<Map<String, CompositeAggregationSource>> list) {
 			this.sources = _listAddAll(this.sources, list);

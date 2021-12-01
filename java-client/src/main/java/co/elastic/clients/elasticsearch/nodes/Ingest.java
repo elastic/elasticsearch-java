@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/nodes/_types/Stats.ts#L49-L52">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/_types/Stats.ts#L49-L52">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -122,8 +122,6 @@ public class Ingest implements JsonpSerializable {
 		 * Required - API name: {@code pipelines}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>pipelines</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder pipelines(Map<String, IngestTotal> map) {
 			this.pipelines = _mapPutAll(this.pipelines, map);

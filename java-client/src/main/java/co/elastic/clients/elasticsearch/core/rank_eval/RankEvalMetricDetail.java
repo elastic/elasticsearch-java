@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/rank_eval/types.ts#L125-L134">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/rank_eval/types.ts#L125-L134">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -208,8 +208,6 @@ public class RankEvalMetricDetail implements JsonpSerializable {
 		 * API name: {@code unrated_docs}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>unratedDocs</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder unratedDocs(List<UnratedDocument> list) {
 			this.unratedDocs = _listAddAll(this.unratedDocs, list);
@@ -250,8 +248,6 @@ public class RankEvalMetricDetail implements JsonpSerializable {
 		 * API name: {@code hits}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>hits</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder hits(List<RankEvalHitItem> list) {
 			this.hits = _listAddAll(this.hits, list);
@@ -292,8 +288,6 @@ public class RankEvalMetricDetail implements JsonpSerializable {
 		 * API name: {@code metric_details}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>metricDetails</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder metricDetails(Map<String, Map<String, JsonData>> map) {
 			this.metricDetails = _mapPutAll(this.metricDetails, map);

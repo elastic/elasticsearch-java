@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/metric.ts#L177-L181">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/metric.ts#L177-L181">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -153,8 +153,6 @@ public class TopMetricsAggregation extends MetricAggregationBase implements Aggr
 		 * API name: {@code metrics}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>metrics</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder metrics(List<TopMetricsValue> list) {
 			this.metrics = _listAddAll(this.metrics, list);
@@ -192,8 +190,6 @@ public class TopMetricsAggregation extends MetricAggregationBase implements Aggr
 		 * API name: {@code sort}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>sort</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder sort(List<SortOptions> list) {
 			this.sort = _listAddAll(this.sort, list);

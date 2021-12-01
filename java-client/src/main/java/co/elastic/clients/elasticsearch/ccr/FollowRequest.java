@@ -54,7 +54,7 @@ import javax.annotation.Nullable;
  * index.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ccr/follow/CreateFollowIndexRequest.ts#L25-L51">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ccr/follow/CreateFollowIndexRequest.ts#L25-L51">API
  *      specification</a>
  */
 @JsonpDeserializable

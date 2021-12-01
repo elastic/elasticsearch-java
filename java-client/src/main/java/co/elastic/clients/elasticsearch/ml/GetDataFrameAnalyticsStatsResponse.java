@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/get_data_frame_analytics_stats/MlGetDataFrameAnalyticsStatsResponse.ts#L24-L30">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_data_frame_analytics_stats/MlGetDataFrameAnalyticsStatsResponse.ts#L24-L30">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -138,8 +138,6 @@ public class GetDataFrameAnalyticsStatsResponse implements JsonpSerializable {
 		 * API name: {@code data_frame_analytics}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>dataFrameAnalytics</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder dataFrameAnalytics(List<DataframeAnalytics> list) {
 			this.dataFrameAnalytics = _listAddAll(this.dataFrameAnalytics, list);

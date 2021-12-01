@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/rank_eval/RankEvalResponse.ts#L26-L34">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/rank_eval/RankEvalResponse.ts#L26-L34">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -167,8 +167,6 @@ public class RankEvalResponse implements JsonpSerializable {
 		 * API name: {@code details}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>details</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder details(Map<String, RankEvalMetricDetail> map) {
 			this.details = _mapPutAll(this.details, map);
@@ -205,8 +203,6 @@ public class RankEvalResponse implements JsonpSerializable {
 		 * Required - API name: {@code failures}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>failures</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder failures(Map<String, JsonData> map) {
 			this.failures = _mapPutAll(this.failures, map);

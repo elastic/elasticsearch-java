@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  * Retrieves usage information for data frame analytics jobs.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/get_data_frame_analytics_stats/MlGetDataFrameAnalyticsStatsRequest.ts#L24-L72">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_data_frame_analytics_stats/MlGetDataFrameAnalyticsStatsRequest.ts#L24-L72">API
  *      specification</a>
  */
 

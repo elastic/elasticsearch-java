@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/stats/types.ts#L88-L93">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/stats/types.ts#L88-L93">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -179,8 +179,6 @@ public class ShardCommit implements JsonpSerializable {
 		 * Required - API name: {@code user_data}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>userData</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder userData(Map<String, String> map) {
 			this.userData = _mapPutAll(this.userData, map);

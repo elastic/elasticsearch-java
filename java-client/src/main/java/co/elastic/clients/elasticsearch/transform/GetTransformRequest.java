@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  * Retrieves configuration information for transforms.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/transform/get_transform/GetTransformRequest.ts#L24-L39">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/transform/get_transform/GetTransformRequest.ts#L24-L39">API
  *      specification</a>
  */
 

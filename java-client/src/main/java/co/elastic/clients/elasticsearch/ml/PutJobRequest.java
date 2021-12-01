@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
  * source index.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/put_job/MlPutJobRequest.ts#L30-L111">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/put_job/MlPutJobRequest.ts#L30-L111">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -669,8 +669,6 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code groups}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>groups</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder groups(List<String> list) {
 			this.groups = _listAddAll(this.groups, list);

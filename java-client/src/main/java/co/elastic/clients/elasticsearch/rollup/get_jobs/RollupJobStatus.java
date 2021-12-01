@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/rollup/get_jobs/types.ts#L60-L64">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/rollup/get_jobs/types.ts#L60-L64">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -145,8 +145,6 @@ public class RollupJobStatus implements JsonpSerializable {
 		 * API name: {@code current_position}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>currentPosition</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder currentPosition(Map<String, JsonData> map) {
 			this.currentPosition = _mapPutAll(this.currentPosition, map);

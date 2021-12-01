@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/bulk/BulkResponse.ts#L24-L31">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/bulk/BulkResponse.ts#L24-L31">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -167,8 +167,6 @@ public class BulkResponse implements JsonpSerializable {
 		 * Required - API name: {@code items}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>items</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder items(List<BulkResponseItem> list) {
 			this.items = _listAddAll(this.items, list);

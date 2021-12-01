@@ -38,7 +38,7 @@ import java.util.Objects;
  * sub-aggregations.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/bucket.ts#L40-L45">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/bucket.ts#L40-L45">API
  *      specification</a>
  */
 

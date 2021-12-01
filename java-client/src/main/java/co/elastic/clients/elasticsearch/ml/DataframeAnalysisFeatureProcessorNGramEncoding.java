@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/DataframeAnalytics.ts#L273-L285">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/DataframeAnalytics.ts#L273-L285">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -265,8 +265,6 @@ public class DataframeAnalysisFeatureProcessorNGramEncoding
 		 * API name: {@code n_grams}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>nGrams</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder nGrams(List<Integer> list) {
 			this.nGrams = _listAddAll(this.nGrams, list);

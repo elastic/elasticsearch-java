@@ -47,7 +47,7 @@ import java.util.Objects;
  * machine learning jobs that could run in the current cluster configuration.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/info/MlInfoRequest.ts#L22-L35">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/info/MlInfoRequest.ts#L22-L35">API
  *      specification</a>
  */
 

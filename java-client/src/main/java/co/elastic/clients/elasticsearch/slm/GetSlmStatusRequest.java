@@ -42,7 +42,7 @@ import java.util.Objects;
  * Retrieves the status of snapshot lifecycle management (SLM).
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/slm/get_status/GetSnapshotLifecycleManagementStatusRequest.ts#L22-L27">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/slm/get_status/GetSnapshotLifecycleManagementStatusRequest.ts#L22-L27">API
  *      specification</a>
  */
 

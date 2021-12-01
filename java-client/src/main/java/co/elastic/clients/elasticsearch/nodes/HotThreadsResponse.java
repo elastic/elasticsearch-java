@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/nodes/hot_threads/NodesHotThreadsResponse.ts#L22-L24">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/hot_threads/NodesHotThreadsResponse.ts#L22-L24">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -107,8 +107,6 @@ public class HotThreadsResponse implements JsonpSerializable {
 		 * Required - API name: {@code hot_threads}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>hotThreads</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder hotThreads(List<HotThread> list) {
 			this.hotThreads = _listAddAll(this.hotThreads, list);

@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
  * Returns information about whether a document source exists in an index.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/exists_source/SourceExistsRequest.ts#L32-L54">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/exists_source/SourceExistsRequest.ts#L32-L54">API
  *      specification</a>
  */
 
@@ -302,8 +302,6 @@ public class ExistsSourceRequest extends RequestBase {
 		 * API name: {@code _source_excludes}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>sourceExcludes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder sourceExcludes(List<String> list) {
 			this.sourceExcludes = _listAddAll(this.sourceExcludes, list);
@@ -328,8 +326,6 @@ public class ExistsSourceRequest extends RequestBase {
 		 * API name: {@code _source_includes}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>sourceIncludes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder sourceIncludes(List<String> list) {
 			this.sourceIncludes = _listAddAll(this.sourceIncludes, list);

@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/sql/translate/TranslateSqlResponse.ts#L26-L33">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/sql/translate/TranslateSqlResponse.ts#L26-L33">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -194,8 +194,6 @@ public class TranslateResponse implements JsonpSerializable {
 		 * Required - API name: {@code fields}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>fields</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder fields(List<Map<String, String>> list) {
 			this.fields = _listAddAll(this.fields, list);
@@ -216,8 +214,6 @@ public class TranslateResponse implements JsonpSerializable {
 		 * Required - API name: {@code sort}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>sort</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder sort(List<SortOptions> list) {
 			this.sort = _listAddAll(this.sort, list);

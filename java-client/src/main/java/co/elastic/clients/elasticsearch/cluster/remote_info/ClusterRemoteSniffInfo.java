@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cluster/remote_info/ClusterRemoteInfoResponse.ts#L32-L40">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/remote_info/ClusterRemoteInfoResponse.ts#L32-L40">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -245,8 +245,6 @@ public class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, JsonpSe
 		 * Required - API name: {@code seeds}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>seeds</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder seeds(List<String> list) {
 			this.seeds = _listAddAll(this.seeds, list);

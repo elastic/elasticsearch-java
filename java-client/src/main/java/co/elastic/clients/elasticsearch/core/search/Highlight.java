@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/search/_types/highlighting.ts#L31-L54">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/highlighting.ts#L31-L54">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -493,8 +493,6 @@ public class Highlight implements JsonpSerializable {
 		 * Required - API name: {@code fields}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>fields</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder fields(Map<String, HighlightField> map) {
 			this.fields = _mapPutAll(this.fields, map);
@@ -635,8 +633,6 @@ public class Highlight implements JsonpSerializable {
 		 * API name: {@code post_tags}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>postTags</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder postTags(List<String> list) {
 			this.postTags = _listAddAll(this.postTags, list);
@@ -657,8 +653,6 @@ public class Highlight implements JsonpSerializable {
 		 * API name: {@code pre_tags}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>preTags</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder preTags(List<String> list) {
 			this.preTags = _listAddAll(this.preTags, list);

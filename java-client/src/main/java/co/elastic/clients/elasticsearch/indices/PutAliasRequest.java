@@ -55,7 +55,7 @@ import javax.annotation.Nullable;
  * Creates or updates an alias.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/put_alias/IndicesPutAliasRequest.ts#L25-L46">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/put_alias/IndicesPutAliasRequest.ts#L25-L46">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -279,8 +279,6 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code index}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>index</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder index(List<String> list) {
 			this.index = _listAddAll(this.index, list);

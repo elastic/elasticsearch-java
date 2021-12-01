@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  * Returns an index template.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/get_index_template/IndicesGetIndexTemplateRequest.ts#L24-L56">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/get_index_template/IndicesGetIndexTemplateRequest.ts#L24-L56">API
  *      specification</a>
  */
 

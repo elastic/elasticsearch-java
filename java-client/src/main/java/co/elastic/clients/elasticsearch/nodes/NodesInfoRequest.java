@@ -52,7 +52,7 @@ import javax.annotation.Nullable;
  * Returns information about nodes in the cluster.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/nodes/info/NodesInfoRequest.ts#L24-L53">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/NodesInfoRequest.ts#L24-L53">API
  *      specification</a>
  */
 
@@ -197,8 +197,6 @@ public class NodesInfoRequest extends RequestBase {
 		 * API name: {@code metric}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>metric</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder metric(List<String> list) {
 			this.metric = _listAddAll(this.metric, list);
@@ -224,8 +222,6 @@ public class NodesInfoRequest extends RequestBase {
 		 * API name: {@code node_id}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>nodeId</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder nodeId(List<String> list) {
 			this.nodeId = _listAddAll(this.nodeId, list);

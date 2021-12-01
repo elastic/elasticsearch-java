@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/get_records/MlGetAnomalyRecordsResponse.ts#L23-L28">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_records/MlGetAnomalyRecordsResponse.ts#L23-L28">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -130,8 +130,6 @@ public class GetRecordsResponse implements JsonpSerializable {
 		 * Required - API name: {@code records}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>records</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder records(List<Anomaly> list) {
 			this.records = _listAddAll(this.records, list);

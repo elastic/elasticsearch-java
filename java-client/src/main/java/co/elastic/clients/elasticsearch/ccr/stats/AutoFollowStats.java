@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ccr/stats/types.ts.ts#L33-L39">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ccr/stats/types.ts.ts#L33-L39">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -180,8 +180,6 @@ public class AutoFollowStats implements JsonpSerializable {
 		 * Required - API name: {@code auto_followed_clusters}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>autoFollowedClusters</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder autoFollowedClusters(List<AutoFollowedCluster> list) {
 			this.autoFollowedClusters = _listAddAll(this.autoFollowedClusters, list);
@@ -237,8 +235,6 @@ public class AutoFollowStats implements JsonpSerializable {
 		 * <p>
 		 * Adds all elements of <code>list</code> to
 		 * <code>recentAutoFollowErrors</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder recentAutoFollowErrors(List<ErrorCause> list) {
 			this.recentAutoFollowErrors = _listAddAll(this.recentAutoFollowErrors, list);

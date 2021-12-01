@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/_types/IndexSettings.ts#L297-L303">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/_types/IndexSettings.ts#L297-L303">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -210,8 +210,6 @@ public class IndexSettingsAnalysis implements JsonpSerializable {
 		 * API name: {@code analyzer}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>analyzer</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder analyzer(Map<String, Analyzer> map) {
 			this.analyzer = _mapPutAll(this.analyzer, map);
@@ -241,8 +239,6 @@ public class IndexSettingsAnalysis implements JsonpSerializable {
 		 * API name: {@code char_filter}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>charFilter</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder charFilter(Map<String, CharFilter> map) {
 			this.charFilter = _mapPutAll(this.charFilter, map);
@@ -272,8 +268,6 @@ public class IndexSettingsAnalysis implements JsonpSerializable {
 		 * API name: {@code filter}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>filter</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder filter(Map<String, TokenFilter> map) {
 			this.filter = _mapPutAll(this.filter, map);
@@ -303,8 +297,6 @@ public class IndexSettingsAnalysis implements JsonpSerializable {
 		 * API name: {@code normalizer}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>normalizer</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder normalizer(Map<String, Normalizer> map) {
 			this.normalizer = _mapPutAll(this.normalizer, map);
@@ -334,8 +326,6 @@ public class IndexSettingsAnalysis implements JsonpSerializable {
 		 * API name: {@code tokenizer}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>tokenizer</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder tokenizer(Map<String, Tokenizer> map) {
 			this.tokenizer = _mapPutAll(this.tokenizer, map);

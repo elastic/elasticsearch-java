@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/analysis/token_filters.ts#L109-L118">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L109-L118">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -254,8 +254,6 @@ public class SynonymGraphTokenFilter extends TokenFilterBase implements TokenFil
 		 * API name: {@code synonyms}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>synonyms</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder synonyms(List<String> list) {
 			this.synonyms = _listAddAll(this.synonyms, list);

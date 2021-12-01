@@ -42,7 +42,7 @@ import java.util.Objects;
  * Retrieves information about the status of the trial license.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/license/get_trial_status/GetTrialLicenseStatusRequest.ts#L22-L27">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/license/get_trial_status/GetTrialLicenseStatusRequest.ts#L22-L27">API
  *      specification</a>
  */
 

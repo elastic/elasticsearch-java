@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cluster/reroute/types.ts#L94-L98">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/reroute/types.ts#L94-L98">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -144,8 +144,6 @@ public class RerouteExplanation implements JsonpSerializable {
 		 * Required - API name: {@code decisions}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>decisions</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder decisions(List<RerouteDecision> list) {
 			this.decisions = _listAddAll(this.decisions, list);

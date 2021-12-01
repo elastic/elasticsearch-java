@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
  * waiting for the scheduled time.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/slm/execute_lifecycle/ExecuteSnapshotLifecycleRequest.ts#L23-L32">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/slm/execute_lifecycle/ExecuteSnapshotLifecycleRequest.ts#L23-L32">API
  *      specification</a>
  */
 

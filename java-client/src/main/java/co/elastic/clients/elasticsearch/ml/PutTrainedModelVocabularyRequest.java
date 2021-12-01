@@ -53,7 +53,7 @@ import javax.annotation.Nullable;
  * definition.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/put_trained_model_vocabulary/MlPutTrainedModelVocabularyRequest.ts#L23-L45">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/put_trained_model_vocabulary/MlPutTrainedModelVocabularyRequest.ts#L23-L45">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -145,8 +145,6 @@ public class PutTrainedModelVocabularyRequest extends RequestBase implements Jso
 		 * API name: {@code vocabulary}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>vocabulary</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder vocabulary(List<String> list) {
 			this.vocabulary = _listAddAll(this.vocabulary, list);

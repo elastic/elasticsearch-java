@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/reload_search_analyzers/ReloadSearchAnalyzersResponse.ts#L23-L25">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/reload_search_analyzers/ReloadSearchAnalyzersResponse.ts#L23-L25">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -122,8 +122,6 @@ public class ReloadSearchAnalyzersResponse implements JsonpSerializable {
 		 * Required - API name: {@code reload_details}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>reloadDetails</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder reloadDetails(List<ReloadDetails> list) {
 			this.reloadDetails = _listAddAll(this.reloadDetails, list);

@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
  * Returns cluster settings.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cluster/get_settings/ClusterGetSettingsRequest.ts#L23-L35">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/get_settings/ClusterGetSettingsRequest.ts#L23-L35">API
  *      specification</a>
  */
 

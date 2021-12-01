@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
  * <code>&lt;feed_id&gt;</code>. This API returns a maximum of 10,000 datafeeds.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/get_datafeeds/MlGetDatafeedsRequest.ts#L23-L66">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_datafeeds/MlGetDatafeedsRequest.ts#L23-L66">API
  *      specification</a>
  */
 
@@ -174,8 +174,6 @@ public class GetDatafeedsRequest extends RequestBase {
 		 * API name: {@code datafeed_id}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>datafeedId</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder datafeedId(List<String> list) {
 			this.datafeedId = _listAddAll(this.datafeedId, list);

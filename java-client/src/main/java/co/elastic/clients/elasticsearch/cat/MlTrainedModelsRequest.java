@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  * Gets configuration and usage information about inference trained models.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cat/ml_trained_models/CatTrainedModelsRequest.ts#L24-L39">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/ml_trained_models/CatTrainedModelsRequest.ts#L24-L39">API
  *      specification</a>
  */
 

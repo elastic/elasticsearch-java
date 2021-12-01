@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  * Deletes auto-follow patterns.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ccr/delete_auto_follow_pattern/DeleteAutoFollowPatternRequest.ts#L23-L32">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ccr/delete_auto_follow_pattern/DeleteAutoFollowPatternRequest.ts#L23-L32">API
  *      specification</a>
  */
 

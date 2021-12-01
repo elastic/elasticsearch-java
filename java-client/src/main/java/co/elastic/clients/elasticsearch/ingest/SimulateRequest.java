@@ -53,7 +53,7 @@ import javax.annotation.Nullable;
  * Allows to simulate a pipeline with example documents.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ingest/simulate/SimulatePipelineRequest.ts#L25-L41">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/simulate/SimulatePipelineRequest.ts#L25-L41">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -171,8 +171,6 @@ public class SimulateRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code docs}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>docs</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder docs(List<Document> list) {
 			this.docs = _listAddAll(this.docs, list);

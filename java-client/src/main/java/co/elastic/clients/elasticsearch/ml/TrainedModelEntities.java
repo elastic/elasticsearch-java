@@ -42,12 +42,6 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.TrainedModelEntities
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/TrainedModel.ts#L238-L244">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class TrainedModelEntities implements JsonpSerializable {
 	private final String className;

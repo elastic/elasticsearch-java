@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  * Removes the follower retention leases from the leader.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ccr/forget_follower/ForgetFollowerIndexRequest.ts#L23-L38">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ccr/forget_follower/ForgetFollowerIndexRequest.ts#L23-L38">API
  *      specification</a>
  */
 @JsonpDeserializable

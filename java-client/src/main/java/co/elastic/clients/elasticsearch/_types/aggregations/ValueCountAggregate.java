@@ -38,7 +38,7 @@ import java.util.function.Function;
  * Value count aggregation result. <code>value</code> is always present.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/Aggregate.ts#L204-L208">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L204-L208">API
  *      specification</a>
  */
 @JsonpDeserializable

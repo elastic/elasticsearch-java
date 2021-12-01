@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/eql/_types/EqlHits.ts#L41-L49">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/eql/_types/EqlHits.ts#L41-L49">API
  *      specification</a>
  */
 
@@ -211,8 +211,6 @@ public class HitsEvent<TEvent> implements JsonpSerializable {
 		 * API name: {@code fields}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>fields</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder<TEvent> fields(Map<String, List<JsonData>> map) {
 			this.fields = _mapPutAll(this.fields, map);

@@ -50,10 +50,6 @@ import javax.annotation.Nullable;
 
 /**
  * Evaluates a trained model.
- * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/infer_trained_model_deployment/MlInferTrainedModelDeploymentRequest.ts#L25-L52">API
- *      specification</a>
  */
 @JsonpDeserializable
 public class InferTrainedModelDeploymentRequest extends RequestBase implements JsonpSerializable {
@@ -165,8 +161,6 @@ public class InferTrainedModelDeploymentRequest extends RequestBase implements J
 		 * API name: {@code docs}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>docs</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder docs(List<Map<String, String>> list) {
 			this.docs = _listAddAll(this.docs, list);

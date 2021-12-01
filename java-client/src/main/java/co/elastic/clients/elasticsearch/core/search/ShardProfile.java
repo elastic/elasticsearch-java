@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/search/_types/profile.ts#L131-L136">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/profile.ts#L131-L136">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -164,8 +164,6 @@ public class ShardProfile implements JsonpSerializable {
 		 * Required - API name: {@code aggregations}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>aggregations</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder aggregations(List<AggregationProfile> list) {
 			this.aggregations = _listAddAll(this.aggregations, list);
@@ -203,8 +201,6 @@ public class ShardProfile implements JsonpSerializable {
 		 * Required - API name: {@code searches}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>searches</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder searches(List<SearchProfile> list) {
 			this.searches = _listAddAll(this.searches, list);

@@ -36,6 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.MemoryStats
@@ -43,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/nodes/_types/Stats.ts#L116-L126">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/_types/Stats.ts#L116-L126">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -86,6 +87,10 @@ public class MemoryStats implements JsonpSerializable {
 		this.freeInBytes = ApiTypeHelper.requireNonNull(builder.freeInBytes, this, "freeInBytes");
 		this.usedInBytes = ApiTypeHelper.requireNonNull(builder.usedInBytes, this, "usedInBytes");
 
+	}
+
+	public static MemoryStats memoryStatsOf(Function<Builder, ObjectBuilder<MemoryStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

@@ -39,7 +39,7 @@ import java.util.function.Function;
  * <code>from</code> and <code>to</code> is meters by default.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/Aggregate.ts#L516-L520">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L516-L520">API
  *      specification</a>
  */
 @JsonpDeserializable

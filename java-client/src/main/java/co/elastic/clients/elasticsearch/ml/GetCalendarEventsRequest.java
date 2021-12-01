@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  * Retrieves information about the scheduled events in calendars.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/get_calendar_events/MlGetCalendarEventsRequest.ts#L25-L53">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_calendar_events/MlGetCalendarEventsRequest.ts#L25-L53">API
  *      specification</a>
  */
 

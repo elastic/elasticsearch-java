@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/search/_types/hits.ts#L66-L71">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/hits.ts#L66-L71">API
  *      specification</a>
  */
 
@@ -166,8 +166,6 @@ public class HitsMetadata<T> implements JsonpSerializable {
 		 * Required - API name: {@code hits}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>hits</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder<T> hits(List<Hit<T>> list) {
 			this.hits = _listAddAll(this.hits, list);

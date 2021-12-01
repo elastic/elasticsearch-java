@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  * Deletes a pipeline.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ingest/delete_pipeline/DeletePipelineRequest.ts#L24-L37">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/delete_pipeline/DeletePipelineRequest.ts#L24-L37">API
  *      specification</a>
  */
 

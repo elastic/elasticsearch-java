@@ -52,7 +52,7 @@ import javax.annotation.Nullable;
  * Adds or updates application privileges.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/security/put_privileges/SecurityPutPrivilegesRequest.ts#L25-L37">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/put_privileges/SecurityPutPrivilegesRequest.ts#L25-L37">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -150,8 +150,6 @@ public class PutPrivilegesRequest extends RequestBase implements JsonpSerializab
 		 * API name: {@code _value_body}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>privileges</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder privileges(Map<String, Map<String, Actions>> map) {
 			this.privileges = _mapPutAll(this.privileges, map);

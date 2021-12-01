@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
  * Returns information about index shard recoveries, both on-going completed.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cat/recovery/CatRecoveryRequest.ts#L23-L37">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/recovery/CatRecoveryRequest.ts#L23-L37">API
  *      specification</a>
  */
 
@@ -180,8 +180,6 @@ public class RecoveryRequest extends CatRequestBase {
 		 * API name: {@code index}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>index</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder index(List<String> list) {
 			this.index = _listAddAll(this.index, list);

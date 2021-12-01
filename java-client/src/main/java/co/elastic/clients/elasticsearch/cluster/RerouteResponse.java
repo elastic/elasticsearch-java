@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cluster/reroute/ClusterRerouteResponse.ts#L23-L33">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/reroute/ClusterRerouteResponse.ts#L23-L33">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -127,8 +127,6 @@ public class RerouteResponse implements JsonpSerializable {
 		 * API name: {@code explanations}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>explanations</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder explanations(List<RerouteExplanation> list) {
 			this.explanations = _listAddAll(this.explanations, list);

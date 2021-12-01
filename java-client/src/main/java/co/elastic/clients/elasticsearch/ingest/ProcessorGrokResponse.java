@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ingest/processor_grok/GrokProcessorPatternsResponse.ts#L22-L24">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/processor_grok/GrokProcessorPatternsResponse.ts#L22-L24">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -108,8 +108,6 @@ public class ProcessorGrokResponse implements JsonpSerializable {
 		 * Required - API name: {@code patterns}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>patterns</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder patterns(Map<String, String> map) {
 			this.patterns = _mapPutAll(this.patterns, map);

@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
  * how much disk space they are using.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cat/allocation/CatAllocationRequest.ts#L23-L35">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/allocation/CatAllocationRequest.ts#L23-L35">API
  *      specification</a>
  */
 
@@ -122,8 +122,6 @@ public class AllocationRequest extends CatRequestBase {
 		 * API name: {@code node_id}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>nodeId</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder nodeId(List<String> list) {
 			this.nodeId = _listAddAll(this.nodeId, list);

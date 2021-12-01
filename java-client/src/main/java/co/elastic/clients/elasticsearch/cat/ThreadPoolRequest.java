@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
  * queue and rejected statistics are returned for all thread pools.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cat/thread_pool/CatThreadPoolRequest.ts#L24-L36">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/thread_pool/CatThreadPoolRequest.ts#L24-L36">API
  *      specification</a>
  */
 
@@ -120,8 +120,6 @@ public class ThreadPoolRequest extends CatRequestBase {
 		 * API name: {@code thread_pool_patterns}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>threadPoolPatterns</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder threadPoolPatterns(List<String> list) {
 			this.threadPoolPatterns = _listAddAll(this.threadPoolPatterns, list);

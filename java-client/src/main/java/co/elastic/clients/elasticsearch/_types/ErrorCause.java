@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
  * on the error type.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/Errors.ts#L25-L48">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Errors.ts#L25-L48">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -218,8 +218,6 @@ public class ErrorCause implements JsonpSerializable {
 		 * Additional details about the error
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>metadata</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder metadata(Map<String, JsonData> map) {
 			this.metadata = _mapPutAll(this.metadata, map);
@@ -302,8 +300,6 @@ public class ErrorCause implements JsonpSerializable {
 		 * API name: {@code root_cause}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>rootCause</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder rootCause(List<ErrorCause> list) {
 			this.rootCause = _listAddAll(this.rootCause, list);
@@ -333,8 +329,6 @@ public class ErrorCause implements JsonpSerializable {
 		 * API name: {@code suppressed}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>suppressed</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder suppressed(List<ErrorCause> list) {
 			this.suppressed = _listAddAll(this.suppressed, list);

@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/put_trained_model/types.ts#L44-L47">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/put_trained_model/types.ts#L44-L47">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -139,8 +139,6 @@ public class OneHotEncodingPreprocessor implements PreprocessorVariant, JsonpSer
 		 * Required - API name: {@code hot_map}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>hotMap</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder hotMap(Map<String, String> map) {
 			this.hotMap = _mapPutAll(this.hotMap, map);

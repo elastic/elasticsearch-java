@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
  * Retrieves information about the installed X-Pack features.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/xpack/info/XPackInfoRequest.ts#L22-L31">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/info/XPackInfoRequest.ts#L22-L31">API
  *      specification</a>
  */
 
@@ -96,8 +96,6 @@ public class XpackInfoRequest extends RequestBase {
 		 * API name: {@code categories}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>categories</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder categories(List<String> list) {
 			this.categories = _listAddAll(this.categories, list);

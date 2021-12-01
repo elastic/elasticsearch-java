@@ -53,7 +53,7 @@ import javax.annotation.Nullable;
  * forecast API enables you to delete one or more forecasts before they expire.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/delete_forecast/MlDeleteForecastRequest.ts#L24-L65">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/delete_forecast/MlDeleteForecastRequest.ts#L24-L65">API
  *      specification</a>
  */
 

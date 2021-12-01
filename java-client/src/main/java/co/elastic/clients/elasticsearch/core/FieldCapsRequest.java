@@ -57,7 +57,7 @@ import javax.annotation.Nullable;
  * indices.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/field_caps/FieldCapabilitiesRequest.ts#L25-L46">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/field_caps/FieldCapabilitiesRequest.ts#L25-L46">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -258,8 +258,6 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code expand_wildcards}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder expandWildcards(List<ExpandWildcard> list) {
 			this.expandWildcards = _listAddAll(this.expandWildcards, list);
@@ -285,8 +283,6 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code fields}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>fields</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder fields(List<String> list) {
 			this.fields = _listAddAll(this.fields, list);
@@ -333,8 +329,6 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code index}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>index</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder index(List<String> list) {
 			this.index = _listAddAll(this.index, list);
@@ -373,8 +367,6 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code runtime_mappings}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>runtimeMappings</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder runtimeMappings(Map<String, RuntimeField> map) {
 			this.runtimeMappings = _mapPutAll(this.runtimeMappings, map);

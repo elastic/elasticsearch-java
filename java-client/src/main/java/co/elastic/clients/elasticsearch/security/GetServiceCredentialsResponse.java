@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/security/get_service_credentials/GetServiceCredentialsResponse.ts#L25-L33">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_service_credentials/GetServiceCredentialsResponse.ts#L25-L33">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -182,8 +182,6 @@ public class GetServiceCredentialsResponse implements JsonpSerializable {
 		 * Required - API name: {@code tokens}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>tokens</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder tokens(Map<String, Map<String, JsonData>> map) {
 			this.tokens = _mapPutAll(this.tokens, map);

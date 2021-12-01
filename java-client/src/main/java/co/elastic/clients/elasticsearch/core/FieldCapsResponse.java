@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/field_caps/FieldCapabilitiesResponse.ts#L24-L29">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/field_caps/FieldCapabilitiesResponse.ts#L24-L29">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -140,8 +140,6 @@ public class FieldCapsResponse implements JsonpSerializable {
 		 * Required - API name: {@code indices}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>indices</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder indices(List<String> list) {
 			this.indices = _listAddAll(this.indices, list);
@@ -162,8 +160,6 @@ public class FieldCapsResponse implements JsonpSerializable {
 		 * Required - API name: {@code fields}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>fields</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder fields(Map<String, Map<String, FieldCapability>> map) {
 			this.fields = _mapPutAll(this.fields, map);

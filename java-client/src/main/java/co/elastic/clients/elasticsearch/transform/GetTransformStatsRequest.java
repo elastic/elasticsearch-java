@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
  * Retrieves usage information for transforms.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/transform/get_transform_stats/GetTransformStatsRequest.ts#L24-L38">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/transform/get_transform_stats/GetTransformStatsRequest.ts#L24-L38">API
  *      specification</a>
  */
 

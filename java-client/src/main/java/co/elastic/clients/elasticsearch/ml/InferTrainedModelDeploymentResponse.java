@@ -43,12 +43,6 @@ import javax.annotation.Nullable;
 
 // typedef: ml.infer_trained_model_deployment.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/infer_trained_model_deployment/MlInferTrainedModelDeploymentResponse.ts#L27-L65">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class InferTrainedModelDeploymentResponse implements JsonpSerializable {
 	private final List<TrainedModelEntities> entities;
@@ -263,8 +257,6 @@ public class InferTrainedModelDeploymentResponse implements JsonpSerializable {
 		 * API name: {@code entities}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>entities</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder entities(List<TrainedModelEntities> list) {
 			this.entities = _listAddAll(this.entities, list);
@@ -317,8 +309,6 @@ public class InferTrainedModelDeploymentResponse implements JsonpSerializable {
 		 * API name: {@code predicted_value}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>predictedValue</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder predictedValue(List<String> list) {
 			this.predictedValue = _listAddAll(this.predictedValue, list);
@@ -369,8 +359,6 @@ public class InferTrainedModelDeploymentResponse implements JsonpSerializable {
 		 * API name: {@code top_classes}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>topClasses</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder topClasses(List<TopClassEntry> list) {
 			this.topClasses = _listAddAll(this.topClasses, list);

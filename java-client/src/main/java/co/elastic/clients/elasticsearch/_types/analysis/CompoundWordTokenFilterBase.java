@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/analysis/token_filters.ts#L43-L51">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L43-L51">API
  *      specification</a>
  */
 
@@ -252,8 +252,6 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 		 * API name: {@code word_list}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>wordList</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final BuilderT wordList(List<String> list) {
 			this.wordList = _listAddAll(this.wordList, list);

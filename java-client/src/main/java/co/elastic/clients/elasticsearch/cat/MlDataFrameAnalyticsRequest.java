@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
  * Gets configuration and usage information about data frame analytics jobs.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cat/ml_data_frame_analytics/CatDataFrameAnalyticsRequest.ts#L23-L36">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/ml_data_frame_analytics/CatDataFrameAnalyticsRequest.ts#L23-L36">API
  *      specification</a>
  */
 

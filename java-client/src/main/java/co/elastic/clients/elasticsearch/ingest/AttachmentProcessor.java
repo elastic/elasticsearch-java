@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ingest/_types/Processors.ts#L94-L102">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/_types/Processors.ts#L94-L102">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -258,8 +258,6 @@ public class AttachmentProcessor extends ProcessorBase implements ProcessorVaria
 		 * API name: {@code properties}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>properties</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder properties(List<String> list) {
 			this.properties = _listAddAll(this.properties, list);

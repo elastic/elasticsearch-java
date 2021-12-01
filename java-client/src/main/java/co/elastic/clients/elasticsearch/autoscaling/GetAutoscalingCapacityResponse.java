@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/autoscaling/get_autoscaling_capacity/GetAutoscalingCapacityResponse.ts#L25-L29">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/autoscaling/get_autoscaling_capacity/GetAutoscalingCapacityResponse.ts#L25-L29">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -110,8 +110,6 @@ public class GetAutoscalingCapacityResponse implements JsonpSerializable {
 		 * Required - API name: {@code policies}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>policies</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder policies(Map<String, AutoscalingDeciders> map) {
 			this.policies = _mapPutAll(this.policies, map);

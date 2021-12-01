@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  * Changes the number of requests per second for a particular Reindex operation.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/reindex_rethrottle/ReindexRethrottleRequest.ts#L24-L36">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/reindex_rethrottle/ReindexRethrottleRequest.ts#L24-L36">API
  *      specification</a>
  */
 

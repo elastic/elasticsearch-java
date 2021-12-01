@@ -39,7 +39,7 @@ import java.util.function.Function;
  * there were no values to process.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/aggregations/Aggregate.ts#L189-L193">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L189-L193">API
  *      specification</a>
  */
 @JsonpDeserializable

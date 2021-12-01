@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/TrainedModel.ts#L95-L103">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/TrainedModel.ts#L95-L103">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -191,8 +191,6 @@ public class TrainedModelConfigMetadata implements JsonpSerializable {
 		 * API name: {@code model_aliases}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>modelAliases</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder modelAliases(List<String> list) {
 			this.modelAliases = _listAddAll(this.modelAliases, list);
@@ -218,8 +216,6 @@ public class TrainedModelConfigMetadata implements JsonpSerializable {
 		 * <p>
 		 * Adds all entries of <code>map</code> to
 		 * <code>featureImportanceBaseline</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder featureImportanceBaseline(Map<String, String> map) {
 			this.featureImportanceBaseline = _mapPutAll(this.featureImportanceBaseline, map);
@@ -247,8 +243,6 @@ public class TrainedModelConfigMetadata implements JsonpSerializable {
 		 * API name: {@code hyperparameters}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>hyperparameters</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder hyperparameters(List<Hyperparameter> list) {
 			this.hyperparameters = _listAddAll(this.hyperparameters, list);
@@ -290,8 +284,6 @@ public class TrainedModelConfigMetadata implements JsonpSerializable {
 		 * <p>
 		 * Adds all elements of <code>list</code> to
 		 * <code>totalFeatureImportance</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder totalFeatureImportance(List<TotalFeatureImportance> list) {
 			this.totalFeatureImportance = _listAddAll(this.totalFeatureImportance, list);

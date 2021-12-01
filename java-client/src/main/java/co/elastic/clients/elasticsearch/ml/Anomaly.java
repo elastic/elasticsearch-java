@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/Anomaly.ts#L24-L47">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/Anomaly.ts#L24-L47">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -496,8 +496,6 @@ public class Anomaly implements JsonpSerializable {
 		 * API name: {@code actual}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>actual</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder actual(List<Double> list) {
 			this.actual = _listAddAll(this.actual, list);
@@ -549,8 +547,6 @@ public class Anomaly implements JsonpSerializable {
 		 * API name: {@code causes}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>causes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder causes(List<AnomalyCause> list) {
 			this.causes = _listAddAll(this.causes, list);
@@ -612,8 +608,6 @@ public class Anomaly implements JsonpSerializable {
 		 * API name: {@code influencers}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>influencers</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder influencers(List<Influence> list) {
 			this.influencers = _listAddAll(this.influencers, list);
@@ -731,8 +725,6 @@ public class Anomaly implements JsonpSerializable {
 		 * API name: {@code typical}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>typical</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder typical(List<Double> list) {
 			this.typical = _listAddAll(this.typical, list);

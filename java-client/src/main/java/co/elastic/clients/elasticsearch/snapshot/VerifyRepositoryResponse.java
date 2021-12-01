@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/snapshot/verify_repository/SnapshotVerifyRepositoryResponse.ts#L23-L25">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/snapshot/verify_repository/SnapshotVerifyRepositoryResponse.ts#L23-L25">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -109,8 +109,6 @@ public class VerifyRepositoryResponse implements JsonpSerializable {
 		 * Required - API name: {@code nodes}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>nodes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder nodes(Map<String, CompactNodeInfo> map) {
 			this.nodes = _mapPutAll(this.nodes, map);

@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
  * an error.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/delete_trained_model_alias/MlDeleteTrainedModelAliasRequest.ts#L23-L44">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/delete_trained_model_alias/MlDeleteTrainedModelAliasRequest.ts#L23-L44">API
  *      specification</a>
  */
 

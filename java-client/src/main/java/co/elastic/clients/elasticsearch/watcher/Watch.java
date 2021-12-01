@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/watcher/_types/Watch.ts#L37-L47">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Watch.ts#L37-L47">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -260,8 +260,6 @@ public class Watch implements JsonpSerializable {
 		 * Required - API name: {@code actions}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>actions</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder actions(Map<String, Action> map) {
 			this.actions = _mapPutAll(this.actions, map);
@@ -321,8 +319,6 @@ public class Watch implements JsonpSerializable {
 		 * API name: {@code metadata}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>metadata</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder metadata(Map<String, JsonData> map) {
 			this.metadata = _mapPutAll(this.metadata, map);

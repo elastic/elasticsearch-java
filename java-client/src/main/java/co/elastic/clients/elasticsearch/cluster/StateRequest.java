@@ -54,7 +54,7 @@ import javax.annotation.Nullable;
  * Returns a comprehensive information about the state of the cluster.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cluster/state/ClusterStateRequest.ts#L29-L55">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/state/ClusterStateRequest.ts#L29-L55">API
  *      specification</a>
  */
 
@@ -267,8 +267,6 @@ public class StateRequest extends RequestBase {
 		 * API name: {@code expand_wildcards}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder expandWildcards(List<ExpandWildcard> list) {
 			this.expandWildcards = _listAddAll(this.expandWildcards, list);
@@ -316,8 +314,6 @@ public class StateRequest extends RequestBase {
 		 * API name: {@code index}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>index</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder index(List<String> list) {
 			this.index = _listAddAll(this.index, list);
@@ -373,8 +369,6 @@ public class StateRequest extends RequestBase {
 		 * API name: {@code metric}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>metric</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder metric(List<String> list) {
 			this.metric = _listAddAll(this.metric, list);

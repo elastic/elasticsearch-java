@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  * Removes all scheduled events from a calendar, then deletes it.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/delete_calendar/MlDeleteCalendarRequest.ts#L23-L35">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/delete_calendar/MlDeleteCalendarRequest.ts#L23-L35">API
  *      specification</a>
  */
 

@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/nodes/_types/Stats.ts#L54-L60">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/_types/Stats.ts#L54-L60">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -190,8 +190,6 @@ public class IngestTotal implements JsonpSerializable {
 		 * Required - API name: {@code processors}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>processors</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder processors(List<KeyedProcessor> list) {
 			this.processors = _listAddAll(this.processors, list);

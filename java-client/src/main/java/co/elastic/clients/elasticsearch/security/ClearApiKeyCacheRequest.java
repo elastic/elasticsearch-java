@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  * Clear a subset or all entries from the API key cache.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/security/clear_api_key_cache/SecurityClearApiKeyCacheRequest.ts#L23-L32">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/clear_api_key_cache/SecurityClearApiKeyCacheRequest.ts#L23-L32">API
  *      specification</a>
  */
 
@@ -92,8 +92,6 @@ public class ClearApiKeyCacheRequest extends RequestBase {
 		 * API name: {@code ids}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>ids</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder ids(List<String> list) {
 			this.ids = _listAddAll(this.ids, list);

@@ -54,7 +54,7 @@ import javax.annotation.Nullable;
  * analytics result field to be present.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/evaluate_data_frame/MlEvaluateDataFrameRequest.ts#L25-L53">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/evaluate_data_frame/MlEvaluateDataFrameRequest.ts#L25-L53">API
  *      specification</a>
  */
 @JsonpDeserializable

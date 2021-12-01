@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/TrainedModel.ts#L223-L237">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/TrainedModel.ts#L223-L237">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -169,8 +169,6 @@ public class TrainedModelAllocation implements JsonpSerializable {
 		 * API name: {@code routing_table}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>routingTable</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder routingTable(Map<String, TrainedModelAllocationRoutingTable> map) {
 			this.routingTable = _mapPutAll(this.routingTable, map);

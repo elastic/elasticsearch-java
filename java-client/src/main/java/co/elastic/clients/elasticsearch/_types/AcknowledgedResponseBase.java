@@ -41,7 +41,7 @@ import java.util.Objects;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/Base.ts#L49-L52">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Base.ts#L49-L52">API
  *      specification</a>
  */
 

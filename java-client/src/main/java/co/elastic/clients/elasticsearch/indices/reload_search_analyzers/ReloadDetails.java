@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/reload_search_analyzers/types.ts#L20-L24">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/reload_search_analyzers/types.ts#L20-L24">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -153,8 +153,6 @@ public class ReloadDetails implements JsonpSerializable {
 		 * Required - API name: {@code reloaded_analyzers}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>reloadedAnalyzers</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder reloadedAnalyzers(List<String> list) {
 			this.reloadedAnalyzers = _listAddAll(this.reloadedAnalyzers, list);
@@ -175,8 +173,6 @@ public class ReloadDetails implements JsonpSerializable {
 		 * Required - API name: {@code reloaded_node_ids}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>reloadedNodeIds</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder reloadedNodeIds(List<String> list) {
 			this.reloadedNodeIds = _listAddAll(this.reloadedNodeIds, list);

@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
  * <code>&lt;job_id&gt;</code>, or by omitting the <code>&lt;job_id&gt;</code>.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/get_jobs/MlGetJobsRequest.ts#L23-L66">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_jobs/MlGetJobsRequest.ts#L23-L66">API
  *      specification</a>
  */
 
@@ -184,8 +184,6 @@ public class GetJobsRequest extends RequestBase {
 		 * API name: {@code job_id}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>jobId</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder jobId(List<String> list) {
 			this.jobId = _listAddAll(this.jobId, list);

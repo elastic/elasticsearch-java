@@ -53,7 +53,7 @@ import javax.annotation.Nullable;
  * Updates the cluster voting config exclusions by node ids or node names.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cluster/post_voting_config_exclusions/ClusterPostVotingConfigExclusionsRequest.ts#L24-L50">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/post_voting_config_exclusions/ClusterPostVotingConfigExclusionsRequest.ts#L24-L50">API
  *      specification</a>
  */
 
@@ -136,8 +136,6 @@ public class PostVotingConfigExclusionsRequest extends RequestBase {
 		 * API name: {@code node_ids}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>nodeIds</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder nodeIds(List<String> list) {
 			this.nodeIds = _listAddAll(this.nodeIds, list);
@@ -164,8 +162,6 @@ public class PostVotingConfigExclusionsRequest extends RequestBase {
 		 * API name: {@code node_names}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>nodeNames</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder nodeNames(List<String> list) {
 			this.nodeNames = _listAddAll(this.nodeNames, list);

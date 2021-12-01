@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/snapshot/_types/SnapshotIndexStats.ts#L25-L29">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/snapshot/_types/SnapshotIndexStats.ts#L25-L29">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -137,8 +137,6 @@ public class SnapshotIndexStats implements JsonpSerializable {
 		 * Required - API name: {@code shards}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>shards</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder shards(Map<String, SnapshotShardsStatus> map) {
 			this.shards = _mapPutAll(this.shards, map);

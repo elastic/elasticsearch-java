@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
  *      "https://www.elastic.co/guide/en/elasticsearch/reference/7.8/index-modules.html#index-modules-settings">Documentation
  *      on elastic.co</a>
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/_types/IndexSettings.ts#L36-L273">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/_types/IndexSettings.ts#L36-L273">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -1236,8 +1236,6 @@ public class IndexSettings implements JsonpSerializable {
 		 * API name: {@code routing_path}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>routingPath</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder routingPath(List<String> list) {
 			this.routingPath = _listAddAll(this.routingPath, list);

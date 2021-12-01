@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/knn_search/_types/Knn.ts#L25-L34">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/knn_search/_types/Knn.ts#L25-L34">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -173,8 +173,6 @@ public class KnnSearchQuery implements JsonpSerializable {
 		 * API name: {@code query_vector}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>queryVector</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder queryVector(List<Double> list) {
 			this.queryVector = _listAddAll(this.queryVector, list);

@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cluster/stats/types.ts#L193-L218">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/stats/types.ts#L193-L218">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -330,8 +330,6 @@ public class ClusterNodes implements JsonpSerializable {
 		 * API name: {@code discovery_types}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>discoveryTypes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder discoveryTypes(Map<String, Integer> map) {
 			this.discoveryTypes = _mapPutAll(this.discoveryTypes, map);
@@ -456,8 +454,6 @@ public class ClusterNodes implements JsonpSerializable {
 		 * API name: {@code packaging_types}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>packagingTypes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder packagingTypes(List<NodePackagingType> list) {
 			this.packagingTypes = _listAddAll(this.packagingTypes, list);
@@ -496,8 +492,6 @@ public class ClusterNodes implements JsonpSerializable {
 		 * API name: {@code plugins}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>plugins</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder plugins(List<PluginStats> list) {
 			this.plugins = _listAddAll(this.plugins, list);
@@ -554,8 +548,6 @@ public class ClusterNodes implements JsonpSerializable {
 		 * API name: {@code versions}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>versions</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder versions(List<String> list) {
 			this.versions = _listAddAll(this.versions, list);

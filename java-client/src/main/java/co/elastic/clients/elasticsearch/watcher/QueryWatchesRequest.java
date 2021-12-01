@@ -53,7 +53,7 @@ import javax.annotation.Nullable;
  * Retrieves stored watches.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/watcher/query_watches/WatcherQueryWatchesRequest.ts#L25-L49">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/query_watches/WatcherQueryWatchesRequest.ts#L25-L49">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -241,8 +241,6 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 		 * API name: {@code search_after}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>searchAfter</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder searchAfter(List<String> list) {
 			this.searchAfter = _listAddAll(this.searchAfter, list);
@@ -277,8 +275,6 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 		 * API name: {@code sort}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>sort</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder sort(List<SortOptions> list) {
 			this.sort = _listAddAll(this.sort, list);

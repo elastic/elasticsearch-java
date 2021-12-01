@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
  * Creates a rollup job.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/rollup/put_job/CreateRollupJobRequest.ts#L26-L43">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/rollup/put_job/CreateRollupJobRequest.ts#L26-L43">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -270,8 +270,6 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code metrics}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>metrics</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder metrics(List<FieldMetric> list) {
 			this.metrics = _listAddAll(this.metrics, list);

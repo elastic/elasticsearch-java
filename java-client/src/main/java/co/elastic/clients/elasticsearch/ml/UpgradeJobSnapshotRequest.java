@@ -57,7 +57,7 @@ import javax.annotation.Nullable;
  * anomaly detection job.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/upgrade_job_snapshot/MlUpgradeJobSnapshotRequest.ts#L24-L63">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/upgrade_job_snapshot/MlUpgradeJobSnapshotRequest.ts#L24-L63">API
  *      specification</a>
  */
 

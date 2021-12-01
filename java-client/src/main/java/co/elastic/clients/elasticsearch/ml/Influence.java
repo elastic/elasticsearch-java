@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/Anomaly.ts#L66-L69">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/Anomaly.ts#L66-L69">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -132,8 +132,6 @@ public class Influence implements JsonpSerializable {
 		 * Required - API name: {@code influencer_field_values}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>influencerFieldValues</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder influencerFieldValues(List<String> list) {
 			this.influencerFieldValues = _listAddAll(this.influencerFieldValues, list);

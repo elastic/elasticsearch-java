@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/security/grant_api_key/types.ts#L25-L29">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/grant_api_key/types.ts#L25-L29">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -177,8 +177,6 @@ public class ApiKey implements JsonpSerializable {
 		 * API name: {@code role_descriptors}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>roleDescriptors</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder roleDescriptors(List<Map<String, JsonData>> list) {
 			this.roleDescriptors = _listAddAll(this.roleDescriptors, list);

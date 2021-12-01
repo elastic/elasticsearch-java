@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/_types/IndexSegmentSort.ts#L22-L27">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/_types/IndexSegmentSort.ts#L22-L27">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -172,8 +172,6 @@ public class IndexSegmentSort implements JsonpSerializable {
 		 * Required - API name: {@code field}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>field</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder field(List<String> list) {
 			this.field = _listAddAll(this.field, list);
@@ -194,8 +192,6 @@ public class IndexSegmentSort implements JsonpSerializable {
 		 * Required - API name: {@code order}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>order</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder order(List<SegmentSortOrder> list) {
 			this.order = _listAddAll(this.order, list);
@@ -216,8 +212,6 @@ public class IndexSegmentSort implements JsonpSerializable {
 		 * API name: {@code mode}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>mode</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder mode(List<SegmentSortMode> list) {
 			this.mode = _listAddAll(this.mode, list);
@@ -238,8 +232,6 @@ public class IndexSegmentSort implements JsonpSerializable {
 		 * API name: {@code missing}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>missing</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder missing(List<SegmentSortMissing> list) {
 			this.missing = _listAddAll(this.missing, list);

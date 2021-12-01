@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/rollup/_types/Metric.ts#L30-L33">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/rollup/_types/Metric.ts#L30-L33">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -129,8 +129,6 @@ public class FieldMetric implements JsonpSerializable {
 		 * Required - API name: {@code metrics}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>metrics</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder metrics(List<Metric> list) {
 			this.metrics = _listAddAll(this.metrics, list);

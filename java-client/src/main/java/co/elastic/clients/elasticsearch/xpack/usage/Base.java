@@ -35,13 +35,14 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: xpack.usage.Base
 
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/xpack/usage/types.ts#L28-L31">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L28-L31">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -57,6 +58,10 @@ public class Base implements JsonpSerializable {
 		this.available = ApiTypeHelper.requireNonNull(builder.available, this, "available");
 		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
 
+	}
+
+	public static Base baseOf(Function<Builder, ObjectBuilder<Base>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

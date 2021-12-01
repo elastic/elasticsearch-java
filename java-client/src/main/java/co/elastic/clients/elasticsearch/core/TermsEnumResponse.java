@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/terms_enum/TermsEnumResponse.ts#L22-L28">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/terms_enum/TermsEnumResponse.ts#L22-L28">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -153,8 +153,6 @@ public class TermsEnumResponse implements JsonpSerializable {
 		 * Required - API name: {@code terms}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>terms</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder terms(List<String> list) {
 			this.terms = _listAddAll(this.terms, list);

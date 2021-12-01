@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ingest/_types/Processors.ts#L163-L176">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/_types/Processors.ts#L163-L176">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -203,8 +203,6 @@ public class DateIndexNameProcessor extends ProcessorBase implements ProcessorVa
 		 * Required - API name: {@code date_formats}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>dateFormats</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder dateFormats(List<String> list) {
 			this.dateFormats = _listAddAll(this.dateFormats, list);

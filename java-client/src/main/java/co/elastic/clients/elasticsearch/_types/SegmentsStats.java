@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/Stats.ts#L201-L226">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Stats.ts#L201-L226">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -541,8 +541,6 @@ public class SegmentsStats implements JsonpSerializable {
 		 * Required - API name: {@code file_sizes}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>fileSizes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder fileSizes(Map<String, ShardFileSizeInfo> map) {
 			this.fileSizes = _mapPutAll(this.fileSizes, map);

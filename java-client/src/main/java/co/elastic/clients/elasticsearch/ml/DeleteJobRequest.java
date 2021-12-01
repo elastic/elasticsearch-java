@@ -54,7 +54,7 @@ import javax.annotation.Nullable;
  * parameters as the delete job request.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/delete_job/MlDeleteJobRequest.ts#L23-L56">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/delete_job/MlDeleteJobRequest.ts#L23-L56">API
  *      specification</a>
  */
 

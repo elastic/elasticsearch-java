@@ -55,7 +55,7 @@ import javax.annotation.Nullable;
  * its analysis from where it left off, once new data is received.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/open_job/MlOpenJobRequest.ts#L24-L59">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/open_job/MlOpenJobRequest.ts#L24-L59">API
  *      specification</a>
  */
 @JsonpDeserializable

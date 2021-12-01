@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ingest/_types/Processors.ts#L236-L241">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/_types/Processors.ts#L236-L241">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -177,8 +177,6 @@ public class InferenceProcessor extends ProcessorBase implements ProcessorVarian
 		 * API name: {@code field_map}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>fieldMap</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder fieldMap(Map<String, JsonData> map) {
 			this.fieldMap = _mapPutAll(this.fieldMap, map);

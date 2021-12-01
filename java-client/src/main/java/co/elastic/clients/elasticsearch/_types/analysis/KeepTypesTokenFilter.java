@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/analysis/token_filters.ts#L216-L220">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L216-L220">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -137,8 +137,6 @@ public class KeepTypesTokenFilter extends TokenFilterBase implements TokenFilter
 		 * API name: {@code types}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>types</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder types(List<String> list) {
 			this.types = _listAddAll(this.types, list);

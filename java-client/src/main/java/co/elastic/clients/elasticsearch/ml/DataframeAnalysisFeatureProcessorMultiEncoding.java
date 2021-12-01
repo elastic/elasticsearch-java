@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/_types/DataframeAnalytics.ts#L268-L271">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/DataframeAnalytics.ts#L268-L271">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -127,8 +127,6 @@ public class DataframeAnalysisFeatureProcessorMultiEncoding
 		 * API name: {@code processors}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>processors</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder processors(List<Integer> list) {
 			this.processors = _listAddAll(this.processors, list);

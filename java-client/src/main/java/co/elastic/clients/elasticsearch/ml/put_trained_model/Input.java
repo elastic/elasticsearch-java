@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/ml/put_trained_model/types.ts#L56-L58">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/put_trained_model/types.ts#L56-L58">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -107,8 +107,6 @@ public class Input implements JsonpSerializable {
 		 * Required - API name: {@code field_names}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>fieldNames</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder fieldNames(List<String> list) {
 			this.fieldNames = _listAddAll(this.fieldNames, list);

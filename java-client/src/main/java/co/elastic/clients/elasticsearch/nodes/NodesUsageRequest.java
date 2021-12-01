@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
  * Returns low-level information about REST actions usage on nodes.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/nodes/usage/NodesUsageRequest.ts#L24-L37">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/usage/NodesUsageRequest.ts#L24-L37">API
  *      specification</a>
  */
 
@@ -129,8 +129,6 @@ public class NodesUsageRequest extends RequestBase {
 		 * API name: {@code metric}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>metric</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder metric(List<String> list) {
 			this.metric = _listAddAll(this.metric, list);
@@ -157,8 +155,6 @@ public class NodesUsageRequest extends RequestBase {
 		 * API name: {@code node_id}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>nodeId</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder nodeId(List<String> list) {
 			this.nodeId = _listAddAll(this.nodeId, list);

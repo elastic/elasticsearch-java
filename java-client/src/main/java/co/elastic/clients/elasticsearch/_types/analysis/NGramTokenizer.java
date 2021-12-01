@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_types/analysis/tokenizers.ts#L38-L44">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/tokenizers.ts#L38-L44">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -183,8 +183,6 @@ public class NGramTokenizer extends TokenizerBase implements TokenizerDefinition
 		 * Required - API name: {@code token_chars}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>tokenChars</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder tokenChars(List<TokenChar> list) {
 			this.tokenChars = _listAddAll(this.tokenChars, list);

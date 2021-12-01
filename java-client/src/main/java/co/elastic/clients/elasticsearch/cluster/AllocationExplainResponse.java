@@ -53,7 +53,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cluster/allocation_explain/ClusterAllocationExplainResponse.ts#L31-L60">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/allocation_explain/ClusterAllocationExplainResponse.ts#L31-L60">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -627,8 +627,6 @@ public class AllocationExplainResponse implements JsonpSerializable {
 		 * <p>
 		 * Adds all elements of <code>list</code> to
 		 * <code>canRebalanceClusterDecisions</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder canRebalanceClusterDecisions(List<AllocationDecision> list) {
 			this.canRebalanceClusterDecisions = _listAddAll(this.canRebalanceClusterDecisions, list);
@@ -668,8 +666,6 @@ public class AllocationExplainResponse implements JsonpSerializable {
 		 * API name: {@code can_remain_decisions}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>canRemainDecisions</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder canRemainDecisions(List<AllocationDecision> list) {
 			this.canRemainDecisions = _listAddAll(this.canRemainDecisions, list);
@@ -779,8 +775,6 @@ public class AllocationExplainResponse implements JsonpSerializable {
 		 * <p>
 		 * Adds all elements of <code>list</code> to
 		 * <code>nodeAllocationDecisions</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder nodeAllocationDecisions(List<NodeAllocationExplanation> list) {
 			this.nodeAllocationDecisions = _listAddAll(this.nodeAllocationDecisions, list);

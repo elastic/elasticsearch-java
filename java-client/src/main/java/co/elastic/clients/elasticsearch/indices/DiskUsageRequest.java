@@ -53,7 +53,7 @@ import javax.annotation.Nullable;
  * Analyzes the disk usage of each field of an index or data stream
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/indices/disk_usage/IndicesDiskUsageRequest.ts#L24-L77">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/disk_usage/IndicesDiskUsageRequest.ts#L24-L77">API
  *      specification</a>
  */
 
@@ -261,8 +261,6 @@ public class DiskUsageRequest extends RequestBase {
 		 * API name: {@code expand_wildcards}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder expandWildcards(List<ExpandWildcard> list) {
 			this.expandWildcards = _listAddAll(this.expandWildcards, list);

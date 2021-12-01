@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
  * Retrieve shard-level statistics about searchable snapshots.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/searchable_snapshots/stats/SearchableSnapshotsStatsRequest.ts#L24-L36">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/searchable_snapshots/stats/SearchableSnapshotsStatsRequest.ts#L24-L36">API
  *      specification</a>
  */
 
@@ -112,8 +112,6 @@ public class SearchableSnapshotsStatsRequest extends RequestBase {
 		 * API name: {@code index}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>index</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder index(List<String> list) {
 			this.index = _listAddAll(this.index, list);

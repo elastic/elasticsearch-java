@@ -52,7 +52,7 @@ import javax.annotation.Nullable;
  * Returns a list of tasks.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/tasks/list/ListTasksRequest.ts#L25-L40">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/tasks/list/ListTasksRequest.ts#L25-L40">API
  *      specification</a>
  */
 
@@ -201,8 +201,6 @@ public class ListRequest extends RequestBase {
 		 * API name: {@code actions}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>actions</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder actions(List<String> list) {
 			this.actions = _listAddAll(this.actions, list);
@@ -250,8 +248,6 @@ public class ListRequest extends RequestBase {
 		 * API name: {@code nodes}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>nodes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder nodes(List<String> list) {
 			this.nodes = _listAddAll(this.nodes, list);

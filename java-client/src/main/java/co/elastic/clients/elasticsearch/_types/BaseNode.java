@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_spec_utils/BaseNode.ts#L25-L32">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_spec_utils/BaseNode.ts#L25-L32">API
  *      specification</a>
  */
 
@@ -181,8 +181,6 @@ public abstract class BaseNode implements JsonpSerializable {
 		 * Required - API name: {@code attributes}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>attributes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final BuilderT attributes(Map<String, String> map) {
 			this.attributes = _mapPutAll(this.attributes, map);
@@ -227,8 +225,6 @@ public abstract class BaseNode implements JsonpSerializable {
 		 * API name: {@code roles}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>roles</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final BuilderT roles(List<NodeRole> list) {
 			this.roles = _listAddAll(this.roles, list);

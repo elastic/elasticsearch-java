@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
  * node in the cluster.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cat/fielddata/CatFielddataRequest.ts#L23-L35">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/fielddata/CatFielddataRequest.ts#L23-L35">API
  *      specification</a>
  */
 
@@ -122,8 +122,6 @@ public class FielddataRequest extends CatRequestBase {
 		 * API name: {@code fields}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>fields</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder fields(List<String> list) {
 			this.fields = _listAddAll(this.fields, list);

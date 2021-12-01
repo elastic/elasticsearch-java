@@ -52,7 +52,7 @@ import javax.annotation.Nullable;
  * Forces the execution of a stored watch.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/watcher/execute_watch/WatcherExecuteWatchRequest.ts#L28-L49">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/execute_watch/WatcherExecuteWatchRequest.ts#L28-L49">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -274,8 +274,6 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 		 * API name: {@code action_modes}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>actionModes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder actionModes(Map<String, ActionExecutionMode> map) {
 			this.actionModes = _mapPutAll(this.actionModes, map);
@@ -296,8 +294,6 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 		 * API name: {@code alternative_input}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>alternativeInput</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder alternativeInput(Map<String, JsonData> map) {
 			this.alternativeInput = _mapPutAll(this.alternativeInput, map);

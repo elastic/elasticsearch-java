@@ -53,7 +53,7 @@ import javax.annotation.Nullable;
  * Returns the source of a document.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/_global/get_source/SourceRequest.ts#L31-L86">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/get_source/SourceRequest.ts#L31-L86">API
  *      specification</a>
  */
 
@@ -297,8 +297,6 @@ public class GetSourceRequest {
 		 * API name: {@code _source_excludes}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>sourceExcludes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder sourceExcludes(List<String> list) {
 			this.sourceExcludes = _listAddAll(this.sourceExcludes, list);
@@ -323,8 +321,6 @@ public class GetSourceRequest {
 		 * API name: {@code _source_includes}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>sourceIncludes</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder sourceIncludes(List<String> list) {
 			this.sourceIncludes = _listAddAll(this.sourceIncludes, list);
@@ -409,8 +405,6 @@ public class GetSourceRequest {
 		 * API name: {@code stored_fields}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>storedFields</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder storedFields(List<String> list) {
 			this.storedFields = _listAddAll(this.storedFields, list);

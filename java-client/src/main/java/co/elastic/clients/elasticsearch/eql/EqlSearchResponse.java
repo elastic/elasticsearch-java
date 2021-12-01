@@ -39,7 +39,7 @@ import java.util.function.Supplier;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/eql/search/EqlSearchResponse.ts#L22-L22">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/eql/search/EqlSearchResponse.ts#L22-L22">API
  *      specification</a>
  */
 @JsonpDeserializable

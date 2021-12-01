@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cluster/put_settings/ClusterPutSettingsResponse.ts#L23-L29">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/put_settings/ClusterPutSettingsResponse.ts#L23-L29">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -156,8 +156,6 @@ public class PutClusterSettingsResponse implements JsonpSerializable {
 		 * Required - API name: {@code persistent}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>persistent</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder persistent(Map<String, JsonData> map) {
 			this.persistent = _mapPutAll(this.persistent, map);
@@ -178,8 +176,6 @@ public class PutClusterSettingsResponse implements JsonpSerializable {
 		 * Required - API name: {@code transient}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>transient_</code>.
-		 * 
-		 * @see ApiTypeHelper#resetMap() Resetting the value to null
 		 */
 		public final Builder transient_(Map<String, JsonData> map) {
 			this.transient_ = _mapPutAll(this.transient_, map);

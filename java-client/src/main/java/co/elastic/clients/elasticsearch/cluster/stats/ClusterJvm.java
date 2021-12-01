@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/bd953a3fc/specification/cluster/stats/types.ts#L148-L153">API
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/stats/types.ts#L148-L153">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -183,8 +183,6 @@ public class ClusterJvm implements JsonpSerializable {
 		 * Required - API name: {@code versions}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>versions</code>.
-		 * 
-		 * @see ApiTypeHelper#resetList() Resetting the value to null
 		 */
 		public final Builder versions(List<ClusterJvmVersion> list) {
 			this.versions = _listAddAll(this.versions, list);
