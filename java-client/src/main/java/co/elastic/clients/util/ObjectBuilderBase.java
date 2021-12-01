@@ -25,6 +25,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class ObjectBuilderBase {
     private boolean _used = false;
@@ -76,9 +77,7 @@ public class ObjectBuilderBase {
         if (list == null) {
             // Keep the original list to avoid an unnecessary copy.
             // It will be copied if we add more values.
-            return values;
-        } else if (values == ApiTypeHelper.RESET_LIST) {
-            return null;
+            return Objects.requireNonNull(values);
         } else {
             list = _mutableList(list);
             list.addAll(values);
@@ -119,11 +118,14 @@ public class ObjectBuilderBase {
 
     /** Add all elements of a list to a (possibly {@code null}) map */
     protected static <K, V> Map<K, V> _mapPutAll(Map<K, V> map, Map<K, V> entries) {
-        if (entries == ApiTypeHelper.RESET_MAP) {
-            return null;
+        if (map == null) {
+            // Keep the original map to avoid an unnecessary copy.
+            // It will be copied if we add more entries.
+            return Objects.requireNonNull(entries);
+        } else {
+            map = _mutableMap(map);
+            map.putAll(entries);
+            return map;
         }
-        map = _mutableMap(map);
-        map.putAll(entries);
-        return map;
     }
 }

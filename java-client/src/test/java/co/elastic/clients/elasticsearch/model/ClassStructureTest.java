@@ -214,19 +214,13 @@ public class ClassStructureTest extends ModelTestCase {
 
 
         {
-            // Reset builder property
-            SearchRequest search = SearchRequest.of(b -> b
-                .storedFields(fields)
-                .storedFields(ApiTypeHelper.resetList())
-            );
-            assertFalse(ApiTypeHelper.isDefined(search.storedFields()));
-
-            search = SearchRequest.of(b -> b
-                .storedFields(fields)
-                .storedFields(ApiTypeHelper.resetList())
-                .storedFields("d", "e")
-            );
-            assertEquals(Arrays.asList("d", "e"), search.storedFields());
+            // List cannot be null
+            List<String> nullFields = null;
+            assertThrows(NullPointerException.class, () -> {
+                SearchRequest.of(b -> b
+                    .storedFields(nullFields)
+                );
+            });
         }
 
         {
@@ -255,7 +249,6 @@ public class ClassStructureTest extends ModelTestCase {
 
         {
             // Appending doesn't modify the original collection
-
             SearchRequest search = SearchRequest.of(b -> b
                 .aggregations(aggs)
                 .aggregations("aggC", countC._toAggregation())
@@ -273,20 +266,11 @@ public class ClassStructureTest extends ModelTestCase {
         }
 
         {
-            // Reset builder property
-            SearchRequest search = SearchRequest.of(b -> b
-                .aggregations(aggs)
-                .aggregations(ApiTypeHelper.resetMap())
-            );
-            assertFalse(ApiTypeHelper.isDefined(search.storedFields()));
-
-            search = SearchRequest.of(b -> b
-                .aggregations(aggs)
-                .aggregations(ApiTypeHelper.resetMap())
-                .aggregations("aggC", countC._toAggregation())
-            );
-            assertEquals(1, search.aggregations().size());
-            assertEquals("c", search.aggregations().get("aggC").valueCount().field());
+            // Map cannot be null
+            assertThrows(NullPointerException.class, () -> {
+                Map<String, Aggregation> nullMap = null;
+                SearchRequest.of(b -> b.aggregations(nullMap));
+            });
         }
     }
 

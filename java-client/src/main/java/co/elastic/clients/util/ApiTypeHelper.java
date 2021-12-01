@@ -22,7 +22,6 @@ package co.elastic.clients.util;
 import javax.annotation.Nullable;
 import java.util.AbstractList;
 import java.util.AbstractMap;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -100,7 +99,6 @@ public class ApiTypeHelper {
     };
 
     static final List<Object> UNDEFINED_LIST = new EmptyList();
-    static final List<Object> RESET_LIST = new EmptyList();
 
     /**
      * Returns an empty list that is undefined from a JSON perspective. It will not be serialized
@@ -109,19 +107,6 @@ public class ApiTypeHelper {
     @SuppressWarnings("unchecked")
     public static <T> List<T> undefinedList() {
         return (List<T>)UNDEFINED_LIST;
-    }
-
-    /**
-     * Returns a "magic list" that will reset list properties of API types to {@code null}.
-     * <p>
-     * List setters on API type builders add items to the property using {@link List#addAll(Collection)} and do not accept
-     * a {@code null} value which is considered as a bug. In some rare occasions it may however be necessary to reset
-     * the builder's property, and this is what the result of this method is meant for: setting a builder's list property
-     * to the value returned by this method will reset that property to {@code null}.
-     */
-    @SuppressWarnings("unchecked")
-    public static <T> List<T> resetList() {
-        return (List<T>)RESET_LIST;
     }
 
     /**
@@ -167,7 +152,6 @@ public class ApiTypeHelper {
     }
 
     static final Map<Object, Object> UNDEFINED_MAP = new EmptyMap();
-    static final Map<Object, Object> RESET_MAP = new EmptyMap();
 
     /**
      * Returns an empty list that is undefined from a JSON perspective. It will not be serialized
@@ -176,19 +160,6 @@ public class ApiTypeHelper {
     @SuppressWarnings("unchecked")
     public static <K, V> Map<K, V> undefinedMap() {
         return (Map<K, V>)UNDEFINED_MAP;
-    }
-
-    /**
-     * Returns a "magic map" that will reset map properties of API types to {@code null}.
-     * <p>
-     * Map setters on API type builders add entries to the property using {@link Map#putAll(Map)} and do not accept
-     * a {@code null} value which is considered as a bug. In some rare occasions it may however be necessary to reset
-     * the builder's property, and this is what the result of this method is meant for: setting a builder's map property
-     * to the value returned by this method will reset that property to {@code null}.
-     */
-    @SuppressWarnings("unchecked")
-    public static <K, V> Map<K, V> resetMap() {
-        return (Map<K, V>)RESET_MAP;
     }
 
     /**
