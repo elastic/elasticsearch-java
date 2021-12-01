@@ -180,4 +180,22 @@ public class JsonpUtils {
                 throw new IllegalArgumentException("Unknown JSON value type: '" + value + "'");
         }
     }
+
+    public static void serializeDoubleOrNull(JsonGenerator generator, double value, double defaultValue) {
+        // Only output null if the default value isn't finite, which cannot be represented as JSON
+        if (value == defaultValue && !Double.isFinite(defaultValue)) {
+            generator.writeNull();
+        } else {
+            generator.write(value);
+        }
+    }
+
+    public static void serializeIntOrNull(JsonGenerator generator, int value, int defaultValue) {
+        // Only output null if the default value isn't finite, which cannot be represented as JSON
+        if (value == defaultValue && defaultValue == Integer.MAX_VALUE || defaultValue == Integer.MIN_VALUE) {
+            generator.writeNull();
+        } else {
+            generator.write(value);
+        }
+    }
 }

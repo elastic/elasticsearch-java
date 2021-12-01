@@ -168,6 +168,16 @@ public class RequestTest extends Assert {
         assertEquals(1337, esData.getIntValue());
         assertEquals("foo", esData.getMsg());
 
+        // Query by id a non-existing document
+        final GetResponse<AppData> notExists = client.get(b -> b
+                .index(index)
+                .id("some-random-id")
+            , AppData.class
+        );
+
+        assertFalse(notExists.found());
+        assertNull(notExists.source());
+
         // Search
         SearchResponse<AppData> search = client.search(b -> b
                 .index(index)

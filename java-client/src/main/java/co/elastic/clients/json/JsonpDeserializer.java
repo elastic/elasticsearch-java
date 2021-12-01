@@ -181,6 +181,16 @@ public interface JsonpDeserializer<V> {
         return JsonpDeserializerBase.DOUBLE;
     }
 
+    /** A {@code double} deserializer that will return a default value when the JSON value is {@code null} */
+    static JsonpDeserializer<Double> doubleOrNullDeserializer(double defaultValue) {
+        return new JsonpDeserializerBase.DoubleOrNullDeserializer(defaultValue);
+    }
+
+    /** An {@code integer} deserializer that will return a default value when the JSON value is {@code null} */
+    static JsonpDeserializer<Integer> intOrNullDeserializer(int defaultValue) {
+        return new JsonpDeserializerBase.IntOrNullDeserializer(defaultValue);
+    }
+
     static JsonpDeserializer<Number> numberDeserializer() {
         return JsonpDeserializerBase.NUMBER;
     }
