@@ -116,7 +116,7 @@ public class ApiTypeHelper {
      * <p>
      * List setters on API type builders add items to the property using {@link List#addAll(Collection)} and do not accept
      * a {@code null} value which is considered as a bug. In some rare occasions it may however be necessary to reset
-     * the builder's property, and this what the result of this method is meant for: setting a builder's list property
+     * the builder's property, and this is what the result of this method is meant for: setting a builder's list property
      * to the value returned by this method will reset that property to {@code null}.
      */
     @SuppressWarnings("unchecked")
@@ -183,7 +183,7 @@ public class ApiTypeHelper {
      * <p>
      * Map setters on API type builders add entries to the property using {@link Map#putAll(Map)} and do not accept
      * a {@code null} value which is considered as a bug. In some rare occasions it may however be necessary to reset
-     * the builder's property, and this what the result of this method is meant for: setting a builder's map property
+     * the builder's property, and this is what the result of this method is meant for: setting a builder's map property
      * to the value returned by this method will reset that property to {@code null}.
      */
     @SuppressWarnings("unchecked")

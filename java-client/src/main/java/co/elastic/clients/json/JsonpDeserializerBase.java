@@ -181,6 +181,67 @@ public abstract class JsonpDeserializerBase<V> implements JsonpDeserializer<V> {
             }
         };
 
+    static final class DoubleOrNullDeserializer extends JsonpDeserializerBase<Double> {
+        static final EnumSet<Event> nativeEvents = EnumSet.of(Event.VALUE_NUMBER, Event.VALUE_NULL);
+        static final EnumSet<Event> acceptedEvents = EnumSet.of(Event.VALUE_STRING, Event.VALUE_NUMBER, Event.VALUE_NULL);
+        private final double defaultValue;
+
+        DoubleOrNullDeserializer(double defaultValue) {
+            super(acceptedEvents, nativeEvents);
+            this.defaultValue = defaultValue;
+        }
+
+        @Override
+        public Double deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
+            if (event == Event.VALUE_NULL) {
+                return defaultValue;
+            }
+            if (event == Event.VALUE_STRING) {
+                return Double.valueOf(parser.getString());
+            }
+            return parser.getBigDecimal().doubleValue();
+        }
+    }
+
+    static final class IntOrNullDeserializer extends JsonpDeserializerBase<Integer> {
+        static final EnumSet<Event> nativeEvents = EnumSet.of(Event.VALUE_NUMBER, Event.VALUE_NULL);
+        static final EnumSet<Event> acceptedEvents = EnumSet.of(Event.VALUE_STRING, Event.VALUE_NUMBER, Event.VALUE_NULL);
+        private final int defaultValue;
+
+        IntOrNullDeserializer(int defaultValue) {
+            super(acceptedEvents, nativeEvents);
+            this.defaultValue = defaultValue;
+        }
+
+        @Override
+        public Integer deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
+            if (event == Event.VALUE_NULL) {
+                return defaultValue;
+            }
+            if (event == Event.VALUE_STRING) {
+                return Integer.valueOf(parser.getString());
+            }
+            return parser.getInt();
+        }
+    }
+
+    static final JsonpDeserializer<Double> DOUBLE_OR_NAN =
+        new JsonpDeserializerBase<Double>(
+            EnumSet.of(Event.VALUE_NUMBER, Event.VALUE_STRING, Event.VALUE_NULL),
+            EnumSet.of(Event.VALUE_NUMBER, Event.VALUE_NULL)
+        ) {
+            @Override
+            public Double deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
+                if (event == Event.VALUE_NULL) {
+                    return Double.NaN;
+                }
+                if (event == Event.VALUE_STRING) {
+                    return Double.valueOf(parser.getString());
+                }
+                return parser.getBigDecimal().doubleValue();
+            }
+        };
+
     static final JsonpDeserializer<Number> NUMBER =
         new JsonpDeserializerBase<Number>(
             EnumSet.of(Event.VALUE_NUMBER, Event.VALUE_STRING),
