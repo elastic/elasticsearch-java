@@ -33,10 +33,17 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisRegression
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/DataframeAnalytics.ts#L214-L224">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeAnalysisRegression extends DataframeAnalysisBase implements DataframeAnalysisVariant {
 	@Nullable
@@ -55,10 +62,8 @@ public class DataframeAnalysisRegression extends DataframeAnalysisBase implement
 
 	}
 
-	public static DataframeAnalysisRegression of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DataframeAnalysisRegression of(Function<Builder, ObjectBuilder<DataframeAnalysisRegression>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -113,6 +118,7 @@ public class DataframeAnalysisRegression extends DataframeAnalysisBase implement
 	/**
 	 * Builder for {@link DataframeAnalysisRegression}.
 	 */
+
 	public static class Builder extends DataframeAnalysisBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DataframeAnalysisRegression> {

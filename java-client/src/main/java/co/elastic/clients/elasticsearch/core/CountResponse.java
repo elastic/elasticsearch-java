@@ -30,16 +30,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.count.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/count/CountResponse.ts#L23-L25">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CountResponse implements JsonpSerializable {
 	private final long count;
@@ -50,15 +57,13 @@ public class CountResponse implements JsonpSerializable {
 
 	private CountResponse(Builder builder) {
 
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
-		this.shards = ModelTypeHelper.requireNonNull(builder.shards, this, "shards");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
 
 	}
 
-	public static CountResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CountResponse of(Function<Builder, ObjectBuilder<CountResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -99,6 +104,7 @@ public class CountResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link CountResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CountResponse> {
 		private Long count;
 
@@ -123,10 +129,8 @@ public class CountResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _shards}
 		 */
-		public final Builder shards(Consumer<ShardStatistics.Builder> fn) {
-			ShardStatistics.Builder builder = new ShardStatistics.Builder();
-			fn.accept(builder);
-			return this.shards(builder.build());
+		public final Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
 		/**

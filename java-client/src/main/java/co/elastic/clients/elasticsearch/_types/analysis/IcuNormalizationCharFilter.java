@@ -31,10 +31,17 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.IcuNormalizationCharFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/icu-plugin.ts#L40-L44">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IcuNormalizationCharFilter extends CharFilterBase implements CharFilterDefinitionVariant {
 	@Nullable
@@ -53,10 +60,8 @@ public class IcuNormalizationCharFilter extends CharFilterBase implements CharFi
 
 	}
 
-	public static IcuNormalizationCharFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IcuNormalizationCharFilter of(Function<Builder, ObjectBuilder<IcuNormalizationCharFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -103,6 +108,7 @@ public class IcuNormalizationCharFilter extends CharFilterBase implements CharFi
 	/**
 	 * Builder for {@link IcuNormalizationCharFilter}.
 	 */
+
 	public static class Builder extends CharFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<IcuNormalizationCharFilter> {

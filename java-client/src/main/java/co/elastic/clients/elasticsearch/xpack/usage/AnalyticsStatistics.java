@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.AnalyticsStatistics
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L51-L61">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AnalyticsStatistics implements JsonpSerializable {
 	private final long boxplotUsage;
@@ -64,24 +71,22 @@ public class AnalyticsStatistics implements JsonpSerializable {
 
 	private AnalyticsStatistics(Builder builder) {
 
-		this.boxplotUsage = ModelTypeHelper.requireNonNull(builder.boxplotUsage, this, "boxplotUsage");
-		this.cumulativeCardinalityUsage = ModelTypeHelper.requireNonNull(builder.cumulativeCardinalityUsage, this,
+		this.boxplotUsage = ApiTypeHelper.requireNonNull(builder.boxplotUsage, this, "boxplotUsage");
+		this.cumulativeCardinalityUsage = ApiTypeHelper.requireNonNull(builder.cumulativeCardinalityUsage, this,
 				"cumulativeCardinalityUsage");
-		this.stringStatsUsage = ModelTypeHelper.requireNonNull(builder.stringStatsUsage, this, "stringStatsUsage");
-		this.topMetricsUsage = ModelTypeHelper.requireNonNull(builder.topMetricsUsage, this, "topMetricsUsage");
-		this.tTestUsage = ModelTypeHelper.requireNonNull(builder.tTestUsage, this, "tTestUsage");
-		this.movingPercentilesUsage = ModelTypeHelper.requireNonNull(builder.movingPercentilesUsage, this,
+		this.stringStatsUsage = ApiTypeHelper.requireNonNull(builder.stringStatsUsage, this, "stringStatsUsage");
+		this.topMetricsUsage = ApiTypeHelper.requireNonNull(builder.topMetricsUsage, this, "topMetricsUsage");
+		this.tTestUsage = ApiTypeHelper.requireNonNull(builder.tTestUsage, this, "tTestUsage");
+		this.movingPercentilesUsage = ApiTypeHelper.requireNonNull(builder.movingPercentilesUsage, this,
 				"movingPercentilesUsage");
-		this.normalizeUsage = ModelTypeHelper.requireNonNull(builder.normalizeUsage, this, "normalizeUsage");
-		this.rateUsage = ModelTypeHelper.requireNonNull(builder.rateUsage, this, "rateUsage");
+		this.normalizeUsage = ApiTypeHelper.requireNonNull(builder.normalizeUsage, this, "normalizeUsage");
+		this.rateUsage = ApiTypeHelper.requireNonNull(builder.rateUsage, this, "rateUsage");
 		this.multiTermsUsage = builder.multiTermsUsage;
 
 	}
 
-	public static AnalyticsStatistics of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static AnalyticsStatistics of(Function<Builder, ObjectBuilder<AnalyticsStatistics>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -196,6 +201,7 @@ public class AnalyticsStatistics implements JsonpSerializable {
 	/**
 	 * Builder for {@link AnalyticsStatistics}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AnalyticsStatistics> {
 		private Long boxplotUsage;
 

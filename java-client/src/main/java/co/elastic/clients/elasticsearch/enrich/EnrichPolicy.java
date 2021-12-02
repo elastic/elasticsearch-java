@@ -29,18 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: enrich._types.Policy
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/enrich/_types/Policy.ts#L31-L37">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class EnrichPolicy implements JsonpSerializable {
 	private final List<String> enrichFields;
@@ -59,18 +65,16 @@ public class EnrichPolicy implements JsonpSerializable {
 
 	private EnrichPolicy(Builder builder) {
 
-		this.enrichFields = ModelTypeHelper.unmodifiableRequired(builder.enrichFields, this, "enrichFields");
-		this.indices = ModelTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
-		this.matchField = ModelTypeHelper.requireNonNull(builder.matchField, this, "matchField");
+		this.enrichFields = ApiTypeHelper.unmodifiableRequired(builder.enrichFields, this, "enrichFields");
+		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
+		this.matchField = ApiTypeHelper.requireNonNull(builder.matchField, this, "matchField");
 		this.query = builder.query;
 		this.name = builder.name;
 
 	}
 
-	public static EnrichPolicy of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static EnrichPolicy of(Function<Builder, ObjectBuilder<EnrichPolicy>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -121,7 +125,7 @@ public class EnrichPolicy implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.enrichFields)) {
+		if (ApiTypeHelper.isDefined(this.enrichFields)) {
 			generator.writeKey("enrich_fields");
 			generator.writeStartArray();
 			for (String item0 : this.enrichFields) {
@@ -131,7 +135,7 @@ public class EnrichPolicy implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.indices)) {
+		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartArray();
 			for (String item0 : this.indices) {
@@ -162,6 +166,7 @@ public class EnrichPolicy implements JsonpSerializable {
 	/**
 	 * Builder for {@link EnrichPolicy}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<EnrichPolicy> {
 		private List<String> enrichFields;
 
@@ -177,33 +182,41 @@ public class EnrichPolicy implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code enrich_fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>enrichFields</code>.
 		 */
-		public final Builder enrichFields(List<String> value) {
-			this.enrichFields = value;
+		public final Builder enrichFields(List<String> list) {
+			this.enrichFields = _listAddAll(this.enrichFields, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code enrich_fields}
+		 * <p>
+		 * Adds one or more values to <code>enrichFields</code>.
 		 */
-		public final Builder enrichFields(String... value) {
-			this.enrichFields = Arrays.asList(value);
+		public final Builder enrichFields(String value, String... values) {
+			this.enrichFields = _listAdd(this.enrichFields, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 */
-		public final Builder indices(List<String> value) {
-			this.indices = value;
+		public final Builder indices(List<String> list) {
+			this.indices = _listAddAll(this.indices, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds one or more values to <code>indices</code>.
 		 */
-		public final Builder indices(String... value) {
-			this.indices = Arrays.asList(value);
+		public final Builder indices(String value, String... values) {
+			this.indices = _listAdd(this.indices, value, values);
 			return this;
 		}
 

@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _global.search._types.LinearInterpolationSmoothingModel
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/suggester.ts#L185-L189">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class LinearInterpolationSmoothingModel implements SmoothingModelVariant, JsonpSerializable {
 	private final double bigramLambda;
@@ -50,16 +57,15 @@ public class LinearInterpolationSmoothingModel implements SmoothingModelVariant,
 
 	private LinearInterpolationSmoothingModel(Builder builder) {
 
-		this.bigramLambda = ModelTypeHelper.requireNonNull(builder.bigramLambda, this, "bigramLambda");
-		this.trigramLambda = ModelTypeHelper.requireNonNull(builder.trigramLambda, this, "trigramLambda");
-		this.unigramLambda = ModelTypeHelper.requireNonNull(builder.unigramLambda, this, "unigramLambda");
+		this.bigramLambda = ApiTypeHelper.requireNonNull(builder.bigramLambda, this, "bigramLambda");
+		this.trigramLambda = ApiTypeHelper.requireNonNull(builder.trigramLambda, this, "trigramLambda");
+		this.unigramLambda = ApiTypeHelper.requireNonNull(builder.unigramLambda, this, "unigramLambda");
 
 	}
 
-	public static LinearInterpolationSmoothingModel of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static LinearInterpolationSmoothingModel of(
+			Function<Builder, ObjectBuilder<LinearInterpolationSmoothingModel>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -118,6 +124,7 @@ public class LinearInterpolationSmoothingModel implements SmoothingModelVariant,
 	/**
 	 * Builder for {@link LinearInterpolationSmoothingModel}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<LinearInterpolationSmoothingModel> {
 		private Double bigramLambda;
 

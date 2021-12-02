@@ -30,21 +30,29 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: cat.count.Request
+
+/**
+ * Provides quick access to the document count of the entire cluster, or
+ * individual indices.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/count/CatCountRequest.ts#L23-L32">API
+ *      specification</a>
+ */
 
 public class CountRequest extends CatRequestBase {
 	private final List<String> index;
@@ -53,14 +61,12 @@ public class CountRequest extends CatRequestBase {
 
 	private CountRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
+		this.index = ApiTypeHelper.unmodifiable(builder.index);
 
 	}
 
-	public static CountRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CountRequest of(Function<Builder, ObjectBuilder<CountRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -77,6 +83,7 @@ public class CountRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link CountRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CountRequest> {
 		@Nullable
 		private List<String> index;
@@ -85,9 +92,11 @@ public class CountRequest extends CatRequestBase {
 		 * A comma-separated list of index names to limit the returned information
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 */
-		public final Builder index(@Nullable List<String> value) {
-			this.index = value;
+		public final Builder index(List<String> list) {
+			this.index = _listAddAll(this.index, list);
 			return this;
 		}
 
@@ -95,9 +104,11 @@ public class CountRequest extends CatRequestBase {
 		 * A comma-separated list of index names to limit the returned information
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds one or more values to <code>index</code>.
 		 */
-		public final Builder index(String... value) {
-			this.index = Arrays.asList(value);
+		public final Builder index(String value, String... values) {
+			this.index = _listAdd(this.index, value, values);
 			return this;
 		}
 
@@ -134,7 +145,7 @@ public class CountRequest extends CatRequestBase {
 
 				int propsSet = 0;
 
-				if (ModelTypeHelper.isDefined(request.index()))
+				if (ApiTypeHelper.isDefined(request.index()))
 					propsSet |= _index;
 
 				if (propsSet == 0) {

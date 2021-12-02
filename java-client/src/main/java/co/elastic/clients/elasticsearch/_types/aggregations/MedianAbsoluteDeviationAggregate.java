@@ -30,9 +30,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.aggregations.MedianAbsoluteDeviationAggregate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L180-L181">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MedianAbsoluteDeviationAggregate extends SingleMetricAggregateBase implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -42,10 +49,9 @@ public class MedianAbsoluteDeviationAggregate extends SingleMetricAggregateBase 
 
 	}
 
-	public static MedianAbsoluteDeviationAggregate of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static MedianAbsoluteDeviationAggregate of(
+			Function<Builder, ObjectBuilder<MedianAbsoluteDeviationAggregate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,6 +67,7 @@ public class MedianAbsoluteDeviationAggregate extends SingleMetricAggregateBase 
 	/**
 	 * Builder for {@link MedianAbsoluteDeviationAggregate}.
 	 */
+
 	public static class Builder extends SingleMetricAggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<MedianAbsoluteDeviationAggregate> {

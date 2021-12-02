@@ -28,17 +28,23 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.CorePropertyBase
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/core.ts#L54-L58">API
+ *      specification</a>
+ */
 
 public abstract class CorePropertyBase extends PropertyBase {
 	private final List<String> copyTo;
@@ -54,7 +60,7 @@ public abstract class CorePropertyBase extends PropertyBase {
 	protected CorePropertyBase(AbstractBuilder<?> builder) {
 		super(builder);
 
-		this.copyTo = ModelTypeHelper.unmodifiable(builder.copyTo);
+		this.copyTo = ApiTypeHelper.unmodifiable(builder.copyTo);
 		this.similarity = builder.similarity;
 		this.store = builder.store;
 
@@ -86,7 +92,7 @@ public abstract class CorePropertyBase extends PropertyBase {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.copyTo)) {
+		if (ApiTypeHelper.isDefined(this.copyTo)) {
 			generator.writeKey("copy_to");
 			generator.writeStartArray();
 			for (String item0 : this.copyTo) {
@@ -123,17 +129,21 @@ public abstract class CorePropertyBase extends PropertyBase {
 
 		/**
 		 * API name: {@code copy_to}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>copyTo</code>.
 		 */
-		public final BuilderT copyTo(@Nullable List<String> value) {
-			this.copyTo = value;
+		public final BuilderT copyTo(List<String> list) {
+			this.copyTo = _listAddAll(this.copyTo, list);
 			return self();
 		}
 
 		/**
 		 * API name: {@code copy_to}
+		 * <p>
+		 * Adds one or more values to <code>copyTo</code>.
 		 */
-		public final BuilderT copyTo(String... value) {
-			this.copyTo = Arrays.asList(value);
+		public final BuilderT copyTo(String value, String... values) {
+			this.copyTo = _listAdd(this.copyTo, value, values);
 			return self();
 		}
 

@@ -39,10 +39,18 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: license.post_start_trial.Request
+
+/**
+ * starts a limited time trial license.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/license/post_start_trial/StartTrialLicenseRequest.ts#L22-L32">API
+ *      specification</a>
+ */
 
 public class PostStartTrialRequest extends RequestBase {
 	@Nullable
@@ -60,10 +68,8 @@ public class PostStartTrialRequest extends RequestBase {
 
 	}
 
-	public static PostStartTrialRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PostStartTrialRequest of(Function<Builder, ObjectBuilder<PostStartTrialRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -89,6 +95,7 @@ public class PostStartTrialRequest extends RequestBase {
 	/**
 	 * Builder for {@link PostStartTrialRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PostStartTrialRequest> {
 		@Nullable
 		private Boolean acknowledge;

@@ -28,15 +28,22 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.DelimitedPayloadTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L67-L71">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DelimitedPayloadTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final String delimiter;
@@ -48,15 +55,13 @@ public class DelimitedPayloadTokenFilter extends TokenFilterBase implements Toke
 	private DelimitedPayloadTokenFilter(Builder builder) {
 		super(builder);
 
-		this.delimiter = ModelTypeHelper.requireNonNull(builder.delimiter, this, "delimiter");
-		this.encoding = ModelTypeHelper.requireNonNull(builder.encoding, this, "encoding");
+		this.delimiter = ApiTypeHelper.requireNonNull(builder.delimiter, this, "delimiter");
+		this.encoding = ApiTypeHelper.requireNonNull(builder.encoding, this, "encoding");
 
 	}
 
-	public static DelimitedPayloadTokenFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DelimitedPayloadTokenFilter of(Function<Builder, ObjectBuilder<DelimitedPayloadTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -98,6 +103,7 @@ public class DelimitedPayloadTokenFilter extends TokenFilterBase implements Toke
 	/**
 	 * Builder for {@link DelimitedPayloadTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DelimitedPayloadTokenFilter> {

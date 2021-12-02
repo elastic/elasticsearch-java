@@ -30,17 +30,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr.follow_info.FollowerIndexParameters
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ccr/follow_info/types.ts#L38-L49">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FollowerIndexParameters implements JsonpSerializable {
 	private final int maxOutstandingReadRequests;
@@ -67,31 +74,27 @@ public class FollowerIndexParameters implements JsonpSerializable {
 
 	private FollowerIndexParameters(Builder builder) {
 
-		this.maxOutstandingReadRequests = ModelTypeHelper.requireNonNull(builder.maxOutstandingReadRequests, this,
+		this.maxOutstandingReadRequests = ApiTypeHelper.requireNonNull(builder.maxOutstandingReadRequests, this,
 				"maxOutstandingReadRequests");
-		this.maxOutstandingWriteRequests = ModelTypeHelper.requireNonNull(builder.maxOutstandingWriteRequests, this,
+		this.maxOutstandingWriteRequests = ApiTypeHelper.requireNonNull(builder.maxOutstandingWriteRequests, this,
 				"maxOutstandingWriteRequests");
-		this.maxReadRequestOperationCount = ModelTypeHelper.requireNonNull(builder.maxReadRequestOperationCount, this,
+		this.maxReadRequestOperationCount = ApiTypeHelper.requireNonNull(builder.maxReadRequestOperationCount, this,
 				"maxReadRequestOperationCount");
-		this.maxReadRequestSize = ModelTypeHelper.requireNonNull(builder.maxReadRequestSize, this,
-				"maxReadRequestSize");
-		this.maxRetryDelay = ModelTypeHelper.requireNonNull(builder.maxRetryDelay, this, "maxRetryDelay");
-		this.maxWriteBufferCount = ModelTypeHelper.requireNonNull(builder.maxWriteBufferCount, this,
+		this.maxReadRequestSize = ApiTypeHelper.requireNonNull(builder.maxReadRequestSize, this, "maxReadRequestSize");
+		this.maxRetryDelay = ApiTypeHelper.requireNonNull(builder.maxRetryDelay, this, "maxRetryDelay");
+		this.maxWriteBufferCount = ApiTypeHelper.requireNonNull(builder.maxWriteBufferCount, this,
 				"maxWriteBufferCount");
-		this.maxWriteBufferSize = ModelTypeHelper.requireNonNull(builder.maxWriteBufferSize, this,
-				"maxWriteBufferSize");
-		this.maxWriteRequestOperationCount = ModelTypeHelper.requireNonNull(builder.maxWriteRequestOperationCount, this,
+		this.maxWriteBufferSize = ApiTypeHelper.requireNonNull(builder.maxWriteBufferSize, this, "maxWriteBufferSize");
+		this.maxWriteRequestOperationCount = ApiTypeHelper.requireNonNull(builder.maxWriteRequestOperationCount, this,
 				"maxWriteRequestOperationCount");
-		this.maxWriteRequestSize = ModelTypeHelper.requireNonNull(builder.maxWriteRequestSize, this,
+		this.maxWriteRequestSize = ApiTypeHelper.requireNonNull(builder.maxWriteRequestSize, this,
 				"maxWriteRequestSize");
-		this.readPollTimeout = ModelTypeHelper.requireNonNull(builder.readPollTimeout, this, "readPollTimeout");
+		this.readPollTimeout = ApiTypeHelper.requireNonNull(builder.readPollTimeout, this, "readPollTimeout");
 
 	}
 
-	public static FollowerIndexParameters of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static FollowerIndexParameters of(Function<Builder, ObjectBuilder<FollowerIndexParameters>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -212,6 +215,7 @@ public class FollowerIndexParameters implements JsonpSerializable {
 	/**
 	 * Builder for {@link FollowerIndexParameters}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FollowerIndexParameters> {
 		private Integer maxOutstandingReadRequests;
 
@@ -276,10 +280,8 @@ public class FollowerIndexParameters implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code max_retry_delay}
 		 */
-		public final Builder maxRetryDelay(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.maxRetryDelay(builder.build());
+		public final Builder maxRetryDelay(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.maxRetryDelay(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -325,10 +327,8 @@ public class FollowerIndexParameters implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code read_poll_timeout}
 		 */
-		public final Builder readPollTimeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.readPollTimeout(builder.build());
+		public final Builder readPollTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.readPollTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

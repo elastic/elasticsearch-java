@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.GeoBoundingBoxQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/geo.ts#L32-L41">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GeoBoundingBoxQuery extends QueryBase implements QueryVariant {
 	private final String field;
@@ -58,8 +65,8 @@ public class GeoBoundingBoxQuery extends QueryBase implements QueryVariant {
 
 	private GeoBoundingBoxQuery(Builder builder) {
 		super(builder);
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
-		this.boundingBox = ModelTypeHelper.requireNonNull(builder.boundingBox, this, "boundingBox");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.boundingBox = ApiTypeHelper.requireNonNull(builder.boundingBox, this, "boundingBox");
 
 		this.type = builder.type;
 		this.validationMethod = builder.validationMethod;
@@ -67,10 +74,8 @@ public class GeoBoundingBoxQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public static GeoBoundingBoxQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GeoBoundingBoxQuery of(Function<Builder, ObjectBuilder<GeoBoundingBoxQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -97,7 +102,10 @@ public class GeoBoundingBoxQuery extends QueryBase implements QueryVariant {
 
 	/**
 	 * API name: {@code type}
+	 * 
+	 * @deprecated 7.14.0
 	 */
+	@Deprecated
 	@Nullable
 	public final GeoExecution type() {
 		return this.type;
@@ -145,6 +153,7 @@ public class GeoBoundingBoxQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link GeoBoundingBoxQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<GeoBoundingBoxQuery> {
@@ -171,10 +180,8 @@ public class GeoBoundingBoxQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required -
 		 */
-		public final Builder boundingBox(Consumer<GeoBounds.Builder> fn) {
-			GeoBounds.Builder builder = new GeoBounds.Builder();
-			fn.accept(builder);
-			return this.boundingBox(builder.build());
+		public final Builder boundingBox(Function<GeoBounds.Builder, ObjectBuilder<GeoBounds>> fn) {
+			return this.boundingBox(fn.apply(new GeoBounds.Builder()).build());
 		}
 
 		@Nullable
@@ -188,7 +195,10 @@ public class GeoBoundingBoxQuery extends QueryBase implements QueryVariant {
 
 		/**
 		 * API name: {@code type}
+		 * 
+		 * @deprecated 7.14.0
 		 */
+		@Deprecated
 		public final Builder type(@Nullable GeoExecution value) {
 			this.type = value;
 			return this;

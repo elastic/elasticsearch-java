@@ -31,9 +31,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: indices.delete.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/delete/IndicesDeleteResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DeleteIndexResponse extends IndicesResponseBase {
 	// ---------------------------------------------------------------------------------------------
@@ -43,10 +50,8 @@ public class DeleteIndexResponse extends IndicesResponseBase {
 
 	}
 
-	public static DeleteIndexResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DeleteIndexResponse of(Function<Builder, ObjectBuilder<DeleteIndexResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -54,6 +59,7 @@ public class DeleteIndexResponse extends IndicesResponseBase {
 	/**
 	 * Builder for {@link DeleteIndexResponse}.
 	 */
+
 	public static class Builder extends IndicesResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeleteIndexResponse> {

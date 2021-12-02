@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.UnionDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
@@ -40,11 +40,20 @@ import java.lang.String;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.BucketsPath
-// union type: Union[]
+
+/**
+ * Buckets path can be expressed in different ways, and an aggregation may
+ * accept some or all of these forms depending on its type. Please refer to each
+ * aggregation's documentation to know what buckets path forms they accept.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/pipeline.ts#L33-L39">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class BucketsPath implements TaggedUnion<BucketsPath.Kind, Object>, JsonpSerializable {
 
@@ -73,15 +82,13 @@ public class BucketsPath implements TaggedUnion<BucketsPath.Kind, Object>, Jsonp
 
 	private BucketsPath(Builder builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static BucketsPath of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static BucketsPath of(Function<Builder, ObjectBuilder<BucketsPath>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

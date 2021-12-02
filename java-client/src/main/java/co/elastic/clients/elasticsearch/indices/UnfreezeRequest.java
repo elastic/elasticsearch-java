@@ -33,22 +33,30 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: indices.unfreeze.Request
+
+/**
+ * Unfreezes an index. When a frozen index is unfrozen, the index goes through
+ * the normal recovery process and becomes writeable again.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/unfreeze/IndicesUnfreezeRequest.ts#L24-L41">API
+ *      specification</a>
+ */
 
 public class UnfreezeRequest extends RequestBase {
 	@Nullable
@@ -75,19 +83,17 @@ public class UnfreezeRequest extends RequestBase {
 	private UnfreezeRequest(Builder builder) {
 
 		this.allowNoIndices = builder.allowNoIndices;
-		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
+		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;
 		this.waitForActiveShards = builder.waitForActiveShards;
 
 	}
 
-	public static UnfreezeRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static UnfreezeRequest of(Function<Builder, ObjectBuilder<UnfreezeRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -167,6 +173,7 @@ public class UnfreezeRequest extends RequestBase {
 	/**
 	 * Builder for {@link UnfreezeRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UnfreezeRequest> {
 		@Nullable
 		private Boolean allowNoIndices;
@@ -205,9 +212,11 @@ public class UnfreezeRequest extends RequestBase {
 		 * closed or both.
 		 * <p>
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
 		 */
-		public final Builder expandWildcards(@Nullable List<ExpandWildcard> value) {
-			this.expandWildcards = value;
+		public final Builder expandWildcards(List<ExpandWildcard> list) {
+			this.expandWildcards = _listAddAll(this.expandWildcards, list);
 			return this;
 		}
 
@@ -216,9 +225,11 @@ public class UnfreezeRequest extends RequestBase {
 		 * closed or both.
 		 * <p>
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds one or more values to <code>expandWildcards</code>.
 		 */
-		public final Builder expandWildcards(ExpandWildcard... value) {
-			this.expandWildcards = Arrays.asList(value);
+		public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
+			this.expandWildcards = _listAdd(this.expandWildcards, value, values);
 			return this;
 		}
 
@@ -258,10 +269,8 @@ public class UnfreezeRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.masterTimeout(builder.build());
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -279,10 +288,8 @@ public class UnfreezeRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.timeout(builder.build());
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -347,7 +354,7 @@ public class UnfreezeRequest extends RequestBase {
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
-				if (ModelTypeHelper.isDefined(request.expandWildcards)) {
+				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}

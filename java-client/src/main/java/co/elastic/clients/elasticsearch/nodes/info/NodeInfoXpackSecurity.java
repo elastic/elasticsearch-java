@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoXpackSecurity
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L227-L232">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeInfoXpackSecurity implements JsonpSerializable {
 	private final NodeInfoXpackSecuritySsl http;
@@ -54,17 +61,15 @@ public class NodeInfoXpackSecurity implements JsonpSerializable {
 
 	private NodeInfoXpackSecurity(Builder builder) {
 
-		this.http = ModelTypeHelper.requireNonNull(builder.http, this, "http");
-		this.enabled = ModelTypeHelper.requireNonNull(builder.enabled, this, "enabled");
-		this.transport = ModelTypeHelper.requireNonNull(builder.transport, this, "transport");
+		this.http = ApiTypeHelper.requireNonNull(builder.http, this, "http");
+		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
+		this.transport = ApiTypeHelper.requireNonNull(builder.transport, this, "transport");
 		this.authc = builder.authc;
 
 	}
 
-	public static NodeInfoXpackSecurity of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodeInfoXpackSecurity of(Function<Builder, ObjectBuilder<NodeInfoXpackSecurity>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -129,6 +134,7 @@ public class NodeInfoXpackSecurity implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoXpackSecurity}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoXpackSecurity> {
 		private NodeInfoXpackSecuritySsl http;
 
@@ -150,10 +156,9 @@ public class NodeInfoXpackSecurity implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code http}
 		 */
-		public final Builder http(Consumer<NodeInfoXpackSecuritySsl.Builder> fn) {
-			NodeInfoXpackSecuritySsl.Builder builder = new NodeInfoXpackSecuritySsl.Builder();
-			fn.accept(builder);
-			return this.http(builder.build());
+		public final Builder http(
+				Function<NodeInfoXpackSecuritySsl.Builder, ObjectBuilder<NodeInfoXpackSecuritySsl>> fn) {
+			return this.http(fn.apply(new NodeInfoXpackSecuritySsl.Builder()).build());
 		}
 
 		/**
@@ -175,10 +180,9 @@ public class NodeInfoXpackSecurity implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code transport}
 		 */
-		public final Builder transport(Consumer<NodeInfoXpackSecuritySsl.Builder> fn) {
-			NodeInfoXpackSecuritySsl.Builder builder = new NodeInfoXpackSecuritySsl.Builder();
-			fn.accept(builder);
-			return this.transport(builder.build());
+		public final Builder transport(
+				Function<NodeInfoXpackSecuritySsl.Builder, ObjectBuilder<NodeInfoXpackSecuritySsl>> fn) {
+			return this.transport(fn.apply(new NodeInfoXpackSecuritySsl.Builder()).build());
 		}
 
 		/**
@@ -192,10 +196,9 @@ public class NodeInfoXpackSecurity implements JsonpSerializable {
 		/**
 		 * API name: {@code authc}
 		 */
-		public final Builder authc(Consumer<NodeInfoXpackSecurityAuthc.Builder> fn) {
-			NodeInfoXpackSecurityAuthc.Builder builder = new NodeInfoXpackSecurityAuthc.Builder();
-			fn.accept(builder);
-			return this.authc(builder.build());
+		public final Builder authc(
+				Function<NodeInfoXpackSecurityAuthc.Builder, ObjectBuilder<NodeInfoXpackSecurityAuthc>> fn) {
+			return this.authc(fn.apply(new NodeInfoXpackSecurityAuthc.Builder()).build());
 		}
 
 		/**

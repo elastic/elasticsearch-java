@@ -35,6 +35,13 @@ import java.util.Objects;
 
 // typedef: cat._types.CatRequestBase
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/_types/CatBase.ts#L28-L30">API
+ *      specification</a>
+ */
+
 public abstract class CatRequestBase extends RequestBase {
 	public CatRequestBase() {
 	}

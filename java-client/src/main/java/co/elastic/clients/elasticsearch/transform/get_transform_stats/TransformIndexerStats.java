@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: transform.get_transform_stats.TransformIndexerStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/transform/get_transform_stats/types.ts#L42-L58">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TransformIndexerStats implements JsonpSerializable {
 	private final long documentsIndexed;
@@ -75,33 +82,29 @@ public class TransformIndexerStats implements JsonpSerializable {
 
 	private TransformIndexerStats(Builder builder) {
 
-		this.documentsIndexed = ModelTypeHelper.requireNonNull(builder.documentsIndexed, this, "documentsIndexed");
-		this.documentsProcessed = ModelTypeHelper.requireNonNull(builder.documentsProcessed, this,
-				"documentsProcessed");
-		this.exponentialAvgCheckpointDurationMs = ModelTypeHelper
+		this.documentsIndexed = ApiTypeHelper.requireNonNull(builder.documentsIndexed, this, "documentsIndexed");
+		this.documentsProcessed = ApiTypeHelper.requireNonNull(builder.documentsProcessed, this, "documentsProcessed");
+		this.exponentialAvgCheckpointDurationMs = ApiTypeHelper
 				.requireNonNull(builder.exponentialAvgCheckpointDurationMs, this, "exponentialAvgCheckpointDurationMs");
-		this.exponentialAvgDocumentsIndexed = ModelTypeHelper.requireNonNull(builder.exponentialAvgDocumentsIndexed,
-				this, "exponentialAvgDocumentsIndexed");
-		this.exponentialAvgDocumentsProcessed = ModelTypeHelper.requireNonNull(builder.exponentialAvgDocumentsProcessed,
+		this.exponentialAvgDocumentsIndexed = ApiTypeHelper.requireNonNull(builder.exponentialAvgDocumentsIndexed, this,
+				"exponentialAvgDocumentsIndexed");
+		this.exponentialAvgDocumentsProcessed = ApiTypeHelper.requireNonNull(builder.exponentialAvgDocumentsProcessed,
 				this, "exponentialAvgDocumentsProcessed");
-		this.indexFailures = ModelTypeHelper.requireNonNull(builder.indexFailures, this, "indexFailures");
-		this.indexTimeInMs = ModelTypeHelper.requireNonNull(builder.indexTimeInMs, this, "indexTimeInMs");
-		this.indexTotal = ModelTypeHelper.requireNonNull(builder.indexTotal, this, "indexTotal");
-		this.pagesProcessed = ModelTypeHelper.requireNonNull(builder.pagesProcessed, this, "pagesProcessed");
-		this.processingTimeInMs = ModelTypeHelper.requireNonNull(builder.processingTimeInMs, this,
-				"processingTimeInMs");
-		this.processingTotal = ModelTypeHelper.requireNonNull(builder.processingTotal, this, "processingTotal");
-		this.searchFailures = ModelTypeHelper.requireNonNull(builder.searchFailures, this, "searchFailures");
-		this.searchTimeInMs = ModelTypeHelper.requireNonNull(builder.searchTimeInMs, this, "searchTimeInMs");
-		this.searchTotal = ModelTypeHelper.requireNonNull(builder.searchTotal, this, "searchTotal");
-		this.triggerCount = ModelTypeHelper.requireNonNull(builder.triggerCount, this, "triggerCount");
+		this.indexFailures = ApiTypeHelper.requireNonNull(builder.indexFailures, this, "indexFailures");
+		this.indexTimeInMs = ApiTypeHelper.requireNonNull(builder.indexTimeInMs, this, "indexTimeInMs");
+		this.indexTotal = ApiTypeHelper.requireNonNull(builder.indexTotal, this, "indexTotal");
+		this.pagesProcessed = ApiTypeHelper.requireNonNull(builder.pagesProcessed, this, "pagesProcessed");
+		this.processingTimeInMs = ApiTypeHelper.requireNonNull(builder.processingTimeInMs, this, "processingTimeInMs");
+		this.processingTotal = ApiTypeHelper.requireNonNull(builder.processingTotal, this, "processingTotal");
+		this.searchFailures = ApiTypeHelper.requireNonNull(builder.searchFailures, this, "searchFailures");
+		this.searchTimeInMs = ApiTypeHelper.requireNonNull(builder.searchTimeInMs, this, "searchTimeInMs");
+		this.searchTotal = ApiTypeHelper.requireNonNull(builder.searchTotal, this, "searchTotal");
+		this.triggerCount = ApiTypeHelper.requireNonNull(builder.triggerCount, this, "triggerCount");
 
 	}
 
-	public static TransformIndexerStats of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TransformIndexerStats of(Function<Builder, ObjectBuilder<TransformIndexerStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -272,6 +275,7 @@ public class TransformIndexerStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link TransformIndexerStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TransformIndexerStats> {
 		private Long documentsIndexed;
 

@@ -28,15 +28,22 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.TypeQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/term.ts#L145-L147">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TypeQuery extends QueryBase implements QueryVariant {
 	private final String value;
@@ -46,14 +53,12 @@ public class TypeQuery extends QueryBase implements QueryVariant {
 	private TypeQuery(Builder builder) {
 		super(builder);
 
-		this.value = ModelTypeHelper.requireNonNull(builder.value, this, "value");
+		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
 
 	}
 
-	public static TypeQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TypeQuery of(Function<Builder, ObjectBuilder<TypeQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -84,6 +89,7 @@ public class TypeQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link TypeQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<TypeQuery> {
 		private String value;
 

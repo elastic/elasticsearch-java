@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -37,10 +37,17 @@ import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.recovery.ShardRecovery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/recovery/types.ts#L111-L128">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ShardRecovery implements JsonpSerializable {
 	private final long id;
@@ -83,29 +90,27 @@ public class ShardRecovery implements JsonpSerializable {
 
 	private ShardRecovery(Builder builder) {
 
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
-		this.primary = ModelTypeHelper.requireNonNull(builder.primary, this, "primary");
-		this.source = ModelTypeHelper.requireNonNull(builder.source, this, "source");
-		this.stage = ModelTypeHelper.requireNonNull(builder.stage, this, "stage");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.primary = ApiTypeHelper.requireNonNull(builder.primary, this, "primary");
+		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
+		this.stage = ApiTypeHelper.requireNonNull(builder.stage, this, "stage");
 		this.start = builder.start;
 		this.startTime = builder.startTime;
-		this.startTimeInMillis = ModelTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
+		this.startTimeInMillis = ApiTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
 		this.stopTime = builder.stopTime;
-		this.stopTimeInMillis = ModelTypeHelper.requireNonNull(builder.stopTimeInMillis, this, "stopTimeInMillis");
-		this.target = ModelTypeHelper.requireNonNull(builder.target, this, "target");
+		this.stopTimeInMillis = ApiTypeHelper.requireNonNull(builder.stopTimeInMillis, this, "stopTimeInMillis");
+		this.target = ApiTypeHelper.requireNonNull(builder.target, this, "target");
 		this.totalTime = builder.totalTime;
-		this.totalTimeInMillis = ModelTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
-		this.translog = ModelTypeHelper.requireNonNull(builder.translog, this, "translog");
-		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
-		this.verifyIndex = ModelTypeHelper.requireNonNull(builder.verifyIndex, this, "verifyIndex");
+		this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
+		this.translog = ApiTypeHelper.requireNonNull(builder.translog, this, "translog");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.verifyIndex = ApiTypeHelper.requireNonNull(builder.verifyIndex, this, "verifyIndex");
 
 	}
 
-	public static ShardRecovery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ShardRecovery of(Function<Builder, ObjectBuilder<ShardRecovery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -298,6 +303,7 @@ public class ShardRecovery implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardRecovery}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardRecovery> {
 		private Long id;
 
@@ -354,10 +360,8 @@ public class ShardRecovery implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index}
 		 */
-		public final Builder index(Consumer<RecoveryIndexStatus.Builder> fn) {
-			RecoveryIndexStatus.Builder builder = new RecoveryIndexStatus.Builder();
-			fn.accept(builder);
-			return this.index(builder.build());
+		public final Builder index(Function<RecoveryIndexStatus.Builder, ObjectBuilder<RecoveryIndexStatus>> fn) {
+			return this.index(fn.apply(new RecoveryIndexStatus.Builder()).build());
 		}
 
 		/**
@@ -379,10 +383,8 @@ public class ShardRecovery implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code source}
 		 */
-		public final Builder source(Consumer<RecoveryOrigin.Builder> fn) {
-			RecoveryOrigin.Builder builder = new RecoveryOrigin.Builder();
-			fn.accept(builder);
-			return this.source(builder.build());
+		public final Builder source(Function<RecoveryOrigin.Builder, ObjectBuilder<RecoveryOrigin>> fn) {
+			return this.source(fn.apply(new RecoveryOrigin.Builder()).build());
 		}
 
 		/**
@@ -404,10 +406,8 @@ public class ShardRecovery implements JsonpSerializable {
 		/**
 		 * API name: {@code start}
 		 */
-		public final Builder start(Consumer<RecoveryStartStatus.Builder> fn) {
-			RecoveryStartStatus.Builder builder = new RecoveryStartStatus.Builder();
-			fn.accept(builder);
-			return this.start(builder.build());
+		public final Builder start(Function<RecoveryStartStatus.Builder, ObjectBuilder<RecoveryStartStatus>> fn) {
+			return this.start(fn.apply(new RecoveryStartStatus.Builder()).build());
 		}
 
 		/**
@@ -453,10 +453,8 @@ public class ShardRecovery implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code target}
 		 */
-		public final Builder target(Consumer<RecoveryOrigin.Builder> fn) {
-			RecoveryOrigin.Builder builder = new RecoveryOrigin.Builder();
-			fn.accept(builder);
-			return this.target(builder.build());
+		public final Builder target(Function<RecoveryOrigin.Builder, ObjectBuilder<RecoveryOrigin>> fn) {
+			return this.target(fn.apply(new RecoveryOrigin.Builder()).build());
 		}
 
 		/**
@@ -486,10 +484,8 @@ public class ShardRecovery implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code translog}
 		 */
-		public final Builder translog(Consumer<TranslogStatus.Builder> fn) {
-			TranslogStatus.Builder builder = new TranslogStatus.Builder();
-			fn.accept(builder);
-			return this.translog(builder.build());
+		public final Builder translog(Function<TranslogStatus.Builder, ObjectBuilder<TranslogStatus>> fn) {
+			return this.translog(fn.apply(new TranslogStatus.Builder()).build());
 		}
 
 		/**
@@ -511,10 +507,8 @@ public class ShardRecovery implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code verify_index}
 		 */
-		public final Builder verifyIndex(Consumer<VerifyIndex.Builder> fn) {
-			VerifyIndex.Builder builder = new VerifyIndex.Builder();
-			fn.accept(builder);
-			return this.verifyIndex(builder.build());
+		public final Builder verifyIndex(Function<VerifyIndex.Builder, ObjectBuilder<VerifyIndex>> fn) {
+			return this.verifyIndex(fn.apply(new VerifyIndex.Builder()).build());
 		}
 
 		/**

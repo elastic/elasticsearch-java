@@ -29,18 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: license.post.Acknowledgement
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/license/post/types.ts#L20-L23">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Acknowledgement implements JsonpSerializable {
 	private final List<String> license;
@@ -51,15 +57,13 @@ public class Acknowledgement implements JsonpSerializable {
 
 	private Acknowledgement(Builder builder) {
 
-		this.license = ModelTypeHelper.unmodifiableRequired(builder.license, this, "license");
-		this.message = ModelTypeHelper.requireNonNull(builder.message, this, "message");
+		this.license = ApiTypeHelper.unmodifiableRequired(builder.license, this, "license");
+		this.message = ApiTypeHelper.requireNonNull(builder.message, this, "message");
 
 	}
 
-	public static Acknowledgement of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Acknowledgement of(Function<Builder, ObjectBuilder<Acknowledgement>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -87,7 +91,7 @@ public class Acknowledgement implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.license)) {
+		if (ApiTypeHelper.isDefined(this.license)) {
 			generator.writeKey("license");
 			generator.writeStartArray();
 			for (String item0 : this.license) {
@@ -107,6 +111,7 @@ public class Acknowledgement implements JsonpSerializable {
 	/**
 	 * Builder for {@link Acknowledgement}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Acknowledgement> {
 		private List<String> license;
 
@@ -114,17 +119,21 @@ public class Acknowledgement implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code license}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>license</code>.
 		 */
-		public final Builder license(List<String> value) {
-			this.license = value;
+		public final Builder license(List<String> list) {
+			this.license = _listAddAll(this.license, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code license}
+		 * <p>
+		 * Adds one or more values to <code>license</code>.
 		 */
-		public final Builder license(String... value) {
-			this.license = Arrays.asList(value);
+		public final Builder license(String value, String... values) {
+			this.license = _listAdd(this.license, value, values);
 			return this;
 		}
 

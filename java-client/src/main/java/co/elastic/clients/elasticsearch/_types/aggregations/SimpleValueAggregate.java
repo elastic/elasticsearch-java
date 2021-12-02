@@ -30,9 +30,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.aggregations.SimpleValueAggregate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L210-L211">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SimpleValueAggregate extends SingleMetricAggregateBase implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -42,10 +49,8 @@ public class SimpleValueAggregate extends SingleMetricAggregateBase implements A
 
 	}
 
-	public static SimpleValueAggregate of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SimpleValueAggregate of(Function<Builder, ObjectBuilder<SimpleValueAggregate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,6 +66,7 @@ public class SimpleValueAggregate extends SingleMetricAggregateBase implements A
 	/**
 	 * Builder for {@link SimpleValueAggregate}.
 	 */
+
 	public static class Builder extends SingleMetricAggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<SimpleValueAggregate> {

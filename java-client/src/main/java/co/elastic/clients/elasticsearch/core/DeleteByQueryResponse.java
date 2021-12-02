@@ -31,8 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,14 +40,19 @@ import java.lang.Float;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.delete_by_query.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/delete_by_query/DeleteByQueryResponse.ts#L25-L42">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DeleteByQueryResponse implements JsonpSerializable {
 	@Nullable
@@ -98,7 +102,7 @@ public class DeleteByQueryResponse implements JsonpSerializable {
 
 		this.batches = builder.batches;
 		this.deleted = builder.deleted;
-		this.failures = ModelTypeHelper.unmodifiable(builder.failures);
+		this.failures = ApiTypeHelper.unmodifiable(builder.failures);
 		this.noops = builder.noops;
 		this.requestsPerSecond = builder.requestsPerSecond;
 		this.retries = builder.retries;
@@ -113,10 +117,8 @@ public class DeleteByQueryResponse implements JsonpSerializable {
 
 	}
 
-	public static DeleteByQueryResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DeleteByQueryResponse of(Function<Builder, ObjectBuilder<DeleteByQueryResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -251,7 +253,7 @@ public class DeleteByQueryResponse implements JsonpSerializable {
 			generator.write(this.deleted);
 
 		}
-		if (ModelTypeHelper.isDefined(this.failures)) {
+		if (ApiTypeHelper.isDefined(this.failures)) {
 			generator.writeKey("failures");
 			generator.writeStartArray();
 			for (BulkIndexByScrollFailure item0 : this.failures) {
@@ -324,6 +326,7 @@ public class DeleteByQueryResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link DeleteByQueryResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteByQueryResponse> {
 		@Nullable
 		private Long batches;
@@ -385,26 +388,32 @@ public class DeleteByQueryResponse implements JsonpSerializable {
 
 		/**
 		 * API name: {@code failures}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>failures</code>.
 		 */
-		public final Builder failures(@Nullable List<BulkIndexByScrollFailure> value) {
-			this.failures = value;
+		public final Builder failures(List<BulkIndexByScrollFailure> list) {
+			this.failures = _listAddAll(this.failures, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code failures}
+		 * <p>
+		 * Adds one or more values to <code>failures</code>.
 		 */
-		public final Builder failures(BulkIndexByScrollFailure... value) {
-			this.failures = Arrays.asList(value);
+		public final Builder failures(BulkIndexByScrollFailure value, BulkIndexByScrollFailure... values) {
+			this.failures = _listAdd(this.failures, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code failures}
+		 * <p>
+		 * Adds a value to <code>failures</code> using a builder lambda.
 		 */
 		public final Builder failures(
-				Function<ListBuilder<BulkIndexByScrollFailure, BulkIndexByScrollFailure.Builder>, ObjectBuilder<List<BulkIndexByScrollFailure>>> fn) {
-			return failures(fn.apply(new ListBuilder<>(BulkIndexByScrollFailure.Builder::new)).build());
+				Function<BulkIndexByScrollFailure.Builder, ObjectBuilder<BulkIndexByScrollFailure>> fn) {
+			return failures(fn.apply(new BulkIndexByScrollFailure.Builder()).build());
 		}
 
 		/**
@@ -434,10 +443,8 @@ public class DeleteByQueryResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code retries}
 		 */
-		public final Builder retries(Consumer<Retries.Builder> fn) {
-			Retries.Builder builder = new Retries.Builder();
-			fn.accept(builder);
-			return this.retries(builder.build());
+		public final Builder retries(Function<Retries.Builder, ObjectBuilder<Retries>> fn) {
+			return this.retries(fn.apply(new Retries.Builder()).build());
 		}
 
 		/**

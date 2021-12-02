@@ -30,24 +30,33 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.TokenFilterDefinition
-// union type: InternalTag[tag=type]
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L344-L394">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TokenFilterDefinition
 		implements
 			TaggedUnion<TokenFilterDefinition.Kind, TokenFilterDefinitionVariant>,
 			JsonpSerializable {
 
+	/**
+	 * {@link TokenFilterDefinition} variant kinds.
+	 */
 	/**
 	 * {@link TokenFilterDefinition} variant kinds.
 	 */
@@ -178,22 +187,20 @@ public class TokenFilterDefinition
 
 	public TokenFilterDefinition(TokenFilterDefinitionVariant value) {
 
-		this._kind = ModelTypeHelper.requireNonNull(value._tokenFilterDefinitionKind(), this, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(value._tokenFilterDefinitionKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
 	private TokenFilterDefinition(Builder builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static TokenFilterDefinition of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TokenFilterDefinition of(Function<Builder, ObjectBuilder<TokenFilterDefinition>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -1042,10 +1049,9 @@ public class TokenFilterDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenFilterDefinition> asciifolding(Consumer<AsciiFoldingTokenFilter.Builder> fn) {
-			AsciiFoldingTokenFilter.Builder builder = new AsciiFoldingTokenFilter.Builder();
-			fn.accept(builder);
-			return this.asciifolding(builder.build());
+		public ObjectBuilder<TokenFilterDefinition> asciifolding(
+				Function<AsciiFoldingTokenFilter.Builder, ObjectBuilder<AsciiFoldingTokenFilter>> fn) {
+			return this.asciifolding(fn.apply(new AsciiFoldingTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> commonGrams(CommonGramsTokenFilter v) {
@@ -1054,10 +1060,9 @@ public class TokenFilterDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenFilterDefinition> commonGrams(Consumer<CommonGramsTokenFilter.Builder> fn) {
-			CommonGramsTokenFilter.Builder builder = new CommonGramsTokenFilter.Builder();
-			fn.accept(builder);
-			return this.commonGrams(builder.build());
+		public ObjectBuilder<TokenFilterDefinition> commonGrams(
+				Function<CommonGramsTokenFilter.Builder, ObjectBuilder<CommonGramsTokenFilter>> fn) {
+			return this.commonGrams(fn.apply(new CommonGramsTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> condition(ConditionTokenFilter v) {
@@ -1066,10 +1071,9 @@ public class TokenFilterDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenFilterDefinition> condition(Consumer<ConditionTokenFilter.Builder> fn) {
-			ConditionTokenFilter.Builder builder = new ConditionTokenFilter.Builder();
-			fn.accept(builder);
-			return this.condition(builder.build());
+		public ObjectBuilder<TokenFilterDefinition> condition(
+				Function<ConditionTokenFilter.Builder, ObjectBuilder<ConditionTokenFilter>> fn) {
+			return this.condition(fn.apply(new ConditionTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> delimitedPayload(DelimitedPayloadTokenFilter v) {
@@ -1078,10 +1082,9 @@ public class TokenFilterDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenFilterDefinition> delimitedPayload(Consumer<DelimitedPayloadTokenFilter.Builder> fn) {
-			DelimitedPayloadTokenFilter.Builder builder = new DelimitedPayloadTokenFilter.Builder();
-			fn.accept(builder);
-			return this.delimitedPayload(builder.build());
+		public ObjectBuilder<TokenFilterDefinition> delimitedPayload(
+				Function<DelimitedPayloadTokenFilter.Builder, ObjectBuilder<DelimitedPayloadTokenFilter>> fn) {
+			return this.delimitedPayload(fn.apply(new DelimitedPayloadTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> dictionaryDecompounder(DictionaryDecompounderTokenFilter v) {
@@ -1091,10 +1094,8 @@ public class TokenFilterDefinition
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> dictionaryDecompounder(
-				Consumer<DictionaryDecompounderTokenFilter.Builder> fn) {
-			DictionaryDecompounderTokenFilter.Builder builder = new DictionaryDecompounderTokenFilter.Builder();
-			fn.accept(builder);
-			return this.dictionaryDecompounder(builder.build());
+				Function<DictionaryDecompounderTokenFilter.Builder, ObjectBuilder<DictionaryDecompounderTokenFilter>> fn) {
+			return this.dictionaryDecompounder(fn.apply(new DictionaryDecompounderTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> edgeNgram(EdgeNGramTokenFilter v) {
@@ -1103,10 +1104,9 @@ public class TokenFilterDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenFilterDefinition> edgeNgram(Consumer<EdgeNGramTokenFilter.Builder> fn) {
-			EdgeNGramTokenFilter.Builder builder = new EdgeNGramTokenFilter.Builder();
-			fn.accept(builder);
-			return this.edgeNgram(builder.build());
+		public ObjectBuilder<TokenFilterDefinition> edgeNgram(
+				Function<EdgeNGramTokenFilter.Builder, ObjectBuilder<EdgeNGramTokenFilter>> fn) {
+			return this.edgeNgram(fn.apply(new EdgeNGramTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> elision(ElisionTokenFilter v) {
@@ -1115,10 +1115,9 @@ public class TokenFilterDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenFilterDefinition> elision(Consumer<ElisionTokenFilter.Builder> fn) {
-			ElisionTokenFilter.Builder builder = new ElisionTokenFilter.Builder();
-			fn.accept(builder);
-			return this.elision(builder.build());
+		public ObjectBuilder<TokenFilterDefinition> elision(
+				Function<ElisionTokenFilter.Builder, ObjectBuilder<ElisionTokenFilter>> fn) {
+			return this.elision(fn.apply(new ElisionTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> fingerprint(FingerprintTokenFilter v) {
@@ -1127,10 +1126,9 @@ public class TokenFilterDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenFilterDefinition> fingerprint(Consumer<FingerprintTokenFilter.Builder> fn) {
-			FingerprintTokenFilter.Builder builder = new FingerprintTokenFilter.Builder();
-			fn.accept(builder);
-			return this.fingerprint(builder.build());
+		public ObjectBuilder<TokenFilterDefinition> fingerprint(
+				Function<FingerprintTokenFilter.Builder, ObjectBuilder<FingerprintTokenFilter>> fn) {
+			return this.fingerprint(fn.apply(new FingerprintTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> hunspell(HunspellTokenFilter v) {
@@ -1139,10 +1137,9 @@ public class TokenFilterDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenFilterDefinition> hunspell(Consumer<HunspellTokenFilter.Builder> fn) {
-			HunspellTokenFilter.Builder builder = new HunspellTokenFilter.Builder();
-			fn.accept(builder);
-			return this.hunspell(builder.build());
+		public ObjectBuilder<TokenFilterDefinition> hunspell(
+				Function<HunspellTokenFilter.Builder, ObjectBuilder<HunspellTokenFilter>> fn) {
+			return this.hunspell(fn.apply(new HunspellTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> hyphenationDecompounder(HyphenationDecompounderTokenFilter v) {
@@ -1152,10 +1149,8 @@ public class TokenFilterDefinition
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> hyphenationDecompounder(
-				Consumer<HyphenationDecompounderTokenFilter.Builder> fn) {
-			HyphenationDecompounderTokenFilter.Builder builder = new HyphenationDecompounderTokenFilter.Builder();
-			fn.accept(builder);
-			return this.hyphenationDecompounder(builder.build());
+				Function<HyphenationDecompounderTokenFilter.Builder, ObjectBuilder<HyphenationDecompounderTokenFilter>> fn) {
+			return this.hyphenationDecompounder(fn.apply(new HyphenationDecompounderTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> icuCollation(IcuCollationTokenFilter v) {
@@ -1164,10 +1159,9 @@ public class TokenFilterDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenFilterDefinition> icuCollation(Consumer<IcuCollationTokenFilter.Builder> fn) {
-			IcuCollationTokenFilter.Builder builder = new IcuCollationTokenFilter.Builder();
-			fn.accept(builder);
-			return this.icuCollation(builder.build());
+		public ObjectBuilder<TokenFilterDefinition> icuCollation(
+				Function<IcuCollationTokenFilter.Builder, ObjectBuilder<IcuCollationTokenFilter>> fn) {
+			return this.icuCollation(fn.apply(new IcuCollationTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> icuFolding(IcuFoldingTokenFilter v) {
@@ -1176,10 +1170,9 @@ public class TokenFilterDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenFilterDefinition> icuFolding(Consumer<IcuFoldingTokenFilter.Builder> fn) {
-			IcuFoldingTokenFilter.Builder builder = new IcuFoldingTokenFilter.Builder();
-			fn.accept(builder);
-			return this.icuFolding(builder.build());
+		public ObjectBuilder<TokenFilterDefinition> icuFolding(
+				Function<IcuFoldingTokenFilter.Builder, ObjectBuilder<IcuFoldingTokenFilter>> fn) {
+			return this.icuFolding(fn.apply(new IcuFoldingTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> icuNormalizer(IcuNormalizationTokenFilter v) {
@@ -1188,10 +1181,9 @@ public class TokenFilterDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenFilterDefinition> icuNormalizer(Consumer<IcuNormalizationTokenFilter.Builder> fn) {
-			IcuNormalizationTokenFilter.Builder builder = new IcuNormalizationTokenFilter.Builder();
-			fn.accept(builder);
-			return this.icuNormalizer(builder.build());
+		public ObjectBuilder<TokenFilterDefinition> icuNormalizer(
+				Function<IcuNormalizationTokenFilter.Builder, ObjectBuilder<IcuNormalizationTokenFilter>> fn) {
+			return this.icuNormalizer(fn.apply(new IcuNormalizationTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> icuTokenizer(IcuTokenizer v) {
@@ -1200,10 +1192,9 @@ public class TokenFilterDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenFilterDefinition> icuTokenizer(Consumer<IcuTokenizer.Builder> fn) {
-			IcuTokenizer.Builder builder = new IcuTokenizer.Builder();
-			fn.accept(builder);
-			return this.icuTokenizer(builder.build());
+		public ObjectBuilder<TokenFilterDefinition> icuTokenizer(
+				Function<IcuTokenizer.Builder, ObjectBuilder<IcuTokenizer>> fn) {
+			return this.icuTokenizer(fn.apply(new IcuTokenizer.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> icuTransform(IcuTransformTokenFilter v) {
@@ -1212,10 +1203,9 @@ public class TokenFilterDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenFilterDefinition> icuTransform(Consumer<IcuTransformTokenFilter.Builder> fn) {
-			IcuTransformTokenFilter.Builder builder = new IcuTransformTokenFilter.Builder();
-			fn.accept(builder);
-			return this.icuTransform(builder.build());
+		public ObjectBuilder<TokenFilterDefinition> icuTransform(
+				Function<IcuTransformTokenFilter.Builder, ObjectBuilder<IcuTransformTokenFilter>> fn) {
+			return this.icuTransform(fn.apply(new IcuTransformTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> kstem(KStemTokenFilter v) {
@@ -1224,10 +1214,9 @@ public class TokenFilterDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenFilterDefinition> kstem(Consumer<KStemTokenFilter.Builder> fn) {
-			KStemTokenFilter.Builder builder = new KStemTokenFilter.Builder();
-			fn.accept(builder);
-			return this.kstem(builder.build());
+		public ObjectBuilder<TokenFilterDefinition> kstem(
+				Function<KStemTokenFilter.Builder, ObjectBuilder<KStemTokenFilter>> fn) {
+			return this.kstem(fn.apply(new KStemTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> keepTypes(KeepTypesTokenFilter v) {
@@ -1236,10 +1225,9 @@ public class TokenFilterDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenFilterDefinition> keepTypes(Consumer<KeepTypesTokenFilter.Builder> fn) {
-			KeepTypesTokenFilter.Builder builder = new KeepTypesTokenFilter.Builder();
-			fn.accept(builder);
-			return this.keepTypes(builder.build());
+		public ObjectBuilder<TokenFilterDefinition> keepTypes(
+				Function<KeepTypesTokenFilter.Builder, ObjectBuilder<KeepTypesTokenFilter>> fn) {
+			return this.keepTypes(fn.apply(new KeepTypesTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> keep(KeepWordsTokenFilter v) {
@@ -1248,10 +1236,9 @@ public class TokenFilterDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenFilterDefinition> keep(Consumer<KeepWordsTokenFilter.Builder> fn) {
-			KeepWordsTokenFilter.Builder builder = new KeepWordsTokenFilter.Builder();
-			fn.accept(builder);
-			return this.keep(builder.build());
+		public ObjectBuilder<TokenFilterDefinition> keep(
+				Function<KeepWordsTokenFilter.Builder, ObjectBuilder<KeepWordsTokenFilter>> fn) {
+			return this.keep(fn.apply(new KeepWordsTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> keywordMarker(KeywordMarkerTokenFilter v) {
@@ -1260,10 +1247,9 @@ public class TokenFilterDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenFilterDefinition> keywordMarker(Consumer<KeywordMarkerTokenFilter.Builder> fn) {
-			KeywordMarkerTokenFilter.Builder builder = new KeywordMarkerTokenFilter.Builder();
-			fn.accept(builder);
-			return this.keywordMarker(builder.build());
+		public ObjectBuilder<TokenFilterDefinition> keywordMarker(
+				Function<KeywordMarkerTokenFilter.Builder, ObjectBuilder<KeywordMarkerTokenFilter>> fn) {
+			return this.keywordMarker(fn.apply(new KeywordMarkerTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> kuromojiPartOfSpeech(KuromojiPartOfSpeechTokenFilter v) {
@@ -1273,10 +1259,8 @@ public class TokenFilterDefinition
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> kuromojiPartOfSpeech(
-				Consumer<KuromojiPartOfSpeechTokenFilter.Builder> fn) {
-			KuromojiPartOfSpeechTokenFilter.Builder builder = new KuromojiPartOfSpeechTokenFilter.Builder();
-			fn.accept(builder);
-			return this.kuromojiPartOfSpeech(builder.build());
+				Function<KuromojiPartOfSpeechTokenFilter.Builder, ObjectBuilder<KuromojiPartOfSpeechTokenFilter>> fn) {
+			return this.kuromojiPartOfSpeech(fn.apply(new KuromojiPartOfSpeechTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> kuromojiReadingform(KuromojiReadingFormTokenFilter v) {
@@ -1286,10 +1270,8 @@ public class TokenFilterDefinition
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> kuromojiReadingform(
-				Consumer<KuromojiReadingFormTokenFilter.Builder> fn) {
-			KuromojiReadingFormTokenFilter.Builder builder = new KuromojiReadingFormTokenFilter.Builder();
-			fn.accept(builder);
-			return this.kuromojiReadingform(builder.build());
+				Function<KuromojiReadingFormTokenFilter.Builder, ObjectBuilder<KuromojiReadingFormTokenFilter>> fn) {
+			return this.kuromojiReadingform(fn.apply(new KuromojiReadingFormTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> kuromojiStemmer(KuromojiStemmerTokenFilter v) {
@@ -1298,10 +1280,9 @@ public class TokenFilterDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenFilterDefinition> kuromojiStemmer(Consumer<KuromojiStemmerTokenFilter.Builder> fn) {
-			KuromojiStemmerTokenFilter.Builder builder = new KuromojiStemmerTokenFilter.Builder();
-			fn.accept(builder);
-			return this.kuromojiStemmer(builder.build());
+		public ObjectBuilder<TokenFilterDefinition> kuromojiStemmer(
+				Function<KuromojiStemmerTokenFilter.Builder, ObjectBuilder<KuromojiStemmerTokenFilter>> fn) {
+			return this.kuromojiStemmer(fn.apply(new KuromojiStemmerTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> length(LengthTokenFilter v) {
@@ -1310,10 +1291,9 @@ public class TokenFilterDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenFilterDefinition> length(Consumer<LengthTokenFilter.Builder> fn) {
-			LengthTokenFilter.Builder builder = new LengthTokenFilter.Builder();
-			fn.accept(builder);
-			return this.length(builder.build());
+		public ObjectBuilder<TokenFilterDefinition> length(
+				Function<LengthTokenFilter.Builder, ObjectBuilder<LengthTokenFilter>> fn) {
+			return this.length(fn.apply(new LengthTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> limit(LimitTokenCountTokenFilter v) {
@@ -1322,10 +1302,9 @@ public class TokenFilterDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenFilterDefinition> limit(Consumer<LimitTokenCountTokenFilter.Builder> fn) {
-			LimitTokenCountTokenFilter.Builder builder = new LimitTokenCountTokenFilter.Builder();
-			fn.accept(builder);
-			return this.limit(builder.build());
+		public ObjectBuilder<TokenFilterDefinition> limit(
+				Function<LimitTokenCountTokenFilter.Builder, ObjectBuilder<LimitTokenCountTokenFilter>> fn) {
+			return this.limit(fn.apply(new LimitTokenCountTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> lowercase(LowercaseTokenFilter v) {
@@ -1334,10 +1313,9 @@ public class TokenFilterDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenFilterDefinition> lowercase(Consumer<LowercaseTokenFilter.Builder> fn) {
-			LowercaseTokenFilter.Builder builder = new LowercaseTokenFilter.Builder();
-			fn.accept(builder);
-			return this.lowercase(builder.build());
+		public ObjectBuilder<TokenFilterDefinition> lowercase(
+				Function<LowercaseTokenFilter.Builder, ObjectBuilder<LowercaseTokenFilter>> fn) {
+			return this.lowercase(fn.apply(new LowercaseTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> multiplexer(MultiplexerTokenFilter v) {
@@ -1346,10 +1324,9 @@ public class TokenFilterDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenFilterDefinition> multiplexer(Consumer<MultiplexerTokenFilter.Builder> fn) {
-			MultiplexerTokenFilter.Builder builder = new MultiplexerTokenFilter.Builder();
-			fn.accept(builder);
-			return this.multiplexer(builder.build());
+		public ObjectBuilder<TokenFilterDefinition> multiplexer(
+				Function<MultiplexerTokenFilter.Builder, ObjectBuilder<MultiplexerTokenFilter>> fn) {
+			return this.multiplexer(fn.apply(new MultiplexerTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> ngram(NGramTokenFilter v) {
@@ -1358,10 +1335,9 @@ public class TokenFilterDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenFilterDefinition> ngram(Consumer<NGramTokenFilter.Builder> fn) {
-			NGramTokenFilter.Builder builder = new NGramTokenFilter.Builder();
-			fn.accept(builder);
-			return this.ngram(builder.build());
+		public ObjectBuilder<TokenFilterDefinition> ngram(
+				Function<NGramTokenFilter.Builder, ObjectBuilder<NGramTokenFilter>> fn) {
+			return this.ngram(fn.apply(new NGramTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> noriPartOfSpeech(NoriPartOfSpeechTokenFilter v) {
@@ -1370,10 +1346,9 @@ public class TokenFilterDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenFilterDefinition> noriPartOfSpeech(Consumer<NoriPartOfSpeechTokenFilter.Builder> fn) {
-			NoriPartOfSpeechTokenFilter.Builder builder = new NoriPartOfSpeechTokenFilter.Builder();
-			fn.accept(builder);
-			return this.noriPartOfSpeech(builder.build());
+		public ObjectBuilder<TokenFilterDefinition> noriPartOfSpeech(
+				Function<NoriPartOfSpeechTokenFilter.Builder, ObjectBuilder<NoriPartOfSpeechTokenFilter>> fn) {
+			return this.noriPartOfSpeech(fn.apply(new NoriPartOfSpeechTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> patternCapture(PatternCaptureTokenFilter v) {
@@ -1382,10 +1357,9 @@ public class TokenFilterDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenFilterDefinition> patternCapture(Consumer<PatternCaptureTokenFilter.Builder> fn) {
-			PatternCaptureTokenFilter.Builder builder = new PatternCaptureTokenFilter.Builder();
-			fn.accept(builder);
-			return this.patternCapture(builder.build());
+		public ObjectBuilder<TokenFilterDefinition> patternCapture(
+				Function<PatternCaptureTokenFilter.Builder, ObjectBuilder<PatternCaptureTokenFilter>> fn) {
+			return this.patternCapture(fn.apply(new PatternCaptureTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> patternReplace(PatternReplaceTokenFilter v) {
@@ -1394,10 +1368,9 @@ public class TokenFilterDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenFilterDefinition> patternReplace(Consumer<PatternReplaceTokenFilter.Builder> fn) {
-			PatternReplaceTokenFilter.Builder builder = new PatternReplaceTokenFilter.Builder();
-			fn.accept(builder);
-			return this.patternReplace(builder.build());
+		public ObjectBuilder<TokenFilterDefinition> patternReplace(
+				Function<PatternReplaceTokenFilter.Builder, ObjectBuilder<PatternReplaceTokenFilter>> fn) {
+			return this.patternReplace(fn.apply(new PatternReplaceTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> phonetic(PhoneticTokenFilter v) {
@@ -1406,10 +1379,9 @@ public class TokenFilterDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenFilterDefinition> phonetic(Consumer<PhoneticTokenFilter.Builder> fn) {
-			PhoneticTokenFilter.Builder builder = new PhoneticTokenFilter.Builder();
-			fn.accept(builder);
-			return this.phonetic(builder.build());
+		public ObjectBuilder<TokenFilterDefinition> phonetic(
+				Function<PhoneticTokenFilter.Builder, ObjectBuilder<PhoneticTokenFilter>> fn) {
+			return this.phonetic(fn.apply(new PhoneticTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> porterStem(PorterStemTokenFilter v) {
@@ -1418,10 +1390,9 @@ public class TokenFilterDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenFilterDefinition> porterStem(Consumer<PorterStemTokenFilter.Builder> fn) {
-			PorterStemTokenFilter.Builder builder = new PorterStemTokenFilter.Builder();
-			fn.accept(builder);
-			return this.porterStem(builder.build());
+		public ObjectBuilder<TokenFilterDefinition> porterStem(
+				Function<PorterStemTokenFilter.Builder, ObjectBuilder<PorterStemTokenFilter>> fn) {
+			return this.porterStem(fn.apply(new PorterStemTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> predicateTokenFilter(PredicateTokenFilter v) {
@@ -1430,10 +1401,9 @@ public class TokenFilterDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenFilterDefinition> predicateTokenFilter(Consumer<PredicateTokenFilter.Builder> fn) {
-			PredicateTokenFilter.Builder builder = new PredicateTokenFilter.Builder();
-			fn.accept(builder);
-			return this.predicateTokenFilter(builder.build());
+		public ObjectBuilder<TokenFilterDefinition> predicateTokenFilter(
+				Function<PredicateTokenFilter.Builder, ObjectBuilder<PredicateTokenFilter>> fn) {
+			return this.predicateTokenFilter(fn.apply(new PredicateTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> removeDuplicates(RemoveDuplicatesTokenFilter v) {
@@ -1442,10 +1412,9 @@ public class TokenFilterDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenFilterDefinition> removeDuplicates(Consumer<RemoveDuplicatesTokenFilter.Builder> fn) {
-			RemoveDuplicatesTokenFilter.Builder builder = new RemoveDuplicatesTokenFilter.Builder();
-			fn.accept(builder);
-			return this.removeDuplicates(builder.build());
+		public ObjectBuilder<TokenFilterDefinition> removeDuplicates(
+				Function<RemoveDuplicatesTokenFilter.Builder, ObjectBuilder<RemoveDuplicatesTokenFilter>> fn) {
+			return this.removeDuplicates(fn.apply(new RemoveDuplicatesTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> reverse(ReverseTokenFilter v) {
@@ -1454,10 +1423,9 @@ public class TokenFilterDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenFilterDefinition> reverse(Consumer<ReverseTokenFilter.Builder> fn) {
-			ReverseTokenFilter.Builder builder = new ReverseTokenFilter.Builder();
-			fn.accept(builder);
-			return this.reverse(builder.build());
+		public ObjectBuilder<TokenFilterDefinition> reverse(
+				Function<ReverseTokenFilter.Builder, ObjectBuilder<ReverseTokenFilter>> fn) {
+			return this.reverse(fn.apply(new ReverseTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> shingle(ShingleTokenFilter v) {
@@ -1466,10 +1434,9 @@ public class TokenFilterDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenFilterDefinition> shingle(Consumer<ShingleTokenFilter.Builder> fn) {
-			ShingleTokenFilter.Builder builder = new ShingleTokenFilter.Builder();
-			fn.accept(builder);
-			return this.shingle(builder.build());
+		public ObjectBuilder<TokenFilterDefinition> shingle(
+				Function<ShingleTokenFilter.Builder, ObjectBuilder<ShingleTokenFilter>> fn) {
+			return this.shingle(fn.apply(new ShingleTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> snowball(SnowballTokenFilter v) {
@@ -1478,10 +1445,9 @@ public class TokenFilterDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenFilterDefinition> snowball(Consumer<SnowballTokenFilter.Builder> fn) {
-			SnowballTokenFilter.Builder builder = new SnowballTokenFilter.Builder();
-			fn.accept(builder);
-			return this.snowball(builder.build());
+		public ObjectBuilder<TokenFilterDefinition> snowball(
+				Function<SnowballTokenFilter.Builder, ObjectBuilder<SnowballTokenFilter>> fn) {
+			return this.snowball(fn.apply(new SnowballTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> stemmerOverride(StemmerOverrideTokenFilter v) {
@@ -1490,10 +1456,9 @@ public class TokenFilterDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenFilterDefinition> stemmerOverride(Consumer<StemmerOverrideTokenFilter.Builder> fn) {
-			StemmerOverrideTokenFilter.Builder builder = new StemmerOverrideTokenFilter.Builder();
-			fn.accept(builder);
-			return this.stemmerOverride(builder.build());
+		public ObjectBuilder<TokenFilterDefinition> stemmerOverride(
+				Function<StemmerOverrideTokenFilter.Builder, ObjectBuilder<StemmerOverrideTokenFilter>> fn) {
+			return this.stemmerOverride(fn.apply(new StemmerOverrideTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> stemmer(StemmerTokenFilter v) {
@@ -1502,10 +1467,9 @@ public class TokenFilterDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenFilterDefinition> stemmer(Consumer<StemmerTokenFilter.Builder> fn) {
-			StemmerTokenFilter.Builder builder = new StemmerTokenFilter.Builder();
-			fn.accept(builder);
-			return this.stemmer(builder.build());
+		public ObjectBuilder<TokenFilterDefinition> stemmer(
+				Function<StemmerTokenFilter.Builder, ObjectBuilder<StemmerTokenFilter>> fn) {
+			return this.stemmer(fn.apply(new StemmerTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> stop(StopTokenFilter v) {
@@ -1514,10 +1478,9 @@ public class TokenFilterDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenFilterDefinition> stop(Consumer<StopTokenFilter.Builder> fn) {
-			StopTokenFilter.Builder builder = new StopTokenFilter.Builder();
-			fn.accept(builder);
-			return this.stop(builder.build());
+		public ObjectBuilder<TokenFilterDefinition> stop(
+				Function<StopTokenFilter.Builder, ObjectBuilder<StopTokenFilter>> fn) {
+			return this.stop(fn.apply(new StopTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> synonymGraph(SynonymGraphTokenFilter v) {
@@ -1526,10 +1489,9 @@ public class TokenFilterDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenFilterDefinition> synonymGraph(Consumer<SynonymGraphTokenFilter.Builder> fn) {
-			SynonymGraphTokenFilter.Builder builder = new SynonymGraphTokenFilter.Builder();
-			fn.accept(builder);
-			return this.synonymGraph(builder.build());
+		public ObjectBuilder<TokenFilterDefinition> synonymGraph(
+				Function<SynonymGraphTokenFilter.Builder, ObjectBuilder<SynonymGraphTokenFilter>> fn) {
+			return this.synonymGraph(fn.apply(new SynonymGraphTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> synonym(SynonymTokenFilter v) {
@@ -1538,10 +1500,9 @@ public class TokenFilterDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenFilterDefinition> synonym(Consumer<SynonymTokenFilter.Builder> fn) {
-			SynonymTokenFilter.Builder builder = new SynonymTokenFilter.Builder();
-			fn.accept(builder);
-			return this.synonym(builder.build());
+		public ObjectBuilder<TokenFilterDefinition> synonym(
+				Function<SynonymTokenFilter.Builder, ObjectBuilder<SynonymTokenFilter>> fn) {
+			return this.synonym(fn.apply(new SynonymTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> trim(TrimTokenFilter v) {
@@ -1550,10 +1511,9 @@ public class TokenFilterDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenFilterDefinition> trim(Consumer<TrimTokenFilter.Builder> fn) {
-			TrimTokenFilter.Builder builder = new TrimTokenFilter.Builder();
-			fn.accept(builder);
-			return this.trim(builder.build());
+		public ObjectBuilder<TokenFilterDefinition> trim(
+				Function<TrimTokenFilter.Builder, ObjectBuilder<TrimTokenFilter>> fn) {
+			return this.trim(fn.apply(new TrimTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> truncate(TruncateTokenFilter v) {
@@ -1562,10 +1522,9 @@ public class TokenFilterDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenFilterDefinition> truncate(Consumer<TruncateTokenFilter.Builder> fn) {
-			TruncateTokenFilter.Builder builder = new TruncateTokenFilter.Builder();
-			fn.accept(builder);
-			return this.truncate(builder.build());
+		public ObjectBuilder<TokenFilterDefinition> truncate(
+				Function<TruncateTokenFilter.Builder, ObjectBuilder<TruncateTokenFilter>> fn) {
+			return this.truncate(fn.apply(new TruncateTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> unique(UniqueTokenFilter v) {
@@ -1574,10 +1533,9 @@ public class TokenFilterDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenFilterDefinition> unique(Consumer<UniqueTokenFilter.Builder> fn) {
-			UniqueTokenFilter.Builder builder = new UniqueTokenFilter.Builder();
-			fn.accept(builder);
-			return this.unique(builder.build());
+		public ObjectBuilder<TokenFilterDefinition> unique(
+				Function<UniqueTokenFilter.Builder, ObjectBuilder<UniqueTokenFilter>> fn) {
+			return this.unique(fn.apply(new UniqueTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> uppercase(UppercaseTokenFilter v) {
@@ -1586,10 +1544,9 @@ public class TokenFilterDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenFilterDefinition> uppercase(Consumer<UppercaseTokenFilter.Builder> fn) {
-			UppercaseTokenFilter.Builder builder = new UppercaseTokenFilter.Builder();
-			fn.accept(builder);
-			return this.uppercase(builder.build());
+		public ObjectBuilder<TokenFilterDefinition> uppercase(
+				Function<UppercaseTokenFilter.Builder, ObjectBuilder<UppercaseTokenFilter>> fn) {
+			return this.uppercase(fn.apply(new UppercaseTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> wordDelimiterGraph(WordDelimiterGraphTokenFilter v) {
@@ -1599,10 +1556,8 @@ public class TokenFilterDefinition
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> wordDelimiterGraph(
-				Consumer<WordDelimiterGraphTokenFilter.Builder> fn) {
-			WordDelimiterGraphTokenFilter.Builder builder = new WordDelimiterGraphTokenFilter.Builder();
-			fn.accept(builder);
-			return this.wordDelimiterGraph(builder.build());
+				Function<WordDelimiterGraphTokenFilter.Builder, ObjectBuilder<WordDelimiterGraphTokenFilter>> fn) {
+			return this.wordDelimiterGraph(fn.apply(new WordDelimiterGraphTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> wordDelimiter(WordDelimiterTokenFilter v) {
@@ -1611,10 +1566,9 @@ public class TokenFilterDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenFilterDefinition> wordDelimiter(Consumer<WordDelimiterTokenFilter.Builder> fn) {
-			WordDelimiterTokenFilter.Builder builder = new WordDelimiterTokenFilter.Builder();
-			fn.accept(builder);
-			return this.wordDelimiter(builder.build());
+		public ObjectBuilder<TokenFilterDefinition> wordDelimiter(
+				Function<WordDelimiterTokenFilter.Builder, ObjectBuilder<WordDelimiterTokenFilter>> fn) {
+			return this.wordDelimiter(fn.apply(new WordDelimiterTokenFilter.Builder()).build());
 		}
 
 		public TokenFilterDefinition build() {

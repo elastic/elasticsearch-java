@@ -28,20 +28,26 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.QueryStringQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/fulltext.ts#L233-L269">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class QueryStringQuery extends QueryBase implements QueryVariant {
 	@Nullable
@@ -130,7 +136,7 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 		this.defaultOperator = builder.defaultOperator;
 		this.enablePositionIncrements = builder.enablePositionIncrements;
 		this.escape = builder.escape;
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 		this.fuzziness = builder.fuzziness;
 		this.fuzzyMaxExpansions = builder.fuzzyMaxExpansions;
 		this.fuzzyPrefixLength = builder.fuzzyPrefixLength;
@@ -140,7 +146,7 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 		this.maxDeterminizedStates = builder.maxDeterminizedStates;
 		this.minimumShouldMatch = builder.minimumShouldMatch;
 		this.phraseSlop = builder.phraseSlop;
-		this.query = ModelTypeHelper.requireNonNull(builder.query, this, "query");
+		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 		this.quoteAnalyzer = builder.quoteAnalyzer;
 		this.quoteFieldSuffix = builder.quoteFieldSuffix;
 		this.rewrite = builder.rewrite;
@@ -150,10 +156,8 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public static QueryStringQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static QueryStringQuery of(Function<Builder, ObjectBuilder<QueryStringQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -404,7 +408,7 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 			generator.write(this.escape);
 
 		}
-		if (ModelTypeHelper.isDefined(this.fields)) {
+		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartArray();
 			for (String item0 : this.fields) {
@@ -499,6 +503,7 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link QueryStringQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<QueryStringQuery> {
 		@Nullable
 		private Boolean allowLeadingWildcard;
@@ -640,17 +645,21 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 
 		/**
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fields</code>.
 		 */
-		public final Builder fields(@Nullable List<String> value) {
-			this.fields = value;
+		public final Builder fields(List<String> list) {
+			this.fields = _listAddAll(this.fields, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds one or more values to <code>fields</code>.
 		 */
-		public final Builder fields(String... value) {
-			this.fields = Arrays.asList(value);
+		public final Builder fields(String value, String... values) {
+			this.fields = _listAdd(this.fields, value, values);
 			return this;
 		}
 

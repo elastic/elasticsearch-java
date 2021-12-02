@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: security.delete_role.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/delete_role/SecurityDeleteRoleResponse.ts#L20-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DeleteRoleResponse implements JsonpSerializable {
 	private final boolean found;
@@ -46,14 +53,12 @@ public class DeleteRoleResponse implements JsonpSerializable {
 
 	private DeleteRoleResponse(Builder builder) {
 
-		this.found = ModelTypeHelper.requireNonNull(builder.found, this, "found");
+		this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found");
 
 	}
 
-	public static DeleteRoleResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DeleteRoleResponse of(Function<Builder, ObjectBuilder<DeleteRoleResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -84,6 +89,7 @@ public class DeleteRoleResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link DeleteRoleResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteRoleResponse> {
 		private Boolean found;
 

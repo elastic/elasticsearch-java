@@ -29,19 +29,25 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsFieldSelection
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/DataframeAnalytics.ts#L54-L67">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeAnalyticsFieldSelection implements JsonpSerializable {
 	private final boolean isIncluded;
@@ -62,19 +68,18 @@ public class DataframeAnalyticsFieldSelection implements JsonpSerializable {
 
 	private DataframeAnalyticsFieldSelection(Builder builder) {
 
-		this.isIncluded = ModelTypeHelper.requireNonNull(builder.isIncluded, this, "isIncluded");
-		this.isRequired = ModelTypeHelper.requireNonNull(builder.isRequired, this, "isRequired");
+		this.isIncluded = ApiTypeHelper.requireNonNull(builder.isIncluded, this, "isIncluded");
+		this.isRequired = ApiTypeHelper.requireNonNull(builder.isRequired, this, "isRequired");
 		this.featureType = builder.featureType;
-		this.mappingTypes = ModelTypeHelper.unmodifiableRequired(builder.mappingTypes, this, "mappingTypes");
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.mappingTypes = ApiTypeHelper.unmodifiableRequired(builder.mappingTypes, this, "mappingTypes");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.reason = builder.reason;
 
 	}
 
-	public static DataframeAnalyticsFieldSelection of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DataframeAnalyticsFieldSelection of(
+			Function<Builder, ObjectBuilder<DataframeAnalyticsFieldSelection>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -156,7 +161,7 @@ public class DataframeAnalyticsFieldSelection implements JsonpSerializable {
 			generator.write(this.featureType);
 
 		}
-		if (ModelTypeHelper.isDefined(this.mappingTypes)) {
+		if (ApiTypeHelper.isDefined(this.mappingTypes)) {
 			generator.writeKey("mapping_types");
 			generator.writeStartArray();
 			for (String item0 : this.mappingTypes) {
@@ -182,6 +187,7 @@ public class DataframeAnalyticsFieldSelection implements JsonpSerializable {
 	/**
 	 * Builder for {@link DataframeAnalyticsFieldSelection}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframeAnalyticsFieldSelection> {
 		private Boolean isIncluded;
 
@@ -232,9 +238,11 @@ public class DataframeAnalyticsFieldSelection implements JsonpSerializable {
 		 * Required - The mapping types of the field.
 		 * <p>
 		 * API name: {@code mapping_types}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>mappingTypes</code>.
 		 */
-		public final Builder mappingTypes(List<String> value) {
-			this.mappingTypes = value;
+		public final Builder mappingTypes(List<String> list) {
+			this.mappingTypes = _listAddAll(this.mappingTypes, list);
 			return this;
 		}
 
@@ -242,9 +250,11 @@ public class DataframeAnalyticsFieldSelection implements JsonpSerializable {
 		 * Required - The mapping types of the field.
 		 * <p>
 		 * API name: {@code mapping_types}
+		 * <p>
+		 * Adds one or more values to <code>mappingTypes</code>.
 		 */
-		public final Builder mappingTypes(String... value) {
-			this.mappingTypes = Arrays.asList(value);
+		public final Builder mappingTypes(String value, String... values) {
+			this.mappingTypes = _listAdd(this.mappingTypes, value, values);
 			return this;
 		}
 

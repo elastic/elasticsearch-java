@@ -28,15 +28,22 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.StoredScriptId
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Scripting.ts#L54-L56">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class StoredScriptId extends ScriptBase {
 	private final String id;
@@ -46,14 +53,12 @@ public class StoredScriptId extends ScriptBase {
 	private StoredScriptId(Builder builder) {
 		super(builder);
 
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 
 	}
 
-	public static StoredScriptId of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static StoredScriptId of(Function<Builder, ObjectBuilder<StoredScriptId>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -76,6 +81,7 @@ public class StoredScriptId extends ScriptBase {
 	/**
 	 * Builder for {@link StoredScriptId}.
 	 */
+
 	public static class Builder extends ScriptBase.AbstractBuilder<Builder> implements ObjectBuilder<StoredScriptId> {
 		private String id;
 

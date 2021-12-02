@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.OverallBucketJob
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/Bucket.ts#L128-L131">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class OverallBucketJob implements JsonpSerializable {
 	private final String jobId;
@@ -50,15 +57,13 @@ public class OverallBucketJob implements JsonpSerializable {
 
 	private OverallBucketJob(Builder builder) {
 
-		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
-		this.maxAnomalyScore = ModelTypeHelper.requireNonNull(builder.maxAnomalyScore, this, "maxAnomalyScore");
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.maxAnomalyScore = ApiTypeHelper.requireNonNull(builder.maxAnomalyScore, this, "maxAnomalyScore");
 
 	}
 
-	public static OverallBucketJob of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static OverallBucketJob of(Function<Builder, ObjectBuilder<OverallBucketJob>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -99,6 +104,7 @@ public class OverallBucketJob implements JsonpSerializable {
 	/**
 	 * Builder for {@link OverallBucketJob}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<OverallBucketJob> {
 		private String jobId;
 

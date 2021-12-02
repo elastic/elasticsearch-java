@@ -33,9 +33,16 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: security.put_privileges.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/put_privileges/SecurityPutPrivilegesResponse.ts#L24-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutPrivilegesResponse extends DictionaryResponse<String, Map<String, CreatedStatus>> {
 	// ---------------------------------------------------------------------------------------------
@@ -45,10 +52,8 @@ public class PutPrivilegesResponse extends DictionaryResponse<String, Map<String
 
 	}
 
-	public static PutPrivilegesResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PutPrivilegesResponse of(Function<Builder, ObjectBuilder<PutPrivilegesResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -56,6 +61,7 @@ public class PutPrivilegesResponse extends DictionaryResponse<String, Map<String
 	/**
 	 * Builder for {@link PutPrivilegesResponse}.
 	 */
+
 	public static class Builder extends DictionaryResponse.AbstractBuilder<String, Map<String, CreatedStatus>, Builder>
 			implements
 				ObjectBuilder<PutPrivilegesResponse> {

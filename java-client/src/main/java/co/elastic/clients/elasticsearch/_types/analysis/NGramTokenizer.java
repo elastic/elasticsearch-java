@@ -28,18 +28,24 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.NGramTokenizer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/tokenizers.ts#L38-L44">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NGramTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
 	@Nullable
@@ -57,16 +63,14 @@ public class NGramTokenizer extends TokenizerBase implements TokenizerDefinition
 		super(builder);
 
 		this.customTokenChars = builder.customTokenChars;
-		this.maxGram = ModelTypeHelper.requireNonNull(builder.maxGram, this, "maxGram");
-		this.minGram = ModelTypeHelper.requireNonNull(builder.minGram, this, "minGram");
-		this.tokenChars = ModelTypeHelper.unmodifiableRequired(builder.tokenChars, this, "tokenChars");
+		this.maxGram = ApiTypeHelper.requireNonNull(builder.maxGram, this, "maxGram");
+		this.minGram = ApiTypeHelper.requireNonNull(builder.minGram, this, "minGram");
+		this.tokenChars = ApiTypeHelper.unmodifiableRequired(builder.tokenChars, this, "tokenChars");
 
 	}
 
-	public static NGramTokenizer of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NGramTokenizer of(Function<Builder, ObjectBuilder<NGramTokenizer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -121,7 +125,7 @@ public class NGramTokenizer extends TokenizerBase implements TokenizerDefinition
 		generator.writeKey("min_gram");
 		generator.write(this.minGram);
 
-		if (ModelTypeHelper.isDefined(this.tokenChars)) {
+		if (ApiTypeHelper.isDefined(this.tokenChars)) {
 			generator.writeKey("token_chars");
 			generator.writeStartArray();
 			for (TokenChar item0 : this.tokenChars) {
@@ -138,6 +142,7 @@ public class NGramTokenizer extends TokenizerBase implements TokenizerDefinition
 	/**
 	 * Builder for {@link NGramTokenizer}.
 	 */
+
 	public static class Builder extends TokenizerBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<NGramTokenizer> {
@@ -176,17 +181,21 @@ public class NGramTokenizer extends TokenizerBase implements TokenizerDefinition
 
 		/**
 		 * Required - API name: {@code token_chars}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>tokenChars</code>.
 		 */
-		public final Builder tokenChars(List<TokenChar> value) {
-			this.tokenChars = value;
+		public final Builder tokenChars(List<TokenChar> list) {
+			this.tokenChars = _listAddAll(this.tokenChars, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code token_chars}
+		 * <p>
+		 * Adds one or more values to <code>tokenChars</code>.
 		 */
-		public final Builder tokenChars(TokenChar... value) {
-			this.tokenChars = Arrays.asList(value);
+		public final Builder tokenChars(TokenChar value, TokenChar... values) {
+			this.tokenChars = _listAdd(this.tokenChars, value, values);
 			return this;
 		}
 

@@ -27,6 +27,12 @@ import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/common.ts#L267-L274">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public enum WaitForEvents implements JsonEnum {
 	Immediate("immediate"),

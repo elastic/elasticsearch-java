@@ -34,10 +34,17 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Float;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.RankFeatureFunctionSaturation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/specialized.ts#L147-L149">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RankFeatureFunctionSaturation extends RankFeatureFunction implements JsonpSerializable {
 	@Nullable
@@ -51,10 +58,8 @@ public class RankFeatureFunctionSaturation extends RankFeatureFunction implement
 
 	}
 
-	public static RankFeatureFunctionSaturation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RankFeatureFunctionSaturation of(Function<Builder, ObjectBuilder<RankFeatureFunctionSaturation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -89,6 +94,7 @@ public class RankFeatureFunctionSaturation extends RankFeatureFunction implement
 	/**
 	 * Builder for {@link RankFeatureFunctionSaturation}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RankFeatureFunctionSaturation> {
 		@Nullable
 		private Float pivot;

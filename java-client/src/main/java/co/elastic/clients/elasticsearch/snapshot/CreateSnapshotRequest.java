@@ -35,21 +35,28 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.create.Request
+
+/**
+ * Creates a snapshot in a repository.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/snapshot/create/SnapshotCreateRequest.ts#L24-L81">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CreateSnapshotRequest extends RequestBase implements JsonpSerializable {
 	private final List<String> featureStates;
@@ -81,23 +88,21 @@ public class CreateSnapshotRequest extends RequestBase implements JsonpSerializa
 
 	private CreateSnapshotRequest(Builder builder) {
 
-		this.featureStates = ModelTypeHelper.unmodifiable(builder.featureStates);
+		this.featureStates = ApiTypeHelper.unmodifiable(builder.featureStates);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.includeGlobalState = builder.includeGlobalState;
-		this.indices = ModelTypeHelper.unmodifiable(builder.indices);
+		this.indices = ApiTypeHelper.unmodifiable(builder.indices);
 		this.masterTimeout = builder.masterTimeout;
-		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
+		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
 		this.partial = builder.partial;
-		this.repository = ModelTypeHelper.requireNonNull(builder.repository, this, "repository");
-		this.snapshot = ModelTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
+		this.repository = ApiTypeHelper.requireNonNull(builder.repository, this, "repository");
+		this.snapshot = ApiTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
 		this.waitForCompletion = builder.waitForCompletion;
 
 	}
 
-	public static CreateSnapshotRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CreateSnapshotRequest of(Function<Builder, ObjectBuilder<CreateSnapshotRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -227,7 +232,7 @@ public class CreateSnapshotRequest extends RequestBase implements JsonpSerializa
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.featureStates)) {
+		if (ApiTypeHelper.isDefined(this.featureStates)) {
 			generator.writeKey("feature_states");
 			generator.writeStartArray();
 			for (String item0 : this.featureStates) {
@@ -247,7 +252,7 @@ public class CreateSnapshotRequest extends RequestBase implements JsonpSerializa
 			generator.write(this.includeGlobalState);
 
 		}
-		if (ModelTypeHelper.isDefined(this.indices)) {
+		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartArray();
 			for (String item0 : this.indices) {
@@ -257,7 +262,7 @@ public class CreateSnapshotRequest extends RequestBase implements JsonpSerializa
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.metadata)) {
+		if (ApiTypeHelper.isDefined(this.metadata)) {
 			generator.writeKey("metadata");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
@@ -281,6 +286,7 @@ public class CreateSnapshotRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Builder for {@link CreateSnapshotRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CreateSnapshotRequest> {
 		@Nullable
 		private List<String> featureStates;
@@ -319,9 +325,11 @@ public class CreateSnapshotRequest extends RequestBase implements JsonpSerializa
 		 * are included by default.
 		 * <p>
 		 * API name: {@code feature_states}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>featureStates</code>.
 		 */
-		public final Builder featureStates(@Nullable List<String> value) {
-			this.featureStates = value;
+		public final Builder featureStates(List<String> list) {
+			this.featureStates = _listAddAll(this.featureStates, list);
 			return this;
 		}
 
@@ -334,9 +342,11 @@ public class CreateSnapshotRequest extends RequestBase implements JsonpSerializa
 		 * are included by default.
 		 * <p>
 		 * API name: {@code feature_states}
+		 * <p>
+		 * Adds one or more values to <code>featureStates</code>.
 		 */
-		public final Builder featureStates(String... value) {
-			this.featureStates = Arrays.asList(value);
+		public final Builder featureStates(String value, String... values) {
+			this.featureStates = _listAdd(this.featureStates, value, values);
 			return this;
 		}
 
@@ -372,9 +382,11 @@ public class CreateSnapshotRequest extends RequestBase implements JsonpSerializa
 		 * syntax. Includes all data streams and indices by default.
 		 * <p>
 		 * API name: {@code indices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 */
-		public final Builder indices(@Nullable List<String> value) {
-			this.indices = value;
+		public final Builder indices(List<String> list) {
+			this.indices = _listAddAll(this.indices, list);
 			return this;
 		}
 
@@ -383,9 +395,11 @@ public class CreateSnapshotRequest extends RequestBase implements JsonpSerializa
 		 * syntax. Includes all data streams and indices by default.
 		 * <p>
 		 * API name: {@code indices}
+		 * <p>
+		 * Adds one or more values to <code>indices</code>.
 		 */
-		public final Builder indices(String... value) {
-			this.indices = Arrays.asList(value);
+		public final Builder indices(String value, String... values) {
+			this.indices = _listAdd(this.indices, value, values);
 			return this;
 		}
 
@@ -406,10 +420,8 @@ public class CreateSnapshotRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.masterTimeout(builder.build());
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -417,9 +429,24 @@ public class CreateSnapshotRequest extends RequestBase implements JsonpSerializa
 		 * 1024 bytes. This map is not automatically generated by Elasticsearch.
 		 * <p>
 		 * API name: {@code metadata}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>metadata</code>.
 		 */
-		public final Builder metadata(@Nullable Map<String, JsonData> value) {
-			this.metadata = value;
+		public final Builder metadata(Map<String, JsonData> map) {
+			this.metadata = _mapPutAll(this.metadata, map);
+			return this;
+		}
+
+		/**
+		 * Optional metadata for the snapshot. May have any contents. Must be less than
+		 * 1024 bytes. This map is not automatically generated by Elasticsearch.
+		 * <p>
+		 * API name: {@code metadata}
+		 * <p>
+		 * Adds an entry to <code>metadata</code>.
+		 */
+		public final Builder metadata(String key, JsonData value) {
+			this.metadata = _mapPut(this.metadata, key, value);
 			return this;
 		}
 

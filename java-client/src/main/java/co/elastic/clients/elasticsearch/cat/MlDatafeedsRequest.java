@@ -39,10 +39,22 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.ml_datafeeds.Request
+
+/**
+ * Returns configuration and usage information about datafeeds. This API returns
+ * a maximum of 10,000 datafeeds. If the Elasticsearch security features are
+ * enabled, you must have <code>monitor_ml</code>, <code>monitor</code>,
+ * <code>manage_ml</code>, or <code>manage</code> cluster privileges to use this
+ * API.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/ml_datafeeds/CatDatafeedsRequest.ts#L24-L62">API
+ *      specification</a>
+ */
 
 public class MlDatafeedsRequest extends CatRequestBase {
 	@Nullable
@@ -64,10 +76,8 @@ public class MlDatafeedsRequest extends CatRequestBase {
 
 	}
 
-	public static MlDatafeedsRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static MlDatafeedsRequest of(Function<Builder, ObjectBuilder<MlDatafeedsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -118,6 +128,7 @@ public class MlDatafeedsRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link MlDatafeedsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MlDatafeedsRequest> {
 		@Nullable
 		private Boolean allowNoMatch;

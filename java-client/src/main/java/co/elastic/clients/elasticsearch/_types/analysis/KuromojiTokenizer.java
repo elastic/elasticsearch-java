@@ -28,19 +28,25 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.KuromojiTokenizer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/kuromoji-plugin.ts#L58-L67">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class KuromojiTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
 	@Nullable
@@ -68,19 +74,17 @@ public class KuromojiTokenizer extends TokenizerBase implements TokenizerDefinit
 		super(builder);
 
 		this.discardPunctuation = builder.discardPunctuation;
-		this.mode = ModelTypeHelper.requireNonNull(builder.mode, this, "mode");
+		this.mode = ApiTypeHelper.requireNonNull(builder.mode, this, "mode");
 		this.nbestCost = builder.nbestCost;
 		this.nbestExamples = builder.nbestExamples;
 		this.userDictionary = builder.userDictionary;
-		this.userDictionaryRules = ModelTypeHelper.unmodifiable(builder.userDictionaryRules);
+		this.userDictionaryRules = ApiTypeHelper.unmodifiable(builder.userDictionaryRules);
 		this.discardCompoundToken = builder.discardCompoundToken;
 
 	}
 
-	public static KuromojiTokenizer of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static KuromojiTokenizer of(Function<Builder, ObjectBuilder<KuromojiTokenizer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -171,7 +175,7 @@ public class KuromojiTokenizer extends TokenizerBase implements TokenizerDefinit
 			generator.write(this.userDictionary);
 
 		}
-		if (ModelTypeHelper.isDefined(this.userDictionaryRules)) {
+		if (ApiTypeHelper.isDefined(this.userDictionaryRules)) {
 			generator.writeKey("user_dictionary_rules");
 			generator.writeStartArray();
 			for (String item0 : this.userDictionaryRules) {
@@ -194,6 +198,7 @@ public class KuromojiTokenizer extends TokenizerBase implements TokenizerDefinit
 	/**
 	 * Builder for {@link KuromojiTokenizer}.
 	 */
+
 	public static class Builder extends TokenizerBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<KuromojiTokenizer> {
@@ -259,17 +264,21 @@ public class KuromojiTokenizer extends TokenizerBase implements TokenizerDefinit
 
 		/**
 		 * API name: {@code user_dictionary_rules}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>userDictionaryRules</code>.
 		 */
-		public final Builder userDictionaryRules(@Nullable List<String> value) {
-			this.userDictionaryRules = value;
+		public final Builder userDictionaryRules(List<String> list) {
+			this.userDictionaryRules = _listAddAll(this.userDictionaryRules, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code user_dictionary_rules}
+		 * <p>
+		 * Adds one or more values to <code>userDictionaryRules</code>.
 		 */
-		public final Builder userDictionaryRules(String... value) {
-			this.userDictionaryRules = Arrays.asList(value);
+		public final Builder userDictionaryRules(String value, String... values) {
+			this.userDictionaryRules = _listAdd(this.userDictionaryRules, value, values);
 			return this;
 		}
 

@@ -31,20 +31,28 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: ccr.follow_stats.Request
+
+/**
+ * Retrieves follower stats. return shard-level stats about the following tasks
+ * associated with each shard for the specified indices.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ccr/follow_stats/FollowIndexStatsRequest.ts#L23-L32">API
+ *      specification</a>
+ */
 
 public class FollowStatsRequest extends RequestBase {
 	private final List<String> index;
@@ -53,14 +61,12 @@ public class FollowStatsRequest extends RequestBase {
 
 	private FollowStatsRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiableRequired(builder.index, this, "index");
+		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
 
 	}
 
-	public static FollowStatsRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static FollowStatsRequest of(Function<Builder, ObjectBuilder<FollowStatsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -78,6 +84,7 @@ public class FollowStatsRequest extends RequestBase {
 	/**
 	 * Builder for {@link FollowStatsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FollowStatsRequest> {
 		private List<String> index;
 
@@ -86,9 +93,11 @@ public class FollowStatsRequest extends RequestBase {
 		 * perform the operation on all indices
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 */
-		public final Builder index(List<String> value) {
-			this.index = value;
+		public final Builder index(List<String> list) {
+			this.index = _listAddAll(this.index, list);
 			return this;
 		}
 
@@ -97,9 +106,11 @@ public class FollowStatsRequest extends RequestBase {
 		 * perform the operation on all indices
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds one or more values to <code>index</code>.
 		 */
-		public final Builder index(String... value) {
-			this.index = Arrays.asList(value);
+		public final Builder index(String value, String... values) {
+			this.index = _listAdd(this.index, value, values);
 			return this;
 		}
 

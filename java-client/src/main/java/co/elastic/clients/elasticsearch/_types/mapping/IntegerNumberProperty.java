@@ -32,10 +32,17 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.IntegerNumberProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/core.ts#L176-L179">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IntegerNumberProperty extends StandardNumberProperty implements PropertyVariant {
 	@Nullable
@@ -50,10 +57,8 @@ public class IntegerNumberProperty extends StandardNumberProperty implements Pro
 
 	}
 
-	public static IntegerNumberProperty of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IntegerNumberProperty of(Function<Builder, ObjectBuilder<IntegerNumberProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -89,6 +94,7 @@ public class IntegerNumberProperty extends StandardNumberProperty implements Pro
 	/**
 	 * Builder for {@link IntegerNumberProperty}.
 	 */
+
 	public static class Builder extends StandardNumberProperty.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<IntegerNumberProperty> {

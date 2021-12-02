@@ -41,10 +41,18 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_calendars.Request
+
+/**
+ * Retrieves configuration information for calendars.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_calendars/MlGetCalendarsRequest.ts#L25-L51">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetCalendarsRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -70,10 +78,8 @@ public class GetCalendarsRequest extends RequestBase implements JsonpSerializabl
 
 	}
 
-	public static GetCalendarsRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetCalendarsRequest of(Function<Builder, ObjectBuilder<GetCalendarsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -145,6 +151,7 @@ public class GetCalendarsRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Builder for {@link GetCalendarsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetCalendarsRequest> {
 		@Nullable
 		private String calendarId;
@@ -197,10 +204,8 @@ public class GetCalendarsRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code page}
 		 */
-		public final Builder page(Consumer<Page.Builder> fn) {
-			Page.Builder builder = new Page.Builder();
-			fn.accept(builder);
-			return this.page(builder.build());
+		public final Builder page(Function<Page.Builder, ObjectBuilder<Page>> fn) {
+			return this.page(fn.apply(new Page.Builder()).build());
 		}
 
 		/**

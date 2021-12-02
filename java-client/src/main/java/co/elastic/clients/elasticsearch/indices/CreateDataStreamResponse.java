@@ -31,9 +31,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: indices.create_data_stream.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/create_data_stream/IndicesCreateDataStreamResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CreateDataStreamResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
@@ -43,10 +50,8 @@ public class CreateDataStreamResponse extends AcknowledgedResponseBase {
 
 	}
 
-	public static CreateDataStreamResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CreateDataStreamResponse of(Function<Builder, ObjectBuilder<CreateDataStreamResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -54,6 +59,7 @@ public class CreateDataStreamResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link CreateDataStreamResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<CreateDataStreamResponse> {

@@ -32,10 +32,17 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GeoBoundsAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/metric.ts#L63-L65">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GeoBoundsAggregation extends MetricAggregationBase implements AggregationVariant {
 	@Nullable
@@ -50,10 +57,8 @@ public class GeoBoundsAggregation extends MetricAggregationBase implements Aggre
 
 	}
 
-	public static GeoBoundsAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GeoBoundsAggregation of(Function<Builder, ObjectBuilder<GeoBoundsAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -88,6 +93,7 @@ public class GeoBoundsAggregation extends MetricAggregationBase implements Aggre
 	/**
 	 * Builder for {@link GeoBoundsAggregation}.
 	 */
+
 	public static class Builder extends MetricAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<GeoBoundsAggregation> {

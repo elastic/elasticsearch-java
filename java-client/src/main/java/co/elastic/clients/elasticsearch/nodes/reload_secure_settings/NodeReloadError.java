@@ -30,16 +30,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.reload_secure_settings.NodeReloadError
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/reload_secure_settings/types.ts#L24-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeReloadError implements JsonpSerializable {
 	private final String name;
@@ -51,15 +58,13 @@ public class NodeReloadError implements JsonpSerializable {
 
 	private NodeReloadError(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.reloadException = builder.reloadException;
 
 	}
 
-	public static NodeReloadError of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodeReloadError of(Function<Builder, ObjectBuilder<NodeReloadError>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -104,6 +109,7 @@ public class NodeReloadError implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeReloadError}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeReloadError> {
 		private String name;
 
@@ -129,10 +135,8 @@ public class NodeReloadError implements JsonpSerializable {
 		/**
 		 * API name: {@code reload_exception}
 		 */
-		public final Builder reloadException(Consumer<ErrorCause.Builder> fn) {
-			ErrorCause.Builder builder = new ErrorCause.Builder();
-			fn.accept(builder);
-			return this.reloadException(builder.build());
+		public final Builder reloadException(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+			return this.reloadException(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		/**

@@ -36,8 +36,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.MapBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -45,16 +44,22 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.put_template.Request
+
+/**
+ * Creates or updates an index template.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/put_template/IndicesPutTemplateRequest.ts#L29-L94">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutTemplateRequest extends RequestBase implements JsonpSerializable {
 	private final Map<String, Alias> aliases;
@@ -93,25 +98,23 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 
 	private PutTemplateRequest(Builder builder) {
 
-		this.aliases = ModelTypeHelper.unmodifiable(builder.aliases);
+		this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
 		this.create = builder.create;
 		this.flatSettings = builder.flatSettings;
 		this.includeTypeName = builder.includeTypeName;
-		this.indexPatterns = ModelTypeHelper.unmodifiable(builder.indexPatterns);
+		this.indexPatterns = ApiTypeHelper.unmodifiable(builder.indexPatterns);
 		this.mappings = builder.mappings;
 		this.masterTimeout = builder.masterTimeout;
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.order = builder.order;
-		this.settings = ModelTypeHelper.unmodifiable(builder.settings);
+		this.settings = ApiTypeHelper.unmodifiable(builder.settings);
 		this.timeout = builder.timeout;
 		this.version = builder.version;
 
 	}
 
-	public static PutTemplateRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PutTemplateRequest of(Function<Builder, ObjectBuilder<PutTemplateRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -242,7 +245,7 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.aliases)) {
+		if (ApiTypeHelper.isDefined(this.aliases)) {
 			generator.writeKey("aliases");
 			generator.writeStartObject();
 			for (Map.Entry<String, Alias> item0 : this.aliases.entrySet()) {
@@ -253,7 +256,7 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.indexPatterns)) {
+		if (ApiTypeHelper.isDefined(this.indexPatterns)) {
 			generator.writeKey("index_patterns");
 			generator.writeStartArray();
 			for (String item0 : this.indexPatterns) {
@@ -273,7 +276,7 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 			generator.write(this.order);
 
 		}
-		if (ModelTypeHelper.isDefined(this.settings)) {
+		if (ApiTypeHelper.isDefined(this.settings)) {
 			generator.writeKey("settings");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.settings.entrySet()) {
@@ -297,6 +300,7 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 	/**
 	 * Builder for {@link PutTemplateRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutTemplateRequest> {
 		@Nullable
 		private Map<String, Alias> aliases;
@@ -337,15 +341,35 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 		 * Aliases for the index.
 		 * <p>
 		 * API name: {@code aliases}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>aliases</code>.
 		 */
-		public final Builder aliases(@Nullable Map<String, Alias> value) {
-			this.aliases = value;
+		public final Builder aliases(Map<String, Alias> map) {
+			this.aliases = _mapPutAll(this.aliases, map);
 			return this;
 		}
 
-		public final Builder aliases(
-				Function<MapBuilder<String, Alias, Alias.Builder>, ObjectBuilder<Map<String, Alias>>> fn) {
-			return aliases(fn.apply(new MapBuilder<>(Alias.Builder::new)).build());
+		/**
+		 * Aliases for the index.
+		 * <p>
+		 * API name: {@code aliases}
+		 * <p>
+		 * Adds an entry to <code>aliases</code>.
+		 */
+		public final Builder aliases(String key, Alias value) {
+			this.aliases = _mapPut(this.aliases, key, value);
+			return this;
+		}
+
+		/**
+		 * Aliases for the index.
+		 * <p>
+		 * API name: {@code aliases}
+		 * <p>
+		 * Adds an entry to <code>aliases</code> using a builder lambda.
+		 */
+		public final Builder aliases(String key, Function<Alias.Builder, ObjectBuilder<Alias>> fn) {
+			return aliases(key, fn.apply(new Alias.Builder()).build());
 		}
 
 		/**
@@ -379,9 +403,11 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 		 * creation.
 		 * <p>
 		 * API name: {@code index_patterns}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>indexPatterns</code>.
 		 */
-		public final Builder indexPatterns(@Nullable List<String> value) {
-			this.indexPatterns = value;
+		public final Builder indexPatterns(List<String> list) {
+			this.indexPatterns = _listAddAll(this.indexPatterns, list);
 			return this;
 		}
 
@@ -390,9 +416,11 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 		 * creation.
 		 * <p>
 		 * API name: {@code index_patterns}
+		 * <p>
+		 * Adds one or more values to <code>indexPatterns</code>.
 		 */
-		public final Builder indexPatterns(String... value) {
-			this.indexPatterns = Arrays.asList(value);
+		public final Builder indexPatterns(String value, String... values) {
+			this.indexPatterns = _listAdd(this.indexPatterns, value, values);
 			return this;
 		}
 
@@ -411,10 +439,8 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 		 * <p>
 		 * API name: {@code mappings}
 		 */
-		public final Builder mappings(Consumer<TypeMapping.Builder> fn) {
-			TypeMapping.Builder builder = new TypeMapping.Builder();
-			fn.accept(builder);
-			return this.mappings(builder.build());
+		public final Builder mappings(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
+			return this.mappings(fn.apply(new TypeMapping.Builder()).build());
 		}
 
 		/**
@@ -434,10 +460,8 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.masterTimeout(builder.build());
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -468,9 +492,23 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 		 * Configuration options for the index.
 		 * <p>
 		 * API name: {@code settings}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>settings</code>.
 		 */
-		public final Builder settings(@Nullable Map<String, JsonData> value) {
-			this.settings = value;
+		public final Builder settings(Map<String, JsonData> map) {
+			this.settings = _mapPutAll(this.settings, map);
+			return this;
+		}
+
+		/**
+		 * Configuration options for the index.
+		 * <p>
+		 * API name: {@code settings}
+		 * <p>
+		 * Adds an entry to <code>settings</code>.
+		 */
+		public final Builder settings(String key, JsonData value) {
+			this.settings = _mapPut(this.settings, key, value);
 			return this;
 		}
 
@@ -485,10 +523,8 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 		/**
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.timeout(builder.build());
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

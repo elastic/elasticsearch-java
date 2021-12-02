@@ -34,10 +34,17 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.templates.TemplatesRecord
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/templates/types.ts#L22-L48">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TemplatesRecord implements JsonpSerializable {
 	@Nullable
@@ -67,10 +74,8 @@ public class TemplatesRecord implements JsonpSerializable {
 
 	}
 
-	public static TemplatesRecord of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TemplatesRecord of(Function<Builder, ObjectBuilder<TemplatesRecord>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -167,6 +172,7 @@ public class TemplatesRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link TemplatesRecord}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TemplatesRecord> {
 		@Nullable
 		private String name;

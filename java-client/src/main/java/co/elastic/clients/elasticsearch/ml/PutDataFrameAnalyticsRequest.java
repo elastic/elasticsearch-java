@@ -33,7 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,10 +42,20 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_data_frame_analytics.Request
+
+/**
+ * Instantiates a data frame analytics job. This API creates a data frame
+ * analytics job that performs an analysis on the source indices and stores the
+ * outcome in a destination index.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/put_data_frame_analytics/MlPutDataFrameAnalyticsRequest.ts#L30-L130">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -76,21 +86,19 @@ public class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSe
 	private PutDataFrameAnalyticsRequest(Builder builder) {
 
 		this.allowLazyStart = builder.allowLazyStart;
-		this.analysis = ModelTypeHelper.requireNonNull(builder.analysis, this, "analysis");
+		this.analysis = ApiTypeHelper.requireNonNull(builder.analysis, this, "analysis");
 		this.analyzedFields = builder.analyzedFields;
 		this.description = builder.description;
-		this.dest = ModelTypeHelper.requireNonNull(builder.dest, this, "dest");
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.dest = ApiTypeHelper.requireNonNull(builder.dest, this, "dest");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.maxNumThreads = builder.maxNumThreads;
 		this.modelMemoryLimit = builder.modelMemoryLimit;
-		this.source = ModelTypeHelper.requireNonNull(builder.source, this, "source");
+		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
 
 	}
 
-	public static PutDataFrameAnalyticsRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PutDataFrameAnalyticsRequest of(Function<Builder, ObjectBuilder<PutDataFrameAnalyticsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -277,6 +285,7 @@ public class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSe
 	/**
 	 * Builder for {@link PutDataFrameAnalyticsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutDataFrameAnalyticsRequest> {
 		@Nullable
 		private Boolean allowLazyStart;
@@ -336,10 +345,8 @@ public class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSe
 		 * <p>
 		 * API name: {@code analysis}
 		 */
-		public final Builder analysis(Consumer<DataframeAnalysis.Builder> fn) {
-			DataframeAnalysis.Builder builder = new DataframeAnalysis.Builder();
-			fn.accept(builder);
-			return this.analysis(builder.build());
+		public final Builder analysis(Function<DataframeAnalysis.Builder, ObjectBuilder<DataframeAnalysis>> fn) {
+			return this.analysis(fn.apply(new DataframeAnalysis.Builder()).build());
 		}
 
 		/**
@@ -415,10 +422,9 @@ public class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSe
 		 * <p>
 		 * API name: {@code analyzed_fields}
 		 */
-		public final Builder analyzedFields(Consumer<DataframeAnalysisAnalyzedFields.Builder> fn) {
-			DataframeAnalysisAnalyzedFields.Builder builder = new DataframeAnalysisAnalyzedFields.Builder();
-			fn.accept(builder);
-			return this.analyzedFields(builder.build());
+		public final Builder analyzedFields(
+				Function<DataframeAnalysisAnalyzedFields.Builder, ObjectBuilder<DataframeAnalysisAnalyzedFields>> fn) {
+			return this.analyzedFields(fn.apply(new DataframeAnalysisAnalyzedFields.Builder()).build());
 		}
 
 		/**
@@ -446,10 +452,9 @@ public class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSe
 		 * <p>
 		 * API name: {@code dest}
 		 */
-		public final Builder dest(Consumer<DataframeAnalyticsDestination.Builder> fn) {
-			DataframeAnalyticsDestination.Builder builder = new DataframeAnalyticsDestination.Builder();
-			fn.accept(builder);
-			return this.dest(builder.build());
+		public final Builder dest(
+				Function<DataframeAnalyticsDestination.Builder, ObjectBuilder<DataframeAnalyticsDestination>> fn) {
+			return this.dest(fn.apply(new DataframeAnalyticsDestination.Builder()).build());
 		}
 
 		/**
@@ -506,10 +511,9 @@ public class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSe
 		 * <p>
 		 * API name: {@code source}
 		 */
-		public final Builder source(Consumer<DataframeAnalyticsSource.Builder> fn) {
-			DataframeAnalyticsSource.Builder builder = new DataframeAnalyticsSource.Builder();
-			fn.accept(builder);
-			return this.source(builder.build());
+		public final Builder source(
+				Function<DataframeAnalyticsSource.Builder, ObjectBuilder<DataframeAnalyticsSource>> fn) {
+			return this.source(fn.apply(new DataframeAnalyticsSource.Builder()).build());
 		}
 
 		/**

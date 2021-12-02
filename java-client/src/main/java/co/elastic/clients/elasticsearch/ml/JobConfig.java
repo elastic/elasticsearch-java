@@ -31,20 +31,26 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.JobConfig
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/Job.ts#L72-L90">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class JobConfig implements JsonpSerializable {
 	@Nullable
@@ -100,15 +106,15 @@ public class JobConfig implements JsonpSerializable {
 	private JobConfig(Builder builder) {
 
 		this.allowLazyOpen = builder.allowLazyOpen;
-		this.analysisConfig = ModelTypeHelper.requireNonNull(builder.analysisConfig, this, "analysisConfig");
+		this.analysisConfig = ApiTypeHelper.requireNonNull(builder.analysisConfig, this, "analysisConfig");
 		this.analysisLimits = builder.analysisLimits;
 		this.backgroundPersistInterval = builder.backgroundPersistInterval;
 		this.customSettings = builder.customSettings;
 		this.dailyModelSnapshotRetentionAfterDays = builder.dailyModelSnapshotRetentionAfterDays;
-		this.dataDescription = ModelTypeHelper.requireNonNull(builder.dataDescription, this, "dataDescription");
+		this.dataDescription = ApiTypeHelper.requireNonNull(builder.dataDescription, this, "dataDescription");
 		this.datafeedConfig = builder.datafeedConfig;
 		this.description = builder.description;
-		this.groups = ModelTypeHelper.unmodifiable(builder.groups);
+		this.groups = ApiTypeHelper.unmodifiable(builder.groups);
 		this.jobId = builder.jobId;
 		this.jobType = builder.jobType;
 		this.modelPlotConfig = builder.modelPlotConfig;
@@ -119,10 +125,8 @@ public class JobConfig implements JsonpSerializable {
 
 	}
 
-	public static JobConfig of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static JobConfig of(Function<Builder, ObjectBuilder<JobConfig>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -310,7 +314,7 @@ public class JobConfig implements JsonpSerializable {
 			generator.write(this.description);
 
 		}
-		if (ModelTypeHelper.isDefined(this.groups)) {
+		if (ApiTypeHelper.isDefined(this.groups)) {
 			generator.writeKey("groups");
 			generator.writeStartArray();
 			for (String item0 : this.groups) {
@@ -363,6 +367,7 @@ public class JobConfig implements JsonpSerializable {
 	/**
 	 * Builder for {@link JobConfig}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<JobConfig> {
 		@Nullable
 		private Boolean allowLazyOpen;
@@ -432,10 +437,8 @@ public class JobConfig implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code analysis_config}
 		 */
-		public final Builder analysisConfig(Consumer<AnalysisConfig.Builder> fn) {
-			AnalysisConfig.Builder builder = new AnalysisConfig.Builder();
-			fn.accept(builder);
-			return this.analysisConfig(builder.build());
+		public final Builder analysisConfig(Function<AnalysisConfig.Builder, ObjectBuilder<AnalysisConfig>> fn) {
+			return this.analysisConfig(fn.apply(new AnalysisConfig.Builder()).build());
 		}
 
 		/**
@@ -449,10 +452,8 @@ public class JobConfig implements JsonpSerializable {
 		/**
 		 * API name: {@code analysis_limits}
 		 */
-		public final Builder analysisLimits(Consumer<AnalysisLimits.Builder> fn) {
-			AnalysisLimits.Builder builder = new AnalysisLimits.Builder();
-			fn.accept(builder);
-			return this.analysisLimits(builder.build());
+		public final Builder analysisLimits(Function<AnalysisLimits.Builder, ObjectBuilder<AnalysisLimits>> fn) {
+			return this.analysisLimits(fn.apply(new AnalysisLimits.Builder()).build());
 		}
 
 		/**
@@ -466,10 +467,8 @@ public class JobConfig implements JsonpSerializable {
 		/**
 		 * API name: {@code background_persist_interval}
 		 */
-		public final Builder backgroundPersistInterval(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.backgroundPersistInterval(builder.build());
+		public final Builder backgroundPersistInterval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.backgroundPersistInterval(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -499,10 +498,8 @@ public class JobConfig implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code data_description}
 		 */
-		public final Builder dataDescription(Consumer<DataDescription.Builder> fn) {
-			DataDescription.Builder builder = new DataDescription.Builder();
-			fn.accept(builder);
-			return this.dataDescription(builder.build());
+		public final Builder dataDescription(Function<DataDescription.Builder, ObjectBuilder<DataDescription>> fn) {
+			return this.dataDescription(fn.apply(new DataDescription.Builder()).build());
 		}
 
 		/**
@@ -516,10 +513,8 @@ public class JobConfig implements JsonpSerializable {
 		/**
 		 * API name: {@code datafeed_config}
 		 */
-		public final Builder datafeedConfig(Consumer<DatafeedConfig.Builder> fn) {
-			DatafeedConfig.Builder builder = new DatafeedConfig.Builder();
-			fn.accept(builder);
-			return this.datafeedConfig(builder.build());
+		public final Builder datafeedConfig(Function<DatafeedConfig.Builder, ObjectBuilder<DatafeedConfig>> fn) {
+			return this.datafeedConfig(fn.apply(new DatafeedConfig.Builder()).build());
 		}
 
 		/**
@@ -532,17 +527,21 @@ public class JobConfig implements JsonpSerializable {
 
 		/**
 		 * API name: {@code groups}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>groups</code>.
 		 */
-		public final Builder groups(@Nullable List<String> value) {
-			this.groups = value;
+		public final Builder groups(List<String> list) {
+			this.groups = _listAddAll(this.groups, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code groups}
+		 * <p>
+		 * Adds one or more values to <code>groups</code>.
 		 */
-		public final Builder groups(String... value) {
-			this.groups = Arrays.asList(value);
+		public final Builder groups(String value, String... values) {
+			this.groups = _listAdd(this.groups, value, values);
 			return this;
 		}
 
@@ -573,10 +572,8 @@ public class JobConfig implements JsonpSerializable {
 		/**
 		 * API name: {@code model_plot_config}
 		 */
-		public final Builder modelPlotConfig(Consumer<ModelPlotConfig.Builder> fn) {
-			ModelPlotConfig.Builder builder = new ModelPlotConfig.Builder();
-			fn.accept(builder);
-			return this.modelPlotConfig(builder.build());
+		public final Builder modelPlotConfig(Function<ModelPlotConfig.Builder, ObjectBuilder<ModelPlotConfig>> fn) {
+			return this.modelPlotConfig(fn.apply(new ModelPlotConfig.Builder()).build());
 		}
 
 		/**

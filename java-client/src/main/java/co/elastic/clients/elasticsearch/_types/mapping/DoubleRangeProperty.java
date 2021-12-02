@@ -31,9 +31,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.mapping.DoubleRangeProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/range.ts#L42-L44">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DoubleRangeProperty extends RangePropertyBase implements PropertyVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -43,10 +50,8 @@ public class DoubleRangeProperty extends RangePropertyBase implements PropertyVa
 
 	}
 
-	public static DoubleRangeProperty of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DoubleRangeProperty of(Function<Builder, ObjectBuilder<DoubleRangeProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -69,6 +74,7 @@ public class DoubleRangeProperty extends RangePropertyBase implements PropertyVa
 	/**
 	 * Builder for {@link DoubleRangeProperty}.
 	 */
+
 	public static class Builder extends RangePropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DoubleRangeProperty> {

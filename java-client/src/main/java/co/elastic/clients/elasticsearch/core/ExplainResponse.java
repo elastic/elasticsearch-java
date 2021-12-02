@@ -33,18 +33,25 @@ import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: _global.explain.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/explain/ExplainResponse.ts#L23-L32">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ExplainResponse<TDocument> implements JsonpSerializable {
 	private final String index;
@@ -69,20 +76,19 @@ public class ExplainResponse<TDocument> implements JsonpSerializable {
 
 	private ExplainResponse(Builder<TDocument> builder) {
 
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.type = builder.type;
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
-		this.matched = ModelTypeHelper.requireNonNull(builder.matched, this, "matched");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.matched = ApiTypeHelper.requireNonNull(builder.matched, this, "matched");
 		this.explanation = builder.explanation;
 		this.get = builder.get;
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}
 
-	public static <TDocument> ExplainResponse<TDocument> of(Consumer<Builder<TDocument>> fn) {
-		Builder<TDocument> builder = new Builder<>();
-		fn.accept(builder);
-		return builder.build();
+	public static <TDocument> ExplainResponse<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<ExplainResponse<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
@@ -173,6 +179,7 @@ public class ExplainResponse<TDocument> implements JsonpSerializable {
 	/**
 	 * Builder for {@link ExplainResponse}.
 	 */
+
 	public static class Builder<TDocument> extends ObjectBuilderBase
 			implements
 				ObjectBuilder<ExplainResponse<TDocument>> {
@@ -237,10 +244,9 @@ public class ExplainResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code explanation}
 		 */
-		public final Builder<TDocument> explanation(Consumer<ExplanationDetail.Builder> fn) {
-			ExplanationDetail.Builder builder = new ExplanationDetail.Builder();
-			fn.accept(builder);
-			return this.explanation(builder.build());
+		public final Builder<TDocument> explanation(
+				Function<ExplanationDetail.Builder, ObjectBuilder<ExplanationDetail>> fn) {
+			return this.explanation(fn.apply(new ExplanationDetail.Builder()).build());
 		}
 
 		/**
@@ -254,10 +260,9 @@ public class ExplainResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code get}
 		 */
-		public final Builder<TDocument> get(Consumer<InlineGet.Builder<TDocument>> fn) {
-			InlineGet.Builder<TDocument> builder = new InlineGet.Builder<TDocument>();
-			fn.accept(builder);
-			return this.get(builder.build());
+		public final Builder<TDocument> get(
+				Function<InlineGet.Builder<TDocument>, ObjectBuilder<InlineGet<TDocument>>> fn) {
+			return this.get(fn.apply(new InlineGet.Builder<TDocument>()).build());
 		}
 
 		/**
@@ -285,7 +290,7 @@ public class ExplainResponse<TDocument> implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for ExplainResponse
+	 * Create a JSON deserializer for ExplainResponse
 	 */
 	public static <TDocument> JsonpDeserializer<ExplainResponse<TDocument>> createExplainResponseDeserializer(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {

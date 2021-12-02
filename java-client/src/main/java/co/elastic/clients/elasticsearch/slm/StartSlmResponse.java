@@ -31,9 +31,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: slm.start.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/slm/start/StartSnapshotLifecycleManagementResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class StartSlmResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
@@ -43,10 +50,8 @@ public class StartSlmResponse extends AcknowledgedResponseBase {
 
 	}
 
-	public static StartSlmResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static StartSlmResponse of(Function<Builder, ObjectBuilder<StartSlmResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -54,6 +59,7 @@ public class StartSlmResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link StartSlmResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<StartSlmResponse> {

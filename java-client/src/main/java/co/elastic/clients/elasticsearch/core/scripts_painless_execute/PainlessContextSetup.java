@@ -31,16 +31,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.scripts_painless_execute.PainlessContextSetup
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/scripts_painless_execute/types.ts#L25-L29">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PainlessContextSetup implements JsonpSerializable {
 	private final JsonData document;
@@ -53,16 +60,14 @@ public class PainlessContextSetup implements JsonpSerializable {
 
 	private PainlessContextSetup(Builder builder) {
 
-		this.document = ModelTypeHelper.requireNonNull(builder.document, this, "document");
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
-		this.query = ModelTypeHelper.requireNonNull(builder.query, this, "query");
+		this.document = ApiTypeHelper.requireNonNull(builder.document, this, "document");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 
 	}
 
-	public static PainlessContextSetup of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PainlessContextSetup of(Function<Builder, ObjectBuilder<PainlessContextSetup>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -113,6 +118,7 @@ public class PainlessContextSetup implements JsonpSerializable {
 	/**
 	 * Builder for {@link PainlessContextSetup}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PainlessContextSetup> {
 		private JsonData document;
 
@@ -147,10 +153,8 @@ public class PainlessContextSetup implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code query}
 		 */
-		public final Builder query(Consumer<Query.Builder> fn) {
-			Query.Builder builder = new Query.Builder();
-			fn.accept(builder);
-			return this.query(builder.build());
+		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**

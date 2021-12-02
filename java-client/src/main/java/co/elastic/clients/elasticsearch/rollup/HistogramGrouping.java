@@ -29,19 +29,25 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup._types.HistogramGrouping
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/rollup/_types/Groupings.ts#L44-L47">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class HistogramGrouping implements JsonpSerializable {
 	private final List<String> fields;
@@ -52,15 +58,13 @@ public class HistogramGrouping implements JsonpSerializable {
 
 	private HistogramGrouping(Builder builder) {
 
-		this.fields = ModelTypeHelper.unmodifiableRequired(builder.fields, this, "fields");
-		this.interval = ModelTypeHelper.requireNonNull(builder.interval, this, "interval");
+		this.fields = ApiTypeHelper.unmodifiableRequired(builder.fields, this, "fields");
+		this.interval = ApiTypeHelper.requireNonNull(builder.interval, this, "interval");
 
 	}
 
-	public static HistogramGrouping of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static HistogramGrouping of(Function<Builder, ObjectBuilder<HistogramGrouping>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -88,7 +92,7 @@ public class HistogramGrouping implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.fields)) {
+		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartArray();
 			for (String item0 : this.fields) {
@@ -108,6 +112,7 @@ public class HistogramGrouping implements JsonpSerializable {
 	/**
 	 * Builder for {@link HistogramGrouping}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HistogramGrouping> {
 		private List<String> fields;
 
@@ -115,17 +120,21 @@ public class HistogramGrouping implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fields</code>.
 		 */
-		public final Builder fields(List<String> value) {
-			this.fields = value;
+		public final Builder fields(List<String> list) {
+			this.fields = _listAddAll(this.fields, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code fields}
+		 * <p>
+		 * Adds one or more values to <code>fields</code>.
 		 */
-		public final Builder fields(String... value) {
-			this.fields = Arrays.asList(value);
+		public final Builder fields(String value, String... values) {
+			this.fields = _listAdd(this.fields, value, values);
 			return this;
 		}
 

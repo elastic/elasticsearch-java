@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,10 +40,18 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.enable_user.Request
+
+/**
+ * Enables users in the native realm.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/enable_user/SecurityEnableUserRequest.ts#L23-L35">API
+ *      specification</a>
+ */
 
 public class EnableUserRequest extends RequestBase {
 	@Nullable
@@ -56,14 +64,12 @@ public class EnableUserRequest extends RequestBase {
 	private EnableUserRequest(Builder builder) {
 
 		this.refresh = builder.refresh;
-		this.username = ModelTypeHelper.requireNonNull(builder.username, this, "username");
+		this.username = ApiTypeHelper.requireNonNull(builder.username, this, "username");
 
 	}
 
-	public static EnableUserRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static EnableUserRequest of(Function<Builder, ObjectBuilder<EnableUserRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -93,6 +99,7 @@ public class EnableUserRequest extends RequestBase {
 	/**
 	 * Builder for {@link EnableUserRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<EnableUserRequest> {
 		@Nullable
 		private Refresh refresh;

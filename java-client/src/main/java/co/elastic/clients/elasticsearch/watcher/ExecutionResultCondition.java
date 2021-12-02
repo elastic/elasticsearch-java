@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ExecutionResultCondition
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Execution.ts#L67-L71">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ExecutionResultCondition implements JsonpSerializable {
 	private final boolean met;
@@ -51,16 +58,14 @@ public class ExecutionResultCondition implements JsonpSerializable {
 
 	private ExecutionResultCondition(Builder builder) {
 
-		this.met = ModelTypeHelper.requireNonNull(builder.met, this, "met");
-		this.status = ModelTypeHelper.requireNonNull(builder.status, this, "status");
-		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
+		this.met = ApiTypeHelper.requireNonNull(builder.met, this, "met");
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 
-	public static ExecutionResultCondition of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ExecutionResultCondition of(Function<Builder, ObjectBuilder<ExecutionResultCondition>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -110,6 +115,7 @@ public class ExecutionResultCondition implements JsonpSerializable {
 	/**
 	 * Builder for {@link ExecutionResultCondition}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExecutionResultCondition> {
 		private Boolean met;
 

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,10 +40,17 @@ import java.lang.Long;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.segments.Segment
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/segments/types.ts#L28-L39">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Segment implements JsonpSerializable {
 	private final Map<String, String> attributes;
@@ -70,23 +77,21 @@ public class Segment implements JsonpSerializable {
 
 	private Segment(Builder builder) {
 
-		this.attributes = ModelTypeHelper.unmodifiableRequired(builder.attributes, this, "attributes");
-		this.committed = ModelTypeHelper.requireNonNull(builder.committed, this, "committed");
-		this.compound = ModelTypeHelper.requireNonNull(builder.compound, this, "compound");
-		this.deletedDocs = ModelTypeHelper.requireNonNull(builder.deletedDocs, this, "deletedDocs");
-		this.generation = ModelTypeHelper.requireNonNull(builder.generation, this, "generation");
-		this.memoryInBytes = ModelTypeHelper.requireNonNull(builder.memoryInBytes, this, "memoryInBytes");
-		this.search = ModelTypeHelper.requireNonNull(builder.search, this, "search");
-		this.sizeInBytes = ModelTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
-		this.numDocs = ModelTypeHelper.requireNonNull(builder.numDocs, this, "numDocs");
-		this.version = ModelTypeHelper.requireNonNull(builder.version, this, "version");
+		this.attributes = ApiTypeHelper.unmodifiableRequired(builder.attributes, this, "attributes");
+		this.committed = ApiTypeHelper.requireNonNull(builder.committed, this, "committed");
+		this.compound = ApiTypeHelper.requireNonNull(builder.compound, this, "compound");
+		this.deletedDocs = ApiTypeHelper.requireNonNull(builder.deletedDocs, this, "deletedDocs");
+		this.generation = ApiTypeHelper.requireNonNull(builder.generation, this, "generation");
+		this.memoryInBytes = ApiTypeHelper.requireNonNull(builder.memoryInBytes, this, "memoryInBytes");
+		this.search = ApiTypeHelper.requireNonNull(builder.search, this, "search");
+		this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
+		this.numDocs = ApiTypeHelper.requireNonNull(builder.numDocs, this, "numDocs");
+		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
 
 	}
 
-	public static Segment of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Segment of(Function<Builder, ObjectBuilder<Segment>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -170,7 +175,7 @@ public class Segment implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.attributes)) {
+		if (ApiTypeHelper.isDefined(this.attributes)) {
 			generator.writeKey("attributes");
 			generator.writeStartObject();
 			for (Map.Entry<String, String> item0 : this.attributes.entrySet()) {
@@ -215,6 +220,7 @@ public class Segment implements JsonpSerializable {
 	/**
 	 * Builder for {@link Segment}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Segment> {
 		private Map<String, String> attributes;
 
@@ -238,9 +244,21 @@ public class Segment implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code attributes}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>attributes</code>.
 		 */
-		public final Builder attributes(Map<String, String> value) {
-			this.attributes = value;
+		public final Builder attributes(Map<String, String> map) {
+			this.attributes = _mapPutAll(this.attributes, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code attributes}
+		 * <p>
+		 * Adds an entry to <code>attributes</code>.
+		 */
+		public final Builder attributes(String key, String value) {
+			this.attributes = _mapPut(this.attributes, key, value);
 			return this;
 		}
 

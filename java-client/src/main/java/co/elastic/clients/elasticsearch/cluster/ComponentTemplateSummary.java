@@ -33,8 +33,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,11 +41,17 @@ import java.lang.Long;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster._types.ComponentTemplateSummary
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/_types/ComponentTemplate.ts#L38-L45">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ComponentTemplateSummary implements JsonpSerializable {
 	private final Map<String, JsonData> meta;
@@ -65,18 +70,16 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 
 	private ComponentTemplateSummary(Builder builder) {
 
-		this.meta = ModelTypeHelper.unmodifiable(builder.meta);
+		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 		this.version = builder.version;
-		this.settings = ModelTypeHelper.unmodifiableRequired(builder.settings, this, "settings");
+		this.settings = ApiTypeHelper.unmodifiableRequired(builder.settings, this, "settings");
 		this.mappings = builder.mappings;
-		this.aliases = ModelTypeHelper.unmodifiable(builder.aliases);
+		this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
 
 	}
 
-	public static ComponentTemplateSummary of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ComponentTemplateSummary of(Function<Builder, ObjectBuilder<ComponentTemplateSummary>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -127,7 +130,7 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.meta)) {
+		if (ApiTypeHelper.isDefined(this.meta)) {
 			generator.writeKey("_meta");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
@@ -143,7 +146,7 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 			generator.write(this.version);
 
 		}
-		if (ModelTypeHelper.isDefined(this.settings)) {
+		if (ApiTypeHelper.isDefined(this.settings)) {
 			generator.writeKey("settings");
 			generator.writeStartObject();
 			for (Map.Entry<String, IndexSettings> item0 : this.settings.entrySet()) {
@@ -159,7 +162,7 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 			this.mappings.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.aliases)) {
+		if (ApiTypeHelper.isDefined(this.aliases)) {
 			generator.writeKey("aliases");
 			generator.writeStartObject();
 			for (Map.Entry<String, AliasDefinition> item0 : this.aliases.entrySet()) {
@@ -178,6 +181,7 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 	/**
 	 * Builder for {@link ComponentTemplateSummary}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ComponentTemplateSummary> {
 		@Nullable
 		private Map<String, JsonData> meta;
@@ -195,9 +199,21 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 
 		/**
 		 * API name: {@code _meta}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>meta</code>.
 		 */
-		public final Builder meta(@Nullable Map<String, JsonData> value) {
-			this.meta = value;
+		public final Builder meta(Map<String, JsonData> map) {
+			this.meta = _mapPutAll(this.meta, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code _meta}
+		 * <p>
+		 * Adds an entry to <code>meta</code>.
+		 */
+		public final Builder meta(String key, JsonData value) {
+			this.meta = _mapPut(this.meta, key, value);
 			return this;
 		}
 
@@ -211,15 +227,31 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code settings}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>settings</code>.
 		 */
-		public final Builder settings(Map<String, IndexSettings> value) {
-			this.settings = value;
+		public final Builder settings(Map<String, IndexSettings> map) {
+			this.settings = _mapPutAll(this.settings, map);
 			return this;
 		}
 
-		public final Builder settings(
-				Function<MapBuilder<String, IndexSettings, IndexSettings.Builder>, ObjectBuilder<Map<String, IndexSettings>>> fn) {
-			return settings(fn.apply(new MapBuilder<>(IndexSettings.Builder::new)).build());
+		/**
+		 * Required - API name: {@code settings}
+		 * <p>
+		 * Adds an entry to <code>settings</code>.
+		 */
+		public final Builder settings(String key, IndexSettings value) {
+			this.settings = _mapPut(this.settings, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code settings}
+		 * <p>
+		 * Adds an entry to <code>settings</code> using a builder lambda.
+		 */
+		public final Builder settings(String key, Function<IndexSettings.Builder, ObjectBuilder<IndexSettings>> fn) {
+			return settings(key, fn.apply(new IndexSettings.Builder()).build());
 		}
 
 		/**
@@ -233,23 +265,37 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code mappings}
 		 */
-		public final Builder mappings(Consumer<TypeMapping.Builder> fn) {
-			TypeMapping.Builder builder = new TypeMapping.Builder();
-			fn.accept(builder);
-			return this.mappings(builder.build());
+		public final Builder mappings(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
+			return this.mappings(fn.apply(new TypeMapping.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code aliases}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>aliases</code>.
 		 */
-		public final Builder aliases(@Nullable Map<String, AliasDefinition> value) {
-			this.aliases = value;
+		public final Builder aliases(Map<String, AliasDefinition> map) {
+			this.aliases = _mapPutAll(this.aliases, map);
 			return this;
 		}
 
-		public final Builder aliases(
-				Function<MapBuilder<String, AliasDefinition, AliasDefinition.Builder>, ObjectBuilder<Map<String, AliasDefinition>>> fn) {
-			return aliases(fn.apply(new MapBuilder<>(AliasDefinition.Builder::new)).build());
+		/**
+		 * API name: {@code aliases}
+		 * <p>
+		 * Adds an entry to <code>aliases</code>.
+		 */
+		public final Builder aliases(String key, AliasDefinition value) {
+			this.aliases = _mapPut(this.aliases, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code aliases}
+		 * <p>
+		 * Adds an entry to <code>aliases</code> using a builder lambda.
+		 */
+		public final Builder aliases(String key, Function<AliasDefinition.Builder, ObjectBuilder<AliasDefinition>> fn) {
+			return aliases(key, fn.apply(new AliasDefinition.Builder()).build());
 		}
 
 		/**

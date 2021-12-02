@@ -31,16 +31,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TestPopulation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/metric.ts#L150-L154">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TestPopulation implements JsonpSerializable {
 	private final String field;
@@ -55,16 +62,14 @@ public class TestPopulation implements JsonpSerializable {
 
 	private TestPopulation(Builder builder) {
 
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.script = builder.script;
 		this.filter = builder.filter;
 
 	}
 
-	public static TestPopulation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TestPopulation of(Function<Builder, ObjectBuilder<TestPopulation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -122,6 +127,7 @@ public class TestPopulation implements JsonpSerializable {
 	/**
 	 * Builder for {@link TestPopulation}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TestPopulation> {
 		private String field;
 
@@ -150,10 +156,8 @@ public class TestPopulation implements JsonpSerializable {
 		/**
 		 * API name: {@code script}
 		 */
-		public final Builder script(Consumer<Script.Builder> fn) {
-			Script.Builder builder = new Script.Builder();
-			fn.accept(builder);
-			return this.script(builder.build());
+		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
 		/**
@@ -167,10 +171,8 @@ public class TestPopulation implements JsonpSerializable {
 		/**
 		 * API name: {@code filter}
 		 */
-		public final Builder filter(Consumer<Query.Builder> fn) {
-			Query.Builder builder = new Query.Builder();
-			fn.accept(builder);
-			return this.filter(builder.build());
+		public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.filter(fn.apply(new Query.Builder()).build());
 		}
 
 		/**

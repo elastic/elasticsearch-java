@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DatafeedStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/Datafeed.ts#L129-L135">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DatafeedStats implements JsonpSerializable {
 	private final String assignmentExplanation;
@@ -55,19 +62,17 @@ public class DatafeedStats implements JsonpSerializable {
 
 	private DatafeedStats(Builder builder) {
 
-		this.assignmentExplanation = ModelTypeHelper.requireNonNull(builder.assignmentExplanation, this,
+		this.assignmentExplanation = ApiTypeHelper.requireNonNull(builder.assignmentExplanation, this,
 				"assignmentExplanation");
-		this.datafeedId = ModelTypeHelper.requireNonNull(builder.datafeedId, this, "datafeedId");
-		this.node = ModelTypeHelper.requireNonNull(builder.node, this, "node");
-		this.state = ModelTypeHelper.requireNonNull(builder.state, this, "state");
-		this.timingStats = ModelTypeHelper.requireNonNull(builder.timingStats, this, "timingStats");
+		this.datafeedId = ApiTypeHelper.requireNonNull(builder.datafeedId, this, "datafeedId");
+		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
+		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
+		this.timingStats = ApiTypeHelper.requireNonNull(builder.timingStats, this, "timingStats");
 
 	}
 
-	public static DatafeedStats of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DatafeedStats of(Function<Builder, ObjectBuilder<DatafeedStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -137,6 +142,7 @@ public class DatafeedStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link DatafeedStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DatafeedStats> {
 		private String assignmentExplanation;
 
@@ -175,10 +181,8 @@ public class DatafeedStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code node}
 		 */
-		public final Builder node(Consumer<DiscoveryNode.Builder> fn) {
-			DiscoveryNode.Builder builder = new DiscoveryNode.Builder();
-			fn.accept(builder);
-			return this.node(builder.build());
+		public final Builder node(Function<DiscoveryNode.Builder, ObjectBuilder<DiscoveryNode>> fn) {
+			return this.node(fn.apply(new DiscoveryNode.Builder()).build());
 		}
 
 		/**
@@ -200,10 +204,8 @@ public class DatafeedStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code timing_stats}
 		 */
-		public final Builder timingStats(Consumer<DatafeedTimingStats.Builder> fn) {
-			DatafeedTimingStats.Builder builder = new DatafeedTimingStats.Builder();
-			fn.accept(builder);
-			return this.timingStats(builder.build());
+		public final Builder timingStats(Function<DatafeedTimingStats.Builder, ObjectBuilder<DatafeedTimingStats>> fn) {
+			return this.timingStats(fn.apply(new DatafeedTimingStats.Builder()).build());
 		}
 
 		/**

@@ -28,15 +28,22 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.IcuTransformTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/icu-plugin.ts#L24-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IcuTransformTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final IcuTransformDirection dir;
@@ -48,15 +55,13 @@ public class IcuTransformTokenFilter extends TokenFilterBase implements TokenFil
 	private IcuTransformTokenFilter(Builder builder) {
 		super(builder);
 
-		this.dir = ModelTypeHelper.requireNonNull(builder.dir, this, "dir");
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.dir = ApiTypeHelper.requireNonNull(builder.dir, this, "dir");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 
 	}
 
-	public static IcuTransformTokenFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IcuTransformTokenFilter of(Function<Builder, ObjectBuilder<IcuTransformTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -97,6 +102,7 @@ public class IcuTransformTokenFilter extends TokenFilterBase implements TokenFil
 	/**
 	 * Builder for {@link IcuTransformTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<IcuTransformTokenFilter> {

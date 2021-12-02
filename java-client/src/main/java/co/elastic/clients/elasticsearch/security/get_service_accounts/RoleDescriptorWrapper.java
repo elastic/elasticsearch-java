@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_service_accounts.RoleDescriptorWrapper
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_service_accounts/types.ts#L29-L31">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RoleDescriptorWrapper implements JsonpSerializable {
 	private final RoleDescriptor roleDescriptor;
@@ -46,14 +53,12 @@ public class RoleDescriptorWrapper implements JsonpSerializable {
 
 	private RoleDescriptorWrapper(Builder builder) {
 
-		this.roleDescriptor = ModelTypeHelper.requireNonNull(builder.roleDescriptor, this, "roleDescriptor");
+		this.roleDescriptor = ApiTypeHelper.requireNonNull(builder.roleDescriptor, this, "roleDescriptor");
 
 	}
 
-	public static RoleDescriptorWrapper of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RoleDescriptorWrapper of(Function<Builder, ObjectBuilder<RoleDescriptorWrapper>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -84,6 +89,7 @@ public class RoleDescriptorWrapper implements JsonpSerializable {
 	/**
 	 * Builder for {@link RoleDescriptorWrapper}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RoleDescriptorWrapper> {
 		private RoleDescriptor roleDescriptor;
 
@@ -98,10 +104,8 @@ public class RoleDescriptorWrapper implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code role_descriptor}
 		 */
-		public final Builder roleDescriptor(Consumer<RoleDescriptor.Builder> fn) {
-			RoleDescriptor.Builder builder = new RoleDescriptor.Builder();
-			fn.accept(builder);
-			return this.roleDescriptor(builder.build());
+		public final Builder roleDescriptor(Function<RoleDescriptor.Builder, ObjectBuilder<RoleDescriptor>> fn) {
+			return this.roleDescriptor(fn.apply(new RoleDescriptor.Builder()).build());
 		}
 
 		/**

@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.delete_job.TaskFailure
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/rollup/delete_job/types.ts#L22-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TaskFailure implements JsonpSerializable {
 	private final String taskId;
@@ -53,17 +60,15 @@ public class TaskFailure implements JsonpSerializable {
 
 	private TaskFailure(Builder builder) {
 
-		this.taskId = ModelTypeHelper.requireNonNull(builder.taskId, this, "taskId");
-		this.nodeId = ModelTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
-		this.status = ModelTypeHelper.requireNonNull(builder.status, this, "status");
-		this.reason = ModelTypeHelper.requireNonNull(builder.reason, this, "reason");
+		this.taskId = ApiTypeHelper.requireNonNull(builder.taskId, this, "taskId");
+		this.nodeId = ApiTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
+		this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
 
 	}
 
-	public static TaskFailure of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TaskFailure of(Function<Builder, ObjectBuilder<TaskFailure>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -124,6 +129,7 @@ public class TaskFailure implements JsonpSerializable {
 	/**
 	 * Builder for {@link TaskFailure}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TaskFailure> {
 		private String taskId;
 
@@ -168,10 +174,8 @@ public class TaskFailure implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code reason}
 		 */
-		public final Builder reason(Consumer<TaskFailureReason.Builder> fn) {
-			TaskFailureReason.Builder builder = new TaskFailureReason.Builder();
-			fn.accept(builder);
-			return this.reason(builder.build());
+		public final Builder reason(Function<TaskFailureReason.Builder, ObjectBuilder<TaskFailureReason>> fn) {
+			return this.reason(fn.apply(new TaskFailureReason.Builder()).build());
 		}
 
 		/**

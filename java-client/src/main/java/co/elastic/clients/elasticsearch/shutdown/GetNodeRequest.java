@@ -31,20 +31,29 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: shutdown.get_node.Request
+
+/**
+ * Retrieve status of a node or nodes that are currently marked as shutting
+ * down. Designed for indirect use by ECE/ESS and ECK. Direct use is not
+ * supported.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/shutdown/get_node/ShutdownGetNodeRequest.ts#L23-L32">API
+ *      specification</a>
+ */
 
 public class GetNodeRequest extends RequestBase {
 	private final List<String> nodeId;
@@ -53,14 +62,12 @@ public class GetNodeRequest extends RequestBase {
 
 	private GetNodeRequest(Builder builder) {
 
-		this.nodeId = ModelTypeHelper.unmodifiable(builder.nodeId);
+		this.nodeId = ApiTypeHelper.unmodifiable(builder.nodeId);
 
 	}
 
-	public static GetNodeRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetNodeRequest of(Function<Builder, ObjectBuilder<GetNodeRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -77,6 +84,7 @@ public class GetNodeRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetNodeRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetNodeRequest> {
 		@Nullable
 		private List<String> nodeId;
@@ -85,9 +93,11 @@ public class GetNodeRequest extends RequestBase {
 		 * Which node for which to retrieve the shutdown status
 		 * <p>
 		 * API name: {@code node_id}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>nodeId</code>.
 		 */
-		public final Builder nodeId(@Nullable List<String> value) {
-			this.nodeId = value;
+		public final Builder nodeId(List<String> list) {
+			this.nodeId = _listAddAll(this.nodeId, list);
 			return this;
 		}
 
@@ -95,9 +105,11 @@ public class GetNodeRequest extends RequestBase {
 		 * Which node for which to retrieve the shutdown status
 		 * <p>
 		 * API name: {@code node_id}
+		 * <p>
+		 * Adds one or more values to <code>nodeId</code>.
 		 */
-		public final Builder nodeId(String... value) {
-			this.nodeId = Arrays.asList(value);
+		public final Builder nodeId(String value, String... values) {
+			this.nodeId = _listAdd(this.nodeId, value, values);
 			return this;
 		}
 
@@ -134,7 +146,7 @@ public class GetNodeRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (ModelTypeHelper.isDefined(request.nodeId()))
+				if (ApiTypeHelper.isDefined(request.nodeId()))
 					propsSet |= _nodeId;
 
 				if (propsSet == 0) {

@@ -51,9 +51,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.MapBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -62,17 +60,23 @@ import java.lang.Double;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: async_search.submit.Request
+
+/**
+ * Executes a search request asynchronously.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/async_search/submit/AsyncSearchSubmitRequest.ts#L53-L243">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SubmitRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -232,7 +236,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 	private SubmitRequest(Builder builder) {
 
 		this.source = builder.source;
-		this.aggregations = ModelTypeHelper.unmodifiable(builder.aggregations);
+		this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);
 		this.allowNoIndices = builder.allowNoIndices;
 		this.allowPartialSearchResults = builder.allowPartialSearchResults;
 		this.analyzeWildcard = builder.analyzeWildcard;
@@ -242,16 +246,16 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		this.collapse = builder.collapse;
 		this.defaultOperator = builder.defaultOperator;
 		this.df = builder.df;
-		this.docvalueFields = ModelTypeHelper.unmodifiable(builder.docvalueFields);
-		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
+		this.docvalueFields = ApiTypeHelper.unmodifiable(builder.docvalueFields);
+		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.explain = builder.explain;
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 		this.from = builder.from;
 		this.highlight = builder.highlight;
 		this.ignoreThrottled = builder.ignoreThrottled;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
-		this.indicesBoost = ModelTypeHelper.unmodifiable(builder.indicesBoost);
+		this.index = ApiTypeHelper.unmodifiable(builder.index);
+		this.indicesBoost = ApiTypeHelper.unmodifiable(builder.indicesBoost);
 		this.keepAlive = builder.keepAlive;
 		this.keepOnCompletion = builder.keepOnCompletion;
 		this.lenient = builder.lenient;
@@ -266,19 +270,19 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		this.q = builder.q;
 		this.query = builder.query;
 		this.requestCache = builder.requestCache;
-		this.rescore = ModelTypeHelper.unmodifiable(builder.rescore);
+		this.rescore = ApiTypeHelper.unmodifiable(builder.rescore);
 		this.routing = builder.routing;
-		this.runtimeMappings = ModelTypeHelper.unmodifiable(builder.runtimeMappings);
-		this.scriptFields = ModelTypeHelper.unmodifiable(builder.scriptFields);
+		this.runtimeMappings = ApiTypeHelper.unmodifiable(builder.runtimeMappings);
+		this.scriptFields = ApiTypeHelper.unmodifiable(builder.scriptFields);
 		this.scroll = builder.scroll;
-		this.searchAfter = ModelTypeHelper.unmodifiable(builder.searchAfter);
+		this.searchAfter = ApiTypeHelper.unmodifiable(builder.searchAfter);
 		this.searchType = builder.searchType;
 		this.seqNoPrimaryTerm = builder.seqNoPrimaryTerm;
 		this.size = builder.size;
 		this.slice = builder.slice;
-		this.sort = ModelTypeHelper.unmodifiable(builder.sort);
-		this.stats = ModelTypeHelper.unmodifiable(builder.stats);
-		this.storedFields = ModelTypeHelper.unmodifiable(builder.storedFields);
+		this.sort = ApiTypeHelper.unmodifiable(builder.sort);
+		this.stats = ApiTypeHelper.unmodifiable(builder.stats);
+		this.storedFields = ApiTypeHelper.unmodifiable(builder.storedFields);
 		this.suggest = builder.suggest;
 		this.terminateAfter = builder.terminateAfter;
 		this.timeout = builder.timeout;
@@ -289,10 +293,8 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 
 	}
 
-	public static SubmitRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SubmitRequest of(Function<Builder, ObjectBuilder<SubmitRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -864,7 +866,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 			this.source.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.aggregations)) {
+		if (ApiTypeHelper.isDefined(this.aggregations)) {
 			generator.writeKey("aggregations");
 			generator.writeStartObject();
 			for (Map.Entry<String, Aggregation> item0 : this.aggregations.entrySet()) {
@@ -880,7 +882,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 			this.collapse.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.docvalueFields)) {
+		if (ApiTypeHelper.isDefined(this.docvalueFields)) {
 			generator.writeKey("docvalue_fields");
 			generator.writeStartArray();
 			for (FieldAndFormat item0 : this.docvalueFields) {
@@ -895,7 +897,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 			generator.write(this.explain);
 
 		}
-		if (ModelTypeHelper.isDefined(this.fields)) {
+		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartArray();
 			for (FieldAndFormat item0 : this.fields) {
@@ -915,7 +917,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 			this.highlight.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.indicesBoost)) {
+		if (ApiTypeHelper.isDefined(this.indicesBoost)) {
 			generator.writeKey("indices_boost");
 			generator.writeStartArray();
 			for (Map<String, Double> item0 : this.indicesBoost) {
@@ -958,7 +960,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 			this.query.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.rescore)) {
+		if (ApiTypeHelper.isDefined(this.rescore)) {
 			generator.writeKey("rescore");
 			generator.writeStartArray();
 			for (Rescore item0 : this.rescore) {
@@ -968,7 +970,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.runtimeMappings)) {
+		if (ApiTypeHelper.isDefined(this.runtimeMappings)) {
 			generator.writeKey("runtime_mappings");
 			generator.writeStartObject();
 			for (Map.Entry<String, RuntimeField> item0 : this.runtimeMappings.entrySet()) {
@@ -979,7 +981,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.scriptFields)) {
+		if (ApiTypeHelper.isDefined(this.scriptFields)) {
 			generator.writeKey("script_fields");
 			generator.writeStartObject();
 			for (Map.Entry<String, ScriptField> item0 : this.scriptFields.entrySet()) {
@@ -990,7 +992,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.searchAfter)) {
+		if (ApiTypeHelper.isDefined(this.searchAfter)) {
 			generator.writeKey("search_after");
 			generator.writeStartArray();
 			for (String item0 : this.searchAfter) {
@@ -1015,7 +1017,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 			this.slice.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.sort)) {
+		if (ApiTypeHelper.isDefined(this.sort)) {
 			generator.writeKey("sort");
 			generator.writeStartArray();
 			for (SortOptions item0 : this.sort) {
@@ -1025,7 +1027,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.stats)) {
+		if (ApiTypeHelper.isDefined(this.stats)) {
 			generator.writeKey("stats");
 			generator.writeStartArray();
 			for (String item0 : this.stats) {
@@ -1035,7 +1037,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.storedFields)) {
+		if (ApiTypeHelper.isDefined(this.storedFields)) {
 			generator.writeKey("stored_fields");
 			generator.writeStartArray();
 			for (String item0 : this.storedFields) {
@@ -1083,6 +1085,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link SubmitRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SubmitRequest> {
 		@Nullable
 		private SourceConfig source;
@@ -1266,23 +1269,37 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _source}
 		 */
-		public final Builder source(Consumer<SourceConfig.Builder> fn) {
-			SourceConfig.Builder builder = new SourceConfig.Builder();
-			fn.accept(builder);
-			return this.source(builder.build());
+		public final Builder source(Function<SourceConfig.Builder, ObjectBuilder<SourceConfig>> fn) {
+			return this.source(fn.apply(new SourceConfig.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code aggregations}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>aggregations</code>.
 		 */
-		public final Builder aggregations(@Nullable Map<String, Aggregation> value) {
-			this.aggregations = value;
+		public final Builder aggregations(Map<String, Aggregation> map) {
+			this.aggregations = _mapPutAll(this.aggregations, map);
 			return this;
 		}
 
-		public final Builder aggregations(
-				Function<MapBuilder<String, Aggregation, Aggregation.Builder>, ObjectBuilder<Map<String, Aggregation>>> fn) {
-			return aggregations(fn.apply(new MapBuilder<>(Aggregation.Builder::new)).build());
+		/**
+		 * API name: {@code aggregations}
+		 * <p>
+		 * Adds an entry to <code>aggregations</code>.
+		 */
+		public final Builder aggregations(String key, Aggregation value) {
+			this.aggregations = _mapPut(this.aggregations, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code aggregations}
+		 * <p>
+		 * Adds an entry to <code>aggregations</code> using a builder lambda.
+		 */
+		public final Builder aggregations(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
+			return aggregations(key, fn.apply(new Aggregation.Builder()).build());
 		}
 
 		/**
@@ -1360,10 +1377,8 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code collapse}
 		 */
-		public final Builder collapse(Consumer<FieldCollapse.Builder> fn) {
-			FieldCollapse.Builder builder = new FieldCollapse.Builder();
-			fn.accept(builder);
-			return this.collapse(builder.build());
+		public final Builder collapse(Function<FieldCollapse.Builder, ObjectBuilder<FieldCollapse>> fn) {
+			return this.collapse(fn.apply(new FieldCollapse.Builder()).build());
 		}
 
 		/**
@@ -1392,9 +1407,11 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		 * names matching these patterns in the hits.fields property of the response.
 		 * <p>
 		 * API name: {@code docvalue_fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>docvalueFields</code>.
 		 */
-		public final Builder docvalueFields(@Nullable List<FieldAndFormat> value) {
-			this.docvalueFields = value;
+		public final Builder docvalueFields(List<FieldAndFormat> list) {
+			this.docvalueFields = _listAddAll(this.docvalueFields, list);
 			return this;
 		}
 
@@ -1403,9 +1420,11 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		 * names matching these patterns in the hits.fields property of the response.
 		 * <p>
 		 * API name: {@code docvalue_fields}
+		 * <p>
+		 * Adds one or more values to <code>docvalueFields</code>.
 		 */
-		public final Builder docvalueFields(FieldAndFormat... value) {
-			this.docvalueFields = Arrays.asList(value);
+		public final Builder docvalueFields(FieldAndFormat value, FieldAndFormat... values) {
+			this.docvalueFields = _listAdd(this.docvalueFields, value, values);
 			return this;
 		}
 
@@ -1414,10 +1433,11 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		 * names matching these patterns in the hits.fields property of the response.
 		 * <p>
 		 * API name: {@code docvalue_fields}
+		 * <p>
+		 * Adds a value to <code>docvalueFields</code> using a builder lambda.
 		 */
-		public final Builder docvalueFields(
-				Function<ListBuilder<FieldAndFormat, FieldAndFormat.Builder>, ObjectBuilder<List<FieldAndFormat>>> fn) {
-			return docvalueFields(fn.apply(new ListBuilder<>(FieldAndFormat.Builder::new)).build());
+		public final Builder docvalueFields(Function<FieldAndFormat.Builder, ObjectBuilder<FieldAndFormat>> fn) {
+			return docvalueFields(fn.apply(new FieldAndFormat.Builder()).build());
 		}
 
 		/**
@@ -1425,9 +1445,11 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		 * closed or both.
 		 * <p>
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
 		 */
-		public final Builder expandWildcards(@Nullable List<ExpandWildcard> value) {
-			this.expandWildcards = value;
+		public final Builder expandWildcards(List<ExpandWildcard> list) {
+			this.expandWildcards = _listAddAll(this.expandWildcards, list);
 			return this;
 		}
 
@@ -1436,9 +1458,11 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		 * closed or both.
 		 * <p>
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds one or more values to <code>expandWildcards</code>.
 		 */
-		public final Builder expandWildcards(ExpandWildcard... value) {
-			this.expandWildcards = Arrays.asList(value);
+		public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
+			this.expandWildcards = _listAdd(this.expandWildcards, value, values);
 			return this;
 		}
 
@@ -1458,9 +1482,11 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		 * matching these patterns in the hits.fields property of the response.
 		 * <p>
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fields</code>.
 		 */
-		public final Builder fields(@Nullable List<FieldAndFormat> value) {
-			this.fields = value;
+		public final Builder fields(List<FieldAndFormat> list) {
+			this.fields = _listAddAll(this.fields, list);
 			return this;
 		}
 
@@ -1469,9 +1495,11 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		 * matching these patterns in the hits.fields property of the response.
 		 * <p>
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds one or more values to <code>fields</code>.
 		 */
-		public final Builder fields(FieldAndFormat... value) {
-			this.fields = Arrays.asList(value);
+		public final Builder fields(FieldAndFormat value, FieldAndFormat... values) {
+			this.fields = _listAdd(this.fields, value, values);
 			return this;
 		}
 
@@ -1480,10 +1508,11 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		 * matching these patterns in the hits.fields property of the response.
 		 * <p>
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds a value to <code>fields</code> using a builder lambda.
 		 */
-		public final Builder fields(
-				Function<ListBuilder<FieldAndFormat, FieldAndFormat.Builder>, ObjectBuilder<List<FieldAndFormat>>> fn) {
-			return fields(fn.apply(new ListBuilder<>(FieldAndFormat.Builder::new)).build());
+		public final Builder fields(Function<FieldAndFormat.Builder, ObjectBuilder<FieldAndFormat>> fn) {
+			return fields(fn.apply(new FieldAndFormat.Builder()).build());
 		}
 
 		/**
@@ -1509,10 +1538,8 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code highlight}
 		 */
-		public final Builder highlight(Consumer<Highlight.Builder> fn) {
-			Highlight.Builder builder = new Highlight.Builder();
-			fn.accept(builder);
-			return this.highlight(builder.build());
+		public final Builder highlight(Function<Highlight.Builder, ObjectBuilder<Highlight>> fn) {
+			return this.highlight(fn.apply(new Highlight.Builder()).build());
 		}
 
 		/**
@@ -1542,9 +1569,11 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		 * empty string to perform the operation on all indices
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 */
-		public final Builder index(@Nullable List<String> value) {
-			this.index = value;
+		public final Builder index(List<String> list) {
+			this.index = _listAddAll(this.index, list);
 			return this;
 		}
 
@@ -1553,9 +1582,11 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		 * empty string to perform the operation on all indices
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds one or more values to <code>index</code>.
 		 */
-		public final Builder index(String... value) {
-			this.index = Arrays.asList(value);
+		public final Builder index(String value, String... values) {
+			this.index = _listAdd(this.index, value, values);
 			return this;
 		}
 
@@ -1563,9 +1594,11 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		 * Boosts the _score of documents from specified indices.
 		 * <p>
 		 * API name: {@code indices_boost}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>indicesBoost</code>.
 		 */
-		public final Builder indicesBoost(@Nullable List<Map<String, Double>> value) {
-			this.indicesBoost = value;
+		public final Builder indicesBoost(List<Map<String, Double>> list) {
+			this.indicesBoost = _listAddAll(this.indicesBoost, list);
 			return this;
 		}
 
@@ -1573,9 +1606,11 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		 * Boosts the _score of documents from specified indices.
 		 * <p>
 		 * API name: {@code indices_boost}
+		 * <p>
+		 * Adds one or more values to <code>indicesBoost</code>.
 		 */
-		public final Builder indicesBoost(Map<String, Double>... value) {
-			this.indicesBoost = Arrays.asList(value);
+		public final Builder indicesBoost(Map<String, Double> value, Map<String, Double>... values) {
+			this.indicesBoost = _listAdd(this.indicesBoost, value, values);
 			return this;
 		}
 
@@ -1596,10 +1631,8 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code keep_alive}
 		 */
-		public final Builder keepAlive(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.keepAlive(builder.build());
+		public final Builder keepAlive(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.keepAlive(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -1672,10 +1705,8 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pit}
 		 */
-		public final Builder pit(Consumer<PointInTimeReference.Builder> fn) {
-			PointInTimeReference.Builder builder = new PointInTimeReference.Builder();
-			fn.accept(builder);
-			return this.pit(builder.build());
+		public final Builder pit(Function<PointInTimeReference.Builder, ObjectBuilder<PointInTimeReference>> fn) {
+			return this.pit(fn.apply(new PointInTimeReference.Builder()).build());
 		}
 
 		/**
@@ -1689,10 +1720,8 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code post_filter}
 		 */
-		public final Builder postFilter(Consumer<Query.Builder> fn) {
-			Query.Builder builder = new Query.Builder();
-			fn.accept(builder);
-			return this.postFilter(builder.build());
+		public final Builder postFilter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.postFilter(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
@@ -1747,10 +1776,8 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code query}
 		 */
-		public final Builder query(Consumer<Query.Builder> fn) {
-			Query.Builder builder = new Query.Builder();
-			fn.accept(builder);
-			return this.query(builder.build());
+		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
@@ -1766,25 +1793,31 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 
 		/**
 		 * API name: {@code rescore}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>rescore</code>.
 		 */
-		public final Builder rescore(@Nullable List<Rescore> value) {
-			this.rescore = value;
+		public final Builder rescore(List<Rescore> list) {
+			this.rescore = _listAddAll(this.rescore, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code rescore}
+		 * <p>
+		 * Adds one or more values to <code>rescore</code>.
 		 */
-		public final Builder rescore(Rescore... value) {
-			this.rescore = Arrays.asList(value);
+		public final Builder rescore(Rescore value, Rescore... values) {
+			this.rescore = _listAdd(this.rescore, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code rescore}
+		 * <p>
+		 * Adds a value to <code>rescore</code> using a builder lambda.
 		 */
-		public final Builder rescore(Function<ListBuilder<Rescore, Rescore.Builder>, ObjectBuilder<List<Rescore>>> fn) {
-			return rescore(fn.apply(new ListBuilder<>(Rescore.Builder::new)).build());
+		public final Builder rescore(Function<Rescore.Builder, ObjectBuilder<Rescore>> fn) {
+			return rescore(fn.apply(new Rescore.Builder()).build());
 		}
 
 		/**
@@ -1802,30 +1835,73 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		 * precedence over mapped fields with the same name.
 		 * <p>
 		 * API name: {@code runtime_mappings}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>runtimeMappings</code>.
 		 */
-		public final Builder runtimeMappings(@Nullable Map<String, RuntimeField> value) {
-			this.runtimeMappings = value;
+		public final Builder runtimeMappings(Map<String, RuntimeField> map) {
+			this.runtimeMappings = _mapPutAll(this.runtimeMappings, map);
 			return this;
 		}
 
-		public final Builder runtimeMappings(
-				Function<MapBuilder<String, RuntimeField, RuntimeField.Builder>, ObjectBuilder<Map<String, RuntimeField>>> fn) {
-			return runtimeMappings(fn.apply(new MapBuilder<>(RuntimeField.Builder::new)).build());
+		/**
+		 * Defines one or more runtime fields in the search request. These fields take
+		 * precedence over mapped fields with the same name.
+		 * <p>
+		 * API name: {@code runtime_mappings}
+		 * <p>
+		 * Adds an entry to <code>runtimeMappings</code>.
+		 */
+		public final Builder runtimeMappings(String key, RuntimeField value) {
+			this.runtimeMappings = _mapPut(this.runtimeMappings, key, value);
+			return this;
+		}
+
+		/**
+		 * Defines one or more runtime fields in the search request. These fields take
+		 * precedence over mapped fields with the same name.
+		 * <p>
+		 * API name: {@code runtime_mappings}
+		 * <p>
+		 * Adds an entry to <code>runtimeMappings</code> using a builder lambda.
+		 */
+		public final Builder runtimeMappings(String key,
+				Function<RuntimeField.Builder, ObjectBuilder<RuntimeField>> fn) {
+			return runtimeMappings(key, fn.apply(new RuntimeField.Builder()).build());
 		}
 
 		/**
 		 * Retrieve a script evaluation (based on different fields) for each hit.
 		 * <p>
 		 * API name: {@code script_fields}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>scriptFields</code>.
 		 */
-		public final Builder scriptFields(@Nullable Map<String, ScriptField> value) {
-			this.scriptFields = value;
+		public final Builder scriptFields(Map<String, ScriptField> map) {
+			this.scriptFields = _mapPutAll(this.scriptFields, map);
 			return this;
 		}
 
-		public final Builder scriptFields(
-				Function<MapBuilder<String, ScriptField, ScriptField.Builder>, ObjectBuilder<Map<String, ScriptField>>> fn) {
-			return scriptFields(fn.apply(new MapBuilder<>(ScriptField.Builder::new)).build());
+		/**
+		 * Retrieve a script evaluation (based on different fields) for each hit.
+		 * <p>
+		 * API name: {@code script_fields}
+		 * <p>
+		 * Adds an entry to <code>scriptFields</code>.
+		 */
+		public final Builder scriptFields(String key, ScriptField value) {
+			this.scriptFields = _mapPut(this.scriptFields, key, value);
+			return this;
+		}
+
+		/**
+		 * Retrieve a script evaluation (based on different fields) for each hit.
+		 * <p>
+		 * API name: {@code script_fields}
+		 * <p>
+		 * Adds an entry to <code>scriptFields</code> using a builder lambda.
+		 */
+		public final Builder scriptFields(String key, Function<ScriptField.Builder, ObjectBuilder<ScriptField>> fn) {
+			return scriptFields(key, fn.apply(new ScriptField.Builder()).build());
 		}
 
 		/**
@@ -1839,25 +1915,27 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code scroll}
 		 */
-		public final Builder scroll(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.scroll(builder.build());
+		public final Builder scroll(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.scroll(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code search_after}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>searchAfter</code>.
 		 */
-		public final Builder searchAfter(@Nullable List<String> value) {
-			this.searchAfter = value;
+		public final Builder searchAfter(List<String> list) {
+			this.searchAfter = _listAddAll(this.searchAfter, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code search_after}
+		 * <p>
+		 * Adds one or more values to <code>searchAfter</code>.
 		 */
-		public final Builder searchAfter(String... value) {
-			this.searchAfter = Arrays.asList(value);
+		public final Builder searchAfter(String value, String... values) {
+			this.searchAfter = _listAdd(this.searchAfter, value, values);
 			return this;
 		}
 
@@ -1905,34 +1983,37 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code slice}
 		 */
-		public final Builder slice(Consumer<SlicedScroll.Builder> fn) {
-			SlicedScroll.Builder builder = new SlicedScroll.Builder();
-			fn.accept(builder);
-			return this.slice(builder.build());
+		public final Builder slice(Function<SlicedScroll.Builder, ObjectBuilder<SlicedScroll>> fn) {
+			return this.slice(fn.apply(new SlicedScroll.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code sort}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>sort</code>.
 		 */
-		public final Builder sort(@Nullable List<SortOptions> value) {
-			this.sort = value;
+		public final Builder sort(List<SortOptions> list) {
+			this.sort = _listAddAll(this.sort, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code sort}
+		 * <p>
+		 * Adds one or more values to <code>sort</code>.
 		 */
-		public final Builder sort(SortOptions... value) {
-			this.sort = Arrays.asList(value);
+		public final Builder sort(SortOptions value, SortOptions... values) {
+			this.sort = _listAdd(this.sort, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code sort}
+		 * <p>
+		 * Adds a value to <code>sort</code> using a builder lambda.
 		 */
-		public final Builder sort(
-				Function<ListBuilder<SortOptions, SortOptions.Builder>, ObjectBuilder<List<SortOptions>>> fn) {
-			return sort(fn.apply(new ListBuilder<>(SortOptions.Builder::new)).build());
+		public final Builder sort(Function<SortOptions.Builder, ObjectBuilder<SortOptions>> fn) {
+			return sort(fn.apply(new SortOptions.Builder()).build());
 		}
 
 		/**
@@ -1941,9 +2022,11 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		 * the indices stats API.
 		 * <p>
 		 * API name: {@code stats}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>stats</code>.
 		 */
-		public final Builder stats(@Nullable List<String> value) {
-			this.stats = value;
+		public final Builder stats(List<String> list) {
+			this.stats = _listAddAll(this.stats, list);
 			return this;
 		}
 
@@ -1953,9 +2036,11 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		 * the indices stats API.
 		 * <p>
 		 * API name: {@code stats}
+		 * <p>
+		 * Adds one or more values to <code>stats</code>.
 		 */
-		public final Builder stats(String... value) {
-			this.stats = Arrays.asList(value);
+		public final Builder stats(String value, String... values) {
+			this.stats = _listAdd(this.stats, value, values);
 			return this;
 		}
 
@@ -1966,9 +2051,11 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		 * both source fields and stored fields in the search response.
 		 * <p>
 		 * API name: {@code stored_fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>storedFields</code>.
 		 */
-		public final Builder storedFields(@Nullable List<String> value) {
-			this.storedFields = value;
+		public final Builder storedFields(List<String> list) {
+			this.storedFields = _listAddAll(this.storedFields, list);
 			return this;
 		}
 
@@ -1979,9 +2066,11 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		 * both source fields and stored fields in the search response.
 		 * <p>
 		 * API name: {@code stored_fields}
+		 * <p>
+		 * Adds one or more values to <code>storedFields</code>.
 		 */
-		public final Builder storedFields(String... value) {
-			this.storedFields = Arrays.asList(value);
+		public final Builder storedFields(String value, String... values) {
+			this.storedFields = _listAdd(this.storedFields, value, values);
 			return this;
 		}
 
@@ -1996,10 +2085,8 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code suggest}
 		 */
-		public final Builder suggest(Consumer<Suggester.Builder> fn) {
-			Suggester.Builder builder = new Suggester.Builder();
-			fn.accept(builder);
-			return this.suggest(builder.build());
+		public final Builder suggest(Function<Suggester.Builder, ObjectBuilder<Suggester>> fn) {
+			return this.suggest(fn.apply(new Suggester.Builder()).build());
 		}
 
 		/**
@@ -2059,10 +2146,8 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code track_total_hits}
 		 */
-		public final Builder trackTotalHits(Consumer<TrackHits.Builder> fn) {
-			TrackHits.Builder builder = new TrackHits.Builder();
-			fn.accept(builder);
-			return this.trackTotalHits(builder.build());
+		public final Builder trackTotalHits(Function<TrackHits.Builder, ObjectBuilder<TrackHits>> fn) {
+			return this.trackTotalHits(fn.apply(new TrackHits.Builder()).build());
 		}
 
 		/**
@@ -2090,10 +2175,8 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code wait_for_completion_timeout}
 		 */
-		public final Builder waitForCompletionTimeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.waitForCompletionTimeout(builder.build());
+		public final Builder waitForCompletionTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.waitForCompletionTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -2180,7 +2263,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 
 				int propsSet = 0;
 
-				if (ModelTypeHelper.isDefined(request.index()))
+				if (ApiTypeHelper.isDefined(request.index()))
 					propsSet |= _index;
 
 				if (propsSet == 0) {
@@ -2239,7 +2322,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 				if (request.allowPartialSearchResults != null) {
 					params.put("allow_partial_search_results", String.valueOf(request.allowPartialSearchResults));
 				}
-				if (ModelTypeHelper.isDefined(request.expandWildcards)) {
+				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}

@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _global.search._types.StupidBackoffSmoothingModel
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/suggester.ts#L202-L204">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class StupidBackoffSmoothingModel implements SmoothingModelVariant, JsonpSerializable {
 	private final double discount;
@@ -46,14 +53,12 @@ public class StupidBackoffSmoothingModel implements SmoothingModelVariant, Jsonp
 
 	private StupidBackoffSmoothingModel(Builder builder) {
 
-		this.discount = ModelTypeHelper.requireNonNull(builder.discount, this, "discount");
+		this.discount = ApiTypeHelper.requireNonNull(builder.discount, this, "discount");
 
 	}
 
-	public static StupidBackoffSmoothingModel of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static StupidBackoffSmoothingModel of(Function<Builder, ObjectBuilder<StupidBackoffSmoothingModel>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -92,6 +97,7 @@ public class StupidBackoffSmoothingModel implements SmoothingModelVariant, Jsonp
 	/**
 	 * Builder for {@link StupidBackoffSmoothingModel}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StupidBackoffSmoothingModel> {
 		private Double discount;
 

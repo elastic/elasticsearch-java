@@ -29,18 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _spec_utils.BaseNode
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_spec_utils/BaseNode.ts#L25-L32">API
+ *      specification</a>
+ */
 
 public abstract class BaseNode implements JsonpSerializable {
 	private final Map<String, String> attributes;
@@ -59,12 +65,12 @@ public abstract class BaseNode implements JsonpSerializable {
 
 	protected BaseNode(AbstractBuilder<?> builder) {
 
-		this.attributes = ModelTypeHelper.unmodifiableRequired(builder.attributes, this, "attributes");
-		this.host = ModelTypeHelper.requireNonNull(builder.host, this, "host");
-		this.ip = ModelTypeHelper.requireNonNull(builder.ip, this, "ip");
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
-		this.roles = ModelTypeHelper.unmodifiable(builder.roles);
-		this.transportAddress = ModelTypeHelper.requireNonNull(builder.transportAddress, this, "transportAddress");
+		this.attributes = ApiTypeHelper.unmodifiableRequired(builder.attributes, this, "attributes");
+		this.host = ApiTypeHelper.requireNonNull(builder.host, this, "host");
+		this.ip = ApiTypeHelper.requireNonNull(builder.ip, this, "ip");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.roles = ApiTypeHelper.unmodifiable(builder.roles);
+		this.transportAddress = ApiTypeHelper.requireNonNull(builder.transportAddress, this, "transportAddress");
 
 	}
 
@@ -121,7 +127,7 @@ public abstract class BaseNode implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.attributes)) {
+		if (ApiTypeHelper.isDefined(this.attributes)) {
 			generator.writeKey("attributes");
 			generator.writeStartObject();
 			for (Map.Entry<String, String> item0 : this.attributes.entrySet()) {
@@ -141,7 +147,7 @@ public abstract class BaseNode implements JsonpSerializable {
 		generator.writeKey("name");
 		generator.write(this.name);
 
-		if (ModelTypeHelper.isDefined(this.roles)) {
+		if (ApiTypeHelper.isDefined(this.roles)) {
 			generator.writeKey("roles");
 			generator.writeStartArray();
 			for (NodeRole item0 : this.roles) {
@@ -173,9 +179,21 @@ public abstract class BaseNode implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code attributes}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>attributes</code>.
 		 */
-		public final BuilderT attributes(Map<String, String> value) {
-			this.attributes = value;
+		public final BuilderT attributes(Map<String, String> map) {
+			this.attributes = _mapPutAll(this.attributes, map);
+			return self();
+		}
+
+		/**
+		 * Required - API name: {@code attributes}
+		 * <p>
+		 * Adds an entry to <code>attributes</code>.
+		 */
+		public final BuilderT attributes(String key, String value) {
+			this.attributes = _mapPut(this.attributes, key, value);
 			return self();
 		}
 
@@ -205,17 +223,21 @@ public abstract class BaseNode implements JsonpSerializable {
 
 		/**
 		 * API name: {@code roles}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>roles</code>.
 		 */
-		public final BuilderT roles(@Nullable List<NodeRole> value) {
-			this.roles = value;
+		public final BuilderT roles(List<NodeRole> list) {
+			this.roles = _listAddAll(this.roles, list);
 			return self();
 		}
 
 		/**
 		 * API name: {@code roles}
+		 * <p>
+		 * Adds one or more values to <code>roles</code>.
 		 */
-		public final BuilderT roles(NodeRole... value) {
-			this.roles = Arrays.asList(value);
+		public final BuilderT roles(NodeRole value, NodeRole... values) {
+			this.roles = _listAdd(this.roles, value, values);
 			return self();
 		}
 

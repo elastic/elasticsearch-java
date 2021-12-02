@@ -34,10 +34,17 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.indices.IndicesRecord
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/indices/types.ts#L20-L801">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IndicesRecord implements JsonpSerializable {
 	@Nullable
@@ -611,10 +618,8 @@ public class IndicesRecord implements JsonpSerializable {
 
 	}
 
-	public static IndicesRecord of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IndicesRecord of(Function<Builder, ObjectBuilder<IndicesRecord>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -2753,6 +2758,7 @@ public class IndicesRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndicesRecord}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndicesRecord> {
 		@Nullable
 		private String health;

@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_token.AuthenticationProvider
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_token/types.ts#L35-L38">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AuthenticationProvider implements JsonpSerializable {
 	private final String type;
@@ -49,15 +56,13 @@ public class AuthenticationProvider implements JsonpSerializable {
 
 	private AuthenticationProvider(Builder builder) {
 
-		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
-	public static AuthenticationProvider of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static AuthenticationProvider of(Function<Builder, ObjectBuilder<AuthenticationProvider>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -98,6 +103,7 @@ public class AuthenticationProvider implements JsonpSerializable {
 	/**
 	 * Builder for {@link AuthenticationProvider}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AuthenticationProvider> {
 		private String type;
 

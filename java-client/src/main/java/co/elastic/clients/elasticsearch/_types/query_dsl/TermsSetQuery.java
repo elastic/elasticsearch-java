@@ -29,17 +29,23 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.TermsSetQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/term.ts#L139-L143">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TermsSetQuery extends QueryBase implements QueryVariant {
 	// Single key dictionary
@@ -57,18 +63,16 @@ public class TermsSetQuery extends QueryBase implements QueryVariant {
 
 	private TermsSetQuery(Builder builder) {
 		super(builder);
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
 		this.minimumShouldMatchField = builder.minimumShouldMatchField;
 		this.minimumShouldMatchScript = builder.minimumShouldMatchScript;
-		this.terms = ModelTypeHelper.unmodifiableRequired(builder.terms, this, "terms");
+		this.terms = ApiTypeHelper.unmodifiableRequired(builder.terms, this, "terms");
 
 	}
 
-	public static TermsSetQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TermsSetQuery of(Function<Builder, ObjectBuilder<TermsSetQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -123,7 +127,7 @@ public class TermsSetQuery extends QueryBase implements QueryVariant {
 			this.minimumShouldMatchScript.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.terms)) {
+		if (ApiTypeHelper.isDefined(this.terms)) {
 			generator.writeKey("terms");
 			generator.writeStartArray();
 			for (String item0 : this.terms) {
@@ -143,6 +147,7 @@ public class TermsSetQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link TermsSetQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<TermsSetQuery> {
 		private String field;
 
@@ -181,25 +186,27 @@ public class TermsSetQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code minimum_should_match_script}
 		 */
-		public final Builder minimumShouldMatchScript(Consumer<Script.Builder> fn) {
-			Script.Builder builder = new Script.Builder();
-			fn.accept(builder);
-			return this.minimumShouldMatchScript(builder.build());
+		public final Builder minimumShouldMatchScript(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.minimumShouldMatchScript(fn.apply(new Script.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code terms}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>terms</code>.
 		 */
-		public final Builder terms(List<String> value) {
-			this.terms = value;
+		public final Builder terms(List<String> list) {
+			this.terms = _listAddAll(this.terms, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code terms}
+		 * <p>
+		 * Adds one or more values to <code>terms</code>.
 		 */
-		public final Builder terms(String... value) {
-			this.terms = Arrays.asList(value);
+		public final Builder terms(String value, String... values) {
+			this.terms = _listAdd(this.terms, value, values);
 			return this;
 		}
 

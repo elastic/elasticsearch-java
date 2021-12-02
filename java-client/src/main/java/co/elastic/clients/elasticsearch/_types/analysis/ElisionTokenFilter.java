@@ -28,18 +28,24 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.ElisionTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L186-L190">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ElisionTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final List<String> articles;
@@ -51,15 +57,13 @@ public class ElisionTokenFilter extends TokenFilterBase implements TokenFilterDe
 	private ElisionTokenFilter(Builder builder) {
 		super(builder);
 
-		this.articles = ModelTypeHelper.unmodifiableRequired(builder.articles, this, "articles");
-		this.articlesCase = ModelTypeHelper.requireNonNull(builder.articlesCase, this, "articlesCase");
+		this.articles = ApiTypeHelper.unmodifiableRequired(builder.articles, this, "articles");
+		this.articlesCase = ApiTypeHelper.requireNonNull(builder.articlesCase, this, "articlesCase");
 
 	}
 
-	public static ElisionTokenFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ElisionTokenFilter of(Function<Builder, ObjectBuilder<ElisionTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -88,7 +92,7 @@ public class ElisionTokenFilter extends TokenFilterBase implements TokenFilterDe
 
 		generator.write("type", "elision");
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.articles)) {
+		if (ApiTypeHelper.isDefined(this.articles)) {
 			generator.writeKey("articles");
 			generator.writeStartArray();
 			for (String item0 : this.articles) {
@@ -108,6 +112,7 @@ public class ElisionTokenFilter extends TokenFilterBase implements TokenFilterDe
 	/**
 	 * Builder for {@link ElisionTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ElisionTokenFilter> {
@@ -117,17 +122,21 @@ public class ElisionTokenFilter extends TokenFilterBase implements TokenFilterDe
 
 		/**
 		 * Required - API name: {@code articles}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>articles</code>.
 		 */
-		public final Builder articles(List<String> value) {
-			this.articles = value;
+		public final Builder articles(List<String> list) {
+			this.articles = _listAddAll(this.articles, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code articles}
+		 * <p>
+		 * Adds one or more values to <code>articles</code>.
 		 */
-		public final Builder articles(String... value) {
-			this.articles = Arrays.asList(value);
+		public final Builder articles(String value, String... values) {
+			this.articles = _listAdd(this.articles, value, values);
 			return this;
 		}
 

@@ -33,7 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,10 +42,18 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_categories.Request
+
+/**
+ * Retrieves anomaly detection job results for one or more categories.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_categories/MlGetCategoriesRequest.ts#L25-L65">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetCategoriesRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -71,17 +79,15 @@ public class GetCategoriesRequest extends RequestBase implements JsonpSerializab
 
 		this.categoryId = builder.categoryId;
 		this.from = builder.from;
-		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.page = builder.page;
 		this.partitionFieldValue = builder.partitionFieldValue;
 		this.size = builder.size;
 
 	}
 
-	public static GetCategoriesRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetCategoriesRequest of(Function<Builder, ObjectBuilder<GetCategoriesRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -169,6 +175,7 @@ public class GetCategoriesRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Builder for {@link GetCategoriesRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetCategoriesRequest> {
 		@Nullable
 		private String categoryId;
@@ -232,10 +239,8 @@ public class GetCategoriesRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code page}
 		 */
-		public final Builder page(Consumer<Page.Builder> fn) {
-			Page.Builder builder = new Page.Builder();
-			fn.accept(builder);
-			return this.page(builder.build());
+		public final Builder page(Function<Page.Builder, ObjectBuilder<Page>> fn) {
+			return this.page(fn.apply(new Page.Builder()).build());
 		}
 
 		/**

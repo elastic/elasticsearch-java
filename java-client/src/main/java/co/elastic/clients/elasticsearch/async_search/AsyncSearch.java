@@ -38,8 +38,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -50,12 +49,18 @@ import java.lang.String;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: async_search._types.AsyncSearch
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/async_search/_types/AsyncSearch.ts#L30-L45">API
+ *      specification</a>
+ */
 
 public class AsyncSearch<TDocument> implements JsonpSerializable {
 	private final Map<String, Aggregate> aggregations;
@@ -100,28 +105,27 @@ public class AsyncSearch<TDocument> implements JsonpSerializable {
 
 	private AsyncSearch(Builder<TDocument> builder) {
 
-		this.aggregations = ModelTypeHelper.unmodifiable(builder.aggregations);
+		this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);
 		this.clusters = builder.clusters;
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
-		this.hits = ModelTypeHelper.requireNonNull(builder.hits, this, "hits");
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
+		this.hits = ApiTypeHelper.requireNonNull(builder.hits, this, "hits");
 		this.maxScore = builder.maxScore;
 		this.numReducePhases = builder.numReducePhases;
 		this.profile = builder.profile;
 		this.pitId = builder.pitId;
 		this.scrollId = builder.scrollId;
-		this.shards = ModelTypeHelper.requireNonNull(builder.shards, this, "shards");
-		this.suggest = ModelTypeHelper.unmodifiable(builder.suggest);
+		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
+		this.suggest = ApiTypeHelper.unmodifiable(builder.suggest);
 		this.terminatedEarly = builder.terminatedEarly;
-		this.timedOut = ModelTypeHelper.requireNonNull(builder.timedOut, this, "timedOut");
-		this.took = ModelTypeHelper.requireNonNull(builder.took, this, "took");
+		this.timedOut = ApiTypeHelper.requireNonNull(builder.timedOut, this, "timedOut");
+		this.took = ApiTypeHelper.requireNonNull(builder.took, this, "took");
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}
 
-	public static <TDocument> AsyncSearch<TDocument> of(Consumer<Builder<TDocument>> fn) {
-		Builder<TDocument> builder = new Builder<>();
-		fn.accept(builder);
-		return builder.build();
+	public static <TDocument> AsyncSearch<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<AsyncSearch<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
@@ -240,7 +244,7 @@ public class AsyncSearch<TDocument> implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.aggregations)) {
+		if (ApiTypeHelper.isDefined(this.aggregations)) {
 			generator.writeKey("aggregations");
 			ExternallyTaggedUnion.serializeTypedKeys(this.aggregations, generator, mapper);
 
@@ -250,7 +254,7 @@ public class AsyncSearch<TDocument> implements JsonpSerializable {
 			this.clusters.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.fields)) {
+		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.fields.entrySet()) {
@@ -292,7 +296,7 @@ public class AsyncSearch<TDocument> implements JsonpSerializable {
 		generator.writeKey("_shards");
 		this.shards.serialize(generator, mapper);
 
-		if (ModelTypeHelper.isDefined(this.suggest)) {
+		if (ApiTypeHelper.isDefined(this.suggest)) {
 			generator.writeKey("suggest");
 			generator.writeStartObject();
 			for (Map.Entry<String, List<Suggestion<TDocument>>> item0 : this.suggest.entrySet()) {
@@ -328,6 +332,7 @@ public class AsyncSearch<TDocument> implements JsonpSerializable {
 	/**
 	 * Builder for {@link AsyncSearch}.
 	 */
+
 	public static class Builder<TDocument> extends ObjectBuilderBase implements ObjectBuilder<AsyncSearch<TDocument>> {
 		@Nullable
 		private Map<String, Aggregate> aggregations;
@@ -372,15 +377,32 @@ public class AsyncSearch<TDocument> implements JsonpSerializable {
 
 		/**
 		 * API name: {@code aggregations}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>aggregations</code>.
 		 */
-		public final Builder<TDocument> aggregations(@Nullable Map<String, Aggregate> value) {
-			this.aggregations = value;
+		public final Builder<TDocument> aggregations(Map<String, Aggregate> map) {
+			this.aggregations = _mapPutAll(this.aggregations, map);
 			return this;
 		}
 
-		public final Builder<TDocument> aggregations(
-				Function<MapBuilder<String, Aggregate, Aggregate.Builder>, ObjectBuilder<Map<String, Aggregate>>> fn) {
-			return aggregations(fn.apply(new MapBuilder<>(Aggregate.Builder::new)).build());
+		/**
+		 * API name: {@code aggregations}
+		 * <p>
+		 * Adds an entry to <code>aggregations</code>.
+		 */
+		public final Builder<TDocument> aggregations(String key, Aggregate value) {
+			this.aggregations = _mapPut(this.aggregations, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code aggregations}
+		 * <p>
+		 * Adds an entry to <code>aggregations</code> using a builder lambda.
+		 */
+		public final Builder<TDocument> aggregations(String key,
+				Function<Aggregate.Builder, ObjectBuilder<Aggregate>> fn) {
+			return aggregations(key, fn.apply(new Aggregate.Builder()).build());
 		}
 
 		/**
@@ -394,17 +416,28 @@ public class AsyncSearch<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code _clusters}
 		 */
-		public final Builder<TDocument> clusters(Consumer<ClusterStatistics.Builder> fn) {
-			ClusterStatistics.Builder builder = new ClusterStatistics.Builder();
-			fn.accept(builder);
-			return this.clusters(builder.build());
+		public final Builder<TDocument> clusters(
+				Function<ClusterStatistics.Builder, ObjectBuilder<ClusterStatistics>> fn) {
+			return this.clusters(fn.apply(new ClusterStatistics.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>fields</code>.
 		 */
-		public final Builder<TDocument> fields(@Nullable Map<String, JsonData> value) {
-			this.fields = value;
+		public final Builder<TDocument> fields(Map<String, JsonData> map) {
+			this.fields = _mapPutAll(this.fields, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code fields}
+		 * <p>
+		 * Adds an entry to <code>fields</code>.
+		 */
+		public final Builder<TDocument> fields(String key, JsonData value) {
+			this.fields = _mapPut(this.fields, key, value);
 			return this;
 		}
 
@@ -419,10 +452,9 @@ public class AsyncSearch<TDocument> implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code hits}
 		 */
-		public final Builder<TDocument> hits(Consumer<HitsMetadata.Builder<TDocument>> fn) {
-			HitsMetadata.Builder<TDocument> builder = new HitsMetadata.Builder<TDocument>();
-			fn.accept(builder);
-			return this.hits(builder.build());
+		public final Builder<TDocument> hits(
+				Function<HitsMetadata.Builder<TDocument>, ObjectBuilder<HitsMetadata<TDocument>>> fn) {
+			return this.hits(fn.apply(new HitsMetadata.Builder<TDocument>()).build());
 		}
 
 		/**
@@ -452,10 +484,8 @@ public class AsyncSearch<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code profile}
 		 */
-		public final Builder<TDocument> profile(Consumer<Profile.Builder> fn) {
-			Profile.Builder builder = new Profile.Builder();
-			fn.accept(builder);
-			return this.profile(builder.build());
+		public final Builder<TDocument> profile(Function<Profile.Builder, ObjectBuilder<Profile>> fn) {
+			return this.profile(fn.apply(new Profile.Builder()).build());
 		}
 
 		/**
@@ -485,17 +515,27 @@ public class AsyncSearch<TDocument> implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _shards}
 		 */
-		public final Builder<TDocument> shards(Consumer<ShardStatistics.Builder> fn) {
-			ShardStatistics.Builder builder = new ShardStatistics.Builder();
-			fn.accept(builder);
-			return this.shards(builder.build());
+		public final Builder<TDocument> shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code suggest}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>suggest</code>.
 		 */
-		public final Builder<TDocument> suggest(@Nullable Map<String, List<Suggestion<TDocument>>> value) {
-			this.suggest = value;
+		public final Builder<TDocument> suggest(Map<String, List<Suggestion<TDocument>>> map) {
+			this.suggest = _mapPutAll(this.suggest, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code suggest}
+		 * <p>
+		 * Adds an entry to <code>suggest</code>.
+		 */
+		public final Builder<TDocument> suggest(String key, List<Suggestion<TDocument>> value) {
+			this.suggest = _mapPut(this.suggest, key, value);
 			return this;
 		}
 
@@ -548,7 +588,7 @@ public class AsyncSearch<TDocument> implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for AsyncSearch
+	 * Create a JSON deserializer for AsyncSearch
 	 */
 	public static <TDocument> JsonpDeserializer<AsyncSearch<TDocument>> createAsyncSearchDeserializer(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {

@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.stats.ShardFileSizeInfo
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/stats/types.ts#L100-L107">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ShardFileSizeInfo implements JsonpSerializable {
 	private final String description;
@@ -62,8 +69,8 @@ public class ShardFileSizeInfo implements JsonpSerializable {
 
 	private ShardFileSizeInfo(Builder builder) {
 
-		this.description = ModelTypeHelper.requireNonNull(builder.description, this, "description");
-		this.sizeInBytes = ModelTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
+		this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
+		this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
 		this.minSizeInBytes = builder.minSizeInBytes;
 		this.maxSizeInBytes = builder.maxSizeInBytes;
 		this.averageSizeInBytes = builder.averageSizeInBytes;
@@ -71,10 +78,8 @@ public class ShardFileSizeInfo implements JsonpSerializable {
 
 	}
 
-	public static ShardFileSizeInfo of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ShardFileSizeInfo of(Function<Builder, ObjectBuilder<ShardFileSizeInfo>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -168,6 +173,7 @@ public class ShardFileSizeInfo implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardFileSizeInfo}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardFileSizeInfo> {
 		private String description;
 

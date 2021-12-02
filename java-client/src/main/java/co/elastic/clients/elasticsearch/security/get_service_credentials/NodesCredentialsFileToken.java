@@ -29,18 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_service_credentials.NodesCredentialsFileToken
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_service_credentials/types.ts#L30-L32">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodesCredentialsFileToken implements JsonpSerializable {
 	private final List<String> nodes;
@@ -49,14 +55,12 @@ public class NodesCredentialsFileToken implements JsonpSerializable {
 
 	private NodesCredentialsFileToken(Builder builder) {
 
-		this.nodes = ModelTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
+		this.nodes = ApiTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
 
 	}
 
-	public static NodesCredentialsFileToken of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodesCredentialsFileToken of(Function<Builder, ObjectBuilder<NodesCredentialsFileToken>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -77,7 +81,7 @@ public class NodesCredentialsFileToken implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.nodes)) {
+		if (ApiTypeHelper.isDefined(this.nodes)) {
 			generator.writeKey("nodes");
 			generator.writeStartArray();
 			for (String item0 : this.nodes) {
@@ -95,22 +99,27 @@ public class NodesCredentialsFileToken implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodesCredentialsFileToken}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodesCredentialsFileToken> {
 		private List<String> nodes;
 
 		/**
 		 * Required - API name: {@code nodes}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>nodes</code>.
 		 */
-		public final Builder nodes(List<String> value) {
-			this.nodes = value;
+		public final Builder nodes(List<String> list) {
+			this.nodes = _listAddAll(this.nodes, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code nodes}
+		 * <p>
+		 * Adds one or more values to <code>nodes</code>.
 		 */
-		public final Builder nodes(String... value) {
-			this.nodes = Arrays.asList(value);
+		public final Builder nodes(String value, String... values) {
+			this.nodes = _listAdd(this.nodes, value, values);
 			return this;
 		}
 

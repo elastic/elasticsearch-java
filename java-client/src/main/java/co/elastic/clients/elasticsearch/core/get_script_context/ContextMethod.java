@@ -29,20 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.get_script_context.ContextMethod
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/get_script_context/types.ts#L27-L31">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ContextMethod implements JsonpSerializable {
 	private final String name;
@@ -55,16 +59,14 @@ public class ContextMethod implements JsonpSerializable {
 
 	private ContextMethod(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
-		this.returnType = ModelTypeHelper.requireNonNull(builder.returnType, this, "returnType");
-		this.params = ModelTypeHelper.unmodifiableRequired(builder.params, this, "params");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.returnType = ApiTypeHelper.requireNonNull(builder.returnType, this, "returnType");
+		this.params = ApiTypeHelper.unmodifiableRequired(builder.params, this, "params");
 
 	}
 
-	public static ContextMethod of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ContextMethod of(Function<Builder, ObjectBuilder<ContextMethod>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -105,7 +107,7 @@ public class ContextMethod implements JsonpSerializable {
 		generator.writeKey("return_type");
 		generator.write(this.returnType);
 
-		if (ModelTypeHelper.isDefined(this.params)) {
+		if (ApiTypeHelper.isDefined(this.params)) {
 			generator.writeKey("params");
 			generator.writeStartArray();
 			for (ContextMethodParam item0 : this.params) {
@@ -123,6 +125,7 @@ public class ContextMethod implements JsonpSerializable {
 	/**
 	 * Builder for {@link ContextMethod}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ContextMethod> {
 		private String name;
 
@@ -148,26 +151,31 @@ public class ContextMethod implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code params}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>params</code>.
 		 */
-		public final Builder params(List<ContextMethodParam> value) {
-			this.params = value;
+		public final Builder params(List<ContextMethodParam> list) {
+			this.params = _listAddAll(this.params, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code params}
+		 * <p>
+		 * Adds one or more values to <code>params</code>.
 		 */
-		public final Builder params(ContextMethodParam... value) {
-			this.params = Arrays.asList(value);
+		public final Builder params(ContextMethodParam value, ContextMethodParam... values) {
+			this.params = _listAdd(this.params, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code params}
+		 * <p>
+		 * Adds a value to <code>params</code> using a builder lambda.
 		 */
-		public final Builder params(
-				Function<ListBuilder<ContextMethodParam, ContextMethodParam.Builder>, ObjectBuilder<List<ContextMethodParam>>> fn) {
-			return params(fn.apply(new ListBuilder<>(ContextMethodParam.Builder::new)).build());
+		public final Builder params(Function<ContextMethodParam.Builder, ObjectBuilder<ContextMethodParam>> fn) {
+			return params(fn.apply(new ContextMethodParam.Builder()).build());
 		}
 
 		/**

@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm.explain_lifecycle.LifecycleExplainPhaseExecution
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ilm/explain_lifecycle/types.ts#L55-L59">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class LifecycleExplainPhaseExecution implements JsonpSerializable {
 	private final String policy;
@@ -52,17 +59,16 @@ public class LifecycleExplainPhaseExecution implements JsonpSerializable {
 
 	private LifecycleExplainPhaseExecution(Builder builder) {
 
-		this.policy = ModelTypeHelper.requireNonNull(builder.policy, this, "policy");
-		this.version = ModelTypeHelper.requireNonNull(builder.version, this, "version");
-		this.modifiedDateInMillis = ModelTypeHelper.requireNonNull(builder.modifiedDateInMillis, this,
+		this.policy = ApiTypeHelper.requireNonNull(builder.policy, this, "policy");
+		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
+		this.modifiedDateInMillis = ApiTypeHelper.requireNonNull(builder.modifiedDateInMillis, this,
 				"modifiedDateInMillis");
 
 	}
 
-	public static LifecycleExplainPhaseExecution of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static LifecycleExplainPhaseExecution of(
+			Function<Builder, ObjectBuilder<LifecycleExplainPhaseExecution>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -113,6 +119,7 @@ public class LifecycleExplainPhaseExecution implements JsonpSerializable {
 	/**
 	 * Builder for {@link LifecycleExplainPhaseExecution}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<LifecycleExplainPhaseExecution> {
 		private String policy;
 

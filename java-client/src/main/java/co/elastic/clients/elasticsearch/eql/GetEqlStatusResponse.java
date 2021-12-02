@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -37,10 +37,17 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: eql.get_status.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/eql/get_status/EqlGetStatusResponse.ts#L24-L51">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetEqlStatusResponse implements JsonpSerializable {
 	private final String id;
@@ -62,19 +69,17 @@ public class GetEqlStatusResponse implements JsonpSerializable {
 
 	private GetEqlStatusResponse(Builder builder) {
 
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
-		this.isPartial = ModelTypeHelper.requireNonNull(builder.isPartial, this, "isPartial");
-		this.isRunning = ModelTypeHelper.requireNonNull(builder.isRunning, this, "isRunning");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.isPartial = ApiTypeHelper.requireNonNull(builder.isPartial, this, "isPartial");
+		this.isRunning = ApiTypeHelper.requireNonNull(builder.isRunning, this, "isRunning");
 		this.startTimeInMillis = builder.startTimeInMillis;
 		this.expirationTimeInMillis = builder.expirationTimeInMillis;
 		this.completionStatus = builder.completionStatus;
 
 	}
 
-	public static GetEqlStatusResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetEqlStatusResponse of(Function<Builder, ObjectBuilder<GetEqlStatusResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -184,6 +189,7 @@ public class GetEqlStatusResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetEqlStatusResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetEqlStatusResponse> {
 		private String id;
 

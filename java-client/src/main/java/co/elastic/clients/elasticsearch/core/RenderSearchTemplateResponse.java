@@ -30,17 +30,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.render_search_template.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/render_search_template/RenderSearchTemplateResponse.ts#L23-L25">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RenderSearchTemplateResponse implements JsonpSerializable {
 	private final Map<String, JsonData> templateOutput;
@@ -49,14 +56,12 @@ public class RenderSearchTemplateResponse implements JsonpSerializable {
 
 	private RenderSearchTemplateResponse(Builder builder) {
 
-		this.templateOutput = ModelTypeHelper.unmodifiableRequired(builder.templateOutput, this, "templateOutput");
+		this.templateOutput = ApiTypeHelper.unmodifiableRequired(builder.templateOutput, this, "templateOutput");
 
 	}
 
-	public static RenderSearchTemplateResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RenderSearchTemplateResponse of(Function<Builder, ObjectBuilder<RenderSearchTemplateResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -77,7 +82,7 @@ public class RenderSearchTemplateResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.templateOutput)) {
+		if (ApiTypeHelper.isDefined(this.templateOutput)) {
 			generator.writeKey("template_output");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.templateOutput.entrySet()) {
@@ -96,14 +101,27 @@ public class RenderSearchTemplateResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link RenderSearchTemplateResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RenderSearchTemplateResponse> {
 		private Map<String, JsonData> templateOutput;
 
 		/**
 		 * Required - API name: {@code template_output}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>templateOutput</code>.
 		 */
-		public final Builder templateOutput(Map<String, JsonData> value) {
-			this.templateOutput = value;
+		public final Builder templateOutput(Map<String, JsonData> map) {
+			this.templateOutput = _mapPutAll(this.templateOutput, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code template_output}
+		 * <p>
+		 * Adds an entry to <code>templateOutput</code>.
+		 */
+		public final Builder templateOutput(String key, JsonData value) {
+			this.templateOutput = _mapPut(this.templateOutput, key, value);
 			return this;
 		}
 

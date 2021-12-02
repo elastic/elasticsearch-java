@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoRepositoriesUrl
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L158-L160">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeInfoRepositoriesUrl implements JsonpSerializable {
 	private final String allowedUrls;
@@ -47,14 +54,12 @@ public class NodeInfoRepositoriesUrl implements JsonpSerializable {
 
 	private NodeInfoRepositoriesUrl(Builder builder) {
 
-		this.allowedUrls = ModelTypeHelper.requireNonNull(builder.allowedUrls, this, "allowedUrls");
+		this.allowedUrls = ApiTypeHelper.requireNonNull(builder.allowedUrls, this, "allowedUrls");
 
 	}
 
-	public static NodeInfoRepositoriesUrl of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodeInfoRepositoriesUrl of(Function<Builder, ObjectBuilder<NodeInfoRepositoriesUrl>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -85,6 +90,7 @@ public class NodeInfoRepositoriesUrl implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoRepositoriesUrl}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoRepositoriesUrl> {
 		private String allowedUrls;
 

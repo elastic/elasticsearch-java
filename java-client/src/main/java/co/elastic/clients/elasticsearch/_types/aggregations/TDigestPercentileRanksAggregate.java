@@ -30,9 +30,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.aggregations.TDigestPercentileRanksAggregate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L161-L162">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TDigestPercentileRanksAggregate extends PercentilesAggregateBase implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -42,10 +49,9 @@ public class TDigestPercentileRanksAggregate extends PercentilesAggregateBase im
 
 	}
 
-	public static TDigestPercentileRanksAggregate of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TDigestPercentileRanksAggregate of(
+			Function<Builder, ObjectBuilder<TDigestPercentileRanksAggregate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,6 +67,7 @@ public class TDigestPercentileRanksAggregate extends PercentilesAggregateBase im
 	/**
 	 * Builder for {@link TDigestPercentileRanksAggregate}.
 	 */
+
 	public static class Builder extends PercentilesAggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<TDigestPercentileRanksAggregate> {

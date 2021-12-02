@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: xpack.usage.IpFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L153-L156">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IpFilter implements JsonpSerializable {
 	private final boolean http;
@@ -48,15 +55,13 @@ public class IpFilter implements JsonpSerializable {
 
 	private IpFilter(Builder builder) {
 
-		this.http = ModelTypeHelper.requireNonNull(builder.http, this, "http");
-		this.transport = ModelTypeHelper.requireNonNull(builder.transport, this, "transport");
+		this.http = ApiTypeHelper.requireNonNull(builder.http, this, "http");
+		this.transport = ApiTypeHelper.requireNonNull(builder.transport, this, "transport");
 
 	}
 
-	public static IpFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IpFilter of(Function<Builder, ObjectBuilder<IpFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -97,6 +102,7 @@ public class IpFilter implements JsonpSerializable {
 	/**
 	 * Builder for {@link IpFilter}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IpFilter> {
 		private Boolean http;
 

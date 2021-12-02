@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Ssl
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L352-L355">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Ssl implements JsonpSerializable {
 	private final FeatureToggle http;
@@ -48,15 +55,13 @@ public class Ssl implements JsonpSerializable {
 
 	private Ssl(Builder builder) {
 
-		this.http = ModelTypeHelper.requireNonNull(builder.http, this, "http");
-		this.transport = ModelTypeHelper.requireNonNull(builder.transport, this, "transport");
+		this.http = ApiTypeHelper.requireNonNull(builder.http, this, "http");
+		this.transport = ApiTypeHelper.requireNonNull(builder.transport, this, "transport");
 
 	}
 
-	public static Ssl of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Ssl of(Function<Builder, ObjectBuilder<Ssl>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -97,6 +102,7 @@ public class Ssl implements JsonpSerializable {
 	/**
 	 * Builder for {@link Ssl}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Ssl> {
 		private FeatureToggle http;
 
@@ -113,10 +119,8 @@ public class Ssl implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code http}
 		 */
-		public final Builder http(Consumer<FeatureToggle.Builder> fn) {
-			FeatureToggle.Builder builder = new FeatureToggle.Builder();
-			fn.accept(builder);
-			return this.http(builder.build());
+		public final Builder http(Function<FeatureToggle.Builder, ObjectBuilder<FeatureToggle>> fn) {
+			return this.http(fn.apply(new FeatureToggle.Builder()).build());
 		}
 
 		/**
@@ -130,10 +134,8 @@ public class Ssl implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code transport}
 		 */
-		public final Builder transport(Consumer<FeatureToggle.Builder> fn) {
-			FeatureToggle.Builder builder = new FeatureToggle.Builder();
-			fn.accept(builder);
-			return this.transport(builder.build());
+		public final Builder transport(Function<FeatureToggle.Builder, ObjectBuilder<FeatureToggle>> fn) {
+			return this.transport(fn.apply(new FeatureToggle.Builder()).build());
 		}
 
 		/**

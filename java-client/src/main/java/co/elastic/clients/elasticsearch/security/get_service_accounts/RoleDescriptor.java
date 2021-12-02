@@ -33,21 +33,25 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_service_accounts.RoleDescriptor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_service_accounts/types.ts#L33-L41">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RoleDescriptor implements JsonpSerializable {
 	private final List<String> cluster;
@@ -68,20 +72,18 @@ public class RoleDescriptor implements JsonpSerializable {
 
 	private RoleDescriptor(Builder builder) {
 
-		this.cluster = ModelTypeHelper.unmodifiableRequired(builder.cluster, this, "cluster");
-		this.indices = ModelTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
-		this.global = ModelTypeHelper.unmodifiable(builder.global);
-		this.applications = ModelTypeHelper.unmodifiable(builder.applications);
-		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
-		this.runAs = ModelTypeHelper.unmodifiable(builder.runAs);
-		this.transientMetadata = ModelTypeHelper.unmodifiable(builder.transientMetadata);
+		this.cluster = ApiTypeHelper.unmodifiableRequired(builder.cluster, this, "cluster");
+		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
+		this.global = ApiTypeHelper.unmodifiable(builder.global);
+		this.applications = ApiTypeHelper.unmodifiable(builder.applications);
+		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
+		this.runAs = ApiTypeHelper.unmodifiable(builder.runAs);
+		this.transientMetadata = ApiTypeHelper.unmodifiable(builder.transientMetadata);
 
 	}
 
-	public static RoleDescriptor of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RoleDescriptor of(Function<Builder, ObjectBuilder<RoleDescriptor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -144,7 +146,7 @@ public class RoleDescriptor implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.cluster)) {
+		if (ApiTypeHelper.isDefined(this.cluster)) {
 			generator.writeKey("cluster");
 			generator.writeStartArray();
 			for (String item0 : this.cluster) {
@@ -154,7 +156,7 @@ public class RoleDescriptor implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.indices)) {
+		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartArray();
 			for (IndicesPrivileges item0 : this.indices) {
@@ -164,7 +166,7 @@ public class RoleDescriptor implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.global)) {
+		if (ApiTypeHelper.isDefined(this.global)) {
 			generator.writeKey("global");
 			generator.writeStartArray();
 			for (GlobalPrivilege item0 : this.global) {
@@ -174,7 +176,7 @@ public class RoleDescriptor implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.applications)) {
+		if (ApiTypeHelper.isDefined(this.applications)) {
 			generator.writeKey("applications");
 			generator.writeStartArray();
 			for (ApplicationPrivileges item0 : this.applications) {
@@ -184,7 +186,7 @@ public class RoleDescriptor implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.metadata)) {
+		if (ApiTypeHelper.isDefined(this.metadata)) {
 			generator.writeKey("metadata");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
@@ -195,7 +197,7 @@ public class RoleDescriptor implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.runAs)) {
+		if (ApiTypeHelper.isDefined(this.runAs)) {
 			generator.writeKey("run_as");
 			generator.writeStartArray();
 			for (String item0 : this.runAs) {
@@ -205,7 +207,7 @@ public class RoleDescriptor implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.transientMetadata)) {
+		if (ApiTypeHelper.isDefined(this.transientMetadata)) {
 			generator.writeKey("transient_metadata");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.transientMetadata.entrySet()) {
@@ -224,6 +226,7 @@ public class RoleDescriptor implements JsonpSerializable {
 	/**
 	 * Builder for {@link RoleDescriptor}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RoleDescriptor> {
 		private List<String> cluster;
 
@@ -246,121 +249,169 @@ public class RoleDescriptor implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code cluster}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>cluster</code>.
 		 */
-		public final Builder cluster(List<String> value) {
-			this.cluster = value;
+		public final Builder cluster(List<String> list) {
+			this.cluster = _listAddAll(this.cluster, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code cluster}
+		 * <p>
+		 * Adds one or more values to <code>cluster</code>.
 		 */
-		public final Builder cluster(String... value) {
-			this.cluster = Arrays.asList(value);
+		public final Builder cluster(String value, String... values) {
+			this.cluster = _listAdd(this.cluster, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 */
-		public final Builder indices(List<IndicesPrivileges> value) {
-			this.indices = value;
+		public final Builder indices(List<IndicesPrivileges> list) {
+			this.indices = _listAddAll(this.indices, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds one or more values to <code>indices</code>.
 		 */
-		public final Builder indices(IndicesPrivileges... value) {
-			this.indices = Arrays.asList(value);
+		public final Builder indices(IndicesPrivileges value, IndicesPrivileges... values) {
+			this.indices = _listAdd(this.indices, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds a value to <code>indices</code> using a builder lambda.
 		 */
-		public final Builder indices(
-				Function<ListBuilder<IndicesPrivileges, IndicesPrivileges.Builder>, ObjectBuilder<List<IndicesPrivileges>>> fn) {
-			return indices(fn.apply(new ListBuilder<>(IndicesPrivileges.Builder::new)).build());
+		public final Builder indices(Function<IndicesPrivileges.Builder, ObjectBuilder<IndicesPrivileges>> fn) {
+			return indices(fn.apply(new IndicesPrivileges.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code global}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>global</code>.
 		 */
-		public final Builder global(@Nullable List<GlobalPrivilege> value) {
-			this.global = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code global}
-		 */
-		public final Builder global(GlobalPrivilege... value) {
-			this.global = Arrays.asList(value);
+		public final Builder global(List<GlobalPrivilege> list) {
+			this.global = _listAddAll(this.global, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code global}
+		 * <p>
+		 * Adds one or more values to <code>global</code>.
 		 */
-		public final Builder global(
-				Function<ListBuilder<GlobalPrivilege, GlobalPrivilege.Builder>, ObjectBuilder<List<GlobalPrivilege>>> fn) {
-			return global(fn.apply(new ListBuilder<>(GlobalPrivilege.Builder::new)).build());
+		public final Builder global(GlobalPrivilege value, GlobalPrivilege... values) {
+			this.global = _listAdd(this.global, value, values);
+			return this;
+		}
+
+		/**
+		 * API name: {@code global}
+		 * <p>
+		 * Adds a value to <code>global</code> using a builder lambda.
+		 */
+		public final Builder global(Function<GlobalPrivilege.Builder, ObjectBuilder<GlobalPrivilege>> fn) {
+			return global(fn.apply(new GlobalPrivilege.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code applications}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>applications</code>.
 		 */
-		public final Builder applications(@Nullable List<ApplicationPrivileges> value) {
-			this.applications = value;
+		public final Builder applications(List<ApplicationPrivileges> list) {
+			this.applications = _listAddAll(this.applications, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code applications}
+		 * <p>
+		 * Adds one or more values to <code>applications</code>.
 		 */
-		public final Builder applications(ApplicationPrivileges... value) {
-			this.applications = Arrays.asList(value);
+		public final Builder applications(ApplicationPrivileges value, ApplicationPrivileges... values) {
+			this.applications = _listAdd(this.applications, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code applications}
+		 * <p>
+		 * Adds a value to <code>applications</code> using a builder lambda.
 		 */
 		public final Builder applications(
-				Function<ListBuilder<ApplicationPrivileges, ApplicationPrivileges.Builder>, ObjectBuilder<List<ApplicationPrivileges>>> fn) {
-			return applications(fn.apply(new ListBuilder<>(ApplicationPrivileges.Builder::new)).build());
+				Function<ApplicationPrivileges.Builder, ObjectBuilder<ApplicationPrivileges>> fn) {
+			return applications(fn.apply(new ApplicationPrivileges.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code metadata}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>metadata</code>.
 		 */
-		public final Builder metadata(@Nullable Map<String, JsonData> value) {
-			this.metadata = value;
+		public final Builder metadata(Map<String, JsonData> map) {
+			this.metadata = _mapPutAll(this.metadata, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code metadata}
+		 * <p>
+		 * Adds an entry to <code>metadata</code>.
+		 */
+		public final Builder metadata(String key, JsonData value) {
+			this.metadata = _mapPut(this.metadata, key, value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code run_as}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>runAs</code>.
 		 */
-		public final Builder runAs(@Nullable List<String> value) {
-			this.runAs = value;
+		public final Builder runAs(List<String> list) {
+			this.runAs = _listAddAll(this.runAs, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code run_as}
+		 * <p>
+		 * Adds one or more values to <code>runAs</code>.
 		 */
-		public final Builder runAs(String... value) {
-			this.runAs = Arrays.asList(value);
+		public final Builder runAs(String value, String... values) {
+			this.runAs = _listAdd(this.runAs, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code transient_metadata}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>transientMetadata</code>.
 		 */
-		public final Builder transientMetadata(@Nullable Map<String, JsonData> value) {
-			this.transientMetadata = value;
+		public final Builder transientMetadata(Map<String, JsonData> map) {
+			this.transientMetadata = _mapPutAll(this.transientMetadata, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code transient_metadata}
+		 * <p>
+		 * Adds an entry to <code>transientMetadata</code>.
+		 */
+		public final Builder transientMetadata(String key, JsonData value) {
+			this.transientMetadata = _mapPut(this.transientMetadata, key, value);
 			return this;
 		}
 

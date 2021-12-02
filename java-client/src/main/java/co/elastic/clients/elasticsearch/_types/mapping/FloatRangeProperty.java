@@ -31,9 +31,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.mapping.FloatRangeProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/range.ts#L46-L48">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FloatRangeProperty extends RangePropertyBase implements PropertyVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -43,10 +50,8 @@ public class FloatRangeProperty extends RangePropertyBase implements PropertyVar
 
 	}
 
-	public static FloatRangeProperty of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static FloatRangeProperty of(Function<Builder, ObjectBuilder<FloatRangeProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -69,6 +74,7 @@ public class FloatRangeProperty extends RangePropertyBase implements PropertyVar
 	/**
 	 * Builder for {@link FloatRangeProperty}.
 	 */
+
 	public static class Builder extends RangePropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<FloatRangeProperty> {

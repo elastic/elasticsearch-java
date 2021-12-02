@@ -34,10 +34,17 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.recovery.RecoveryRecord
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/recovery/types.ts#L23-L154">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RecoveryRecord implements JsonpSerializable {
 	@Nullable
@@ -151,10 +158,8 @@ public class RecoveryRecord implements JsonpSerializable {
 
 	}
 
-	public static RecoveryRecord of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RecoveryRecord of(Function<Builder, ObjectBuilder<RecoveryRecord>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -566,6 +571,7 @@ public class RecoveryRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link RecoveryRecord}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RecoveryRecord> {
 		@Nullable
 		private String index;

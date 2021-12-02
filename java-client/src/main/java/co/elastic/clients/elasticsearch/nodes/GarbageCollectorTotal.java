@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.GarbageCollectorTotal
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/_types/Stats.ts#L187-L191">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GarbageCollectorTotal implements JsonpSerializable {
 	private final long collectionCount;
@@ -52,17 +59,15 @@ public class GarbageCollectorTotal implements JsonpSerializable {
 
 	private GarbageCollectorTotal(Builder builder) {
 
-		this.collectionCount = ModelTypeHelper.requireNonNull(builder.collectionCount, this, "collectionCount");
-		this.collectionTime = ModelTypeHelper.requireNonNull(builder.collectionTime, this, "collectionTime");
-		this.collectionTimeInMillis = ModelTypeHelper.requireNonNull(builder.collectionTimeInMillis, this,
+		this.collectionCount = ApiTypeHelper.requireNonNull(builder.collectionCount, this, "collectionCount");
+		this.collectionTime = ApiTypeHelper.requireNonNull(builder.collectionTime, this, "collectionTime");
+		this.collectionTimeInMillis = ApiTypeHelper.requireNonNull(builder.collectionTimeInMillis, this,
 				"collectionTimeInMillis");
 
 	}
 
-	public static GarbageCollectorTotal of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GarbageCollectorTotal of(Function<Builder, ObjectBuilder<GarbageCollectorTotal>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -113,6 +118,7 @@ public class GarbageCollectorTotal implements JsonpSerializable {
 	/**
 	 * Builder for {@link GarbageCollectorTotal}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GarbageCollectorTotal> {
 		private Long collectionCount;
 

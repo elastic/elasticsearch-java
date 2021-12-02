@@ -35,21 +35,30 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_job.Request
+
+/**
+ * Instantiates an anomaly detection job. If you include a
+ * <code>datafeed_config</code>, you must have read index privileges on the
+ * source index.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/put_job/MlPutJobRequest.ts#L30-L111">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutJobRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -100,17 +109,17 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 	private PutJobRequest(Builder builder) {
 
 		this.allowLazyOpen = builder.allowLazyOpen;
-		this.analysisConfig = ModelTypeHelper.requireNonNull(builder.analysisConfig, this, "analysisConfig");
+		this.analysisConfig = ApiTypeHelper.requireNonNull(builder.analysisConfig, this, "analysisConfig");
 		this.analysisLimits = builder.analysisLimits;
-		this.backgroundPersistInterval = ModelTypeHelper.requireNonNull(builder.backgroundPersistInterval, this,
+		this.backgroundPersistInterval = ApiTypeHelper.requireNonNull(builder.backgroundPersistInterval, this,
 				"backgroundPersistInterval");
 		this.customSettings = builder.customSettings;
 		this.dailyModelSnapshotRetentionAfterDays = builder.dailyModelSnapshotRetentionAfterDays;
-		this.dataDescription = ModelTypeHelper.requireNonNull(builder.dataDescription, this, "dataDescription");
+		this.dataDescription = ApiTypeHelper.requireNonNull(builder.dataDescription, this, "dataDescription");
 		this.datafeedConfig = builder.datafeedConfig;
 		this.description = builder.description;
-		this.groups = ModelTypeHelper.unmodifiable(builder.groups);
-		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.groups = ApiTypeHelper.unmodifiable(builder.groups);
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.modelPlotConfig = builder.modelPlotConfig;
 		this.modelSnapshotRetentionDays = builder.modelSnapshotRetentionDays;
 		this.renormalizationWindowDays = builder.renormalizationWindowDays;
@@ -119,10 +128,8 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 
 	}
 
-	public static PutJobRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PutJobRequest of(Function<Builder, ObjectBuilder<PutJobRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -384,7 +391,7 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 			generator.write(this.description);
 
 		}
-		if (ModelTypeHelper.isDefined(this.groups)) {
+		if (ApiTypeHelper.isDefined(this.groups)) {
 			generator.writeKey("groups");
 			generator.writeStartArray();
 			for (String item0 : this.groups) {
@@ -427,6 +434,7 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link PutJobRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutJobRequest> {
 		@Nullable
 		private Boolean allowLazyOpen;
@@ -509,10 +517,8 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code analysis_config}
 		 */
-		public final Builder analysisConfig(Consumer<AnalysisConfig.Builder> fn) {
-			AnalysisConfig.Builder builder = new AnalysisConfig.Builder();
-			fn.accept(builder);
-			return this.analysisConfig(builder.build());
+		public final Builder analysisConfig(Function<AnalysisConfig.Builder, ObjectBuilder<AnalysisConfig>> fn) {
+			return this.analysisConfig(fn.apply(new AnalysisConfig.Builder()).build());
 		}
 
 		/**
@@ -536,10 +542,8 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code analysis_limits}
 		 */
-		public final Builder analysisLimits(Consumer<AnalysisLimits.Builder> fn) {
-			AnalysisLimits.Builder builder = new AnalysisLimits.Builder();
-			fn.accept(builder);
-			return this.analysisLimits(builder.build());
+		public final Builder analysisLimits(Function<AnalysisLimits.Builder, ObjectBuilder<AnalysisLimits>> fn) {
+			return this.analysisLimits(fn.apply(new AnalysisLimits.Builder()).build());
 		}
 
 		/**
@@ -567,10 +571,8 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code background_persist_interval}
 		 */
-		public final Builder backgroundPersistInterval(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.backgroundPersistInterval(builder.build());
+		public final Builder backgroundPersistInterval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.backgroundPersistInterval(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -620,10 +622,8 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code data_description}
 		 */
-		public final Builder dataDescription(Consumer<DataDescription.Builder> fn) {
-			DataDescription.Builder builder = new DataDescription.Builder();
-			fn.accept(builder);
-			return this.dataDescription(builder.build());
+		public final Builder dataDescription(Function<DataDescription.Builder, ObjectBuilder<DataDescription>> fn) {
+			return this.dataDescription(fn.apply(new DataDescription.Builder()).build());
 		}
 
 		/**
@@ -649,10 +649,8 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code datafeed_config}
 		 */
-		public final Builder datafeedConfig(Consumer<DatafeedConfig.Builder> fn) {
-			DatafeedConfig.Builder builder = new DatafeedConfig.Builder();
-			fn.accept(builder);
-			return this.datafeedConfig(builder.build());
+		public final Builder datafeedConfig(Function<DatafeedConfig.Builder, ObjectBuilder<DatafeedConfig>> fn) {
+			return this.datafeedConfig(fn.apply(new DatafeedConfig.Builder()).build());
 		}
 
 		/**
@@ -669,9 +667,11 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 		 * A list of job groups. A job can belong to no groups or many.
 		 * <p>
 		 * API name: {@code groups}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>groups</code>.
 		 */
-		public final Builder groups(@Nullable List<String> value) {
-			this.groups = value;
+		public final Builder groups(List<String> list) {
+			this.groups = _listAddAll(this.groups, list);
 			return this;
 		}
 
@@ -679,9 +679,11 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 		 * A list of job groups. A job can belong to no groups or many.
 		 * <p>
 		 * API name: {@code groups}
+		 * <p>
+		 * Adds one or more values to <code>groups</code>.
 		 */
-		public final Builder groups(String... value) {
-			this.groups = Arrays.asList(value);
+		public final Builder groups(String value, String... values) {
+			this.groups = _listAdd(this.groups, value, values);
 			return this;
 		}
 
@@ -728,10 +730,8 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code model_plot_config}
 		 */
-		public final Builder modelPlotConfig(Consumer<ModelPlotConfig.Builder> fn) {
-			ModelPlotConfig.Builder builder = new ModelPlotConfig.Builder();
-			fn.accept(builder);
-			return this.modelPlotConfig(builder.build());
+		public final Builder modelPlotConfig(Function<ModelPlotConfig.Builder, ObjectBuilder<ModelPlotConfig>> fn) {
+			return this.modelPlotConfig(fn.apply(new ModelPlotConfig.Builder()).build());
 		}
 
 		/**

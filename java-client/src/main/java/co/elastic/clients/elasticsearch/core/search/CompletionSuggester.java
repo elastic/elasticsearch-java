@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -36,10 +36,17 @@ import java.lang.String;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.CompletionSuggester
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/suggester.ts#L98-L104">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CompletionSuggester extends SuggesterBase implements FieldSuggesterVariant {
 	private final Map<String, List<CompletionContext>> contexts;
@@ -61,7 +68,7 @@ public class CompletionSuggester extends SuggesterBase implements FieldSuggester
 	private CompletionSuggester(Builder builder) {
 		super(builder);
 
-		this.contexts = ModelTypeHelper.unmodifiable(builder.contexts);
+		this.contexts = ApiTypeHelper.unmodifiable(builder.contexts);
 		this.fuzzy = builder.fuzzy;
 		this.prefix = builder.prefix;
 		this.regex = builder.regex;
@@ -69,10 +76,8 @@ public class CompletionSuggester extends SuggesterBase implements FieldSuggester
 
 	}
 
-	public static CompletionSuggester of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CompletionSuggester of(Function<Builder, ObjectBuilder<CompletionSuggester>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -125,7 +130,7 @@ public class CompletionSuggester extends SuggesterBase implements FieldSuggester
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.contexts)) {
+		if (ApiTypeHelper.isDefined(this.contexts)) {
 			generator.writeKey("contexts");
 			generator.writeStartObject();
 			for (Map.Entry<String, List<CompletionContext>> item0 : this.contexts.entrySet()) {
@@ -171,6 +176,7 @@ public class CompletionSuggester extends SuggesterBase implements FieldSuggester
 	/**
 	 * Builder for {@link CompletionSuggester}.
 	 */
+
 	public static class Builder extends SuggesterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<CompletionSuggester> {
@@ -191,9 +197,21 @@ public class CompletionSuggester extends SuggesterBase implements FieldSuggester
 
 		/**
 		 * API name: {@code contexts}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>contexts</code>.
 		 */
-		public final Builder contexts(@Nullable Map<String, List<CompletionContext>> value) {
-			this.contexts = value;
+		public final Builder contexts(Map<String, List<CompletionContext>> map) {
+			this.contexts = _mapPutAll(this.contexts, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code contexts}
+		 * <p>
+		 * Adds an entry to <code>contexts</code>.
+		 */
+		public final Builder contexts(String key, List<CompletionContext> value) {
+			this.contexts = _mapPut(this.contexts, key, value);
 			return this;
 		}
 
@@ -208,10 +226,8 @@ public class CompletionSuggester extends SuggesterBase implements FieldSuggester
 		/**
 		 * API name: {@code fuzzy}
 		 */
-		public final Builder fuzzy(Consumer<SuggestFuzziness.Builder> fn) {
-			SuggestFuzziness.Builder builder = new SuggestFuzziness.Builder();
-			fn.accept(builder);
-			return this.fuzzy(builder.build());
+		public final Builder fuzzy(Function<SuggestFuzziness.Builder, ObjectBuilder<SuggestFuzziness>> fn) {
+			return this.fuzzy(fn.apply(new SuggestFuzziness.Builder()).build());
 		}
 
 		/**

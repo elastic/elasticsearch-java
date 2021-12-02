@@ -40,7 +40,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -51,11 +51,19 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: _global.update.Request
+
+/**
+ * Updates a document with a script or partial document.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/update/UpdateRequest.ts#L39-L153">API
+ *      specification</a>
+ */
 
 public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -127,10 +135,10 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		this.detectNoop = builder.detectNoop;
 		this.doc = builder.doc;
 		this.docAsUpsert = builder.docAsUpsert;
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.ifPrimaryTerm = builder.ifPrimaryTerm;
 		this.ifSeqNo = builder.ifSeqNo;
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.lang = builder.lang;
 		this.refresh = builder.refresh;
 		this.requireAlias = builder.requireAlias;
@@ -148,10 +156,8 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 	}
 
 	public static <TDocument, TPartialDocument> UpdateRequest<TDocument, TPartialDocument> of(
-			Consumer<Builder<TDocument, TPartialDocument>> fn) {
-		Builder<TDocument, TPartialDocument> builder = new Builder<>();
-		fn.accept(builder);
-		return builder.build();
+			Function<Builder<TDocument, TPartialDocument>, ObjectBuilder<UpdateRequest<TDocument, TPartialDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
@@ -407,6 +413,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 	/**
 	 * Builder for {@link UpdateRequest}.
 	 */
+
 	public static class Builder<TDocument, TPartialDocument> extends ObjectBuilderBase
 			implements
 				ObjectBuilder<UpdateRequest<TDocument, TPartialDocument>> {
@@ -488,10 +495,9 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		 * <p>
 		 * API name: {@code _source}
 		 */
-		public final Builder<TDocument, TPartialDocument> source(Consumer<SourceConfig.Builder> fn) {
-			SourceConfig.Builder builder = new SourceConfig.Builder();
-			fn.accept(builder);
-			return this.source(builder.build());
+		public final Builder<TDocument, TPartialDocument> source(
+				Function<SourceConfig.Builder, ObjectBuilder<SourceConfig>> fn) {
+			return this.source(fn.apply(new SourceConfig.Builder()).build());
 		}
 
 		/**
@@ -633,10 +639,8 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		 * <p>
 		 * API name: {@code script}
 		 */
-		public final Builder<TDocument, TPartialDocument> script(Consumer<Script.Builder> fn) {
-			Script.Builder builder = new Script.Builder();
-			fn.accept(builder);
-			return this.script(builder.build());
+		public final Builder<TDocument, TPartialDocument> script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
 		/**
@@ -668,10 +672,8 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder<TDocument, TPartialDocument> timeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.timeout(builder.build());
+		public final Builder<TDocument, TPartialDocument> timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -717,10 +719,8 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		 * API name: {@code wait_for_active_shards}
 		 */
 		public final Builder<TDocument, TPartialDocument> waitForActiveShards(
-				Consumer<WaitForActiveShards.Builder> fn) {
-			WaitForActiveShards.Builder builder = new WaitForActiveShards.Builder();
-			fn.accept(builder);
-			return this.waitForActiveShards(builder.build());
+				Function<WaitForActiveShards.Builder, ObjectBuilder<WaitForActiveShards>> fn) {
+			return this.waitForActiveShards(fn.apply(new WaitForActiveShards.Builder()).build());
 		}
 
 		/**
@@ -759,7 +759,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for UpdateRequest
+	 * Create a JSON deserializer for UpdateRequest
 	 */
 	public static <TDocument, TPartialDocument> JsonpDeserializer<UpdateRequest<TDocument, TPartialDocument>> createUpdateRequestDeserializer(
 			JsonpDeserializer<TDocument> tDocumentDeserializer,

@@ -35,10 +35,17 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationClassificationMetricsAucRoc
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/DataframeEvaluation.ts#L85-L90">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeEvaluationClassificationMetricsAucRoc implements JsonpSerializable {
 	@Nullable
@@ -56,10 +63,9 @@ public class DataframeEvaluationClassificationMetricsAucRoc implements JsonpSeri
 
 	}
 
-	public static DataframeEvaluationClassificationMetricsAucRoc of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DataframeEvaluationClassificationMetricsAucRoc of(
+			Function<Builder, ObjectBuilder<DataframeEvaluationClassificationMetricsAucRoc>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -115,6 +121,7 @@ public class DataframeEvaluationClassificationMetricsAucRoc implements JsonpSeri
 	/**
 	 * Builder for {@link DataframeEvaluationClassificationMetricsAucRoc}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase
 			implements
 				ObjectBuilder<DataframeEvaluationClassificationMetricsAucRoc> {

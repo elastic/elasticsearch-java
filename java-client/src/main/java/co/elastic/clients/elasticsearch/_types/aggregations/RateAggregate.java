@@ -28,16 +28,23 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.RateAggregate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L680-L684">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RateAggregate extends AggregateBase implements AggregateVariant {
 	private final double value;
@@ -50,15 +57,13 @@ public class RateAggregate extends AggregateBase implements AggregateVariant {
 	private RateAggregate(Builder builder) {
 		super(builder);
 
-		this.value = ModelTypeHelper.requireNonNull(builder.value, this, "value");
+		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
 		this.valueAsString = builder.valueAsString;
 
 	}
 
-	public static RateAggregate of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RateAggregate of(Function<Builder, ObjectBuilder<RateAggregate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -103,6 +108,7 @@ public class RateAggregate extends AggregateBase implements AggregateVariant {
 	/**
 	 * Builder for {@link RateAggregate}.
 	 */
+
 	public static class Builder extends AggregateBase.AbstractBuilder<Builder> implements ObjectBuilder<RateAggregate> {
 		private Double value;
 

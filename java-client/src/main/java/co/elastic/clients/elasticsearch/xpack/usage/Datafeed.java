@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: xpack.usage.Datafeed
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L67-L69">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Datafeed implements JsonpSerializable {
 	private final long count;
@@ -46,14 +53,12 @@ public class Datafeed implements JsonpSerializable {
 
 	private Datafeed(Builder builder) {
 
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
 
 	}
 
-	public static Datafeed of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Datafeed of(Function<Builder, ObjectBuilder<Datafeed>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -84,6 +89,7 @@ public class Datafeed implements JsonpSerializable {
 	/**
 	 * Builder for {@link Datafeed}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Datafeed> {
 		private Long count;
 

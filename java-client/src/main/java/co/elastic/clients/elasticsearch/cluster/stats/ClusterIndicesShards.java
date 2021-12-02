@@ -34,10 +34,18 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterIndicesShards
+
+/**
+ * Contains statistics about shards assigned to selected nodes.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/stats/types.ts#L48-L60">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ClusterIndicesShards implements JsonpSerializable {
 	@Nullable
@@ -63,10 +71,8 @@ public class ClusterIndicesShards implements JsonpSerializable {
 
 	}
 
-	public static ClusterIndicesShards of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ClusterIndicesShards of(Function<Builder, ObjectBuilder<ClusterIndicesShards>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -148,6 +154,7 @@ public class ClusterIndicesShards implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClusterIndicesShards}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterIndicesShards> {
 		@Nullable
 		private ClusterIndicesShardsIndex index;
@@ -176,10 +183,9 @@ public class ClusterIndicesShards implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public final Builder index(Consumer<ClusterIndicesShardsIndex.Builder> fn) {
-			ClusterIndicesShardsIndex.Builder builder = new ClusterIndicesShardsIndex.Builder();
-			fn.accept(builder);
-			return this.index(builder.build());
+		public final Builder index(
+				Function<ClusterIndicesShardsIndex.Builder, ObjectBuilder<ClusterIndicesShardsIndex>> fn) {
+			return this.index(fn.apply(new ClusterIndicesShardsIndex.Builder()).build());
 		}
 
 		/**

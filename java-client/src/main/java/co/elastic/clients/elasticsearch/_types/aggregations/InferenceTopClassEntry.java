@@ -30,16 +30,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.InferenceTopClassEntry
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L609-L613">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class InferenceTopClassEntry implements JsonpSerializable {
 	private final FieldValue className;
@@ -52,16 +59,14 @@ public class InferenceTopClassEntry implements JsonpSerializable {
 
 	private InferenceTopClassEntry(Builder builder) {
 
-		this.className = ModelTypeHelper.requireNonNull(builder.className, this, "className");
-		this.classProbability = ModelTypeHelper.requireNonNull(builder.classProbability, this, "classProbability");
-		this.classScore = ModelTypeHelper.requireNonNull(builder.classScore, this, "classScore");
+		this.className = ApiTypeHelper.requireNonNull(builder.className, this, "className");
+		this.classProbability = ApiTypeHelper.requireNonNull(builder.classProbability, this, "classProbability");
+		this.classScore = ApiTypeHelper.requireNonNull(builder.classScore, this, "classScore");
 
 	}
 
-	public static InferenceTopClassEntry of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static InferenceTopClassEntry of(Function<Builder, ObjectBuilder<InferenceTopClassEntry>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -112,6 +117,7 @@ public class InferenceTopClassEntry implements JsonpSerializable {
 	/**
 	 * Builder for {@link InferenceTopClassEntry}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<InferenceTopClassEntry> {
 		private FieldValue className;
 
@@ -130,10 +136,8 @@ public class InferenceTopClassEntry implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code class_name}
 		 */
-		public final Builder className(Consumer<FieldValue.Builder> fn) {
-			FieldValue.Builder builder = new FieldValue.Builder();
-			fn.accept(builder);
-			return this.className(builder.build());
+		public final Builder className(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
+			return this.className(fn.apply(new FieldValue.Builder()).build());
 		}
 
 		/**

@@ -32,9 +32,16 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: indices.get_template.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/get_template/IndicesGetTemplateResponse.ts#L23-L23">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetTemplateResponse extends DictionaryResponse<String, TemplateMapping> {
 	// ---------------------------------------------------------------------------------------------
@@ -44,10 +51,8 @@ public class GetTemplateResponse extends DictionaryResponse<String, TemplateMapp
 
 	}
 
-	public static GetTemplateResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetTemplateResponse of(Function<Builder, ObjectBuilder<GetTemplateResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -55,6 +60,7 @@ public class GetTemplateResponse extends DictionaryResponse<String, TemplateMapp
 	/**
 	 * Builder for {@link GetTemplateResponse}.
 	 */
+
 	public static class Builder extends DictionaryResponse.AbstractBuilder<String, TemplateMapping, Builder>
 			implements
 				ObjectBuilder<GetTemplateResponse> {

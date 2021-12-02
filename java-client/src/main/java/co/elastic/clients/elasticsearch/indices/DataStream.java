@@ -34,10 +34,17 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.DataStream
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/_types/DataStream.ts#L20-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataStream implements JsonpSerializable {
 	@Nullable
@@ -51,10 +58,8 @@ public class DataStream implements JsonpSerializable {
 
 	}
 
-	public static DataStream of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DataStream of(Function<Builder, ObjectBuilder<DataStream>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -89,6 +94,7 @@ public class DataStream implements JsonpSerializable {
 	/**
 	 * Builder for {@link DataStream}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataStream> {
 		@Nullable
 		private Boolean hidden;

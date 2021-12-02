@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.ShardFailure
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Errors.ts#L50-L56">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ShardFailure implements JsonpSerializable {
 	@Nullable
@@ -61,16 +68,14 @@ public class ShardFailure implements JsonpSerializable {
 
 		this.index = builder.index;
 		this.node = builder.node;
-		this.reason = ModelTypeHelper.requireNonNull(builder.reason, this, "reason");
-		this.shard = ModelTypeHelper.requireNonNull(builder.shard, this, "shard");
+		this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
+		this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard");
 		this.status = builder.status;
 
 	}
 
-	public static ShardFailure of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ShardFailure of(Function<Builder, ObjectBuilder<ShardFailure>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -151,6 +156,7 @@ public class ShardFailure implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardFailure}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardFailure> {
 		@Nullable
 		private String index;
@@ -192,10 +198,8 @@ public class ShardFailure implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code reason}
 		 */
-		public final Builder reason(Consumer<ErrorCause.Builder> fn) {
-			ErrorCause.Builder builder = new ErrorCause.Builder();
-			fn.accept(builder);
-			return this.reason(builder.build());
+		public final Builder reason(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+			return this.reason(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		/**

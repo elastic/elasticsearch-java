@@ -35,21 +35,28 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.put_role_mapping.Request
+
+/**
+ * Creates and updates role mappings.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/put_role_mapping/SecurityPutRoleMappingRequest.ts#L24-L43">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutRoleMappingRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -74,19 +81,17 @@ public class PutRoleMappingRequest extends RequestBase implements JsonpSerializa
 	private PutRoleMappingRequest(Builder builder) {
 
 		this.enabled = builder.enabled;
-		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.refresh = builder.refresh;
-		this.roles = ModelTypeHelper.unmodifiable(builder.roles);
+		this.roles = ApiTypeHelper.unmodifiable(builder.roles);
 		this.rules = builder.rules;
-		this.runAs = ModelTypeHelper.unmodifiable(builder.runAs);
+		this.runAs = ApiTypeHelper.unmodifiable(builder.runAs);
 
 	}
 
-	public static PutRoleMappingRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PutRoleMappingRequest of(Function<Builder, ObjectBuilder<PutRoleMappingRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -164,7 +169,7 @@ public class PutRoleMappingRequest extends RequestBase implements JsonpSerializa
 			generator.write(this.enabled);
 
 		}
-		if (ModelTypeHelper.isDefined(this.metadata)) {
+		if (ApiTypeHelper.isDefined(this.metadata)) {
 			generator.writeKey("metadata");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
@@ -175,7 +180,7 @@ public class PutRoleMappingRequest extends RequestBase implements JsonpSerializa
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.roles)) {
+		if (ApiTypeHelper.isDefined(this.roles)) {
 			generator.writeKey("roles");
 			generator.writeStartArray();
 			for (String item0 : this.roles) {
@@ -190,7 +195,7 @@ public class PutRoleMappingRequest extends RequestBase implements JsonpSerializa
 			this.rules.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.runAs)) {
+		if (ApiTypeHelper.isDefined(this.runAs)) {
 			generator.writeKey("run_as");
 			generator.writeStartArray();
 			for (String item0 : this.runAs) {
@@ -208,6 +213,7 @@ public class PutRoleMappingRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Builder for {@link PutRoleMappingRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutRoleMappingRequest> {
 		@Nullable
 		private Boolean enabled;
@@ -239,9 +245,21 @@ public class PutRoleMappingRequest extends RequestBase implements JsonpSerializa
 
 		/**
 		 * API name: {@code metadata}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>metadata</code>.
 		 */
-		public final Builder metadata(@Nullable Map<String, JsonData> value) {
-			this.metadata = value;
+		public final Builder metadata(Map<String, JsonData> map) {
+			this.metadata = _mapPutAll(this.metadata, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code metadata}
+		 * <p>
+		 * Adds an entry to <code>metadata</code>.
+		 */
+		public final Builder metadata(String key, JsonData value) {
+			this.metadata = _mapPut(this.metadata, key, value);
 			return this;
 		}
 
@@ -270,17 +288,21 @@ public class PutRoleMappingRequest extends RequestBase implements JsonpSerializa
 
 		/**
 		 * API name: {@code roles}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>roles</code>.
 		 */
-		public final Builder roles(@Nullable List<String> value) {
-			this.roles = value;
+		public final Builder roles(List<String> list) {
+			this.roles = _listAddAll(this.roles, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code roles}
+		 * <p>
+		 * Adds one or more values to <code>roles</code>.
 		 */
-		public final Builder roles(String... value) {
-			this.roles = Arrays.asList(value);
+		public final Builder roles(String value, String... values) {
+			this.roles = _listAdd(this.roles, value, values);
 			return this;
 		}
 
@@ -295,25 +317,27 @@ public class PutRoleMappingRequest extends RequestBase implements JsonpSerializa
 		/**
 		 * API name: {@code rules}
 		 */
-		public final Builder rules(Consumer<RoleMappingRule.Builder> fn) {
-			RoleMappingRule.Builder builder = new RoleMappingRule.Builder();
-			fn.accept(builder);
-			return this.rules(builder.build());
+		public final Builder rules(Function<RoleMappingRule.Builder, ObjectBuilder<RoleMappingRule>> fn) {
+			return this.rules(fn.apply(new RoleMappingRule.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code run_as}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>runAs</code>.
 		 */
-		public final Builder runAs(@Nullable List<String> value) {
-			this.runAs = value;
+		public final Builder runAs(List<String> list) {
+			this.runAs = _listAddAll(this.runAs, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code run_as}
+		 * <p>
+		 * Adds one or more values to <code>runAs</code>.
 		 */
-		public final Builder runAs(String... value) {
-			this.runAs = Arrays.asList(value);
+		public final Builder runAs(String value, String... values) {
+			this.runAs = _listAdd(this.runAs, value, values);
 			return this;
 		}
 

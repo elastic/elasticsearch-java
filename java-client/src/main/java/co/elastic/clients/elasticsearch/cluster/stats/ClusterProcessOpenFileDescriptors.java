@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: cluster.stats.ClusterProcessOpenFileDescriptors
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/stats/types.ts#L253-L257">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ClusterProcessOpenFileDescriptors implements JsonpSerializable {
 	private final long avg;
@@ -50,16 +57,15 @@ public class ClusterProcessOpenFileDescriptors implements JsonpSerializable {
 
 	private ClusterProcessOpenFileDescriptors(Builder builder) {
 
-		this.avg = ModelTypeHelper.requireNonNull(builder.avg, this, "avg");
-		this.max = ModelTypeHelper.requireNonNull(builder.max, this, "max");
-		this.min = ModelTypeHelper.requireNonNull(builder.min, this, "min");
+		this.avg = ApiTypeHelper.requireNonNull(builder.avg, this, "avg");
+		this.max = ApiTypeHelper.requireNonNull(builder.max, this, "max");
+		this.min = ApiTypeHelper.requireNonNull(builder.min, this, "min");
 
 	}
 
-	public static ClusterProcessOpenFileDescriptors of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ClusterProcessOpenFileDescriptors of(
+			Function<Builder, ObjectBuilder<ClusterProcessOpenFileDescriptors>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -110,6 +116,7 @@ public class ClusterProcessOpenFileDescriptors implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClusterProcessOpenFileDescriptors}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterProcessOpenFileDescriptors> {
 		private Long avg;
 

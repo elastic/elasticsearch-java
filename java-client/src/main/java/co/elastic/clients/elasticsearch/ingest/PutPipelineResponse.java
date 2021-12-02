@@ -31,9 +31,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: ingest.put_pipeline.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/put_pipeline/PutPipelineResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutPipelineResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
@@ -43,10 +50,8 @@ public class PutPipelineResponse extends AcknowledgedResponseBase {
 
 	}
 
-	public static PutPipelineResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PutPipelineResponse of(Function<Builder, ObjectBuilder<PutPipelineResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -54,6 +59,7 @@ public class PutPipelineResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link PutPipelineResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PutPipelineResponse> {

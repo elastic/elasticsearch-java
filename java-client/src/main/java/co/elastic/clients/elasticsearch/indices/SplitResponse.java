@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.split.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/split/IndicesSplitResponse.ts#L23-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SplitResponse extends AcknowledgedResponseBase {
 	private final boolean shardsAcknowledged;
@@ -50,16 +57,13 @@ public class SplitResponse extends AcknowledgedResponseBase {
 	private SplitResponse(Builder builder) {
 		super(builder);
 
-		this.shardsAcknowledged = ModelTypeHelper.requireNonNull(builder.shardsAcknowledged, this,
-				"shardsAcknowledged");
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.shardsAcknowledged = ApiTypeHelper.requireNonNull(builder.shardsAcknowledged, this, "shardsAcknowledged");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 
 	}
 
-	public static SplitResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SplitResponse of(Function<Builder, ObjectBuilder<SplitResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -92,6 +96,7 @@ public class SplitResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link SplitResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<SplitResponse> {

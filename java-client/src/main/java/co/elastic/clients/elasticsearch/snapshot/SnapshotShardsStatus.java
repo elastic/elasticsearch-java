@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot._types.SnapshotShardsStatus
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/snapshot/_types/SnapshotShardsStatus.ts#L23-L26">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SnapshotShardsStatus implements JsonpSerializable {
 	private final ShardsStatsStage stage;
@@ -48,15 +55,13 @@ public class SnapshotShardsStatus implements JsonpSerializable {
 
 	private SnapshotShardsStatus(Builder builder) {
 
-		this.stage = ModelTypeHelper.requireNonNull(builder.stage, this, "stage");
-		this.stats = ModelTypeHelper.requireNonNull(builder.stats, this, "stats");
+		this.stage = ApiTypeHelper.requireNonNull(builder.stage, this, "stage");
+		this.stats = ApiTypeHelper.requireNonNull(builder.stats, this, "stats");
 
 	}
 
-	public static SnapshotShardsStatus of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SnapshotShardsStatus of(Function<Builder, ObjectBuilder<SnapshotShardsStatus>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -96,6 +101,7 @@ public class SnapshotShardsStatus implements JsonpSerializable {
 	/**
 	 * Builder for {@link SnapshotShardsStatus}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SnapshotShardsStatus> {
 		private ShardsStatsStage stage;
 
@@ -120,10 +126,8 @@ public class SnapshotShardsStatus implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code stats}
 		 */
-		public final Builder stats(Consumer<ShardsStatsSummary.Builder> fn) {
-			ShardsStatsSummary.Builder builder = new ShardsStatsSummary.Builder();
-			fn.accept(builder);
-			return this.stats(builder.build());
+		public final Builder stats(Function<ShardsStatsSummary.Builder, ObjectBuilder<ShardsStatsSummary>> fn) {
+			return this.stats(fn.apply(new ShardsStatsSummary.Builder()).build());
 		}
 
 		/**

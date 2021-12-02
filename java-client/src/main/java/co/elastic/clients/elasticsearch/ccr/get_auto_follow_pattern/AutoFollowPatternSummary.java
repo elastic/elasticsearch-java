@@ -29,20 +29,26 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr.get_auto_follow_pattern.AutoFollowPatternSummary
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ccr/get_auto_follow_pattern/types.ts#L28-L51">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AutoFollowPatternSummary implements JsonpSerializable {
 	private final boolean active;
@@ -62,22 +68,20 @@ public class AutoFollowPatternSummary implements JsonpSerializable {
 
 	private AutoFollowPatternSummary(Builder builder) {
 
-		this.active = ModelTypeHelper.requireNonNull(builder.active, this, "active");
-		this.remoteCluster = ModelTypeHelper.requireNonNull(builder.remoteCluster, this, "remoteCluster");
+		this.active = ApiTypeHelper.requireNonNull(builder.active, this, "active");
+		this.remoteCluster = ApiTypeHelper.requireNonNull(builder.remoteCluster, this, "remoteCluster");
 		this.followIndexPattern = builder.followIndexPattern;
-		this.leaderIndexPatterns = ModelTypeHelper.unmodifiableRequired(builder.leaderIndexPatterns, this,
+		this.leaderIndexPatterns = ApiTypeHelper.unmodifiableRequired(builder.leaderIndexPatterns, this,
 				"leaderIndexPatterns");
-		this.leaderIndexExclusionPatterns = ModelTypeHelper.unmodifiableRequired(builder.leaderIndexExclusionPatterns,
+		this.leaderIndexExclusionPatterns = ApiTypeHelper.unmodifiableRequired(builder.leaderIndexExclusionPatterns,
 				this, "leaderIndexExclusionPatterns");
-		this.maxOutstandingReadRequests = ModelTypeHelper.requireNonNull(builder.maxOutstandingReadRequests, this,
+		this.maxOutstandingReadRequests = ApiTypeHelper.requireNonNull(builder.maxOutstandingReadRequests, this,
 				"maxOutstandingReadRequests");
 
 	}
 
-	public static AutoFollowPatternSummary of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static AutoFollowPatternSummary of(Function<Builder, ObjectBuilder<AutoFollowPatternSummary>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -158,7 +162,7 @@ public class AutoFollowPatternSummary implements JsonpSerializable {
 			generator.write(this.followIndexPattern);
 
 		}
-		if (ModelTypeHelper.isDefined(this.leaderIndexPatterns)) {
+		if (ApiTypeHelper.isDefined(this.leaderIndexPatterns)) {
 			generator.writeKey("leader_index_patterns");
 			generator.writeStartArray();
 			for (String item0 : this.leaderIndexPatterns) {
@@ -168,7 +172,7 @@ public class AutoFollowPatternSummary implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.leaderIndexExclusionPatterns)) {
+		if (ApiTypeHelper.isDefined(this.leaderIndexExclusionPatterns)) {
 			generator.writeKey("leader_index_exclusion_patterns");
 			generator.writeStartArray();
 			for (String item0 : this.leaderIndexExclusionPatterns) {
@@ -188,6 +192,7 @@ public class AutoFollowPatternSummary implements JsonpSerializable {
 	/**
 	 * Builder for {@link AutoFollowPatternSummary}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AutoFollowPatternSummary> {
 		private Boolean active;
 
@@ -235,9 +240,11 @@ public class AutoFollowPatternSummary implements JsonpSerializable {
 		 * remote cluster specified by the remote_cluster field.
 		 * <p>
 		 * API name: {@code leader_index_patterns}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>leaderIndexPatterns</code>.
 		 */
-		public final Builder leaderIndexPatterns(List<String> value) {
-			this.leaderIndexPatterns = value;
+		public final Builder leaderIndexPatterns(List<String> list) {
+			this.leaderIndexPatterns = _listAddAll(this.leaderIndexPatterns, list);
 			return this;
 		}
 
@@ -246,9 +253,11 @@ public class AutoFollowPatternSummary implements JsonpSerializable {
 		 * remote cluster specified by the remote_cluster field.
 		 * <p>
 		 * API name: {@code leader_index_patterns}
+		 * <p>
+		 * Adds one or more values to <code>leaderIndexPatterns</code>.
 		 */
-		public final Builder leaderIndexPatterns(String... value) {
-			this.leaderIndexPatterns = Arrays.asList(value);
+		public final Builder leaderIndexPatterns(String value, String... values) {
+			this.leaderIndexPatterns = _listAdd(this.leaderIndexPatterns, value, values);
 			return this;
 		}
 
@@ -257,9 +266,12 @@ public class AutoFollowPatternSummary implements JsonpSerializable {
 		 * indices from being auto-followed.
 		 * <p>
 		 * API name: {@code leader_index_exclusion_patterns}
+		 * <p>
+		 * Adds all elements of <code>list</code> to
+		 * <code>leaderIndexExclusionPatterns</code>.
 		 */
-		public final Builder leaderIndexExclusionPatterns(List<String> value) {
-			this.leaderIndexExclusionPatterns = value;
+		public final Builder leaderIndexExclusionPatterns(List<String> list) {
+			this.leaderIndexExclusionPatterns = _listAddAll(this.leaderIndexExclusionPatterns, list);
 			return this;
 		}
 
@@ -268,9 +280,11 @@ public class AutoFollowPatternSummary implements JsonpSerializable {
 		 * indices from being auto-followed.
 		 * <p>
 		 * API name: {@code leader_index_exclusion_patterns}
+		 * <p>
+		 * Adds one or more values to <code>leaderIndexExclusionPatterns</code>.
 		 */
-		public final Builder leaderIndexExclusionPatterns(String... value) {
-			this.leaderIndexExclusionPatterns = Arrays.asList(value);
+		public final Builder leaderIndexExclusionPatterns(String value, String... values) {
+			this.leaderIndexExclusionPatterns = _listAdd(this.leaderIndexExclusionPatterns, value, values);
 			return this;
 		}
 

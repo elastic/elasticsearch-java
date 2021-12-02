@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,10 +41,18 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.stop_job.Request
+
+/**
+ * Stops an existing, started rollup job.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/rollup/stop_job/StopRollupJobRequest.ts#L24-L37">API
+ *      specification</a>
+ */
 
 public class StopJobRequest extends RequestBase {
 	private final String id;
@@ -59,16 +67,14 @@ public class StopJobRequest extends RequestBase {
 
 	private StopJobRequest(Builder builder) {
 
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.timeout = builder.timeout;
 		this.waitForCompletion = builder.waitForCompletion;
 
 	}
 
-	public static StopJobRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static StopJobRequest of(Function<Builder, ObjectBuilder<StopJobRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -107,6 +113,7 @@ public class StopJobRequest extends RequestBase {
 	/**
 	 * Builder for {@link StopJobRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StopJobRequest> {
 		private String id;
 
@@ -143,10 +150,8 @@ public class StopJobRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.timeout(builder.build());
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

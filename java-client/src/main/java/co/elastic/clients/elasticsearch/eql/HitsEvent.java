@@ -32,7 +32,7 @@ import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,11 +40,18 @@ import java.lang.String;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: eql._types.HitsEvent
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/eql/_types/EqlHits.ts#L41-L49">API
+ *      specification</a>
+ */
 
 public class HitsEvent<TEvent> implements JsonpSerializable {
 	private final String index;
@@ -62,18 +69,16 @@ public class HitsEvent<TEvent> implements JsonpSerializable {
 
 	private HitsEvent(Builder<TEvent> builder) {
 
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
-		this.source = ModelTypeHelper.requireNonNull(builder.source, this, "source");
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 		this.tEventSerializer = builder.tEventSerializer;
 
 	}
 
-	public static <TEvent> HitsEvent<TEvent> of(Consumer<Builder<TEvent>> fn) {
-		Builder<TEvent> builder = new Builder<>();
-		fn.accept(builder);
-		return builder.build();
+	public static <TEvent> HitsEvent<TEvent> of(Function<Builder<TEvent>, ObjectBuilder<HitsEvent<TEvent>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
@@ -131,7 +136,7 @@ public class HitsEvent<TEvent> implements JsonpSerializable {
 		generator.writeKey("_source");
 		JsonpUtils.serialize(this.source, generator, tEventSerializer, mapper);
 
-		if (ModelTypeHelper.isDefined(this.fields)) {
+		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartObject();
 			for (Map.Entry<String, List<JsonData>> item0 : this.fields.entrySet()) {
@@ -157,6 +162,7 @@ public class HitsEvent<TEvent> implements JsonpSerializable {
 	/**
 	 * Builder for {@link HitsEvent}.
 	 */
+
 	public static class Builder<TEvent> extends ObjectBuilderBase implements ObjectBuilder<HitsEvent<TEvent>> {
 		private String index;
 
@@ -203,9 +209,21 @@ public class HitsEvent<TEvent> implements JsonpSerializable {
 
 		/**
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>fields</code>.
 		 */
-		public final Builder<TEvent> fields(@Nullable Map<String, List<JsonData>> value) {
-			this.fields = value;
+		public final Builder<TEvent> fields(Map<String, List<JsonData>> map) {
+			this.fields = _mapPutAll(this.fields, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code fields}
+		 * <p>
+		 * Adds an entry to <code>fields</code>.
+		 */
+		public final Builder<TEvent> fields(String key, List<JsonData> value) {
+			this.fields = _mapPut(this.fields, key, value);
 			return this;
 		}
 
@@ -234,7 +252,7 @@ public class HitsEvent<TEvent> implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for HitsEvent
+	 * Create a JSON deserializer for HitsEvent
 	 */
 	public static <TEvent> JsonpDeserializer<HitsEvent<TEvent>> createHitsEventDeserializer(
 			JsonpDeserializer<TEvent> tEventDeserializer) {

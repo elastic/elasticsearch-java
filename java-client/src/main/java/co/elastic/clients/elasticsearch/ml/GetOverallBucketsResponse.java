@@ -29,20 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_overall_buckets.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_overall_buckets/MlGetOverallBucketsResponse.ts#L23-L29">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetOverallBucketsResponse implements JsonpSerializable {
 	private final long count;
@@ -53,15 +57,13 @@ public class GetOverallBucketsResponse implements JsonpSerializable {
 
 	private GetOverallBucketsResponse(Builder builder) {
 
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
-		this.overallBuckets = ModelTypeHelper.unmodifiableRequired(builder.overallBuckets, this, "overallBuckets");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.overallBuckets = ApiTypeHelper.unmodifiableRequired(builder.overallBuckets, this, "overallBuckets");
 
 	}
 
-	public static GetOverallBucketsResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetOverallBucketsResponse of(Function<Builder, ObjectBuilder<GetOverallBucketsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -94,7 +96,7 @@ public class GetOverallBucketsResponse implements JsonpSerializable {
 		generator.writeKey("count");
 		generator.write(this.count);
 
-		if (ModelTypeHelper.isDefined(this.overallBuckets)) {
+		if (ApiTypeHelper.isDefined(this.overallBuckets)) {
 			generator.writeKey("overall_buckets");
 			generator.writeStartArray();
 			for (OverallBucket item0 : this.overallBuckets) {
@@ -112,6 +114,7 @@ public class GetOverallBucketsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetOverallBucketsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetOverallBucketsResponse> {
 		private Long count;
 
@@ -129,9 +132,11 @@ public class GetOverallBucketsResponse implements JsonpSerializable {
 		 * Required - Array of overall bucket objects
 		 * <p>
 		 * API name: {@code overall_buckets}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>overallBuckets</code>.
 		 */
-		public final Builder overallBuckets(List<OverallBucket> value) {
-			this.overallBuckets = value;
+		public final Builder overallBuckets(List<OverallBucket> list) {
+			this.overallBuckets = _listAddAll(this.overallBuckets, list);
 			return this;
 		}
 
@@ -139,9 +144,11 @@ public class GetOverallBucketsResponse implements JsonpSerializable {
 		 * Required - Array of overall bucket objects
 		 * <p>
 		 * API name: {@code overall_buckets}
+		 * <p>
+		 * Adds one or more values to <code>overallBuckets</code>.
 		 */
-		public final Builder overallBuckets(OverallBucket... value) {
-			this.overallBuckets = Arrays.asList(value);
+		public final Builder overallBuckets(OverallBucket value, OverallBucket... values) {
+			this.overallBuckets = _listAdd(this.overallBuckets, value, values);
 			return this;
 		}
 
@@ -149,10 +156,11 @@ public class GetOverallBucketsResponse implements JsonpSerializable {
 		 * Required - Array of overall bucket objects
 		 * <p>
 		 * API name: {@code overall_buckets}
+		 * <p>
+		 * Adds a value to <code>overallBuckets</code> using a builder lambda.
 		 */
-		public final Builder overallBuckets(
-				Function<ListBuilder<OverallBucket, OverallBucket.Builder>, ObjectBuilder<List<OverallBucket>>> fn) {
-			return overallBuckets(fn.apply(new ListBuilder<>(OverallBucket.Builder::new)).build());
+		public final Builder overallBuckets(Function<OverallBucket.Builder, ObjectBuilder<OverallBucket>> fn) {
+			return overallBuckets(fn.apply(new OverallBucket.Builder()).build());
 		}
 
 		/**

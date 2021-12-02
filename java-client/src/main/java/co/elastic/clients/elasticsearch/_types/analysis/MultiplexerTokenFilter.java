@@ -28,18 +28,24 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.MultiplexerTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L258-L262">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MultiplexerTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final List<String> filters;
@@ -51,15 +57,13 @@ public class MultiplexerTokenFilter extends TokenFilterBase implements TokenFilt
 	private MultiplexerTokenFilter(Builder builder) {
 		super(builder);
 
-		this.filters = ModelTypeHelper.unmodifiableRequired(builder.filters, this, "filters");
-		this.preserveOriginal = ModelTypeHelper.requireNonNull(builder.preserveOriginal, this, "preserveOriginal");
+		this.filters = ApiTypeHelper.unmodifiableRequired(builder.filters, this, "filters");
+		this.preserveOriginal = ApiTypeHelper.requireNonNull(builder.preserveOriginal, this, "preserveOriginal");
 
 	}
 
-	public static MultiplexerTokenFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static MultiplexerTokenFilter of(Function<Builder, ObjectBuilder<MultiplexerTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -88,7 +92,7 @@ public class MultiplexerTokenFilter extends TokenFilterBase implements TokenFilt
 
 		generator.write("type", "multiplexer");
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.filters)) {
+		if (ApiTypeHelper.isDefined(this.filters)) {
 			generator.writeKey("filters");
 			generator.writeStartArray();
 			for (String item0 : this.filters) {
@@ -108,6 +112,7 @@ public class MultiplexerTokenFilter extends TokenFilterBase implements TokenFilt
 	/**
 	 * Builder for {@link MultiplexerTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<MultiplexerTokenFilter> {
@@ -117,17 +122,21 @@ public class MultiplexerTokenFilter extends TokenFilterBase implements TokenFilt
 
 		/**
 		 * Required - API name: {@code filters}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>filters</code>.
 		 */
-		public final Builder filters(List<String> value) {
-			this.filters = value;
+		public final Builder filters(List<String> list) {
+			this.filters = _listAddAll(this.filters, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code filters}
+		 * <p>
+		 * Adds one or more values to <code>filters</code>.
 		 */
-		public final Builder filters(String... value) {
-			this.filters = Arrays.asList(value);
+		public final Builder filters(String value, String... values) {
+			this.filters = _listAdd(this.filters, value, values);
 			return this;
 		}
 

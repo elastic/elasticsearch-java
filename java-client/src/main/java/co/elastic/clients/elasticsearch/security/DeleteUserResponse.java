@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: security.delete_user.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/delete_user/SecurityDeleteUserResponse.ts#L20-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DeleteUserResponse implements JsonpSerializable {
 	private final boolean found;
@@ -46,14 +53,12 @@ public class DeleteUserResponse implements JsonpSerializable {
 
 	private DeleteUserResponse(Builder builder) {
 
-		this.found = ModelTypeHelper.requireNonNull(builder.found, this, "found");
+		this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found");
 
 	}
 
-	public static DeleteUserResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DeleteUserResponse of(Function<Builder, ObjectBuilder<DeleteUserResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -84,6 +89,7 @@ public class DeleteUserResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link DeleteUserResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteUserResponse> {
 		private Boolean found;
 

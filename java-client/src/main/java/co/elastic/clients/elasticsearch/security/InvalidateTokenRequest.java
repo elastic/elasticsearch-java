@@ -39,10 +39,18 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.invalidate_token.Request
+
+/**
+ * Invalidates one or more access tokens or refresh tokens.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/invalidate_token/SecurityInvalidateTokenRequest.ts#L23-L35">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class InvalidateTokenRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -68,10 +76,8 @@ public class InvalidateTokenRequest extends RequestBase implements JsonpSerializ
 
 	}
 
-	public static InvalidateTokenRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static InvalidateTokenRequest of(Function<Builder, ObjectBuilder<InvalidateTokenRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -145,6 +151,7 @@ public class InvalidateTokenRequest extends RequestBase implements JsonpSerializ
 	/**
 	 * Builder for {@link InvalidateTokenRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<InvalidateTokenRequest> {
 		@Nullable
 		private String realmName;

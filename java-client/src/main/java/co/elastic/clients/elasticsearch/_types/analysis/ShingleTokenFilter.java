@@ -33,10 +33,17 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.ShingleTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L86-L94">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ShingleTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	@Nullable
@@ -71,10 +78,8 @@ public class ShingleTokenFilter extends TokenFilterBase implements TokenFilterDe
 
 	}
 
-	public static ShingleTokenFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ShingleTokenFilter of(Function<Builder, ObjectBuilder<ShingleTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -175,6 +180,7 @@ public class ShingleTokenFilter extends TokenFilterBase implements TokenFilterDe
 	/**
 	 * Builder for {@link ShingleTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ShingleTokenFilter> {

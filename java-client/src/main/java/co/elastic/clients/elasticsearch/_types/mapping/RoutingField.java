@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.mapping.RoutingField
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/meta-fields.ts#L50-L52">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RoutingField implements JsonpSerializable {
 	private final boolean required;
@@ -46,14 +53,12 @@ public class RoutingField implements JsonpSerializable {
 
 	private RoutingField(Builder builder) {
 
-		this.required = ModelTypeHelper.requireNonNull(builder.required, this, "required");
+		this.required = ApiTypeHelper.requireNonNull(builder.required, this, "required");
 
 	}
 
-	public static RoutingField of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RoutingField of(Function<Builder, ObjectBuilder<RoutingField>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -84,6 +89,7 @@ public class RoutingField implements JsonpSerializable {
 	/**
 	 * Builder for {@link RoutingField}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RoutingField> {
 		private Boolean required;
 

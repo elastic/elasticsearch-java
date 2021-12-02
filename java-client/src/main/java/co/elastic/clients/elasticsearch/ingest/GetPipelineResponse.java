@@ -32,9 +32,16 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: ingest.get_pipeline.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/get_pipeline/GetPipelineResponse.ts#L23-L23">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetPipelineResponse extends DictionaryResponse<String, Pipeline> {
 	// ---------------------------------------------------------------------------------------------
@@ -44,10 +51,8 @@ public class GetPipelineResponse extends DictionaryResponse<String, Pipeline> {
 
 	}
 
-	public static GetPipelineResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetPipelineResponse of(Function<Builder, ObjectBuilder<GetPipelineResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -55,6 +60,7 @@ public class GetPipelineResponse extends DictionaryResponse<String, Pipeline> {
 	/**
 	 * Builder for {@link GetPipelineResponse}.
 	 */
+
 	public static class Builder extends DictionaryResponse.AbstractBuilder<String, Pipeline, Builder>
 			implements
 				ObjectBuilder<GetPipelineResponse> {

@@ -32,10 +32,17 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.ConstantKeywordProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/specialized.ts#L45-L48">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ConstantKeywordProperty extends PropertyBase implements PropertyVariant {
 	@Nullable
@@ -50,10 +57,8 @@ public class ConstantKeywordProperty extends PropertyBase implements PropertyVar
 
 	}
 
-	public static ConstantKeywordProperty of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ConstantKeywordProperty of(Function<Builder, ObjectBuilder<ConstantKeywordProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -89,6 +94,7 @@ public class ConstantKeywordProperty extends PropertyBase implements PropertyVar
 	/**
 	 * Builder for {@link ConstantKeywordProperty}.
 	 */
+
 	public static class Builder extends PropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ConstantKeywordProperty> {

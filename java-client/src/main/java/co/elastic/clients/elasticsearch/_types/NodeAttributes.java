@@ -29,19 +29,25 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.NodeAttributes
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Node.ts#L38-L50">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeAttributes implements JsonpSerializable {
 	private final Map<String, String> attributes;
@@ -61,19 +67,17 @@ public class NodeAttributes implements JsonpSerializable {
 
 	private NodeAttributes(Builder builder) {
 
-		this.attributes = ModelTypeHelper.unmodifiableRequired(builder.attributes, this, "attributes");
-		this.ephemeralId = ModelTypeHelper.requireNonNull(builder.ephemeralId, this, "ephemeralId");
+		this.attributes = ApiTypeHelper.unmodifiableRequired(builder.attributes, this, "attributes");
+		this.ephemeralId = ApiTypeHelper.requireNonNull(builder.ephemeralId, this, "ephemeralId");
 		this.id = builder.id;
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
-		this.transportAddress = ModelTypeHelper.requireNonNull(builder.transportAddress, this, "transportAddress");
-		this.roles = ModelTypeHelper.unmodifiable(builder.roles);
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.transportAddress = ApiTypeHelper.requireNonNull(builder.transportAddress, this, "transportAddress");
+		this.roles = ApiTypeHelper.unmodifiable(builder.roles);
 
 	}
 
-	public static NodeAttributes of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodeAttributes of(Function<Builder, ObjectBuilder<NodeAttributes>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -140,7 +144,7 @@ public class NodeAttributes implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.attributes)) {
+		if (ApiTypeHelper.isDefined(this.attributes)) {
 			generator.writeKey("attributes");
 			generator.writeStartObject();
 			for (Map.Entry<String, String> item0 : this.attributes.entrySet()) {
@@ -165,7 +169,7 @@ public class NodeAttributes implements JsonpSerializable {
 		generator.writeKey("transport_address");
 		generator.write(this.transportAddress);
 
-		if (ModelTypeHelper.isDefined(this.roles)) {
+		if (ApiTypeHelper.isDefined(this.roles)) {
 			generator.writeKey("roles");
 			generator.writeStartArray();
 			for (NodeRole item0 : this.roles) {
@@ -182,6 +186,7 @@ public class NodeAttributes implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeAttributes}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeAttributes> {
 		private Map<String, String> attributes;
 
@@ -201,9 +206,23 @@ public class NodeAttributes implements JsonpSerializable {
 		 * Required - Lists node attributes.
 		 * <p>
 		 * API name: {@code attributes}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>attributes</code>.
 		 */
-		public final Builder attributes(Map<String, String> value) {
-			this.attributes = value;
+		public final Builder attributes(Map<String, String> map) {
+			this.attributes = _mapPutAll(this.attributes, map);
+			return this;
+		}
+
+		/**
+		 * Required - Lists node attributes.
+		 * <p>
+		 * API name: {@code attributes}
+		 * <p>
+		 * Adds an entry to <code>attributes</code>.
+		 */
+		public final Builder attributes(String key, String value) {
+			this.attributes = _mapPut(this.attributes, key, value);
 			return this;
 		}
 
@@ -249,17 +268,21 @@ public class NodeAttributes implements JsonpSerializable {
 
 		/**
 		 * API name: {@code roles}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>roles</code>.
 		 */
-		public final Builder roles(@Nullable List<NodeRole> value) {
-			this.roles = value;
+		public final Builder roles(List<NodeRole> list) {
+			this.roles = _listAddAll(this.roles, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code roles}
+		 * <p>
+		 * Adds one or more values to <code>roles</code>.
 		 */
-		public final Builder roles(NodeRole... value) {
-			this.roles = Arrays.asList(value);
+		public final Builder roles(NodeRole value, NodeRole... values) {
+			this.roles = _listAdd(this.roles, value, values);
 			return this;
 		}
 

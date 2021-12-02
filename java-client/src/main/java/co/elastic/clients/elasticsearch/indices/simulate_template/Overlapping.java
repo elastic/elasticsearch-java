@@ -29,18 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.simulate_template.Overlapping
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/simulate_template/IndicesSimulateTemplateResponse.ts#L39-L42">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Overlapping implements JsonpSerializable {
 	private final String name;
@@ -51,15 +57,13 @@ public class Overlapping implements JsonpSerializable {
 
 	private Overlapping(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
-		this.indexPatterns = ModelTypeHelper.unmodifiableRequired(builder.indexPatterns, this, "indexPatterns");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.indexPatterns = ApiTypeHelper.unmodifiableRequired(builder.indexPatterns, this, "indexPatterns");
 
 	}
 
-	public static Overlapping of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Overlapping of(Function<Builder, ObjectBuilder<Overlapping>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -90,7 +94,7 @@ public class Overlapping implements JsonpSerializable {
 		generator.writeKey("name");
 		generator.write(this.name);
 
-		if (ModelTypeHelper.isDefined(this.indexPatterns)) {
+		if (ApiTypeHelper.isDefined(this.indexPatterns)) {
 			generator.writeKey("index_patterns");
 			generator.writeStartArray();
 			for (String item0 : this.indexPatterns) {
@@ -108,6 +112,7 @@ public class Overlapping implements JsonpSerializable {
 	/**
 	 * Builder for {@link Overlapping}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Overlapping> {
 		private String name;
 
@@ -123,17 +128,21 @@ public class Overlapping implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code index_patterns}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>indexPatterns</code>.
 		 */
-		public final Builder indexPatterns(List<String> value) {
-			this.indexPatterns = value;
+		public final Builder indexPatterns(List<String> list) {
+			this.indexPatterns = _listAddAll(this.indexPatterns, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code index_patterns}
+		 * <p>
+		 * Adds one or more values to <code>indexPatterns</code>.
 		 */
-		public final Builder indexPatterns(String... value) {
-			this.indexPatterns = Arrays.asList(value);
+		public final Builder indexPatterns(String value, String... values) {
+			this.indexPatterns = _listAdd(this.indexPatterns, value, values);
 			return this;
 		}
 

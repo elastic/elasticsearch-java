@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot._types.SnapshotStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/snapshot/_types/SnapshotStats.ts#L23-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SnapshotStats implements JsonpSerializable {
 	private final FileCountSnapshotStats incremental;
@@ -53,17 +60,15 @@ public class SnapshotStats implements JsonpSerializable {
 
 	private SnapshotStats(Builder builder) {
 
-		this.incremental = ModelTypeHelper.requireNonNull(builder.incremental, this, "incremental");
-		this.startTimeInMillis = ModelTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
-		this.timeInMillis = ModelTypeHelper.requireNonNull(builder.timeInMillis, this, "timeInMillis");
-		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
+		this.incremental = ApiTypeHelper.requireNonNull(builder.incremental, this, "incremental");
+		this.startTimeInMillis = ApiTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
+		this.timeInMillis = ApiTypeHelper.requireNonNull(builder.timeInMillis, this, "timeInMillis");
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
 
 	}
 
-	public static SnapshotStats of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SnapshotStats of(Function<Builder, ObjectBuilder<SnapshotStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -124,6 +129,7 @@ public class SnapshotStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link SnapshotStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SnapshotStats> {
 		private FileCountSnapshotStats incremental;
 
@@ -144,10 +150,9 @@ public class SnapshotStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code incremental}
 		 */
-		public final Builder incremental(Consumer<FileCountSnapshotStats.Builder> fn) {
-			FileCountSnapshotStats.Builder builder = new FileCountSnapshotStats.Builder();
-			fn.accept(builder);
-			return this.incremental(builder.build());
+		public final Builder incremental(
+				Function<FileCountSnapshotStats.Builder, ObjectBuilder<FileCountSnapshotStats>> fn) {
+			return this.incremental(fn.apply(new FileCountSnapshotStats.Builder()).build());
 		}
 
 		/**
@@ -177,10 +182,8 @@ public class SnapshotStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total}
 		 */
-		public final Builder total(Consumer<FileCountSnapshotStats.Builder> fn) {
-			FileCountSnapshotStats.Builder builder = new FileCountSnapshotStats.Builder();
-			fn.accept(builder);
-			return this.total(builder.build());
+		public final Builder total(Function<FileCountSnapshotStats.Builder, ObjectBuilder<FileCountSnapshotStats>> fn) {
+			return this.total(fn.apply(new FileCountSnapshotStats.Builder()).build());
 		}
 
 		/**

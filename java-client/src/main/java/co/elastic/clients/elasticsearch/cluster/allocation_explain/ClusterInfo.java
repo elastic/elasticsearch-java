@@ -29,23 +29,26 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.MapBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.ClusterInfo
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/allocation_explain/types.ts#L48-L54">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ClusterInfo implements JsonpSerializable {
 	private final Map<String, NodeDiskUsage> nodes;
@@ -62,18 +65,16 @@ public class ClusterInfo implements JsonpSerializable {
 
 	private ClusterInfo(Builder builder) {
 
-		this.nodes = ModelTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
-		this.shardSizes = ModelTypeHelper.unmodifiableRequired(builder.shardSizes, this, "shardSizes");
-		this.shardDataSetSizes = ModelTypeHelper.unmodifiable(builder.shardDataSetSizes);
-		this.shardPaths = ModelTypeHelper.unmodifiableRequired(builder.shardPaths, this, "shardPaths");
-		this.reservedSizes = ModelTypeHelper.unmodifiableRequired(builder.reservedSizes, this, "reservedSizes");
+		this.nodes = ApiTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
+		this.shardSizes = ApiTypeHelper.unmodifiableRequired(builder.shardSizes, this, "shardSizes");
+		this.shardDataSetSizes = ApiTypeHelper.unmodifiable(builder.shardDataSetSizes);
+		this.shardPaths = ApiTypeHelper.unmodifiableRequired(builder.shardPaths, this, "shardPaths");
+		this.reservedSizes = ApiTypeHelper.unmodifiableRequired(builder.reservedSizes, this, "reservedSizes");
 
 	}
 
-	public static ClusterInfo of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ClusterInfo of(Function<Builder, ObjectBuilder<ClusterInfo>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -122,7 +123,7 @@ public class ClusterInfo implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.nodes)) {
+		if (ApiTypeHelper.isDefined(this.nodes)) {
 			generator.writeKey("nodes");
 			generator.writeStartObject();
 			for (Map.Entry<String, NodeDiskUsage> item0 : this.nodes.entrySet()) {
@@ -133,7 +134,7 @@ public class ClusterInfo implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.shardSizes)) {
+		if (ApiTypeHelper.isDefined(this.shardSizes)) {
 			generator.writeKey("shard_sizes");
 			generator.writeStartObject();
 			for (Map.Entry<String, Long> item0 : this.shardSizes.entrySet()) {
@@ -144,7 +145,7 @@ public class ClusterInfo implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.shardDataSetSizes)) {
+		if (ApiTypeHelper.isDefined(this.shardDataSetSizes)) {
 			generator.writeKey("shard_data_set_sizes");
 			generator.writeStartObject();
 			for (Map.Entry<String, String> item0 : this.shardDataSetSizes.entrySet()) {
@@ -155,7 +156,7 @@ public class ClusterInfo implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.shardPaths)) {
+		if (ApiTypeHelper.isDefined(this.shardPaths)) {
 			generator.writeKey("shard_paths");
 			generator.writeStartObject();
 			for (Map.Entry<String, String> item0 : this.shardPaths.entrySet()) {
@@ -166,7 +167,7 @@ public class ClusterInfo implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.reservedSizes)) {
+		if (ApiTypeHelper.isDefined(this.reservedSizes)) {
 			generator.writeKey("reserved_sizes");
 			generator.writeStartArray();
 			for (ReservedSize item0 : this.reservedSizes) {
@@ -184,6 +185,7 @@ public class ClusterInfo implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClusterInfo}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterInfo> {
 		private Map<String, NodeDiskUsage> nodes;
 
@@ -198,63 +200,120 @@ public class ClusterInfo implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code nodes}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>nodes</code>.
 		 */
-		public final Builder nodes(Map<String, NodeDiskUsage> value) {
-			this.nodes = value;
+		public final Builder nodes(Map<String, NodeDiskUsage> map) {
+			this.nodes = _mapPutAll(this.nodes, map);
 			return this;
 		}
 
-		public final Builder nodes(
-				Function<MapBuilder<String, NodeDiskUsage, NodeDiskUsage.Builder>, ObjectBuilder<Map<String, NodeDiskUsage>>> fn) {
-			return nodes(fn.apply(new MapBuilder<>(NodeDiskUsage.Builder::new)).build());
+		/**
+		 * Required - API name: {@code nodes}
+		 * <p>
+		 * Adds an entry to <code>nodes</code>.
+		 */
+		public final Builder nodes(String key, NodeDiskUsage value) {
+			this.nodes = _mapPut(this.nodes, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code nodes}
+		 * <p>
+		 * Adds an entry to <code>nodes</code> using a builder lambda.
+		 */
+		public final Builder nodes(String key, Function<NodeDiskUsage.Builder, ObjectBuilder<NodeDiskUsage>> fn) {
+			return nodes(key, fn.apply(new NodeDiskUsage.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code shard_sizes}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>shardSizes</code>.
 		 */
-		public final Builder shardSizes(Map<String, Long> value) {
-			this.shardSizes = value;
+		public final Builder shardSizes(Map<String, Long> map) {
+			this.shardSizes = _mapPutAll(this.shardSizes, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code shard_sizes}
+		 * <p>
+		 * Adds an entry to <code>shardSizes</code>.
+		 */
+		public final Builder shardSizes(String key, Long value) {
+			this.shardSizes = _mapPut(this.shardSizes, key, value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code shard_data_set_sizes}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>shardDataSetSizes</code>.
 		 */
-		public final Builder shardDataSetSizes(@Nullable Map<String, String> value) {
-			this.shardDataSetSizes = value;
+		public final Builder shardDataSetSizes(Map<String, String> map) {
+			this.shardDataSetSizes = _mapPutAll(this.shardDataSetSizes, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code shard_data_set_sizes}
+		 * <p>
+		 * Adds an entry to <code>shardDataSetSizes</code>.
+		 */
+		public final Builder shardDataSetSizes(String key, String value) {
+			this.shardDataSetSizes = _mapPut(this.shardDataSetSizes, key, value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code shard_paths}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>shardPaths</code>.
 		 */
-		public final Builder shardPaths(Map<String, String> value) {
-			this.shardPaths = value;
+		public final Builder shardPaths(Map<String, String> map) {
+			this.shardPaths = _mapPutAll(this.shardPaths, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code shard_paths}
+		 * <p>
+		 * Adds an entry to <code>shardPaths</code>.
+		 */
+		public final Builder shardPaths(String key, String value) {
+			this.shardPaths = _mapPut(this.shardPaths, key, value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code reserved_sizes}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>reservedSizes</code>.
 		 */
-		public final Builder reservedSizes(List<ReservedSize> value) {
-			this.reservedSizes = value;
+		public final Builder reservedSizes(List<ReservedSize> list) {
+			this.reservedSizes = _listAddAll(this.reservedSizes, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code reserved_sizes}
+		 * <p>
+		 * Adds one or more values to <code>reservedSizes</code>.
 		 */
-		public final Builder reservedSizes(ReservedSize... value) {
-			this.reservedSizes = Arrays.asList(value);
+		public final Builder reservedSizes(ReservedSize value, ReservedSize... values) {
+			this.reservedSizes = _listAdd(this.reservedSizes, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code reserved_sizes}
+		 * <p>
+		 * Adds a value to <code>reservedSizes</code> using a builder lambda.
 		 */
-		public final Builder reservedSizes(
-				Function<ListBuilder<ReservedSize, ReservedSize.Builder>, ObjectBuilder<List<ReservedSize>>> fn) {
-			return reservedSizes(fn.apply(new ListBuilder<>(ReservedSize.Builder::new)).build());
+		public final Builder reservedSizes(Function<ReservedSize.Builder, ObjectBuilder<ReservedSize>> fn) {
+			return reservedSizes(fn.apply(new ReservedSize.Builder()).build());
 		}
 
 		/**

@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.SortProcessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/_types/Processors.ts#L321-L325">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SortProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
@@ -51,16 +58,14 @@ public class SortProcessor extends ProcessorBase implements ProcessorVariant {
 	private SortProcessor(Builder builder) {
 		super(builder);
 
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
-		this.order = ModelTypeHelper.requireNonNull(builder.order, this, "order");
-		this.targetField = ModelTypeHelper.requireNonNull(builder.targetField, this, "targetField");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.order = ApiTypeHelper.requireNonNull(builder.order, this, "order");
+		this.targetField = ApiTypeHelper.requireNonNull(builder.targetField, this, "targetField");
 
 	}
 
-	public static SortProcessor of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SortProcessor of(Function<Builder, ObjectBuilder<SortProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -110,6 +115,7 @@ public class SortProcessor extends ProcessorBase implements ProcessorVariant {
 	/**
 	 * Builder for {@link SortProcessor}.
 	 */
+
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder> implements ObjectBuilder<SortProcessor> {
 		private String field;
 

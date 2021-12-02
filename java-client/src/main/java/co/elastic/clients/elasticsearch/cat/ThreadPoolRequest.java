@@ -31,21 +31,29 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: cat.thread_pool.Request
+
+/**
+ * Returns cluster-wide thread pool statistics per node. By default the active,
+ * queue and rejected statistics are returned for all thread pools.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/thread_pool/CatThreadPoolRequest.ts#L24-L36">API
+ *      specification</a>
+ */
 
 public class ThreadPoolRequest extends CatRequestBase {
 	@Nullable
@@ -58,14 +66,12 @@ public class ThreadPoolRequest extends CatRequestBase {
 	private ThreadPoolRequest(Builder builder) {
 
 		this.size = builder.size;
-		this.threadPoolPatterns = ModelTypeHelper.unmodifiable(builder.threadPoolPatterns);
+		this.threadPoolPatterns = ApiTypeHelper.unmodifiable(builder.threadPoolPatterns);
 
 	}
 
-	public static ThreadPoolRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ThreadPoolRequest of(Function<Builder, ObjectBuilder<ThreadPoolRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -91,6 +97,7 @@ public class ThreadPoolRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link ThreadPoolRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ThreadPoolRequest> {
 		@Nullable
 		private ThreadPoolSize size;
@@ -111,9 +118,11 @@ public class ThreadPoolRequest extends CatRequestBase {
 		 * the output
 		 * <p>
 		 * API name: {@code thread_pool_patterns}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>threadPoolPatterns</code>.
 		 */
-		public final Builder threadPoolPatterns(@Nullable List<String> value) {
-			this.threadPoolPatterns = value;
+		public final Builder threadPoolPatterns(List<String> list) {
+			this.threadPoolPatterns = _listAddAll(this.threadPoolPatterns, list);
 			return this;
 		}
 
@@ -122,9 +131,11 @@ public class ThreadPoolRequest extends CatRequestBase {
 		 * the output
 		 * <p>
 		 * API name: {@code thread_pool_patterns}
+		 * <p>
+		 * Adds one or more values to <code>threadPoolPatterns</code>.
 		 */
-		public final Builder threadPoolPatterns(String... value) {
-			this.threadPoolPatterns = Arrays.asList(value);
+		public final Builder threadPoolPatterns(String value, String... values) {
+			this.threadPoolPatterns = _listAdd(this.threadPoolPatterns, value, values);
 			return this;
 		}
 
@@ -161,7 +172,7 @@ public class ThreadPoolRequest extends CatRequestBase {
 
 				int propsSet = 0;
 
-				if (ModelTypeHelper.isDefined(request.threadPoolPatterns()))
+				if (ApiTypeHelper.isDefined(request.threadPoolPatterns()))
 					propsSet |= _threadPoolPatterns;
 
 				if (propsSet == 0) {

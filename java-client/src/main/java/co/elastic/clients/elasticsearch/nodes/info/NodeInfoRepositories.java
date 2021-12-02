@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoRepositories
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L154-L156">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeInfoRepositories implements JsonpSerializable {
 	private final NodeInfoRepositoriesUrl url;
@@ -46,14 +53,12 @@ public class NodeInfoRepositories implements JsonpSerializable {
 
 	private NodeInfoRepositories(Builder builder) {
 
-		this.url = ModelTypeHelper.requireNonNull(builder.url, this, "url");
+		this.url = ApiTypeHelper.requireNonNull(builder.url, this, "url");
 
 	}
 
-	public static NodeInfoRepositories of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodeInfoRepositories of(Function<Builder, ObjectBuilder<NodeInfoRepositories>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -84,6 +89,7 @@ public class NodeInfoRepositories implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoRepositories}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoRepositories> {
 		private NodeInfoRepositoriesUrl url;
 
@@ -98,10 +104,8 @@ public class NodeInfoRepositories implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code url}
 		 */
-		public final Builder url(Consumer<NodeInfoRepositoriesUrl.Builder> fn) {
-			NodeInfoRepositoriesUrl.Builder builder = new NodeInfoRepositoriesUrl.Builder();
-			fn.accept(builder);
-			return this.url(builder.build());
+		public final Builder url(Function<NodeInfoRepositoriesUrl.Builder, ObjectBuilder<NodeInfoRepositoriesUrl>> fn) {
+			return this.url(fn.apply(new NodeInfoRepositoriesUrl.Builder()).build());
 		}
 
 		/**

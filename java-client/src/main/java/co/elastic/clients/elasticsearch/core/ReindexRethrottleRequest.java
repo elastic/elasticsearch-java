@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,10 +40,18 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.reindex_rethrottle.Request
+
+/**
+ * Changes the number of requests per second for a particular Reindex operation.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/reindex_rethrottle/ReindexRethrottleRequest.ts#L24-L36">API
+ *      specification</a>
+ */
 
 public class ReindexRethrottleRequest extends RequestBase {
 	@Nullable
@@ -56,14 +64,12 @@ public class ReindexRethrottleRequest extends RequestBase {
 	private ReindexRethrottleRequest(Builder builder) {
 
 		this.requestsPerSecond = builder.requestsPerSecond;
-		this.taskId = ModelTypeHelper.requireNonNull(builder.taskId, this, "taskId");
+		this.taskId = ApiTypeHelper.requireNonNull(builder.taskId, this, "taskId");
 
 	}
 
-	public static ReindexRethrottleRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ReindexRethrottleRequest of(Function<Builder, ObjectBuilder<ReindexRethrottleRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -91,6 +97,7 @@ public class ReindexRethrottleRequest extends RequestBase {
 	/**
 	 * Builder for {@link ReindexRethrottleRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ReindexRethrottleRequest> {
 		@Nullable
 		private Long requestsPerSecond;

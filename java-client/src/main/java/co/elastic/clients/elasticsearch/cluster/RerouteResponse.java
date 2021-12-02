@@ -31,19 +31,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/reroute/ClusterRerouteResponse.ts#L23-L33">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RerouteResponse implements JsonpSerializable {
 	private final List<RerouteExplanation> explanations;
@@ -54,15 +58,13 @@ public class RerouteResponse implements JsonpSerializable {
 
 	private RerouteResponse(Builder builder) {
 
-		this.explanations = ModelTypeHelper.unmodifiable(builder.explanations);
-		this.state = ModelTypeHelper.requireNonNull(builder.state, this, "state");
+		this.explanations = ApiTypeHelper.unmodifiable(builder.explanations);
+		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
 
 	}
 
-	public static RerouteResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RerouteResponse of(Function<Builder, ObjectBuilder<RerouteResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -94,7 +96,7 @@ public class RerouteResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.explanations)) {
+		if (ApiTypeHelper.isDefined(this.explanations)) {
 			generator.writeKey("explanations");
 			generator.writeStartArray();
 			for (RerouteExplanation item0 : this.explanations) {
@@ -114,6 +116,7 @@ public class RerouteResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link RerouteResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RerouteResponse> {
 		@Nullable
 		private List<RerouteExplanation> explanations;
@@ -122,26 +125,31 @@ public class RerouteResponse implements JsonpSerializable {
 
 		/**
 		 * API name: {@code explanations}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>explanations</code>.
 		 */
-		public final Builder explanations(@Nullable List<RerouteExplanation> value) {
-			this.explanations = value;
+		public final Builder explanations(List<RerouteExplanation> list) {
+			this.explanations = _listAddAll(this.explanations, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code explanations}
+		 * <p>
+		 * Adds one or more values to <code>explanations</code>.
 		 */
-		public final Builder explanations(RerouteExplanation... value) {
-			this.explanations = Arrays.asList(value);
+		public final Builder explanations(RerouteExplanation value, RerouteExplanation... values) {
+			this.explanations = _listAdd(this.explanations, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code explanations}
+		 * <p>
+		 * Adds a value to <code>explanations</code> using a builder lambda.
 		 */
-		public final Builder explanations(
-				Function<ListBuilder<RerouteExplanation, RerouteExplanation.Builder>, ObjectBuilder<List<RerouteExplanation>>> fn) {
-			return explanations(fn.apply(new ListBuilder<>(RerouteExplanation.Builder::new)).build());
+		public final Builder explanations(Function<RerouteExplanation.Builder, ObjectBuilder<RerouteExplanation>> fn) {
+			return explanations(fn.apply(new RerouteExplanation.Builder()).build());
 		}
 
 		/**

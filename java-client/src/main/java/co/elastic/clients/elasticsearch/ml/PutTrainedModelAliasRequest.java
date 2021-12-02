@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,10 +40,30 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model_alias.Request
+
+/**
+ * Creates or updates a trained model alias. A trained model alias is a logical
+ * name used to reference a single trained model. You can use aliases instead of
+ * trained model identifiers to make it easier to reference your models. For
+ * example, you can use aliases in inference aggregations and processors. An
+ * alias must be unique and refer to only a single trained model. However, you
+ * can have multiple aliases for each trained model. If you use this API to
+ * update an alias such that it references a different trained model ID and the
+ * model uses a different type of data frame analytics, an error occurs. For
+ * example, this situation occurs if you have a trained model for regression
+ * analysis and a trained model for classification analysis; you cannot reassign
+ * an alias from one type of trained model to another. If you use this API to
+ * update an alias and there are very few input fields in common between the old
+ * and new trained models for the model alias, the API returns a warning.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/put_trained_model_alias/MlPutTrainedModelAliasRequest.ts#L23-L65">API
+ *      specification</a>
+ */
 
 public class PutTrainedModelAliasRequest extends RequestBase {
 	private final String modelAlias;
@@ -57,16 +77,14 @@ public class PutTrainedModelAliasRequest extends RequestBase {
 
 	private PutTrainedModelAliasRequest(Builder builder) {
 
-		this.modelAlias = ModelTypeHelper.requireNonNull(builder.modelAlias, this, "modelAlias");
-		this.modelId = ModelTypeHelper.requireNonNull(builder.modelId, this, "modelId");
+		this.modelAlias = ApiTypeHelper.requireNonNull(builder.modelAlias, this, "modelAlias");
+		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
 		this.reassign = builder.reassign;
 
 	}
 
-	public static PutTrainedModelAliasRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PutTrainedModelAliasRequest of(Function<Builder, ObjectBuilder<PutTrainedModelAliasRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -104,6 +122,7 @@ public class PutTrainedModelAliasRequest extends RequestBase {
 	/**
 	 * Builder for {@link PutTrainedModelAliasRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutTrainedModelAliasRequest> {
 		private String modelAlias;
 

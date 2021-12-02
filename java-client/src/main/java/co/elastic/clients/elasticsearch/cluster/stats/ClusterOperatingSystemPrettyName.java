@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterOperatingSystemPrettyName
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/stats/types.ts#L239-L242">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ClusterOperatingSystemPrettyName implements JsonpSerializable {
 	private final int count;
@@ -50,15 +57,14 @@ public class ClusterOperatingSystemPrettyName implements JsonpSerializable {
 
 	private ClusterOperatingSystemPrettyName(Builder builder) {
 
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
-		this.prettyName = ModelTypeHelper.requireNonNull(builder.prettyName, this, "prettyName");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.prettyName = ApiTypeHelper.requireNonNull(builder.prettyName, this, "prettyName");
 
 	}
 
-	public static ClusterOperatingSystemPrettyName of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ClusterOperatingSystemPrettyName of(
+			Function<Builder, ObjectBuilder<ClusterOperatingSystemPrettyName>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -99,6 +105,7 @@ public class ClusterOperatingSystemPrettyName implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClusterOperatingSystemPrettyName}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterOperatingSystemPrettyName> {
 		private Integer count;
 

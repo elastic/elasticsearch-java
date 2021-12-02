@@ -34,10 +34,17 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.KeywordAnalyzer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/analyzers.ts#L47-L50">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class KeywordAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	@Nullable
@@ -51,10 +58,8 @@ public class KeywordAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
 	}
 
-	public static KeywordAnalyzer of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static KeywordAnalyzer of(Function<Builder, ObjectBuilder<KeywordAnalyzer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -99,6 +104,7 @@ public class KeywordAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	/**
 	 * Builder for {@link KeywordAnalyzer}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<KeywordAnalyzer> {
 		@Nullable
 		private String version;

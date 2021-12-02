@@ -30,15 +30,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: searchable_snapshots.mount.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/searchable_snapshots/mount/SearchableSnapshotsMountResponse.ts#L22-L26">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MountResponse implements JsonpSerializable {
 	private final MountedSnapshot snapshot;
@@ -47,14 +54,12 @@ public class MountResponse implements JsonpSerializable {
 
 	private MountResponse(Builder builder) {
 
-		this.snapshot = ModelTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
+		this.snapshot = ApiTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
 
 	}
 
-	public static MountResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static MountResponse of(Function<Builder, ObjectBuilder<MountResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -85,6 +90,7 @@ public class MountResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link MountResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MountResponse> {
 		private MountedSnapshot snapshot;
 
@@ -99,10 +105,8 @@ public class MountResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code snapshot}
 		 */
-		public final Builder snapshot(Consumer<MountedSnapshot.Builder> fn) {
-			MountedSnapshot.Builder builder = new MountedSnapshot.Builder();
-			fn.accept(builder);
-			return this.snapshot(builder.build());
+		public final Builder snapshot(Function<MountedSnapshot.Builder, ObjectBuilder<MountedSnapshot>> fn) {
+			return this.snapshot(fn.apply(new MountedSnapshot.Builder()).build());
 		}
 
 		/**

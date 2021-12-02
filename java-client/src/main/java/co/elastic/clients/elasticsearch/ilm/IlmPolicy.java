@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm._types.Policy
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ilm/_types/Policy.ts#L23-L26">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IlmPolicy implements JsonpSerializable {
 	private final Phases phases;
@@ -50,15 +57,13 @@ public class IlmPolicy implements JsonpSerializable {
 
 	private IlmPolicy(Builder builder) {
 
-		this.phases = ModelTypeHelper.requireNonNull(builder.phases, this, "phases");
+		this.phases = ApiTypeHelper.requireNonNull(builder.phases, this, "phases");
 		this.name = builder.name;
 
 	}
 
-	public static IlmPolicy of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IlmPolicy of(Function<Builder, ObjectBuilder<IlmPolicy>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -103,6 +108,7 @@ public class IlmPolicy implements JsonpSerializable {
 	/**
 	 * Builder for {@link IlmPolicy}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IlmPolicy> {
 		private Phases phases;
 
@@ -120,10 +126,8 @@ public class IlmPolicy implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code phases}
 		 */
-		public final Builder phases(Consumer<Phases.Builder> fn) {
-			Phases.Builder builder = new Phases.Builder();
-			fn.accept(builder);
-			return this.phases(builder.build());
+		public final Builder phases(Function<Phases.Builder, ObjectBuilder<Phases>> fn) {
+			return this.phases(fn.apply(new Phases.Builder()).build());
 		}
 
 		/**

@@ -31,20 +31,28 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: slm.get_lifecycle.Request
+
+/**
+ * Retrieves one or more snapshot lifecycle policy definitions and information
+ * about the latest snapshot attempts.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/slm/get_lifecycle/GetSnapshotLifecycleRequest.ts#L23-L32">API
+ *      specification</a>
+ */
 
 public class GetLifecycleRequest extends RequestBase {
 	private final List<String> policyId;
@@ -53,14 +61,12 @@ public class GetLifecycleRequest extends RequestBase {
 
 	private GetLifecycleRequest(Builder builder) {
 
-		this.policyId = ModelTypeHelper.unmodifiable(builder.policyId);
+		this.policyId = ApiTypeHelper.unmodifiable(builder.policyId);
 
 	}
 
-	public static GetLifecycleRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetLifecycleRequest of(Function<Builder, ObjectBuilder<GetLifecycleRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -77,6 +83,7 @@ public class GetLifecycleRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetLifecycleRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetLifecycleRequest> {
 		@Nullable
 		private List<String> policyId;
@@ -85,9 +92,11 @@ public class GetLifecycleRequest extends RequestBase {
 		 * Comma-separated list of snapshot lifecycle policies to retrieve
 		 * <p>
 		 * API name: {@code policy_id}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>policyId</code>.
 		 */
-		public final Builder policyId(@Nullable List<String> value) {
-			this.policyId = value;
+		public final Builder policyId(List<String> list) {
+			this.policyId = _listAddAll(this.policyId, list);
 			return this;
 		}
 
@@ -95,9 +104,11 @@ public class GetLifecycleRequest extends RequestBase {
 		 * Comma-separated list of snapshot lifecycle policies to retrieve
 		 * <p>
 		 * API name: {@code policy_id}
+		 * <p>
+		 * Adds one or more values to <code>policyId</code>.
 		 */
-		public final Builder policyId(String... value) {
-			this.policyId = Arrays.asList(value);
+		public final Builder policyId(String value, String... values) {
+			this.policyId = _listAdd(this.policyId, value, values);
 			return this;
 		}
 
@@ -134,7 +145,7 @@ public class GetLifecycleRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (ModelTypeHelper.isDefined(request.policyId()))
+				if (ApiTypeHelper.isDefined(request.policyId()))
 					propsSet |= _policyId;
 
 				if (propsSet == (_policyId)) {

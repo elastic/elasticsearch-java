@@ -29,18 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.resolve_index.ResolveIndexAliasItem
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/resolve_index/ResolveIndexResponse.ts#L37-L40">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ResolveIndexAliasItem implements JsonpSerializable {
 	private final String name;
@@ -51,15 +57,13 @@ public class ResolveIndexAliasItem implements JsonpSerializable {
 
 	private ResolveIndexAliasItem(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
-		this.indices = ModelTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
 
 	}
 
-	public static ResolveIndexAliasItem of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ResolveIndexAliasItem of(Function<Builder, ObjectBuilder<ResolveIndexAliasItem>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -90,7 +94,7 @@ public class ResolveIndexAliasItem implements JsonpSerializable {
 		generator.writeKey("name");
 		generator.write(this.name);
 
-		if (ModelTypeHelper.isDefined(this.indices)) {
+		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartArray();
 			for (String item0 : this.indices) {
@@ -108,6 +112,7 @@ public class ResolveIndexAliasItem implements JsonpSerializable {
 	/**
 	 * Builder for {@link ResolveIndexAliasItem}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ResolveIndexAliasItem> {
 		private String name;
 
@@ -123,17 +128,21 @@ public class ResolveIndexAliasItem implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 */
-		public final Builder indices(List<String> value) {
-			this.indices = value;
+		public final Builder indices(List<String> list) {
+			this.indices = _listAddAll(this.indices, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds one or more values to <code>indices</code>.
 		 */
-		public final Builder indices(String... value) {
-			this.indices = Arrays.asList(value);
+		public final Builder indices(String value, String... values) {
+			this.indices = _listAdd(this.indices, value, values);
 			return this;
 		}
 

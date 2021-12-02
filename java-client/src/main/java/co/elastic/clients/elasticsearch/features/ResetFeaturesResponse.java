@@ -29,19 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: features.reset_features.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/features/reset_features/ResetFeaturesResponse.ts#L22-L26">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ResetFeaturesResponse implements JsonpSerializable {
 	private final List<Feature> features;
@@ -50,14 +54,12 @@ public class ResetFeaturesResponse implements JsonpSerializable {
 
 	private ResetFeaturesResponse(Builder builder) {
 
-		this.features = ModelTypeHelper.unmodifiableRequired(builder.features, this, "features");
+		this.features = ApiTypeHelper.unmodifiableRequired(builder.features, this, "features");
 
 	}
 
-	public static ResetFeaturesResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ResetFeaturesResponse of(Function<Builder, ObjectBuilder<ResetFeaturesResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -78,7 +80,7 @@ public class ResetFeaturesResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.features)) {
+		if (ApiTypeHelper.isDefined(this.features)) {
 			generator.writeKey("features");
 			generator.writeStartArray();
 			for (Feature item0 : this.features) {
@@ -96,31 +98,37 @@ public class ResetFeaturesResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link ResetFeaturesResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ResetFeaturesResponse> {
 		private List<Feature> features;
 
 		/**
 		 * Required - API name: {@code features}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>features</code>.
 		 */
-		public final Builder features(List<Feature> value) {
-			this.features = value;
+		public final Builder features(List<Feature> list) {
+			this.features = _listAddAll(this.features, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code features}
+		 * <p>
+		 * Adds one or more values to <code>features</code>.
 		 */
-		public final Builder features(Feature... value) {
-			this.features = Arrays.asList(value);
+		public final Builder features(Feature value, Feature... values) {
+			this.features = _listAdd(this.features, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code features}
+		 * <p>
+		 * Adds a value to <code>features</code> using a builder lambda.
 		 */
-		public final Builder features(
-				Function<ListBuilder<Feature, Feature.Builder>, ObjectBuilder<List<Feature>>> fn) {
-			return features(fn.apply(new ListBuilder<>(Feature.Builder::new)).build());
+		public final Builder features(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
+			return features(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**

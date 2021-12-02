@@ -29,19 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.DailySchedule
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Schedule.ts#L33-L35">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DailySchedule implements ScheduleVariant, JsonpSerializable {
 	private final List<TimeOfDay> at;
@@ -50,14 +54,12 @@ public class DailySchedule implements ScheduleVariant, JsonpSerializable {
 
 	private DailySchedule(Builder builder) {
 
-		this.at = ModelTypeHelper.unmodifiableRequired(builder.at, this, "at");
+		this.at = ApiTypeHelper.unmodifiableRequired(builder.at, this, "at");
 
 	}
 
-	public static DailySchedule of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DailySchedule of(Function<Builder, ObjectBuilder<DailySchedule>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -86,7 +88,7 @@ public class DailySchedule implements ScheduleVariant, JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.at)) {
+		if (ApiTypeHelper.isDefined(this.at)) {
 			generator.writeKey("at");
 			generator.writeStartArray();
 			for (TimeOfDay item0 : this.at) {
@@ -104,31 +106,37 @@ public class DailySchedule implements ScheduleVariant, JsonpSerializable {
 	/**
 	 * Builder for {@link DailySchedule}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DailySchedule> {
 		private List<TimeOfDay> at;
 
 		/**
 		 * Required - API name: {@code at}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>at</code>.
 		 */
-		public final Builder at(List<TimeOfDay> value) {
-			this.at = value;
+		public final Builder at(List<TimeOfDay> list) {
+			this.at = _listAddAll(this.at, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code at}
+		 * <p>
+		 * Adds one or more values to <code>at</code>.
 		 */
-		public final Builder at(TimeOfDay... value) {
-			this.at = Arrays.asList(value);
+		public final Builder at(TimeOfDay value, TimeOfDay... values) {
+			this.at = _listAdd(this.at, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code at}
+		 * <p>
+		 * Adds a value to <code>at</code> using a builder lambda.
 		 */
-		public final Builder at(
-				Function<ListBuilder<TimeOfDay, TimeOfDay.Builder>, ObjectBuilder<List<TimeOfDay>>> fn) {
-			return at(fn.apply(new ListBuilder<>(TimeOfDay.Builder::new)).build());
+		public final Builder at(Function<TimeOfDay.Builder, ObjectBuilder<TimeOfDay>> fn) {
+			return at(fn.apply(new TimeOfDay.Builder()).build());
 		}
 
 		/**

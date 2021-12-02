@@ -30,9 +30,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.aggregations.AvgAggregate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L195-L196">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AvgAggregate extends SingleMetricAggregateBase implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -42,10 +49,8 @@ public class AvgAggregate extends SingleMetricAggregateBase implements Aggregate
 
 	}
 
-	public static AvgAggregate of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static AvgAggregate of(Function<Builder, ObjectBuilder<AvgAggregate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,6 +66,7 @@ public class AvgAggregate extends SingleMetricAggregateBase implements Aggregate
 	/**
 	 * Builder for {@link AvgAggregate}.
 	 */
+
 	public static class Builder extends SingleMetricAggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<AvgAggregate> {

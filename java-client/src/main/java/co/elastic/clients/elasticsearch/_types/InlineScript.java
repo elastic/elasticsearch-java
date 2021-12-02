@@ -28,16 +28,23 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.InlineScript
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Scripting.ts#L47-L52">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class InlineScript extends ScriptBase {
 	@Nullable
@@ -53,15 +60,13 @@ public class InlineScript extends ScriptBase {
 		super(builder);
 
 		this.lang = builder.lang;
-		this.options = ModelTypeHelper.unmodifiable(builder.options);
-		this.source = ModelTypeHelper.requireNonNull(builder.source, this, "source");
+		this.options = ApiTypeHelper.unmodifiable(builder.options);
+		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
 
 	}
 
-	public static InlineScript of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static InlineScript of(Function<Builder, ObjectBuilder<InlineScript>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -94,7 +99,7 @@ public class InlineScript extends ScriptBase {
 			generator.write(this.lang);
 
 		}
-		if (ModelTypeHelper.isDefined(this.options)) {
+		if (ApiTypeHelper.isDefined(this.options)) {
 			generator.writeKey("options");
 			generator.writeStartObject();
 			for (Map.Entry<String, String> item0 : this.options.entrySet()) {
@@ -115,6 +120,7 @@ public class InlineScript extends ScriptBase {
 	/**
 	 * Builder for {@link InlineScript}.
 	 */
+
 	public static class Builder extends ScriptBase.AbstractBuilder<Builder> implements ObjectBuilder<InlineScript> {
 		@Nullable
 		private String lang;
@@ -134,9 +140,21 @@ public class InlineScript extends ScriptBase {
 
 		/**
 		 * API name: {@code options}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>options</code>.
 		 */
-		public final Builder options(@Nullable Map<String, String> value) {
-			this.options = value;
+		public final Builder options(Map<String, String> map) {
+			this.options = _mapPutAll(this.options, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code options}
+		 * <p>
+		 * Adds an entry to <code>options</code>.
+		 */
+		public final Builder options(String key, String value) {
+			this.options = _mapPut(this.options, key, value);
 			return this;
 		}
 

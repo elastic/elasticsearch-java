@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.SecurityRoles
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L251-L255">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SecurityRoles implements JsonpSerializable {
 	private final SecurityRolesNative native_;
@@ -50,16 +57,14 @@ public class SecurityRoles implements JsonpSerializable {
 
 	private SecurityRoles(Builder builder) {
 
-		this.native_ = ModelTypeHelper.requireNonNull(builder.native_, this, "native_");
-		this.dls = ModelTypeHelper.requireNonNull(builder.dls, this, "dls");
-		this.file = ModelTypeHelper.requireNonNull(builder.file, this, "file");
+		this.native_ = ApiTypeHelper.requireNonNull(builder.native_, this, "native_");
+		this.dls = ApiTypeHelper.requireNonNull(builder.dls, this, "dls");
+		this.file = ApiTypeHelper.requireNonNull(builder.file, this, "file");
 
 	}
 
-	public static SecurityRoles of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SecurityRoles of(Function<Builder, ObjectBuilder<SecurityRoles>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -110,6 +115,7 @@ public class SecurityRoles implements JsonpSerializable {
 	/**
 	 * Builder for {@link SecurityRoles}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SecurityRoles> {
 		private SecurityRolesNative native_;
 
@@ -128,10 +134,8 @@ public class SecurityRoles implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code native}
 		 */
-		public final Builder native_(Consumer<SecurityRolesNative.Builder> fn) {
-			SecurityRolesNative.Builder builder = new SecurityRolesNative.Builder();
-			fn.accept(builder);
-			return this.native_(builder.build());
+		public final Builder native_(Function<SecurityRolesNative.Builder, ObjectBuilder<SecurityRolesNative>> fn) {
+			return this.native_(fn.apply(new SecurityRolesNative.Builder()).build());
 		}
 
 		/**
@@ -145,10 +149,8 @@ public class SecurityRoles implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code dls}
 		 */
-		public final Builder dls(Consumer<SecurityRolesDls.Builder> fn) {
-			SecurityRolesDls.Builder builder = new SecurityRolesDls.Builder();
-			fn.accept(builder);
-			return this.dls(builder.build());
+		public final Builder dls(Function<SecurityRolesDls.Builder, ObjectBuilder<SecurityRolesDls>> fn) {
+			return this.dls(fn.apply(new SecurityRolesDls.Builder()).build());
 		}
 
 		/**
@@ -162,10 +164,8 @@ public class SecurityRoles implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code file}
 		 */
-		public final Builder file(Consumer<SecurityRolesFile.Builder> fn) {
-			SecurityRolesFile.Builder builder = new SecurityRolesFile.Builder();
-			fn.accept(builder);
-			return this.file(builder.build());
+		public final Builder file(Function<SecurityRolesFile.Builder, ObjectBuilder<SecurityRolesFile>> fn) {
+			return this.file(fn.apply(new SecurityRolesFile.Builder()).build());
 		}
 
 		/**

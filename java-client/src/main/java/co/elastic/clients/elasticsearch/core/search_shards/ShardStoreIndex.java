@@ -30,18 +30,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search_shards.ShardStoreIndex
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search_shards/SearchShardsResponse.ts#L33-L36">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ShardStoreIndex implements JsonpSerializable {
 	private final List<String> aliases;
@@ -53,15 +59,13 @@ public class ShardStoreIndex implements JsonpSerializable {
 
 	private ShardStoreIndex(Builder builder) {
 
-		this.aliases = ModelTypeHelper.unmodifiable(builder.aliases);
+		this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
 		this.filter = builder.filter;
 
 	}
 
-	public static ShardStoreIndex of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ShardStoreIndex of(Function<Builder, ObjectBuilder<ShardStoreIndex>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -90,7 +94,7 @@ public class ShardStoreIndex implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.aliases)) {
+		if (ApiTypeHelper.isDefined(this.aliases)) {
 			generator.writeKey("aliases");
 			generator.writeStartArray();
 			for (String item0 : this.aliases) {
@@ -113,6 +117,7 @@ public class ShardStoreIndex implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardStoreIndex}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardStoreIndex> {
 		@Nullable
 		private List<String> aliases;
@@ -122,17 +127,21 @@ public class ShardStoreIndex implements JsonpSerializable {
 
 		/**
 		 * API name: {@code aliases}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>aliases</code>.
 		 */
-		public final Builder aliases(@Nullable List<String> value) {
-			this.aliases = value;
+		public final Builder aliases(List<String> list) {
+			this.aliases = _listAddAll(this.aliases, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code aliases}
+		 * <p>
+		 * Adds one or more values to <code>aliases</code>.
 		 */
-		public final Builder aliases(String... value) {
-			this.aliases = Arrays.asList(value);
+		public final Builder aliases(String value, String... values) {
+			this.aliases = _listAdd(this.aliases, value, values);
 			return this;
 		}
 
@@ -147,10 +156,8 @@ public class ShardStoreIndex implements JsonpSerializable {
 		/**
 		 * API name: {@code filter}
 		 */
-		public final Builder filter(Consumer<Query.Builder> fn) {
-			Query.Builder builder = new Query.Builder();
-			fn.accept(builder);
-			return this.filter(builder.build());
+		public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.filter(fn.apply(new Query.Builder()).build());
 		}
 
 		/**

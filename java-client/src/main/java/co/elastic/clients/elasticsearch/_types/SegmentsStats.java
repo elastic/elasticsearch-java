@@ -30,8 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,11 +38,17 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.SegmentsStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Stats.ts#L201-L226">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SegmentsStats implements JsonpSerializable {
 	private final int count;
@@ -109,47 +114,43 @@ public class SegmentsStats implements JsonpSerializable {
 
 	private SegmentsStats(Builder builder) {
 
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
 		this.docValuesMemory = builder.docValuesMemory;
-		this.docValuesMemoryInBytes = ModelTypeHelper.requireNonNull(builder.docValuesMemoryInBytes, this,
+		this.docValuesMemoryInBytes = ApiTypeHelper.requireNonNull(builder.docValuesMemoryInBytes, this,
 				"docValuesMemoryInBytes");
-		this.fileSizes = ModelTypeHelper.unmodifiableRequired(builder.fileSizes, this, "fileSizes");
+		this.fileSizes = ApiTypeHelper.unmodifiableRequired(builder.fileSizes, this, "fileSizes");
 		this.fixedBitSet = builder.fixedBitSet;
-		this.fixedBitSetMemoryInBytes = ModelTypeHelper.requireNonNull(builder.fixedBitSetMemoryInBytes, this,
+		this.fixedBitSetMemoryInBytes = ApiTypeHelper.requireNonNull(builder.fixedBitSetMemoryInBytes, this,
 				"fixedBitSetMemoryInBytes");
 		this.indexWriterMemory = builder.indexWriterMemory;
 		this.indexWriterMaxMemoryInBytes = builder.indexWriterMaxMemoryInBytes;
-		this.indexWriterMemoryInBytes = ModelTypeHelper.requireNonNull(builder.indexWriterMemoryInBytes, this,
+		this.indexWriterMemoryInBytes = ApiTypeHelper.requireNonNull(builder.indexWriterMemoryInBytes, this,
 				"indexWriterMemoryInBytes");
-		this.maxUnsafeAutoIdTimestamp = ModelTypeHelper.requireNonNull(builder.maxUnsafeAutoIdTimestamp, this,
+		this.maxUnsafeAutoIdTimestamp = ApiTypeHelper.requireNonNull(builder.maxUnsafeAutoIdTimestamp, this,
 				"maxUnsafeAutoIdTimestamp");
 		this.memory = builder.memory;
-		this.memoryInBytes = ModelTypeHelper.requireNonNull(builder.memoryInBytes, this, "memoryInBytes");
+		this.memoryInBytes = ApiTypeHelper.requireNonNull(builder.memoryInBytes, this, "memoryInBytes");
 		this.normsMemory = builder.normsMemory;
-		this.normsMemoryInBytes = ModelTypeHelper.requireNonNull(builder.normsMemoryInBytes, this,
-				"normsMemoryInBytes");
+		this.normsMemoryInBytes = ApiTypeHelper.requireNonNull(builder.normsMemoryInBytes, this, "normsMemoryInBytes");
 		this.pointsMemory = builder.pointsMemory;
-		this.pointsMemoryInBytes = ModelTypeHelper.requireNonNull(builder.pointsMemoryInBytes, this,
+		this.pointsMemoryInBytes = ApiTypeHelper.requireNonNull(builder.pointsMemoryInBytes, this,
 				"pointsMemoryInBytes");
 		this.storedMemory = builder.storedMemory;
-		this.storedFieldsMemoryInBytes = ModelTypeHelper.requireNonNull(builder.storedFieldsMemoryInBytes, this,
+		this.storedFieldsMemoryInBytes = ApiTypeHelper.requireNonNull(builder.storedFieldsMemoryInBytes, this,
 				"storedFieldsMemoryInBytes");
-		this.termsMemoryInBytes = ModelTypeHelper.requireNonNull(builder.termsMemoryInBytes, this,
-				"termsMemoryInBytes");
+		this.termsMemoryInBytes = ApiTypeHelper.requireNonNull(builder.termsMemoryInBytes, this, "termsMemoryInBytes");
 		this.termsMemory = builder.termsMemory;
 		this.termVectoryMemory = builder.termVectoryMemory;
-		this.termVectorsMemoryInBytes = ModelTypeHelper.requireNonNull(builder.termVectorsMemoryInBytes, this,
+		this.termVectorsMemoryInBytes = ApiTypeHelper.requireNonNull(builder.termVectorsMemoryInBytes, this,
 				"termVectorsMemoryInBytes");
 		this.versionMapMemory = builder.versionMapMemory;
-		this.versionMapMemoryInBytes = ModelTypeHelper.requireNonNull(builder.versionMapMemoryInBytes, this,
+		this.versionMapMemoryInBytes = ApiTypeHelper.requireNonNull(builder.versionMapMemoryInBytes, this,
 				"versionMapMemoryInBytes");
 
 	}
 
-	public static SegmentsStats of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SegmentsStats of(Function<Builder, ObjectBuilder<SegmentsStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -353,7 +354,7 @@ public class SegmentsStats implements JsonpSerializable {
 		generator.writeKey("doc_values_memory_in_bytes");
 		generator.write(this.docValuesMemoryInBytes);
 
-		if (ModelTypeHelper.isDefined(this.fileSizes)) {
+		if (ApiTypeHelper.isDefined(this.fileSizes)) {
 			generator.writeKey("file_sizes");
 			generator.writeStartObject();
 			for (Map.Entry<String, ShardFileSizeInfo> item0 : this.fileSizes.entrySet()) {
@@ -451,6 +452,7 @@ public class SegmentsStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link SegmentsStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SegmentsStats> {
 		private Integer count;
 
@@ -537,15 +539,32 @@ public class SegmentsStats implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code file_sizes}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>fileSizes</code>.
 		 */
-		public final Builder fileSizes(Map<String, ShardFileSizeInfo> value) {
-			this.fileSizes = value;
+		public final Builder fileSizes(Map<String, ShardFileSizeInfo> map) {
+			this.fileSizes = _mapPutAll(this.fileSizes, map);
 			return this;
 		}
 
-		public final Builder fileSizes(
-				Function<MapBuilder<String, ShardFileSizeInfo, ShardFileSizeInfo.Builder>, ObjectBuilder<Map<String, ShardFileSizeInfo>>> fn) {
-			return fileSizes(fn.apply(new MapBuilder<>(ShardFileSizeInfo.Builder::new)).build());
+		/**
+		 * Required - API name: {@code file_sizes}
+		 * <p>
+		 * Adds an entry to <code>fileSizes</code>.
+		 */
+		public final Builder fileSizes(String key, ShardFileSizeInfo value) {
+			this.fileSizes = _mapPut(this.fileSizes, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code file_sizes}
+		 * <p>
+		 * Adds an entry to <code>fileSizes</code> using a builder lambda.
+		 */
+		public final Builder fileSizes(String key,
+				Function<ShardFileSizeInfo.Builder, ObjectBuilder<ShardFileSizeInfo>> fn) {
+			return fileSizes(key, fn.apply(new ShardFileSizeInfo.Builder()).build());
 		}
 
 		/**

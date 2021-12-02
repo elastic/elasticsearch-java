@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,10 +38,20 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: eql._types.EqlSearchResponseBase
+
+/**
+ *
+ * @see <a href=
+ *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/eql-search-api.html#eql-search-api-response-body">Documentation
+ *      on elastic.co</a>
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/eql/_types/EqlSearchResponseBase.ts#L24-L52">API
+ *      specification</a>
+ */
 
 public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable {
 	@Nullable
@@ -73,7 +83,7 @@ public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable
 		this.isRunning = builder.isRunning;
 		this.took = builder.took;
 		this.timedOut = builder.timedOut;
-		this.hits = ModelTypeHelper.requireNonNull(builder.hits, this, "hits");
+		this.hits = ApiTypeHelper.requireNonNull(builder.hits, this, "hits");
 		this.tEventSerializer = builder.tEventSerializer;
 
 	}
@@ -269,10 +279,8 @@ public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable
 		 * <p>
 		 * API name: {@code hits}
 		 */
-		public final BuilderT hits(Consumer<EqlHits.Builder<TEvent>> fn) {
-			EqlHits.Builder<TEvent> builder = new EqlHits.Builder<TEvent>();
-			fn.accept(builder);
-			return this.hits(builder.build());
+		public final BuilderT hits(Function<EqlHits.Builder<TEvent>, ObjectBuilder<EqlHits<TEvent>>> fn) {
+			return this.hits(fn.apply(new EqlHits.Builder<TEvent>()).build());
 		}
 
 		/**

@@ -32,10 +32,17 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.PipelineAggregationBase
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/pipeline.ts#L27-L31">API
+ *      specification</a>
+ */
 
 public abstract class PipelineAggregationBase extends AggregationBase {
 	@Nullable
@@ -125,10 +132,8 @@ public abstract class PipelineAggregationBase extends AggregationBase {
 		/**
 		 * API name: {@code buckets_path}
 		 */
-		public final BuilderT bucketsPath(Consumer<BucketsPath.Builder> fn) {
-			BucketsPath.Builder builder = new BucketsPath.Builder();
-			fn.accept(builder);
-			return this.bucketsPath(builder.build());
+		public final BuilderT bucketsPath(Function<BucketsPath.Builder, ObjectBuilder<BucketsPath>> fn) {
+			return this.bucketsPath(fn.apply(new BucketsPath.Builder()).build());
 		}
 
 		/**

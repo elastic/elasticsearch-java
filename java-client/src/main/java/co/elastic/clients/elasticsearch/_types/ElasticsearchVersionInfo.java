@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.ElasticsearchVersionInfo
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Base.ts#L58-L68">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ElasticsearchVersionInfo implements JsonpSerializable {
 	private final String buildDate;
@@ -64,24 +71,22 @@ public class ElasticsearchVersionInfo implements JsonpSerializable {
 
 	private ElasticsearchVersionInfo(Builder builder) {
 
-		this.buildDate = ModelTypeHelper.requireNonNull(builder.buildDate, this, "buildDate");
-		this.buildFlavor = ModelTypeHelper.requireNonNull(builder.buildFlavor, this, "buildFlavor");
-		this.buildHash = ModelTypeHelper.requireNonNull(builder.buildHash, this, "buildHash");
-		this.buildSnapshot = ModelTypeHelper.requireNonNull(builder.buildSnapshot, this, "buildSnapshot");
-		this.buildType = ModelTypeHelper.requireNonNull(builder.buildType, this, "buildType");
-		this.luceneVersion = ModelTypeHelper.requireNonNull(builder.luceneVersion, this, "luceneVersion");
-		this.minimumIndexCompatibilityVersion = ModelTypeHelper.requireNonNull(builder.minimumIndexCompatibilityVersion,
+		this.buildDate = ApiTypeHelper.requireNonNull(builder.buildDate, this, "buildDate");
+		this.buildFlavor = ApiTypeHelper.requireNonNull(builder.buildFlavor, this, "buildFlavor");
+		this.buildHash = ApiTypeHelper.requireNonNull(builder.buildHash, this, "buildHash");
+		this.buildSnapshot = ApiTypeHelper.requireNonNull(builder.buildSnapshot, this, "buildSnapshot");
+		this.buildType = ApiTypeHelper.requireNonNull(builder.buildType, this, "buildType");
+		this.luceneVersion = ApiTypeHelper.requireNonNull(builder.luceneVersion, this, "luceneVersion");
+		this.minimumIndexCompatibilityVersion = ApiTypeHelper.requireNonNull(builder.minimumIndexCompatibilityVersion,
 				this, "minimumIndexCompatibilityVersion");
-		this.minimumWireCompatibilityVersion = ModelTypeHelper.requireNonNull(builder.minimumWireCompatibilityVersion,
+		this.minimumWireCompatibilityVersion = ApiTypeHelper.requireNonNull(builder.minimumWireCompatibilityVersion,
 				this, "minimumWireCompatibilityVersion");
-		this.number = ModelTypeHelper.requireNonNull(builder.number, this, "number");
+		this.number = ApiTypeHelper.requireNonNull(builder.number, this, "number");
 
 	}
 
-	public static ElasticsearchVersionInfo of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ElasticsearchVersionInfo of(Function<Builder, ObjectBuilder<ElasticsearchVersionInfo>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -192,6 +197,7 @@ public class ElasticsearchVersionInfo implements JsonpSerializable {
 	/**
 	 * Builder for {@link ElasticsearchVersionInfo}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ElasticsearchVersionInfo> {
 		private String buildDate;
 

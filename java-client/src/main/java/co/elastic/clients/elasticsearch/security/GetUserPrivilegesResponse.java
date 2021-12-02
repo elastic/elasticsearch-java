@@ -29,20 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_user_privileges.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_user_privileges/SecurityGetUserPrivilegesResponse.ts#L26-L34">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetUserPrivilegesResponse implements JsonpSerializable {
 	private final List<ApplicationPrivileges> applications;
@@ -59,18 +63,16 @@ public class GetUserPrivilegesResponse implements JsonpSerializable {
 
 	private GetUserPrivilegesResponse(Builder builder) {
 
-		this.applications = ModelTypeHelper.unmodifiableRequired(builder.applications, this, "applications");
-		this.cluster = ModelTypeHelper.unmodifiableRequired(builder.cluster, this, "cluster");
-		this.global = ModelTypeHelper.unmodifiableRequired(builder.global, this, "global");
-		this.indices = ModelTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
-		this.runAs = ModelTypeHelper.unmodifiableRequired(builder.runAs, this, "runAs");
+		this.applications = ApiTypeHelper.unmodifiableRequired(builder.applications, this, "applications");
+		this.cluster = ApiTypeHelper.unmodifiableRequired(builder.cluster, this, "cluster");
+		this.global = ApiTypeHelper.unmodifiableRequired(builder.global, this, "global");
+		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
+		this.runAs = ApiTypeHelper.unmodifiableRequired(builder.runAs, this, "runAs");
 
 	}
 
-	public static GetUserPrivilegesResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetUserPrivilegesResponse of(Function<Builder, ObjectBuilder<GetUserPrivilegesResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -119,7 +121,7 @@ public class GetUserPrivilegesResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.applications)) {
+		if (ApiTypeHelper.isDefined(this.applications)) {
 			generator.writeKey("applications");
 			generator.writeStartArray();
 			for (ApplicationPrivileges item0 : this.applications) {
@@ -129,7 +131,7 @@ public class GetUserPrivilegesResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.cluster)) {
+		if (ApiTypeHelper.isDefined(this.cluster)) {
 			generator.writeKey("cluster");
 			generator.writeStartArray();
 			for (String item0 : this.cluster) {
@@ -139,7 +141,7 @@ public class GetUserPrivilegesResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.global)) {
+		if (ApiTypeHelper.isDefined(this.global)) {
 			generator.writeKey("global");
 			generator.writeStartArray();
 			for (GlobalPrivilege item0 : this.global) {
@@ -149,7 +151,7 @@ public class GetUserPrivilegesResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.indices)) {
+		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartArray();
 			for (IndicesPrivileges item0 : this.indices) {
@@ -159,7 +161,7 @@ public class GetUserPrivilegesResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.runAs)) {
+		if (ApiTypeHelper.isDefined(this.runAs)) {
 			generator.writeKey("run_as");
 			generator.writeStartArray();
 			for (String item0 : this.runAs) {
@@ -177,6 +179,7 @@ public class GetUserPrivilegesResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetUserPrivilegesResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetUserPrivilegesResponse> {
 		private List<ApplicationPrivileges> applications;
 
@@ -190,105 +193,129 @@ public class GetUserPrivilegesResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code applications}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>applications</code>.
 		 */
-		public final Builder applications(List<ApplicationPrivileges> value) {
-			this.applications = value;
+		public final Builder applications(List<ApplicationPrivileges> list) {
+			this.applications = _listAddAll(this.applications, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code applications}
+		 * <p>
+		 * Adds one or more values to <code>applications</code>.
 		 */
-		public final Builder applications(ApplicationPrivileges... value) {
-			this.applications = Arrays.asList(value);
+		public final Builder applications(ApplicationPrivileges value, ApplicationPrivileges... values) {
+			this.applications = _listAdd(this.applications, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code applications}
+		 * <p>
+		 * Adds a value to <code>applications</code> using a builder lambda.
 		 */
 		public final Builder applications(
-				Function<ListBuilder<ApplicationPrivileges, ApplicationPrivileges.Builder>, ObjectBuilder<List<ApplicationPrivileges>>> fn) {
-			return applications(fn.apply(new ListBuilder<>(ApplicationPrivileges.Builder::new)).build());
+				Function<ApplicationPrivileges.Builder, ObjectBuilder<ApplicationPrivileges>> fn) {
+			return applications(fn.apply(new ApplicationPrivileges.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code cluster}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>cluster</code>.
 		 */
-		public final Builder cluster(List<String> value) {
-			this.cluster = value;
+		public final Builder cluster(List<String> list) {
+			this.cluster = _listAddAll(this.cluster, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code cluster}
+		 * <p>
+		 * Adds one or more values to <code>cluster</code>.
 		 */
-		public final Builder cluster(String... value) {
-			this.cluster = Arrays.asList(value);
+		public final Builder cluster(String value, String... values) {
+			this.cluster = _listAdd(this.cluster, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code global}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>global</code>.
 		 */
-		public final Builder global(List<GlobalPrivilege> value) {
-			this.global = value;
+		public final Builder global(List<GlobalPrivilege> list) {
+			this.global = _listAddAll(this.global, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code global}
+		 * <p>
+		 * Adds one or more values to <code>global</code>.
 		 */
-		public final Builder global(GlobalPrivilege... value) {
-			this.global = Arrays.asList(value);
+		public final Builder global(GlobalPrivilege value, GlobalPrivilege... values) {
+			this.global = _listAdd(this.global, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code global}
+		 * <p>
+		 * Adds a value to <code>global</code> using a builder lambda.
 		 */
-		public final Builder global(
-				Function<ListBuilder<GlobalPrivilege, GlobalPrivilege.Builder>, ObjectBuilder<List<GlobalPrivilege>>> fn) {
-			return global(fn.apply(new ListBuilder<>(GlobalPrivilege.Builder::new)).build());
+		public final Builder global(Function<GlobalPrivilege.Builder, ObjectBuilder<GlobalPrivilege>> fn) {
+			return global(fn.apply(new GlobalPrivilege.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 */
-		public final Builder indices(List<IndicesPrivileges> value) {
-			this.indices = value;
+		public final Builder indices(List<IndicesPrivileges> list) {
+			this.indices = _listAddAll(this.indices, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds one or more values to <code>indices</code>.
 		 */
-		public final Builder indices(IndicesPrivileges... value) {
-			this.indices = Arrays.asList(value);
+		public final Builder indices(IndicesPrivileges value, IndicesPrivileges... values) {
+			this.indices = _listAdd(this.indices, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds a value to <code>indices</code> using a builder lambda.
 		 */
-		public final Builder indices(
-				Function<ListBuilder<IndicesPrivileges, IndicesPrivileges.Builder>, ObjectBuilder<List<IndicesPrivileges>>> fn) {
-			return indices(fn.apply(new ListBuilder<>(IndicesPrivileges.Builder::new)).build());
+		public final Builder indices(Function<IndicesPrivileges.Builder, ObjectBuilder<IndicesPrivileges>> fn) {
+			return indices(fn.apply(new IndicesPrivileges.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code run_as}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>runAs</code>.
 		 */
-		public final Builder runAs(List<String> value) {
-			this.runAs = value;
+		public final Builder runAs(List<String> list) {
+			this.runAs = _listAddAll(this.runAs, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code run_as}
+		 * <p>
+		 * Adds one or more values to <code>runAs</code>.
 		 */
-		public final Builder runAs(String... value) {
-			this.runAs = Arrays.asList(value);
+		public final Builder runAs(String value, String... values) {
+			this.runAs = _listAdd(this.runAs, value, values);
 			return this;
 		}
 

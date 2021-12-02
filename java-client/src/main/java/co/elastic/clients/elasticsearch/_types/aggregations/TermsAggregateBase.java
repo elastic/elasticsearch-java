@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
@@ -36,6 +36,13 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TermsAggregateBase
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L361-L366">API
+ *      specification</a>
+ */
 
 public abstract class TermsAggregateBase<TBucket> extends MultiBucketAggregateBase<TBucket> {
 	@Nullable
@@ -49,7 +56,7 @@ public abstract class TermsAggregateBase<TBucket> extends MultiBucketAggregateBa
 		super(builder);
 
 		this.docCountErrorUpperBound = builder.docCountErrorUpperBound;
-		this.sumOtherDocCount = ModelTypeHelper.requireNonNull(builder.sumOtherDocCount, this, "sumOtherDocCount");
+		this.sumOtherDocCount = ApiTypeHelper.requireNonNull(builder.sumOtherDocCount, this, "sumOtherDocCount");
 
 	}
 

@@ -33,22 +33,29 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: indices.disk_usage.Request
+
+/**
+ * Analyzes the disk usage of each field of an index or data stream
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/disk_usage/IndicesDiskUsageRequest.ts#L24-L77">API
+ *      specification</a>
+ */
 
 public class DiskUsageRequest extends RequestBase {
 	@Nullable
@@ -81,10 +88,10 @@ public class DiskUsageRequest extends RequestBase {
 	private DiskUsageRequest(Builder builder) {
 
 		this.allowNoIndices = builder.allowNoIndices;
-		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
+		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.flush = builder.flush;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.masterTimeout = builder.masterTimeout;
 		this.runExpensiveTasks = builder.runExpensiveTasks;
 		this.timeout = builder.timeout;
@@ -92,10 +99,8 @@ public class DiskUsageRequest extends RequestBase {
 
 	}
 
-	public static DiskUsageRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DiskUsageRequest of(Function<Builder, ObjectBuilder<DiskUsageRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -206,6 +211,7 @@ public class DiskUsageRequest extends RequestBase {
 	/**
 	 * Builder for {@link DiskUsageRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DiskUsageRequest> {
 		@Nullable
 		private Boolean allowNoIndices;
@@ -253,9 +259,11 @@ public class DiskUsageRequest extends RequestBase {
 		 * hidden data streams. Supports comma-separated values, such as open,hidden.
 		 * <p>
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
 		 */
-		public final Builder expandWildcards(@Nullable List<ExpandWildcard> value) {
-			this.expandWildcards = value;
+		public final Builder expandWildcards(List<ExpandWildcard> list) {
+			this.expandWildcards = _listAddAll(this.expandWildcards, list);
 			return this;
 		}
 
@@ -265,9 +273,11 @@ public class DiskUsageRequest extends RequestBase {
 		 * hidden data streams. Supports comma-separated values, such as open,hidden.
 		 * <p>
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds one or more values to <code>expandWildcards</code>.
 		 */
-		public final Builder expandWildcards(ExpandWildcard... value) {
-			this.expandWildcards = Arrays.asList(value);
+		public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
+			this.expandWildcards = _listAdd(this.expandWildcards, value, values);
 			return this;
 		}
 
@@ -405,7 +415,7 @@ public class DiskUsageRequest extends RequestBase {
 				if (request.flush != null) {
 					params.put("flush", String.valueOf(request.flush));
 				}
-				if (ModelTypeHelper.isDefined(request.expandWildcards)) {
+				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}

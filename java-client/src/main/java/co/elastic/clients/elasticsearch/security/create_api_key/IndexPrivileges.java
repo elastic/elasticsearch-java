@@ -30,18 +30,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.create_api_key.IndexPrivileges
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/create_api_key/types.ts#L32-L35">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IndexPrivileges implements JsonpSerializable {
 	private final List<String> names;
@@ -52,15 +58,13 @@ public class IndexPrivileges implements JsonpSerializable {
 
 	private IndexPrivileges(Builder builder) {
 
-		this.names = ModelTypeHelper.unmodifiableRequired(builder.names, this, "names");
-		this.privileges = ModelTypeHelper.unmodifiableRequired(builder.privileges, this, "privileges");
+		this.names = ApiTypeHelper.unmodifiableRequired(builder.names, this, "names");
+		this.privileges = ApiTypeHelper.unmodifiableRequired(builder.privileges, this, "privileges");
 
 	}
 
-	public static IndexPrivileges of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IndexPrivileges of(Function<Builder, ObjectBuilder<IndexPrivileges>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -88,7 +92,7 @@ public class IndexPrivileges implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.names)) {
+		if (ApiTypeHelper.isDefined(this.names)) {
 			generator.writeKey("names");
 			generator.writeStartArray();
 			for (String item0 : this.names) {
@@ -98,7 +102,7 @@ public class IndexPrivileges implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.privileges)) {
+		if (ApiTypeHelper.isDefined(this.privileges)) {
 			generator.writeKey("privileges");
 			generator.writeStartArray();
 			for (IndexPrivilege item0 : this.privileges) {
@@ -115,6 +119,7 @@ public class IndexPrivileges implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexPrivileges}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexPrivileges> {
 		private List<String> names;
 
@@ -122,33 +127,41 @@ public class IndexPrivileges implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code names}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>names</code>.
 		 */
-		public final Builder names(List<String> value) {
-			this.names = value;
+		public final Builder names(List<String> list) {
+			this.names = _listAddAll(this.names, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code names}
+		 * <p>
+		 * Adds one or more values to <code>names</code>.
 		 */
-		public final Builder names(String... value) {
-			this.names = Arrays.asList(value);
+		public final Builder names(String value, String... values) {
+			this.names = _listAdd(this.names, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code privileges}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>privileges</code>.
 		 */
-		public final Builder privileges(List<IndexPrivilege> value) {
-			this.privileges = value;
+		public final Builder privileges(List<IndexPrivilege> list) {
+			this.privileges = _listAddAll(this.privileges, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code privileges}
+		 * <p>
+		 * Adds one or more values to <code>privileges</code>.
 		 */
-		public final Builder privileges(IndexPrivilege... value) {
-			this.privileges = Arrays.asList(value);
+		public final Builder privileges(IndexPrivilege value, IndexPrivilege... values) {
+			this.privileges = _listAdd(this.privileges, value, values);
 			return this;
 		}
 

@@ -32,22 +32,29 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.status.Request
+
+/**
+ * Returns information about the status of a snapshot.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/snapshot/status/SnapshotStatusRequest.ts#L24-L38">API
+ *      specification</a>
+ */
 
 public class SnapshotStatusRequest extends RequestBase {
 	@Nullable
@@ -68,14 +75,12 @@ public class SnapshotStatusRequest extends RequestBase {
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.masterTimeout = builder.masterTimeout;
 		this.repository = builder.repository;
-		this.snapshot = ModelTypeHelper.unmodifiable(builder.snapshot);
+		this.snapshot = ApiTypeHelper.unmodifiable(builder.snapshot);
 
 	}
 
-	public static SnapshotStatusRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SnapshotStatusRequest of(Function<Builder, ObjectBuilder<SnapshotStatusRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -123,6 +128,7 @@ public class SnapshotStatusRequest extends RequestBase {
 	/**
 	 * Builder for {@link SnapshotStatusRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SnapshotStatusRequest> {
 		@Nullable
 		private Boolean ignoreUnavailable;
@@ -162,10 +168,8 @@ public class SnapshotStatusRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.masterTimeout(builder.build());
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -182,9 +186,11 @@ public class SnapshotStatusRequest extends RequestBase {
 		 * A comma-separated list of snapshot names
 		 * <p>
 		 * API name: {@code snapshot}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>snapshot</code>.
 		 */
-		public final Builder snapshot(@Nullable List<String> value) {
-			this.snapshot = value;
+		public final Builder snapshot(List<String> list) {
+			this.snapshot = _listAddAll(this.snapshot, list);
 			return this;
 		}
 
@@ -192,9 +198,11 @@ public class SnapshotStatusRequest extends RequestBase {
 		 * A comma-separated list of snapshot names
 		 * <p>
 		 * API name: {@code snapshot}
+		 * <p>
+		 * Adds one or more values to <code>snapshot</code>.
 		 */
-		public final Builder snapshot(String... value) {
-			this.snapshot = Arrays.asList(value);
+		public final Builder snapshot(String value, String... values) {
+			this.snapshot = _listAdd(this.snapshot, value, values);
 			return this;
 		}
 
@@ -234,7 +242,7 @@ public class SnapshotStatusRequest extends RequestBase {
 
 				if (request.repository() != null)
 					propsSet |= _repository;
-				if (ModelTypeHelper.isDefined(request.snapshot()))
+				if (ApiTypeHelper.isDefined(request.snapshot()))
 					propsSet |= _snapshot;
 
 				if (propsSet == 0) {

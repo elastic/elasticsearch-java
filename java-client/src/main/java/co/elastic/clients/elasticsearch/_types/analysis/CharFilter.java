@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.UnionDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
@@ -38,11 +38,17 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.CharFilter
-// union type: Union[]
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/char_filters.ts#L28-L30">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CharFilter implements TaggedUnion<CharFilter.Kind, Object>, JsonpSerializable {
 
@@ -71,15 +77,13 @@ public class CharFilter implements TaggedUnion<CharFilter.Kind, Object>, JsonpSe
 
 	private CharFilter(Builder builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static CharFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CharFilter of(Function<Builder, ObjectBuilder<CharFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -141,10 +145,9 @@ public class CharFilter implements TaggedUnion<CharFilter.Kind, Object>, JsonpSe
 			return this;
 		}
 
-		public ObjectBuilder<CharFilter> definition(Consumer<CharFilterDefinition.Builder> fn) {
-			CharFilterDefinition.Builder builder = new CharFilterDefinition.Builder();
-			fn.accept(builder);
-			return this.definition(builder.build());
+		public ObjectBuilder<CharFilter> definition(
+				Function<CharFilterDefinition.Builder, ObjectBuilder<CharFilterDefinition>> fn) {
+			return this.definition(fn.apply(new CharFilterDefinition.Builder()).build());
 		}
 
 		public ObjectBuilder<CharFilter> name(String v) {

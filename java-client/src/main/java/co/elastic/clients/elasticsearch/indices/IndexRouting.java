@@ -33,10 +33,17 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexRouting
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/_types/IndexRouting.ts#L22-L25">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IndexRouting implements JsonpSerializable {
 	@Nullable
@@ -54,10 +61,8 @@ public class IndexRouting implements JsonpSerializable {
 
 	}
 
-	public static IndexRouting of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IndexRouting of(Function<Builder, ObjectBuilder<IndexRouting>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -105,6 +110,7 @@ public class IndexRouting implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexRouting}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexRouting> {
 		@Nullable
 		private IndexRoutingAllocation allocation;
@@ -123,10 +129,9 @@ public class IndexRouting implements JsonpSerializable {
 		/**
 		 * API name: {@code allocation}
 		 */
-		public final Builder allocation(Consumer<IndexRoutingAllocation.Builder> fn) {
-			IndexRoutingAllocation.Builder builder = new IndexRoutingAllocation.Builder();
-			fn.accept(builder);
-			return this.allocation(builder.build());
+		public final Builder allocation(
+				Function<IndexRoutingAllocation.Builder, ObjectBuilder<IndexRoutingAllocation>> fn) {
+			return this.allocation(fn.apply(new IndexRoutingAllocation.Builder()).build());
 		}
 
 		/**
@@ -140,10 +145,9 @@ public class IndexRouting implements JsonpSerializable {
 		/**
 		 * API name: {@code rebalance}
 		 */
-		public final Builder rebalance(Consumer<IndexRoutingRebalance.Builder> fn) {
-			IndexRoutingRebalance.Builder builder = new IndexRoutingRebalance.Builder();
-			fn.accept(builder);
-			return this.rebalance(builder.build());
+		public final Builder rebalance(
+				Function<IndexRoutingRebalance.Builder, ObjectBuilder<IndexRoutingRebalance>> fn) {
+			return this.rebalance(fn.apply(new IndexRoutingRebalance.Builder()).build());
 		}
 
 		/**

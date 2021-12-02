@@ -28,15 +28,22 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.analysis.LimitTokenCountTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L247-L251">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class LimitTokenCountTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final boolean consumeAllTokens;
@@ -48,15 +55,13 @@ public class LimitTokenCountTokenFilter extends TokenFilterBase implements Token
 	private LimitTokenCountTokenFilter(Builder builder) {
 		super(builder);
 
-		this.consumeAllTokens = ModelTypeHelper.requireNonNull(builder.consumeAllTokens, this, "consumeAllTokens");
-		this.maxTokenCount = ModelTypeHelper.requireNonNull(builder.maxTokenCount, this, "maxTokenCount");
+		this.consumeAllTokens = ApiTypeHelper.requireNonNull(builder.consumeAllTokens, this, "consumeAllTokens");
+		this.maxTokenCount = ApiTypeHelper.requireNonNull(builder.maxTokenCount, this, "maxTokenCount");
 
 	}
 
-	public static LimitTokenCountTokenFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static LimitTokenCountTokenFilter of(Function<Builder, ObjectBuilder<LimitTokenCountTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -98,6 +103,7 @@ public class LimitTokenCountTokenFilter extends TokenFilterBase implements Token
 	/**
 	 * Builder for {@link LimitTokenCountTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<LimitTokenCountTokenFilter> {

@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.RecoveryStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Stats.ts#L160-L165">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RecoveryStats implements JsonpSerializable {
 	private final long currentAsSource;
@@ -55,18 +62,16 @@ public class RecoveryStats implements JsonpSerializable {
 
 	private RecoveryStats(Builder builder) {
 
-		this.currentAsSource = ModelTypeHelper.requireNonNull(builder.currentAsSource, this, "currentAsSource");
-		this.currentAsTarget = ModelTypeHelper.requireNonNull(builder.currentAsTarget, this, "currentAsTarget");
+		this.currentAsSource = ApiTypeHelper.requireNonNull(builder.currentAsSource, this, "currentAsSource");
+		this.currentAsTarget = ApiTypeHelper.requireNonNull(builder.currentAsTarget, this, "currentAsTarget");
 		this.throttleTime = builder.throttleTime;
-		this.throttleTimeInMillis = ModelTypeHelper.requireNonNull(builder.throttleTimeInMillis, this,
+		this.throttleTimeInMillis = ApiTypeHelper.requireNonNull(builder.throttleTimeInMillis, this,
 				"throttleTimeInMillis");
 
 	}
 
-	public static RecoveryStats of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RecoveryStats of(Function<Builder, ObjectBuilder<RecoveryStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -130,6 +135,7 @@ public class RecoveryStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link RecoveryStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RecoveryStats> {
 		private Long currentAsSource;
 

@@ -31,17 +31,25 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.delete_calendar_job.Request
+
+/**
+ * Deletes anomaly detection jobs from a calendar.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/delete_calendar_job/MlDeleteCalendarJobRequest.ts#L23-L37">API
+ *      specification</a>
+ */
 
 public class DeleteCalendarJobRequest extends RequestBase {
 	private final String calendarId;
@@ -52,15 +60,13 @@ public class DeleteCalendarJobRequest extends RequestBase {
 
 	private DeleteCalendarJobRequest(Builder builder) {
 
-		this.calendarId = ModelTypeHelper.requireNonNull(builder.calendarId, this, "calendarId");
-		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.calendarId = ApiTypeHelper.requireNonNull(builder.calendarId, this, "calendarId");
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 
 	}
 
-	public static DeleteCalendarJobRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DeleteCalendarJobRequest of(Function<Builder, ObjectBuilder<DeleteCalendarJobRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -87,6 +93,7 @@ public class DeleteCalendarJobRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteCalendarJobRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteCalendarJobRequest> {
 		private String calendarId;
 

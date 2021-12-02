@@ -30,19 +30,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.get_jobs.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/rollup/get_jobs/GetRollupJobResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetJobsResponse implements JsonpSerializable {
 	private final List<RollupJob> jobs;
@@ -51,14 +55,12 @@ public class GetJobsResponse implements JsonpSerializable {
 
 	private GetJobsResponse(Builder builder) {
 
-		this.jobs = ModelTypeHelper.unmodifiableRequired(builder.jobs, this, "jobs");
+		this.jobs = ApiTypeHelper.unmodifiableRequired(builder.jobs, this, "jobs");
 
 	}
 
-	public static GetJobsResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetJobsResponse of(Function<Builder, ObjectBuilder<GetJobsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -79,7 +81,7 @@ public class GetJobsResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.jobs)) {
+		if (ApiTypeHelper.isDefined(this.jobs)) {
 			generator.writeKey("jobs");
 			generator.writeStartArray();
 			for (RollupJob item0 : this.jobs) {
@@ -97,31 +99,37 @@ public class GetJobsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetJobsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetJobsResponse> {
 		private List<RollupJob> jobs;
 
 		/**
 		 * Required - API name: {@code jobs}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>jobs</code>.
 		 */
-		public final Builder jobs(List<RollupJob> value) {
-			this.jobs = value;
+		public final Builder jobs(List<RollupJob> list) {
+			this.jobs = _listAddAll(this.jobs, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code jobs}
+		 * <p>
+		 * Adds one or more values to <code>jobs</code>.
 		 */
-		public final Builder jobs(RollupJob... value) {
-			this.jobs = Arrays.asList(value);
+		public final Builder jobs(RollupJob value, RollupJob... values) {
+			this.jobs = _listAdd(this.jobs, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code jobs}
+		 * <p>
+		 * Adds a value to <code>jobs</code> using a builder lambda.
 		 */
-		public final Builder jobs(
-				Function<ListBuilder<RollupJob, RollupJob.Builder>, ObjectBuilder<List<RollupJob>>> fn) {
-			return jobs(fn.apply(new ListBuilder<>(RollupJob.Builder::new)).build());
+		public final Builder jobs(Function<RollupJob.Builder, ObjectBuilder<RollupJob>> fn) {
+			return jobs(fn.apply(new RollupJob.Builder()).build());
 		}
 
 		/**

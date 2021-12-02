@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
@@ -41,14 +41,23 @@ import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security._types.FieldRule
-// union type: Container[]
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/_types/RoleMappingRule.ts#L33-L42">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FieldRule implements TaggedUnion<FieldRule.Kind, Object>, RoleMappingRuleVariant, JsonpSerializable {
 
+	/**
+	 * {@link FieldRule} variant kinds.
+	 */
 	/**
 	 * {@link FieldRule} variant kinds.
 	 */
@@ -101,22 +110,20 @@ public class FieldRule implements TaggedUnion<FieldRule.Kind, Object>, RoleMappi
 
 	public FieldRule(FieldRuleVariant value) {
 
-		this._kind = ModelTypeHelper.requireNonNull(value._fieldRuleKind(), this, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(value._fieldRuleKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
 	private FieldRule(Builder builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static FieldRule of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static FieldRule of(Function<Builder, ObjectBuilder<FieldRule>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -282,10 +289,8 @@ public class FieldRule implements TaggedUnion<FieldRule.Kind, Object>, RoleMappi
 			return this;
 		}
 
-		public ObjectBuilder<FieldRule> realm(Consumer<Realm.Builder> fn) {
-			Realm.Builder builder = new Realm.Builder();
-			fn.accept(builder);
-			return this.realm(builder.build());
+		public ObjectBuilder<FieldRule> realm(Function<Realm.Builder, ObjectBuilder<Realm>> fn) {
+			return this.realm(fn.apply(new Realm.Builder()).build());
 		}
 
 		public FieldRule build() {

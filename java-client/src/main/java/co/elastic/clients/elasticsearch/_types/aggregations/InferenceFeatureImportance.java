@@ -29,21 +29,25 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.InferenceFeatureImportance
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L615-L619">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class InferenceFeatureImportance implements JsonpSerializable {
 	private final String featureName;
@@ -57,16 +61,14 @@ public class InferenceFeatureImportance implements JsonpSerializable {
 
 	private InferenceFeatureImportance(Builder builder) {
 
-		this.featureName = ModelTypeHelper.requireNonNull(builder.featureName, this, "featureName");
+		this.featureName = ApiTypeHelper.requireNonNull(builder.featureName, this, "featureName");
 		this.importance = builder.importance;
-		this.classes = ModelTypeHelper.unmodifiable(builder.classes);
+		this.classes = ApiTypeHelper.unmodifiable(builder.classes);
 
 	}
 
-	public static InferenceFeatureImportance of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static InferenceFeatureImportance of(Function<Builder, ObjectBuilder<InferenceFeatureImportance>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -110,7 +112,7 @@ public class InferenceFeatureImportance implements JsonpSerializable {
 			generator.write(this.importance);
 
 		}
-		if (ModelTypeHelper.isDefined(this.classes)) {
+		if (ApiTypeHelper.isDefined(this.classes)) {
 			generator.writeKey("classes");
 			generator.writeStartArray();
 			for (InferenceClassImportance item0 : this.classes) {
@@ -128,6 +130,7 @@ public class InferenceFeatureImportance implements JsonpSerializable {
 	/**
 	 * Builder for {@link InferenceFeatureImportance}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<InferenceFeatureImportance> {
 		private String featureName;
 
@@ -155,26 +158,32 @@ public class InferenceFeatureImportance implements JsonpSerializable {
 
 		/**
 		 * API name: {@code classes}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>classes</code>.
 		 */
-		public final Builder classes(@Nullable List<InferenceClassImportance> value) {
-			this.classes = value;
+		public final Builder classes(List<InferenceClassImportance> list) {
+			this.classes = _listAddAll(this.classes, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code classes}
+		 * <p>
+		 * Adds one or more values to <code>classes</code>.
 		 */
-		public final Builder classes(InferenceClassImportance... value) {
-			this.classes = Arrays.asList(value);
+		public final Builder classes(InferenceClassImportance value, InferenceClassImportance... values) {
+			this.classes = _listAdd(this.classes, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code classes}
+		 * <p>
+		 * Adds a value to <code>classes</code> using a builder lambda.
 		 */
 		public final Builder classes(
-				Function<ListBuilder<InferenceClassImportance, InferenceClassImportance.Builder>, ObjectBuilder<List<InferenceClassImportance>>> fn) {
-			return classes(fn.apply(new ListBuilder<>(InferenceClassImportance.Builder::new)).build());
+				Function<InferenceClassImportance.Builder, ObjectBuilder<InferenceClassImportance>> fn) {
+			return classes(fn.apply(new InferenceClassImportance.Builder()).build());
 		}
 
 		/**

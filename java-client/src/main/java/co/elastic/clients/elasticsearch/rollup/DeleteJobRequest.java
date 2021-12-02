@@ -31,17 +31,25 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.delete_job.Request
+
+/**
+ * Deletes an existing rollup job.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/rollup/delete_job/DeleteRollupJobRequest.ts#L23-L32">API
+ *      specification</a>
+ */
 
 public class DeleteJobRequest extends RequestBase {
 	private final String id;
@@ -50,14 +58,12 @@ public class DeleteJobRequest extends RequestBase {
 
 	private DeleteJobRequest(Builder builder) {
 
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 
 	}
 
-	public static DeleteJobRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DeleteJobRequest of(Function<Builder, ObjectBuilder<DeleteJobRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -74,6 +80,7 @@ public class DeleteJobRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteJobRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteJobRequest> {
 		private String id;
 

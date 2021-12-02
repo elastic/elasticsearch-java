@@ -28,17 +28,23 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.DateIndexNameProcessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/_types/Processors.ts#L163-L176">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DateIndexNameProcessor extends ProcessorBase implements ProcessorVariant {
 	private final List<String> dateFormats;
@@ -60,20 +66,18 @@ public class DateIndexNameProcessor extends ProcessorBase implements ProcessorVa
 	private DateIndexNameProcessor(Builder builder) {
 		super(builder);
 
-		this.dateFormats = ModelTypeHelper.unmodifiableRequired(builder.dateFormats, this, "dateFormats");
-		this.dateRounding = ModelTypeHelper.requireNonNull(builder.dateRounding, this, "dateRounding");
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
-		this.indexNameFormat = ModelTypeHelper.requireNonNull(builder.indexNameFormat, this, "indexNameFormat");
-		this.indexNamePrefix = ModelTypeHelper.requireNonNull(builder.indexNamePrefix, this, "indexNamePrefix");
-		this.locale = ModelTypeHelper.requireNonNull(builder.locale, this, "locale");
-		this.timezone = ModelTypeHelper.requireNonNull(builder.timezone, this, "timezone");
+		this.dateFormats = ApiTypeHelper.unmodifiableRequired(builder.dateFormats, this, "dateFormats");
+		this.dateRounding = ApiTypeHelper.requireNonNull(builder.dateRounding, this, "dateRounding");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.indexNameFormat = ApiTypeHelper.requireNonNull(builder.indexNameFormat, this, "indexNameFormat");
+		this.indexNamePrefix = ApiTypeHelper.requireNonNull(builder.indexNamePrefix, this, "indexNamePrefix");
+		this.locale = ApiTypeHelper.requireNonNull(builder.locale, this, "locale");
+		this.timezone = ApiTypeHelper.requireNonNull(builder.timezone, this, "timezone");
 
 	}
 
-	public static DateIndexNameProcessor of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DateIndexNameProcessor of(Function<Builder, ObjectBuilder<DateIndexNameProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -142,7 +146,7 @@ public class DateIndexNameProcessor extends ProcessorBase implements ProcessorVa
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.dateFormats)) {
+		if (ApiTypeHelper.isDefined(this.dateFormats)) {
 			generator.writeKey("date_formats");
 			generator.writeStartArray();
 			for (String item0 : this.dateFormats) {
@@ -177,6 +181,7 @@ public class DateIndexNameProcessor extends ProcessorBase implements ProcessorVa
 	/**
 	 * Builder for {@link DateIndexNameProcessor}.
 	 */
+
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DateIndexNameProcessor> {
@@ -196,17 +201,21 @@ public class DateIndexNameProcessor extends ProcessorBase implements ProcessorVa
 
 		/**
 		 * Required - API name: {@code date_formats}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>dateFormats</code>.
 		 */
-		public final Builder dateFormats(List<String> value) {
-			this.dateFormats = value;
+		public final Builder dateFormats(List<String> list) {
+			this.dateFormats = _listAddAll(this.dateFormats, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code date_formats}
+		 * <p>
+		 * Adds one or more values to <code>dateFormats</code>.
 		 */
-		public final Builder dateFormats(String... value) {
-			this.dateFormats = Arrays.asList(value);
+		public final Builder dateFormats(String value, String... values) {
+			this.dateFormats = _listAdd(this.dateFormats, value, values);
 			return this;
 		}
 

@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.RankEvalHitItem
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/rank_eval/types.ts#L136-L139">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RankEvalHitItem implements JsonpSerializable {
 	private final RankEvalHit hit;
@@ -50,15 +57,13 @@ public class RankEvalHitItem implements JsonpSerializable {
 
 	private RankEvalHitItem(Builder builder) {
 
-		this.hit = ModelTypeHelper.requireNonNull(builder.hit, this, "hit");
+		this.hit = ApiTypeHelper.requireNonNull(builder.hit, this, "hit");
 		this.rating = builder.rating;
 
 	}
 
-	public static RankEvalHitItem of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RankEvalHitItem of(Function<Builder, ObjectBuilder<RankEvalHitItem>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -103,6 +108,7 @@ public class RankEvalHitItem implements JsonpSerializable {
 	/**
 	 * Builder for {@link RankEvalHitItem}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RankEvalHitItem> {
 		private RankEvalHit hit;
 
@@ -120,10 +126,8 @@ public class RankEvalHitItem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code hit}
 		 */
-		public final Builder hit(Consumer<RankEvalHit.Builder> fn) {
-			RankEvalHit.Builder builder = new RankEvalHit.Builder();
-			fn.accept(builder);
-			return this.hit(builder.build());
+		public final Builder hit(Function<RankEvalHit.Builder, ObjectBuilder<RankEvalHit>> fn) {
+			return this.hit(fn.apply(new RankEvalHit.Builder()).build());
 		}
 
 		/**

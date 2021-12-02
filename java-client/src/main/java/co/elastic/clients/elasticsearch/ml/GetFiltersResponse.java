@@ -29,20 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_filters.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_filters/MlGetFiltersResponse.ts#L23-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetFiltersResponse implements JsonpSerializable {
 	private final long count;
@@ -53,15 +57,13 @@ public class GetFiltersResponse implements JsonpSerializable {
 
 	private GetFiltersResponse(Builder builder) {
 
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
-		this.filters = ModelTypeHelper.unmodifiableRequired(builder.filters, this, "filters");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.filters = ApiTypeHelper.unmodifiableRequired(builder.filters, this, "filters");
 
 	}
 
-	public static GetFiltersResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetFiltersResponse of(Function<Builder, ObjectBuilder<GetFiltersResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -92,7 +94,7 @@ public class GetFiltersResponse implements JsonpSerializable {
 		generator.writeKey("count");
 		generator.write(this.count);
 
-		if (ModelTypeHelper.isDefined(this.filters)) {
+		if (ApiTypeHelper.isDefined(this.filters)) {
 			generator.writeKey("filters");
 			generator.writeStartArray();
 			for (Filter item0 : this.filters) {
@@ -110,6 +112,7 @@ public class GetFiltersResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetFiltersResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetFiltersResponse> {
 		private Long count;
 
@@ -125,25 +128,31 @@ public class GetFiltersResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code filters}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>filters</code>.
 		 */
-		public final Builder filters(List<Filter> value) {
-			this.filters = value;
+		public final Builder filters(List<Filter> list) {
+			this.filters = _listAddAll(this.filters, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code filters}
+		 * <p>
+		 * Adds one or more values to <code>filters</code>.
 		 */
-		public final Builder filters(Filter... value) {
-			this.filters = Arrays.asList(value);
+		public final Builder filters(Filter value, Filter... values) {
+			this.filters = _listAdd(this.filters, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code filters}
+		 * <p>
+		 * Adds a value to <code>filters</code> using a builder lambda.
 		 */
-		public final Builder filters(Function<ListBuilder<Filter, Filter.Builder>, ObjectBuilder<List<Filter>>> fn) {
-			return filters(fn.apply(new ListBuilder<>(Filter.Builder::new)).build());
+		public final Builder filters(Function<Filter.Builder, ObjectBuilder<Filter>> fn) {
+			return filters(fn.apply(new Filter.Builder()).build());
 		}
 
 		/**

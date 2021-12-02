@@ -29,14 +29,21 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: async_search._types.AsyncSearchDocumentResponseBase
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/async_search/_types/AsyncSearchResponseBase.ts#L31-L35">API
+ *      specification</a>
+ */
 
 public abstract class AsyncSearchDocumentResponseBase<TDocument> extends AsyncSearchResponseBase {
 	private final AsyncSearch<TDocument> response;
@@ -49,7 +56,7 @@ public abstract class AsyncSearchDocumentResponseBase<TDocument> extends AsyncSe
 	protected AsyncSearchDocumentResponseBase(AbstractBuilder<TDocument, ?> builder) {
 		super(builder);
 
-		this.response = ModelTypeHelper.requireNonNull(builder.response, this, "response");
+		this.response = ApiTypeHelper.requireNonNull(builder.response, this, "response");
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}
@@ -88,10 +95,9 @@ public abstract class AsyncSearchDocumentResponseBase<TDocument> extends AsyncSe
 		/**
 		 * Required - API name: {@code response}
 		 */
-		public final BuilderT response(Consumer<AsyncSearch.Builder<TDocument>> fn) {
-			AsyncSearch.Builder<TDocument> builder = new AsyncSearch.Builder<TDocument>();
-			fn.accept(builder);
-			return this.response(builder.build());
+		public final BuilderT response(
+				Function<AsyncSearch.Builder<TDocument>, ObjectBuilder<AsyncSearch<TDocument>>> fn) {
+			return this.response(fn.apply(new AsyncSearch.Builder<TDocument>()).build());
 		}
 
 		/**

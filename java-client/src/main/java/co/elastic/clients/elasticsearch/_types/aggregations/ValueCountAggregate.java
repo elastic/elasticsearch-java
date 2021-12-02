@@ -30,9 +30,17 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.aggregations.ValueCountAggregate
+
+/**
+ * Value count aggregation result. <code>value</code> is always present.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L204-L208">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ValueCountAggregate extends SingleMetricAggregateBase implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -42,10 +50,8 @@ public class ValueCountAggregate extends SingleMetricAggregateBase implements Ag
 
 	}
 
-	public static ValueCountAggregate of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ValueCountAggregate of(Function<Builder, ObjectBuilder<ValueCountAggregate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,6 +67,7 @@ public class ValueCountAggregate extends SingleMetricAggregateBase implements Ag
 	/**
 	 * Builder for {@link ValueCountAggregate}.
 	 */
+
 	public static class Builder extends SingleMetricAggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ValueCountAggregate> {

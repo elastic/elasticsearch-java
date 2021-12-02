@@ -28,18 +28,24 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.WordDelimiterGraphTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L148-L165">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class WordDelimiterGraphTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	@Nullable
@@ -98,20 +104,18 @@ public class WordDelimiterGraphTokenFilter extends TokenFilterBase implements To
 		this.generateWordParts = builder.generateWordParts;
 		this.ignoreKeywords = builder.ignoreKeywords;
 		this.preserveOriginal = builder.preserveOriginal;
-		this.protectedWords = ModelTypeHelper.unmodifiable(builder.protectedWords);
+		this.protectedWords = ApiTypeHelper.unmodifiable(builder.protectedWords);
 		this.protectedWordsPath = builder.protectedWordsPath;
 		this.splitOnCaseChange = builder.splitOnCaseChange;
 		this.splitOnNumerics = builder.splitOnNumerics;
 		this.stemEnglishPossessive = builder.stemEnglishPossessive;
-		this.typeTable = ModelTypeHelper.unmodifiable(builder.typeTable);
+		this.typeTable = ApiTypeHelper.unmodifiable(builder.typeTable);
 		this.typeTablePath = builder.typeTablePath;
 
 	}
 
-	public static WordDelimiterGraphTokenFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static WordDelimiterGraphTokenFilter of(Function<Builder, ObjectBuilder<WordDelimiterGraphTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -284,7 +288,7 @@ public class WordDelimiterGraphTokenFilter extends TokenFilterBase implements To
 			generator.write(this.preserveOriginal);
 
 		}
-		if (ModelTypeHelper.isDefined(this.protectedWords)) {
+		if (ApiTypeHelper.isDefined(this.protectedWords)) {
 			generator.writeKey("protected_words");
 			generator.writeStartArray();
 			for (String item0 : this.protectedWords) {
@@ -314,7 +318,7 @@ public class WordDelimiterGraphTokenFilter extends TokenFilterBase implements To
 			generator.write(this.stemEnglishPossessive);
 
 		}
-		if (ModelTypeHelper.isDefined(this.typeTable)) {
+		if (ApiTypeHelper.isDefined(this.typeTable)) {
 			generator.writeKey("type_table");
 			generator.writeStartArray();
 			for (String item0 : this.typeTable) {
@@ -337,6 +341,7 @@ public class WordDelimiterGraphTokenFilter extends TokenFilterBase implements To
 	/**
 	 * Builder for {@link WordDelimiterGraphTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<WordDelimiterGraphTokenFilter> {
@@ -451,17 +456,21 @@ public class WordDelimiterGraphTokenFilter extends TokenFilterBase implements To
 
 		/**
 		 * API name: {@code protected_words}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>protectedWords</code>.
 		 */
-		public final Builder protectedWords(@Nullable List<String> value) {
-			this.protectedWords = value;
+		public final Builder protectedWords(List<String> list) {
+			this.protectedWords = _listAddAll(this.protectedWords, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code protected_words}
+		 * <p>
+		 * Adds one or more values to <code>protectedWords</code>.
 		 */
-		public final Builder protectedWords(String... value) {
-			this.protectedWords = Arrays.asList(value);
+		public final Builder protectedWords(String value, String... values) {
+			this.protectedWords = _listAdd(this.protectedWords, value, values);
 			return this;
 		}
 
@@ -499,17 +508,21 @@ public class WordDelimiterGraphTokenFilter extends TokenFilterBase implements To
 
 		/**
 		 * API name: {@code type_table}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>typeTable</code>.
 		 */
-		public final Builder typeTable(@Nullable List<String> value) {
-			this.typeTable = value;
+		public final Builder typeTable(List<String> list) {
+			this.typeTable = _listAddAll(this.typeTable, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code type_table}
+		 * <p>
+		 * Adds one or more values to <code>typeTable</code>.
 		 */
-		public final Builder typeTable(String... value) {
-			this.typeTable = Arrays.asList(value);
+		public final Builder typeTable(String value, String... values) {
+			this.typeTable = _listAdd(this.typeTable, value, values);
 			return this;
 		}
 

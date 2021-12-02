@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: enrich.execute_policy.ExecuteEnrichPolicyStatus
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/enrich/execute_policy/types.ts#L20-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ExecuteEnrichPolicyStatus implements JsonpSerializable {
 	private final EnrichPolicyPhase phase;
@@ -46,14 +53,12 @@ public class ExecuteEnrichPolicyStatus implements JsonpSerializable {
 
 	private ExecuteEnrichPolicyStatus(Builder builder) {
 
-		this.phase = ModelTypeHelper.requireNonNull(builder.phase, this, "phase");
+		this.phase = ApiTypeHelper.requireNonNull(builder.phase, this, "phase");
 
 	}
 
-	public static ExecuteEnrichPolicyStatus of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ExecuteEnrichPolicyStatus of(Function<Builder, ObjectBuilder<ExecuteEnrichPolicyStatus>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -84,6 +89,7 @@ public class ExecuteEnrichPolicyStatus implements JsonpSerializable {
 	/**
 	 * Builder for {@link ExecuteEnrichPolicyStatus}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExecuteEnrichPolicyStatus> {
 		private EnrichPolicyPhase phase;
 

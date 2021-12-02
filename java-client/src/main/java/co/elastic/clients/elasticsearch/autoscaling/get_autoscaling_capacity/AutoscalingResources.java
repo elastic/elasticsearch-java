@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: autoscaling.get_autoscaling_capacity.AutoscalingResources
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/autoscaling/get_autoscaling_capacity/GetAutoscalingCapacityResponse.ts#L43-L46">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AutoscalingResources implements JsonpSerializable {
 	private final int storage;
@@ -48,15 +55,13 @@ public class AutoscalingResources implements JsonpSerializable {
 
 	private AutoscalingResources(Builder builder) {
 
-		this.storage = ModelTypeHelper.requireNonNull(builder.storage, this, "storage");
-		this.memory = ModelTypeHelper.requireNonNull(builder.memory, this, "memory");
+		this.storage = ApiTypeHelper.requireNonNull(builder.storage, this, "storage");
+		this.memory = ApiTypeHelper.requireNonNull(builder.memory, this, "memory");
 
 	}
 
-	public static AutoscalingResources of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static AutoscalingResources of(Function<Builder, ObjectBuilder<AutoscalingResources>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -97,6 +102,7 @@ public class AutoscalingResources implements JsonpSerializable {
 	/**
 	 * Builder for {@link AutoscalingResources}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AutoscalingResources> {
 		private Integer storage;
 

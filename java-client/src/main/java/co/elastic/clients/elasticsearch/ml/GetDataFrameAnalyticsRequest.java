@@ -40,10 +40,21 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_data_frame_analytics.Request
+
+/**
+ * Retrieves configuration information for data frame analytics jobs. You can
+ * get information for multiple data frame analytics jobs in a single API
+ * request by using a comma-separated list of data frame analytics jobs or a
+ * wildcard expression.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_data_frame_analytics/MlGetDataFrameAnalyticsRequest.ts#L24-L77">API
+ *      specification</a>
+ */
 
 public class GetDataFrameAnalyticsRequest extends RequestBase {
 	@Nullable
@@ -73,10 +84,8 @@ public class GetDataFrameAnalyticsRequest extends RequestBase {
 
 	}
 
-	public static GetDataFrameAnalyticsRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetDataFrameAnalyticsRequest of(Function<Builder, ObjectBuilder<GetDataFrameAnalyticsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -150,6 +159,7 @@ public class GetDataFrameAnalyticsRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetDataFrameAnalyticsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetDataFrameAnalyticsRequest> {
 		@Nullable
 		private Boolean allowNoMatch;

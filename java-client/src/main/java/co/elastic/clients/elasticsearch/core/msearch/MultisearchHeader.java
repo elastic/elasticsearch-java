@@ -31,19 +31,27 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.msearch.MultisearchHeader
+
+/**
+ * Contains parameters used to limit or change the subsequent search body
+ * request.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/msearch/types.ts#L36-L48">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MultisearchHeader implements JsonpSerializable {
 	@Nullable
@@ -73,9 +81,9 @@ public class MultisearchHeader implements JsonpSerializable {
 	private MultisearchHeader(Builder builder) {
 
 		this.allowNoIndices = builder.allowNoIndices;
-		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
+		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
+		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.preference = builder.preference;
 		this.requestCache = builder.requestCache;
 		this.routing = builder.routing;
@@ -83,10 +91,8 @@ public class MultisearchHeader implements JsonpSerializable {
 
 	}
 
-	public static MultisearchHeader of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static MultisearchHeader of(Function<Builder, ObjectBuilder<MultisearchHeader>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -167,7 +173,7 @@ public class MultisearchHeader implements JsonpSerializable {
 			generator.write(this.allowNoIndices);
 
 		}
-		if (ModelTypeHelper.isDefined(this.expandWildcards)) {
+		if (ApiTypeHelper.isDefined(this.expandWildcards)) {
 			generator.writeKey("expand_wildcards");
 			generator.writeStartArray();
 			for (ExpandWildcard item0 : this.expandWildcards) {
@@ -181,7 +187,7 @@ public class MultisearchHeader implements JsonpSerializable {
 			generator.write(this.ignoreUnavailable);
 
 		}
-		if (ModelTypeHelper.isDefined(this.index)) {
+		if (ApiTypeHelper.isDefined(this.index)) {
 			generator.writeKey("index");
 			generator.writeStartArray();
 			for (String item0 : this.index) {
@@ -218,6 +224,7 @@ public class MultisearchHeader implements JsonpSerializable {
 	/**
 	 * Builder for {@link MultisearchHeader}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MultisearchHeader> {
 		@Nullable
 		private Boolean allowNoIndices;
@@ -253,17 +260,21 @@ public class MultisearchHeader implements JsonpSerializable {
 
 		/**
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
 		 */
-		public final Builder expandWildcards(@Nullable List<ExpandWildcard> value) {
-			this.expandWildcards = value;
+		public final Builder expandWildcards(List<ExpandWildcard> list) {
+			this.expandWildcards = _listAddAll(this.expandWildcards, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds one or more values to <code>expandWildcards</code>.
 		 */
-		public final Builder expandWildcards(ExpandWildcard... value) {
-			this.expandWildcards = Arrays.asList(value);
+		public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
+			this.expandWildcards = _listAdd(this.expandWildcards, value, values);
 			return this;
 		}
 
@@ -277,17 +288,21 @@ public class MultisearchHeader implements JsonpSerializable {
 
 		/**
 		 * API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 */
-		public final Builder index(@Nullable List<String> value) {
-			this.index = value;
+		public final Builder index(List<String> list) {
+			this.index = _listAddAll(this.index, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code index}
+		 * <p>
+		 * Adds one or more values to <code>index</code>.
 		 */
-		public final Builder index(String... value) {
-			this.index = Arrays.asList(value);
+		public final Builder index(String value, String... values) {
+			this.index = _listAdd(this.index, value, values);
 			return this;
 		}
 

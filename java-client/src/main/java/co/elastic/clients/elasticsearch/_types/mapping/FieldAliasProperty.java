@@ -32,10 +32,17 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.FieldAliasProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/specialized.ts#L50-L53">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FieldAliasProperty extends PropertyBase implements PropertyVariant {
 	@Nullable
@@ -50,10 +57,8 @@ public class FieldAliasProperty extends PropertyBase implements PropertyVariant 
 
 	}
 
-	public static FieldAliasProperty of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static FieldAliasProperty of(Function<Builder, ObjectBuilder<FieldAliasProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -89,6 +94,7 @@ public class FieldAliasProperty extends PropertyBase implements PropertyVariant 
 	/**
 	 * Builder for {@link FieldAliasProperty}.
 	 */
+
 	public static class Builder extends PropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<FieldAliasProperty> {

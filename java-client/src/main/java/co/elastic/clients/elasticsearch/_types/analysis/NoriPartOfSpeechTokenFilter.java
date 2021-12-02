@@ -28,17 +28,23 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.NoriPartOfSpeechTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L271-L274">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NoriPartOfSpeechTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final List<String> stoptags;
@@ -48,14 +54,12 @@ public class NoriPartOfSpeechTokenFilter extends TokenFilterBase implements Toke
 	private NoriPartOfSpeechTokenFilter(Builder builder) {
 		super(builder);
 
-		this.stoptags = ModelTypeHelper.unmodifiableRequired(builder.stoptags, this, "stoptags");
+		this.stoptags = ApiTypeHelper.unmodifiableRequired(builder.stoptags, this, "stoptags");
 
 	}
 
-	public static NoriPartOfSpeechTokenFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NoriPartOfSpeechTokenFilter of(Function<Builder, ObjectBuilder<NoriPartOfSpeechTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -77,7 +81,7 @@ public class NoriPartOfSpeechTokenFilter extends TokenFilterBase implements Toke
 
 		generator.write("type", "nori_part_of_speech");
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.stoptags)) {
+		if (ApiTypeHelper.isDefined(this.stoptags)) {
 			generator.writeKey("stoptags");
 			generator.writeStartArray();
 			for (String item0 : this.stoptags) {
@@ -95,6 +99,7 @@ public class NoriPartOfSpeechTokenFilter extends TokenFilterBase implements Toke
 	/**
 	 * Builder for {@link NoriPartOfSpeechTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<NoriPartOfSpeechTokenFilter> {
@@ -102,17 +107,21 @@ public class NoriPartOfSpeechTokenFilter extends TokenFilterBase implements Toke
 
 		/**
 		 * Required - API name: {@code stoptags}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>stoptags</code>.
 		 */
-		public final Builder stoptags(List<String> value) {
-			this.stoptags = value;
+		public final Builder stoptags(List<String> list) {
+			this.stoptags = _listAddAll(this.stoptags, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code stoptags}
+		 * <p>
+		 * Adds one or more values to <code>stoptags</code>.
 		 */
-		public final Builder stoptags(String... value) {
-			this.stoptags = Arrays.asList(value);
+		public final Builder stoptags(String value, String... values) {
+			this.stoptags = _listAdd(this.stoptags, value, values);
 			return this;
 		}
 

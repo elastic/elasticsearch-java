@@ -30,9 +30,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.aggregations.TopMetricsAggregate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L661-L662">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TopMetricsAggregate extends MultiBucketAggregateBase<TopMetricsBucket> implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -42,10 +49,8 @@ public class TopMetricsAggregate extends MultiBucketAggregateBase<TopMetricsBuck
 
 	}
 
-	public static TopMetricsAggregate of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TopMetricsAggregate of(Function<Builder, ObjectBuilder<TopMetricsAggregate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,6 +66,7 @@ public class TopMetricsAggregate extends MultiBucketAggregateBase<TopMetricsBuck
 	/**
 	 * Builder for {@link TopMetricsAggregate}.
 	 */
+
 	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<TopMetricsBucket, Builder>
 			implements
 				ObjectBuilder<TopMetricsAggregate> {

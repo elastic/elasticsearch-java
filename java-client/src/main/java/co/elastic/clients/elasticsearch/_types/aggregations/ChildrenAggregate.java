@@ -30,9 +30,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.aggregations.ChildrenAggregate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L715-L716">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ChildrenAggregate extends MultiBucketAggregateBase<ChildrenAggregateBucket> implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -42,10 +49,8 @@ public class ChildrenAggregate extends MultiBucketAggregateBase<ChildrenAggregat
 
 	}
 
-	public static ChildrenAggregate of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ChildrenAggregate of(Function<Builder, ObjectBuilder<ChildrenAggregate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,6 +66,7 @@ public class ChildrenAggregate extends MultiBucketAggregateBase<ChildrenAggregat
 	/**
 	 * Builder for {@link ChildrenAggregate}.
 	 */
+
 	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<ChildrenAggregateBucket, Builder>
 			implements
 				ObjectBuilder<ChildrenAggregate> {

@@ -30,9 +30,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.aggregations.GlobalAggregate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L470-L471">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GlobalAggregate extends SingleBucketAggregateBase implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -42,10 +49,8 @@ public class GlobalAggregate extends SingleBucketAggregateBase implements Aggreg
 
 	}
 
-	public static GlobalAggregate of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GlobalAggregate of(Function<Builder, ObjectBuilder<GlobalAggregate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,6 +66,7 @@ public class GlobalAggregate extends SingleBucketAggregateBase implements Aggreg
 	/**
 	 * Builder for {@link GlobalAggregate}.
 	 */
+
 	public static class Builder extends SingleBucketAggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<GlobalAggregate> {

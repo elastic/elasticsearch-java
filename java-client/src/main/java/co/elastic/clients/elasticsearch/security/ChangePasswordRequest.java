@@ -41,10 +41,18 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.change_password.Request
+
+/**
+ * Changes the passwords of users in the native realm and built-in users.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/change_password/SecurityChangePasswordRequest.ts#L23-L52">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ChangePasswordRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -70,10 +78,8 @@ public class ChangePasswordRequest extends RequestBase implements JsonpSerializa
 
 	}
 
-	public static ChangePasswordRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ChangePasswordRequest of(Function<Builder, ObjectBuilder<ChangePasswordRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -152,6 +158,7 @@ public class ChangePasswordRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Builder for {@link ChangePasswordRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ChangePasswordRequest> {
 		@Nullable
 		private String password;

@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
+import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -32,17 +33,24 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MissingAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/bucket.ts#L232-L235">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MissingAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
 	private final String field;
 
 	@Nullable
-	private final String missing;
+	private final FieldValue missing;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -54,10 +62,8 @@ public class MissingAggregation extends BucketAggregationBase implements Aggrega
 
 	}
 
-	public static MissingAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static MissingAggregation of(Function<Builder, ObjectBuilder<MissingAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -80,7 +86,7 @@ public class MissingAggregation extends BucketAggregationBase implements Aggrega
 	 * API name: {@code missing}
 	 */
 	@Nullable
-	public final String missing() {
+	public final FieldValue missing() {
 		return this.missing;
 	}
 
@@ -94,7 +100,7 @@ public class MissingAggregation extends BucketAggregationBase implements Aggrega
 		}
 		if (this.missing != null) {
 			generator.writeKey("missing");
-			generator.write(this.missing);
+			this.missing.serialize(generator, mapper);
 
 		}
 
@@ -105,6 +111,7 @@ public class MissingAggregation extends BucketAggregationBase implements Aggrega
 	/**
 	 * Builder for {@link MissingAggregation}.
 	 */
+
 	public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<MissingAggregation> {
@@ -112,7 +119,7 @@ public class MissingAggregation extends BucketAggregationBase implements Aggrega
 		private String field;
 
 		@Nullable
-		private String missing;
+		private FieldValue missing;
 
 		/**
 		 * API name: {@code field}
@@ -125,9 +132,16 @@ public class MissingAggregation extends BucketAggregationBase implements Aggrega
 		/**
 		 * API name: {@code missing}
 		 */
-		public final Builder missing(@Nullable String value) {
+		public final Builder missing(@Nullable FieldValue value) {
 			this.missing = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code missing}
+		 */
+		public final Builder missing(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
+			return this.missing(fn.apply(new FieldValue.Builder()).build());
 		}
 
 		@Override
@@ -159,7 +173,7 @@ public class MissingAggregation extends BucketAggregationBase implements Aggrega
 	protected static void setupMissingAggregationDeserializer(ObjectDeserializer<MissingAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::missing, JsonpDeserializer.stringDeserializer(), "missing");
+		op.add(Builder::missing, FieldValue._DESERIALIZER, "missing");
 
 	}
 

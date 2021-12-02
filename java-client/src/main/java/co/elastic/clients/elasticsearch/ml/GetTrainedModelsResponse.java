@@ -29,20 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_trained_models.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_trained_models/MlGetTrainedModelResponse.ts#L23-L35">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetTrainedModelsResponse implements JsonpSerializable {
 	private final int count;
@@ -53,16 +57,14 @@ public class GetTrainedModelsResponse implements JsonpSerializable {
 
 	private GetTrainedModelsResponse(Builder builder) {
 
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
-		this.trainedModelConfigs = ModelTypeHelper.unmodifiableRequired(builder.trainedModelConfigs, this,
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.trainedModelConfigs = ApiTypeHelper.unmodifiableRequired(builder.trainedModelConfigs, this,
 				"trainedModelConfigs");
 
 	}
 
-	public static GetTrainedModelsResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetTrainedModelsResponse of(Function<Builder, ObjectBuilder<GetTrainedModelsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -96,7 +98,7 @@ public class GetTrainedModelsResponse implements JsonpSerializable {
 		generator.writeKey("count");
 		generator.write(this.count);
 
-		if (ModelTypeHelper.isDefined(this.trainedModelConfigs)) {
+		if (ApiTypeHelper.isDefined(this.trainedModelConfigs)) {
 			generator.writeKey("trained_model_configs");
 			generator.writeStartArray();
 			for (TrainedModelConfig item0 : this.trainedModelConfigs) {
@@ -114,6 +116,7 @@ public class GetTrainedModelsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetTrainedModelsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetTrainedModelsResponse> {
 		private Integer count;
 
@@ -132,9 +135,11 @@ public class GetTrainedModelsResponse implements JsonpSerializable {
 		 * model_id value in ascending order.
 		 * <p>
 		 * API name: {@code trained_model_configs}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>trainedModelConfigs</code>.
 		 */
-		public final Builder trainedModelConfigs(List<TrainedModelConfig> value) {
-			this.trainedModelConfigs = value;
+		public final Builder trainedModelConfigs(List<TrainedModelConfig> list) {
+			this.trainedModelConfigs = _listAddAll(this.trainedModelConfigs, list);
 			return this;
 		}
 
@@ -143,9 +148,11 @@ public class GetTrainedModelsResponse implements JsonpSerializable {
 		 * model_id value in ascending order.
 		 * <p>
 		 * API name: {@code trained_model_configs}
+		 * <p>
+		 * Adds one or more values to <code>trainedModelConfigs</code>.
 		 */
-		public final Builder trainedModelConfigs(TrainedModelConfig... value) {
-			this.trainedModelConfigs = Arrays.asList(value);
+		public final Builder trainedModelConfigs(TrainedModelConfig value, TrainedModelConfig... values) {
+			this.trainedModelConfigs = _listAdd(this.trainedModelConfigs, value, values);
 			return this;
 		}
 
@@ -154,10 +161,12 @@ public class GetTrainedModelsResponse implements JsonpSerializable {
 		 * model_id value in ascending order.
 		 * <p>
 		 * API name: {@code trained_model_configs}
+		 * <p>
+		 * Adds a value to <code>trainedModelConfigs</code> using a builder lambda.
 		 */
 		public final Builder trainedModelConfigs(
-				Function<ListBuilder<TrainedModelConfig, TrainedModelConfig.Builder>, ObjectBuilder<List<TrainedModelConfig>>> fn) {
-			return trainedModelConfigs(fn.apply(new ListBuilder<>(TrainedModelConfig.Builder::new)).build());
+				Function<TrainedModelConfig.Builder, ObjectBuilder<TrainedModelConfig>> fn) {
+			return trainedModelConfigs(fn.apply(new TrainedModelConfig.Builder()).build());
 		}
 
 		/**

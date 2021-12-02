@@ -34,7 +34,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,10 +43,18 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.create_repository.Request
+
+/**
+ * Creates a repository.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/snapshot/create_repository/SnapshotCreateRepositoryRequest.ts#L28-L49">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CreateRepositoryRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -72,19 +80,17 @@ public class CreateRepositoryRequest extends RequestBase implements JsonpSeriali
 	private CreateRepositoryRequest(Builder builder) {
 
 		this.masterTimeout = builder.masterTimeout;
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.repository = builder.repository;
-		this.settings = ModelTypeHelper.requireNonNull(builder.settings, this, "settings");
+		this.settings = ApiTypeHelper.requireNonNull(builder.settings, this, "settings");
 		this.timeout = builder.timeout;
-		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 		this.verify = builder.verify;
 
 	}
 
-	public static CreateRepositoryRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CreateRepositoryRequest of(Function<Builder, ObjectBuilder<CreateRepositoryRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -177,6 +183,7 @@ public class CreateRepositoryRequest extends RequestBase implements JsonpSeriali
 	/**
 	 * Builder for {@link CreateRepositoryRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CreateRepositoryRequest> {
 		@Nullable
 		private Time masterTimeout;
@@ -211,10 +218,8 @@ public class CreateRepositoryRequest extends RequestBase implements JsonpSeriali
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.masterTimeout(builder.build());
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -238,10 +243,8 @@ public class CreateRepositoryRequest extends RequestBase implements JsonpSeriali
 		/**
 		 * API name: {@code repository}
 		 */
-		public final Builder repository(Consumer<Repository.Builder> fn) {
-			Repository.Builder builder = new Repository.Builder();
-			fn.accept(builder);
-			return this.repository(builder.build());
+		public final Builder repository(Function<Repository.Builder, ObjectBuilder<Repository>> fn) {
+			return this.repository(fn.apply(new Repository.Builder()).build());
 		}
 
 		/**
@@ -255,10 +258,8 @@ public class CreateRepositoryRequest extends RequestBase implements JsonpSeriali
 		/**
 		 * Required - API name: {@code settings}
 		 */
-		public final Builder settings(Consumer<RepositorySettings.Builder> fn) {
-			RepositorySettings.Builder builder = new RepositorySettings.Builder();
-			fn.accept(builder);
-			return this.settings(builder.build());
+		public final Builder settings(Function<RepositorySettings.Builder, ObjectBuilder<RepositorySettings>> fn) {
+			return this.settings(fn.apply(new RepositorySettings.Builder()).build());
 		}
 
 		/**
@@ -276,10 +277,8 @@ public class CreateRepositoryRequest extends RequestBase implements JsonpSeriali
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.timeout(builder.build());
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

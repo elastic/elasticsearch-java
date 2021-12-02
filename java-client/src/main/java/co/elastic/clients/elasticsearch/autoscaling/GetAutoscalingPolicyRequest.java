@@ -31,17 +31,26 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: autoscaling.get_autoscaling_policy.Request
+
+/**
+ * Retrieves an autoscaling policy. Designed for indirect use by ECE/ESS and
+ * ECK. Direct use is not supported.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/autoscaling/get_autoscaling_policy/GetAutoscalingPolicyRequest.ts#L23-L32">API
+ *      specification</a>
+ */
 
 public class GetAutoscalingPolicyRequest extends RequestBase {
 	private final String name;
@@ -50,14 +59,12 @@ public class GetAutoscalingPolicyRequest extends RequestBase {
 
 	private GetAutoscalingPolicyRequest(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
-	public static GetAutoscalingPolicyRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetAutoscalingPolicyRequest of(Function<Builder, ObjectBuilder<GetAutoscalingPolicyRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -74,6 +81,7 @@ public class GetAutoscalingPolicyRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetAutoscalingPolicyRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetAutoscalingPolicyRequest> {
 		private String name;
 

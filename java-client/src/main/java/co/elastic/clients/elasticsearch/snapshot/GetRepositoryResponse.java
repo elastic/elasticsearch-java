@@ -32,9 +32,16 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: snapshot.get_repository.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/snapshot/get_repository/SnapshotGetRepositoryResponse.ts#L23-L23">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetRepositoryResponse extends DictionaryResponse<String, Repository> {
 	// ---------------------------------------------------------------------------------------------
@@ -44,10 +51,8 @@ public class GetRepositoryResponse extends DictionaryResponse<String, Repository
 
 	}
 
-	public static GetRepositoryResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetRepositoryResponse of(Function<Builder, ObjectBuilder<GetRepositoryResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -55,6 +60,7 @@ public class GetRepositoryResponse extends DictionaryResponse<String, Repository
 	/**
 	 * Builder for {@link GetRepositoryResponse}.
 	 */
+
 	public static class Builder extends DictionaryResponse.AbstractBuilder<String, Repository, Builder>
 			implements
 				ObjectBuilder<GetRepositoryResponse> {

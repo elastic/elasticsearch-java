@@ -31,10 +31,17 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 // typedef: eql.get.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/eql/get/EqlGetResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class EqlGetResponse<TEvent> extends EqlSearchResponseBase<TEvent> {
 	// ---------------------------------------------------------------------------------------------
@@ -44,10 +51,9 @@ public class EqlGetResponse<TEvent> extends EqlSearchResponseBase<TEvent> {
 
 	}
 
-	public static <TEvent> EqlGetResponse<TEvent> of(Consumer<Builder<TEvent>> fn) {
-		Builder<TEvent> builder = new Builder<>();
-		fn.accept(builder);
-		return builder.build();
+	public static <TEvent> EqlGetResponse<TEvent> of(
+			Function<Builder<TEvent>, ObjectBuilder<EqlGetResponse<TEvent>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -55,6 +61,7 @@ public class EqlGetResponse<TEvent> extends EqlSearchResponseBase<TEvent> {
 	/**
 	 * Builder for {@link EqlGetResponse}.
 	 */
+
 	public static class Builder<TEvent> extends EqlSearchResponseBase.AbstractBuilder<TEvent, Builder<TEvent>>
 			implements
 				ObjectBuilder<EqlGetResponse<TEvent>> {
@@ -79,7 +86,7 @@ public class EqlGetResponse<TEvent> extends EqlSearchResponseBase<TEvent> {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for EqlGetResponse
+	 * Create a JSON deserializer for EqlGetResponse
 	 */
 	public static <TEvent> JsonpDeserializer<EqlGetResponse<TEvent>> createEqlGetResponseDeserializer(
 			JsonpDeserializer<TEvent> tEventDeserializer) {

@@ -30,9 +30,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.aggregations.MultiTermsAggregate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L445-L447">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MultiTermsAggregate extends TermsAggregateBase<MultiTermsBucket> implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -42,10 +49,8 @@ public class MultiTermsAggregate extends TermsAggregateBase<MultiTermsBucket> im
 
 	}
 
-	public static MultiTermsAggregate of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static MultiTermsAggregate of(Function<Builder, ObjectBuilder<MultiTermsAggregate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,6 +66,7 @@ public class MultiTermsAggregate extends TermsAggregateBase<MultiTermsBucket> im
 	/**
 	 * Builder for {@link MultiTermsAggregate}.
 	 */
+
 	public static class Builder extends TermsAggregateBase.AbstractBuilder<MultiTermsBucket, Builder>
 			implements
 				ObjectBuilder<MultiTermsAggregate> {

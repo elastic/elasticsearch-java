@@ -32,18 +32,24 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: ml.preview_datafeed.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/preview_datafeed/MlPreviewDatafeedResponse.ts#L20-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PreviewDatafeedResponse<TDocument> implements JsonpSerializable {
 	private final List<TDocument> data;
@@ -55,15 +61,14 @@ public class PreviewDatafeedResponse<TDocument> implements JsonpSerializable {
 
 	private PreviewDatafeedResponse(Builder<TDocument> builder) {
 
-		this.data = ModelTypeHelper.unmodifiableRequired(builder.data, this, "data");
+		this.data = ApiTypeHelper.unmodifiableRequired(builder.data, this, "data");
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}
 
-	public static <TDocument> PreviewDatafeedResponse<TDocument> of(Consumer<Builder<TDocument>> fn) {
-		Builder<TDocument> builder = new Builder<>();
-		fn.accept(builder);
-		return builder.build();
+	public static <TDocument> PreviewDatafeedResponse<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<PreviewDatafeedResponse<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
@@ -84,7 +89,7 @@ public class PreviewDatafeedResponse<TDocument> implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.data)) {
+		if (ApiTypeHelper.isDefined(this.data)) {
 			generator.writeKey("data");
 			generator.writeStartArray();
 			for (TDocument item0 : this.data) {
@@ -102,6 +107,7 @@ public class PreviewDatafeedResponse<TDocument> implements JsonpSerializable {
 	/**
 	 * Builder for {@link PreviewDatafeedResponse}.
 	 */
+
 	public static class Builder<TDocument> extends ObjectBuilderBase
 			implements
 				ObjectBuilder<PreviewDatafeedResponse<TDocument>> {
@@ -112,17 +118,21 @@ public class PreviewDatafeedResponse<TDocument> implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code data}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>data</code>.
 		 */
-		public final Builder<TDocument> data(List<TDocument> value) {
-			this.data = value;
+		public final Builder<TDocument> data(List<TDocument> list) {
+			this.data = _listAddAll(this.data, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code data}
+		 * <p>
+		 * Adds one or more values to <code>data</code>.
 		 */
-		public final Builder<TDocument> data(TDocument... value) {
-			this.data = Arrays.asList(value);
+		public final Builder<TDocument> data(TDocument value, TDocument... values) {
+			this.data = _listAdd(this.data, value, values);
 			return this;
 		}
 
@@ -151,7 +161,7 @@ public class PreviewDatafeedResponse<TDocument> implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for PreviewDatafeedResponse
+	 * Create a JSON deserializer for PreviewDatafeedResponse
 	 */
 	public static <TDocument> JsonpDeserializer<PreviewDatafeedResponse<TDocument>> createPreviewDatafeedResponseDeserializer(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {

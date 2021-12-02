@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.DataPathStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/_types/Stats.ts#L97-L114">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataPathStats implements JsonpSerializable {
 	private final String available;
@@ -78,31 +85,29 @@ public class DataPathStats implements JsonpSerializable {
 
 	private DataPathStats(Builder builder) {
 
-		this.available = ModelTypeHelper.requireNonNull(builder.available, this, "available");
-		this.availableInBytes = ModelTypeHelper.requireNonNull(builder.availableInBytes, this, "availableInBytes");
-		this.diskQueue = ModelTypeHelper.requireNonNull(builder.diskQueue, this, "diskQueue");
-		this.diskReads = ModelTypeHelper.requireNonNull(builder.diskReads, this, "diskReads");
-		this.diskReadSize = ModelTypeHelper.requireNonNull(builder.diskReadSize, this, "diskReadSize");
-		this.diskReadSizeInBytes = ModelTypeHelper.requireNonNull(builder.diskReadSizeInBytes, this,
+		this.available = ApiTypeHelper.requireNonNull(builder.available, this, "available");
+		this.availableInBytes = ApiTypeHelper.requireNonNull(builder.availableInBytes, this, "availableInBytes");
+		this.diskQueue = ApiTypeHelper.requireNonNull(builder.diskQueue, this, "diskQueue");
+		this.diskReads = ApiTypeHelper.requireNonNull(builder.diskReads, this, "diskReads");
+		this.diskReadSize = ApiTypeHelper.requireNonNull(builder.diskReadSize, this, "diskReadSize");
+		this.diskReadSizeInBytes = ApiTypeHelper.requireNonNull(builder.diskReadSizeInBytes, this,
 				"diskReadSizeInBytes");
-		this.diskWrites = ModelTypeHelper.requireNonNull(builder.diskWrites, this, "diskWrites");
-		this.diskWriteSize = ModelTypeHelper.requireNonNull(builder.diskWriteSize, this, "diskWriteSize");
-		this.diskWriteSizeInBytes = ModelTypeHelper.requireNonNull(builder.diskWriteSizeInBytes, this,
+		this.diskWrites = ApiTypeHelper.requireNonNull(builder.diskWrites, this, "diskWrites");
+		this.diskWriteSize = ApiTypeHelper.requireNonNull(builder.diskWriteSize, this, "diskWriteSize");
+		this.diskWriteSizeInBytes = ApiTypeHelper.requireNonNull(builder.diskWriteSizeInBytes, this,
 				"diskWriteSizeInBytes");
-		this.free = ModelTypeHelper.requireNonNull(builder.free, this, "free");
-		this.freeInBytes = ModelTypeHelper.requireNonNull(builder.freeInBytes, this, "freeInBytes");
-		this.mount = ModelTypeHelper.requireNonNull(builder.mount, this, "mount");
-		this.path = ModelTypeHelper.requireNonNull(builder.path, this, "path");
-		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
-		this.totalInBytes = ModelTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes");
-		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
+		this.free = ApiTypeHelper.requireNonNull(builder.free, this, "free");
+		this.freeInBytes = ApiTypeHelper.requireNonNull(builder.freeInBytes, this, "freeInBytes");
+		this.mount = ApiTypeHelper.requireNonNull(builder.mount, this, "mount");
+		this.path = ApiTypeHelper.requireNonNull(builder.path, this, "path");
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+		this.totalInBytes = ApiTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 
-	public static DataPathStats of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DataPathStats of(Function<Builder, ObjectBuilder<DataPathStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -283,6 +288,7 @@ public class DataPathStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link DataPathStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataPathStats> {
 		private String available;
 

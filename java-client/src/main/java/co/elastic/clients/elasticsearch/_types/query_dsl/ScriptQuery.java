@@ -29,14 +29,21 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.ScriptQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/specialized.ts#L166-L168">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ScriptQuery extends QueryBase implements QueryVariant {
 	private final Script script;
@@ -46,14 +53,12 @@ public class ScriptQuery extends QueryBase implements QueryVariant {
 	private ScriptQuery(Builder builder) {
 		super(builder);
 
-		this.script = ModelTypeHelper.requireNonNull(builder.script, this, "script");
+		this.script = ApiTypeHelper.requireNonNull(builder.script, this, "script");
 
 	}
 
-	public static ScriptQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ScriptQuery of(Function<Builder, ObjectBuilder<ScriptQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -84,6 +89,7 @@ public class ScriptQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link ScriptQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<ScriptQuery> {
 		private Script script;
 
@@ -98,10 +104,8 @@ public class ScriptQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - API name: {@code script}
 		 */
-		public final Builder script(Consumer<Script.Builder> fn) {
-			Script.Builder builder = new Script.Builder();
-			fn.accept(builder);
-			return this.script(builder.build());
+		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
 		@Override

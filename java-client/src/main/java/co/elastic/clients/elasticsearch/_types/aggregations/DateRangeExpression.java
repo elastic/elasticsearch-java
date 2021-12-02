@@ -34,10 +34,17 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.DateRangeExpression
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/bucket.ts#L144-L148">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DateRangeExpression implements JsonpSerializable {
 	@Nullable
@@ -59,10 +66,8 @@ public class DateRangeExpression implements JsonpSerializable {
 
 	}
 
-	public static DateRangeExpression of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DateRangeExpression of(Function<Builder, ObjectBuilder<DateRangeExpression>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -123,6 +128,7 @@ public class DateRangeExpression implements JsonpSerializable {
 	/**
 	 * Builder for {@link DateRangeExpression}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DateRangeExpression> {
 		@Nullable
 		private FieldDateMath from;
@@ -144,10 +150,8 @@ public class DateRangeExpression implements JsonpSerializable {
 		/**
 		 * API name: {@code from}
 		 */
-		public final Builder from(Consumer<FieldDateMath.Builder> fn) {
-			FieldDateMath.Builder builder = new FieldDateMath.Builder();
-			fn.accept(builder);
-			return this.from(builder.build());
+		public final Builder from(Function<FieldDateMath.Builder, ObjectBuilder<FieldDateMath>> fn) {
+			return this.from(fn.apply(new FieldDateMath.Builder()).build());
 		}
 
 		/**
@@ -169,10 +173,8 @@ public class DateRangeExpression implements JsonpSerializable {
 		/**
 		 * API name: {@code to}
 		 */
-		public final Builder to(Consumer<FieldDateMath.Builder> fn) {
-			FieldDateMath.Builder builder = new FieldDateMath.Builder();
-			fn.accept(builder);
-			return this.to(builder.build());
+		public final Builder to(Function<FieldDateMath.Builder, ObjectBuilder<FieldDateMath>> fn) {
+			return this.to(fn.apply(new FieldDateMath.Builder()).build());
 		}
 
 		/**

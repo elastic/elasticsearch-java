@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: nodes._types.JvmClasses
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/_types/Stats.ts#L177-L181">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class JvmClasses implements JsonpSerializable {
 	private final long currentLoadedCount;
@@ -50,18 +57,14 @@ public class JvmClasses implements JsonpSerializable {
 
 	private JvmClasses(Builder builder) {
 
-		this.currentLoadedCount = ModelTypeHelper.requireNonNull(builder.currentLoadedCount, this,
-				"currentLoadedCount");
-		this.totalLoadedCount = ModelTypeHelper.requireNonNull(builder.totalLoadedCount, this, "totalLoadedCount");
-		this.totalUnloadedCount = ModelTypeHelper.requireNonNull(builder.totalUnloadedCount, this,
-				"totalUnloadedCount");
+		this.currentLoadedCount = ApiTypeHelper.requireNonNull(builder.currentLoadedCount, this, "currentLoadedCount");
+		this.totalLoadedCount = ApiTypeHelper.requireNonNull(builder.totalLoadedCount, this, "totalLoadedCount");
+		this.totalUnloadedCount = ApiTypeHelper.requireNonNull(builder.totalUnloadedCount, this, "totalUnloadedCount");
 
 	}
 
-	public static JvmClasses of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static JvmClasses of(Function<Builder, ObjectBuilder<JvmClasses>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -112,6 +115,7 @@ public class JvmClasses implements JsonpSerializable {
 	/**
 	 * Builder for {@link JvmClasses}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<JvmClasses> {
 		private Long currentLoadedCount;
 

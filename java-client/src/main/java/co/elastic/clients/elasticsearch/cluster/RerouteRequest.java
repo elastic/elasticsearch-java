@@ -35,24 +35,29 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.Request
+
+/**
+ * Allows to manually change the allocation of individual shards in the cluster.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/reroute/ClusterRerouteRequest.ts#L25-L69">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RerouteRequest extends RequestBase implements JsonpSerializable {
 	private final List<Command> commands;
@@ -78,20 +83,18 @@ public class RerouteRequest extends RequestBase implements JsonpSerializable {
 
 	private RerouteRequest(Builder builder) {
 
-		this.commands = ModelTypeHelper.unmodifiable(builder.commands);
+		this.commands = ApiTypeHelper.unmodifiable(builder.commands);
 		this.dryRun = builder.dryRun;
 		this.explain = builder.explain;
 		this.masterTimeout = builder.masterTimeout;
-		this.metric = ModelTypeHelper.unmodifiable(builder.metric);
+		this.metric = ApiTypeHelper.unmodifiable(builder.metric);
 		this.retryFailed = builder.retryFailed;
 		this.timeout = builder.timeout;
 
 	}
 
-	public static RerouteRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RerouteRequest of(Function<Builder, ObjectBuilder<RerouteRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -178,7 +181,7 @@ public class RerouteRequest extends RequestBase implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.commands)) {
+		if (ApiTypeHelper.isDefined(this.commands)) {
 			generator.writeKey("commands");
 			generator.writeStartArray();
 			for (Command item0 : this.commands) {
@@ -196,6 +199,7 @@ public class RerouteRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link RerouteRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RerouteRequest> {
 		@Nullable
 		private List<Command> commands;
@@ -222,9 +226,11 @@ public class RerouteRequest extends RequestBase implements JsonpSerializable {
 		 * Defines the commands to perform.
 		 * <p>
 		 * API name: {@code commands}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>commands</code>.
 		 */
-		public final Builder commands(@Nullable List<Command> value) {
-			this.commands = value;
+		public final Builder commands(List<Command> list) {
+			this.commands = _listAddAll(this.commands, list);
 			return this;
 		}
 
@@ -232,9 +238,11 @@ public class RerouteRequest extends RequestBase implements JsonpSerializable {
 		 * Defines the commands to perform.
 		 * <p>
 		 * API name: {@code commands}
+		 * <p>
+		 * Adds one or more values to <code>commands</code>.
 		 */
-		public final Builder commands(Command... value) {
-			this.commands = Arrays.asList(value);
+		public final Builder commands(Command value, Command... values) {
+			this.commands = _listAdd(this.commands, value, values);
 			return this;
 		}
 
@@ -242,10 +250,11 @@ public class RerouteRequest extends RequestBase implements JsonpSerializable {
 		 * Defines the commands to perform.
 		 * <p>
 		 * API name: {@code commands}
+		 * <p>
+		 * Adds a value to <code>commands</code> using a builder lambda.
 		 */
-		public final Builder commands(
-				Function<ListBuilder<Command, Command.Builder>, ObjectBuilder<List<Command>>> fn) {
-			return commands(fn.apply(new ListBuilder<>(Command.Builder::new)).build());
+		public final Builder commands(Function<Command.Builder, ObjectBuilder<Command>> fn) {
+			return commands(fn.apply(new Command.Builder()).build());
 		}
 
 		/**
@@ -287,19 +296,19 @@ public class RerouteRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.masterTimeout(builder.build());
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
 		 * Limits the information returned to the specified metrics.
 		 * <p>
 		 * API name: {@code metric}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>metric</code>.
 		 */
-		public final Builder metric(@Nullable List<String> value) {
-			this.metric = value;
+		public final Builder metric(List<String> list) {
+			this.metric = _listAddAll(this.metric, list);
 			return this;
 		}
 
@@ -307,9 +316,11 @@ public class RerouteRequest extends RequestBase implements JsonpSerializable {
 		 * Limits the information returned to the specified metrics.
 		 * <p>
 		 * API name: {@code metric}
+		 * <p>
+		 * Adds one or more values to <code>metric</code>.
 		 */
-		public final Builder metric(String... value) {
-			this.metric = Arrays.asList(value);
+		public final Builder metric(String value, String... values) {
+			this.metric = _listAdd(this.metric, value, values);
 			return this;
 		}
 
@@ -341,10 +352,8 @@ public class RerouteRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.timeout(builder.build());
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -403,7 +412,7 @@ public class RerouteRequest extends RequestBase implements JsonpSerializable {
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
-				if (ModelTypeHelper.isDefined(request.metric)) {
+				if (ApiTypeHelper.isDefined(request.metric)) {
 					params.put("metric", request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.dryRun != null) {

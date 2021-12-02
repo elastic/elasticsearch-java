@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TopMetricsValue
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/metric.ts#L183-L185">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TopMetricsValue implements JsonpSerializable {
 	private final String field;
@@ -47,14 +54,12 @@ public class TopMetricsValue implements JsonpSerializable {
 
 	private TopMetricsValue(Builder builder) {
 
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
 	}
 
-	public static TopMetricsValue of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TopMetricsValue of(Function<Builder, ObjectBuilder<TopMetricsValue>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -85,6 +90,7 @@ public class TopMetricsValue implements JsonpSerializable {
 	/**
 	 * Builder for {@link TopMetricsValue}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TopMetricsValue> {
 		private String field;
 

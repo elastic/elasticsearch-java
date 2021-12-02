@@ -35,10 +35,17 @@ import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.FlattenedProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/complex.ts#L25-L36">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FlattenedProperty extends PropertyBase implements PropertyVariant {
 	@Nullable
@@ -85,10 +92,8 @@ public class FlattenedProperty extends PropertyBase implements PropertyVariant {
 
 	}
 
-	public static FlattenedProperty of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static FlattenedProperty of(Function<Builder, ObjectBuilder<FlattenedProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -227,6 +232,7 @@ public class FlattenedProperty extends PropertyBase implements PropertyVariant {
 	/**
 	 * Builder for {@link FlattenedProperty}.
 	 */
+
 	public static class Builder extends PropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<FlattenedProperty> {

@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
@@ -38,14 +38,23 @@ import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.update_aliases.Action
-// union type: Container[]
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/update_aliases/types.ts#L23-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Action implements TaggedUnion<Action.Kind, Object>, JsonpSerializable {
 
+	/**
+	 * {@link Action} variant kinds.
+	 */
 	/**
 	 * {@link Action} variant kinds.
 	 */
@@ -86,22 +95,20 @@ public class Action implements TaggedUnion<Action.Kind, Object>, JsonpSerializab
 
 	public Action(ActionVariant value) {
 
-		this._kind = ModelTypeHelper.requireNonNull(value._actionKind(), this, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(value._actionKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
 	private Action(Builder builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static Action of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Action of(Function<Builder, ObjectBuilder<Action>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -180,10 +187,8 @@ public class Action implements TaggedUnion<Action.Kind, Object>, JsonpSerializab
 			return this;
 		}
 
-		public ObjectBuilder<Action> add(Consumer<AddAction.Builder> fn) {
-			AddAction.Builder builder = new AddAction.Builder();
-			fn.accept(builder);
-			return this.add(builder.build());
+		public ObjectBuilder<Action> add(Function<AddAction.Builder, ObjectBuilder<AddAction>> fn) {
+			return this.add(fn.apply(new AddAction.Builder()).build());
 		}
 
 		public ObjectBuilder<Action> remove(RemoveAction v) {
@@ -192,10 +197,8 @@ public class Action implements TaggedUnion<Action.Kind, Object>, JsonpSerializab
 			return this;
 		}
 
-		public ObjectBuilder<Action> remove(Consumer<RemoveAction.Builder> fn) {
-			RemoveAction.Builder builder = new RemoveAction.Builder();
-			fn.accept(builder);
-			return this.remove(builder.build());
+		public ObjectBuilder<Action> remove(Function<RemoveAction.Builder, ObjectBuilder<RemoveAction>> fn) {
+			return this.remove(fn.apply(new RemoveAction.Builder()).build());
 		}
 
 		public ObjectBuilder<Action> removeIndex(RemoveIndexAction v) {
@@ -204,10 +207,9 @@ public class Action implements TaggedUnion<Action.Kind, Object>, JsonpSerializab
 			return this;
 		}
 
-		public ObjectBuilder<Action> removeIndex(Consumer<RemoveIndexAction.Builder> fn) {
-			RemoveIndexAction.Builder builder = new RemoveIndexAction.Builder();
-			fn.accept(builder);
-			return this.removeIndex(builder.build());
+		public ObjectBuilder<Action> removeIndex(
+				Function<RemoveIndexAction.Builder, ObjectBuilder<RemoveIndexAction>> fn) {
+			return this.removeIndex(fn.apply(new RemoveIndexAction.Builder()).build());
 		}
 
 		public Action build() {

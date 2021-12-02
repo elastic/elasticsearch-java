@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.SlackDynamicAttachment
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Actions.ts#L104-L107">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SlackDynamicAttachment implements JsonpSerializable {
 	private final SlackAttachment attachmentTemplate;
@@ -49,16 +56,13 @@ public class SlackDynamicAttachment implements JsonpSerializable {
 
 	private SlackDynamicAttachment(Builder builder) {
 
-		this.attachmentTemplate = ModelTypeHelper.requireNonNull(builder.attachmentTemplate, this,
-				"attachmentTemplate");
-		this.listPath = ModelTypeHelper.requireNonNull(builder.listPath, this, "listPath");
+		this.attachmentTemplate = ApiTypeHelper.requireNonNull(builder.attachmentTemplate, this, "attachmentTemplate");
+		this.listPath = ApiTypeHelper.requireNonNull(builder.listPath, this, "listPath");
 
 	}
 
-	public static SlackDynamicAttachment of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SlackDynamicAttachment of(Function<Builder, ObjectBuilder<SlackDynamicAttachment>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -99,6 +103,7 @@ public class SlackDynamicAttachment implements JsonpSerializable {
 	/**
 	 * Builder for {@link SlackDynamicAttachment}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SlackDynamicAttachment> {
 		private SlackAttachment attachmentTemplate;
 
@@ -115,10 +120,8 @@ public class SlackDynamicAttachment implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code attachment_template}
 		 */
-		public final Builder attachmentTemplate(Consumer<SlackAttachment.Builder> fn) {
-			SlackAttachment.Builder builder = new SlackAttachment.Builder();
-			fn.accept(builder);
-			return this.attachmentTemplate(builder.build());
+		public final Builder attachmentTemplate(Function<SlackAttachment.Builder, ObjectBuilder<SlackAttachment>> fn) {
+			return this.attachmentTemplate(fn.apply(new SlackAttachment.Builder()).build());
 		}
 
 		/**

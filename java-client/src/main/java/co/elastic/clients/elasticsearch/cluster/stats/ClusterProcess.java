@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterProcess
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/stats/types.ts#L244-L247">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ClusterProcess implements JsonpSerializable {
 	private final ClusterProcessCpu cpu;
@@ -48,16 +55,14 @@ public class ClusterProcess implements JsonpSerializable {
 
 	private ClusterProcess(Builder builder) {
 
-		this.cpu = ModelTypeHelper.requireNonNull(builder.cpu, this, "cpu");
-		this.openFileDescriptors = ModelTypeHelper.requireNonNull(builder.openFileDescriptors, this,
+		this.cpu = ApiTypeHelper.requireNonNull(builder.cpu, this, "cpu");
+		this.openFileDescriptors = ApiTypeHelper.requireNonNull(builder.openFileDescriptors, this,
 				"openFileDescriptors");
 
 	}
 
-	public static ClusterProcess of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ClusterProcess of(Function<Builder, ObjectBuilder<ClusterProcess>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -98,6 +103,7 @@ public class ClusterProcess implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClusterProcess}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterProcess> {
 		private ClusterProcessCpu cpu;
 
@@ -114,10 +120,8 @@ public class ClusterProcess implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code cpu}
 		 */
-		public final Builder cpu(Consumer<ClusterProcessCpu.Builder> fn) {
-			ClusterProcessCpu.Builder builder = new ClusterProcessCpu.Builder();
-			fn.accept(builder);
-			return this.cpu(builder.build());
+		public final Builder cpu(Function<ClusterProcessCpu.Builder, ObjectBuilder<ClusterProcessCpu>> fn) {
+			return this.cpu(fn.apply(new ClusterProcessCpu.Builder()).build());
 		}
 
 		/**
@@ -131,10 +135,9 @@ public class ClusterProcess implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code open_file_descriptors}
 		 */
-		public final Builder openFileDescriptors(Consumer<ClusterProcessOpenFileDescriptors.Builder> fn) {
-			ClusterProcessOpenFileDescriptors.Builder builder = new ClusterProcessOpenFileDescriptors.Builder();
-			fn.accept(builder);
-			return this.openFileDescriptors(builder.build());
+		public final Builder openFileDescriptors(
+				Function<ClusterProcessOpenFileDescriptors.Builder, ObjectBuilder<ClusterProcessOpenFileDescriptors>> fn) {
+			return this.openFileDescriptors(fn.apply(new ClusterProcessOpenFileDescriptors.Builder()).build());
 		}
 
 		/**

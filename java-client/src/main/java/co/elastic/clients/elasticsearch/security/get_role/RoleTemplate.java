@@ -30,15 +30,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_role.RoleTemplate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_role/types.ts#L47-L50">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RoleTemplate implements JsonpSerializable {
 	@Nullable
@@ -51,14 +58,12 @@ public class RoleTemplate implements JsonpSerializable {
 	private RoleTemplate(Builder builder) {
 
 		this.format = builder.format;
-		this.template = ModelTypeHelper.requireNonNull(builder.template, this, "template");
+		this.template = ApiTypeHelper.requireNonNull(builder.template, this, "template");
 
 	}
 
-	public static RoleTemplate of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RoleTemplate of(Function<Builder, ObjectBuilder<RoleTemplate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -101,6 +106,7 @@ public class RoleTemplate implements JsonpSerializable {
 	/**
 	 * Builder for {@link RoleTemplate}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RoleTemplate> {
 		@Nullable
 		private TemplateFormat format;
@@ -126,10 +132,8 @@ public class RoleTemplate implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code template}
 		 */
-		public final Builder template(Consumer<Script.Builder> fn) {
-			Script.Builder builder = new Script.Builder();
-			fn.accept(builder);
-			return this.template(builder.build());
+		public final Builder template(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.template(fn.apply(new Script.Builder()).build());
 		}
 
 		/**

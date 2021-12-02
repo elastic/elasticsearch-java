@@ -38,6 +38,15 @@ import java.util.Objects;
 
 // typedef: features.get_features.Request
 
+/**
+ * Gets a list of features which can be included in snapshots using the
+ * feature_states field when creating a snapshot
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/features/get_features/GetFeaturesRequest.ts#L22-L27">API
+ *      specification</a>
+ */
+
 public class GetFeaturesRequest extends RequestBase {
 	public GetFeaturesRequest() {
 	}

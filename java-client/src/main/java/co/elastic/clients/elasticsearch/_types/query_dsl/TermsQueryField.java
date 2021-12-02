@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.UnionDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
@@ -39,11 +39,17 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.TermsQueryField
-// union type: Union[]
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/term.ts#L127-L130">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TermsQueryField implements TaggedUnion<TermsQueryField.Kind, Object>, JsonpSerializable {
 
@@ -72,15 +78,13 @@ public class TermsQueryField implements TaggedUnion<TermsQueryField.Kind, Object
 
 	private TermsQueryField(Builder builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static TermsQueryField of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TermsQueryField of(Function<Builder, ObjectBuilder<TermsQueryField>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -153,10 +157,8 @@ public class TermsQueryField implements TaggedUnion<TermsQueryField.Kind, Object
 			return this;
 		}
 
-		public ObjectBuilder<TermsQueryField> lookup(Consumer<TermsLookup.Builder> fn) {
-			TermsLookup.Builder builder = new TermsLookup.Builder();
-			fn.accept(builder);
-			return this.lookup(builder.build());
+		public ObjectBuilder<TermsQueryField> lookup(Function<TermsLookup.Builder, ObjectBuilder<TermsLookup>> fn) {
+			return this.lookup(fn.apply(new TermsLookup.Builder()).build());
 		}
 
 		public TermsQueryField build() {

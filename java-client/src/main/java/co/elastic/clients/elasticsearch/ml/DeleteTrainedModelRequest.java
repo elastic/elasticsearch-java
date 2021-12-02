@@ -31,17 +31,26 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.delete_trained_model.Request
+
+/**
+ * Deletes an existing trained inference model that is currently not referenced
+ * by an ingest pipeline.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/delete_trained_model/MlDeleteTrainedModelRequest.ts#L23-L38">API
+ *      specification</a>
+ */
 
 public class DeleteTrainedModelRequest extends RequestBase {
 	private final String modelId;
@@ -50,14 +59,12 @@ public class DeleteTrainedModelRequest extends RequestBase {
 
 	private DeleteTrainedModelRequest(Builder builder) {
 
-		this.modelId = ModelTypeHelper.requireNonNull(builder.modelId, this, "modelId");
+		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
 
 	}
 
-	public static DeleteTrainedModelRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DeleteTrainedModelRequest of(Function<Builder, ObjectBuilder<DeleteTrainedModelRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -74,6 +81,7 @@ public class DeleteTrainedModelRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteTrainedModelRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteTrainedModelRequest> {
 		private String modelId;
 

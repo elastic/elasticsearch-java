@@ -36,24 +36,30 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.Request
+
+/**
+ * Enables you to evaluate the quality of ranked search results over a set of
+ * typical search queries.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/rank_eval/RankEvalRequest.ts#L24-L61">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -79,19 +85,17 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 	private RankEvalRequest(Builder builder) {
 
 		this.allowNoIndices = builder.allowNoIndices;
-		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
+		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
-		this.index = ModelTypeHelper.unmodifiableRequired(builder.index, this, "index");
+		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
 		this.metric = builder.metric;
-		this.requests = ModelTypeHelper.unmodifiableRequired(builder.requests, this, "requests");
+		this.requests = ApiTypeHelper.unmodifiableRequired(builder.requests, this, "requests");
 		this.searchType = builder.searchType;
 
 	}
 
-	public static RankEvalRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RankEvalRequest of(Function<Builder, ObjectBuilder<RankEvalRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -188,7 +192,7 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 			this.metric.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.requests)) {
+		if (ApiTypeHelper.isDefined(this.requests)) {
 			generator.writeKey("requests");
 			generator.writeStartArray();
 			for (RankEvalRequestItem item0 : this.requests) {
@@ -206,6 +210,7 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link RankEvalRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RankEvalRequest> {
 		@Nullable
 		private Boolean allowNoIndices;
@@ -246,9 +251,11 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 		 * closed or both.
 		 * <p>
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
 		 */
-		public final Builder expandWildcards(@Nullable List<ExpandWildcard> value) {
-			this.expandWildcards = value;
+		public final Builder expandWildcards(List<ExpandWildcard> list) {
+			this.expandWildcards = _listAddAll(this.expandWildcards, list);
 			return this;
 		}
 
@@ -257,9 +264,11 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 		 * closed or both.
 		 * <p>
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds one or more values to <code>expandWildcards</code>.
 		 */
-		public final Builder expandWildcards(ExpandWildcard... value) {
-			this.expandWildcards = Arrays.asList(value);
+		public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
+			this.expandWildcards = _listAdd(this.expandWildcards, value, values);
 			return this;
 		}
 
@@ -281,9 +290,11 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 		 * parameter or use <code>_all</code> or <code>*</code>.
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 */
-		public final Builder index(List<String> value) {
-			this.index = value;
+		public final Builder index(List<String> list) {
+			this.index = _listAddAll(this.index, list);
 			return this;
 		}
 
@@ -294,9 +305,11 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 		 * parameter or use <code>_all</code> or <code>*</code>.
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds one or more values to <code>index</code>.
 		 */
-		public final Builder index(String... value) {
-			this.index = Arrays.asList(value);
+		public final Builder index(String value, String... values) {
+			this.index = _listAdd(this.index, value, values);
 			return this;
 		}
 
@@ -315,10 +328,8 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code metric}
 		 */
-		public final Builder metric(Consumer<RankEvalMetric.Builder> fn) {
-			RankEvalMetric.Builder builder = new RankEvalMetric.Builder();
-			fn.accept(builder);
-			return this.metric(builder.build());
+		public final Builder metric(Function<RankEvalMetric.Builder, ObjectBuilder<RankEvalMetric>> fn) {
+			return this.metric(fn.apply(new RankEvalMetric.Builder()).build());
 		}
 
 		/**
@@ -326,9 +337,11 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 		 * ratings.
 		 * <p>
 		 * API name: {@code requests}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>requests</code>.
 		 */
-		public final Builder requests(List<RankEvalRequestItem> value) {
-			this.requests = value;
+		public final Builder requests(List<RankEvalRequestItem> list) {
+			this.requests = _listAddAll(this.requests, list);
 			return this;
 		}
 
@@ -337,9 +350,11 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 		 * ratings.
 		 * <p>
 		 * API name: {@code requests}
+		 * <p>
+		 * Adds one or more values to <code>requests</code>.
 		 */
-		public final Builder requests(RankEvalRequestItem... value) {
-			this.requests = Arrays.asList(value);
+		public final Builder requests(RankEvalRequestItem value, RankEvalRequestItem... values) {
+			this.requests = _listAdd(this.requests, value, values);
 			return this;
 		}
 
@@ -348,10 +363,11 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 		 * ratings.
 		 * <p>
 		 * API name: {@code requests}
+		 * <p>
+		 * Adds a value to <code>requests</code> using a builder lambda.
 		 */
-		public final Builder requests(
-				Function<ListBuilder<RankEvalRequestItem, RankEvalRequestItem.Builder>, ObjectBuilder<List<RankEvalRequestItem>>> fn) {
-			return requests(fn.apply(new ListBuilder<>(RankEvalRequestItem.Builder::new)).build());
+		public final Builder requests(Function<RankEvalRequestItem.Builder, ObjectBuilder<RankEvalRequestItem>> fn) {
+			return requests(fn.apply(new RankEvalRequestItem.Builder()).build());
 		}
 
 		/**
@@ -433,7 +449,7 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (ModelTypeHelper.isDefined(request.expandWildcards)) {
+				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}

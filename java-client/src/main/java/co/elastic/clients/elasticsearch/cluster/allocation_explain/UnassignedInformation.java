@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -37,10 +37,17 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.UnassignedInformation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/allocation_explain/types.ts#L117-L125">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class UnassignedInformation implements JsonpSerializable {
 	private final String at;
@@ -66,9 +73,9 @@ public class UnassignedInformation implements JsonpSerializable {
 
 	private UnassignedInformation(Builder builder) {
 
-		this.at = ModelTypeHelper.requireNonNull(builder.at, this, "at");
+		this.at = ApiTypeHelper.requireNonNull(builder.at, this, "at");
 		this.lastAllocationStatus = builder.lastAllocationStatus;
-		this.reason = ModelTypeHelper.requireNonNull(builder.reason, this, "reason");
+		this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
 		this.details = builder.details;
 		this.failedAllocationAttempts = builder.failedAllocationAttempts;
 		this.delayed = builder.delayed;
@@ -76,10 +83,8 @@ public class UnassignedInformation implements JsonpSerializable {
 
 	}
 
-	public static UnassignedInformation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static UnassignedInformation of(Function<Builder, ObjectBuilder<UnassignedInformation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -185,6 +190,7 @@ public class UnassignedInformation implements JsonpSerializable {
 	/**
 	 * Builder for {@link UnassignedInformation}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UnassignedInformation> {
 		private String at;
 

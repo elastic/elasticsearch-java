@@ -29,8 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,11 +37,17 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.close.CloseIndexResult
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/close/CloseIndexResponse.ts#L32-L35">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CloseIndexResult implements JsonpSerializable {
 	private final boolean closed;
@@ -53,15 +58,13 @@ public class CloseIndexResult implements JsonpSerializable {
 
 	private CloseIndexResult(Builder builder) {
 
-		this.closed = ModelTypeHelper.requireNonNull(builder.closed, this, "closed");
-		this.shards = ModelTypeHelper.unmodifiable(builder.shards);
+		this.closed = ApiTypeHelper.requireNonNull(builder.closed, this, "closed");
+		this.shards = ApiTypeHelper.unmodifiable(builder.shards);
 
 	}
 
-	public static CloseIndexResult of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CloseIndexResult of(Function<Builder, ObjectBuilder<CloseIndexResult>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -92,7 +95,7 @@ public class CloseIndexResult implements JsonpSerializable {
 		generator.writeKey("closed");
 		generator.write(this.closed);
 
-		if (ModelTypeHelper.isDefined(this.shards)) {
+		if (ApiTypeHelper.isDefined(this.shards)) {
 			generator.writeKey("shards");
 			generator.writeStartObject();
 			for (Map.Entry<String, CloseShardResult> item0 : this.shards.entrySet()) {
@@ -111,6 +114,7 @@ public class CloseIndexResult implements JsonpSerializable {
 	/**
 	 * Builder for {@link CloseIndexResult}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CloseIndexResult> {
 		private Boolean closed;
 
@@ -127,15 +131,32 @@ public class CloseIndexResult implements JsonpSerializable {
 
 		/**
 		 * API name: {@code shards}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>shards</code>.
 		 */
-		public final Builder shards(@Nullable Map<String, CloseShardResult> value) {
-			this.shards = value;
+		public final Builder shards(Map<String, CloseShardResult> map) {
+			this.shards = _mapPutAll(this.shards, map);
 			return this;
 		}
 
-		public final Builder shards(
-				Function<MapBuilder<String, CloseShardResult, CloseShardResult.Builder>, ObjectBuilder<Map<String, CloseShardResult>>> fn) {
-			return shards(fn.apply(new MapBuilder<>(CloseShardResult.Builder::new)).build());
+		/**
+		 * API name: {@code shards}
+		 * <p>
+		 * Adds an entry to <code>shards</code>.
+		 */
+		public final Builder shards(String key, CloseShardResult value) {
+			this.shards = _mapPut(this.shards, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code shards}
+		 * <p>
+		 * Adds an entry to <code>shards</code> using a builder lambda.
+		 */
+		public final Builder shards(String key,
+				Function<CloseShardResult.Builder, ObjectBuilder<CloseShardResult>> fn) {
+			return shards(key, fn.apply(new CloseShardResult.Builder()).build());
 		}
 
 		/**

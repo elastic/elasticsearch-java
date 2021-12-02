@@ -29,19 +29,23 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.BucketSortAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/pipeline.ts#L56-L61">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class BucketSortAggregation extends AggregationBase implements AggregationVariant {
 	@Nullable
@@ -63,14 +67,12 @@ public class BucketSortAggregation extends AggregationBase implements Aggregatio
 		this.from = builder.from;
 		this.gapPolicy = builder.gapPolicy;
 		this.size = builder.size;
-		this.sort = ModelTypeHelper.unmodifiable(builder.sort);
+		this.sort = ApiTypeHelper.unmodifiable(builder.sort);
 
 	}
 
-	public static BucketSortAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static BucketSortAggregation of(Function<Builder, ObjectBuilder<BucketSortAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -129,7 +131,7 @@ public class BucketSortAggregation extends AggregationBase implements Aggregatio
 			generator.write(this.size);
 
 		}
-		if (ModelTypeHelper.isDefined(this.sort)) {
+		if (ApiTypeHelper.isDefined(this.sort)) {
 			generator.writeKey("sort");
 			generator.writeStartArray();
 			for (SortOptions item0 : this.sort) {
@@ -147,6 +149,7 @@ public class BucketSortAggregation extends AggregationBase implements Aggregatio
 	/**
 	 * Builder for {@link BucketSortAggregation}.
 	 */
+
 	public static class Builder extends AggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<BucketSortAggregation> {
@@ -188,26 +191,31 @@ public class BucketSortAggregation extends AggregationBase implements Aggregatio
 
 		/**
 		 * API name: {@code sort}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>sort</code>.
 		 */
-		public final Builder sort(@Nullable List<SortOptions> value) {
-			this.sort = value;
+		public final Builder sort(List<SortOptions> list) {
+			this.sort = _listAddAll(this.sort, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code sort}
+		 * <p>
+		 * Adds one or more values to <code>sort</code>.
 		 */
-		public final Builder sort(SortOptions... value) {
-			this.sort = Arrays.asList(value);
+		public final Builder sort(SortOptions value, SortOptions... values) {
+			this.sort = _listAdd(this.sort, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code sort}
+		 * <p>
+		 * Adds a value to <code>sort</code> using a builder lambda.
 		 */
-		public final Builder sort(
-				Function<ListBuilder<SortOptions, SortOptions.Builder>, ObjectBuilder<List<SortOptions>>> fn) {
-			return sort(fn.apply(new ListBuilder<>(SortOptions.Builder::new)).build());
+		public final Builder sort(Function<SortOptions.Builder, ObjectBuilder<SortOptions>> fn) {
+			return sort(fn.apply(new SortOptions.Builder()).build());
 		}
 
 		@Override

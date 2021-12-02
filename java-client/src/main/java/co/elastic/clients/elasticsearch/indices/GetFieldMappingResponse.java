@@ -33,9 +33,16 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: indices.get_field_mapping.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/get_field_mapping/IndicesGetFieldMappingResponse.ts#L24-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetFieldMappingResponse extends DictionaryResponse<String, TypeFieldMappings> {
 	// ---------------------------------------------------------------------------------------------
@@ -45,10 +52,8 @@ public class GetFieldMappingResponse extends DictionaryResponse<String, TypeFiel
 
 	}
 
-	public static GetFieldMappingResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetFieldMappingResponse of(Function<Builder, ObjectBuilder<GetFieldMappingResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -56,6 +61,7 @@ public class GetFieldMappingResponse extends DictionaryResponse<String, TypeFiel
 	/**
 	 * Builder for {@link GetFieldMappingResponse}.
 	 */
+
 	public static class Builder extends DictionaryResponse.AbstractBuilder<String, TypeFieldMappings, Builder>
 			implements
 				ObjectBuilder<GetFieldMappingResponse> {

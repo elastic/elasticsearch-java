@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.IntervalsPrefix
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/fulltext.ts#L110-L114">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IntervalsPrefix implements IntervalsQueryVariant, IntervalsVariant, JsonpSerializable {
 	@Nullable
@@ -54,15 +61,13 @@ public class IntervalsPrefix implements IntervalsQueryVariant, IntervalsVariant,
 	private IntervalsPrefix(Builder builder) {
 
 		this.analyzer = builder.analyzer;
-		this.prefix = ModelTypeHelper.requireNonNull(builder.prefix, this, "prefix");
+		this.prefix = ApiTypeHelper.requireNonNull(builder.prefix, this, "prefix");
 		this.useField = builder.useField;
 
 	}
 
-	public static IntervalsPrefix of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IntervalsPrefix of(Function<Builder, ObjectBuilder<IntervalsPrefix>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -136,6 +141,7 @@ public class IntervalsPrefix implements IntervalsQueryVariant, IntervalsVariant,
 	/**
 	 * Builder for {@link IntervalsPrefix}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IntervalsPrefix> {
 		@Nullable
 		private String analyzer;

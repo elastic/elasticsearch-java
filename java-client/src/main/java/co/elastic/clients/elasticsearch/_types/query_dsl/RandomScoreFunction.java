@@ -32,10 +32,17 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.RandomScoreFunction
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/compound.ts#L72-L75">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RandomScoreFunction extends ScoreFunctionBase implements FunctionScoreVariant {
 	@Nullable
@@ -54,10 +61,8 @@ public class RandomScoreFunction extends ScoreFunctionBase implements FunctionSc
 
 	}
 
-	public static RandomScoreFunction of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RandomScoreFunction of(Function<Builder, ObjectBuilder<RandomScoreFunction>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -105,6 +110,7 @@ public class RandomScoreFunction extends ScoreFunctionBase implements FunctionSc
 	/**
 	 * Builder for {@link RandomScoreFunction}.
 	 */
+
 	public static class Builder extends ScoreFunctionBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<RandomScoreFunction> {

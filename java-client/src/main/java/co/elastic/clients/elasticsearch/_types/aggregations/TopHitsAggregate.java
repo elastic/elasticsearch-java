@@ -30,14 +30,21 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TopHitsAggregate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L591-L594">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TopHitsAggregate extends AggregateBase implements AggregateVariant {
 	private final HitsMetadata<JsonData> hits;
@@ -47,14 +54,12 @@ public class TopHitsAggregate extends AggregateBase implements AggregateVariant 
 	private TopHitsAggregate(Builder builder) {
 		super(builder);
 
-		this.hits = ModelTypeHelper.requireNonNull(builder.hits, this, "hits");
+		this.hits = ApiTypeHelper.requireNonNull(builder.hits, this, "hits");
 
 	}
 
-	public static TopHitsAggregate of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TopHitsAggregate of(Function<Builder, ObjectBuilder<TopHitsAggregate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -85,6 +90,7 @@ public class TopHitsAggregate extends AggregateBase implements AggregateVariant 
 	/**
 	 * Builder for {@link TopHitsAggregate}.
 	 */
+
 	public static class Builder extends AggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<TopHitsAggregate> {
@@ -101,10 +107,8 @@ public class TopHitsAggregate extends AggregateBase implements AggregateVariant 
 		/**
 		 * Required - API name: {@code hits}
 		 */
-		public final Builder hits(Consumer<HitsMetadata.Builder<JsonData>> fn) {
-			HitsMetadata.Builder<JsonData> builder = new HitsMetadata.Builder<JsonData>();
-			fn.accept(builder);
-			return this.hits(builder.build());
+		public final Builder hits(Function<HitsMetadata.Builder<JsonData>, ObjectBuilder<HitsMetadata<JsonData>>> fn) {
+			return this.hits(fn.apply(new HitsMetadata.Builder<JsonData>()).build());
 		}
 
 		@Override

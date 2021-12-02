@@ -28,18 +28,24 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.CharGroupTokenizer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/tokenizers.ts#L55-L59">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CharGroupTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
 	private final List<String> tokenizeOnChars;
@@ -52,15 +58,13 @@ public class CharGroupTokenizer extends TokenizerBase implements TokenizerDefini
 	private CharGroupTokenizer(Builder builder) {
 		super(builder);
 
-		this.tokenizeOnChars = ModelTypeHelper.unmodifiableRequired(builder.tokenizeOnChars, this, "tokenizeOnChars");
+		this.tokenizeOnChars = ApiTypeHelper.unmodifiableRequired(builder.tokenizeOnChars, this, "tokenizeOnChars");
 		this.maxTokenLength = builder.maxTokenLength;
 
 	}
 
-	public static CharGroupTokenizer of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CharGroupTokenizer of(Function<Builder, ObjectBuilder<CharGroupTokenizer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -90,7 +94,7 @@ public class CharGroupTokenizer extends TokenizerBase implements TokenizerDefini
 
 		generator.write("type", "char_group");
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.tokenizeOnChars)) {
+		if (ApiTypeHelper.isDefined(this.tokenizeOnChars)) {
 			generator.writeKey("tokenize_on_chars");
 			generator.writeStartArray();
 			for (String item0 : this.tokenizeOnChars) {
@@ -113,6 +117,7 @@ public class CharGroupTokenizer extends TokenizerBase implements TokenizerDefini
 	/**
 	 * Builder for {@link CharGroupTokenizer}.
 	 */
+
 	public static class Builder extends TokenizerBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<CharGroupTokenizer> {
@@ -123,17 +128,21 @@ public class CharGroupTokenizer extends TokenizerBase implements TokenizerDefini
 
 		/**
 		 * Required - API name: {@code tokenize_on_chars}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>tokenizeOnChars</code>.
 		 */
-		public final Builder tokenizeOnChars(List<String> value) {
-			this.tokenizeOnChars = value;
+		public final Builder tokenizeOnChars(List<String> list) {
+			this.tokenizeOnChars = _listAddAll(this.tokenizeOnChars, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code tokenize_on_chars}
+		 * <p>
+		 * Adds one or more values to <code>tokenizeOnChars</code>.
 		 */
-		public final Builder tokenizeOnChars(String... value) {
-			this.tokenizeOnChars = Arrays.asList(value);
+		public final Builder tokenizeOnChars(String value, String... values) {
+			this.tokenizeOnChars = _listAdd(this.tokenizeOnChars, value, values);
 			return this;
 		}
 

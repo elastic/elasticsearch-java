@@ -29,18 +29,24 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.AppendProcessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/_types/Processors.ts#L88-L92">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
@@ -55,16 +61,14 @@ public class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 	private AppendProcessor(Builder builder) {
 		super(builder);
 
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
-		this.value = ModelTypeHelper.unmodifiableRequired(builder.value, this, "value");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.value = ApiTypeHelper.unmodifiableRequired(builder.value, this, "value");
 		this.allowDuplicates = builder.allowDuplicates;
 
 	}
 
-	public static AppendProcessor of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static AppendProcessor of(Function<Builder, ObjectBuilder<AppendProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -103,7 +107,7 @@ public class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 		generator.writeKey("field");
 		generator.write(this.field);
 
-		if (ModelTypeHelper.isDefined(this.value)) {
+		if (ApiTypeHelper.isDefined(this.value)) {
 			generator.writeKey("value");
 			generator.writeStartArray();
 			for (JsonData item0 : this.value) {
@@ -126,6 +130,7 @@ public class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 	/**
 	 * Builder for {@link AppendProcessor}.
 	 */
+
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<AppendProcessor> {
@@ -146,17 +151,21 @@ public class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 
 		/**
 		 * Required - API name: {@code value}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>value</code>.
 		 */
-		public final Builder value(List<JsonData> value) {
-			this.value = value;
+		public final Builder value(List<JsonData> list) {
+			this.value = _listAddAll(this.value, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code value}
+		 * <p>
+		 * Adds one or more values to <code>value</code>.
 		 */
-		public final Builder value(JsonData... value) {
-			this.value = Arrays.asList(value);
+		public final Builder value(JsonData value, JsonData... values) {
+			this.value = _listAdd(this.value, value, values);
 			return this;
 		}
 

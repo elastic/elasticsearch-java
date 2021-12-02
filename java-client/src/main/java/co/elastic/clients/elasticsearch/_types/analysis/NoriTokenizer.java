@@ -28,18 +28,24 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.NoriTokenizer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/tokenizers.ts#L80-L86">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NoriTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
 	@Nullable
@@ -61,14 +67,12 @@ public class NoriTokenizer extends TokenizerBase implements TokenizerDefinitionV
 		this.decompoundMode = builder.decompoundMode;
 		this.discardPunctuation = builder.discardPunctuation;
 		this.userDictionary = builder.userDictionary;
-		this.userDictionaryRules = ModelTypeHelper.unmodifiable(builder.userDictionaryRules);
+		this.userDictionaryRules = ApiTypeHelper.unmodifiable(builder.userDictionaryRules);
 
 	}
 
-	public static NoriTokenizer of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NoriTokenizer of(Function<Builder, ObjectBuilder<NoriTokenizer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -128,7 +132,7 @@ public class NoriTokenizer extends TokenizerBase implements TokenizerDefinitionV
 			generator.write(this.userDictionary);
 
 		}
-		if (ModelTypeHelper.isDefined(this.userDictionaryRules)) {
+		if (ApiTypeHelper.isDefined(this.userDictionaryRules)) {
 			generator.writeKey("user_dictionary_rules");
 			generator.writeStartArray();
 			for (String item0 : this.userDictionaryRules) {
@@ -146,6 +150,7 @@ public class NoriTokenizer extends TokenizerBase implements TokenizerDefinitionV
 	/**
 	 * Builder for {@link NoriTokenizer}.
 	 */
+
 	public static class Builder extends TokenizerBase.AbstractBuilder<Builder> implements ObjectBuilder<NoriTokenizer> {
 		@Nullable
 		private NoriDecompoundMode decompoundMode;
@@ -185,17 +190,21 @@ public class NoriTokenizer extends TokenizerBase implements TokenizerDefinitionV
 
 		/**
 		 * API name: {@code user_dictionary_rules}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>userDictionaryRules</code>.
 		 */
-		public final Builder userDictionaryRules(@Nullable List<String> value) {
-			this.userDictionaryRules = value;
+		public final Builder userDictionaryRules(List<String> list) {
+			this.userDictionaryRules = _listAddAll(this.userDictionaryRules, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code user_dictionary_rules}
+		 * <p>
+		 * Adds one or more values to <code>userDictionaryRules</code>.
 		 */
-		public final Builder userDictionaryRules(String... value) {
-			this.userDictionaryRules = Arrays.asList(value);
+		public final Builder userDictionaryRules(String value, String... values) {
+			this.userDictionaryRules = _listAdd(this.userDictionaryRules, value, values);
 			return this;
 		}
 

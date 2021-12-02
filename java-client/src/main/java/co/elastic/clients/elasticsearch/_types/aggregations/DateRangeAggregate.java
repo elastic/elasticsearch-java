@@ -30,9 +30,20 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.aggregations.DateRangeAggregate
+
+/**
+ * Result of a <code>date_range</code> aggregation. Same format as a for a
+ * <code>range</code> aggregation: <code>from</code> and <code>to</code> in
+ * <code>buckets</code> are milliseconds since the Epoch, represented as a
+ * floating point number.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L509-L514">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DateRangeAggregate extends RangeAggregate implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -42,10 +53,8 @@ public class DateRangeAggregate extends RangeAggregate implements AggregateVaria
 
 	}
 
-	public static DateRangeAggregate of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DateRangeAggregate of(Function<Builder, ObjectBuilder<DateRangeAggregate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,6 +70,7 @@ public class DateRangeAggregate extends RangeAggregate implements AggregateVaria
 	/**
 	 * Builder for {@link DateRangeAggregate}.
 	 */
+
 	public static class Builder extends RangeAggregate.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DateRangeAggregate> {

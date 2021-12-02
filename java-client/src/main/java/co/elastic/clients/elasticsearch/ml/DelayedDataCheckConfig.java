@@ -30,16 +30,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DelayedDataCheckConfig
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/Datafeed.ts#L108-L119">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DelayedDataCheckConfig implements JsonpSerializable {
 	@Nullable
@@ -52,14 +59,12 @@ public class DelayedDataCheckConfig implements JsonpSerializable {
 	private DelayedDataCheckConfig(Builder builder) {
 
 		this.checkWindow = builder.checkWindow;
-		this.enabled = ModelTypeHelper.requireNonNull(builder.enabled, this, "enabled");
+		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
 
 	}
 
-	public static DelayedDataCheckConfig of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DelayedDataCheckConfig of(Function<Builder, ObjectBuilder<DelayedDataCheckConfig>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -113,6 +118,7 @@ public class DelayedDataCheckConfig implements JsonpSerializable {
 	/**
 	 * Builder for {@link DelayedDataCheckConfig}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DelayedDataCheckConfig> {
 		@Nullable
 		private Time checkWindow;
@@ -144,10 +150,8 @@ public class DelayedDataCheckConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code check_window}
 		 */
-		public final Builder checkWindow(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.checkWindow(builder.build());
+		public final Builder checkWindow(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.checkWindow(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

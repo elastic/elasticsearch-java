@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -37,13 +37,19 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeJvmInfo
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L341-L355">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeJvmInfo implements JsonpSerializable {
 	private final List<String> gcCollectors;
@@ -77,26 +83,24 @@ public class NodeJvmInfo implements JsonpSerializable {
 
 	private NodeJvmInfo(Builder builder) {
 
-		this.gcCollectors = ModelTypeHelper.unmodifiableRequired(builder.gcCollectors, this, "gcCollectors");
-		this.mem = ModelTypeHelper.requireNonNull(builder.mem, this, "mem");
-		this.memoryPools = ModelTypeHelper.unmodifiableRequired(builder.memoryPools, this, "memoryPools");
-		this.pid = ModelTypeHelper.requireNonNull(builder.pid, this, "pid");
-		this.startTimeInMillis = ModelTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
-		this.version = ModelTypeHelper.requireNonNull(builder.version, this, "version");
-		this.vmName = ModelTypeHelper.requireNonNull(builder.vmName, this, "vmName");
-		this.vmVendor = ModelTypeHelper.requireNonNull(builder.vmVendor, this, "vmVendor");
-		this.vmVersion = ModelTypeHelper.requireNonNull(builder.vmVersion, this, "vmVersion");
-		this.bundledJdk = ModelTypeHelper.requireNonNull(builder.bundledJdk, this, "bundledJdk");
-		this.usingBundledJdk = ModelTypeHelper.requireNonNull(builder.usingBundledJdk, this, "usingBundledJdk");
+		this.gcCollectors = ApiTypeHelper.unmodifiableRequired(builder.gcCollectors, this, "gcCollectors");
+		this.mem = ApiTypeHelper.requireNonNull(builder.mem, this, "mem");
+		this.memoryPools = ApiTypeHelper.unmodifiableRequired(builder.memoryPools, this, "memoryPools");
+		this.pid = ApiTypeHelper.requireNonNull(builder.pid, this, "pid");
+		this.startTimeInMillis = ApiTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
+		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
+		this.vmName = ApiTypeHelper.requireNonNull(builder.vmName, this, "vmName");
+		this.vmVendor = ApiTypeHelper.requireNonNull(builder.vmVendor, this, "vmVendor");
+		this.vmVersion = ApiTypeHelper.requireNonNull(builder.vmVersion, this, "vmVersion");
+		this.bundledJdk = ApiTypeHelper.requireNonNull(builder.bundledJdk, this, "bundledJdk");
+		this.usingBundledJdk = ApiTypeHelper.requireNonNull(builder.usingBundledJdk, this, "usingBundledJdk");
 		this.usingCompressedOrdinaryObjectPointers = builder.usingCompressedOrdinaryObjectPointers;
-		this.inputArguments = ModelTypeHelper.unmodifiableRequired(builder.inputArguments, this, "inputArguments");
+		this.inputArguments = ApiTypeHelper.unmodifiableRequired(builder.inputArguments, this, "inputArguments");
 
 	}
 
-	public static NodeJvmInfo of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodeJvmInfo of(Function<Builder, ObjectBuilder<NodeJvmInfo>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -202,7 +206,7 @@ public class NodeJvmInfo implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.gcCollectors)) {
+		if (ApiTypeHelper.isDefined(this.gcCollectors)) {
 			generator.writeKey("gc_collectors");
 			generator.writeStartArray();
 			for (String item0 : this.gcCollectors) {
@@ -215,7 +219,7 @@ public class NodeJvmInfo implements JsonpSerializable {
 		generator.writeKey("mem");
 		this.mem.serialize(generator, mapper);
 
-		if (ModelTypeHelper.isDefined(this.memoryPools)) {
+		if (ApiTypeHelper.isDefined(this.memoryPools)) {
 			generator.writeKey("memory_pools");
 			generator.writeStartArray();
 			for (String item0 : this.memoryPools) {
@@ -254,7 +258,7 @@ public class NodeJvmInfo implements JsonpSerializable {
 			generator.write(this.usingCompressedOrdinaryObjectPointers);
 
 		}
-		if (ModelTypeHelper.isDefined(this.inputArguments)) {
+		if (ApiTypeHelper.isDefined(this.inputArguments)) {
 			generator.writeKey("input_arguments");
 			generator.writeStartArray();
 			for (String item0 : this.inputArguments) {
@@ -272,6 +276,7 @@ public class NodeJvmInfo implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeJvmInfo}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeJvmInfo> {
 		private List<String> gcCollectors;
 
@@ -302,17 +307,21 @@ public class NodeJvmInfo implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code gc_collectors}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>gcCollectors</code>.
 		 */
-		public final Builder gcCollectors(List<String> value) {
-			this.gcCollectors = value;
+		public final Builder gcCollectors(List<String> list) {
+			this.gcCollectors = _listAddAll(this.gcCollectors, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code gc_collectors}
+		 * <p>
+		 * Adds one or more values to <code>gcCollectors</code>.
 		 */
-		public final Builder gcCollectors(String... value) {
-			this.gcCollectors = Arrays.asList(value);
+		public final Builder gcCollectors(String value, String... values) {
+			this.gcCollectors = _listAdd(this.gcCollectors, value, values);
 			return this;
 		}
 
@@ -327,25 +336,27 @@ public class NodeJvmInfo implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code mem}
 		 */
-		public final Builder mem(Consumer<NodeInfoJvmMemory.Builder> fn) {
-			NodeInfoJvmMemory.Builder builder = new NodeInfoJvmMemory.Builder();
-			fn.accept(builder);
-			return this.mem(builder.build());
+		public final Builder mem(Function<NodeInfoJvmMemory.Builder, ObjectBuilder<NodeInfoJvmMemory>> fn) {
+			return this.mem(fn.apply(new NodeInfoJvmMemory.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code memory_pools}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>memoryPools</code>.
 		 */
-		public final Builder memoryPools(List<String> value) {
-			this.memoryPools = value;
+		public final Builder memoryPools(List<String> list) {
+			this.memoryPools = _listAddAll(this.memoryPools, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code memory_pools}
+		 * <p>
+		 * Adds one or more values to <code>memoryPools</code>.
 		 */
-		public final Builder memoryPools(String... value) {
-			this.memoryPools = Arrays.asList(value);
+		public final Builder memoryPools(String value, String... values) {
+			this.memoryPools = _listAdd(this.memoryPools, value, values);
 			return this;
 		}
 
@@ -423,17 +434,21 @@ public class NodeJvmInfo implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code input_arguments}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>inputArguments</code>.
 		 */
-		public final Builder inputArguments(List<String> value) {
-			this.inputArguments = value;
+		public final Builder inputArguments(List<String> list) {
+			this.inputArguments = _listAddAll(this.inputArguments, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code input_arguments}
+		 * <p>
+		 * Adds one or more values to <code>inputArguments</code>.
 		 */
-		public final Builder inputArguments(String... value) {
-			this.inputArguments = Arrays.asList(value);
+		public final Builder inputArguments(String value, String... values) {
+			this.inputArguments = _listAdd(this.inputArguments, value, values);
 			return this;
 		}
 

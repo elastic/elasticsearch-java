@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 // typedef: _global.msearch.MultiSearchItem
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/msearch/types.ts#L71-L73">API
+ *      specification</a>
+ */
 
 public class MultiSearchItem<TDocument> extends SearchResponse<TDocument> {
 	private final int status;
@@ -47,14 +54,13 @@ public class MultiSearchItem<TDocument> extends SearchResponse<TDocument> {
 	private MultiSearchItem(Builder<TDocument> builder) {
 		super(builder);
 
-		this.status = ModelTypeHelper.requireNonNull(builder.status, this, "status");
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 
 	}
 
-	public static <TDocument> MultiSearchItem<TDocument> of(Consumer<Builder<TDocument>> fn) {
-		Builder<TDocument> builder = new Builder<>();
-		fn.accept(builder);
-		return builder.build();
+	public static <TDocument> MultiSearchItem<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<MultiSearchItem<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
@@ -77,6 +83,7 @@ public class MultiSearchItem<TDocument> extends SearchResponse<TDocument> {
 	/**
 	 * Builder for {@link MultiSearchItem}.
 	 */
+
 	public static class Builder<TDocument> extends SearchResponse.AbstractBuilder<TDocument, Builder<TDocument>>
 			implements
 				ObjectBuilder<MultiSearchItem<TDocument>> {
@@ -111,7 +118,7 @@ public class MultiSearchItem<TDocument> extends SearchResponse<TDocument> {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for MultiSearchItem
+	 * Create a JSON deserializer for MultiSearchItem
 	 */
 	public static <TDocument> JsonpDeserializer<MultiSearchItem<TDocument>> createMultiSearchItemDeserializer(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {

@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: enrich._types.Summary
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/enrich/_types/Policy.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class EnrichSummary implements JsonpSerializable {
 	private final EnrichConfiguration config;
@@ -46,14 +53,12 @@ public class EnrichSummary implements JsonpSerializable {
 
 	private EnrichSummary(Builder builder) {
 
-		this.config = ModelTypeHelper.requireNonNull(builder.config, this, "config");
+		this.config = ApiTypeHelper.requireNonNull(builder.config, this, "config");
 
 	}
 
-	public static EnrichSummary of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static EnrichSummary of(Function<Builder, ObjectBuilder<EnrichSummary>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -84,6 +89,7 @@ public class EnrichSummary implements JsonpSerializable {
 	/**
 	 * Builder for {@link EnrichSummary}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<EnrichSummary> {
 		private EnrichConfiguration config;
 
@@ -98,10 +104,8 @@ public class EnrichSummary implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code config}
 		 */
-		public final Builder config(Consumer<EnrichConfiguration.Builder> fn) {
-			EnrichConfiguration.Builder builder = new EnrichConfiguration.Builder();
-			fn.accept(builder);
-			return this.config(builder.build());
+		public final Builder config(Function<EnrichConfiguration.Builder, ObjectBuilder<EnrichConfiguration>> fn) {
+			return this.config(fn.apply(new EnrichConfiguration.Builder()).build());
 		}
 
 		/**

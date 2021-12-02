@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.NestedIdentity
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/hits.ts#L88-L92">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NestedIdentity implements JsonpSerializable {
 	private final String field;
@@ -53,16 +60,14 @@ public class NestedIdentity implements JsonpSerializable {
 
 	private NestedIdentity(Builder builder) {
 
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
-		this.offset = ModelTypeHelper.requireNonNull(builder.offset, this, "offset");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.offset = ApiTypeHelper.requireNonNull(builder.offset, this, "offset");
 		this.nested = builder.nested;
 
 	}
 
-	public static NestedIdentity of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NestedIdentity of(Function<Builder, ObjectBuilder<NestedIdentity>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -117,6 +122,7 @@ public class NestedIdentity implements JsonpSerializable {
 	/**
 	 * Builder for {@link NestedIdentity}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NestedIdentity> {
 		private String field;
 
@@ -152,10 +158,8 @@ public class NestedIdentity implements JsonpSerializable {
 		/**
 		 * API name: {@code _nested}
 		 */
-		public final Builder nested(Consumer<NestedIdentity.Builder> fn) {
-			NestedIdentity.Builder builder = new NestedIdentity.Builder();
-			fn.accept(builder);
-			return this.nested(builder.build());
+		public final Builder nested(Function<NestedIdentity.Builder, ObjectBuilder<NestedIdentity>> fn) {
+			return this.nested(fn.apply(new NestedIdentity.Builder()).build());
 		}
 
 		/**

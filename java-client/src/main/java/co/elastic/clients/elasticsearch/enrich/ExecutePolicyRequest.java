@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,10 +40,18 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: enrich.execute_policy.Request
+
+/**
+ * Creates the enrich index for an existing enrich policy.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/enrich/execute_policy/ExecuteEnrichPolicyRequest.ts#L23-L35">API
+ *      specification</a>
+ */
 
 public class ExecutePolicyRequest extends RequestBase {
 	private final String name;
@@ -55,15 +63,13 @@ public class ExecutePolicyRequest extends RequestBase {
 
 	private ExecutePolicyRequest(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.waitForCompletion = builder.waitForCompletion;
 
 	}
 
-	public static ExecutePolicyRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ExecutePolicyRequest of(Function<Builder, ObjectBuilder<ExecutePolicyRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -90,6 +96,7 @@ public class ExecutePolicyRequest extends RequestBase {
 	/**
 	 * Builder for {@link ExecutePolicyRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExecutePolicyRequest> {
 		private String name;
 

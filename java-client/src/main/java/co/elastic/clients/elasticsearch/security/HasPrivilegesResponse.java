@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -37,10 +37,17 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.has_privileges.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/has_privileges/SecurityHasPrivilegesResponse.ts#L24-L32">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class HasPrivilegesResponse implements JsonpSerializable {
 	private final Map<String, Map<String, Map<String, Boolean>>> application;
@@ -57,18 +64,16 @@ public class HasPrivilegesResponse implements JsonpSerializable {
 
 	private HasPrivilegesResponse(Builder builder) {
 
-		this.application = ModelTypeHelper.unmodifiableRequired(builder.application, this, "application");
-		this.cluster = ModelTypeHelper.unmodifiableRequired(builder.cluster, this, "cluster");
-		this.hasAllRequested = ModelTypeHelper.requireNonNull(builder.hasAllRequested, this, "hasAllRequested");
-		this.index = ModelTypeHelper.unmodifiableRequired(builder.index, this, "index");
-		this.username = ModelTypeHelper.requireNonNull(builder.username, this, "username");
+		this.application = ApiTypeHelper.unmodifiableRequired(builder.application, this, "application");
+		this.cluster = ApiTypeHelper.unmodifiableRequired(builder.cluster, this, "cluster");
+		this.hasAllRequested = ApiTypeHelper.requireNonNull(builder.hasAllRequested, this, "hasAllRequested");
+		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
+		this.username = ApiTypeHelper.requireNonNull(builder.username, this, "username");
 
 	}
 
-	public static HasPrivilegesResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static HasPrivilegesResponse of(Function<Builder, ObjectBuilder<HasPrivilegesResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -117,7 +122,7 @@ public class HasPrivilegesResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.application)) {
+		if (ApiTypeHelper.isDefined(this.application)) {
 			generator.writeKey("application");
 			generator.writeStartObject();
 			for (Map.Entry<String, Map<String, Map<String, Boolean>>> item0 : this.application.entrySet()) {
@@ -144,7 +149,7 @@ public class HasPrivilegesResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.cluster)) {
+		if (ApiTypeHelper.isDefined(this.cluster)) {
 			generator.writeKey("cluster");
 			generator.writeStartObject();
 			for (Map.Entry<String, Boolean> item0 : this.cluster.entrySet()) {
@@ -158,7 +163,7 @@ public class HasPrivilegesResponse implements JsonpSerializable {
 		generator.writeKey("has_all_requested");
 		generator.write(this.hasAllRequested);
 
-		if (ModelTypeHelper.isDefined(this.index)) {
+		if (ApiTypeHelper.isDefined(this.index)) {
 			generator.writeKey("index");
 			generator.writeStartObject();
 			for (Map.Entry<String, Map<String, Boolean>> item0 : this.index.entrySet()) {
@@ -187,6 +192,7 @@ public class HasPrivilegesResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link HasPrivilegesResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HasPrivilegesResponse> {
 		private Map<String, Map<String, Map<String, Boolean>>> application;
 
@@ -200,17 +206,41 @@ public class HasPrivilegesResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code application}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>application</code>.
 		 */
-		public final Builder application(Map<String, Map<String, Map<String, Boolean>>> value) {
-			this.application = value;
+		public final Builder application(Map<String, Map<String, Map<String, Boolean>>> map) {
+			this.application = _mapPutAll(this.application, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code application}
+		 * <p>
+		 * Adds an entry to <code>application</code>.
+		 */
+		public final Builder application(String key, Map<String, Map<String, Boolean>> value) {
+			this.application = _mapPut(this.application, key, value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code cluster}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>cluster</code>.
 		 */
-		public final Builder cluster(Map<String, Boolean> value) {
-			this.cluster = value;
+		public final Builder cluster(Map<String, Boolean> map) {
+			this.cluster = _mapPutAll(this.cluster, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code cluster}
+		 * <p>
+		 * Adds an entry to <code>cluster</code>.
+		 */
+		public final Builder cluster(String key, Boolean value) {
+			this.cluster = _mapPut(this.cluster, key, value);
 			return this;
 		}
 
@@ -224,9 +254,21 @@ public class HasPrivilegesResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code index}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>index</code>.
 		 */
-		public final Builder index(Map<String, Map<String, Boolean>> value) {
-			this.index = value;
+		public final Builder index(Map<String, Map<String, Boolean>> map) {
+			this.index = _mapPutAll(this.index, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code index}
+		 * <p>
+		 * Adds an entry to <code>index</code>.
+		 */
+		public final Builder index(String key, Map<String, Boolean> value) {
+			this.index = _mapPut(this.index, key, value);
 			return this;
 		}
 

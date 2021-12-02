@@ -31,21 +31,29 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: cat.fielddata.Request
+
+/**
+ * Shows how much heap memory is currently being used by fielddata on every data
+ * node in the cluster.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/fielddata/CatFielddataRequest.ts#L23-L35">API
+ *      specification</a>
+ */
 
 public class FielddataRequest extends CatRequestBase {
 	@Nullable
@@ -58,14 +66,12 @@ public class FielddataRequest extends CatRequestBase {
 	private FielddataRequest(Builder builder) {
 
 		this.bytes = builder.bytes;
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 
 	}
 
-	public static FielddataRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static FielddataRequest of(Function<Builder, ObjectBuilder<FielddataRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -92,6 +98,7 @@ public class FielddataRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link FielddataRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FielddataRequest> {
 		@Nullable
 		private Bytes bytes;
@@ -113,9 +120,11 @@ public class FielddataRequest extends CatRequestBase {
 		 * A comma-separated list of fields to return the fielddata size
 		 * <p>
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fields</code>.
 		 */
-		public final Builder fields(@Nullable List<String> value) {
-			this.fields = value;
+		public final Builder fields(List<String> list) {
+			this.fields = _listAddAll(this.fields, list);
 			return this;
 		}
 
@@ -123,9 +132,11 @@ public class FielddataRequest extends CatRequestBase {
 		 * A comma-separated list of fields to return the fielddata size
 		 * <p>
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds one or more values to <code>fields</code>.
 		 */
-		public final Builder fields(String... value) {
-			this.fields = Arrays.asList(value);
+		public final Builder fields(String value, String... values) {
+			this.fields = _listAdd(this.fields, value, values);
 			return this;
 		}
 
@@ -162,7 +173,7 @@ public class FielddataRequest extends CatRequestBase {
 
 				int propsSet = 0;
 
-				if (ModelTypeHelper.isDefined(request.fields()))
+				if (ApiTypeHelper.isDefined(request.fields()))
 					propsSet |= _fields;
 
 				if (propsSet == 0) {

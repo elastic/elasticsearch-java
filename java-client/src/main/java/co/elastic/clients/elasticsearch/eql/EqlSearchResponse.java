@@ -31,10 +31,17 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 // typedef: eql.search.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/eql/search/EqlSearchResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class EqlSearchResponse<TEvent> extends EqlSearchResponseBase<TEvent> {
 	// ---------------------------------------------------------------------------------------------
@@ -44,10 +51,9 @@ public class EqlSearchResponse<TEvent> extends EqlSearchResponseBase<TEvent> {
 
 	}
 
-	public static <TEvent> EqlSearchResponse<TEvent> of(Consumer<Builder<TEvent>> fn) {
-		Builder<TEvent> builder = new Builder<>();
-		fn.accept(builder);
-		return builder.build();
+	public static <TEvent> EqlSearchResponse<TEvent> of(
+			Function<Builder<TEvent>, ObjectBuilder<EqlSearchResponse<TEvent>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -55,6 +61,7 @@ public class EqlSearchResponse<TEvent> extends EqlSearchResponseBase<TEvent> {
 	/**
 	 * Builder for {@link EqlSearchResponse}.
 	 */
+
 	public static class Builder<TEvent> extends EqlSearchResponseBase.AbstractBuilder<TEvent, Builder<TEvent>>
 			implements
 				ObjectBuilder<EqlSearchResponse<TEvent>> {
@@ -79,7 +86,7 @@ public class EqlSearchResponse<TEvent> extends EqlSearchResponseBase<TEvent> {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for EqlSearchResponse
+	 * Create a JSON deserializer for EqlSearchResponse
 	 */
 	public static <TEvent> JsonpDeserializer<EqlSearchResponse<TEvent>> createEqlSearchResponseDeserializer(
 			JsonpDeserializer<TEvent> tEventDeserializer) {

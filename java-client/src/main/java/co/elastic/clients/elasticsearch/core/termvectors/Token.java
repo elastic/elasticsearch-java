@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.termvectors.Token
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/termvectors/types.ts#L42-L47">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Token implements JsonpSerializable {
 	@Nullable
@@ -59,15 +66,13 @@ public class Token implements JsonpSerializable {
 
 		this.endOffset = builder.endOffset;
 		this.payload = builder.payload;
-		this.position = ModelTypeHelper.requireNonNull(builder.position, this, "position");
+		this.position = ApiTypeHelper.requireNonNull(builder.position, this, "position");
 		this.startOffset = builder.startOffset;
 
 	}
 
-	public static Token of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Token of(Function<Builder, ObjectBuilder<Token>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -138,6 +143,7 @@ public class Token implements JsonpSerializable {
 	/**
 	 * Builder for {@link Token}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Token> {
 		@Nullable
 		private Integer endOffset;

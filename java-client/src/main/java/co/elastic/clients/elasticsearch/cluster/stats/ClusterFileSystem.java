@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: cluster.stats.ClusterFileSystem
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/stats/types.ts#L33-L37">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ClusterFileSystem implements JsonpSerializable {
 	private final long availableInBytes;
@@ -50,16 +57,14 @@ public class ClusterFileSystem implements JsonpSerializable {
 
 	private ClusterFileSystem(Builder builder) {
 
-		this.availableInBytes = ModelTypeHelper.requireNonNull(builder.availableInBytes, this, "availableInBytes");
-		this.freeInBytes = ModelTypeHelper.requireNonNull(builder.freeInBytes, this, "freeInBytes");
-		this.totalInBytes = ModelTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes");
+		this.availableInBytes = ApiTypeHelper.requireNonNull(builder.availableInBytes, this, "availableInBytes");
+		this.freeInBytes = ApiTypeHelper.requireNonNull(builder.freeInBytes, this, "freeInBytes");
+		this.totalInBytes = ApiTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes");
 
 	}
 
-	public static ClusterFileSystem of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ClusterFileSystem of(Function<Builder, ObjectBuilder<ClusterFileSystem>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -110,6 +115,7 @@ public class ClusterFileSystem implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClusterFileSystem}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterFileSystem> {
 		private Long availableInBytes;
 

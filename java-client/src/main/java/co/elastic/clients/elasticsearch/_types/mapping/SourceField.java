@@ -29,19 +29,25 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.SourceField
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/meta-fields.ts#L58-L64">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SourceField implements JsonpSerializable {
 	@Nullable
@@ -64,15 +70,13 @@ public class SourceField implements JsonpSerializable {
 		this.compress = builder.compress;
 		this.compressThreshold = builder.compressThreshold;
 		this.enabled = builder.enabled;
-		this.excludes = ModelTypeHelper.unmodifiable(builder.excludes);
-		this.includes = ModelTypeHelper.unmodifiable(builder.includes);
+		this.excludes = ApiTypeHelper.unmodifiable(builder.excludes);
+		this.includes = ApiTypeHelper.unmodifiable(builder.includes);
 
 	}
 
-	public static SourceField of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SourceField of(Function<Builder, ObjectBuilder<SourceField>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -139,7 +143,7 @@ public class SourceField implements JsonpSerializable {
 			generator.write(this.enabled);
 
 		}
-		if (ModelTypeHelper.isDefined(this.excludes)) {
+		if (ApiTypeHelper.isDefined(this.excludes)) {
 			generator.writeKey("excludes");
 			generator.writeStartArray();
 			for (String item0 : this.excludes) {
@@ -149,7 +153,7 @@ public class SourceField implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.includes)) {
+		if (ApiTypeHelper.isDefined(this.includes)) {
 			generator.writeKey("includes");
 			generator.writeStartArray();
 			for (String item0 : this.includes) {
@@ -167,6 +171,7 @@ public class SourceField implements JsonpSerializable {
 	/**
 	 * Builder for {@link SourceField}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SourceField> {
 		@Nullable
 		private Boolean compress;
@@ -209,33 +214,41 @@ public class SourceField implements JsonpSerializable {
 
 		/**
 		 * API name: {@code excludes}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>excludes</code>.
 		 */
-		public final Builder excludes(@Nullable List<String> value) {
-			this.excludes = value;
+		public final Builder excludes(List<String> list) {
+			this.excludes = _listAddAll(this.excludes, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code excludes}
+		 * <p>
+		 * Adds one or more values to <code>excludes</code>.
 		 */
-		public final Builder excludes(String... value) {
-			this.excludes = Arrays.asList(value);
+		public final Builder excludes(String value, String... values) {
+			this.excludes = _listAdd(this.excludes, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code includes}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>includes</code>.
 		 */
-		public final Builder includes(@Nullable List<String> value) {
-			this.includes = value;
+		public final Builder includes(List<String> list) {
+			this.includes = _listAddAll(this.includes, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code includes}
+		 * <p>
+		 * Adds one or more values to <code>includes</code>.
 		 */
-		public final Builder includes(String... value) {
-			this.includes = Arrays.asList(value);
+		public final Builder includes(String value, String... values) {
+			this.includes = _listAdd(this.includes, value, values);
 			return this;
 		}
 

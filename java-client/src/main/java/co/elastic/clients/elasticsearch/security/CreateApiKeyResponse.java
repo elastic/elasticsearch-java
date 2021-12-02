@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.create_api_key.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/create_api_key/SecurityCreateApiKeyResponse.ts#L23-L25">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CreateApiKeyResponse implements JsonpSerializable {
 	private final String apiKey;
@@ -55,17 +62,15 @@ public class CreateApiKeyResponse implements JsonpSerializable {
 
 	private CreateApiKeyResponse(Builder builder) {
 
-		this.apiKey = ModelTypeHelper.requireNonNull(builder.apiKey, this, "apiKey");
+		this.apiKey = ApiTypeHelper.requireNonNull(builder.apiKey, this, "apiKey");
 		this.expiration = builder.expiration;
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
-	public static CreateApiKeyResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CreateApiKeyResponse of(Function<Builder, ObjectBuilder<CreateApiKeyResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -129,6 +134,7 @@ public class CreateApiKeyResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link CreateApiKeyResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CreateApiKeyResponse> {
 		private String apiKey;
 

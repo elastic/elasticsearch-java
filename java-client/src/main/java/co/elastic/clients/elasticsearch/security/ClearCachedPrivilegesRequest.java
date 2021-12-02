@@ -31,17 +31,25 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.clear_cached_privileges.Request
+
+/**
+ * Evicts application privileges from the native application privileges cache.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/clear_cached_privileges/SecurityClearCachedPrivilegesRequest.ts#L23-L32">API
+ *      specification</a>
+ */
 
 public class ClearCachedPrivilegesRequest extends RequestBase {
 	private final String application;
@@ -50,14 +58,12 @@ public class ClearCachedPrivilegesRequest extends RequestBase {
 
 	private ClearCachedPrivilegesRequest(Builder builder) {
 
-		this.application = ModelTypeHelper.requireNonNull(builder.application, this, "application");
+		this.application = ApiTypeHelper.requireNonNull(builder.application, this, "application");
 
 	}
 
-	public static ClearCachedPrivilegesRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ClearCachedPrivilegesRequest of(Function<Builder, ObjectBuilder<ClearCachedPrivilegesRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -74,6 +80,7 @@ public class ClearCachedPrivilegesRequest extends RequestBase {
 	/**
 	 * Builder for {@link ClearCachedPrivilegesRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClearCachedPrivilegesRequest> {
 		private String application;
 

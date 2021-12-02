@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,10 +40,18 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.delete_privileges.Request
+
+/**
+ * Removes application privileges.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/delete_privileges/SecurityDeletePrivilegesRequest.ts#L23-L36">API
+ *      specification</a>
+ */
 
 public class DeletePrivilegesRequest extends RequestBase {
 	private final String application;
@@ -57,16 +65,14 @@ public class DeletePrivilegesRequest extends RequestBase {
 
 	private DeletePrivilegesRequest(Builder builder) {
 
-		this.application = ModelTypeHelper.requireNonNull(builder.application, this, "application");
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.application = ApiTypeHelper.requireNonNull(builder.application, this, "application");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.refresh = builder.refresh;
 
 	}
 
-	public static DeletePrivilegesRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DeletePrivilegesRequest of(Function<Builder, ObjectBuilder<DeletePrivilegesRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -105,6 +111,7 @@ public class DeletePrivilegesRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeletePrivilegesRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeletePrivilegesRequest> {
 		private String application;
 

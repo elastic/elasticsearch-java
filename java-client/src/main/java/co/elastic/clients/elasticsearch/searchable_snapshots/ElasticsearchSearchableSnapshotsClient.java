@@ -33,7 +33,7 @@ import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 /**
@@ -85,11 +85,9 @@ public class ElasticsearchSearchableSnapshotsClient
 	 *      on elastic.co</a>
 	 */
 
-	public final ClearCacheResponse clearCache(Consumer<ClearCacheRequest.Builder> fn)
+	public final ClearCacheResponse clearCache(Function<ClearCacheRequest.Builder, ObjectBuilder<ClearCacheRequest>> fn)
 			throws IOException, ElasticsearchException {
-		ClearCacheRequest.Builder builder = new ClearCacheRequest.Builder();
-		fn.accept(builder);
-		return clearCache(builder.build());
+		return clearCache(fn.apply(new ClearCacheRequest.Builder()).build());
 	}
 
 	/**
@@ -133,10 +131,9 @@ public class ElasticsearchSearchableSnapshotsClient
 	 *      on elastic.co</a>
 	 */
 
-	public final MountResponse mount(Consumer<MountRequest.Builder> fn) throws IOException, ElasticsearchException {
-		MountRequest.Builder builder = new MountRequest.Builder();
-		fn.accept(builder);
-		return mount(builder.build());
+	public final MountResponse mount(Function<MountRequest.Builder, ObjectBuilder<MountRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return mount(fn.apply(new MountRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: searchable_snapshots.stats
@@ -168,11 +165,10 @@ public class ElasticsearchSearchableSnapshotsClient
 	 *      on elastic.co</a>
 	 */
 
-	public final SearchableSnapshotsStatsResponse stats(Consumer<SearchableSnapshotsStatsRequest.Builder> fn)
+	public final SearchableSnapshotsStatsResponse stats(
+			Function<SearchableSnapshotsStatsRequest.Builder, ObjectBuilder<SearchableSnapshotsStatsRequest>> fn)
 			throws IOException, ElasticsearchException {
-		SearchableSnapshotsStatsRequest.Builder builder = new SearchableSnapshotsStatsRequest.Builder();
-		fn.accept(builder);
-		return stats(builder.build());
+		return stats(fn.apply(new SearchableSnapshotsStatsRequest.Builder()).build());
 	}
 
 	/**

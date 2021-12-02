@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest.processor_grok.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/processor_grok/GrokProcessorPatternsResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ProcessorGrokResponse implements JsonpSerializable {
 	private final Map<String, String> patterns;
@@ -48,14 +55,12 @@ public class ProcessorGrokResponse implements JsonpSerializable {
 
 	private ProcessorGrokResponse(Builder builder) {
 
-		this.patterns = ModelTypeHelper.unmodifiableRequired(builder.patterns, this, "patterns");
+		this.patterns = ApiTypeHelper.unmodifiableRequired(builder.patterns, this, "patterns");
 
 	}
 
-	public static ProcessorGrokResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ProcessorGrokResponse of(Function<Builder, ObjectBuilder<ProcessorGrokResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -76,7 +81,7 @@ public class ProcessorGrokResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.patterns)) {
+		if (ApiTypeHelper.isDefined(this.patterns)) {
 			generator.writeKey("patterns");
 			generator.writeStartObject();
 			for (Map.Entry<String, String> item0 : this.patterns.entrySet()) {
@@ -95,14 +100,27 @@ public class ProcessorGrokResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link ProcessorGrokResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ProcessorGrokResponse> {
 		private Map<String, String> patterns;
 
 		/**
 		 * Required - API name: {@code patterns}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>patterns</code>.
 		 */
-		public final Builder patterns(Map<String, String> value) {
-			this.patterns = value;
+		public final Builder patterns(Map<String, String> map) {
+			this.patterns = _mapPutAll(this.patterns, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code patterns}
+		 * <p>
+		 * Adds an entry to <code>patterns</code>.
+		 */
+		public final Builder patterns(String key, String value) {
+			this.patterns = _mapPut(this.patterns, key, value);
 			return this;
 		}
 

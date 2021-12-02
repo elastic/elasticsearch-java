@@ -28,14 +28,21 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: xpack.usage.Ccr
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L289-L292">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Ccr extends Base {
 	private final int autoFollowPatternsCount;
@@ -47,17 +54,15 @@ public class Ccr extends Base {
 	private Ccr(Builder builder) {
 		super(builder);
 
-		this.autoFollowPatternsCount = ModelTypeHelper.requireNonNull(builder.autoFollowPatternsCount, this,
+		this.autoFollowPatternsCount = ApiTypeHelper.requireNonNull(builder.autoFollowPatternsCount, this,
 				"autoFollowPatternsCount");
-		this.followerIndicesCount = ModelTypeHelper.requireNonNull(builder.followerIndicesCount, this,
+		this.followerIndicesCount = ApiTypeHelper.requireNonNull(builder.followerIndicesCount, this,
 				"followerIndicesCount");
 
 	}
 
-	public static Ccr of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Ccr of(Function<Builder, ObjectBuilder<Ccr>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -90,6 +95,7 @@ public class Ccr extends Base {
 	/**
 	 * Builder for {@link Ccr}.
 	 */
+
 	public static class Builder extends Base.AbstractBuilder<Builder> implements ObjectBuilder<Ccr> {
 		private Integer autoFollowPatternsCount;
 

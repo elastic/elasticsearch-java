@@ -36,22 +36,27 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.put_role.Request
+
+/**
+ * Adds and updates roles in the native realm.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/put_role/SecurityPutRoleRequest.ts#L31-L74">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 	private final List<ApplicationPrivileges> applications;
@@ -78,22 +83,20 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 
 	private PutRoleRequest(Builder builder) {
 
-		this.applications = ModelTypeHelper.unmodifiable(builder.applications);
-		this.cluster = ModelTypeHelper.unmodifiable(builder.cluster);
-		this.global = ModelTypeHelper.unmodifiable(builder.global);
-		this.indices = ModelTypeHelper.unmodifiable(builder.indices);
-		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.applications = ApiTypeHelper.unmodifiable(builder.applications);
+		this.cluster = ApiTypeHelper.unmodifiable(builder.cluster);
+		this.global = ApiTypeHelper.unmodifiable(builder.global);
+		this.indices = ApiTypeHelper.unmodifiable(builder.indices);
+		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.refresh = builder.refresh;
-		this.runAs = ModelTypeHelper.unmodifiable(builder.runAs);
+		this.runAs = ApiTypeHelper.unmodifiable(builder.runAs);
 		this.transientMetadata = builder.transientMetadata;
 
 	}
 
-	public static PutRoleRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PutRoleRequest of(Function<Builder, ObjectBuilder<PutRoleRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -202,7 +205,7 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.applications)) {
+		if (ApiTypeHelper.isDefined(this.applications)) {
 			generator.writeKey("applications");
 			generator.writeStartArray();
 			for (ApplicationPrivileges item0 : this.applications) {
@@ -212,7 +215,7 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.cluster)) {
+		if (ApiTypeHelper.isDefined(this.cluster)) {
 			generator.writeKey("cluster");
 			generator.writeStartArray();
 			for (ClusterPrivilege item0 : this.cluster) {
@@ -221,7 +224,7 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.global)) {
+		if (ApiTypeHelper.isDefined(this.global)) {
 			generator.writeKey("global");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.global.entrySet()) {
@@ -232,7 +235,7 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.indices)) {
+		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartArray();
 			for (IndicesPrivileges item0 : this.indices) {
@@ -242,7 +245,7 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.metadata)) {
+		if (ApiTypeHelper.isDefined(this.metadata)) {
 			generator.writeKey("metadata");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
@@ -253,7 +256,7 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.runAs)) {
+		if (ApiTypeHelper.isDefined(this.runAs)) {
 			generator.writeKey("run_as");
 			generator.writeStartArray();
 			for (String item0 : this.runAs) {
@@ -276,6 +279,7 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link PutRoleRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutRoleRequest> {
 		@Nullable
 		private List<ApplicationPrivileges> applications;
@@ -307,9 +311,11 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		 * A list of application privilege entries.
 		 * <p>
 		 * API name: {@code applications}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>applications</code>.
 		 */
-		public final Builder applications(@Nullable List<ApplicationPrivileges> value) {
-			this.applications = value;
+		public final Builder applications(List<ApplicationPrivileges> list) {
+			this.applications = _listAddAll(this.applications, list);
 			return this;
 		}
 
@@ -317,9 +323,11 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		 * A list of application privilege entries.
 		 * <p>
 		 * API name: {@code applications}
+		 * <p>
+		 * Adds one or more values to <code>applications</code>.
 		 */
-		public final Builder applications(ApplicationPrivileges... value) {
-			this.applications = Arrays.asList(value);
+		public final Builder applications(ApplicationPrivileges value, ApplicationPrivileges... values) {
+			this.applications = _listAdd(this.applications, value, values);
 			return this;
 		}
 
@@ -327,10 +335,12 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		 * A list of application privilege entries.
 		 * <p>
 		 * API name: {@code applications}
+		 * <p>
+		 * Adds a value to <code>applications</code> using a builder lambda.
 		 */
 		public final Builder applications(
-				Function<ListBuilder<ApplicationPrivileges, ApplicationPrivileges.Builder>, ObjectBuilder<List<ApplicationPrivileges>>> fn) {
-			return applications(fn.apply(new ListBuilder<>(ApplicationPrivileges.Builder::new)).build());
+				Function<ApplicationPrivileges.Builder, ObjectBuilder<ApplicationPrivileges>> fn) {
+			return applications(fn.apply(new ApplicationPrivileges.Builder()).build());
 		}
 
 		/**
@@ -338,9 +348,11 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		 * actions for users with this role.
 		 * <p>
 		 * API name: {@code cluster}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>cluster</code>.
 		 */
-		public final Builder cluster(@Nullable List<ClusterPrivilege> value) {
-			this.cluster = value;
+		public final Builder cluster(List<ClusterPrivilege> list) {
+			this.cluster = _listAddAll(this.cluster, list);
 			return this;
 		}
 
@@ -349,9 +361,11 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		 * actions for users with this role.
 		 * <p>
 		 * API name: {@code cluster}
+		 * <p>
+		 * Adds one or more values to <code>cluster</code>.
 		 */
-		public final Builder cluster(ClusterPrivilege... value) {
-			this.cluster = Arrays.asList(value);
+		public final Builder cluster(ClusterPrivilege value, ClusterPrivilege... values) {
+			this.cluster = _listAdd(this.cluster, value, values);
 			return this;
 		}
 
@@ -361,9 +375,25 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		 * limited to the management of application privileges.
 		 * <p>
 		 * API name: {@code global}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>global</code>.
 		 */
-		public final Builder global(@Nullable Map<String, JsonData> value) {
-			this.global = value;
+		public final Builder global(Map<String, JsonData> map) {
+			this.global = _mapPutAll(this.global, map);
+			return this;
+		}
+
+		/**
+		 * An object defining global privileges. A global privilege is a form of cluster
+		 * privilege that is request-aware. Support for global privileges is currently
+		 * limited to the management of application privileges.
+		 * <p>
+		 * API name: {@code global}
+		 * <p>
+		 * Adds an entry to <code>global</code>.
+		 */
+		public final Builder global(String key, JsonData value) {
+			this.global = _mapPut(this.global, key, value);
 			return this;
 		}
 
@@ -371,9 +401,11 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		 * A list of indices permissions entries.
 		 * <p>
 		 * API name: {@code indices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 */
-		public final Builder indices(@Nullable List<IndicesPrivileges> value) {
-			this.indices = value;
+		public final Builder indices(List<IndicesPrivileges> list) {
+			this.indices = _listAddAll(this.indices, list);
 			return this;
 		}
 
@@ -381,9 +413,11 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		 * A list of indices permissions entries.
 		 * <p>
 		 * API name: {@code indices}
+		 * <p>
+		 * Adds one or more values to <code>indices</code>.
 		 */
-		public final Builder indices(IndicesPrivileges... value) {
-			this.indices = Arrays.asList(value);
+		public final Builder indices(IndicesPrivileges value, IndicesPrivileges... values) {
+			this.indices = _listAdd(this.indices, value, values);
 			return this;
 		}
 
@@ -391,10 +425,11 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		 * A list of indices permissions entries.
 		 * <p>
 		 * API name: {@code indices}
+		 * <p>
+		 * Adds a value to <code>indices</code> using a builder lambda.
 		 */
-		public final Builder indices(
-				Function<ListBuilder<IndicesPrivileges, IndicesPrivileges.Builder>, ObjectBuilder<List<IndicesPrivileges>>> fn) {
-			return indices(fn.apply(new ListBuilder<>(IndicesPrivileges.Builder::new)).build());
+		public final Builder indices(Function<IndicesPrivileges.Builder, ObjectBuilder<IndicesPrivileges>> fn) {
+			return indices(fn.apply(new IndicesPrivileges.Builder()).build());
 		}
 
 		/**
@@ -402,9 +437,24 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		 * underscore (<code>_</code>) are reserved for system use.
 		 * <p>
 		 * API name: {@code metadata}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>metadata</code>.
 		 */
-		public final Builder metadata(@Nullable Map<String, JsonData> value) {
-			this.metadata = value;
+		public final Builder metadata(Map<String, JsonData> map) {
+			this.metadata = _mapPutAll(this.metadata, map);
+			return this;
+		}
+
+		/**
+		 * Optional metadata. Within the metadata object, keys that begin with an
+		 * underscore (<code>_</code>) are reserved for system use.
+		 * <p>
+		 * API name: {@code metadata}
+		 * <p>
+		 * Adds an entry to <code>metadata</code>.
+		 */
+		public final Builder metadata(String key, JsonData value) {
+			this.metadata = _mapPut(this.metadata, key, value);
 			return this;
 		}
 
@@ -435,9 +485,11 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		 * A list of users that the owners of this role can impersonate.
 		 * <p>
 		 * API name: {@code run_as}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>runAs</code>.
 		 */
-		public final Builder runAs(@Nullable List<String> value) {
-			this.runAs = value;
+		public final Builder runAs(List<String> list) {
+			this.runAs = _listAddAll(this.runAs, list);
 			return this;
 		}
 
@@ -445,9 +497,11 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		 * A list of users that the owners of this role can impersonate.
 		 * <p>
 		 * API name: {@code run_as}
+		 * <p>
+		 * Adds one or more values to <code>runAs</code>.
 		 */
-		public final Builder runAs(String... value) {
-			this.runAs = Arrays.asList(value);
+		public final Builder runAs(String value, String... values) {
+			this.runAs = _listAdd(this.runAs, value, values);
 			return this;
 		}
 
@@ -476,10 +530,9 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code transient_metadata}
 		 */
-		public final Builder transientMetadata(Consumer<TransientMetadata.Builder> fn) {
-			TransientMetadata.Builder builder = new TransientMetadata.Builder();
-			fn.accept(builder);
-			return this.transientMetadata(builder.build());
+		public final Builder transientMetadata(
+				Function<TransientMetadata.Builder, ObjectBuilder<TransientMetadata>> fn) {
+			return this.transientMetadata(fn.apply(new TransientMetadata.Builder()).build());
 		}
 
 		/**

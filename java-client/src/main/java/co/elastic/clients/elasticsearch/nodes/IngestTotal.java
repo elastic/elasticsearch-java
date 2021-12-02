@@ -29,20 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.IngestTotal
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/_types/Stats.ts#L54-L60">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IngestTotal implements JsonpSerializable {
 	private final long count;
@@ -59,18 +63,16 @@ public class IngestTotal implements JsonpSerializable {
 
 	private IngestTotal(Builder builder) {
 
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
-		this.current = ModelTypeHelper.requireNonNull(builder.current, this, "current");
-		this.failed = ModelTypeHelper.requireNonNull(builder.failed, this, "failed");
-		this.processors = ModelTypeHelper.unmodifiableRequired(builder.processors, this, "processors");
-		this.timeInMillis = ModelTypeHelper.requireNonNull(builder.timeInMillis, this, "timeInMillis");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.current = ApiTypeHelper.requireNonNull(builder.current, this, "current");
+		this.failed = ApiTypeHelper.requireNonNull(builder.failed, this, "failed");
+		this.processors = ApiTypeHelper.unmodifiableRequired(builder.processors, this, "processors");
+		this.timeInMillis = ApiTypeHelper.requireNonNull(builder.timeInMillis, this, "timeInMillis");
 
 	}
 
-	public static IngestTotal of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IngestTotal of(Function<Builder, ObjectBuilder<IngestTotal>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -128,7 +130,7 @@ public class IngestTotal implements JsonpSerializable {
 		generator.writeKey("failed");
 		generator.write(this.failed);
 
-		if (ModelTypeHelper.isDefined(this.processors)) {
+		if (ApiTypeHelper.isDefined(this.processors)) {
 			generator.writeKey("processors");
 			generator.writeStartArray();
 			for (KeyedProcessor item0 : this.processors) {
@@ -148,6 +150,7 @@ public class IngestTotal implements JsonpSerializable {
 	/**
 	 * Builder for {@link IngestTotal}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IngestTotal> {
 		private Long count;
 
@@ -185,26 +188,31 @@ public class IngestTotal implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code processors}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>processors</code>.
 		 */
-		public final Builder processors(List<KeyedProcessor> value) {
-			this.processors = value;
+		public final Builder processors(List<KeyedProcessor> list) {
+			this.processors = _listAddAll(this.processors, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code processors}
+		 * <p>
+		 * Adds one or more values to <code>processors</code>.
 		 */
-		public final Builder processors(KeyedProcessor... value) {
-			this.processors = Arrays.asList(value);
+		public final Builder processors(KeyedProcessor value, KeyedProcessor... values) {
+			this.processors = _listAdd(this.processors, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code processors}
+		 * <p>
+		 * Adds a value to <code>processors</code> using a builder lambda.
 		 */
-		public final Builder processors(
-				Function<ListBuilder<KeyedProcessor, KeyedProcessor.Builder>, ObjectBuilder<List<KeyedProcessor>>> fn) {
-			return processors(fn.apply(new ListBuilder<>(KeyedProcessor.Builder::new)).build());
+		public final Builder processors(Function<KeyedProcessor.Builder, ObjectBuilder<KeyedProcessor>> fn) {
+			return processors(fn.apply(new KeyedProcessor.Builder()).build());
 		}
 
 		/**

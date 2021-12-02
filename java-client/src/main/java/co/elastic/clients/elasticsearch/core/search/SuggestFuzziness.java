@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -37,10 +37,17 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.SuggestFuzziness
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/suggester.ts#L106-L112">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SuggestFuzziness implements JsonpSerializable {
 	private final String fuzziness;
@@ -57,18 +64,16 @@ public class SuggestFuzziness implements JsonpSerializable {
 
 	private SuggestFuzziness(Builder builder) {
 
-		this.fuzziness = ModelTypeHelper.requireNonNull(builder.fuzziness, this, "fuzziness");
-		this.minLength = ModelTypeHelper.requireNonNull(builder.minLength, this, "minLength");
-		this.prefixLength = ModelTypeHelper.requireNonNull(builder.prefixLength, this, "prefixLength");
-		this.transpositions = ModelTypeHelper.requireNonNull(builder.transpositions, this, "transpositions");
-		this.unicodeAware = ModelTypeHelper.requireNonNull(builder.unicodeAware, this, "unicodeAware");
+		this.fuzziness = ApiTypeHelper.requireNonNull(builder.fuzziness, this, "fuzziness");
+		this.minLength = ApiTypeHelper.requireNonNull(builder.minLength, this, "minLength");
+		this.prefixLength = ApiTypeHelper.requireNonNull(builder.prefixLength, this, "prefixLength");
+		this.transpositions = ApiTypeHelper.requireNonNull(builder.transpositions, this, "transpositions");
+		this.unicodeAware = ApiTypeHelper.requireNonNull(builder.unicodeAware, this, "unicodeAware");
 
 	}
 
-	public static SuggestFuzziness of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SuggestFuzziness of(Function<Builder, ObjectBuilder<SuggestFuzziness>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -139,6 +144,7 @@ public class SuggestFuzziness implements JsonpSerializable {
 	/**
 	 * Builder for {@link SuggestFuzziness}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SuggestFuzziness> {
 		private String fuzziness;
 

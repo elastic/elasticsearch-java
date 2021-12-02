@@ -34,10 +34,17 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.count.CountRecord
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/count/types.ts#L22-L38">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CountRecord implements JsonpSerializable {
 	@Nullable
@@ -59,10 +66,8 @@ public class CountRecord implements JsonpSerializable {
 
 	}
 
-	public static CountRecord of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CountRecord of(Function<Builder, ObjectBuilder<CountRecord>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -129,6 +134,7 @@ public class CountRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link CountRecord}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CountRecord> {
 		@Nullable
 		private String epoch;

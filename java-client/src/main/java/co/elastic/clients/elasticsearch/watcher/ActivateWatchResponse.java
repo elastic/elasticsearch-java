@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.activate_watch.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/activate_watch/WatcherActivateWatchResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ActivateWatchResponse implements JsonpSerializable {
 	private final ActivationStatus status;
@@ -46,14 +53,12 @@ public class ActivateWatchResponse implements JsonpSerializable {
 
 	private ActivateWatchResponse(Builder builder) {
 
-		this.status = ModelTypeHelper.requireNonNull(builder.status, this, "status");
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 
 	}
 
-	public static ActivateWatchResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ActivateWatchResponse of(Function<Builder, ObjectBuilder<ActivateWatchResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -84,6 +89,7 @@ public class ActivateWatchResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link ActivateWatchResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ActivateWatchResponse> {
 		private ActivationStatus status;
 
@@ -98,10 +104,8 @@ public class ActivateWatchResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code status}
 		 */
-		public final Builder status(Consumer<ActivationStatus.Builder> fn) {
-			ActivationStatus.Builder builder = new ActivationStatus.Builder();
-			fn.accept(builder);
-			return this.status(builder.build());
+		public final Builder status(Function<ActivationStatus.Builder, ObjectBuilder<ActivationStatus>> fn) {
+			return this.status(fn.apply(new ActivationStatus.Builder()).build());
 		}
 
 		/**

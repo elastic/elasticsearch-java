@@ -28,15 +28,22 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.JoinProcessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/_types/Processors.ts#L251-L255">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class JoinProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
@@ -51,16 +58,14 @@ public class JoinProcessor extends ProcessorBase implements ProcessorVariant {
 	private JoinProcessor(Builder builder) {
 		super(builder);
 
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
-		this.separator = ModelTypeHelper.requireNonNull(builder.separator, this, "separator");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.separator = ApiTypeHelper.requireNonNull(builder.separator, this, "separator");
 		this.targetField = builder.targetField;
 
 	}
 
-	public static JoinProcessor of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static JoinProcessor of(Function<Builder, ObjectBuilder<JoinProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -115,6 +120,7 @@ public class JoinProcessor extends ProcessorBase implements ProcessorVariant {
 	/**
 	 * Builder for {@link JoinProcessor}.
 	 */
+
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder> implements ObjectBuilder<JoinProcessor> {
 		private String field;
 

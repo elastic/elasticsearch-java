@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.aggregations.ChiSquareHeuristic
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/bucket.ts#L285-L288">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ChiSquareHeuristic implements JsonpSerializable {
 	private final boolean backgroundIsSuperset;
@@ -48,16 +55,14 @@ public class ChiSquareHeuristic implements JsonpSerializable {
 
 	private ChiSquareHeuristic(Builder builder) {
 
-		this.backgroundIsSuperset = ModelTypeHelper.requireNonNull(builder.backgroundIsSuperset, this,
+		this.backgroundIsSuperset = ApiTypeHelper.requireNonNull(builder.backgroundIsSuperset, this,
 				"backgroundIsSuperset");
-		this.includeNegatives = ModelTypeHelper.requireNonNull(builder.includeNegatives, this, "includeNegatives");
+		this.includeNegatives = ApiTypeHelper.requireNonNull(builder.includeNegatives, this, "includeNegatives");
 
 	}
 
-	public static ChiSquareHeuristic of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ChiSquareHeuristic of(Function<Builder, ObjectBuilder<ChiSquareHeuristic>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -98,6 +103,7 @@ public class ChiSquareHeuristic implements JsonpSerializable {
 	/**
 	 * Builder for {@link ChiSquareHeuristic}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ChiSquareHeuristic> {
 		private Boolean backgroundIsSuperset;
 

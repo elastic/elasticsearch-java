@@ -32,23 +32,30 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: _global.get_source.Request
+
+/**
+ * Returns the source of a document.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/get_source/SourceRequest.ts#L31-L86">API
+ *      specification</a>
+ */
 
 public class GetSourceRequest {
 	@Nullable
@@ -87,24 +94,22 @@ public class GetSourceRequest {
 	private GetSourceRequest(Builder builder) {
 
 		this.source = builder.source;
-		this.sourceExcludes = ModelTypeHelper.unmodifiable(builder.sourceExcludes);
-		this.sourceIncludes = ModelTypeHelper.unmodifiable(builder.sourceIncludes);
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.sourceExcludes = ApiTypeHelper.unmodifiable(builder.sourceExcludes);
+		this.sourceIncludes = ApiTypeHelper.unmodifiable(builder.sourceIncludes);
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.preference = builder.preference;
 		this.realtime = builder.realtime;
 		this.refresh = builder.refresh;
 		this.routing = builder.routing;
-		this.storedFields = ModelTypeHelper.unmodifiable(builder.storedFields);
+		this.storedFields = ApiTypeHelper.unmodifiable(builder.storedFields);
 		this.version = builder.version;
 		this.versionType = builder.versionType;
 
 	}
 
-	public static GetSourceRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetSourceRequest of(Function<Builder, ObjectBuilder<GetSourceRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -229,6 +234,7 @@ public class GetSourceRequest {
 	/**
 	 * Builder for {@link GetSourceRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetSourceRequest> {
 		@Nullable
 		private SourceConfigParam source;
@@ -281,19 +287,19 @@ public class GetSourceRequest {
 		 * <p>
 		 * API name: {@code _source}
 		 */
-		public final Builder source(Consumer<SourceConfigParam.Builder> fn) {
-			SourceConfigParam.Builder builder = new SourceConfigParam.Builder();
-			fn.accept(builder);
-			return this.source(builder.build());
+		public final Builder source(Function<SourceConfigParam.Builder, ObjectBuilder<SourceConfigParam>> fn) {
+			return this.source(fn.apply(new SourceConfigParam.Builder()).build());
 		}
 
 		/**
 		 * A comma-separated list of source fields to exclude in the response.
 		 * <p>
 		 * API name: {@code _source_excludes}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>sourceExcludes</code>.
 		 */
-		public final Builder sourceExcludes(@Nullable List<String> value) {
-			this.sourceExcludes = value;
+		public final Builder sourceExcludes(List<String> list) {
+			this.sourceExcludes = _listAddAll(this.sourceExcludes, list);
 			return this;
 		}
 
@@ -301,9 +307,11 @@ public class GetSourceRequest {
 		 * A comma-separated list of source fields to exclude in the response.
 		 * <p>
 		 * API name: {@code _source_excludes}
+		 * <p>
+		 * Adds one or more values to <code>sourceExcludes</code>.
 		 */
-		public final Builder sourceExcludes(String... value) {
-			this.sourceExcludes = Arrays.asList(value);
+		public final Builder sourceExcludes(String value, String... values) {
+			this.sourceExcludes = _listAdd(this.sourceExcludes, value, values);
 			return this;
 		}
 
@@ -311,9 +319,11 @@ public class GetSourceRequest {
 		 * A comma-separated list of source fields to include in the response.
 		 * <p>
 		 * API name: {@code _source_includes}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>sourceIncludes</code>.
 		 */
-		public final Builder sourceIncludes(@Nullable List<String> value) {
-			this.sourceIncludes = value;
+		public final Builder sourceIncludes(List<String> list) {
+			this.sourceIncludes = _listAddAll(this.sourceIncludes, list);
 			return this;
 		}
 
@@ -321,9 +331,11 @@ public class GetSourceRequest {
 		 * A comma-separated list of source fields to include in the response.
 		 * <p>
 		 * API name: {@code _source_includes}
+		 * <p>
+		 * Adds one or more values to <code>sourceIncludes</code>.
 		 */
-		public final Builder sourceIncludes(String... value) {
-			this.sourceIncludes = Arrays.asList(value);
+		public final Builder sourceIncludes(String value, String... values) {
+			this.sourceIncludes = _listAdd(this.sourceIncludes, value, values);
 			return this;
 		}
 
@@ -391,17 +403,21 @@ public class GetSourceRequest {
 
 		/**
 		 * API name: {@code stored_fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>storedFields</code>.
 		 */
-		public final Builder storedFields(@Nullable List<String> value) {
-			this.storedFields = value;
+		public final Builder storedFields(List<String> list) {
+			this.storedFields = _listAddAll(this.storedFields, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code stored_fields}
+		 * <p>
+		 * Adds one or more values to <code>storedFields</code>.
 		 */
-		public final Builder storedFields(String... value) {
-			this.storedFields = Arrays.asList(value);
+		public final Builder storedFields(String value, String... values) {
+			this.storedFields = _listAdd(this.storedFields, value, values);
 			return this;
 		}
 
@@ -487,7 +503,7 @@ public class GetSourceRequest {
 				if (request.versionType != null) {
 					params.put("version_type", request.versionType.jsonValue());
 				}
-				if (ModelTypeHelper.isDefined(request.storedFields)) {
+				if (ApiTypeHelper.isDefined(request.storedFields)) {
 					params.put("stored_fields",
 							request.storedFields.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
@@ -500,11 +516,11 @@ public class GetSourceRequest {
 				if (request.source != null) {
 					params.put("_source", request.source._toJsonString());
 				}
-				if (ModelTypeHelper.isDefined(request.sourceExcludes)) {
+				if (ApiTypeHelper.isDefined(request.sourceExcludes)) {
 					params.put("_source_excludes",
 							request.sourceExcludes.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
-				if (ModelTypeHelper.isDefined(request.sourceIncludes)) {
+				if (ApiTypeHelper.isDefined(request.sourceIncludes)) {
 					params.put("_source_includes",
 							request.sourceIncludes.stream().map(v -> v).collect(Collectors.joining(",")));
 				}

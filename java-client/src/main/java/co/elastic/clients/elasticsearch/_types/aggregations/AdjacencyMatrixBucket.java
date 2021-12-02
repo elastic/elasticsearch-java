@@ -30,9 +30,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.aggregations.AdjacencyMatrixBucket
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L542-L542">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AdjacencyMatrixBucket extends MultiBucketBase {
 	// ---------------------------------------------------------------------------------------------
@@ -42,10 +49,8 @@ public class AdjacencyMatrixBucket extends MultiBucketBase {
 
 	}
 
-	public static AdjacencyMatrixBucket of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static AdjacencyMatrixBucket of(Function<Builder, ObjectBuilder<AdjacencyMatrixBucket>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +58,7 @@ public class AdjacencyMatrixBucket extends MultiBucketBase {
 	/**
 	 * Builder for {@link AdjacencyMatrixBucket}.
 	 */
+
 	public static class Builder extends MultiBucketBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<AdjacencyMatrixBucket> {

@@ -36,10 +36,17 @@ import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.TextProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/core.ts#L256-L272">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TextProperty extends CorePropertyBase implements PropertyVariant {
 	@Nullable
@@ -106,10 +113,8 @@ public class TextProperty extends CorePropertyBase implements PropertyVariant {
 
 	}
 
-	public static TextProperty of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TextProperty of(Function<Builder, ObjectBuilder<TextProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -312,6 +317,7 @@ public class TextProperty extends CorePropertyBase implements PropertyVariant {
 	/**
 	 * Builder for {@link TextProperty}.
 	 */
+
 	public static class Builder extends CorePropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<TextProperty> {
@@ -400,10 +406,9 @@ public class TextProperty extends CorePropertyBase implements PropertyVariant {
 		/**
 		 * API name: {@code fielddata_frequency_filter}
 		 */
-		public final Builder fielddataFrequencyFilter(Consumer<FielddataFrequencyFilter.Builder> fn) {
-			FielddataFrequencyFilter.Builder builder = new FielddataFrequencyFilter.Builder();
-			fn.accept(builder);
-			return this.fielddataFrequencyFilter(builder.build());
+		public final Builder fielddataFrequencyFilter(
+				Function<FielddataFrequencyFilter.Builder, ObjectBuilder<FielddataFrequencyFilter>> fn) {
+			return this.fielddataFrequencyFilter(fn.apply(new FielddataFrequencyFilter.Builder()).build());
 		}
 
 		/**
@@ -441,10 +446,8 @@ public class TextProperty extends CorePropertyBase implements PropertyVariant {
 		/**
 		 * API name: {@code index_prefixes}
 		 */
-		public final Builder indexPrefixes(Consumer<TextIndexPrefixes.Builder> fn) {
-			TextIndexPrefixes.Builder builder = new TextIndexPrefixes.Builder();
-			fn.accept(builder);
-			return this.indexPrefixes(builder.build());
+		public final Builder indexPrefixes(Function<TextIndexPrefixes.Builder, ObjectBuilder<TextIndexPrefixes>> fn) {
+			return this.indexPrefixes(fn.apply(new TextIndexPrefixes.Builder()).build());
 		}
 
 		/**

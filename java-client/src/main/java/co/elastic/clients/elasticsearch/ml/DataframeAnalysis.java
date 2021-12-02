@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
@@ -38,14 +38,23 @@ import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisContainer
-// union type: Container[]
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/DataframeAnalytics.ts#L83-L100">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeAnalysis implements TaggedUnion<DataframeAnalysis.Kind, Object>, JsonpSerializable {
 
+	/**
+	 * {@link DataframeAnalysis} variant kinds.
+	 */
 	/**
 	 * {@link DataframeAnalysis} variant kinds.
 	 */
@@ -86,22 +95,20 @@ public class DataframeAnalysis implements TaggedUnion<DataframeAnalysis.Kind, Ob
 
 	public DataframeAnalysis(DataframeAnalysisVariant value) {
 
-		this._kind = ModelTypeHelper.requireNonNull(value._dataframeAnalysisKind(), this, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(value._dataframeAnalysisKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
 	private DataframeAnalysis(Builder builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static DataframeAnalysis of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DataframeAnalysis of(Function<Builder, ObjectBuilder<DataframeAnalysis>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -181,10 +188,9 @@ public class DataframeAnalysis implements TaggedUnion<DataframeAnalysis.Kind, Ob
 			return this;
 		}
 
-		public ObjectBuilder<DataframeAnalysis> classification(Consumer<DataframeAnalysisClassification.Builder> fn) {
-			DataframeAnalysisClassification.Builder builder = new DataframeAnalysisClassification.Builder();
-			fn.accept(builder);
-			return this.classification(builder.build());
+		public ObjectBuilder<DataframeAnalysis> classification(
+				Function<DataframeAnalysisClassification.Builder, ObjectBuilder<DataframeAnalysisClassification>> fn) {
+			return this.classification(fn.apply(new DataframeAnalysisClassification.Builder()).build());
 		}
 
 		public ObjectBuilder<DataframeAnalysis> outlierDetection(DataframeAnalysisOutlierDetection v) {
@@ -194,10 +200,8 @@ public class DataframeAnalysis implements TaggedUnion<DataframeAnalysis.Kind, Ob
 		}
 
 		public ObjectBuilder<DataframeAnalysis> outlierDetection(
-				Consumer<DataframeAnalysisOutlierDetection.Builder> fn) {
-			DataframeAnalysisOutlierDetection.Builder builder = new DataframeAnalysisOutlierDetection.Builder();
-			fn.accept(builder);
-			return this.outlierDetection(builder.build());
+				Function<DataframeAnalysisOutlierDetection.Builder, ObjectBuilder<DataframeAnalysisOutlierDetection>> fn) {
+			return this.outlierDetection(fn.apply(new DataframeAnalysisOutlierDetection.Builder()).build());
 		}
 
 		public ObjectBuilder<DataframeAnalysis> regression(DataframeAnalysisRegression v) {
@@ -206,10 +210,9 @@ public class DataframeAnalysis implements TaggedUnion<DataframeAnalysis.Kind, Ob
 			return this;
 		}
 
-		public ObjectBuilder<DataframeAnalysis> regression(Consumer<DataframeAnalysisRegression.Builder> fn) {
-			DataframeAnalysisRegression.Builder builder = new DataframeAnalysisRegression.Builder();
-			fn.accept(builder);
-			return this.regression(builder.build());
+		public ObjectBuilder<DataframeAnalysis> regression(
+				Function<DataframeAnalysisRegression.Builder, ObjectBuilder<DataframeAnalysisRegression>> fn) {
+			return this.regression(fn.apply(new DataframeAnalysisRegression.Builder()).build());
 		}
 
 		public DataframeAnalysis build() {

@@ -34,10 +34,17 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.IpRangeAggregationRange
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/bucket.ts#L226-L230">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IpRangeAggregationRange implements JsonpSerializable {
 	@Nullable
@@ -59,10 +66,8 @@ public class IpRangeAggregationRange implements JsonpSerializable {
 
 	}
 
-	public static IpRangeAggregationRange of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IpRangeAggregationRange of(Function<Builder, ObjectBuilder<IpRangeAggregationRange>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -123,6 +128,7 @@ public class IpRangeAggregationRange implements JsonpSerializable {
 	/**
 	 * Builder for {@link IpRangeAggregationRange}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IpRangeAggregationRange> {
 		@Nullable
 		private String from;

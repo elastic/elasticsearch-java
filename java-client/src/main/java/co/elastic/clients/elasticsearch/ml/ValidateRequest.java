@@ -40,10 +40,18 @@ import java.lang.Long;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.validate.Request
+
+/**
+ * Validates an anomaly detection job.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/validate/MlValidateJobRequest.ts#L27-L44">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ValidateRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -85,10 +93,8 @@ public class ValidateRequest extends RequestBase implements JsonpSerializable {
 
 	}
 
-	public static ValidateRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ValidateRequest of(Function<Builder, ObjectBuilder<ValidateRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -214,6 +220,7 @@ public class ValidateRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link ValidateRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ValidateRequest> {
 		@Nullable
 		private AnalysisConfig analysisConfig;
@@ -250,10 +257,8 @@ public class ValidateRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code analysis_config}
 		 */
-		public final Builder analysisConfig(Consumer<AnalysisConfig.Builder> fn) {
-			AnalysisConfig.Builder builder = new AnalysisConfig.Builder();
-			fn.accept(builder);
-			return this.analysisConfig(builder.build());
+		public final Builder analysisConfig(Function<AnalysisConfig.Builder, ObjectBuilder<AnalysisConfig>> fn) {
+			return this.analysisConfig(fn.apply(new AnalysisConfig.Builder()).build());
 		}
 
 		/**
@@ -267,10 +272,8 @@ public class ValidateRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code analysis_limits}
 		 */
-		public final Builder analysisLimits(Consumer<AnalysisLimits.Builder> fn) {
-			AnalysisLimits.Builder builder = new AnalysisLimits.Builder();
-			fn.accept(builder);
-			return this.analysisLimits(builder.build());
+		public final Builder analysisLimits(Function<AnalysisLimits.Builder, ObjectBuilder<AnalysisLimits>> fn) {
+			return this.analysisLimits(fn.apply(new AnalysisLimits.Builder()).build());
 		}
 
 		/**
@@ -284,10 +287,8 @@ public class ValidateRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code data_description}
 		 */
-		public final Builder dataDescription(Consumer<DataDescription.Builder> fn) {
-			DataDescription.Builder builder = new DataDescription.Builder();
-			fn.accept(builder);
-			return this.dataDescription(builder.build());
+		public final Builder dataDescription(Function<DataDescription.Builder, ObjectBuilder<DataDescription>> fn) {
+			return this.dataDescription(fn.apply(new DataDescription.Builder()).build());
 		}
 
 		/**
@@ -317,10 +318,8 @@ public class ValidateRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code model_plot}
 		 */
-		public final Builder modelPlot(Consumer<ModelPlotConfig.Builder> fn) {
-			ModelPlotConfig.Builder builder = new ModelPlotConfig.Builder();
-			fn.accept(builder);
-			return this.modelPlot(builder.build());
+		public final Builder modelPlot(Function<ModelPlotConfig.Builder, ObjectBuilder<ModelPlotConfig>> fn) {
+			return this.modelPlot(fn.apply(new ModelPlotConfig.Builder()).build());
 		}
 
 		/**

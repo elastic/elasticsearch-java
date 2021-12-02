@@ -35,21 +35,35 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.post_data.Request
 
+/**
+ * Sends data to an anomaly detection job for analysis.
+ * <p>
+ * IMPORTANT: For each job, data can be accepted from only a single connection
+ * at a time. It is not currently possible to post data to multiple jobs using
+ * wildcards or a comma-separated list.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/post_data/MlPostJobDataRequest.ts#L24-L69">API
+ *      specification</a>
+ * @deprecated 7.11.0 Posting data directly to anomaly detection jobs is
+ *             deprecated, in a future major version a datafeed will be
+ *             required.
+ */
+@Deprecated
 public class PostDataRequest<TData> extends RequestBase implements JsonpSerializable {
 	private final String jobId;
 
@@ -68,18 +82,17 @@ public class PostDataRequest<TData> extends RequestBase implements JsonpSerializ
 
 	private PostDataRequest(Builder<TData> builder) {
 
-		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.resetEnd = builder.resetEnd;
 		this.resetStart = builder.resetStart;
-		this.data = ModelTypeHelper.unmodifiableRequired(builder.data, this, "data");
+		this.data = ApiTypeHelper.unmodifiableRequired(builder.data, this, "data");
 		this.tDataSerializer = builder.tDataSerializer;
 
 	}
 
-	public static <TData> PostDataRequest<TData> of(Consumer<Builder<TData>> fn) {
-		Builder<TData> builder = new Builder<>();
-		fn.accept(builder);
-		return builder.build();
+	public static <TData> PostDataRequest<TData> of(
+			Function<Builder<TData>, ObjectBuilder<PostDataRequest<TData>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
@@ -139,6 +152,7 @@ public class PostDataRequest<TData> extends RequestBase implements JsonpSerializ
 	/**
 	 * Builder for {@link PostDataRequest}.
 	 */
+	@Deprecated
 	public static class Builder<TData> extends ObjectBuilderBase implements ObjectBuilder<PostDataRequest<TData>> {
 		private String jobId;
 
@@ -188,9 +202,11 @@ public class PostDataRequest<TData> extends RequestBase implements JsonpSerializ
 		 * Required - Request body.
 		 * <p>
 		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>data</code>.
 		 */
-		public final Builder<TData> data(List<TData> value) {
-			this.data = value;
+		public final Builder<TData> data(List<TData> list) {
+			this.data = _listAddAll(this.data, list);
 			return this;
 		}
 
@@ -198,9 +214,11 @@ public class PostDataRequest<TData> extends RequestBase implements JsonpSerializ
 		 * Required - Request body.
 		 * <p>
 		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds one or more values to <code>data</code>.
 		 */
-		public final Builder<TData> data(TData... value) {
-			this.data = Arrays.asList(value);
+		public final Builder<TData> data(TData value, TData... values) {
+			this.data = _listAdd(this.data, value, values);
 			return this;
 		}
 

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +39,13 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: async_search._types.AsyncSearchResponseBase
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/async_search/_types/AsyncSearchResponseBase.ts#L24-L30">API
+ *      specification</a>
+ */
 
 public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 	@Nullable
@@ -57,11 +64,11 @@ public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 	protected AsyncSearchResponseBase(AbstractBuilder<?> builder) {
 
 		this.id = builder.id;
-		this.isPartial = ModelTypeHelper.requireNonNull(builder.isPartial, this, "isPartial");
-		this.isRunning = ModelTypeHelper.requireNonNull(builder.isRunning, this, "isRunning");
-		this.expirationTimeInMillis = ModelTypeHelper.requireNonNull(builder.expirationTimeInMillis, this,
+		this.isPartial = ApiTypeHelper.requireNonNull(builder.isPartial, this, "isPartial");
+		this.isRunning = ApiTypeHelper.requireNonNull(builder.isRunning, this, "isRunning");
+		this.expirationTimeInMillis = ApiTypeHelper.requireNonNull(builder.expirationTimeInMillis, this,
 				"expirationTimeInMillis");
-		this.startTimeInMillis = ModelTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
+		this.startTimeInMillis = ApiTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
 
 	}
 

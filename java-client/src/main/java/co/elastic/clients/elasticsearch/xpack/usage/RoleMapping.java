@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: xpack.usage.RoleMapping
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L225-L228">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RoleMapping implements JsonpSerializable {
 	private final int enabled;
@@ -48,15 +55,13 @@ public class RoleMapping implements JsonpSerializable {
 
 	private RoleMapping(Builder builder) {
 
-		this.enabled = ModelTypeHelper.requireNonNull(builder.enabled, this, "enabled");
-		this.size = ModelTypeHelper.requireNonNull(builder.size, this, "size");
+		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
+		this.size = ApiTypeHelper.requireNonNull(builder.size, this, "size");
 
 	}
 
-	public static RoleMapping of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RoleMapping of(Function<Builder, ObjectBuilder<RoleMapping>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -97,6 +102,7 @@ public class RoleMapping implements JsonpSerializable {
 	/**
 	 * Builder for {@link RoleMapping}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RoleMapping> {
 		private Integer enabled;
 

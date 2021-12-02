@@ -29,14 +29,21 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ScriptedMetricAggregate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L586-L589">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ScriptedMetricAggregate extends AggregateBase implements AggregateVariant {
 	private final JsonData value;
@@ -46,14 +53,12 @@ public class ScriptedMetricAggregate extends AggregateBase implements AggregateV
 	private ScriptedMetricAggregate(Builder builder) {
 		super(builder);
 
-		this.value = ModelTypeHelper.requireNonNull(builder.value, this, "value");
+		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
 
 	}
 
-	public static ScriptedMetricAggregate of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ScriptedMetricAggregate of(Function<Builder, ObjectBuilder<ScriptedMetricAggregate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -84,6 +89,7 @@ public class ScriptedMetricAggregate extends AggregateBase implements AggregateV
 	/**
 	 * Builder for {@link ScriptedMetricAggregate}.
 	 */
+
 	public static class Builder extends AggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ScriptedMetricAggregate> {

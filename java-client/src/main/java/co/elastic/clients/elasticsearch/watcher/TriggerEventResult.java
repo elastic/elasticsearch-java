@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.TriggerEventResult
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Trigger.ts#L39-L43">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TriggerEventResult implements JsonpSerializable {
 	private final TriggerEvent manual;
@@ -51,16 +58,14 @@ public class TriggerEventResult implements JsonpSerializable {
 
 	private TriggerEventResult(Builder builder) {
 
-		this.manual = ModelTypeHelper.requireNonNull(builder.manual, this, "manual");
-		this.triggeredTime = ModelTypeHelper.requireNonNull(builder.triggeredTime, this, "triggeredTime");
-		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
+		this.manual = ApiTypeHelper.requireNonNull(builder.manual, this, "manual");
+		this.triggeredTime = ApiTypeHelper.requireNonNull(builder.triggeredTime, this, "triggeredTime");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 
-	public static TriggerEventResult of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TriggerEventResult of(Function<Builder, ObjectBuilder<TriggerEventResult>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -111,6 +116,7 @@ public class TriggerEventResult implements JsonpSerializable {
 	/**
 	 * Builder for {@link TriggerEventResult}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TriggerEventResult> {
 		private TriggerEvent manual;
 
@@ -129,10 +135,8 @@ public class TriggerEventResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code manual}
 		 */
-		public final Builder manual(Consumer<TriggerEvent.Builder> fn) {
-			TriggerEvent.Builder builder = new TriggerEvent.Builder();
-			fn.accept(builder);
-			return this.manual(builder.build());
+		public final Builder manual(Function<TriggerEvent.Builder, ObjectBuilder<TriggerEvent>> fn) {
+			return this.manual(fn.apply(new TriggerEvent.Builder()).build());
 		}
 
 		/**

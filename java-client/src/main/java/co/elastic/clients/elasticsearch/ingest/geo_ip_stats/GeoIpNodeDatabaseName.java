@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest.geo_ip_stats.GeoIpNodeDatabaseName
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/geo_ip_stats/types.ts#L44-L47">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GeoIpNodeDatabaseName implements JsonpSerializable {
 	private final String name;
@@ -47,14 +54,12 @@ public class GeoIpNodeDatabaseName implements JsonpSerializable {
 
 	private GeoIpNodeDatabaseName(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
-	public static GeoIpNodeDatabaseName of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GeoIpNodeDatabaseName of(Function<Builder, ObjectBuilder<GeoIpNodeDatabaseName>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -87,6 +92,7 @@ public class GeoIpNodeDatabaseName implements JsonpSerializable {
 	/**
 	 * Builder for {@link GeoIpNodeDatabaseName}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GeoIpNodeDatabaseName> {
 		private String name;
 

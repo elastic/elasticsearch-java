@@ -28,14 +28,21 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.HoltWintersMovingAverageAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/pipeline.ts#L149-L152">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class HoltWintersMovingAverageAggregation extends MovingAverageAggregationBase
 		implements
@@ -47,14 +54,13 @@ public class HoltWintersMovingAverageAggregation extends MovingAverageAggregatio
 	private HoltWintersMovingAverageAggregation(Builder builder) {
 		super(builder);
 
-		this.settings = ModelTypeHelper.requireNonNull(builder.settings, this, "settings");
+		this.settings = ApiTypeHelper.requireNonNull(builder.settings, this, "settings");
 
 	}
 
-	public static HoltWintersMovingAverageAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static HoltWintersMovingAverageAggregation of(
+			Function<Builder, ObjectBuilder<HoltWintersMovingAverageAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -86,6 +92,7 @@ public class HoltWintersMovingAverageAggregation extends MovingAverageAggregatio
 	/**
 	 * Builder for {@link HoltWintersMovingAverageAggregation}.
 	 */
+
 	public static class Builder extends MovingAverageAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<HoltWintersMovingAverageAggregation> {
@@ -102,10 +109,9 @@ public class HoltWintersMovingAverageAggregation extends MovingAverageAggregatio
 		/**
 		 * Required - API name: {@code settings}
 		 */
-		public final Builder settings(Consumer<HoltWintersModelSettings.Builder> fn) {
-			HoltWintersModelSettings.Builder builder = new HoltWintersModelSettings.Builder();
-			fn.accept(builder);
-			return this.settings(builder.build());
+		public final Builder settings(
+				Function<HoltWintersModelSettings.Builder, ObjectBuilder<HoltWintersModelSettings>> fn) {
+			return this.settings(fn.apply(new HoltWintersModelSettings.Builder()).build());
 		}
 
 		@Override

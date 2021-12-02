@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -37,10 +37,17 @@ import java.lang.Double;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.TargetMeanEncodingPreprocessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/put_trained_model/types.ts#L49-L54">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TargetMeanEncodingPreprocessor implements PreprocessorVariant, JsonpSerializable {
 	private final String field;
@@ -55,17 +62,16 @@ public class TargetMeanEncodingPreprocessor implements PreprocessorVariant, Json
 
 	private TargetMeanEncodingPreprocessor(Builder builder) {
 
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
-		this.featureName = ModelTypeHelper.requireNonNull(builder.featureName, this, "featureName");
-		this.targetMap = ModelTypeHelper.unmodifiableRequired(builder.targetMap, this, "targetMap");
-		this.defaultValue = ModelTypeHelper.requireNonNull(builder.defaultValue, this, "defaultValue");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.featureName = ApiTypeHelper.requireNonNull(builder.featureName, this, "featureName");
+		this.targetMap = ApiTypeHelper.unmodifiableRequired(builder.targetMap, this, "targetMap");
+		this.defaultValue = ApiTypeHelper.requireNonNull(builder.defaultValue, this, "defaultValue");
 
 	}
 
-	public static TargetMeanEncodingPreprocessor of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TargetMeanEncodingPreprocessor of(
+			Function<Builder, ObjectBuilder<TargetMeanEncodingPreprocessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -121,7 +127,7 @@ public class TargetMeanEncodingPreprocessor implements PreprocessorVariant, Json
 		generator.writeKey("feature_name");
 		generator.write(this.featureName);
 
-		if (ModelTypeHelper.isDefined(this.targetMap)) {
+		if (ApiTypeHelper.isDefined(this.targetMap)) {
 			generator.writeKey("target_map");
 			generator.writeStartObject();
 			for (Map.Entry<String, Double> item0 : this.targetMap.entrySet()) {
@@ -142,6 +148,7 @@ public class TargetMeanEncodingPreprocessor implements PreprocessorVariant, Json
 	/**
 	 * Builder for {@link TargetMeanEncodingPreprocessor}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TargetMeanEncodingPreprocessor> {
 		private String field;
 
@@ -169,9 +176,21 @@ public class TargetMeanEncodingPreprocessor implements PreprocessorVariant, Json
 
 		/**
 		 * Required - API name: {@code target_map}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>targetMap</code>.
 		 */
-		public final Builder targetMap(Map<String, Double> value) {
-			this.targetMap = value;
+		public final Builder targetMap(Map<String, Double> map) {
+			this.targetMap = _mapPutAll(this.targetMap, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code target_map}
+		 * <p>
+		 * Adds an entry to <code>targetMap</code>.
+		 */
+		public final Builder targetMap(String key, Double value) {
+			this.targetMap = _mapPut(this.targetMap, key, value);
 			return this;
 		}
 

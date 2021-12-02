@@ -34,7 +34,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,10 +42,18 @@ import java.lang.String;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.render_search_template.Request
+
+/**
+ * Allows to use the Mustache language to pre-render a search definition.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/render_search_template/RenderSearchTemplateRequest.ts#L25-L39">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RenderSearchTemplateRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -65,15 +73,13 @@ public class RenderSearchTemplateRequest extends RequestBase implements JsonpSer
 
 		this.file = builder.file;
 		this.id = builder.id;
-		this.params = ModelTypeHelper.unmodifiable(builder.params);
+		this.params = ApiTypeHelper.unmodifiable(builder.params);
 		this.source = builder.source;
 
 	}
 
-	public static RenderSearchTemplateRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RenderSearchTemplateRequest of(Function<Builder, ObjectBuilder<RenderSearchTemplateRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -125,7 +131,7 @@ public class RenderSearchTemplateRequest extends RequestBase implements JsonpSer
 			generator.write(this.file);
 
 		}
-		if (ModelTypeHelper.isDefined(this.params)) {
+		if (ApiTypeHelper.isDefined(this.params)) {
 			generator.writeKey("params");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.params.entrySet()) {
@@ -149,6 +155,7 @@ public class RenderSearchTemplateRequest extends RequestBase implements JsonpSer
 	/**
 	 * Builder for {@link RenderSearchTemplateRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RenderSearchTemplateRequest> {
 		@Nullable
 		private String file;
@@ -182,9 +189,21 @@ public class RenderSearchTemplateRequest extends RequestBase implements JsonpSer
 
 		/**
 		 * API name: {@code params}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>params</code>.
 		 */
-		public final Builder params(@Nullable Map<String, JsonData> value) {
-			this.params = value;
+		public final Builder params(Map<String, JsonData> map) {
+			this.params = _mapPutAll(this.params, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code params}
+		 * <p>
+		 * Adds an entry to <code>params</code>.
+		 */
+		public final Builder params(String key, JsonData value) {
+			this.params = _mapPut(this.params, key, value);
 			return this;
 		}
 

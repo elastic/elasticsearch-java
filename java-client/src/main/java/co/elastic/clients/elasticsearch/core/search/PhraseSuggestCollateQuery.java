@@ -34,10 +34,17 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.PhraseSuggestCollateQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/suggester.ts#L155-L158">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PhraseSuggestCollateQuery implements JsonpSerializable {
 	@Nullable
@@ -55,10 +62,8 @@ public class PhraseSuggestCollateQuery implements JsonpSerializable {
 
 	}
 
-	public static PhraseSuggestCollateQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PhraseSuggestCollateQuery of(Function<Builder, ObjectBuilder<PhraseSuggestCollateQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -106,6 +111,7 @@ public class PhraseSuggestCollateQuery implements JsonpSerializable {
 	/**
 	 * Builder for {@link PhraseSuggestCollateQuery}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PhraseSuggestCollateQuery> {
 		@Nullable
 		private String id;

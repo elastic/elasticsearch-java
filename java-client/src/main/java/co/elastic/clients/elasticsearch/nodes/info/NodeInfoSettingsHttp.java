@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoSettingsHttp
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L174-L179">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeInfoSettingsHttp implements JsonpSerializable {
 	private final NodeInfoSettingsHttpType type;
@@ -57,17 +64,15 @@ public class NodeInfoSettingsHttp implements JsonpSerializable {
 
 	private NodeInfoSettingsHttp(Builder builder) {
 
-		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 		this.typeDefault = builder.typeDefault;
 		this.compression = builder.compression;
 		this.port = builder.port;
 
 	}
 
-	public static NodeInfoSettingsHttp of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodeInfoSettingsHttp of(Function<Builder, ObjectBuilder<NodeInfoSettingsHttp>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -138,6 +143,7 @@ public class NodeInfoSettingsHttp implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoSettingsHttp}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoSettingsHttp> {
 		private NodeInfoSettingsHttpType type;
 
@@ -161,10 +167,9 @@ public class NodeInfoSettingsHttp implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code type}
 		 */
-		public final Builder type(Consumer<NodeInfoSettingsHttpType.Builder> fn) {
-			NodeInfoSettingsHttpType.Builder builder = new NodeInfoSettingsHttpType.Builder();
-			fn.accept(builder);
-			return this.type(builder.build());
+		public final Builder type(
+				Function<NodeInfoSettingsHttpType.Builder, ObjectBuilder<NodeInfoSettingsHttpType>> fn) {
+			return this.type(fn.apply(new NodeInfoSettingsHttpType.Builder()).build());
 		}
 
 		/**

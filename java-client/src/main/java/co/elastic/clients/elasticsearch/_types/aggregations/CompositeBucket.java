@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.CompositeBucket
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L580-L582">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CompositeBucket extends MultiBucketBase {
 	private final Map<String, JsonData> key;
@@ -48,14 +55,12 @@ public class CompositeBucket extends MultiBucketBase {
 	private CompositeBucket(Builder builder) {
 		super(builder);
 
-		this.key = ModelTypeHelper.unmodifiableRequired(builder.key, this, "key");
+		this.key = ApiTypeHelper.unmodifiableRequired(builder.key, this, "key");
 
 	}
 
-	public static CompositeBucket of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CompositeBucket of(Function<Builder, ObjectBuilder<CompositeBucket>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -68,7 +73,7 @@ public class CompositeBucket extends MultiBucketBase {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.key)) {
+		if (ApiTypeHelper.isDefined(this.key)) {
 			generator.writeKey("key");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.key.entrySet()) {
@@ -87,6 +92,7 @@ public class CompositeBucket extends MultiBucketBase {
 	/**
 	 * Builder for {@link CompositeBucket}.
 	 */
+
 	public static class Builder extends MultiBucketBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<CompositeBucket> {
@@ -94,9 +100,21 @@ public class CompositeBucket extends MultiBucketBase {
 
 		/**
 		 * Required - API name: {@code key}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>key</code>.
 		 */
-		public final Builder key(Map<String, JsonData> value) {
-			this.key = value;
+		public final Builder key(Map<String, JsonData> map) {
+			this.key = _mapPutAll(this.key, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code key}
+		 * <p>
+		 * Adds an entry to <code>key</code>.
+		 */
+		public final Builder key(String key, JsonData value) {
+			this.key = _mapPut(this.key, key, value);
 			return this;
 		}
 

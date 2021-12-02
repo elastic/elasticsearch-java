@@ -35,21 +35,28 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.restore.Request
+
+/**
+ * Restores a snapshot.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/snapshot/restore/SnapshotRestoreRequest.ts#L25-L50">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RestoreRequest extends RequestBase implements JsonpSerializable {
 	private final List<String> ignoreIndexSettings;
@@ -91,26 +98,24 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 
 	private RestoreRequest(Builder builder) {
 
-		this.ignoreIndexSettings = ModelTypeHelper.unmodifiable(builder.ignoreIndexSettings);
+		this.ignoreIndexSettings = ApiTypeHelper.unmodifiable(builder.ignoreIndexSettings);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.includeAliases = builder.includeAliases;
 		this.includeGlobalState = builder.includeGlobalState;
 		this.indexSettings = builder.indexSettings;
-		this.indices = ModelTypeHelper.unmodifiable(builder.indices);
+		this.indices = ApiTypeHelper.unmodifiable(builder.indices);
 		this.masterTimeout = builder.masterTimeout;
 		this.partial = builder.partial;
 		this.renamePattern = builder.renamePattern;
 		this.renameReplacement = builder.renameReplacement;
-		this.repository = ModelTypeHelper.requireNonNull(builder.repository, this, "repository");
-		this.snapshot = ModelTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
+		this.repository = ApiTypeHelper.requireNonNull(builder.repository, this, "repository");
+		this.snapshot = ApiTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
 		this.waitForCompletion = builder.waitForCompletion;
 
 	}
 
-	public static RestoreRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RestoreRequest of(Function<Builder, ObjectBuilder<RestoreRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -232,7 +237,7 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.ignoreIndexSettings)) {
+		if (ApiTypeHelper.isDefined(this.ignoreIndexSettings)) {
 			generator.writeKey("ignore_index_settings");
 			generator.writeStartArray();
 			for (String item0 : this.ignoreIndexSettings) {
@@ -262,7 +267,7 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 			this.indexSettings.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.indices)) {
+		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartArray();
 			for (String item0 : this.indices) {
@@ -295,6 +300,7 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link RestoreRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RestoreRequest> {
 		@Nullable
 		private List<String> ignoreIndexSettings;
@@ -335,17 +341,21 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 
 		/**
 		 * API name: {@code ignore_index_settings}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>ignoreIndexSettings</code>.
 		 */
-		public final Builder ignoreIndexSettings(@Nullable List<String> value) {
-			this.ignoreIndexSettings = value;
+		public final Builder ignoreIndexSettings(List<String> list) {
+			this.ignoreIndexSettings = _listAddAll(this.ignoreIndexSettings, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code ignore_index_settings}
+		 * <p>
+		 * Adds one or more values to <code>ignoreIndexSettings</code>.
 		 */
-		public final Builder ignoreIndexSettings(String... value) {
-			this.ignoreIndexSettings = Arrays.asList(value);
+		public final Builder ignoreIndexSettings(String value, String... values) {
+			this.ignoreIndexSettings = _listAdd(this.ignoreIndexSettings, value, values);
 			return this;
 		}
 
@@ -384,25 +394,28 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code index_settings}
 		 */
-		public final Builder indexSettings(Consumer<PutIndicesSettingsRequest.Builder> fn) {
-			PutIndicesSettingsRequest.Builder builder = new PutIndicesSettingsRequest.Builder();
-			fn.accept(builder);
-			return this.indexSettings(builder.build());
+		public final Builder indexSettings(
+				Function<PutIndicesSettingsRequest.Builder, ObjectBuilder<PutIndicesSettingsRequest>> fn) {
+			return this.indexSettings(fn.apply(new PutIndicesSettingsRequest.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code indices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 */
-		public final Builder indices(@Nullable List<String> value) {
-			this.indices = value;
+		public final Builder indices(List<String> list) {
+			this.indices = _listAddAll(this.indices, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code indices}
+		 * <p>
+		 * Adds one or more values to <code>indices</code>.
 		 */
-		public final Builder indices(String... value) {
-			this.indices = Arrays.asList(value);
+		public final Builder indices(String value, String... values) {
+			this.indices = _listAdd(this.indices, value, values);
 			return this;
 		}
 
@@ -421,10 +434,8 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.masterTimeout(builder.build());
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

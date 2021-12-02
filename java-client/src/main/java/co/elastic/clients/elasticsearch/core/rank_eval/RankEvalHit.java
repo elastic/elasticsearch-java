@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.RankEvalHit
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/rank_eval/types.ts#L141-L146">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RankEvalHit implements JsonpSerializable {
 	private final String id;
@@ -55,17 +62,15 @@ public class RankEvalHit implements JsonpSerializable {
 
 	private RankEvalHit(Builder builder) {
 
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.type = builder.type;
-		this.score = ModelTypeHelper.requireNonNull(builder.score, this, "score");
+		this.score = ApiTypeHelper.requireNonNull(builder.score, this, "score");
 
 	}
 
-	public static RankEvalHit of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RankEvalHit of(Function<Builder, ObjectBuilder<RankEvalHit>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -129,6 +134,7 @@ public class RankEvalHit implements JsonpSerializable {
 	/**
 	 * Builder for {@link RankEvalHit}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RankEvalHit> {
 		private String id;
 

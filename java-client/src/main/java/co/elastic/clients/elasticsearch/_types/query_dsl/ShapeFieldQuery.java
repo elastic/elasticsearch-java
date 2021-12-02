@@ -35,10 +35,17 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.ShapeFieldQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/specialized.ts#L185-L189">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ShapeFieldQuery implements JsonpSerializable {
 	@Nullable
@@ -60,10 +67,8 @@ public class ShapeFieldQuery implements JsonpSerializable {
 
 	}
 
-	public static ShapeFieldQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ShapeFieldQuery of(Function<Builder, ObjectBuilder<ShapeFieldQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -123,6 +128,7 @@ public class ShapeFieldQuery implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShapeFieldQuery}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShapeFieldQuery> {
 		@Nullable
 		private FieldLookup indexedShape;
@@ -144,10 +150,8 @@ public class ShapeFieldQuery implements JsonpSerializable {
 		/**
 		 * API name: {@code indexed_shape}
 		 */
-		public final Builder indexedShape(Consumer<FieldLookup.Builder> fn) {
-			FieldLookup.Builder builder = new FieldLookup.Builder();
-			fn.accept(builder);
-			return this.indexedShape(builder.build());
+		public final Builder indexedShape(Function<FieldLookup.Builder, ObjectBuilder<FieldLookup>> fn) {
+			return this.indexedShape(fn.apply(new FieldLookup.Builder()).build());
 		}
 
 		/**

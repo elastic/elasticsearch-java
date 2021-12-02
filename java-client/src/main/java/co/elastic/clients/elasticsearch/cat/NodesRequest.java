@@ -38,10 +38,18 @@ import java.lang.Boolean;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.nodes.Request
+
+/**
+ * Returns basic statistics about performance of cluster nodes.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/nodes/CatNodesRequest.ts#L23-L33">API
+ *      specification</a>
+ */
 
 public class NodesRequest extends CatRequestBase {
 	@Nullable
@@ -59,10 +67,8 @@ public class NodesRequest extends CatRequestBase {
 
 	}
 
-	public static NodesRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodesRequest of(Function<Builder, ObjectBuilder<NodesRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -90,6 +96,7 @@ public class NodesRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link NodesRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodesRequest> {
 		@Nullable
 		private Bytes bytes;

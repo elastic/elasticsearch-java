@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.JobBlocked
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/Job.ts#L163-L166">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class JobBlocked implements JsonpSerializable {
 	private final JobBlockedReason reason;
@@ -50,15 +57,13 @@ public class JobBlocked implements JsonpSerializable {
 
 	private JobBlocked(Builder builder) {
 
-		this.reason = ModelTypeHelper.requireNonNull(builder.reason, this, "reason");
+		this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
 		this.taskId = builder.taskId;
 
 	}
 
-	public static JobBlocked of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static JobBlocked of(Function<Builder, ObjectBuilder<JobBlocked>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -102,6 +107,7 @@ public class JobBlocked implements JsonpSerializable {
 	/**
 	 * Builder for {@link JobBlocked}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<JobBlocked> {
 		private JobBlockedReason reason;
 

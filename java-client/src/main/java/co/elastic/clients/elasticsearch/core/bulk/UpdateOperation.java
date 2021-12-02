@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.NdJsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -38,10 +38,17 @@ import java.lang.Integer;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.bulk.UpdateOperation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/bulk/types.ts#L80-L83">API
+ *      specification</a>
+ */
 
 public class UpdateOperation<TDocument> extends BulkOperationBase implements NdJsonpSerializable, BulkOperationVariant {
 	private final TDocument document;
@@ -59,7 +66,7 @@ public class UpdateOperation<TDocument> extends BulkOperationBase implements NdJ
 
 	private UpdateOperation(Builder<TDocument> builder) {
 		super(builder);
-		this.document = ModelTypeHelper.requireNonNull(builder.document, this, "document");
+		this.document = ApiTypeHelper.requireNonNull(builder.document, this, "document");
 
 		this.requireAlias = builder.requireAlias;
 		this.retryOnConflict = builder.retryOnConflict;
@@ -67,10 +74,9 @@ public class UpdateOperation<TDocument> extends BulkOperationBase implements NdJ
 
 	}
 
-	public static <TDocument> UpdateOperation<TDocument> of(Consumer<Builder<TDocument>> fn) {
-		Builder<TDocument> builder = new Builder<>();
-		fn.accept(builder);
-		return builder.build();
+	public static <TDocument> UpdateOperation<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<UpdateOperation<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
@@ -130,6 +136,7 @@ public class UpdateOperation<TDocument> extends BulkOperationBase implements NdJ
 	/**
 	 * Builder for {@link UpdateOperation}.
 	 */
+
 	public static class Builder<TDocument> extends BulkOperationBase.AbstractBuilder<Builder<TDocument>>
 			implements
 				ObjectBuilder<UpdateOperation<TDocument>> {

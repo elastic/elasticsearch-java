@@ -29,20 +29,26 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.FingerprintAnalyzer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/analyzers.ts#L37-L45">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	@Nullable
@@ -64,18 +70,16 @@ public class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	private FingerprintAnalyzer(Builder builder) {
 
 		this.version = builder.version;
-		this.maxOutputSize = ModelTypeHelper.requireNonNull(builder.maxOutputSize, this, "maxOutputSize");
-		this.preserveOriginal = ModelTypeHelper.requireNonNull(builder.preserveOriginal, this, "preserveOriginal");
-		this.separator = ModelTypeHelper.requireNonNull(builder.separator, this, "separator");
-		this.stopwords = ModelTypeHelper.unmodifiable(builder.stopwords);
+		this.maxOutputSize = ApiTypeHelper.requireNonNull(builder.maxOutputSize, this, "maxOutputSize");
+		this.preserveOriginal = ApiTypeHelper.requireNonNull(builder.preserveOriginal, this, "preserveOriginal");
+		this.separator = ApiTypeHelper.requireNonNull(builder.separator, this, "separator");
+		this.stopwords = ApiTypeHelper.unmodifiable(builder.stopwords);
 		this.stopwordsPath = builder.stopwordsPath;
 
 	}
 
-	public static FingerprintAnalyzer of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static FingerprintAnalyzer of(Function<Builder, ObjectBuilder<FingerprintAnalyzer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -157,7 +161,7 @@ public class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		generator.writeKey("separator");
 		generator.write(this.separator);
 
-		if (ModelTypeHelper.isDefined(this.stopwords)) {
+		if (ApiTypeHelper.isDefined(this.stopwords)) {
 			generator.writeKey("stopwords");
 			generator.writeStartArray();
 			for (String item0 : this.stopwords) {
@@ -180,6 +184,7 @@ public class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	/**
 	 * Builder for {@link FingerprintAnalyzer}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FingerprintAnalyzer> {
 		@Nullable
 		private String version;
@@ -230,17 +235,21 @@ public class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
 		/**
 		 * API name: {@code stopwords}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>stopwords</code>.
 		 */
-		public final Builder stopwords(@Nullable List<String> value) {
-			this.stopwords = value;
+		public final Builder stopwords(List<String> list) {
+			this.stopwords = _listAddAll(this.stopwords, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code stopwords}
+		 * <p>
+		 * Adds one or more values to <code>stopwords</code>.
 		 */
-		public final Builder stopwords(String... value) {
-			this.stopwords = Arrays.asList(value);
+		public final Builder stopwords(String value, String... values) {
+			this.stopwords = _listAdd(this.stopwords, value, values);
 			return this;
 		}
 

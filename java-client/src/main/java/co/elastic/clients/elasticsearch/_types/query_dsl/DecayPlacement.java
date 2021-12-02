@@ -35,10 +35,17 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.DecayPlacement
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/compound.ts#L84-L89">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DecayPlacement implements JsonpSerializable {
 	@Nullable
@@ -64,10 +71,8 @@ public class DecayPlacement implements JsonpSerializable {
 
 	}
 
-	public static DecayPlacement of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DecayPlacement of(Function<Builder, ObjectBuilder<DecayPlacement>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -141,6 +146,7 @@ public class DecayPlacement implements JsonpSerializable {
 	/**
 	 * Builder for {@link DecayPlacement}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DecayPlacement> {
 		@Nullable
 		private Double decay;

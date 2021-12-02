@@ -35,22 +35,29 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: indices.put_alias.Request
+
+/**
+ * Creates or updates an alias.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/put_alias/IndicesPutAliasRequest.ts#L25-L46">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -83,21 +90,19 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 	private PutAliasRequest(Builder builder) {
 
 		this.filter = builder.filter;
-		this.index = ModelTypeHelper.unmodifiableRequired(builder.index, this, "index");
+		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
 		this.indexRouting = builder.indexRouting;
 		this.isWriteIndex = builder.isWriteIndex;
 		this.masterTimeout = builder.masterTimeout;
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.routing = builder.routing;
 		this.searchRouting = builder.searchRouting;
 		this.timeout = builder.timeout;
 
 	}
 
-	public static PutAliasRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PutAliasRequest of(Function<Builder, ObjectBuilder<PutAliasRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -224,6 +229,7 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link PutAliasRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutAliasRequest> {
 		@Nullable
 		private Query filter;
@@ -261,10 +267,8 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code filter}
 		 */
-		public final Builder filter(Consumer<Query.Builder> fn) {
-			Query.Builder builder = new Query.Builder();
-			fn.accept(builder);
-			return this.filter(builder.build());
+		public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.filter(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
@@ -273,9 +277,11 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 		 * indices.
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 */
-		public final Builder index(List<String> value) {
-			this.index = value;
+		public final Builder index(List<String> list) {
+			this.index = _listAddAll(this.index, list);
 			return this;
 		}
 
@@ -285,9 +291,11 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 		 * indices.
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds one or more values to <code>index</code>.
 		 */
-		public final Builder index(String... value) {
-			this.index = Arrays.asList(value);
+		public final Builder index(String value, String... values) {
+			this.index = _listAdd(this.index, value, values);
 			return this;
 		}
 
@@ -322,10 +330,8 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.masterTimeout(builder.build());
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -369,10 +375,8 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.timeout(builder.build());
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

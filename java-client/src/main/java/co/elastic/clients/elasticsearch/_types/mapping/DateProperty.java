@@ -36,10 +36,17 @@ import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.DateProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/core.ts#L103-L113">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DateProperty extends DocValuesPropertyBase implements PropertyVariant {
 	@Nullable
@@ -82,10 +89,8 @@ public class DateProperty extends DocValuesPropertyBase implements PropertyVaria
 
 	}
 
-	public static DateProperty of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DateProperty of(Function<Builder, ObjectBuilder<DateProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -212,6 +217,7 @@ public class DateProperty extends DocValuesPropertyBase implements PropertyVaria
 	/**
 	 * Builder for {@link DateProperty}.
 	 */
+
 	public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DateProperty> {
@@ -258,10 +264,8 @@ public class DateProperty extends DocValuesPropertyBase implements PropertyVaria
 		/**
 		 * API name: {@code fielddata}
 		 */
-		public final Builder fielddata(Consumer<NumericFielddata.Builder> fn) {
-			NumericFielddata.Builder builder = new NumericFielddata.Builder();
-			fn.accept(builder);
-			return this.fielddata(builder.build());
+		public final Builder fielddata(Function<NumericFielddata.Builder, ObjectBuilder<NumericFielddata>> fn) {
+			return this.fielddata(fn.apply(new NumericFielddata.Builder()).build());
 		}
 
 		/**

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.UnionDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
@@ -38,11 +38,17 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.Tokenizer
-// union type: Union[]
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/tokenizers.ts#L119-L121">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Tokenizer implements TaggedUnion<Tokenizer.Kind, Object>, JsonpSerializable {
 
@@ -71,15 +77,13 @@ public class Tokenizer implements TaggedUnion<Tokenizer.Kind, Object>, JsonpSeri
 
 	private Tokenizer(Builder builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static Tokenizer of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Tokenizer of(Function<Builder, ObjectBuilder<Tokenizer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -141,10 +145,9 @@ public class Tokenizer implements TaggedUnion<Tokenizer.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<Tokenizer> definition(Consumer<TokenizerDefinition.Builder> fn) {
-			TokenizerDefinition.Builder builder = new TokenizerDefinition.Builder();
-			fn.accept(builder);
-			return this.definition(builder.build());
+		public ObjectBuilder<Tokenizer> definition(
+				Function<TokenizerDefinition.Builder, ObjectBuilder<TokenizerDefinition>> fn) {
+			return this.definition(fn.apply(new TokenizerDefinition.Builder()).build());
 		}
 
 		public ObjectBuilder<Tokenizer> name(String v) {

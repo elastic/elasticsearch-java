@@ -31,9 +31,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.analysis.KStemTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L237-L239">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class KStemTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -43,10 +50,8 @@ public class KStemTokenFilter extends TokenFilterBase implements TokenFilterDefi
 
 	}
 
-	public static KStemTokenFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static KStemTokenFilter of(Function<Builder, ObjectBuilder<KStemTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -69,6 +74,7 @@ public class KStemTokenFilter extends TokenFilterBase implements TokenFilterDefi
 	/**
 	 * Builder for {@link KStemTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<KStemTokenFilter> {

@@ -40,10 +40,18 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.ml_trained_models.Request
+
+/**
+ * Gets configuration and usage information about inference trained models.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/ml_trained_models/CatTrainedModelsRequest.ts#L24-L39">API
+ *      specification</a>
+ */
 
 public class MlTrainedModelsRequest extends CatRequestBase {
 	@Nullable
@@ -73,10 +81,8 @@ public class MlTrainedModelsRequest extends CatRequestBase {
 
 	}
 
-	public static MlTrainedModelsRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static MlTrainedModelsRequest of(Function<Builder, ObjectBuilder<MlTrainedModelsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -136,6 +142,7 @@ public class MlTrainedModelsRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link MlTrainedModelsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MlTrainedModelsRequest> {
 		@Nullable
 		private Boolean allowNoMatch;

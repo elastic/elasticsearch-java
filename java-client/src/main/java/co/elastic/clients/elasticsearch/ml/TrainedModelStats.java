@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,10 +38,17 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.TrainedModelStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/TrainedModel.ts#L28-L40">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TrainedModelStats implements JsonpSerializable {
 	private final String modelId;
@@ -57,17 +64,15 @@ public class TrainedModelStats implements JsonpSerializable {
 
 	private TrainedModelStats(Builder builder) {
 
-		this.modelId = ModelTypeHelper.requireNonNull(builder.modelId, this, "modelId");
-		this.pipelineCount = ModelTypeHelper.requireNonNull(builder.pipelineCount, this, "pipelineCount");
+		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
+		this.pipelineCount = ApiTypeHelper.requireNonNull(builder.pipelineCount, this, "pipelineCount");
 		this.inferenceStats = builder.inferenceStats;
-		this.ingest = ModelTypeHelper.unmodifiable(builder.ingest);
+		this.ingest = ApiTypeHelper.unmodifiable(builder.ingest);
 
 	}
 
-	public static TrainedModelStats of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TrainedModelStats of(Function<Builder, ObjectBuilder<TrainedModelStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -131,7 +136,7 @@ public class TrainedModelStats implements JsonpSerializable {
 			this.inferenceStats.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.ingest)) {
+		if (ApiTypeHelper.isDefined(this.ingest)) {
 			generator.writeKey("ingest");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.ingest.entrySet()) {
@@ -150,6 +155,7 @@ public class TrainedModelStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link TrainedModelStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TrainedModelStats> {
 		private String modelId;
 
@@ -196,10 +202,9 @@ public class TrainedModelStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code inference_stats}
 		 */
-		public final Builder inferenceStats(Consumer<TrainedModelInferenceStats.Builder> fn) {
-			TrainedModelInferenceStats.Builder builder = new TrainedModelInferenceStats.Builder();
-			fn.accept(builder);
-			return this.inferenceStats(builder.build());
+		public final Builder inferenceStats(
+				Function<TrainedModelInferenceStats.Builder, ObjectBuilder<TrainedModelInferenceStats>> fn) {
+			return this.inferenceStats(fn.apply(new TrainedModelInferenceStats.Builder()).build());
 		}
 
 		/**
@@ -208,9 +213,25 @@ public class TrainedModelStats implements JsonpSerializable {
 		 * section in Nodes stats.
 		 * <p>
 		 * API name: {@code ingest}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>ingest</code>.
 		 */
-		public final Builder ingest(@Nullable Map<String, JsonData> value) {
-			this.ingest = value;
+		public final Builder ingest(Map<String, JsonData> map) {
+			this.ingest = _mapPutAll(this.ingest, map);
+			return this;
+		}
+
+		/**
+		 * A collection of ingest stats for the model across all nodes. The values are
+		 * summations of the individual node statistics. The format matches the ingest
+		 * section in Nodes stats.
+		 * <p>
+		 * API name: {@code ingest}
+		 * <p>
+		 * Adds an entry to <code>ingest</code>.
+		 */
+		public final Builder ingest(String key, JsonData value) {
+			this.ingest = _mapPut(this.ingest, key, value);
 			return this;
 		}
 

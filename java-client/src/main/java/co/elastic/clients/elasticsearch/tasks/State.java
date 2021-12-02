@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,10 +39,17 @@ import java.lang.String;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: tasks._types.State
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/tasks/_types/TaskState.ts#L24-L36">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class State implements JsonpSerializable {
 	private final String action;
@@ -74,25 +81,22 @@ public class State implements JsonpSerializable {
 
 	private State(Builder builder) {
 
-		this.action = ModelTypeHelper.requireNonNull(builder.action, this, "action");
-		this.cancellable = ModelTypeHelper.requireNonNull(builder.cancellable, this, "cancellable");
+		this.action = ApiTypeHelper.requireNonNull(builder.action, this, "action");
+		this.cancellable = ApiTypeHelper.requireNonNull(builder.cancellable, this, "cancellable");
 		this.description = builder.description;
-		this.headers = ModelTypeHelper.unmodifiableRequired(builder.headers, this, "headers");
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
-		this.node = ModelTypeHelper.requireNonNull(builder.node, this, "node");
+		this.headers = ApiTypeHelper.unmodifiableRequired(builder.headers, this, "headers");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
 		this.parentTaskId = builder.parentTaskId;
-		this.runningTimeInNanos = ModelTypeHelper.requireNonNull(builder.runningTimeInNanos, this,
-				"runningTimeInNanos");
-		this.startTimeInMillis = ModelTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
+		this.runningTimeInNanos = ApiTypeHelper.requireNonNull(builder.runningTimeInNanos, this, "runningTimeInNanos");
+		this.startTimeInMillis = ApiTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
 		this.status = builder.status;
-		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 
-	public static State of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static State of(Function<Builder, ObjectBuilder<State>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -197,7 +201,7 @@ public class State implements JsonpSerializable {
 			generator.write(this.description);
 
 		}
-		if (ModelTypeHelper.isDefined(this.headers)) {
+		if (ApiTypeHelper.isDefined(this.headers)) {
 			generator.writeKey("headers");
 			generator.writeStartObject();
 			for (Map.Entry<String, List<String>> item0 : this.headers.entrySet()) {
@@ -247,6 +251,7 @@ public class State implements JsonpSerializable {
 	/**
 	 * Builder for {@link State}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<State> {
 		private String action;
 
@@ -299,9 +304,21 @@ public class State implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code headers}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>headers</code>.
 		 */
-		public final Builder headers(Map<String, List<String>> value) {
-			this.headers = value;
+		public final Builder headers(Map<String, List<String>> map) {
+			this.headers = _mapPutAll(this.headers, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code headers}
+		 * <p>
+		 * Adds an entry to <code>headers</code>.
+		 */
+		public final Builder headers(String key, List<String> value) {
+			this.headers = _mapPut(this.headers, key, value);
 			return this;
 		}
 
@@ -356,10 +373,8 @@ public class State implements JsonpSerializable {
 		/**
 		 * API name: {@code status}
 		 */
-		public final Builder status(Consumer<Status.Builder> fn) {
-			Status.Builder builder = new Status.Builder();
-			fn.accept(builder);
-			return this.status(builder.build());
+		public final Builder status(Function<Status.Builder, ObjectBuilder<Status>> fn) {
+			return this.status(fn.apply(new Status.Builder()).build());
 		}
 
 		/**

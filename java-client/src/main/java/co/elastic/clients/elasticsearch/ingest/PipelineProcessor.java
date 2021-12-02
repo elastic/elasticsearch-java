@@ -28,15 +28,22 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.PipelineProcessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/_types/Processors.ts#L283-L285">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PipelineProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String name;
@@ -46,14 +53,12 @@ public class PipelineProcessor extends ProcessorBase implements ProcessorVariant
 	private PipelineProcessor(Builder builder) {
 		super(builder);
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
-	public static PipelineProcessor of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PipelineProcessor of(Function<Builder, ObjectBuilder<PipelineProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -84,6 +89,7 @@ public class PipelineProcessor extends ProcessorBase implements ProcessorVariant
 	/**
 	 * Builder for {@link PipelineProcessor}.
 	 */
+
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PipelineProcessor> {

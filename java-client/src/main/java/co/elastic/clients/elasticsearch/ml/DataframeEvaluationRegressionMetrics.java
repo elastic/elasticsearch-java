@@ -30,17 +30,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationRegressionMetrics
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/DataframeEvaluation.ts#L92-L110">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeEvaluationRegressionMetrics implements JsonpSerializable {
 	private final Map<String, JsonData> mse;
@@ -57,17 +64,16 @@ public class DataframeEvaluationRegressionMetrics implements JsonpSerializable {
 
 	private DataframeEvaluationRegressionMetrics(Builder builder) {
 
-		this.mse = ModelTypeHelper.unmodifiable(builder.mse);
+		this.mse = ApiTypeHelper.unmodifiable(builder.mse);
 		this.msle = builder.msle;
 		this.huber = builder.huber;
-		this.rSquared = ModelTypeHelper.unmodifiable(builder.rSquared);
+		this.rSquared = ApiTypeHelper.unmodifiable(builder.rSquared);
 
 	}
 
-	public static DataframeEvaluationRegressionMetrics of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DataframeEvaluationRegressionMetrics of(
+			Function<Builder, ObjectBuilder<DataframeEvaluationRegressionMetrics>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -122,7 +128,7 @@ public class DataframeEvaluationRegressionMetrics implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.mse)) {
+		if (ApiTypeHelper.isDefined(this.mse)) {
 			generator.writeKey("mse");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.mse.entrySet()) {
@@ -143,7 +149,7 @@ public class DataframeEvaluationRegressionMetrics implements JsonpSerializable {
 			this.huber.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.rSquared)) {
+		if (ApiTypeHelper.isDefined(this.rSquared)) {
 			generator.writeKey("r_squared");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.rSquared.entrySet()) {
@@ -162,6 +168,7 @@ public class DataframeEvaluationRegressionMetrics implements JsonpSerializable {
 	/**
 	 * Builder for {@link DataframeEvaluationRegressionMetrics}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase
 			implements
 				ObjectBuilder<DataframeEvaluationRegressionMetrics> {
@@ -182,9 +189,24 @@ public class DataframeEvaluationRegressionMetrics implements JsonpSerializable {
 		 * (ground truth) value. For more information, read this wiki article.
 		 * <p>
 		 * API name: {@code mse}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>mse</code>.
 		 */
-		public final Builder mse(@Nullable Map<String, JsonData> value) {
-			this.mse = value;
+		public final Builder mse(Map<String, JsonData> map) {
+			this.mse = _mapPutAll(this.mse, map);
+			return this;
+		}
+
+		/**
+		 * Average squared difference between the predicted values and the actual
+		 * (ground truth) value. For more information, read this wiki article.
+		 * <p>
+		 * API name: {@code mse}
+		 * <p>
+		 * Adds an entry to <code>mse</code>.
+		 */
+		public final Builder mse(String key, JsonData value) {
+			this.mse = _mapPut(this.mse, key, value);
 			return this;
 		}
 
@@ -205,10 +227,9 @@ public class DataframeEvaluationRegressionMetrics implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code msle}
 		 */
-		public final Builder msle(Consumer<DataframeEvaluationRegressionMetricsMsle.Builder> fn) {
-			DataframeEvaluationRegressionMetricsMsle.Builder builder = new DataframeEvaluationRegressionMetricsMsle.Builder();
-			fn.accept(builder);
-			return this.msle(builder.build());
+		public final Builder msle(
+				Function<DataframeEvaluationRegressionMetricsMsle.Builder, ObjectBuilder<DataframeEvaluationRegressionMetricsMsle>> fn) {
+			return this.msle(fn.apply(new DataframeEvaluationRegressionMetricsMsle.Builder()).build());
 		}
 
 		/**
@@ -226,10 +247,9 @@ public class DataframeEvaluationRegressionMetrics implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code huber}
 		 */
-		public final Builder huber(Consumer<DataframeEvaluationRegressionMetricsHuber.Builder> fn) {
-			DataframeEvaluationRegressionMetricsHuber.Builder builder = new DataframeEvaluationRegressionMetricsHuber.Builder();
-			fn.accept(builder);
-			return this.huber(builder.build());
+		public final Builder huber(
+				Function<DataframeEvaluationRegressionMetricsHuber.Builder, ObjectBuilder<DataframeEvaluationRegressionMetricsHuber>> fn) {
+			return this.huber(fn.apply(new DataframeEvaluationRegressionMetricsHuber.Builder()).build());
 		}
 
 		/**
@@ -237,9 +257,24 @@ public class DataframeEvaluationRegressionMetrics implements JsonpSerializable {
 		 * the independent variables.
 		 * <p>
 		 * API name: {@code r_squared}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>rSquared</code>.
 		 */
-		public final Builder rSquared(@Nullable Map<String, JsonData> value) {
-			this.rSquared = value;
+		public final Builder rSquared(Map<String, JsonData> map) {
+			this.rSquared = _mapPutAll(this.rSquared, map);
+			return this;
+		}
+
+		/**
+		 * Proportion of the variance in the dependent variable that is predictable from
+		 * the independent variables.
+		 * <p>
+		 * API name: {@code r_squared}
+		 * <p>
+		 * Adds an entry to <code>rSquared</code>.
+		 */
+		public final Builder rSquared(String key, JsonData value) {
+			this.rSquared = _mapPut(this.rSquared, key, value);
 			return this;
 		}
 

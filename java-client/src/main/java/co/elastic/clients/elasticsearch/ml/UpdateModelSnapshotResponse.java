@@ -29,14 +29,21 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.update_model_snapshot.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/update_model_snapshot/MlUpdateModelSnapshotResponse.ts#L23-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class UpdateModelSnapshotResponse extends AcknowledgedResponseBase {
 	private final ModelSnapshot model;
@@ -46,14 +53,12 @@ public class UpdateModelSnapshotResponse extends AcknowledgedResponseBase {
 	private UpdateModelSnapshotResponse(Builder builder) {
 		super(builder);
 
-		this.model = ModelTypeHelper.requireNonNull(builder.model, this, "model");
+		this.model = ApiTypeHelper.requireNonNull(builder.model, this, "model");
 
 	}
 
-	public static UpdateModelSnapshotResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static UpdateModelSnapshotResponse of(Function<Builder, ObjectBuilder<UpdateModelSnapshotResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -76,6 +81,7 @@ public class UpdateModelSnapshotResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link UpdateModelSnapshotResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<UpdateModelSnapshotResponse> {
@@ -92,10 +98,8 @@ public class UpdateModelSnapshotResponse extends AcknowledgedResponseBase {
 		/**
 		 * Required - API name: {@code model}
 		 */
-		public final Builder model(Consumer<ModelSnapshot.Builder> fn) {
-			ModelSnapshot.Builder builder = new ModelSnapshot.Builder();
-			fn.accept(builder);
-			return this.model(builder.build());
+		public final Builder model(Function<ModelSnapshot.Builder, ObjectBuilder<ModelSnapshot>> fn) {
+			return this.model(fn.apply(new ModelSnapshot.Builder()).build());
 		}
 
 		@Override

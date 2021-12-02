@@ -35,22 +35,29 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: indices.put_settings.Request
+
+/**
+ * Updates the index settings.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/put_settings/IndicesPutSettingsRequest.ts#L25-L45">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutIndicesSettingsRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -82,21 +89,19 @@ public class PutIndicesSettingsRequest extends RequestBase implements JsonpSeria
 	private PutIndicesSettingsRequest(Builder builder) {
 
 		this.allowNoIndices = builder.allowNoIndices;
-		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
+		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.flatSettings = builder.flatSettings;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
+		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.masterTimeout = builder.masterTimeout;
 		this.preserveExisting = builder.preserveExisting;
 		this.timeout = builder.timeout;
-		this.settings = ModelTypeHelper.requireNonNull(builder.settings, this, "settings");
+		this.settings = ApiTypeHelper.requireNonNull(builder.settings, this, "settings");
 
 	}
 
-	public static PutIndicesSettingsRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PutIndicesSettingsRequest of(Function<Builder, ObjectBuilder<PutIndicesSettingsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -205,6 +210,7 @@ public class PutIndicesSettingsRequest extends RequestBase implements JsonpSeria
 	/**
 	 * Builder for {@link PutIndicesSettingsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutIndicesSettingsRequest> {
 		@Nullable
 		private Boolean allowNoIndices;
@@ -249,9 +255,11 @@ public class PutIndicesSettingsRequest extends RequestBase implements JsonpSeria
 		 * closed or both.
 		 * <p>
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
 		 */
-		public final Builder expandWildcards(@Nullable List<ExpandWildcard> value) {
-			this.expandWildcards = value;
+		public final Builder expandWildcards(List<ExpandWildcard> list) {
+			this.expandWildcards = _listAddAll(this.expandWildcards, list);
 			return this;
 		}
 
@@ -260,9 +268,11 @@ public class PutIndicesSettingsRequest extends RequestBase implements JsonpSeria
 		 * closed or both.
 		 * <p>
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds one or more values to <code>expandWildcards</code>.
 		 */
-		public final Builder expandWildcards(ExpandWildcard... value) {
-			this.expandWildcards = Arrays.asList(value);
+		public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
+			this.expandWildcards = _listAdd(this.expandWildcards, value, values);
 			return this;
 		}
 
@@ -292,9 +302,11 @@ public class PutIndicesSettingsRequest extends RequestBase implements JsonpSeria
 		 * to perform the operation on all indices
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 */
-		public final Builder index(@Nullable List<String> value) {
-			this.index = value;
+		public final Builder index(List<String> list) {
+			this.index = _listAddAll(this.index, list);
 			return this;
 		}
 
@@ -303,9 +315,11 @@ public class PutIndicesSettingsRequest extends RequestBase implements JsonpSeria
 		 * to perform the operation on all indices
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds one or more values to <code>index</code>.
 		 */
-		public final Builder index(String... value) {
-			this.index = Arrays.asList(value);
+		public final Builder index(String value, String... values) {
+			this.index = _listAdd(this.index, value, values);
 			return this;
 		}
 
@@ -324,10 +338,8 @@ public class PutIndicesSettingsRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.masterTimeout(builder.build());
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -356,10 +368,8 @@ public class PutIndicesSettingsRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.timeout(builder.build());
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -377,10 +387,8 @@ public class PutIndicesSettingsRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public final Builder settings(Consumer<IndexSettings.Builder> fn) {
-			IndexSettings.Builder builder = new IndexSettings.Builder();
-			fn.accept(builder);
-			return this.settings(builder.build());
+		public final Builder settings(Function<IndexSettings.Builder, ObjectBuilder<IndexSettings>> fn) {
+			return this.settings(fn.apply(new IndexSettings.Builder()).build());
 		}
 
 		/**
@@ -425,7 +433,7 @@ public class PutIndicesSettingsRequest extends RequestBase implements JsonpSeria
 
 				int propsSet = 0;
 
-				if (ModelTypeHelper.isDefined(request.index()))
+				if (ApiTypeHelper.isDefined(request.index()))
 					propsSet |= _index;
 
 				if (propsSet == 0) {
@@ -453,7 +461,7 @@ public class PutIndicesSettingsRequest extends RequestBase implements JsonpSeria
 				if (request.flatSettings != null) {
 					params.put("flat_settings", String.valueOf(request.flatSettings));
 				}
-				if (ModelTypeHelper.isDefined(request.expandWildcards)) {
+				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}

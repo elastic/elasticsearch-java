@@ -30,21 +30,25 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.HitsMetadata
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/hits.ts#L66-L71">API
+ *      specification</a>
+ */
 
 public class HitsMetadata<T> implements JsonpSerializable {
 	private final TotalHits total;
@@ -61,17 +65,15 @@ public class HitsMetadata<T> implements JsonpSerializable {
 
 	private HitsMetadata(Builder<T> builder) {
 
-		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
-		this.hits = ModelTypeHelper.unmodifiableRequired(builder.hits, this, "hits");
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+		this.hits = ApiTypeHelper.unmodifiableRequired(builder.hits, this, "hits");
 		this.maxScore = builder.maxScore;
 		this.tSerializer = builder.tSerializer;
 
 	}
 
-	public static <T> HitsMetadata<T> of(Consumer<Builder<T>> fn) {
-		Builder<T> builder = new Builder<>();
-		fn.accept(builder);
-		return builder.build();
+	public static <T> HitsMetadata<T> of(Function<Builder<T>, ObjectBuilder<HitsMetadata<T>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
@@ -110,7 +112,7 @@ public class HitsMetadata<T> implements JsonpSerializable {
 		generator.writeKey("total");
 		this.total.serialize(generator, mapper);
 
-		if (ModelTypeHelper.isDefined(this.hits)) {
+		if (ApiTypeHelper.isDefined(this.hits)) {
 			generator.writeKey("hits");
 			generator.writeStartArray();
 			for (Hit<T> item0 : this.hits) {
@@ -133,6 +135,7 @@ public class HitsMetadata<T> implements JsonpSerializable {
 	/**
 	 * Builder for {@link HitsMetadata}.
 	 */
+
 	public static class Builder<T> extends ObjectBuilderBase implements ObjectBuilder<HitsMetadata<T>> {
 		private TotalHits total;
 
@@ -155,33 +158,37 @@ public class HitsMetadata<T> implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total}
 		 */
-		public final Builder<T> total(Consumer<TotalHits.Builder> fn) {
-			TotalHits.Builder builder = new TotalHits.Builder();
-			fn.accept(builder);
-			return this.total(builder.build());
+		public final Builder<T> total(Function<TotalHits.Builder, ObjectBuilder<TotalHits>> fn) {
+			return this.total(fn.apply(new TotalHits.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code hits}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>hits</code>.
 		 */
-		public final Builder<T> hits(List<Hit<T>> value) {
-			this.hits = value;
+		public final Builder<T> hits(List<Hit<T>> list) {
+			this.hits = _listAddAll(this.hits, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code hits}
+		 * <p>
+		 * Adds one or more values to <code>hits</code>.
 		 */
-		public final Builder<T> hits(Hit<T>... value) {
-			this.hits = Arrays.asList(value);
+		public final Builder<T> hits(Hit<T> value, Hit<T>... values) {
+			this.hits = _listAdd(this.hits, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code hits}
+		 * <p>
+		 * Adds a value to <code>hits</code> using a builder lambda.
 		 */
-		public final Builder<T> hits(Function<ListBuilder<Hit<T>, Hit.Builder<T>>, ObjectBuilder<List<Hit<T>>>> fn) {
-			return hits(fn.apply(new ListBuilder<>(Hit.Builder<T>::new)).build());
+		public final Builder<T> hits(Function<Hit.Builder<T>, ObjectBuilder<Hit<T>>> fn) {
+			return hits(fn.apply(new Hit.Builder<T>()).build());
 		}
 
 		/**
@@ -217,7 +224,7 @@ public class HitsMetadata<T> implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for HitsMetadata
+	 * Create a JSON deserializer for HitsMetadata
 	 */
 	public static <T> JsonpDeserializer<HitsMetadata<T>> createHitsMetadataDeserializer(
 			JsonpDeserializer<T> tDeserializer) {

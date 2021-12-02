@@ -30,21 +30,25 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.invalidate_api_key.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/invalidate_api_key/SecurityInvalidateApiKeyResponse.ts#L23-L30">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class InvalidateApiKeyResponse implements JsonpSerializable {
 	private final int errorCount;
@@ -59,19 +63,17 @@ public class InvalidateApiKeyResponse implements JsonpSerializable {
 
 	private InvalidateApiKeyResponse(Builder builder) {
 
-		this.errorCount = ModelTypeHelper.requireNonNull(builder.errorCount, this, "errorCount");
-		this.errorDetails = ModelTypeHelper.unmodifiable(builder.errorDetails);
-		this.invalidatedApiKeys = ModelTypeHelper.unmodifiableRequired(builder.invalidatedApiKeys, this,
+		this.errorCount = ApiTypeHelper.requireNonNull(builder.errorCount, this, "errorCount");
+		this.errorDetails = ApiTypeHelper.unmodifiable(builder.errorDetails);
+		this.invalidatedApiKeys = ApiTypeHelper.unmodifiableRequired(builder.invalidatedApiKeys, this,
 				"invalidatedApiKeys");
-		this.previouslyInvalidatedApiKeys = ModelTypeHelper.unmodifiableRequired(builder.previouslyInvalidatedApiKeys,
+		this.previouslyInvalidatedApiKeys = ApiTypeHelper.unmodifiableRequired(builder.previouslyInvalidatedApiKeys,
 				this, "previouslyInvalidatedApiKeys");
 
 	}
 
-	public static InvalidateApiKeyResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static InvalidateApiKeyResponse of(Function<Builder, ObjectBuilder<InvalidateApiKeyResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -116,7 +118,7 @@ public class InvalidateApiKeyResponse implements JsonpSerializable {
 		generator.writeKey("error_count");
 		generator.write(this.errorCount);
 
-		if (ModelTypeHelper.isDefined(this.errorDetails)) {
+		if (ApiTypeHelper.isDefined(this.errorDetails)) {
 			generator.writeKey("error_details");
 			generator.writeStartArray();
 			for (ErrorCause item0 : this.errorDetails) {
@@ -126,7 +128,7 @@ public class InvalidateApiKeyResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.invalidatedApiKeys)) {
+		if (ApiTypeHelper.isDefined(this.invalidatedApiKeys)) {
 			generator.writeKey("invalidated_api_keys");
 			generator.writeStartArray();
 			for (String item0 : this.invalidatedApiKeys) {
@@ -136,7 +138,7 @@ public class InvalidateApiKeyResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.previouslyInvalidatedApiKeys)) {
+		if (ApiTypeHelper.isDefined(this.previouslyInvalidatedApiKeys)) {
 			generator.writeKey("previously_invalidated_api_keys");
 			generator.writeStartArray();
 			for (String item0 : this.previouslyInvalidatedApiKeys) {
@@ -154,6 +156,7 @@ public class InvalidateApiKeyResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link InvalidateApiKeyResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<InvalidateApiKeyResponse> {
 		private Integer errorCount;
 
@@ -174,57 +177,71 @@ public class InvalidateApiKeyResponse implements JsonpSerializable {
 
 		/**
 		 * API name: {@code error_details}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>errorDetails</code>.
 		 */
-		public final Builder errorDetails(@Nullable List<ErrorCause> value) {
-			this.errorDetails = value;
+		public final Builder errorDetails(List<ErrorCause> list) {
+			this.errorDetails = _listAddAll(this.errorDetails, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code error_details}
+		 * <p>
+		 * Adds one or more values to <code>errorDetails</code>.
 		 */
-		public final Builder errorDetails(ErrorCause... value) {
-			this.errorDetails = Arrays.asList(value);
+		public final Builder errorDetails(ErrorCause value, ErrorCause... values) {
+			this.errorDetails = _listAdd(this.errorDetails, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code error_details}
+		 * <p>
+		 * Adds a value to <code>errorDetails</code> using a builder lambda.
 		 */
-		public final Builder errorDetails(
-				Function<ListBuilder<ErrorCause, ErrorCause.Builder>, ObjectBuilder<List<ErrorCause>>> fn) {
-			return errorDetails(fn.apply(new ListBuilder<>(ErrorCause.Builder::new)).build());
+		public final Builder errorDetails(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+			return errorDetails(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code invalidated_api_keys}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>invalidatedApiKeys</code>.
 		 */
-		public final Builder invalidatedApiKeys(List<String> value) {
-			this.invalidatedApiKeys = value;
+		public final Builder invalidatedApiKeys(List<String> list) {
+			this.invalidatedApiKeys = _listAddAll(this.invalidatedApiKeys, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code invalidated_api_keys}
+		 * <p>
+		 * Adds one or more values to <code>invalidatedApiKeys</code>.
 		 */
-		public final Builder invalidatedApiKeys(String... value) {
-			this.invalidatedApiKeys = Arrays.asList(value);
+		public final Builder invalidatedApiKeys(String value, String... values) {
+			this.invalidatedApiKeys = _listAdd(this.invalidatedApiKeys, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code previously_invalidated_api_keys}
+		 * <p>
+		 * Adds all elements of <code>list</code> to
+		 * <code>previouslyInvalidatedApiKeys</code>.
 		 */
-		public final Builder previouslyInvalidatedApiKeys(List<String> value) {
-			this.previouslyInvalidatedApiKeys = value;
+		public final Builder previouslyInvalidatedApiKeys(List<String> list) {
+			this.previouslyInvalidatedApiKeys = _listAddAll(this.previouslyInvalidatedApiKeys, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code previously_invalidated_api_keys}
+		 * <p>
+		 * Adds one or more values to <code>previouslyInvalidatedApiKeys</code>.
 		 */
-		public final Builder previouslyInvalidatedApiKeys(String... value) {
-			this.previouslyInvalidatedApiKeys = Arrays.asList(value);
+		public final Builder previouslyInvalidatedApiKeys(String value, String... values) {
+			this.previouslyInvalidatedApiKeys = _listAdd(this.previouslyInvalidatedApiKeys, value, values);
 			return this;
 		}
 

@@ -29,18 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.analyze.CharFilterDetail
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/analyze/types.ts#L44-L47">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CharFilterDetail implements JsonpSerializable {
 	private final List<String> filteredText;
@@ -51,15 +57,13 @@ public class CharFilterDetail implements JsonpSerializable {
 
 	private CharFilterDetail(Builder builder) {
 
-		this.filteredText = ModelTypeHelper.unmodifiableRequired(builder.filteredText, this, "filteredText");
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.filteredText = ApiTypeHelper.unmodifiableRequired(builder.filteredText, this, "filteredText");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
-	public static CharFilterDetail of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CharFilterDetail of(Function<Builder, ObjectBuilder<CharFilterDetail>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -87,7 +91,7 @@ public class CharFilterDetail implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.filteredText)) {
+		if (ApiTypeHelper.isDefined(this.filteredText)) {
 			generator.writeKey("filtered_text");
 			generator.writeStartArray();
 			for (String item0 : this.filteredText) {
@@ -107,6 +111,7 @@ public class CharFilterDetail implements JsonpSerializable {
 	/**
 	 * Builder for {@link CharFilterDetail}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CharFilterDetail> {
 		private List<String> filteredText;
 
@@ -114,17 +119,21 @@ public class CharFilterDetail implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code filtered_text}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>filteredText</code>.
 		 */
-		public final Builder filteredText(List<String> value) {
-			this.filteredText = value;
+		public final Builder filteredText(List<String> list) {
+			this.filteredText = _listAddAll(this.filteredText, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code filtered_text}
+		 * <p>
+		 * Adds one or more values to <code>filteredText</code>.
 		 */
-		public final Builder filteredText(String... value) {
-			this.filteredText = Arrays.asList(value);
+		public final Builder filteredText(String value, String... values) {
+			this.filteredText = _listAdd(this.filteredText, value, values);
 			return this;
 		}
 

@@ -29,22 +29,25 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.MapBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DetectionRule
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/Rule.ts#L25-L39">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DetectionRule implements JsonpSerializable {
 	private final List<RuleAction> actions;
@@ -57,16 +60,14 @@ public class DetectionRule implements JsonpSerializable {
 
 	private DetectionRule(Builder builder) {
 
-		this.actions = ModelTypeHelper.unmodifiable(builder.actions);
-		this.conditions = ModelTypeHelper.unmodifiable(builder.conditions);
-		this.scope = ModelTypeHelper.unmodifiable(builder.scope);
+		this.actions = ApiTypeHelper.unmodifiable(builder.actions);
+		this.conditions = ApiTypeHelper.unmodifiable(builder.conditions);
+		this.scope = ApiTypeHelper.unmodifiable(builder.scope);
 
 	}
 
-	public static DetectionRule of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DetectionRule of(Function<Builder, ObjectBuilder<DetectionRule>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -114,7 +115,7 @@ public class DetectionRule implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.actions)) {
+		if (ApiTypeHelper.isDefined(this.actions)) {
 			generator.writeKey("actions");
 			generator.writeStartArray();
 			for (RuleAction item0 : this.actions) {
@@ -123,7 +124,7 @@ public class DetectionRule implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.conditions)) {
+		if (ApiTypeHelper.isDefined(this.conditions)) {
 			generator.writeKey("conditions");
 			generator.writeStartArray();
 			for (RuleCondition item0 : this.conditions) {
@@ -133,7 +134,7 @@ public class DetectionRule implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.scope)) {
+		if (ApiTypeHelper.isDefined(this.scope)) {
 			generator.writeKey("scope");
 			generator.writeStartObject();
 			for (Map.Entry<String, FilterRef> item0 : this.scope.entrySet()) {
@@ -152,6 +153,7 @@ public class DetectionRule implements JsonpSerializable {
 	/**
 	 * Builder for {@link DetectionRule}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DetectionRule> {
 		@Nullable
 		private List<RuleAction> actions;
@@ -167,9 +169,11 @@ public class DetectionRule implements JsonpSerializable {
 		 * action is specified the effects of all actions are combined.
 		 * <p>
 		 * API name: {@code actions}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>actions</code>.
 		 */
-		public final Builder actions(@Nullable List<RuleAction> value) {
-			this.actions = value;
+		public final Builder actions(List<RuleAction> list) {
+			this.actions = _listAddAll(this.actions, list);
 			return this;
 		}
 
@@ -178,9 +182,11 @@ public class DetectionRule implements JsonpSerializable {
 		 * action is specified the effects of all actions are combined.
 		 * <p>
 		 * API name: {@code actions}
+		 * <p>
+		 * Adds one or more values to <code>actions</code>.
 		 */
-		public final Builder actions(RuleAction... value) {
-			this.actions = Arrays.asList(value);
+		public final Builder actions(RuleAction value, RuleAction... values) {
+			this.actions = _listAdd(this.actions, value, values);
 			return this;
 		}
 
@@ -190,9 +196,11 @@ public class DetectionRule implements JsonpSerializable {
 		 * together with a logical AND.
 		 * <p>
 		 * API name: {@code conditions}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>conditions</code>.
 		 */
-		public final Builder conditions(@Nullable List<RuleCondition> value) {
-			this.conditions = value;
+		public final Builder conditions(List<RuleCondition> list) {
+			this.conditions = _listAddAll(this.conditions, list);
 			return this;
 		}
 
@@ -202,9 +210,11 @@ public class DetectionRule implements JsonpSerializable {
 		 * together with a logical AND.
 		 * <p>
 		 * API name: {@code conditions}
+		 * <p>
+		 * Adds one or more values to <code>conditions</code>.
 		 */
-		public final Builder conditions(RuleCondition... value) {
-			this.conditions = Arrays.asList(value);
+		public final Builder conditions(RuleCondition value, RuleCondition... values) {
+			this.conditions = _listAdd(this.conditions, value, values);
 			return this;
 		}
 
@@ -214,10 +224,11 @@ public class DetectionRule implements JsonpSerializable {
 		 * together with a logical AND.
 		 * <p>
 		 * API name: {@code conditions}
+		 * <p>
+		 * Adds a value to <code>conditions</code> using a builder lambda.
 		 */
-		public final Builder conditions(
-				Function<ListBuilder<RuleCondition, RuleCondition.Builder>, ObjectBuilder<List<RuleCondition>>> fn) {
-			return conditions(fn.apply(new ListBuilder<>(RuleCondition.Builder::new)).build());
+		public final Builder conditions(Function<RuleCondition.Builder, ObjectBuilder<RuleCondition>> fn) {
+			return conditions(fn.apply(new RuleCondition.Builder()).build());
 		}
 
 		/**
@@ -228,15 +239,43 @@ public class DetectionRule implements JsonpSerializable {
 		 * <code>partition_field_name</code>.
 		 * <p>
 		 * API name: {@code scope}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>scope</code>.
 		 */
-		public final Builder scope(@Nullable Map<String, FilterRef> value) {
-			this.scope = value;
+		public final Builder scope(Map<String, FilterRef> map) {
+			this.scope = _mapPutAll(this.scope, map);
 			return this;
 		}
 
-		public final Builder scope(
-				Function<MapBuilder<String, FilterRef, FilterRef.Builder>, ObjectBuilder<Map<String, FilterRef>>> fn) {
-			return scope(fn.apply(new MapBuilder<>(FilterRef.Builder::new)).build());
+		/**
+		 * A scope of series where the rule applies. A rule must either have a non-empty
+		 * scope or at least one condition. By default, the scope includes all series.
+		 * Scoping is allowed for any of the fields that are also specified in
+		 * <code>by_field_name</code>, <code>over_field_name</code>, or
+		 * <code>partition_field_name</code>.
+		 * <p>
+		 * API name: {@code scope}
+		 * <p>
+		 * Adds an entry to <code>scope</code>.
+		 */
+		public final Builder scope(String key, FilterRef value) {
+			this.scope = _mapPut(this.scope, key, value);
+			return this;
+		}
+
+		/**
+		 * A scope of series where the rule applies. A rule must either have a non-empty
+		 * scope or at least one condition. By default, the scope includes all series.
+		 * Scoping is allowed for any of the fields that are also specified in
+		 * <code>by_field_name</code>, <code>over_field_name</code>, or
+		 * <code>partition_field_name</code>.
+		 * <p>
+		 * API name: {@code scope}
+		 * <p>
+		 * Adds an entry to <code>scope</code> using a builder lambda.
+		 */
+		public final Builder scope(String key, Function<FilterRef.Builder, ObjectBuilder<FilterRef>> fn) {
+			return scope(key, fn.apply(new FilterRef.Builder()).build());
 		}
 
 		/**

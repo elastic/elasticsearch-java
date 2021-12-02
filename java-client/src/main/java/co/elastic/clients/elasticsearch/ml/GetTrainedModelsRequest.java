@@ -40,10 +40,18 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_trained_models.Request
+
+/**
+ * Retrieves configuration information for a trained model.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_trained_models/MlGetTrainedModelRequest.ts#L25-L87">API
+ *      specification</a>
+ */
 
 public class GetTrainedModelsRequest extends RequestBase {
 	@Nullable
@@ -85,10 +93,8 @@ public class GetTrainedModelsRequest extends RequestBase {
 
 	}
 
-	public static GetTrainedModelsRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetTrainedModelsRequest of(Function<Builder, ObjectBuilder<GetTrainedModelsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -189,6 +195,7 @@ public class GetTrainedModelsRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetTrainedModelsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetTrainedModelsRequest> {
 		@Nullable
 		private Boolean allowNoMatch;

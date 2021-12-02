@@ -32,10 +32,17 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.WeightedAverageAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/metric.ts#L202-L207">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class WeightedAverageAggregation extends AggregationBase implements AggregationVariant {
 	@Nullable
@@ -62,10 +69,8 @@ public class WeightedAverageAggregation extends AggregationBase implements Aggre
 
 	}
 
-	public static WeightedAverageAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static WeightedAverageAggregation of(Function<Builder, ObjectBuilder<WeightedAverageAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -138,6 +143,7 @@ public class WeightedAverageAggregation extends AggregationBase implements Aggre
 	/**
 	 * Builder for {@link WeightedAverageAggregation}.
 	 */
+
 	public static class Builder extends AggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<WeightedAverageAggregation> {
@@ -172,10 +178,8 @@ public class WeightedAverageAggregation extends AggregationBase implements Aggre
 		/**
 		 * API name: {@code value}
 		 */
-		public final Builder value(Consumer<WeightedAverageValue.Builder> fn) {
-			WeightedAverageValue.Builder builder = new WeightedAverageValue.Builder();
-			fn.accept(builder);
-			return this.value(builder.build());
+		public final Builder value(Function<WeightedAverageValue.Builder, ObjectBuilder<WeightedAverageValue>> fn) {
+			return this.value(fn.apply(new WeightedAverageValue.Builder()).build());
 		}
 
 		/**
@@ -197,10 +201,8 @@ public class WeightedAverageAggregation extends AggregationBase implements Aggre
 		/**
 		 * API name: {@code weight}
 		 */
-		public final Builder weight(Consumer<WeightedAverageValue.Builder> fn) {
-			WeightedAverageValue.Builder builder = new WeightedAverageValue.Builder();
-			fn.accept(builder);
-			return this.weight(builder.build());
+		public final Builder weight(Function<WeightedAverageValue.Builder, ObjectBuilder<WeightedAverageValue>> fn) {
+			return this.weight(fn.apply(new WeightedAverageValue.Builder()).build());
 		}
 
 		@Override

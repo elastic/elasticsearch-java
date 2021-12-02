@@ -28,17 +28,23 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Audit
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L63-L65">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Audit extends FeatureToggle {
 	private final List<String> outputs;
@@ -48,14 +54,12 @@ public class Audit extends FeatureToggle {
 	private Audit(Builder builder) {
 		super(builder);
 
-		this.outputs = ModelTypeHelper.unmodifiable(builder.outputs);
+		this.outputs = ApiTypeHelper.unmodifiable(builder.outputs);
 
 	}
 
-	public static Audit of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Audit of(Function<Builder, ObjectBuilder<Audit>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -68,7 +72,7 @@ public class Audit extends FeatureToggle {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.outputs)) {
+		if (ApiTypeHelper.isDefined(this.outputs)) {
 			generator.writeKey("outputs");
 			generator.writeStartArray();
 			for (String item0 : this.outputs) {
@@ -86,23 +90,28 @@ public class Audit extends FeatureToggle {
 	/**
 	 * Builder for {@link Audit}.
 	 */
+
 	public static class Builder extends FeatureToggle.AbstractBuilder<Builder> implements ObjectBuilder<Audit> {
 		@Nullable
 		private List<String> outputs;
 
 		/**
 		 * API name: {@code outputs}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>outputs</code>.
 		 */
-		public final Builder outputs(@Nullable List<String> value) {
-			this.outputs = value;
+		public final Builder outputs(List<String> list) {
+			this.outputs = _listAddAll(this.outputs, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code outputs}
+		 * <p>
+		 * Adds one or more values to <code>outputs</code>.
 		 */
-		public final Builder outputs(String... value) {
-			this.outputs = Arrays.asList(value);
+		public final Builder outputs(String value, String... values) {
+			this.outputs = _listAdd(this.outputs, value, values);
 			return this;
 		}
 

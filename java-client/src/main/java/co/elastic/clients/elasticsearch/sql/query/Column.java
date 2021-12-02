@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: sql.query.Column
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/sql/query/types.ts#L23-L26">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Column implements JsonpSerializable {
 	private final String name;
@@ -49,15 +56,13 @@ public class Column implements JsonpSerializable {
 
 	private Column(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
-		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 
-	public static Column of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Column of(Function<Builder, ObjectBuilder<Column>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -98,6 +103,7 @@ public class Column implements JsonpSerializable {
 	/**
 	 * Builder for {@link Column}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Column> {
 		private String name;
 

@@ -37,10 +37,20 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: migration.deprecations.Request
+
+/**
+ * Retrieves information about different cluster, node, and index level settings
+ * that use deprecated features that will be removed or changed in the next
+ * major version.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/migration/deprecations/DeprecationInfoRequest.ts#L23-L33">API
+ *      specification</a>
+ */
 
 public class DeprecationsRequest extends RequestBase {
 	@Nullable
@@ -54,10 +64,8 @@ public class DeprecationsRequest extends RequestBase {
 
 	}
 
-	public static DeprecationsRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DeprecationsRequest of(Function<Builder, ObjectBuilder<DeprecationsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -76,6 +84,7 @@ public class DeprecationsRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeprecationsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeprecationsRequest> {
 		@Nullable
 		private String index;

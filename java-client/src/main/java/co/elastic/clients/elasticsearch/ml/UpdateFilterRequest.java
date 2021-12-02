@@ -33,19 +33,27 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.update_filter.Request
+
+/**
+ * Updates the description of a filter, adds items, or removes items from the
+ * list.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/update_filter/MlUpdateFilterRequest.ts#L23-L51">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class UpdateFilterRequest extends RequestBase implements JsonpSerializable {
 	private final List<String> addItems;
@@ -61,17 +69,15 @@ public class UpdateFilterRequest extends RequestBase implements JsonpSerializabl
 
 	private UpdateFilterRequest(Builder builder) {
 
-		this.addItems = ModelTypeHelper.unmodifiable(builder.addItems);
+		this.addItems = ApiTypeHelper.unmodifiable(builder.addItems);
 		this.description = builder.description;
-		this.filterId = ModelTypeHelper.requireNonNull(builder.filterId, this, "filterId");
-		this.removeItems = ModelTypeHelper.unmodifiable(builder.removeItems);
+		this.filterId = ApiTypeHelper.requireNonNull(builder.filterId, this, "filterId");
+		this.removeItems = ApiTypeHelper.unmodifiable(builder.removeItems);
 
 	}
 
-	public static UpdateFilterRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static UpdateFilterRequest of(Function<Builder, ObjectBuilder<UpdateFilterRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -122,7 +128,7 @@ public class UpdateFilterRequest extends RequestBase implements JsonpSerializabl
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.addItems)) {
+		if (ApiTypeHelper.isDefined(this.addItems)) {
 			generator.writeKey("add_items");
 			generator.writeStartArray();
 			for (String item0 : this.addItems) {
@@ -137,7 +143,7 @@ public class UpdateFilterRequest extends RequestBase implements JsonpSerializabl
 			generator.write(this.description);
 
 		}
-		if (ModelTypeHelper.isDefined(this.removeItems)) {
+		if (ApiTypeHelper.isDefined(this.removeItems)) {
 			generator.writeKey("remove_items");
 			generator.writeStartArray();
 			for (String item0 : this.removeItems) {
@@ -155,6 +161,7 @@ public class UpdateFilterRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Builder for {@link UpdateFilterRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UpdateFilterRequest> {
 		@Nullable
 		private List<String> addItems;
@@ -171,9 +178,11 @@ public class UpdateFilterRequest extends RequestBase implements JsonpSerializabl
 		 * The items to add to the filter.
 		 * <p>
 		 * API name: {@code add_items}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>addItems</code>.
 		 */
-		public final Builder addItems(@Nullable List<String> value) {
-			this.addItems = value;
+		public final Builder addItems(List<String> list) {
+			this.addItems = _listAddAll(this.addItems, list);
 			return this;
 		}
 
@@ -181,9 +190,11 @@ public class UpdateFilterRequest extends RequestBase implements JsonpSerializabl
 		 * The items to add to the filter.
 		 * <p>
 		 * API name: {@code add_items}
+		 * <p>
+		 * Adds one or more values to <code>addItems</code>.
 		 */
-		public final Builder addItems(String... value) {
-			this.addItems = Arrays.asList(value);
+		public final Builder addItems(String value, String... values) {
+			this.addItems = _listAdd(this.addItems, value, values);
 			return this;
 		}
 
@@ -211,9 +222,11 @@ public class UpdateFilterRequest extends RequestBase implements JsonpSerializabl
 		 * The items to remove from the filter.
 		 * <p>
 		 * API name: {@code remove_items}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>removeItems</code>.
 		 */
-		public final Builder removeItems(@Nullable List<String> value) {
-			this.removeItems = value;
+		public final Builder removeItems(List<String> list) {
+			this.removeItems = _listAddAll(this.removeItems, list);
 			return this;
 		}
 
@@ -221,9 +234,11 @@ public class UpdateFilterRequest extends RequestBase implements JsonpSerializabl
 		 * The items to remove from the filter.
 		 * <p>
 		 * API name: {@code remove_items}
+		 * <p>
+		 * Adds one or more values to <code>removeItems</code>.
 		 */
-		public final Builder removeItems(String... value) {
-			this.removeItems = Arrays.asList(value);
+		public final Builder removeItems(String value, String... values) {
+			this.removeItems = _listAdd(this.removeItems, value, values);
 			return this;
 		}
 

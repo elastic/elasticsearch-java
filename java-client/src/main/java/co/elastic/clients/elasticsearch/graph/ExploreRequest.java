@@ -35,23 +35,29 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: graph.explore.Request
+
+/**
+ * Explore extracted and summarized information about the documents and terms in
+ * an index.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/graph/explore/GraphExploreRequest.ts#L28-L47">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ExploreRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -79,18 +85,16 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 
 		this.connections = builder.connections;
 		this.controls = builder.controls;
-		this.index = ModelTypeHelper.unmodifiableRequired(builder.index, this, "index");
+		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
 		this.query = builder.query;
 		this.routing = builder.routing;
 		this.timeout = builder.timeout;
-		this.vertices = ModelTypeHelper.unmodifiable(builder.vertices);
+		this.vertices = ApiTypeHelper.unmodifiable(builder.vertices);
 
 	}
 
-	public static ExploreRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ExploreRequest of(Function<Builder, ObjectBuilder<ExploreRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -180,7 +184,7 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 			this.query.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.vertices)) {
+		if (ApiTypeHelper.isDefined(this.vertices)) {
 			generator.writeKey("vertices");
 			generator.writeStartArray();
 			for (VertexDefinition item0 : this.vertices) {
@@ -198,6 +202,7 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link ExploreRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExploreRequest> {
 		@Nullable
 		private Hop connections;
@@ -230,10 +235,8 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code connections}
 		 */
-		public final Builder connections(Consumer<Hop.Builder> fn) {
-			Hop.Builder builder = new Hop.Builder();
-			fn.accept(builder);
-			return this.connections(builder.build());
+		public final Builder connections(Function<Hop.Builder, ObjectBuilder<Hop>> fn) {
+			return this.connections(fn.apply(new Hop.Builder()).build());
 		}
 
 		/**
@@ -247,10 +250,8 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code controls}
 		 */
-		public final Builder controls(Consumer<ExploreControls.Builder> fn) {
-			ExploreControls.Builder builder = new ExploreControls.Builder();
-			fn.accept(builder);
-			return this.controls(builder.build());
+		public final Builder controls(Function<ExploreControls.Builder, ObjectBuilder<ExploreControls>> fn) {
+			return this.controls(fn.apply(new ExploreControls.Builder()).build());
 		}
 
 		/**
@@ -258,9 +259,11 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 		 * <code>_all</code> or empty string to perform the operation on all indices
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 */
-		public final Builder index(List<String> value) {
-			this.index = value;
+		public final Builder index(List<String> list) {
+			this.index = _listAddAll(this.index, list);
 			return this;
 		}
 
@@ -269,9 +272,11 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 		 * <code>_all</code> or empty string to perform the operation on all indices
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds one or more values to <code>index</code>.
 		 */
-		public final Builder index(String... value) {
-			this.index = Arrays.asList(value);
+		public final Builder index(String value, String... values) {
+			this.index = _listAdd(this.index, value, values);
 			return this;
 		}
 
@@ -286,10 +291,8 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code query}
 		 */
-		public final Builder query(Consumer<Query.Builder> fn) {
-			Query.Builder builder = new Query.Builder();
-			fn.accept(builder);
-			return this.query(builder.build());
+		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
@@ -317,34 +320,37 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.timeout(builder.build());
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code vertices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>vertices</code>.
 		 */
-		public final Builder vertices(@Nullable List<VertexDefinition> value) {
-			this.vertices = value;
+		public final Builder vertices(List<VertexDefinition> list) {
+			this.vertices = _listAddAll(this.vertices, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code vertices}
+		 * <p>
+		 * Adds one or more values to <code>vertices</code>.
 		 */
-		public final Builder vertices(VertexDefinition... value) {
-			this.vertices = Arrays.asList(value);
+		public final Builder vertices(VertexDefinition value, VertexDefinition... values) {
+			this.vertices = _listAdd(this.vertices, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code vertices}
+		 * <p>
+		 * Adds a value to <code>vertices</code> using a builder lambda.
 		 */
-		public final Builder vertices(
-				Function<ListBuilder<VertexDefinition, VertexDefinition.Builder>, ObjectBuilder<List<VertexDefinition>>> fn) {
-			return vertices(fn.apply(new ListBuilder<>(VertexDefinition.Builder::new)).build());
+		public final Builder vertices(Function<VertexDefinition.Builder, ObjectBuilder<VertexDefinition>> fn) {
+			return vertices(fn.apply(new VertexDefinition.Builder()).build());
 		}
 
 		/**

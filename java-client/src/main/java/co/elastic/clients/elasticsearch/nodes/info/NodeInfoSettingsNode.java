@@ -30,17 +30,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoSettingsNode
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L141-L145">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeInfoSettingsNode implements JsonpSerializable {
 	private final String name;
@@ -54,16 +61,14 @@ public class NodeInfoSettingsNode implements JsonpSerializable {
 
 	private NodeInfoSettingsNode(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
-		this.attr = ModelTypeHelper.unmodifiableRequired(builder.attr, this, "attr");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.attr = ApiTypeHelper.unmodifiableRequired(builder.attr, this, "attr");
 		this.maxLocalStorageNodes = builder.maxLocalStorageNodes;
 
 	}
 
-	public static NodeInfoSettingsNode of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodeInfoSettingsNode of(Function<Builder, ObjectBuilder<NodeInfoSettingsNode>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -102,7 +107,7 @@ public class NodeInfoSettingsNode implements JsonpSerializable {
 		generator.writeKey("name");
 		generator.write(this.name);
 
-		if (ModelTypeHelper.isDefined(this.attr)) {
+		if (ApiTypeHelper.isDefined(this.attr)) {
 			generator.writeKey("attr");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.attr.entrySet()) {
@@ -126,6 +131,7 @@ public class NodeInfoSettingsNode implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoSettingsNode}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoSettingsNode> {
 		private String name;
 
@@ -144,9 +150,21 @@ public class NodeInfoSettingsNode implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code attr}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>attr</code>.
 		 */
-		public final Builder attr(Map<String, JsonData> value) {
-			this.attr = value;
+		public final Builder attr(Map<String, JsonData> map) {
+			this.attr = _mapPutAll(this.attr, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code attr}
+		 * <p>
+		 * Adds an entry to <code>attr</code>.
+		 */
+		public final Builder attr(String key, JsonData value) {
+			this.attr = _mapPut(this.attr, key, value);
 			return this;
 		}
 

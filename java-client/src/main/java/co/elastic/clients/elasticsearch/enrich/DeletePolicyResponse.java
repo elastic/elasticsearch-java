@@ -31,9 +31,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: enrich.delete_policy.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/enrich/delete_policy/DeleteEnrichPolicyResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DeletePolicyResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
@@ -43,10 +50,8 @@ public class DeletePolicyResponse extends AcknowledgedResponseBase {
 
 	}
 
-	public static DeletePolicyResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DeletePolicyResponse of(Function<Builder, ObjectBuilder<DeletePolicyResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -54,6 +59,7 @@ public class DeletePolicyResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link DeletePolicyResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeletePolicyResponse> {

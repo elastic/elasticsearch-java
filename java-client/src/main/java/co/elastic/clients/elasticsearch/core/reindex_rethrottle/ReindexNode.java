@@ -29,18 +29,23 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.reindex_rethrottle.ReindexNode
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/reindex_rethrottle/types.ts#L26-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ReindexNode extends BaseNode {
 	private final Map<String, ReindexTask> tasks;
@@ -50,14 +55,12 @@ public class ReindexNode extends BaseNode {
 	private ReindexNode(Builder builder) {
 		super(builder);
 
-		this.tasks = ModelTypeHelper.unmodifiableRequired(builder.tasks, this, "tasks");
+		this.tasks = ApiTypeHelper.unmodifiableRequired(builder.tasks, this, "tasks");
 
 	}
 
-	public static ReindexNode of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ReindexNode of(Function<Builder, ObjectBuilder<ReindexNode>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -70,7 +73,7 @@ public class ReindexNode extends BaseNode {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.tasks)) {
+		if (ApiTypeHelper.isDefined(this.tasks)) {
 			generator.writeKey("tasks");
 			generator.writeStartObject();
 			for (Map.Entry<String, ReindexTask> item0 : this.tasks.entrySet()) {
@@ -89,20 +92,37 @@ public class ReindexNode extends BaseNode {
 	/**
 	 * Builder for {@link ReindexNode}.
 	 */
+
 	public static class Builder extends BaseNode.AbstractBuilder<Builder> implements ObjectBuilder<ReindexNode> {
 		private Map<String, ReindexTask> tasks;
 
 		/**
 		 * Required - API name: {@code tasks}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>tasks</code>.
 		 */
-		public final Builder tasks(Map<String, ReindexTask> value) {
-			this.tasks = value;
+		public final Builder tasks(Map<String, ReindexTask> map) {
+			this.tasks = _mapPutAll(this.tasks, map);
 			return this;
 		}
 
-		public final Builder tasks(
-				Function<MapBuilder<String, ReindexTask, ReindexTask.Builder>, ObjectBuilder<Map<String, ReindexTask>>> fn) {
-			return tasks(fn.apply(new MapBuilder<>(ReindexTask.Builder::new)).build());
+		/**
+		 * Required - API name: {@code tasks}
+		 * <p>
+		 * Adds an entry to <code>tasks</code>.
+		 */
+		public final Builder tasks(String key, ReindexTask value) {
+			this.tasks = _mapPut(this.tasks, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code tasks}
+		 * <p>
+		 * Adds an entry to <code>tasks</code> using a builder lambda.
+		 */
+		public final Builder tasks(String key, Function<ReindexTask.Builder, ObjectBuilder<ReindexTask>> fn) {
+			return tasks(key, fn.apply(new ReindexTask.Builder()).build());
 		}
 
 		@Override

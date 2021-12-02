@@ -28,14 +28,21 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: xpack.usage.FrozenIndices
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L312-L314">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FrozenIndices extends Base {
 	private final long indicesCount;
@@ -45,14 +52,12 @@ public class FrozenIndices extends Base {
 	private FrozenIndices(Builder builder) {
 		super(builder);
 
-		this.indicesCount = ModelTypeHelper.requireNonNull(builder.indicesCount, this, "indicesCount");
+		this.indicesCount = ApiTypeHelper.requireNonNull(builder.indicesCount, this, "indicesCount");
 
 	}
 
-	public static FrozenIndices of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static FrozenIndices of(Function<Builder, ObjectBuilder<FrozenIndices>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -75,6 +80,7 @@ public class FrozenIndices extends Base {
 	/**
 	 * Builder for {@link FrozenIndices}.
 	 */
+
 	public static class Builder extends Base.AbstractBuilder<Builder> implements ObjectBuilder<FrozenIndices> {
 		private Long indicesCount;
 

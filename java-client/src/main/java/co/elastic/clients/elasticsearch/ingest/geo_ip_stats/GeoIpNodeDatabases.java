@@ -29,20 +29,25 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest.geo_ip_stats.GeoIpNodeDatabases
+
+/**
+ * Downloaded databases for the node. The field key is the node ID.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/geo_ip_stats/types.ts#L36-L42">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GeoIpNodeDatabases implements JsonpSerializable {
 	private final List<GeoIpNodeDatabaseName> databases;
@@ -53,15 +58,13 @@ public class GeoIpNodeDatabases implements JsonpSerializable {
 
 	private GeoIpNodeDatabases(Builder builder) {
 
-		this.databases = ModelTypeHelper.unmodifiableRequired(builder.databases, this, "databases");
-		this.filesInTemp = ModelTypeHelper.unmodifiableRequired(builder.filesInTemp, this, "filesInTemp");
+		this.databases = ApiTypeHelper.unmodifiableRequired(builder.databases, this, "databases");
+		this.filesInTemp = ApiTypeHelper.unmodifiableRequired(builder.filesInTemp, this, "filesInTemp");
 
 	}
 
-	public static GeoIpNodeDatabases of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GeoIpNodeDatabases of(Function<Builder, ObjectBuilder<GeoIpNodeDatabases>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -95,7 +98,7 @@ public class GeoIpNodeDatabases implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.databases)) {
+		if (ApiTypeHelper.isDefined(this.databases)) {
 			generator.writeKey("databases");
 			generator.writeStartArray();
 			for (GeoIpNodeDatabaseName item0 : this.databases) {
@@ -105,7 +108,7 @@ public class GeoIpNodeDatabases implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.filesInTemp)) {
+		if (ApiTypeHelper.isDefined(this.filesInTemp)) {
 			generator.writeKey("files_in_temp");
 			generator.writeStartArray();
 			for (String item0 : this.filesInTemp) {
@@ -123,6 +126,7 @@ public class GeoIpNodeDatabases implements JsonpSerializable {
 	/**
 	 * Builder for {@link GeoIpNodeDatabases}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GeoIpNodeDatabases> {
 		private List<GeoIpNodeDatabaseName> databases;
 
@@ -132,9 +136,11 @@ public class GeoIpNodeDatabases implements JsonpSerializable {
 		 * Required - Downloaded databases for the node.
 		 * <p>
 		 * API name: {@code databases}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>databases</code>.
 		 */
-		public final Builder databases(List<GeoIpNodeDatabaseName> value) {
-			this.databases = value;
+		public final Builder databases(List<GeoIpNodeDatabaseName> list) {
+			this.databases = _listAddAll(this.databases, list);
 			return this;
 		}
 
@@ -142,9 +148,11 @@ public class GeoIpNodeDatabases implements JsonpSerializable {
 		 * Required - Downloaded databases for the node.
 		 * <p>
 		 * API name: {@code databases}
+		 * <p>
+		 * Adds one or more values to <code>databases</code>.
 		 */
-		public final Builder databases(GeoIpNodeDatabaseName... value) {
-			this.databases = Arrays.asList(value);
+		public final Builder databases(GeoIpNodeDatabaseName value, GeoIpNodeDatabaseName... values) {
+			this.databases = _listAdd(this.databases, value, values);
 			return this;
 		}
 
@@ -152,10 +160,12 @@ public class GeoIpNodeDatabases implements JsonpSerializable {
 		 * Required - Downloaded databases for the node.
 		 * <p>
 		 * API name: {@code databases}
+		 * <p>
+		 * Adds a value to <code>databases</code> using a builder lambda.
 		 */
 		public final Builder databases(
-				Function<ListBuilder<GeoIpNodeDatabaseName, GeoIpNodeDatabaseName.Builder>, ObjectBuilder<List<GeoIpNodeDatabaseName>>> fn) {
-			return databases(fn.apply(new ListBuilder<>(GeoIpNodeDatabaseName.Builder::new)).build());
+				Function<GeoIpNodeDatabaseName.Builder, ObjectBuilder<GeoIpNodeDatabaseName>> fn) {
+			return databases(fn.apply(new GeoIpNodeDatabaseName.Builder()).build());
 		}
 
 		/**
@@ -164,9 +174,11 @@ public class GeoIpNodeDatabases implements JsonpSerializable {
 		 * $ES_TMPDIR/geoip-databases/&lt;node_id&gt;.
 		 * <p>
 		 * API name: {@code files_in_temp}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>filesInTemp</code>.
 		 */
-		public final Builder filesInTemp(List<String> value) {
-			this.filesInTemp = value;
+		public final Builder filesInTemp(List<String> list) {
+			this.filesInTemp = _listAddAll(this.filesInTemp, list);
 			return this;
 		}
 
@@ -176,9 +188,11 @@ public class GeoIpNodeDatabases implements JsonpSerializable {
 		 * $ES_TMPDIR/geoip-databases/&lt;node_id&gt;.
 		 * <p>
 		 * API name: {@code files_in_temp}
+		 * <p>
+		 * Adds one or more values to <code>filesInTemp</code>.
 		 */
-		public final Builder filesInTemp(String... value) {
-			this.filesInTemp = Arrays.asList(value);
+		public final Builder filesInTemp(String value, String... values) {
+			this.filesInTemp = _listAdd(this.filesInTemp, value, values);
 			return this;
 		}
 

@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,10 +40,23 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.delete_job.Request
+
+/**
+ * Deletes an existing anomaly detection job. All job configuration, model state
+ * and results are deleted. It is not currently possible to delete multiple jobs
+ * using wildcards or a comma separated list. If you delete a job that has a
+ * datafeed, the request first tries to delete the datafeed. This behavior is
+ * equivalent to calling the delete datafeed API with the same timeout and force
+ * parameters as the delete job request.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/delete_job/MlDeleteJobRequest.ts#L23-L56">API
+ *      specification</a>
+ */
 
 public class DeleteJobRequest extends RequestBase {
 	@Nullable
@@ -59,15 +72,13 @@ public class DeleteJobRequest extends RequestBase {
 	private DeleteJobRequest(Builder builder) {
 
 		this.force = builder.force;
-		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.waitForCompletion = builder.waitForCompletion;
 
 	}
 
-	public static DeleteJobRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DeleteJobRequest of(Function<Builder, ObjectBuilder<DeleteJobRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -106,6 +117,7 @@ public class DeleteJobRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteJobRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteJobRequest> {
 		@Nullable
 		private Boolean force;

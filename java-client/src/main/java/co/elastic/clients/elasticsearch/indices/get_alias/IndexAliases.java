@@ -30,19 +30,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_alias.IndexAliases
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/get_alias/IndicesGetAliasResponse.ts#L27-L29">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IndexAliases implements JsonpSerializable {
 	private final Map<String, AliasDefinition> aliases;
@@ -51,14 +56,12 @@ public class IndexAliases implements JsonpSerializable {
 
 	private IndexAliases(Builder builder) {
 
-		this.aliases = ModelTypeHelper.unmodifiableRequired(builder.aliases, this, "aliases");
+		this.aliases = ApiTypeHelper.unmodifiableRequired(builder.aliases, this, "aliases");
 
 	}
 
-	public static IndexAliases of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IndexAliases of(Function<Builder, ObjectBuilder<IndexAliases>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -79,7 +82,7 @@ public class IndexAliases implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.aliases)) {
+		if (ApiTypeHelper.isDefined(this.aliases)) {
 			generator.writeKey("aliases");
 			generator.writeStartObject();
 			for (Map.Entry<String, AliasDefinition> item0 : this.aliases.entrySet()) {
@@ -98,20 +101,37 @@ public class IndexAliases implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexAliases}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexAliases> {
 		private Map<String, AliasDefinition> aliases;
 
 		/**
 		 * Required - API name: {@code aliases}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>aliases</code>.
 		 */
-		public final Builder aliases(Map<String, AliasDefinition> value) {
-			this.aliases = value;
+		public final Builder aliases(Map<String, AliasDefinition> map) {
+			this.aliases = _mapPutAll(this.aliases, map);
 			return this;
 		}
 
-		public final Builder aliases(
-				Function<MapBuilder<String, AliasDefinition, AliasDefinition.Builder>, ObjectBuilder<Map<String, AliasDefinition>>> fn) {
-			return aliases(fn.apply(new MapBuilder<>(AliasDefinition.Builder::new)).build());
+		/**
+		 * Required - API name: {@code aliases}
+		 * <p>
+		 * Adds an entry to <code>aliases</code>.
+		 */
+		public final Builder aliases(String key, AliasDefinition value) {
+			this.aliases = _mapPut(this.aliases, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code aliases}
+		 * <p>
+		 * Adds an entry to <code>aliases</code> using a builder lambda.
+		 */
+		public final Builder aliases(String key, Function<AliasDefinition.Builder, ObjectBuilder<AliasDefinition>> fn) {
+			return aliases(key, fn.apply(new AliasDefinition.Builder()).build());
 		}
 
 		/**

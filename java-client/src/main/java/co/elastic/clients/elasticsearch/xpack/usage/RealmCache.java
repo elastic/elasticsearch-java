@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: xpack.usage.RealmCache
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L221-L223">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RealmCache implements JsonpSerializable {
 	private final long size;
@@ -46,14 +53,12 @@ public class RealmCache implements JsonpSerializable {
 
 	private RealmCache(Builder builder) {
 
-		this.size = ModelTypeHelper.requireNonNull(builder.size, this, "size");
+		this.size = ApiTypeHelper.requireNonNull(builder.size, this, "size");
 
 	}
 
-	public static RealmCache of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RealmCache of(Function<Builder, ObjectBuilder<RealmCache>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -84,6 +89,7 @@ public class RealmCache implements JsonpSerializable {
 	/**
 	 * Builder for {@link RealmCache}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RealmCache> {
 		private Long size;
 

@@ -31,9 +31,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: ml.put_trained_model_alias.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/put_trained_model_alias/MlPutTrainedModelAliasResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutTrainedModelAliasResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
@@ -43,10 +50,8 @@ public class PutTrainedModelAliasResponse extends AcknowledgedResponseBase {
 
 	}
 
-	public static PutTrainedModelAliasResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PutTrainedModelAliasResponse of(Function<Builder, ObjectBuilder<PutTrainedModelAliasResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -54,6 +59,7 @@ public class PutTrainedModelAliasResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link PutTrainedModelAliasResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PutTrainedModelAliasResponse> {

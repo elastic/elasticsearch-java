@@ -29,20 +29,26 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.knn_search._types.Query
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/knn_search/_types/Knn.ts#L25-L34">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class KnnSearchQuery implements JsonpSerializable {
 	private final String field;
@@ -57,17 +63,15 @@ public class KnnSearchQuery implements JsonpSerializable {
 
 	private KnnSearchQuery(Builder builder) {
 
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
-		this.queryVector = ModelTypeHelper.unmodifiableRequired(builder.queryVector, this, "queryVector");
-		this.k = ModelTypeHelper.requireNonNull(builder.k, this, "k");
-		this.numCandidates = ModelTypeHelper.requireNonNull(builder.numCandidates, this, "numCandidates");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.queryVector = ApiTypeHelper.unmodifiableRequired(builder.queryVector, this, "queryVector");
+		this.k = ApiTypeHelper.requireNonNull(builder.k, this, "k");
+		this.numCandidates = ApiTypeHelper.requireNonNull(builder.numCandidates, this, "numCandidates");
 
 	}
 
-	public static KnnSearchQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static KnnSearchQuery of(Function<Builder, ObjectBuilder<KnnSearchQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -120,7 +124,7 @@ public class KnnSearchQuery implements JsonpSerializable {
 		generator.writeKey("field");
 		generator.write(this.field);
 
-		if (ModelTypeHelper.isDefined(this.queryVector)) {
+		if (ApiTypeHelper.isDefined(this.queryVector)) {
 			generator.writeKey("query_vector");
 			generator.writeStartArray();
 			for (Double item0 : this.queryVector) {
@@ -143,6 +147,7 @@ public class KnnSearchQuery implements JsonpSerializable {
 	/**
 	 * Builder for {@link KnnSearchQuery}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<KnnSearchQuery> {
 		private String field;
 
@@ -166,9 +171,11 @@ public class KnnSearchQuery implements JsonpSerializable {
 		 * Required - The query vector
 		 * <p>
 		 * API name: {@code query_vector}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>queryVector</code>.
 		 */
-		public final Builder queryVector(List<Double> value) {
-			this.queryVector = value;
+		public final Builder queryVector(List<Double> list) {
+			this.queryVector = _listAddAll(this.queryVector, list);
 			return this;
 		}
 
@@ -176,9 +183,11 @@ public class KnnSearchQuery implements JsonpSerializable {
 		 * Required - The query vector
 		 * <p>
 		 * API name: {@code query_vector}
+		 * <p>
+		 * Adds one or more values to <code>queryVector</code>.
 		 */
-		public final Builder queryVector(Double... value) {
-			this.queryVector = Arrays.asList(value);
+		public final Builder queryVector(Double value, Double... values) {
+			this.queryVector = _listAdd(this.queryVector, value, values);
 			return this;
 		}
 

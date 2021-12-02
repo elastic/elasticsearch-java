@@ -34,17 +34,41 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.start_datafeed.Request
+
+/**
+ * Starts one or more datafeeds.
+ * <p>
+ * A datafeed must be started in order to retrieve data from Elasticsearch. A
+ * datafeed can be started and stopped multiple times throughout its lifecycle.
+ * <p>
+ * Before you can start a datafeed, the anomaly detection job must be open.
+ * Otherwise, an error occurs.
+ * <p>
+ * If you restart a stopped datafeed, it continues processing input data from
+ * the next millisecond after it was stopped. If new data was indexed for that
+ * exact millisecond between stopping and starting, it will be ignored.
+ * <p>
+ * When Elasticsearch security features are enabled, your datafeed remembers
+ * which roles the last user to create or update it had at the time of creation
+ * or update and runs the query using those same roles. If you provided
+ * secondary authorization headers when you created or updated the datafeed,
+ * those credentials are used instead.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/start_datafeed/MlStartDatafeedRequest.ts#L24-L91">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class StartDatafeedRequest extends RequestBase implements JsonpSerializable {
 	private final String datafeedId;
@@ -62,17 +86,15 @@ public class StartDatafeedRequest extends RequestBase implements JsonpSerializab
 
 	private StartDatafeedRequest(Builder builder) {
 
-		this.datafeedId = ModelTypeHelper.requireNonNull(builder.datafeedId, this, "datafeedId");
+		this.datafeedId = ApiTypeHelper.requireNonNull(builder.datafeedId, this, "datafeedId");
 		this.end = builder.end;
 		this.start = builder.start;
 		this.timeout = builder.timeout;
 
 	}
 
-	public static StartDatafeedRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static StartDatafeedRequest of(Function<Builder, ObjectBuilder<StartDatafeedRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -151,6 +173,7 @@ public class StartDatafeedRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Builder for {@link StartDatafeedRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StartDatafeedRequest> {
 		private String datafeedId;
 
@@ -191,10 +214,8 @@ public class StartDatafeedRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code end}
 		 */
-		public final Builder end(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.end(builder.build());
+		public final Builder end(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.end(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -212,10 +233,8 @@ public class StartDatafeedRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code start}
 		 */
-		public final Builder start(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.start(builder.build());
+		public final Builder start(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.start(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -233,10 +252,8 @@ public class StartDatafeedRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.timeout(builder.build());
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

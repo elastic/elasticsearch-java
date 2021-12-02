@@ -39,6 +39,13 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.QueryBase
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/abstractions.ts#L172-L176">API
+ *      specification</a>
+ */
+
 public abstract class QueryBase implements JsonpSerializable {
 	@Nullable
 	private final Float boost;

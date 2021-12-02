@@ -28,17 +28,23 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.StemmerOverrideTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L311-L315">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class StemmerOverrideTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final List<String> rules;
@@ -51,15 +57,13 @@ public class StemmerOverrideTokenFilter extends TokenFilterBase implements Token
 	private StemmerOverrideTokenFilter(Builder builder) {
 		super(builder);
 
-		this.rules = ModelTypeHelper.unmodifiable(builder.rules);
+		this.rules = ApiTypeHelper.unmodifiable(builder.rules);
 		this.rulesPath = builder.rulesPath;
 
 	}
 
-	public static StemmerOverrideTokenFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static StemmerOverrideTokenFilter of(Function<Builder, ObjectBuilder<StemmerOverrideTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -89,7 +93,7 @@ public class StemmerOverrideTokenFilter extends TokenFilterBase implements Token
 
 		generator.write("type", "stemmer_override");
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.rules)) {
+		if (ApiTypeHelper.isDefined(this.rules)) {
 			generator.writeKey("rules");
 			generator.writeStartArray();
 			for (String item0 : this.rules) {
@@ -112,6 +116,7 @@ public class StemmerOverrideTokenFilter extends TokenFilterBase implements Token
 	/**
 	 * Builder for {@link StemmerOverrideTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<StemmerOverrideTokenFilter> {
@@ -123,17 +128,21 @@ public class StemmerOverrideTokenFilter extends TokenFilterBase implements Token
 
 		/**
 		 * API name: {@code rules}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>rules</code>.
 		 */
-		public final Builder rules(@Nullable List<String> value) {
-			this.rules = value;
+		public final Builder rules(List<String> list) {
+			this.rules = _listAddAll(this.rules, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code rules}
+		 * <p>
+		 * Adds one or more values to <code>rules</code>.
 		 */
-		public final Builder rules(String... value) {
-			this.rules = Arrays.asList(value);
+		public final Builder rules(String value, String... values) {
+			this.rules = _listAdd(this.rules, value, values);
 			return this;
 		}
 

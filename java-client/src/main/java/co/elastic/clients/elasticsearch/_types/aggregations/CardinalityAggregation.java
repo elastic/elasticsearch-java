@@ -33,10 +33,17 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.CardinalityAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/metric.ts#L54-L57">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CardinalityAggregation extends MetricAggregationBase implements AggregationVariant {
 	@Nullable
@@ -55,10 +62,8 @@ public class CardinalityAggregation extends MetricAggregationBase implements Agg
 
 	}
 
-	public static CardinalityAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CardinalityAggregation of(Function<Builder, ObjectBuilder<CardinalityAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -106,6 +111,7 @@ public class CardinalityAggregation extends MetricAggregationBase implements Agg
 	/**
 	 * Builder for {@link CardinalityAggregation}.
 	 */
+
 	public static class Builder extends MetricAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<CardinalityAggregation> {

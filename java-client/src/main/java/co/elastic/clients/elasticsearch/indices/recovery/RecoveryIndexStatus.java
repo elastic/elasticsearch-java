@@ -30,16 +30,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.recovery.RecoveryIndexStatus
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/recovery/types.ts#L59-L69">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RecoveryIndexStatus implements JsonpSerializable {
 	@Nullable
@@ -69,23 +76,21 @@ public class RecoveryIndexStatus implements JsonpSerializable {
 	private RecoveryIndexStatus(Builder builder) {
 
 		this.bytes = builder.bytes;
-		this.files = ModelTypeHelper.requireNonNull(builder.files, this, "files");
-		this.size = ModelTypeHelper.requireNonNull(builder.size, this, "size");
+		this.files = ApiTypeHelper.requireNonNull(builder.files, this, "files");
+		this.size = ApiTypeHelper.requireNonNull(builder.size, this, "size");
 		this.sourceThrottleTime = builder.sourceThrottleTime;
-		this.sourceThrottleTimeInMillis = ModelTypeHelper.requireNonNull(builder.sourceThrottleTimeInMillis, this,
+		this.sourceThrottleTimeInMillis = ApiTypeHelper.requireNonNull(builder.sourceThrottleTimeInMillis, this,
 				"sourceThrottleTimeInMillis");
 		this.targetThrottleTime = builder.targetThrottleTime;
-		this.targetThrottleTimeInMillis = ModelTypeHelper.requireNonNull(builder.targetThrottleTimeInMillis, this,
+		this.targetThrottleTimeInMillis = ApiTypeHelper.requireNonNull(builder.targetThrottleTimeInMillis, this,
 				"targetThrottleTimeInMillis");
-		this.totalTimeInMillis = ModelTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
+		this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
 		this.totalTime = builder.totalTime;
 
 	}
 
-	public static RecoveryIndexStatus of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RecoveryIndexStatus of(Function<Builder, ObjectBuilder<RecoveryIndexStatus>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -209,6 +214,7 @@ public class RecoveryIndexStatus implements JsonpSerializable {
 	/**
 	 * Builder for {@link RecoveryIndexStatus}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RecoveryIndexStatus> {
 		@Nullable
 		private RecoveryBytes bytes;
@@ -243,10 +249,8 @@ public class RecoveryIndexStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code bytes}
 		 */
-		public final Builder bytes(Consumer<RecoveryBytes.Builder> fn) {
-			RecoveryBytes.Builder builder = new RecoveryBytes.Builder();
-			fn.accept(builder);
-			return this.bytes(builder.build());
+		public final Builder bytes(Function<RecoveryBytes.Builder, ObjectBuilder<RecoveryBytes>> fn) {
+			return this.bytes(fn.apply(new RecoveryBytes.Builder()).build());
 		}
 
 		/**
@@ -260,10 +264,8 @@ public class RecoveryIndexStatus implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code files}
 		 */
-		public final Builder files(Consumer<RecoveryFiles.Builder> fn) {
-			RecoveryFiles.Builder builder = new RecoveryFiles.Builder();
-			fn.accept(builder);
-			return this.files(builder.build());
+		public final Builder files(Function<RecoveryFiles.Builder, ObjectBuilder<RecoveryFiles>> fn) {
+			return this.files(fn.apply(new RecoveryFiles.Builder()).build());
 		}
 
 		/**
@@ -277,10 +279,8 @@ public class RecoveryIndexStatus implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code size}
 		 */
-		public final Builder size(Consumer<RecoveryBytes.Builder> fn) {
-			RecoveryBytes.Builder builder = new RecoveryBytes.Builder();
-			fn.accept(builder);
-			return this.size(builder.build());
+		public final Builder size(Function<RecoveryBytes.Builder, ObjectBuilder<RecoveryBytes>> fn) {
+			return this.size(fn.apply(new RecoveryBytes.Builder()).build());
 		}
 
 		/**
@@ -294,10 +294,8 @@ public class RecoveryIndexStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code source_throttle_time}
 		 */
-		public final Builder sourceThrottleTime(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.sourceThrottleTime(builder.build());
+		public final Builder sourceThrottleTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.sourceThrottleTime(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -319,10 +317,8 @@ public class RecoveryIndexStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code target_throttle_time}
 		 */
-		public final Builder targetThrottleTime(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.targetThrottleTime(builder.build());
+		public final Builder targetThrottleTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.targetThrottleTime(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -352,10 +348,8 @@ public class RecoveryIndexStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code total_time}
 		 */
-		public final Builder totalTime(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.totalTime(builder.build());
+		public final Builder totalTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.totalTime(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

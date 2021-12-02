@@ -36,6 +36,13 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TermsBucketBase
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L375-L377">API
+ *      specification</a>
+ */
+
 public abstract class TermsBucketBase extends MultiBucketBase {
 	@Nullable
 	private final Long docCountError;

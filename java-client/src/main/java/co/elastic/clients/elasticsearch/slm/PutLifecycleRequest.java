@@ -34,7 +34,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,10 +42,18 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: slm.put_lifecycle.Request
+
+/**
+ * Creates or updates a snapshot lifecycle policy.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/slm/put_lifecycle/PutSnapshotLifecycleRequest.ts#L26-L72">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutLifecycleRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -78,7 +86,7 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 		this.config = builder.config;
 		this.masterTimeout = builder.masterTimeout;
 		this.name = builder.name;
-		this.policyId = ModelTypeHelper.requireNonNull(builder.policyId, this, "policyId");
+		this.policyId = ApiTypeHelper.requireNonNull(builder.policyId, this, "policyId");
 		this.repository = builder.repository;
 		this.retention = builder.retention;
 		this.schedule = builder.schedule;
@@ -86,10 +94,8 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 
 	}
 
-	public static PutLifecycleRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PutLifecycleRequest of(Function<Builder, ObjectBuilder<PutLifecycleRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -222,6 +228,7 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Builder for {@link PutLifecycleRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutLifecycleRequest> {
 		@Nullable
 		private SlmConfiguration config;
@@ -261,10 +268,8 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code config}
 		 */
-		public final Builder config(Consumer<SlmConfiguration.Builder> fn) {
-			SlmConfiguration.Builder builder = new SlmConfiguration.Builder();
-			fn.accept(builder);
-			return this.config(builder.build());
+		public final Builder config(Function<SlmConfiguration.Builder, ObjectBuilder<SlmConfiguration>> fn) {
+			return this.config(fn.apply(new SlmConfiguration.Builder()).build());
 		}
 
 		/**
@@ -284,10 +289,8 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.masterTimeout(builder.build());
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -339,10 +342,8 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code retention}
 		 */
-		public final Builder retention(Consumer<Retention.Builder> fn) {
-			Retention.Builder builder = new Retention.Builder();
-			fn.accept(builder);
-			return this.retention(builder.build());
+		public final Builder retention(Function<Retention.Builder, ObjectBuilder<Retention>> fn) {
+			return this.retention(fn.apply(new Retention.Builder()).build());
 		}
 
 		/**
@@ -373,10 +374,8 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.timeout(builder.build());
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

@@ -28,18 +28,24 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.KeyValueProcessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/_types/Processors.ts#L263-L275">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class KeyValueProcessor extends ProcessorBase implements ProcessorVariant {
 	private final List<String> excludeKeys;
@@ -75,24 +81,22 @@ public class KeyValueProcessor extends ProcessorBase implements ProcessorVariant
 	private KeyValueProcessor(Builder builder) {
 		super(builder);
 
-		this.excludeKeys = ModelTypeHelper.unmodifiable(builder.excludeKeys);
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
-		this.fieldSplit = ModelTypeHelper.requireNonNull(builder.fieldSplit, this, "fieldSplit");
+		this.excludeKeys = ApiTypeHelper.unmodifiable(builder.excludeKeys);
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.fieldSplit = ApiTypeHelper.requireNonNull(builder.fieldSplit, this, "fieldSplit");
 		this.ignoreMissing = builder.ignoreMissing;
-		this.includeKeys = ModelTypeHelper.unmodifiable(builder.includeKeys);
+		this.includeKeys = ApiTypeHelper.unmodifiable(builder.includeKeys);
 		this.prefix = builder.prefix;
 		this.stripBrackets = builder.stripBrackets;
 		this.targetField = builder.targetField;
 		this.trimKey = builder.trimKey;
 		this.trimValue = builder.trimValue;
-		this.valueSplit = ModelTypeHelper.requireNonNull(builder.valueSplit, this, "valueSplit");
+		this.valueSplit = ApiTypeHelper.requireNonNull(builder.valueSplit, this, "valueSplit");
 
 	}
 
-	public static KeyValueProcessor of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static KeyValueProcessor of(Function<Builder, ObjectBuilder<KeyValueProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -189,7 +193,7 @@ public class KeyValueProcessor extends ProcessorBase implements ProcessorVariant
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.excludeKeys)) {
+		if (ApiTypeHelper.isDefined(this.excludeKeys)) {
 			generator.writeKey("exclude_keys");
 			generator.writeStartArray();
 			for (String item0 : this.excludeKeys) {
@@ -210,7 +214,7 @@ public class KeyValueProcessor extends ProcessorBase implements ProcessorVariant
 			generator.write(this.ignoreMissing);
 
 		}
-		if (ModelTypeHelper.isDefined(this.includeKeys)) {
+		if (ApiTypeHelper.isDefined(this.includeKeys)) {
 			generator.writeKey("include_keys");
 			generator.writeStartArray();
 			for (String item0 : this.includeKeys) {
@@ -255,6 +259,7 @@ public class KeyValueProcessor extends ProcessorBase implements ProcessorVariant
 	/**
 	 * Builder for {@link KeyValueProcessor}.
 	 */
+
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<KeyValueProcessor> {
@@ -290,17 +295,21 @@ public class KeyValueProcessor extends ProcessorBase implements ProcessorVariant
 
 		/**
 		 * API name: {@code exclude_keys}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>excludeKeys</code>.
 		 */
-		public final Builder excludeKeys(@Nullable List<String> value) {
-			this.excludeKeys = value;
+		public final Builder excludeKeys(List<String> list) {
+			this.excludeKeys = _listAddAll(this.excludeKeys, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code exclude_keys}
+		 * <p>
+		 * Adds one or more values to <code>excludeKeys</code>.
 		 */
-		public final Builder excludeKeys(String... value) {
-			this.excludeKeys = Arrays.asList(value);
+		public final Builder excludeKeys(String value, String... values) {
+			this.excludeKeys = _listAdd(this.excludeKeys, value, values);
 			return this;
 		}
 
@@ -330,17 +339,21 @@ public class KeyValueProcessor extends ProcessorBase implements ProcessorVariant
 
 		/**
 		 * API name: {@code include_keys}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>includeKeys</code>.
 		 */
-		public final Builder includeKeys(@Nullable List<String> value) {
-			this.includeKeys = value;
+		public final Builder includeKeys(List<String> list) {
+			this.includeKeys = _listAddAll(this.includeKeys, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code include_keys}
+		 * <p>
+		 * Adds one or more values to <code>includeKeys</code>.
 		 */
-		public final Builder includeKeys(String... value) {
-			this.includeKeys = Arrays.asList(value);
+		public final Builder includeKeys(String value, String... values) {
+			this.includeKeys = _listAdd(this.includeKeys, value, values);
 			return this;
 		}
 

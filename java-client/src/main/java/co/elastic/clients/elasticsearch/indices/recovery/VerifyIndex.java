@@ -30,16 +30,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.recovery.VerifyIndex
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/recovery/types.ts#L104-L109">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class VerifyIndex implements JsonpSerializable {
 	@Nullable
@@ -57,17 +64,15 @@ public class VerifyIndex implements JsonpSerializable {
 	private VerifyIndex(Builder builder) {
 
 		this.checkIndexTime = builder.checkIndexTime;
-		this.checkIndexTimeInMillis = ModelTypeHelper.requireNonNull(builder.checkIndexTimeInMillis, this,
+		this.checkIndexTimeInMillis = ApiTypeHelper.requireNonNull(builder.checkIndexTimeInMillis, this,
 				"checkIndexTimeInMillis");
 		this.totalTime = builder.totalTime;
-		this.totalTimeInMillis = ModelTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
+		this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
 
 	}
 
-	public static VerifyIndex of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static VerifyIndex of(Function<Builder, ObjectBuilder<VerifyIndex>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -134,6 +139,7 @@ public class VerifyIndex implements JsonpSerializable {
 	/**
 	 * Builder for {@link VerifyIndex}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<VerifyIndex> {
 		@Nullable
 		private Time checkIndexTime;
@@ -156,10 +162,8 @@ public class VerifyIndex implements JsonpSerializable {
 		/**
 		 * API name: {@code check_index_time}
 		 */
-		public final Builder checkIndexTime(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.checkIndexTime(builder.build());
+		public final Builder checkIndexTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.checkIndexTime(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -181,10 +185,8 @@ public class VerifyIndex implements JsonpSerializable {
 		/**
 		 * API name: {@code total_time}
 		 */
-		public final Builder totalTime(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.totalTime(builder.build());
+		public final Builder totalTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.totalTime(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

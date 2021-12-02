@@ -31,9 +31,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: indices.clear_cache.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/clear_cache/IndicesClearCacheResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ClearCacheResponse extends ShardsOperationResponseBase {
 	// ---------------------------------------------------------------------------------------------
@@ -43,10 +50,8 @@ public class ClearCacheResponse extends ShardsOperationResponseBase {
 
 	}
 
-	public static ClearCacheResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ClearCacheResponse of(Function<Builder, ObjectBuilder<ClearCacheResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -54,6 +59,7 @@ public class ClearCacheResponse extends ShardsOperationResponseBase {
 	/**
 	 * Builder for {@link ClearCacheResponse}.
 	 */
+
 	public static class Builder extends ShardsOperationResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ClearCacheResponse> {

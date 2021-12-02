@@ -28,16 +28,23 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.GeoShapeQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/geo.ts#L86-L91">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GeoShapeQuery extends QueryBase implements QueryVariant {
 	private final String field;
@@ -51,17 +58,15 @@ public class GeoShapeQuery extends QueryBase implements QueryVariant {
 
 	private GeoShapeQuery(Builder builder) {
 		super(builder);
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
-		this.shape = ModelTypeHelper.requireNonNull(builder.shape, this, "shape");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.shape = ApiTypeHelper.requireNonNull(builder.shape, this, "shape");
 
 		this.ignoreUnmapped = builder.ignoreUnmapped;
 
 	}
 
-	public static GeoShapeQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GeoShapeQuery of(Function<Builder, ObjectBuilder<GeoShapeQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -112,6 +117,7 @@ public class GeoShapeQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link GeoShapeQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<GeoShapeQuery> {
 		private String field;
 
@@ -136,10 +142,8 @@ public class GeoShapeQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required -
 		 */
-		public final Builder shape(Consumer<GeoShapeFieldQuery.Builder> fn) {
-			GeoShapeFieldQuery.Builder builder = new GeoShapeFieldQuery.Builder();
-			fn.accept(builder);
-			return this.shape(builder.build());
+		public final Builder shape(Function<GeoShapeFieldQuery.Builder, ObjectBuilder<GeoShapeFieldQuery>> fn) {
+			return this.shape(fn.apply(new GeoShapeFieldQuery.Builder()).build());
 		}
 
 		@Nullable

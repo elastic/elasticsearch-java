@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.InferenceClassImportance
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L621-L624">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class InferenceClassImportance implements JsonpSerializable {
 	private final String className;
@@ -50,15 +57,13 @@ public class InferenceClassImportance implements JsonpSerializable {
 
 	private InferenceClassImportance(Builder builder) {
 
-		this.className = ModelTypeHelper.requireNonNull(builder.className, this, "className");
-		this.importance = ModelTypeHelper.requireNonNull(builder.importance, this, "importance");
+		this.className = ApiTypeHelper.requireNonNull(builder.className, this, "className");
+		this.importance = ApiTypeHelper.requireNonNull(builder.importance, this, "importance");
 
 	}
 
-	public static InferenceClassImportance of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static InferenceClassImportance of(Function<Builder, ObjectBuilder<InferenceClassImportance>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -99,6 +104,7 @@ public class InferenceClassImportance implements JsonpSerializable {
 	/**
 	 * Builder for {@link InferenceClassImportance}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<InferenceClassImportance> {
 		private String className;
 

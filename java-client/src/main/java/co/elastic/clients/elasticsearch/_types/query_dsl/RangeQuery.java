@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.RangeQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/term.ts#L72-L81">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RangeQuery extends RangeQueryBase implements QueryVariant {
 	// Single key dictionary
@@ -71,7 +78,7 @@ public class RangeQuery extends RangeQueryBase implements QueryVariant {
 
 	private RangeQuery(Builder builder) {
 		super(builder);
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
 		this.gt = builder.gt;
 		this.gte = builder.gte;
@@ -84,10 +91,8 @@ public class RangeQuery extends RangeQueryBase implements QueryVariant {
 
 	}
 
-	public static RangeQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RangeQuery of(Function<Builder, ObjectBuilder<RangeQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -223,6 +228,7 @@ public class RangeQuery extends RangeQueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link RangeQuery}.
 	 */
+
 	public static class Builder extends RangeQueryBase.AbstractBuilder<Builder> implements ObjectBuilder<RangeQuery> {
 		private String field;
 

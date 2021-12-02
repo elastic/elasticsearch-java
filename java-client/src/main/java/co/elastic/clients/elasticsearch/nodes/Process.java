@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.Process
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/_types/Stats.ts#L200-L205">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Process implements JsonpSerializable {
 	private final Cpu cpu;
@@ -54,18 +61,16 @@ public class Process implements JsonpSerializable {
 
 	private Process(Builder builder) {
 
-		this.cpu = ModelTypeHelper.requireNonNull(builder.cpu, this, "cpu");
-		this.mem = ModelTypeHelper.requireNonNull(builder.mem, this, "mem");
-		this.openFileDescriptors = ModelTypeHelper.requireNonNull(builder.openFileDescriptors, this,
+		this.cpu = ApiTypeHelper.requireNonNull(builder.cpu, this, "cpu");
+		this.mem = ApiTypeHelper.requireNonNull(builder.mem, this, "mem");
+		this.openFileDescriptors = ApiTypeHelper.requireNonNull(builder.openFileDescriptors, this,
 				"openFileDescriptors");
-		this.timestamp = ModelTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
 
 	}
 
-	public static Process of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Process of(Function<Builder, ObjectBuilder<Process>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -126,6 +131,7 @@ public class Process implements JsonpSerializable {
 	/**
 	 * Builder for {@link Process}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Process> {
 		private Cpu cpu;
 
@@ -146,10 +152,8 @@ public class Process implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code cpu}
 		 */
-		public final Builder cpu(Consumer<Cpu.Builder> fn) {
-			Cpu.Builder builder = new Cpu.Builder();
-			fn.accept(builder);
-			return this.cpu(builder.build());
+		public final Builder cpu(Function<Cpu.Builder, ObjectBuilder<Cpu>> fn) {
+			return this.cpu(fn.apply(new Cpu.Builder()).build());
 		}
 
 		/**
@@ -163,10 +167,8 @@ public class Process implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code mem}
 		 */
-		public final Builder mem(Consumer<MemoryStats.Builder> fn) {
-			MemoryStats.Builder builder = new MemoryStats.Builder();
-			fn.accept(builder);
-			return this.mem(builder.build());
+		public final Builder mem(Function<MemoryStats.Builder, ObjectBuilder<MemoryStats>> fn) {
+			return this.mem(fn.apply(new MemoryStats.Builder()).build());
 		}
 
 		/**

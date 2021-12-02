@@ -30,15 +30,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.NodesResponseBase
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/_types/NodesResponseBase.ts#L22-L29">API
+ *      specification</a>
+ */
 
 public abstract class NodesResponseBase implements JsonpSerializable {
 	private final NodeStatistics nodeStats;
@@ -47,7 +54,7 @@ public abstract class NodesResponseBase implements JsonpSerializable {
 
 	protected NodesResponseBase(AbstractBuilder<?> builder) {
 
-		this.nodeStats = ModelTypeHelper.requireNonNull(builder.nodeStats, this, "nodeStats");
+		this.nodeStats = ApiTypeHelper.requireNonNull(builder.nodeStats, this, "nodeStats");
 
 	}
 
@@ -99,10 +106,8 @@ public abstract class NodesResponseBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _nodes}
 		 */
-		public final BuilderT nodeStats(Consumer<NodeStatistics.Builder> fn) {
-			NodeStatistics.Builder builder = new NodeStatistics.Builder();
-			fn.accept(builder);
-			return this.nodeStats(builder.build());
+		public final BuilderT nodeStats(Function<NodeStatistics.Builder, ObjectBuilder<NodeStatistics>> fn) {
+			return this.nodeStats(fn.apply(new NodeStatistics.Builder()).build());
 		}
 
 		protected abstract BuilderT self();

@@ -30,9 +30,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.aggregations.PercentilesBucketAggregate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L164-L165">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PercentilesBucketAggregate extends PercentilesAggregateBase implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -42,10 +49,8 @@ public class PercentilesBucketAggregate extends PercentilesAggregateBase impleme
 
 	}
 
-	public static PercentilesBucketAggregate of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PercentilesBucketAggregate of(Function<Builder, ObjectBuilder<PercentilesBucketAggregate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,6 +66,7 @@ public class PercentilesBucketAggregate extends PercentilesAggregateBase impleme
 	/**
 	 * Builder for {@link PercentilesBucketAggregate}.
 	 */
+
 	public static class Builder extends PercentilesAggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PercentilesBucketAggregate> {

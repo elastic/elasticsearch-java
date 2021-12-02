@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,10 +40,18 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform.start_transform.Request
+
+/**
+ * Starts one or more transforms.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/transform/start_transform/StartTransformRequest.ts#L24-L36">API
+ *      specification</a>
+ */
 
 public class StartTransformRequest extends RequestBase {
 	@Nullable
@@ -56,14 +64,12 @@ public class StartTransformRequest extends RequestBase {
 	private StartTransformRequest(Builder builder) {
 
 		this.timeout = builder.timeout;
-		this.transformId = ModelTypeHelper.requireNonNull(builder.transformId, this, "transformId");
+		this.transformId = ApiTypeHelper.requireNonNull(builder.transformId, this, "transformId");
 
 	}
 
-	public static StartTransformRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static StartTransformRequest of(Function<Builder, ObjectBuilder<StartTransformRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -90,6 +96,7 @@ public class StartTransformRequest extends RequestBase {
 	/**
 	 * Builder for {@link StartTransformRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StartTransformRequest> {
 		@Nullable
 		private Time timeout;
@@ -111,10 +118,8 @@ public class StartTransformRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.timeout(builder.build());
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: cluster.stats.ClusterProcessCpu
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/stats/types.ts#L249-L251">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ClusterProcessCpu implements JsonpSerializable {
 	private final int percent;
@@ -46,14 +53,12 @@ public class ClusterProcessCpu implements JsonpSerializable {
 
 	private ClusterProcessCpu(Builder builder) {
 
-		this.percent = ModelTypeHelper.requireNonNull(builder.percent, this, "percent");
+		this.percent = ApiTypeHelper.requireNonNull(builder.percent, this, "percent");
 
 	}
 
-	public static ClusterProcessCpu of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ClusterProcessCpu of(Function<Builder, ObjectBuilder<ClusterProcessCpu>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -84,6 +89,7 @@ public class ClusterProcessCpu implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClusterProcessCpu}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterProcessCpu> {
 		private Integer percent;
 

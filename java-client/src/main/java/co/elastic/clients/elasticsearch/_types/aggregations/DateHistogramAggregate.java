@@ -30,9 +30,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.aggregations.DateHistogramAggregate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L332-L333">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DateHistogramAggregate extends MultiBucketAggregateBase<DateHistogramBucket> implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -42,10 +49,8 @@ public class DateHistogramAggregate extends MultiBucketAggregateBase<DateHistogr
 
 	}
 
-	public static DateHistogramAggregate of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DateHistogramAggregate of(Function<Builder, ObjectBuilder<DateHistogramAggregate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,6 +66,7 @@ public class DateHistogramAggregate extends MultiBucketAggregateBase<DateHistogr
 	/**
 	 * Builder for {@link DateHistogramAggregate}.
 	 */
+
 	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<DateHistogramBucket, Builder>
 			implements
 				ObjectBuilder<DateHistogramAggregate> {

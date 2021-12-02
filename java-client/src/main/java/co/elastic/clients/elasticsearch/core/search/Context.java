@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.UnionDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
@@ -40,11 +40,22 @@ import java.lang.Double;
 import java.lang.Object;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.Context
-// union type: Union[]
+
+/**
+ * Text or location that we want similar documents for or a lookup to a
+ * document's field for the text.
+ * 
+ * @see <a href=
+ *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-mlt-query.html#_document_input_parameters">Documentation
+ *      on elastic.co</a>
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/suggester.ts#L116-L122">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Context implements TaggedUnion<Context.Kind, Object>, JsonpSerializable {
 
@@ -73,15 +84,13 @@ public class Context implements TaggedUnion<Context.Kind, Object>, JsonpSerializ
 
 	private Context(Builder builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static Context of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Context of(Function<Builder, ObjectBuilder<Context>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -143,10 +152,8 @@ public class Context implements TaggedUnion<Context.Kind, Object>, JsonpSerializ
 			return this;
 		}
 
-		public ObjectBuilder<Context> location(Consumer<GeoLocation.Builder> fn) {
-			GeoLocation.Builder builder = new GeoLocation.Builder();
-			fn.accept(builder);
-			return this.location(builder.build());
+		public ObjectBuilder<Context> location(Function<GeoLocation.Builder, ObjectBuilder<GeoLocation>> fn) {
+			return this.location(fn.apply(new GeoLocation.Builder()).build());
 		}
 
 		public ObjectBuilder<Context> category(String v) {

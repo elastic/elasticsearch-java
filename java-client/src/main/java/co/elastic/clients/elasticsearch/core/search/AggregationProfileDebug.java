@@ -29,20 +29,26 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.AggregationProfileDebug
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/profile.ts#L37-L60">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AggregationProfileDebug implements JsonpSerializable {
 	@Nullable
@@ -135,14 +141,12 @@ public class AggregationProfileDebug implements JsonpSerializable {
 		this.stringHashingCollectorsUsed = builder.stringHashingCollectorsUsed;
 		this.numericCollectorsUsed = builder.numericCollectorsUsed;
 		this.emptyCollectorsUsed = builder.emptyCollectorsUsed;
-		this.deferredAggregators = ModelTypeHelper.unmodifiable(builder.deferredAggregators);
+		this.deferredAggregators = ApiTypeHelper.unmodifiable(builder.deferredAggregators);
 
 	}
 
-	public static AggregationProfileDebug of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static AggregationProfileDebug of(Function<Builder, ObjectBuilder<AggregationProfileDebug>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -436,7 +440,7 @@ public class AggregationProfileDebug implements JsonpSerializable {
 			generator.write(this.emptyCollectorsUsed);
 
 		}
-		if (ModelTypeHelper.isDefined(this.deferredAggregators)) {
+		if (ApiTypeHelper.isDefined(this.deferredAggregators)) {
 			generator.writeKey("deferred_aggregators");
 			generator.writeStartArray();
 			for (String item0 : this.deferredAggregators) {
@@ -454,6 +458,7 @@ public class AggregationProfileDebug implements JsonpSerializable {
 	/**
 	 * Builder for {@link AggregationProfileDebug}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AggregationProfileDebug> {
 		@Nullable
 		private Integer segmentsWithMultiValuedOrds;
@@ -596,10 +601,9 @@ public class AggregationProfileDebug implements JsonpSerializable {
 		/**
 		 * API name: {@code delegate_debug}
 		 */
-		public final Builder delegateDebug(Consumer<AggregationProfileDelegateDebug.Builder> fn) {
-			AggregationProfileDelegateDebug.Builder builder = new AggregationProfileDelegateDebug.Builder();
-			fn.accept(builder);
-			return this.delegateDebug(builder.build());
+		public final Builder delegateDebug(
+				Function<AggregationProfileDelegateDebug.Builder, ObjectBuilder<AggregationProfileDelegateDebug>> fn) {
+			return this.delegateDebug(fn.apply(new AggregationProfileDelegateDebug.Builder()).build());
 		}
 
 		/**
@@ -700,17 +704,21 @@ public class AggregationProfileDebug implements JsonpSerializable {
 
 		/**
 		 * API name: {@code deferred_aggregators}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>deferredAggregators</code>.
 		 */
-		public final Builder deferredAggregators(@Nullable List<String> value) {
-			this.deferredAggregators = value;
+		public final Builder deferredAggregators(List<String> list) {
+			this.deferredAggregators = _listAddAll(this.deferredAggregators, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code deferred_aggregators}
+		 * <p>
+		 * Adds one or more values to <code>deferredAggregators</code>.
 		 */
-		public final Builder deferredAggregators(String... value) {
-			this.deferredAggregators = Arrays.asList(value);
+		public final Builder deferredAggregators(String value, String... values) {
+			this.deferredAggregators = _listAdd(this.deferredAggregators, value, values);
 			return this;
 		}
 

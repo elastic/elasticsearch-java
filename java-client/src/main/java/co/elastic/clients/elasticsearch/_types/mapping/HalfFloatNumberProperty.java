@@ -32,10 +32,17 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Float;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.HalfFloatNumberProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/core.ts#L166-L169">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class HalfFloatNumberProperty extends StandardNumberProperty implements PropertyVariant {
 	@Nullable
@@ -50,10 +57,8 @@ public class HalfFloatNumberProperty extends StandardNumberProperty implements P
 
 	}
 
-	public static HalfFloatNumberProperty of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static HalfFloatNumberProperty of(Function<Builder, ObjectBuilder<HalfFloatNumberProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -89,6 +94,7 @@ public class HalfFloatNumberProperty extends StandardNumberProperty implements P
 	/**
 	 * Builder for {@link HalfFloatNumberProperty}.
 	 */
+
 	public static class Builder extends StandardNumberProperty.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<HalfFloatNumberProperty> {

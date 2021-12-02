@@ -30,19 +30,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr.stats.FollowStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ccr/stats/types.ts.ts#L41-L43">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FollowStats implements JsonpSerializable {
 	private final List<FollowIndexStats> indices;
@@ -51,14 +55,12 @@ public class FollowStats implements JsonpSerializable {
 
 	private FollowStats(Builder builder) {
 
-		this.indices = ModelTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
+		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
 
 	}
 
-	public static FollowStats of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static FollowStats of(Function<Builder, ObjectBuilder<FollowStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -79,7 +81,7 @@ public class FollowStats implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.indices)) {
+		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartArray();
 			for (FollowIndexStats item0 : this.indices) {
@@ -97,31 +99,37 @@ public class FollowStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link FollowStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FollowStats> {
 		private List<FollowIndexStats> indices;
 
 		/**
 		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 */
-		public final Builder indices(List<FollowIndexStats> value) {
-			this.indices = value;
+		public final Builder indices(List<FollowIndexStats> list) {
+			this.indices = _listAddAll(this.indices, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds one or more values to <code>indices</code>.
 		 */
-		public final Builder indices(FollowIndexStats... value) {
-			this.indices = Arrays.asList(value);
+		public final Builder indices(FollowIndexStats value, FollowIndexStats... values) {
+			this.indices = _listAdd(this.indices, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds a value to <code>indices</code> using a builder lambda.
 		 */
-		public final Builder indices(
-				Function<ListBuilder<FollowIndexStats, FollowIndexStats.Builder>, ObjectBuilder<List<FollowIndexStats>>> fn) {
-			return indices(fn.apply(new ListBuilder<>(FollowIndexStats.Builder::new)).build());
+		public final Builder indices(Function<FollowIndexStats.Builder, ObjectBuilder<FollowIndexStats>> fn) {
+			return indices(fn.apply(new FollowIndexStats.Builder()).build());
 		}
 
 		/**

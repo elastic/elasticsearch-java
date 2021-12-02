@@ -30,9 +30,20 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _global.rank_eval.RankEvalMetricRecall
+
+/**
+ * Recall at K (R@k)
+ * 
+ * @see <a href=
+ *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-rank-eval.html#k-recall">Documentation
+ *      on elastic.co</a>
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/rank_eval/types.ts#L54-L58">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RankEvalMetricRecall extends RankEvalMetricRatingTreshold {
 	// ---------------------------------------------------------------------------------------------
@@ -42,10 +53,8 @@ public class RankEvalMetricRecall extends RankEvalMetricRatingTreshold {
 
 	}
 
-	public static RankEvalMetricRecall of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RankEvalMetricRecall of(Function<Builder, ObjectBuilder<RankEvalMetricRecall>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +62,7 @@ public class RankEvalMetricRecall extends RankEvalMetricRatingTreshold {
 	/**
 	 * Builder for {@link RankEvalMetricRecall}.
 	 */
+
 	public static class Builder extends RankEvalMetricRatingTreshold.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<RankEvalMetricRecall> {

@@ -35,10 +35,17 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.AnalysisLimits
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/Analysis.ts#L103-L114">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AnalysisLimits implements JsonpSerializable {
 	@Nullable
@@ -56,10 +63,8 @@ public class AnalysisLimits implements JsonpSerializable {
 
 	}
 
-	public static AnalysisLimits of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static AnalysisLimits of(Function<Builder, ObjectBuilder<AnalysisLimits>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -132,6 +137,7 @@ public class AnalysisLimits implements JsonpSerializable {
 	/**
 	 * Builder for {@link AnalysisLimits}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AnalysisLimits> {
 		@Nullable
 		private Long categorizationExamplesLimit;

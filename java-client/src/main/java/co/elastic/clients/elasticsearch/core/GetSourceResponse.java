@@ -32,15 +32,22 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.get_source.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/get_source/SourceResponse.ts#L20-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetSourceResponse<TDocument> implements JsonpSerializable {
 	private final TDocument valueBody;
@@ -52,15 +59,14 @@ public class GetSourceResponse<TDocument> implements JsonpSerializable {
 
 	private GetSourceResponse(Builder<TDocument> builder) {
 
-		this.valueBody = ModelTypeHelper.requireNonNull(builder.valueBody, this, "valueBody");
+		this.valueBody = ApiTypeHelper.requireNonNull(builder.valueBody, this, "valueBody");
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}
 
-	public static <TDocument> GetSourceResponse<TDocument> of(Consumer<Builder<TDocument>> fn) {
-		Builder<TDocument> builder = new Builder<>();
-		fn.accept(builder);
-		return builder.build();
+	public static <TDocument> GetSourceResponse<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<GetSourceResponse<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
@@ -85,6 +91,7 @@ public class GetSourceResponse<TDocument> implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetSourceResponse}.
 	 */
+
 	public static class Builder<TDocument> extends ObjectBuilderBase
 			implements
 				ObjectBuilder<GetSourceResponse<TDocument>> {

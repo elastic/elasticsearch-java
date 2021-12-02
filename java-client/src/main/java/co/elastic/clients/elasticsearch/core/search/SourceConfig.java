@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.UnionDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
@@ -38,11 +38,19 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.SourceConfig
-// union type: Union[]
+
+/**
+ * Defines how to fetch a source. Fetching can be disabled entirely, or the
+ * source can be filtered.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/SourceFilter.ts#L33-L37">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SourceConfig implements TaggedUnion<SourceConfig.Kind, Object>, JsonpSerializable {
 
@@ -71,15 +79,13 @@ public class SourceConfig implements TaggedUnion<SourceConfig.Kind, Object>, Jso
 
 	private SourceConfig(Builder builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static SourceConfig of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SourceConfig of(Function<Builder, ObjectBuilder<SourceConfig>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -141,10 +147,8 @@ public class SourceConfig implements TaggedUnion<SourceConfig.Kind, Object>, Jso
 			return this;
 		}
 
-		public ObjectBuilder<SourceConfig> filter(Consumer<SourceFilter.Builder> fn) {
-			SourceFilter.Builder builder = new SourceFilter.Builder();
-			fn.accept(builder);
-			return this.filter(builder.build());
+		public ObjectBuilder<SourceConfig> filter(Function<SourceFilter.Builder, ObjectBuilder<SourceFilter>> fn) {
+			return this.filter(fn.apply(new SourceFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<SourceConfig> fetch(Boolean v) {

@@ -30,19 +30,25 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.field_caps.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/field_caps/FieldCapabilitiesResponse.ts#L24-L29">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FieldCapsResponse implements JsonpSerializable {
 	private final List<String> indices;
@@ -53,15 +59,13 @@ public class FieldCapsResponse implements JsonpSerializable {
 
 	private FieldCapsResponse(Builder builder) {
 
-		this.indices = ModelTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
-		this.fields = ModelTypeHelper.unmodifiableRequired(builder.fields, this, "fields");
+		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
+		this.fields = ApiTypeHelper.unmodifiableRequired(builder.fields, this, "fields");
 
 	}
 
-	public static FieldCapsResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static FieldCapsResponse of(Function<Builder, ObjectBuilder<FieldCapsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -89,7 +93,7 @@ public class FieldCapsResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.indices)) {
+		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartArray();
 			for (String item0 : this.indices) {
@@ -99,7 +103,7 @@ public class FieldCapsResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.fields)) {
+		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartObject();
 			for (Map.Entry<String, Map<String, FieldCapability>> item0 : this.fields.entrySet()) {
@@ -126,6 +130,7 @@ public class FieldCapsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link FieldCapsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldCapsResponse> {
 		private List<String> indices;
 
@@ -133,25 +138,41 @@ public class FieldCapsResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 */
-		public final Builder indices(List<String> value) {
-			this.indices = value;
+		public final Builder indices(List<String> list) {
+			this.indices = _listAddAll(this.indices, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds one or more values to <code>indices</code>.
 		 */
-		public final Builder indices(String... value) {
-			this.indices = Arrays.asList(value);
+		public final Builder indices(String value, String... values) {
+			this.indices = _listAdd(this.indices, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code fields}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>fields</code>.
 		 */
-		public final Builder fields(Map<String, Map<String, FieldCapability>> value) {
-			this.fields = value;
+		public final Builder fields(Map<String, Map<String, FieldCapability>> map) {
+			this.fields = _mapPutAll(this.fields, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code fields}
+		 * <p>
+		 * Adds an entry to <code>fields</code>.
+		 */
+		public final Builder fields(String key, Map<String, FieldCapability> value) {
+			this.fields = _mapPut(this.fields, key, value);
 			return this;
 		}
 

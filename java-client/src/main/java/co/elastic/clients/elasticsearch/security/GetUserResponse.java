@@ -32,9 +32,16 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: security.get_user.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_user/SecurityGetUserResponse.ts#L23-L23">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetUserResponse extends DictionaryResponse<String, User> {
 	// ---------------------------------------------------------------------------------------------
@@ -44,10 +51,8 @@ public class GetUserResponse extends DictionaryResponse<String, User> {
 
 	}
 
-	public static GetUserResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetUserResponse of(Function<Builder, ObjectBuilder<GetUserResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -55,6 +60,7 @@ public class GetUserResponse extends DictionaryResponse<String, User> {
 	/**
 	 * Builder for {@link GetUserResponse}.
 	 */
+
 	public static class Builder extends DictionaryResponse.AbstractBuilder<String, User, Builder>
 			implements
 				ObjectBuilder<GetUserResponse> {

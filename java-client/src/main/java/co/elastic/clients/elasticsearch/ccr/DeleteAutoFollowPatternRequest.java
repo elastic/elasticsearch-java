@@ -31,17 +31,25 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr.delete_auto_follow_pattern.Request
+
+/**
+ * Deletes auto-follow patterns.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ccr/delete_auto_follow_pattern/DeleteAutoFollowPatternRequest.ts#L23-L32">API
+ *      specification</a>
+ */
 
 public class DeleteAutoFollowPatternRequest extends RequestBase {
 	private final String name;
@@ -50,14 +58,13 @@ public class DeleteAutoFollowPatternRequest extends RequestBase {
 
 	private DeleteAutoFollowPatternRequest(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
-	public static DeleteAutoFollowPatternRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DeleteAutoFollowPatternRequest of(
+			Function<Builder, ObjectBuilder<DeleteAutoFollowPatternRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -74,6 +81,7 @@ public class DeleteAutoFollowPatternRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteAutoFollowPatternRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteAutoFollowPatternRequest> {
 		private String name;
 

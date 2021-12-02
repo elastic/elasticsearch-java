@@ -28,19 +28,25 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.GrokProcessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/_types/Processors.ts#L220-L226">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
@@ -60,19 +66,17 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 	private GrokProcessor(Builder builder) {
 		super(builder);
 
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.ignoreMissing = builder.ignoreMissing;
-		this.patternDefinitions = ModelTypeHelper.unmodifiableRequired(builder.patternDefinitions, this,
+		this.patternDefinitions = ApiTypeHelper.unmodifiableRequired(builder.patternDefinitions, this,
 				"patternDefinitions");
-		this.patterns = ModelTypeHelper.unmodifiableRequired(builder.patterns, this, "patterns");
+		this.patterns = ApiTypeHelper.unmodifiableRequired(builder.patterns, this, "patterns");
 		this.traceMatch = builder.traceMatch;
 
 	}
 
-	public static GrokProcessor of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GrokProcessor of(Function<Builder, ObjectBuilder<GrokProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -131,7 +135,7 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 			generator.write(this.ignoreMissing);
 
 		}
-		if (ModelTypeHelper.isDefined(this.patternDefinitions)) {
+		if (ApiTypeHelper.isDefined(this.patternDefinitions)) {
 			generator.writeKey("pattern_definitions");
 			generator.writeStartObject();
 			for (Map.Entry<String, String> item0 : this.patternDefinitions.entrySet()) {
@@ -142,7 +146,7 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.patterns)) {
+		if (ApiTypeHelper.isDefined(this.patterns)) {
 			generator.writeKey("patterns");
 			generator.writeStartArray();
 			for (String item0 : this.patterns) {
@@ -165,6 +169,7 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 	/**
 	 * Builder for {@link GrokProcessor}.
 	 */
+
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder> implements ObjectBuilder<GrokProcessor> {
 		private String field;
 
@@ -196,25 +201,41 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 
 		/**
 		 * Required - API name: {@code pattern_definitions}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>patternDefinitions</code>.
 		 */
-		public final Builder patternDefinitions(Map<String, String> value) {
-			this.patternDefinitions = value;
+		public final Builder patternDefinitions(Map<String, String> map) {
+			this.patternDefinitions = _mapPutAll(this.patternDefinitions, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code pattern_definitions}
+		 * <p>
+		 * Adds an entry to <code>patternDefinitions</code>.
+		 */
+		public final Builder patternDefinitions(String key, String value) {
+			this.patternDefinitions = _mapPut(this.patternDefinitions, key, value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code patterns}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>patterns</code>.
 		 */
-		public final Builder patterns(List<String> value) {
-			this.patterns = value;
+		public final Builder patterns(List<String> list) {
+			this.patterns = _listAddAll(this.patterns, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code patterns}
+		 * <p>
+		 * Adds one or more values to <code>patterns</code>.
 		 */
-		public final Builder patterns(String... value) {
-			this.patterns = Arrays.asList(value);
+		public final Builder patterns(String value, String... values) {
+			this.patterns = _listAdd(this.patterns, value, values);
 			return this;
 		}
 

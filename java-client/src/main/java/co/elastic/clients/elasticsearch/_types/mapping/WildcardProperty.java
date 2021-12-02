@@ -32,10 +32,17 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.WildcardProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/core.ts#L278-L282">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class WildcardProperty extends DocValuesPropertyBase implements PropertyVariant {
 	@Nullable
@@ -50,10 +57,8 @@ public class WildcardProperty extends DocValuesPropertyBase implements PropertyV
 
 	}
 
-	public static WildcardProperty of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static WildcardProperty of(Function<Builder, ObjectBuilder<WildcardProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -89,6 +94,7 @@ public class WildcardProperty extends DocValuesPropertyBase implements PropertyV
 	/**
 	 * Builder for {@link WildcardProperty}.
 	 */
+
 	public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<WildcardProperty> {

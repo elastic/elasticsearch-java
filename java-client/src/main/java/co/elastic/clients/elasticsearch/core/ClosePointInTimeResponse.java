@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _global.close_point_in_time.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/close_point_in_time/ClosePointInTimeResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ClosePointInTimeResponse implements JsonpSerializable {
 	private final boolean succeeded;
@@ -49,15 +56,13 @@ public class ClosePointInTimeResponse implements JsonpSerializable {
 
 	private ClosePointInTimeResponse(Builder builder) {
 
-		this.succeeded = ModelTypeHelper.requireNonNull(builder.succeeded, this, "succeeded");
-		this.numFreed = ModelTypeHelper.requireNonNull(builder.numFreed, this, "numFreed");
+		this.succeeded = ApiTypeHelper.requireNonNull(builder.succeeded, this, "succeeded");
+		this.numFreed = ApiTypeHelper.requireNonNull(builder.numFreed, this, "numFreed");
 
 	}
 
-	public static ClosePointInTimeResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ClosePointInTimeResponse of(Function<Builder, ObjectBuilder<ClosePointInTimeResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -98,6 +103,7 @@ public class ClosePointInTimeResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClosePointInTimeResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClosePointInTimeResponse> {
 		private Boolean succeeded;
 

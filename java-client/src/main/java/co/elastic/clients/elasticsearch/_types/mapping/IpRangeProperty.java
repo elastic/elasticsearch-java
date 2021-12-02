@@ -31,9 +31,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.mapping.IpRangeProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/range.ts#L54-L56">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IpRangeProperty extends RangePropertyBase implements PropertyVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -43,10 +50,8 @@ public class IpRangeProperty extends RangePropertyBase implements PropertyVarian
 
 	}
 
-	public static IpRangeProperty of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IpRangeProperty of(Function<Builder, ObjectBuilder<IpRangeProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -69,6 +74,7 @@ public class IpRangeProperty extends RangePropertyBase implements PropertyVarian
 	/**
 	 * Builder for {@link IpRangeProperty}.
 	 */
+
 	public static class Builder extends RangePropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<IpRangeProperty> {

@@ -30,9 +30,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.query_dsl.MatchNoneQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/MatchNoneQuery.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MatchNoneQuery extends QueryBase implements QueryVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -42,10 +49,8 @@ public class MatchNoneQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public static MatchNoneQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static MatchNoneQuery of(Function<Builder, ObjectBuilder<MatchNoneQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,6 +66,7 @@ public class MatchNoneQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link MatchNoneQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<MatchNoneQuery> {
 		@Override
 		protected Builder self() {

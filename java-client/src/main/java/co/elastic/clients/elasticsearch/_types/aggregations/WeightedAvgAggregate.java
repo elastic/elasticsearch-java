@@ -30,9 +30,18 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.aggregations.WeightedAvgAggregate
+
+/**
+ * Weighted average aggregation result. <code>value</code> is missing if the
+ * weight was set to zero.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L198-L202">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class WeightedAvgAggregate extends SingleMetricAggregateBase implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -42,10 +51,8 @@ public class WeightedAvgAggregate extends SingleMetricAggregateBase implements A
 
 	}
 
-	public static WeightedAvgAggregate of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static WeightedAvgAggregate of(Function<Builder, ObjectBuilder<WeightedAvgAggregate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,6 +68,7 @@ public class WeightedAvgAggregate extends SingleMetricAggregateBase implements A
 	/**
 	 * Builder for {@link WeightedAvgAggregate}.
 	 */
+
 	public static class Builder extends SingleMetricAggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<WeightedAvgAggregate> {

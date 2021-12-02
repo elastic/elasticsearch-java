@@ -34,7 +34,7 @@ import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 /**
@@ -85,11 +85,10 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient<ElasticsearchTrans
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<DeletePolicyResponse> deletePolicy(Consumer<DeletePolicyRequest.Builder> fn)
+	public final CompletableFuture<DeletePolicyResponse> deletePolicy(
+			Function<DeletePolicyRequest.Builder, ObjectBuilder<DeletePolicyRequest>> fn)
 			throws IOException, ElasticsearchException {
-		DeletePolicyRequest.Builder builder = new DeletePolicyRequest.Builder();
-		fn.accept(builder);
-		return deletePolicy(builder.build());
+		return deletePolicy(fn.apply(new DeletePolicyRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: enrich.execute_policy
@@ -121,11 +120,10 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient<ElasticsearchTrans
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<ExecutePolicyResponse> executePolicy(Consumer<ExecutePolicyRequest.Builder> fn)
+	public final CompletableFuture<ExecutePolicyResponse> executePolicy(
+			Function<ExecutePolicyRequest.Builder, ObjectBuilder<ExecutePolicyRequest>> fn)
 			throws IOException, ElasticsearchException {
-		ExecutePolicyRequest.Builder builder = new ExecutePolicyRequest.Builder();
-		fn.accept(builder);
-		return executePolicy(builder.build());
+		return executePolicy(fn.apply(new ExecutePolicyRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: enrich.get_policy
@@ -157,11 +155,10 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient<ElasticsearchTrans
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<GetPolicyResponse> getPolicy(Consumer<GetPolicyRequest.Builder> fn)
+	public final CompletableFuture<GetPolicyResponse> getPolicy(
+			Function<GetPolicyRequest.Builder, ObjectBuilder<GetPolicyRequest>> fn)
 			throws IOException, ElasticsearchException {
-		GetPolicyRequest.Builder builder = new GetPolicyRequest.Builder();
-		fn.accept(builder);
-		return getPolicy(builder.build());
+		return getPolicy(fn.apply(new GetPolicyRequest.Builder()).build());
 	}
 
 	/**
@@ -206,11 +203,10 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient<ElasticsearchTrans
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<PutPolicyResponse> putPolicy(Consumer<PutPolicyRequest.Builder> fn)
+	public final CompletableFuture<PutPolicyResponse> putPolicy(
+			Function<PutPolicyRequest.Builder, ObjectBuilder<PutPolicyRequest>> fn)
 			throws IOException, ElasticsearchException {
-		PutPolicyRequest.Builder builder = new PutPolicyRequest.Builder();
-		fn.accept(builder);
-		return putPolicy(builder.build());
+		return putPolicy(fn.apply(new PutPolicyRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: enrich.stats

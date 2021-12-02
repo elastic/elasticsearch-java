@@ -30,16 +30,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.get_rollup_index_caps.RollupJobSummaryField
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/rollup/get_rollup_index_caps/types.ts#L35-L39">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RollupJobSummaryField implements JsonpSerializable {
 	private final String agg;
@@ -54,16 +61,14 @@ public class RollupJobSummaryField implements JsonpSerializable {
 
 	private RollupJobSummaryField(Builder builder) {
 
-		this.agg = ModelTypeHelper.requireNonNull(builder.agg, this, "agg");
+		this.agg = ApiTypeHelper.requireNonNull(builder.agg, this, "agg");
 		this.timeZone = builder.timeZone;
 		this.calendarInterval = builder.calendarInterval;
 
 	}
 
-	public static RollupJobSummaryField of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RollupJobSummaryField of(Function<Builder, ObjectBuilder<RollupJobSummaryField>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -121,6 +126,7 @@ public class RollupJobSummaryField implements JsonpSerializable {
 	/**
 	 * Builder for {@link RollupJobSummaryField}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RollupJobSummaryField> {
 		private String agg;
 
@@ -157,10 +163,8 @@ public class RollupJobSummaryField implements JsonpSerializable {
 		/**
 		 * API name: {@code calendar_interval}
 		 */
-		public final Builder calendarInterval(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.calendarInterval(builder.build());
+		public final Builder calendarInterval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.calendarInterval(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

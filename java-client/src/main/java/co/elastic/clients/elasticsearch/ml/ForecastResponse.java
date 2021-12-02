@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.forecast.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/forecast/MlForecastJobResponse.ts#L23-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ForecastResponse extends AcknowledgedResponseBase {
 	private final String forecastId;
@@ -47,14 +54,12 @@ public class ForecastResponse extends AcknowledgedResponseBase {
 	private ForecastResponse(Builder builder) {
 		super(builder);
 
-		this.forecastId = ModelTypeHelper.requireNonNull(builder.forecastId, this, "forecastId");
+		this.forecastId = ApiTypeHelper.requireNonNull(builder.forecastId, this, "forecastId");
 
 	}
 
-	public static ForecastResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ForecastResponse of(Function<Builder, ObjectBuilder<ForecastResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -77,6 +82,7 @@ public class ForecastResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link ForecastResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ForecastResponse> {

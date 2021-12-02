@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ThrottleState
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Action.ts#L97-L100">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ThrottleState implements JsonpSerializable {
 	private final String reason;
@@ -49,15 +56,13 @@ public class ThrottleState implements JsonpSerializable {
 
 	private ThrottleState(Builder builder) {
 
-		this.reason = ModelTypeHelper.requireNonNull(builder.reason, this, "reason");
-		this.timestamp = ModelTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+		this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
+		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
 
 	}
 
-	public static ThrottleState of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ThrottleState of(Function<Builder, ObjectBuilder<ThrottleState>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -98,6 +103,7 @@ public class ThrottleState implements JsonpSerializable {
 	/**
 	 * Builder for {@link ThrottleState}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ThrottleState> {
 		private String reason;
 

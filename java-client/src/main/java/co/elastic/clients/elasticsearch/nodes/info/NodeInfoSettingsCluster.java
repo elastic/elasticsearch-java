@@ -30,16 +30,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoSettingsCluster
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L130-L135">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeInfoSettingsCluster implements JsonpSerializable {
 	private final String name;
@@ -56,17 +63,15 @@ public class NodeInfoSettingsCluster implements JsonpSerializable {
 
 	private NodeInfoSettingsCluster(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.routing = builder.routing;
-		this.election = ModelTypeHelper.requireNonNull(builder.election, this, "election");
+		this.election = ApiTypeHelper.requireNonNull(builder.election, this, "election");
 		this.initialMasterNodes = builder.initialMasterNodes;
 
 	}
 
-	public static NodeInfoSettingsCluster of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodeInfoSettingsCluster of(Function<Builder, ObjectBuilder<NodeInfoSettingsCluster>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -134,6 +139,7 @@ public class NodeInfoSettingsCluster implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoSettingsCluster}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoSettingsCluster> {
 		private String name;
 
@@ -164,10 +170,8 @@ public class NodeInfoSettingsCluster implements JsonpSerializable {
 		/**
 		 * API name: {@code routing}
 		 */
-		public final Builder routing(Consumer<IndexRouting.Builder> fn) {
-			IndexRouting.Builder builder = new IndexRouting.Builder();
-			fn.accept(builder);
-			return this.routing(builder.build());
+		public final Builder routing(Function<IndexRouting.Builder, ObjectBuilder<IndexRouting>> fn) {
+			return this.routing(fn.apply(new IndexRouting.Builder()).build());
 		}
 
 		/**
@@ -181,10 +185,9 @@ public class NodeInfoSettingsCluster implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code election}
 		 */
-		public final Builder election(Consumer<NodeInfoSettingsClusterElection.Builder> fn) {
-			NodeInfoSettingsClusterElection.Builder builder = new NodeInfoSettingsClusterElection.Builder();
-			fn.accept(builder);
-			return this.election(builder.build());
+		public final Builder election(
+				Function<NodeInfoSettingsClusterElection.Builder, ObjectBuilder<NodeInfoSettingsClusterElection>> fn) {
+			return this.election(fn.apply(new NodeInfoSettingsClusterElection.Builder()).build());
 		}
 
 		/**

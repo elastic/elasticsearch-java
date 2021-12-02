@@ -28,14 +28,21 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Watcher
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L421-L425">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Watcher extends Base {
 	private final WatcherActions execution;
@@ -49,16 +56,14 @@ public class Watcher extends Base {
 	private Watcher(Builder builder) {
 		super(builder);
 
-		this.execution = ModelTypeHelper.requireNonNull(builder.execution, this, "execution");
-		this.watch = ModelTypeHelper.requireNonNull(builder.watch, this, "watch");
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
+		this.execution = ApiTypeHelper.requireNonNull(builder.execution, this, "execution");
+		this.watch = ApiTypeHelper.requireNonNull(builder.watch, this, "watch");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
 
 	}
 
-	public static Watcher of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Watcher of(Function<Builder, ObjectBuilder<Watcher>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -101,6 +106,7 @@ public class Watcher extends Base {
 	/**
 	 * Builder for {@link Watcher}.
 	 */
+
 	public static class Builder extends Base.AbstractBuilder<Builder> implements ObjectBuilder<Watcher> {
 		private WatcherActions execution;
 
@@ -119,10 +125,8 @@ public class Watcher extends Base {
 		/**
 		 * Required - API name: {@code execution}
 		 */
-		public final Builder execution(Consumer<WatcherActions.Builder> fn) {
-			WatcherActions.Builder builder = new WatcherActions.Builder();
-			fn.accept(builder);
-			return this.execution(builder.build());
+		public final Builder execution(Function<WatcherActions.Builder, ObjectBuilder<WatcherActions>> fn) {
+			return this.execution(fn.apply(new WatcherActions.Builder()).build());
 		}
 
 		/**
@@ -136,10 +140,8 @@ public class Watcher extends Base {
 		/**
 		 * Required - API name: {@code watch}
 		 */
-		public final Builder watch(Consumer<WatcherWatch.Builder> fn) {
-			WatcherWatch.Builder builder = new WatcherWatch.Builder();
-			fn.accept(builder);
-			return this.watch(builder.build());
+		public final Builder watch(Function<WatcherWatch.Builder, ObjectBuilder<WatcherWatch>> fn) {
+			return this.watch(fn.apply(new WatcherWatch.Builder()).build());
 		}
 
 		/**
@@ -153,10 +155,8 @@ public class Watcher extends Base {
 		/**
 		 * Required - API name: {@code count}
 		 */
-		public final Builder count(Consumer<Counter.Builder> fn) {
-			Counter.Builder builder = new Counter.Builder();
-			fn.accept(builder);
-			return this.count(builder.build());
+		public final Builder count(Function<Counter.Builder, ObjectBuilder<Counter>> fn) {
+			return this.count(fn.apply(new Counter.Builder()).build());
 		}
 
 		@Override

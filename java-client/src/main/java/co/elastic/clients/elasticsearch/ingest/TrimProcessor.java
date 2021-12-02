@@ -28,16 +28,23 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.TrimProcessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/_types/Processors.ts#L335-L339">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TrimProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
@@ -53,16 +60,14 @@ public class TrimProcessor extends ProcessorBase implements ProcessorVariant {
 	private TrimProcessor(Builder builder) {
 		super(builder);
 
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.ignoreMissing = builder.ignoreMissing;
 		this.targetField = builder.targetField;
 
 	}
 
-	public static TrimProcessor of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TrimProcessor of(Function<Builder, ObjectBuilder<TrimProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -120,6 +125,7 @@ public class TrimProcessor extends ProcessorBase implements ProcessorVariant {
 	/**
 	 * Builder for {@link TrimProcessor}.
 	 */
+
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder> implements ObjectBuilder<TrimProcessor> {
 		private String field;
 

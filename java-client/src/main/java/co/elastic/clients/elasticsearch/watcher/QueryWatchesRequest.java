@@ -35,22 +35,27 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.query_watches.Request
+
+/**
+ * Retrieves stored watches.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/query_watches/WatcherQueryWatchesRequest.ts#L25-L49">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class QueryWatchesRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -72,16 +77,14 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 
 		this.from = builder.from;
 		this.query = builder.query;
-		this.searchAfter = ModelTypeHelper.unmodifiable(builder.searchAfter);
+		this.searchAfter = ApiTypeHelper.unmodifiable(builder.searchAfter);
 		this.size = builder.size;
-		this.sort = ModelTypeHelper.unmodifiable(builder.sort);
+		this.sort = ApiTypeHelper.unmodifiable(builder.sort);
 
 	}
 
-	public static QueryWatchesRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static QueryWatchesRequest of(Function<Builder, ObjectBuilder<QueryWatchesRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -153,7 +156,7 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 			this.query.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.searchAfter)) {
+		if (ApiTypeHelper.isDefined(this.searchAfter)) {
 			generator.writeKey("search_after");
 			generator.writeStartArray();
 			for (String item0 : this.searchAfter) {
@@ -168,7 +171,7 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 			generator.write(this.size);
 
 		}
-		if (ModelTypeHelper.isDefined(this.sort)) {
+		if (ApiTypeHelper.isDefined(this.sort)) {
 			generator.writeKey("sort");
 			generator.writeStartArray();
 			for (SortOptions item0 : this.sort) {
@@ -186,6 +189,7 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Builder for {@link QueryWatchesRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<QueryWatchesRequest> {
 		@Nullable
 		private Integer from;
@@ -227,19 +231,19 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code query}
 		 */
-		public final Builder query(Consumer<Query.Builder> fn) {
-			Query.Builder builder = new Query.Builder();
-			fn.accept(builder);
-			return this.query(builder.build());
+		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
 		 * Optional search After to do pagination using last hit’s sort values.
 		 * <p>
 		 * API name: {@code search_after}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>searchAfter</code>.
 		 */
-		public final Builder searchAfter(@Nullable List<String> value) {
-			this.searchAfter = value;
+		public final Builder searchAfter(List<String> list) {
+			this.searchAfter = _listAddAll(this.searchAfter, list);
 			return this;
 		}
 
@@ -247,9 +251,11 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 		 * Optional search After to do pagination using last hit’s sort values.
 		 * <p>
 		 * API name: {@code search_after}
+		 * <p>
+		 * Adds one or more values to <code>searchAfter</code>.
 		 */
-		public final Builder searchAfter(String... value) {
-			this.searchAfter = Arrays.asList(value);
+		public final Builder searchAfter(String value, String... values) {
+			this.searchAfter = _listAdd(this.searchAfter, value, values);
 			return this;
 		}
 
@@ -267,9 +273,11 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 		 * Optional sort definition.
 		 * <p>
 		 * API name: {@code sort}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>sort</code>.
 		 */
-		public final Builder sort(@Nullable List<SortOptions> value) {
-			this.sort = value;
+		public final Builder sort(List<SortOptions> list) {
+			this.sort = _listAddAll(this.sort, list);
 			return this;
 		}
 
@@ -277,9 +285,11 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 		 * Optional sort definition.
 		 * <p>
 		 * API name: {@code sort}
+		 * <p>
+		 * Adds one or more values to <code>sort</code>.
 		 */
-		public final Builder sort(SortOptions... value) {
-			this.sort = Arrays.asList(value);
+		public final Builder sort(SortOptions value, SortOptions... values) {
+			this.sort = _listAdd(this.sort, value, values);
 			return this;
 		}
 
@@ -287,10 +297,11 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 		 * Optional sort definition.
 		 * <p>
 		 * API name: {@code sort}
+		 * <p>
+		 * Adds a value to <code>sort</code> using a builder lambda.
 		 */
-		public final Builder sort(
-				Function<ListBuilder<SortOptions, SortOptions.Builder>, ObjectBuilder<List<SortOptions>>> fn) {
-			return sort(fn.apply(new ListBuilder<>(SortOptions.Builder::new)).build());
+		public final Builder sort(Function<SortOptions.Builder, ObjectBuilder<SortOptions>> fn) {
+			return sort(fn.apply(new SortOptions.Builder()).build());
 		}
 
 		/**

@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.HasChildQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/joining.ts#L41-L51">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class HasChildQuery extends QueryBase implements QueryVariant {
 	@Nullable
@@ -70,16 +77,14 @@ public class HasChildQuery extends QueryBase implements QueryVariant {
 		this.innerHits = builder.innerHits;
 		this.maxChildren = builder.maxChildren;
 		this.minChildren = builder.minChildren;
-		this.query = ModelTypeHelper.requireNonNull(builder.query, this, "query");
+		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 		this.scoreMode = builder.scoreMode;
-		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 
-	public static HasChildQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static HasChildQuery of(Function<Builder, ObjectBuilder<HasChildQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -184,6 +189,7 @@ public class HasChildQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link HasChildQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<HasChildQuery> {
 		@Nullable
 		private Boolean ignoreUnmapped;
@@ -223,10 +229,8 @@ public class HasChildQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code inner_hits}
 		 */
-		public final Builder innerHits(Consumer<InnerHits.Builder> fn) {
-			InnerHits.Builder builder = new InnerHits.Builder();
-			fn.accept(builder);
-			return this.innerHits(builder.build());
+		public final Builder innerHits(Function<InnerHits.Builder, ObjectBuilder<InnerHits>> fn) {
+			return this.innerHits(fn.apply(new InnerHits.Builder()).build());
 		}
 
 		/**
@@ -256,10 +260,8 @@ public class HasChildQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - API name: {@code query}
 		 */
-		public final Builder query(Consumer<Query.Builder> fn) {
-			Query.Builder builder = new Query.Builder();
-			fn.accept(builder);
-			return this.query(builder.build());
+		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**

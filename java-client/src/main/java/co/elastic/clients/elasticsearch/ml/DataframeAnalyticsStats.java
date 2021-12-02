@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
@@ -38,14 +38,23 @@ import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsStatsContainer
-// union type: Container[]
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/DataframeAnalytics.ts#L365-L373">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeAnalyticsStats implements TaggedUnion<DataframeAnalyticsStats.Kind, Object>, JsonpSerializable {
 
+	/**
+	 * {@link DataframeAnalyticsStats} variant kinds.
+	 */
 	/**
 	 * {@link DataframeAnalyticsStats} variant kinds.
 	 */
@@ -86,22 +95,20 @@ public class DataframeAnalyticsStats implements TaggedUnion<DataframeAnalyticsSt
 
 	public DataframeAnalyticsStats(DataframeAnalyticsStatsVariant value) {
 
-		this._kind = ModelTypeHelper.requireNonNull(value._dataframeAnalyticsStatsKind(), this, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(value._dataframeAnalyticsStatsKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
 	private DataframeAnalyticsStats(Builder builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static DataframeAnalyticsStats of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DataframeAnalyticsStats of(Function<Builder, ObjectBuilder<DataframeAnalyticsStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -184,10 +191,8 @@ public class DataframeAnalyticsStats implements TaggedUnion<DataframeAnalyticsSt
 		}
 
 		public ObjectBuilder<DataframeAnalyticsStats> classificationStats(
-				Consumer<DataframeAnalyticsStatsHyperparameters.Builder> fn) {
-			DataframeAnalyticsStatsHyperparameters.Builder builder = new DataframeAnalyticsStatsHyperparameters.Builder();
-			fn.accept(builder);
-			return this.classificationStats(builder.build());
+				Function<DataframeAnalyticsStatsHyperparameters.Builder, ObjectBuilder<DataframeAnalyticsStatsHyperparameters>> fn) {
+			return this.classificationStats(fn.apply(new DataframeAnalyticsStatsHyperparameters.Builder()).build());
 		}
 
 		public ObjectBuilder<DataframeAnalyticsStats> outlierDetectionStats(DataframeAnalyticsStatsOutlierDetection v) {
@@ -197,10 +202,8 @@ public class DataframeAnalyticsStats implements TaggedUnion<DataframeAnalyticsSt
 		}
 
 		public ObjectBuilder<DataframeAnalyticsStats> outlierDetectionStats(
-				Consumer<DataframeAnalyticsStatsOutlierDetection.Builder> fn) {
-			DataframeAnalyticsStatsOutlierDetection.Builder builder = new DataframeAnalyticsStatsOutlierDetection.Builder();
-			fn.accept(builder);
-			return this.outlierDetectionStats(builder.build());
+				Function<DataframeAnalyticsStatsOutlierDetection.Builder, ObjectBuilder<DataframeAnalyticsStatsOutlierDetection>> fn) {
+			return this.outlierDetectionStats(fn.apply(new DataframeAnalyticsStatsOutlierDetection.Builder()).build());
 		}
 
 		public ObjectBuilder<DataframeAnalyticsStats> regressionStats(DataframeAnalyticsStatsHyperparameters v) {
@@ -210,10 +213,8 @@ public class DataframeAnalyticsStats implements TaggedUnion<DataframeAnalyticsSt
 		}
 
 		public ObjectBuilder<DataframeAnalyticsStats> regressionStats(
-				Consumer<DataframeAnalyticsStatsHyperparameters.Builder> fn) {
-			DataframeAnalyticsStatsHyperparameters.Builder builder = new DataframeAnalyticsStatsHyperparameters.Builder();
-			fn.accept(builder);
-			return this.regressionStats(builder.build());
+				Function<DataframeAnalyticsStatsHyperparameters.Builder, ObjectBuilder<DataframeAnalyticsStatsHyperparameters>> fn) {
+			return this.regressionStats(fn.apply(new DataframeAnalyticsStatsHyperparameters.Builder()).build());
 		}
 
 		public DataframeAnalyticsStats build() {

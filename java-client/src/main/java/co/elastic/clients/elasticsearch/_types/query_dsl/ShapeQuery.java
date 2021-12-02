@@ -28,16 +28,23 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.ShapeQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/specialized.ts#L178-L183">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ShapeQuery extends QueryBase implements QueryVariant {
 	private final String field;
@@ -51,17 +58,15 @@ public class ShapeQuery extends QueryBase implements QueryVariant {
 
 	private ShapeQuery(Builder builder) {
 		super(builder);
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
-		this.shape = ModelTypeHelper.requireNonNull(builder.shape, this, "shape");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.shape = ApiTypeHelper.requireNonNull(builder.shape, this, "shape");
 
 		this.ignoreUnmapped = builder.ignoreUnmapped;
 
 	}
 
-	public static ShapeQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ShapeQuery of(Function<Builder, ObjectBuilder<ShapeQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -112,6 +117,7 @@ public class ShapeQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link ShapeQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<ShapeQuery> {
 		private String field;
 
@@ -136,10 +142,8 @@ public class ShapeQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required -
 		 */
-		public final Builder shape(Consumer<ShapeFieldQuery.Builder> fn) {
-			ShapeFieldQuery.Builder builder = new ShapeFieldQuery.Builder();
-			fn.accept(builder);
-			return this.shape(builder.build());
+		public final Builder shape(Function<ShapeFieldQuery.Builder, ObjectBuilder<ShapeFieldQuery>> fn) {
+			return this.shape(fn.apply(new ShapeFieldQuery.Builder()).build());
 		}
 
 		@Nullable

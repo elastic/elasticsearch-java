@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,10 +39,17 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_service_credentials.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_service_credentials/GetServiceCredentialsResponse.ts#L25-L33">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetServiceCredentialsResponse implements JsonpSerializable {
 	private final String serviceAccount;
@@ -57,17 +64,15 @@ public class GetServiceCredentialsResponse implements JsonpSerializable {
 
 	private GetServiceCredentialsResponse(Builder builder) {
 
-		this.serviceAccount = ModelTypeHelper.requireNonNull(builder.serviceAccount, this, "serviceAccount");
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
-		this.tokens = ModelTypeHelper.unmodifiableRequired(builder.tokens, this, "tokens");
-		this.nodesCredentials = ModelTypeHelper.requireNonNull(builder.nodesCredentials, this, "nodesCredentials");
+		this.serviceAccount = ApiTypeHelper.requireNonNull(builder.serviceAccount, this, "serviceAccount");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.tokens = ApiTypeHelper.unmodifiableRequired(builder.tokens, this, "tokens");
+		this.nodesCredentials = ApiTypeHelper.requireNonNull(builder.nodesCredentials, this, "nodesCredentials");
 
 	}
 
-	public static GetServiceCredentialsResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetServiceCredentialsResponse of(Function<Builder, ObjectBuilder<GetServiceCredentialsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -118,7 +123,7 @@ public class GetServiceCredentialsResponse implements JsonpSerializable {
 		generator.writeKey("count");
 		generator.write(this.count);
 
-		if (ModelTypeHelper.isDefined(this.tokens)) {
+		if (ApiTypeHelper.isDefined(this.tokens)) {
 			generator.writeKey("tokens");
 			generator.writeStartObject();
 			for (Map.Entry<String, Map<String, JsonData>> item0 : this.tokens.entrySet()) {
@@ -147,6 +152,7 @@ public class GetServiceCredentialsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetServiceCredentialsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetServiceCredentialsResponse> {
 		private String serviceAccount;
 
@@ -174,9 +180,21 @@ public class GetServiceCredentialsResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code tokens}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>tokens</code>.
 		 */
-		public final Builder tokens(Map<String, Map<String, JsonData>> value) {
-			this.tokens = value;
+		public final Builder tokens(Map<String, Map<String, JsonData>> map) {
+			this.tokens = _mapPutAll(this.tokens, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code tokens}
+		 * <p>
+		 * Adds an entry to <code>tokens</code>.
+		 */
+		public final Builder tokens(String key, Map<String, JsonData> value) {
+			this.tokens = _mapPut(this.tokens, key, value);
 			return this;
 		}
 
@@ -197,10 +215,8 @@ public class GetServiceCredentialsResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code nodes_credentials}
 		 */
-		public final Builder nodesCredentials(Consumer<NodesCredentials.Builder> fn) {
-			NodesCredentials.Builder builder = new NodesCredentials.Builder();
-			fn.accept(builder);
-			return this.nodesCredentials(builder.build());
+		public final Builder nodesCredentials(Function<NodesCredentials.Builder, ObjectBuilder<NodesCredentials>> fn) {
+			return this.nodesCredentials(fn.apply(new NodesCredentials.Builder()).build());
 		}
 
 		/**

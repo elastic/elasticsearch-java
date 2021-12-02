@@ -31,20 +31,27 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: security.clear_cached_roles.Request
+
+/**
+ * Evicts roles from the native role cache.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/clear_cached_roles/ClearCachedRolesRequest.ts#L23-L32">API
+ *      specification</a>
+ */
 
 public class ClearCachedRolesRequest extends RequestBase {
 	private final List<String> name;
@@ -53,14 +60,12 @@ public class ClearCachedRolesRequest extends RequestBase {
 
 	private ClearCachedRolesRequest(Builder builder) {
 
-		this.name = ModelTypeHelper.unmodifiableRequired(builder.name, this, "name");
+		this.name = ApiTypeHelper.unmodifiableRequired(builder.name, this, "name");
 
 	}
 
-	public static ClearCachedRolesRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ClearCachedRolesRequest of(Function<Builder, ObjectBuilder<ClearCachedRolesRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -77,6 +82,7 @@ public class ClearCachedRolesRequest extends RequestBase {
 	/**
 	 * Builder for {@link ClearCachedRolesRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClearCachedRolesRequest> {
 		private List<String> name;
 
@@ -84,9 +90,11 @@ public class ClearCachedRolesRequest extends RequestBase {
 		 * Required - Role name
 		 * <p>
 		 * API name: {@code name}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>name</code>.
 		 */
-		public final Builder name(List<String> value) {
-			this.name = value;
+		public final Builder name(List<String> list) {
+			this.name = _listAddAll(this.name, list);
 			return this;
 		}
 
@@ -94,9 +102,11 @@ public class ClearCachedRolesRequest extends RequestBase {
 		 * Required - Role name
 		 * <p>
 		 * API name: {@code name}
+		 * <p>
+		 * Adds one or more values to <code>name</code>.
 		 */
-		public final Builder name(String... value) {
-			this.name = Arrays.asList(value);
+		public final Builder name(String value, String... values) {
+			this.name = _listAdd(this.name, value, values);
 			return this;
 		}
 

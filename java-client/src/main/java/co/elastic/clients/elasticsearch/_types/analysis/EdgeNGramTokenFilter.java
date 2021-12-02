@@ -28,16 +28,23 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.EdgeNGramTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L78-L84">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class EdgeNGramTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final int maxGram;
@@ -55,17 +62,15 @@ public class EdgeNGramTokenFilter extends TokenFilterBase implements TokenFilter
 	private EdgeNGramTokenFilter(Builder builder) {
 		super(builder);
 
-		this.maxGram = ModelTypeHelper.requireNonNull(builder.maxGram, this, "maxGram");
-		this.minGram = ModelTypeHelper.requireNonNull(builder.minGram, this, "minGram");
+		this.maxGram = ApiTypeHelper.requireNonNull(builder.maxGram, this, "maxGram");
+		this.minGram = ApiTypeHelper.requireNonNull(builder.minGram, this, "minGram");
 		this.side = builder.side;
 		this.preserveOriginal = builder.preserveOriginal;
 
 	}
 
-	public static EdgeNGramTokenFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static EdgeNGramTokenFilter of(Function<Builder, ObjectBuilder<EdgeNGramTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -133,6 +138,7 @@ public class EdgeNGramTokenFilter extends TokenFilterBase implements TokenFilter
 	/**
 	 * Builder for {@link EdgeNGramTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<EdgeNGramTokenFilter> {

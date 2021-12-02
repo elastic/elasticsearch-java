@@ -29,18 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.HttpInput
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Input.ts#L45-L50">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class HttpInput implements InputVariant, JsonpSerializable {
 	@Nullable
@@ -59,16 +65,14 @@ public class HttpInput implements InputVariant, JsonpSerializable {
 	private HttpInput(Builder builder) {
 
 		this.http = builder.http;
-		this.extract = ModelTypeHelper.unmodifiable(builder.extract);
+		this.extract = ApiTypeHelper.unmodifiable(builder.extract);
 		this.request = builder.request;
 		this.responseContentType = builder.responseContentType;
 
 	}
 
-	public static HttpInput of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static HttpInput of(Function<Builder, ObjectBuilder<HttpInput>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -126,7 +130,7 @@ public class HttpInput implements InputVariant, JsonpSerializable {
 			this.http.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.extract)) {
+		if (ApiTypeHelper.isDefined(this.extract)) {
 			generator.writeKey("extract");
 			generator.writeStartArray();
 			for (String item0 : this.extract) {
@@ -153,6 +157,7 @@ public class HttpInput implements InputVariant, JsonpSerializable {
 	/**
 	 * Builder for {@link HttpInput}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HttpInput> {
 		@Nullable
 		private HttpInput http;
@@ -177,25 +182,27 @@ public class HttpInput implements InputVariant, JsonpSerializable {
 		/**
 		 * API name: {@code http}
 		 */
-		public final Builder http(Consumer<HttpInput.Builder> fn) {
-			HttpInput.Builder builder = new HttpInput.Builder();
-			fn.accept(builder);
-			return this.http(builder.build());
+		public final Builder http(Function<HttpInput.Builder, ObjectBuilder<HttpInput>> fn) {
+			return this.http(fn.apply(new HttpInput.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code extract}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>extract</code>.
 		 */
-		public final Builder extract(@Nullable List<String> value) {
-			this.extract = value;
+		public final Builder extract(List<String> list) {
+			this.extract = _listAddAll(this.extract, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code extract}
+		 * <p>
+		 * Adds one or more values to <code>extract</code>.
 		 */
-		public final Builder extract(String... value) {
-			this.extract = Arrays.asList(value);
+		public final Builder extract(String value, String... values) {
+			this.extract = _listAdd(this.extract, value, values);
 			return this;
 		}
 
@@ -210,10 +217,9 @@ public class HttpInput implements InputVariant, JsonpSerializable {
 		/**
 		 * API name: {@code request}
 		 */
-		public final Builder request(Consumer<HttpInputRequestDefinition.Builder> fn) {
-			HttpInputRequestDefinition.Builder builder = new HttpInputRequestDefinition.Builder();
-			fn.accept(builder);
-			return this.request(builder.build());
+		public final Builder request(
+				Function<HttpInputRequestDefinition.Builder, ObjectBuilder<HttpInputRequestDefinition>> fn) {
+			return this.request(fn.apply(new HttpInputRequestDefinition.Builder()).build());
 		}
 
 		/**

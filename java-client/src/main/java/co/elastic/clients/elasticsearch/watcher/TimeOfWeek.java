@@ -29,18 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.TimeOfWeek
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Schedule.ts#L116-L119">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TimeOfWeek implements JsonpSerializable {
 	private final List<String> at;
@@ -51,15 +57,13 @@ public class TimeOfWeek implements JsonpSerializable {
 
 	private TimeOfWeek(Builder builder) {
 
-		this.at = ModelTypeHelper.unmodifiableRequired(builder.at, this, "at");
-		this.on = ModelTypeHelper.unmodifiableRequired(builder.on, this, "on");
+		this.at = ApiTypeHelper.unmodifiableRequired(builder.at, this, "at");
+		this.on = ApiTypeHelper.unmodifiableRequired(builder.on, this, "on");
 
 	}
 
-	public static TimeOfWeek of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TimeOfWeek of(Function<Builder, ObjectBuilder<TimeOfWeek>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -87,7 +91,7 @@ public class TimeOfWeek implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.at)) {
+		if (ApiTypeHelper.isDefined(this.at)) {
 			generator.writeKey("at");
 			generator.writeStartArray();
 			for (String item0 : this.at) {
@@ -97,7 +101,7 @@ public class TimeOfWeek implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.on)) {
+		if (ApiTypeHelper.isDefined(this.on)) {
 			generator.writeKey("on");
 			generator.writeStartArray();
 			for (Day item0 : this.on) {
@@ -114,6 +118,7 @@ public class TimeOfWeek implements JsonpSerializable {
 	/**
 	 * Builder for {@link TimeOfWeek}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TimeOfWeek> {
 		private List<String> at;
 
@@ -121,33 +126,41 @@ public class TimeOfWeek implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code at}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>at</code>.
 		 */
-		public final Builder at(List<String> value) {
-			this.at = value;
+		public final Builder at(List<String> list) {
+			this.at = _listAddAll(this.at, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code at}
+		 * <p>
+		 * Adds one or more values to <code>at</code>.
 		 */
-		public final Builder at(String... value) {
-			this.at = Arrays.asList(value);
+		public final Builder at(String value, String... values) {
+			this.at = _listAdd(this.at, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code on}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>on</code>.
 		 */
-		public final Builder on(List<Day> value) {
-			this.on = value;
+		public final Builder on(List<Day> list) {
+			this.on = _listAddAll(this.on, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code on}
+		 * <p>
+		 * Adds one or more values to <code>on</code>.
 		 */
-		public final Builder on(Day... value) {
-			this.on = Arrays.asList(value);
+		public final Builder on(Day value, Day... values) {
+			this.on = _listAdd(this.on, value, values);
 			return this;
 		}
 

@@ -30,16 +30,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.RescoreQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/rescoring.ts#L28-L34">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RescoreQuery implements JsonpSerializable {
 	private final Query query;
@@ -57,17 +64,15 @@ public class RescoreQuery implements JsonpSerializable {
 
 	private RescoreQuery(Builder builder) {
 
-		this.query = ModelTypeHelper.requireNonNull(builder.query, this, "query");
+		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 		this.queryWeight = builder.queryWeight;
 		this.rescoreQueryWeight = builder.rescoreQueryWeight;
 		this.scoreMode = builder.scoreMode;
 
 	}
 
-	public static RescoreQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RescoreQuery of(Function<Builder, ObjectBuilder<RescoreQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -137,6 +142,7 @@ public class RescoreQuery implements JsonpSerializable {
 	/**
 	 * Builder for {@link RescoreQuery}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RescoreQuery> {
 		private Query query;
 
@@ -160,10 +166,8 @@ public class RescoreQuery implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code rescore_query}
 		 */
-		public final Builder query(Consumer<Query.Builder> fn) {
-			Query.Builder builder = new Query.Builder();
-			fn.accept(builder);
-			return this.query(builder.build());
+		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**

@@ -34,7 +34,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,10 +42,20 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.stop_datafeed.Request
+
+/**
+ * Stops one or more datafeeds. A datafeed that is stopped ceases to retrieve
+ * data from Elasticsearch. A datafeed can be started and stopped multiple times
+ * throughout its lifecycle.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/stop_datafeed/MlStopDatafeedRequest.ts#L24-L78">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class StopDatafeedRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -64,16 +74,14 @@ public class StopDatafeedRequest extends RequestBase implements JsonpSerializabl
 	private StopDatafeedRequest(Builder builder) {
 
 		this.allowNoMatch = builder.allowNoMatch;
-		this.datafeedId = ModelTypeHelper.requireNonNull(builder.datafeedId, this, "datafeedId");
+		this.datafeedId = ApiTypeHelper.requireNonNull(builder.datafeedId, this, "datafeedId");
 		this.force = builder.force;
 		this.timeout = builder.timeout;
 
 	}
 
-	public static StopDatafeedRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static StopDatafeedRequest of(Function<Builder, ObjectBuilder<StopDatafeedRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -152,6 +160,7 @@ public class StopDatafeedRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Builder for {@link StopDatafeedRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StopDatafeedRequest> {
 		@Nullable
 		private Boolean allowNoMatch;
@@ -212,10 +221,8 @@ public class StopDatafeedRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.timeout(builder.build());
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

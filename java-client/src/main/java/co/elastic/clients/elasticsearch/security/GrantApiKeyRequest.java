@@ -35,17 +35,25 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.grant_api_key.Request
+
+/**
+ * Creates an API key on behalf of another user.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/grant_api_key/SecurityGrantApiKeyRequest.ts#L24-L37">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -66,17 +74,15 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 	private GrantApiKeyRequest(Builder builder) {
 
 		this.accessToken = builder.accessToken;
-		this.apiKey = ModelTypeHelper.requireNonNull(builder.apiKey, this, "apiKey");
-		this.grantType = ModelTypeHelper.requireNonNull(builder.grantType, this, "grantType");
+		this.apiKey = ApiTypeHelper.requireNonNull(builder.apiKey, this, "apiKey");
+		this.grantType = ApiTypeHelper.requireNonNull(builder.grantType, this, "grantType");
 		this.password = builder.password;
 		this.username = builder.username;
 
 	}
 
-	public static GrantApiKeyRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GrantApiKeyRequest of(Function<Builder, ObjectBuilder<GrantApiKeyRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -156,6 +162,7 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 	/**
 	 * Builder for {@link GrantApiKeyRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GrantApiKeyRequest> {
 		@Nullable
 		private String accessToken;
@@ -189,10 +196,8 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 		/**
 		 * Required - API name: {@code api_key}
 		 */
-		public final Builder apiKey(Consumer<ApiKey.Builder> fn) {
-			ApiKey.Builder builder = new ApiKey.Builder();
-			fn.accept(builder);
-			return this.apiKey(builder.build());
+		public final Builder apiKey(Function<ApiKey.Builder, ObjectBuilder<ApiKey>> fn) {
+			return this.apiKey(fn.apply(new ApiKey.Builder()).build());
 		}
 
 		/**

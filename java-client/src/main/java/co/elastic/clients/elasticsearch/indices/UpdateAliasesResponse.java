@@ -31,9 +31,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: indices.update_aliases.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/update_aliases/IndicesUpdateAliasesResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class UpdateAliasesResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
@@ -43,10 +50,8 @@ public class UpdateAliasesResponse extends AcknowledgedResponseBase {
 
 	}
 
-	public static UpdateAliasesResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static UpdateAliasesResponse of(Function<Builder, ObjectBuilder<UpdateAliasesResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -54,6 +59,7 @@ public class UpdateAliasesResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link UpdateAliasesResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<UpdateAliasesResponse> {

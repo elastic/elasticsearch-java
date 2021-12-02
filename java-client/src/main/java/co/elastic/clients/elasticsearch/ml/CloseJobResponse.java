@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: ml.close_job.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/close_job/MlCloseJobResponse.ts#L20-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CloseJobResponse implements JsonpSerializable {
 	private final boolean closed;
@@ -46,14 +53,12 @@ public class CloseJobResponse implements JsonpSerializable {
 
 	private CloseJobResponse(Builder builder) {
 
-		this.closed = ModelTypeHelper.requireNonNull(builder.closed, this, "closed");
+		this.closed = ApiTypeHelper.requireNonNull(builder.closed, this, "closed");
 
 	}
 
-	public static CloseJobResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CloseJobResponse of(Function<Builder, ObjectBuilder<CloseJobResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -84,6 +89,7 @@ public class CloseJobResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link CloseJobResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CloseJobResponse> {
 		private Boolean closed;
 

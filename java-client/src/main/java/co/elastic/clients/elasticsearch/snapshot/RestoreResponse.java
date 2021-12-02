@@ -30,15 +30,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.restore.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/snapshot/restore/SnapshotRestoreResponse.ts#L23-L25">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RestoreResponse implements JsonpSerializable {
 	private final SnapshotRestore snapshot;
@@ -47,14 +54,12 @@ public class RestoreResponse implements JsonpSerializable {
 
 	private RestoreResponse(Builder builder) {
 
-		this.snapshot = ModelTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
+		this.snapshot = ApiTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
 
 	}
 
-	public static RestoreResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RestoreResponse of(Function<Builder, ObjectBuilder<RestoreResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -85,6 +90,7 @@ public class RestoreResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link RestoreResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RestoreResponse> {
 		private SnapshotRestore snapshot;
 
@@ -99,10 +105,8 @@ public class RestoreResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code snapshot}
 		 */
-		public final Builder snapshot(Consumer<SnapshotRestore.Builder> fn) {
-			SnapshotRestore.Builder builder = new SnapshotRestore.Builder();
-			fn.accept(builder);
-			return this.snapshot(builder.build());
+		public final Builder snapshot(Function<SnapshotRestore.Builder, ObjectBuilder<SnapshotRestore>> fn) {
+			return this.snapshot(fn.apply(new SnapshotRestore.Builder()).build());
 		}
 
 		/**

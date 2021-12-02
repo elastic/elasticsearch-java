@@ -28,15 +28,22 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SpanNotQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/span.ts#L55-L63">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SpanNotQuery extends QueryBase implements SpanQueryVariant, QueryVariant {
 	@Nullable
@@ -58,17 +65,15 @@ public class SpanNotQuery extends QueryBase implements SpanQueryVariant, QueryVa
 		super(builder);
 
 		this.dist = builder.dist;
-		this.exclude = ModelTypeHelper.requireNonNull(builder.exclude, this, "exclude");
-		this.include = ModelTypeHelper.requireNonNull(builder.include, this, "include");
+		this.exclude = ApiTypeHelper.requireNonNull(builder.exclude, this, "exclude");
+		this.include = ApiTypeHelper.requireNonNull(builder.include, this, "include");
 		this.post = builder.post;
 		this.pre = builder.pre;
 
 	}
 
-	public static SpanNotQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SpanNotQuery of(Function<Builder, ObjectBuilder<SpanNotQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -157,6 +162,7 @@ public class SpanNotQuery extends QueryBase implements SpanQueryVariant, QueryVa
 	/**
 	 * Builder for {@link SpanNotQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<SpanNotQuery> {
 		@Nullable
 		private Integer dist;
@@ -190,10 +196,8 @@ public class SpanNotQuery extends QueryBase implements SpanQueryVariant, QueryVa
 		/**
 		 * Required - API name: {@code exclude}
 		 */
-		public final Builder exclude(Consumer<SpanQuery.Builder> fn) {
-			SpanQuery.Builder builder = new SpanQuery.Builder();
-			fn.accept(builder);
-			return this.exclude(builder.build());
+		public final Builder exclude(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
+			return this.exclude(fn.apply(new SpanQuery.Builder()).build());
 		}
 
 		/**
@@ -207,10 +211,8 @@ public class SpanNotQuery extends QueryBase implements SpanQueryVariant, QueryVa
 		/**
 		 * Required - API name: {@code include}
 		 */
-		public final Builder include(Consumer<SpanQuery.Builder> fn) {
-			SpanQuery.Builder builder = new SpanQuery.Builder();
-			fn.accept(builder);
-			return this.include(builder.build());
+		public final Builder include(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
+			return this.include(fn.apply(new SpanQuery.Builder()).build());
 		}
 
 		/**

@@ -30,16 +30,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: enrich.execute_policy.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/enrich/execute_policy/ExecuteEnrichPolicyResponse.ts#L23-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ExecutePolicyResponse implements JsonpSerializable {
 	private final ExecuteEnrichPolicyStatus status;
@@ -51,15 +58,13 @@ public class ExecutePolicyResponse implements JsonpSerializable {
 
 	private ExecutePolicyResponse(Builder builder) {
 
-		this.status = ModelTypeHelper.requireNonNull(builder.status, this, "status");
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 		this.taskId = builder.taskId;
 
 	}
 
-	public static ExecutePolicyResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ExecutePolicyResponse of(Function<Builder, ObjectBuilder<ExecutePolicyResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -104,6 +109,7 @@ public class ExecutePolicyResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link ExecutePolicyResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExecutePolicyResponse> {
 		private ExecuteEnrichPolicyStatus status;
 
@@ -121,10 +127,9 @@ public class ExecutePolicyResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code status}
 		 */
-		public final Builder status(Consumer<ExecuteEnrichPolicyStatus.Builder> fn) {
-			ExecuteEnrichPolicyStatus.Builder builder = new ExecuteEnrichPolicyStatus.Builder();
-			fn.accept(builder);
-			return this.status(builder.build());
+		public final Builder status(
+				Function<ExecuteEnrichPolicyStatus.Builder, ObjectBuilder<ExecuteEnrichPolicyStatus>> fn) {
+			return this.status(fn.apply(new ExecuteEnrichPolicyStatus.Builder()).build());
 		}
 
 		/**

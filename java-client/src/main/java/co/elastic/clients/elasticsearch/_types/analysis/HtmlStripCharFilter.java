@@ -31,9 +31,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.analysis.HtmlStripCharFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/char_filters.ts#L40-L42">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class HtmlStripCharFilter extends CharFilterBase implements CharFilterDefinitionVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -43,10 +50,8 @@ public class HtmlStripCharFilter extends CharFilterBase implements CharFilterDef
 
 	}
 
-	public static HtmlStripCharFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static HtmlStripCharFilter of(Function<Builder, ObjectBuilder<HtmlStripCharFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -69,6 +74,7 @@ public class HtmlStripCharFilter extends CharFilterBase implements CharFilterDef
 	/**
 	 * Builder for {@link HtmlStripCharFilter}.
 	 */
+
 	public static class Builder extends CharFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<HtmlStripCharFilter> {

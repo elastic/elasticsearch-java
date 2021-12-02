@@ -33,19 +33,26 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_calendar.Request
+
+/**
+ * Creates a calendar.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/put_calendar/MlPutCalendarRequest.ts#L23-L43">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutCalendarRequest extends RequestBase implements JsonpSerializable {
 	private final String calendarId;
@@ -59,16 +66,14 @@ public class PutCalendarRequest extends RequestBase implements JsonpSerializable
 
 	private PutCalendarRequest(Builder builder) {
 
-		this.calendarId = ModelTypeHelper.requireNonNull(builder.calendarId, this, "calendarId");
+		this.calendarId = ApiTypeHelper.requireNonNull(builder.calendarId, this, "calendarId");
 		this.description = builder.description;
-		this.jobIds = ModelTypeHelper.unmodifiable(builder.jobIds);
+		this.jobIds = ApiTypeHelper.unmodifiable(builder.jobIds);
 
 	}
 
-	public static PutCalendarRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PutCalendarRequest of(Function<Builder, ObjectBuilder<PutCalendarRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -115,7 +120,7 @@ public class PutCalendarRequest extends RequestBase implements JsonpSerializable
 			generator.write(this.description);
 
 		}
-		if (ModelTypeHelper.isDefined(this.jobIds)) {
+		if (ApiTypeHelper.isDefined(this.jobIds)) {
 			generator.writeKey("job_ids");
 			generator.writeStartArray();
 			for (String item0 : this.jobIds) {
@@ -133,6 +138,7 @@ public class PutCalendarRequest extends RequestBase implements JsonpSerializable
 	/**
 	 * Builder for {@link PutCalendarRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutCalendarRequest> {
 		private String calendarId;
 
@@ -166,9 +172,11 @@ public class PutCalendarRequest extends RequestBase implements JsonpSerializable
 		 * An array of anomaly detection job identifiers.
 		 * <p>
 		 * API name: {@code job_ids}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>jobIds</code>.
 		 */
-		public final Builder jobIds(@Nullable List<String> value) {
-			this.jobIds = value;
+		public final Builder jobIds(List<String> list) {
+			this.jobIds = _listAddAll(this.jobIds, list);
 			return this;
 		}
 
@@ -176,9 +184,11 @@ public class PutCalendarRequest extends RequestBase implements JsonpSerializable
 		 * An array of anomaly detection job identifiers.
 		 * <p>
 		 * API name: {@code job_ids}
+		 * <p>
+		 * Adds one or more values to <code>jobIds</code>.
 		 */
-		public final Builder jobIds(String... value) {
-			this.jobIds = Arrays.asList(value);
+		public final Builder jobIds(String value, String... values) {
+			this.jobIds = _listAdd(this.jobIds, value, values);
 			return this;
 		}
 

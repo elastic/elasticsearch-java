@@ -35,7 +35,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -44,10 +44,20 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.terms_enum.Request
+
+/**
+ * The terms enum API can be used to discover terms in the index that begin with
+ * the provided string. It is designed for low-latency look-ups used in
+ * auto-complete scenarios.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/terms_enum/TermsEnumRequest.ts#L26-L65">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -77,8 +87,8 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 	private TermsEnumRequest(Builder builder) {
 
 		this.caseInsensitive = builder.caseInsensitive;
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.indexFilter = builder.indexFilter;
 		this.searchAfter = builder.searchAfter;
 		this.size = builder.size;
@@ -87,10 +97,8 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 
 	}
 
-	public static TermsEnumRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TermsEnumRequest of(Function<Builder, ObjectBuilder<TermsEnumRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -228,6 +236,7 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link TermsEnumRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TermsEnumRequest> {
 		@Nullable
 		private Boolean caseInsensitive;
@@ -299,10 +308,8 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code index_filter}
 		 */
-		public final Builder indexFilter(Consumer<Query.Builder> fn) {
-			Query.Builder builder = new Query.Builder();
-			fn.accept(builder);
-			return this.indexFilter(builder.build());
+		public final Builder indexFilter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.indexFilter(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
@@ -354,10 +361,8 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.timeout(builder.build());
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

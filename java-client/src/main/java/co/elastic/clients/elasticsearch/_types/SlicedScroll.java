@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.SlicedScroll
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/SlicedScroll.ts#L23-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SlicedScroll implements JsonpSerializable {
 	@Nullable
@@ -54,15 +61,13 @@ public class SlicedScroll implements JsonpSerializable {
 	private SlicedScroll(Builder builder) {
 
 		this.field = builder.field;
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
-		this.max = ModelTypeHelper.requireNonNull(builder.max, this, "max");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.max = ApiTypeHelper.requireNonNull(builder.max, this, "max");
 
 	}
 
-	public static SlicedScroll of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SlicedScroll of(Function<Builder, ObjectBuilder<SlicedScroll>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -116,6 +121,7 @@ public class SlicedScroll implements JsonpSerializable {
 	/**
 	 * Builder for {@link SlicedScroll}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SlicedScroll> {
 		@Nullable
 		private String field;

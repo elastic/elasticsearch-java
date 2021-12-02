@@ -38,10 +38,18 @@ import java.lang.Boolean;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: license.post_start_basic.Request
+
+/**
+ * Starts an indefinite basic license.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/license/post_start_basic/StartBasicLicenseRequest.ts#L22-L31">API
+ *      specification</a>
+ */
 
 public class PostStartBasicRequest extends RequestBase {
 	@Nullable
@@ -55,10 +63,8 @@ public class PostStartBasicRequest extends RequestBase {
 
 	}
 
-	public static PostStartBasicRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PostStartBasicRequest of(Function<Builder, ObjectBuilder<PostStartBasicRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -76,6 +82,7 @@ public class PostStartBasicRequest extends RequestBase {
 	/**
 	 * Builder for {@link PostStartBasicRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PostStartBasicRequest> {
 		@Nullable
 		private Boolean acknowledge;

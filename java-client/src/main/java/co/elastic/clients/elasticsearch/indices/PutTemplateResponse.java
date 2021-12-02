@@ -31,9 +31,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: indices.put_template.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/put_template/IndicesPutTemplateResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutTemplateResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
@@ -43,10 +50,8 @@ public class PutTemplateResponse extends AcknowledgedResponseBase {
 
 	}
 
-	public static PutTemplateResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PutTemplateResponse of(Function<Builder, ObjectBuilder<PutTemplateResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -54,6 +59,7 @@ public class PutTemplateResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link PutTemplateResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PutTemplateResponse> {

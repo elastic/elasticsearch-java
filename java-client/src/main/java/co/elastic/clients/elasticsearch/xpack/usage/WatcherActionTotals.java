@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: xpack.usage.WatcherActionTotals
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L373-L376">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class WatcherActionTotals implements JsonpSerializable {
 	private final long total;
@@ -48,15 +55,13 @@ public class WatcherActionTotals implements JsonpSerializable {
 
 	private WatcherActionTotals(Builder builder) {
 
-		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
-		this.totalTimeInMs = ModelTypeHelper.requireNonNull(builder.totalTimeInMs, this, "totalTimeInMs");
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+		this.totalTimeInMs = ApiTypeHelper.requireNonNull(builder.totalTimeInMs, this, "totalTimeInMs");
 
 	}
 
-	public static WatcherActionTotals of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static WatcherActionTotals of(Function<Builder, ObjectBuilder<WatcherActionTotals>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -97,6 +102,7 @@ public class WatcherActionTotals implements JsonpSerializable {
 	/**
 	 * Builder for {@link WatcherActionTotals}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WatcherActionTotals> {
 		private Long total;
 

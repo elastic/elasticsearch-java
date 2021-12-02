@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.recovery.TranslogStatus
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/recovery/types.ts#L95-L102">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TranslogStatus implements JsonpSerializable {
 	private final String percent;
@@ -59,19 +66,17 @@ public class TranslogStatus implements JsonpSerializable {
 
 	private TranslogStatus(Builder builder) {
 
-		this.percent = ModelTypeHelper.requireNonNull(builder.percent, this, "percent");
-		this.recovered = ModelTypeHelper.requireNonNull(builder.recovered, this, "recovered");
-		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
-		this.totalOnStart = ModelTypeHelper.requireNonNull(builder.totalOnStart, this, "totalOnStart");
+		this.percent = ApiTypeHelper.requireNonNull(builder.percent, this, "percent");
+		this.recovered = ApiTypeHelper.requireNonNull(builder.recovered, this, "recovered");
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+		this.totalOnStart = ApiTypeHelper.requireNonNull(builder.totalOnStart, this, "totalOnStart");
 		this.totalTime = builder.totalTime;
-		this.totalTimeInMillis = ModelTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
+		this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
 
 	}
 
-	public static TranslogStatus of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TranslogStatus of(Function<Builder, ObjectBuilder<TranslogStatus>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -155,6 +160,7 @@ public class TranslogStatus implements JsonpSerializable {
 	/**
 	 * Builder for {@link TranslogStatus}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TranslogStatus> {
 		private String percent;
 

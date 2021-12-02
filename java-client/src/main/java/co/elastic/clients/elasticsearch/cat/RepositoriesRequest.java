@@ -38,6 +38,14 @@ import java.util.Objects;
 
 // typedef: cat.repositories.Request
 
+/**
+ * Returns information about snapshot repositories registered in the cluster.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/repositories/CatRepositoriesRequest.ts#L22-L27">API
+ *      specification</a>
+ */
+
 public class RepositoriesRequest extends CatRequestBase {
 	public RepositoriesRequest() {
 	}

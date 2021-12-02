@@ -28,15 +28,22 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.IcuTokenizer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/icu-plugin.ts#L30-L33">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IcuTokenizer extends TokenizerBase implements TokenizerDefinitionVariant, TokenFilterDefinitionVariant {
 	private final String ruleFiles;
@@ -46,14 +53,12 @@ public class IcuTokenizer extends TokenizerBase implements TokenizerDefinitionVa
 	private IcuTokenizer(Builder builder) {
 		super(builder);
 
-		this.ruleFiles = ModelTypeHelper.requireNonNull(builder.ruleFiles, this, "ruleFiles");
+		this.ruleFiles = ApiTypeHelper.requireNonNull(builder.ruleFiles, this, "ruleFiles");
 
 	}
 
-	public static IcuTokenizer of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IcuTokenizer of(Function<Builder, ObjectBuilder<IcuTokenizer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -93,6 +98,7 @@ public class IcuTokenizer extends TokenizerBase implements TokenizerDefinitionVa
 	/**
 	 * Builder for {@link IcuTokenizer}.
 	 */
+
 	public static class Builder extends TokenizerBase.AbstractBuilder<Builder> implements ObjectBuilder<IcuTokenizer> {
 		private String ruleFiles;
 

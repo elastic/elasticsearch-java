@@ -33,10 +33,17 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.RangeBucket
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L502-L507">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RangeBucket extends MultiBucketBase {
 	@Nullable
@@ -63,10 +70,8 @@ public class RangeBucket extends MultiBucketBase {
 
 	}
 
-	public static RangeBucket of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RangeBucket of(Function<Builder, ObjectBuilder<RangeBucket>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -132,6 +137,7 @@ public class RangeBucket extends MultiBucketBase {
 	/**
 	 * Builder for {@link RangeBucket}.
 	 */
+
 	public static class Builder extends MultiBucketBase.AbstractBuilder<Builder> implements ObjectBuilder<RangeBucket> {
 		@Nullable
 		private Double from;

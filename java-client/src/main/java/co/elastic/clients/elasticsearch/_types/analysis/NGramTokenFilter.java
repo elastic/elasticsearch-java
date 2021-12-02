@@ -33,10 +33,17 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.NGramTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L264-L269">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NGramTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	@Nullable
@@ -59,10 +66,8 @@ public class NGramTokenFilter extends TokenFilterBase implements TokenFilterDefi
 
 	}
 
-	public static NGramTokenFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NGramTokenFilter of(Function<Builder, ObjectBuilder<NGramTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -124,6 +129,7 @@ public class NGramTokenFilter extends TokenFilterBase implements TokenFilterDefi
 	/**
 	 * Builder for {@link NGramTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<NGramTokenFilter> {

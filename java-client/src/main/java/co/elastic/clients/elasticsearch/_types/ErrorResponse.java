@@ -29,16 +29,25 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.ErrorResponseBase
+
+/**
+ * The response returned by Elasticsearch when request execution did not
+ * succeed.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Base.ts#L70-L79">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ErrorResponse implements JsonpSerializable {
 	private final ErrorCause error;
@@ -49,15 +58,13 @@ public class ErrorResponse implements JsonpSerializable {
 
 	private ErrorResponse(Builder builder) {
 
-		this.error = ModelTypeHelper.requireNonNull(builder.error, this, "error");
-		this.status = ModelTypeHelper.requireNonNull(builder.status, this, "status");
+		this.error = ApiTypeHelper.requireNonNull(builder.error, this, "error");
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 
 	}
 
-	public static ErrorResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ErrorResponse of(Function<Builder, ObjectBuilder<ErrorResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -98,6 +105,7 @@ public class ErrorResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link ErrorResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ErrorResponse> {
 		private ErrorCause error;
 
@@ -114,10 +122,8 @@ public class ErrorResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code error}
 		 */
-		public final Builder error(Consumer<ErrorCause.Builder> fn) {
-			ErrorCause.Builder builder = new ErrorCause.Builder();
-			fn.accept(builder);
-			return this.error(builder.build());
+		public final Builder error(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+			return this.error(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		/**

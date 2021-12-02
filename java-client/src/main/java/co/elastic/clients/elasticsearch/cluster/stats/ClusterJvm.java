@@ -29,20 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterJvm
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/stats/types.ts#L148-L153">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ClusterJvm implements JsonpSerializable {
 	private final long maxUptimeInMillis;
@@ -57,17 +61,15 @@ public class ClusterJvm implements JsonpSerializable {
 
 	private ClusterJvm(Builder builder) {
 
-		this.maxUptimeInMillis = ModelTypeHelper.requireNonNull(builder.maxUptimeInMillis, this, "maxUptimeInMillis");
-		this.mem = ModelTypeHelper.requireNonNull(builder.mem, this, "mem");
-		this.threads = ModelTypeHelper.requireNonNull(builder.threads, this, "threads");
-		this.versions = ModelTypeHelper.unmodifiableRequired(builder.versions, this, "versions");
+		this.maxUptimeInMillis = ApiTypeHelper.requireNonNull(builder.maxUptimeInMillis, this, "maxUptimeInMillis");
+		this.mem = ApiTypeHelper.requireNonNull(builder.mem, this, "mem");
+		this.threads = ApiTypeHelper.requireNonNull(builder.threads, this, "threads");
+		this.versions = ApiTypeHelper.unmodifiableRequired(builder.versions, this, "versions");
 
 	}
 
-	public static ClusterJvm of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ClusterJvm of(Function<Builder, ObjectBuilder<ClusterJvm>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -118,7 +120,7 @@ public class ClusterJvm implements JsonpSerializable {
 		generator.writeKey("threads");
 		generator.write(this.threads);
 
-		if (ModelTypeHelper.isDefined(this.versions)) {
+		if (ApiTypeHelper.isDefined(this.versions)) {
 			generator.writeKey("versions");
 			generator.writeStartArray();
 			for (ClusterJvmVersion item0 : this.versions) {
@@ -136,6 +138,7 @@ public class ClusterJvm implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClusterJvm}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterJvm> {
 		private Long maxUptimeInMillis;
 
@@ -164,10 +167,8 @@ public class ClusterJvm implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code mem}
 		 */
-		public final Builder mem(Consumer<ClusterJvmMemory.Builder> fn) {
-			ClusterJvmMemory.Builder builder = new ClusterJvmMemory.Builder();
-			fn.accept(builder);
-			return this.mem(builder.build());
+		public final Builder mem(Function<ClusterJvmMemory.Builder, ObjectBuilder<ClusterJvmMemory>> fn) {
+			return this.mem(fn.apply(new ClusterJvmMemory.Builder()).build());
 		}
 
 		/**
@@ -180,26 +181,31 @@ public class ClusterJvm implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code versions}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>versions</code>.
 		 */
-		public final Builder versions(List<ClusterJvmVersion> value) {
-			this.versions = value;
+		public final Builder versions(List<ClusterJvmVersion> list) {
+			this.versions = _listAddAll(this.versions, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code versions}
+		 * <p>
+		 * Adds one or more values to <code>versions</code>.
 		 */
-		public final Builder versions(ClusterJvmVersion... value) {
-			this.versions = Arrays.asList(value);
+		public final Builder versions(ClusterJvmVersion value, ClusterJvmVersion... values) {
+			this.versions = _listAdd(this.versions, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code versions}
+		 * <p>
+		 * Adds a value to <code>versions</code> using a builder lambda.
 		 */
-		public final Builder versions(
-				Function<ListBuilder<ClusterJvmVersion, ClusterJvmVersion.Builder>, ObjectBuilder<List<ClusterJvmVersion>>> fn) {
-			return versions(fn.apply(new ListBuilder<>(ClusterJvmVersion.Builder::new)).build());
+		public final Builder versions(Function<ClusterJvmVersion.Builder, ObjectBuilder<ClusterJvmVersion>> fn) {
+			return versions(fn.apply(new ClusterJvmVersion.Builder()).build());
 		}
 
 		/**

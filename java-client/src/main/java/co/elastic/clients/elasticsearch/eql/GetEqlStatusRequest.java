@@ -31,17 +31,26 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: eql.get_status.Request
+
+/**
+ * Returns the status of a previously submitted async or stored Event Query
+ * Language (EQL) search
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/eql/get_status/EqlGetStatusRequest.ts#L23-L33">API
+ *      specification</a>
+ */
 
 public class GetEqlStatusRequest extends RequestBase {
 	private final String id;
@@ -50,14 +59,12 @@ public class GetEqlStatusRequest extends RequestBase {
 
 	private GetEqlStatusRequest(Builder builder) {
 
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 
 	}
 
-	public static GetEqlStatusRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetEqlStatusRequest of(Function<Builder, ObjectBuilder<GetEqlStatusRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -74,6 +81,7 @@ public class GetEqlStatusRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetEqlStatusRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetEqlStatusRequest> {
 		private String id;
 

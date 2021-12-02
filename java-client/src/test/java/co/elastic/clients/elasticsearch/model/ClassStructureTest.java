@@ -21,10 +21,13 @@ package co.elastic.clients.elasticsearch.model;
 
 import co.elastic.clients.elasticsearch._types.ErrorCause;
 import co.elastic.clients.elasticsearch._types.aggregations.Aggregate;
+import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
 import co.elastic.clients.elasticsearch._types.aggregations.Buckets;
 import co.elastic.clients.elasticsearch._types.aggregations.CardinalityAggregate;
 import co.elastic.clients.elasticsearch._types.aggregations.DateRangeAggregate;
 import co.elastic.clients.elasticsearch._types.aggregations.RangeBucket;
+import co.elastic.clients.elasticsearch._types.aggregations.ValueCountAggregation;
+import co.elastic.clients.elasticsearch._types.query_dsl.FieldAndFormat;
 import co.elastic.clients.elasticsearch._types.query_dsl.IntervalsQuery;
 import co.elastic.clients.elasticsearch.core.GetRequest;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
@@ -33,7 +36,7 @@ import co.elastic.clients.elasticsearch.core.search.TotalHits;
 import co.elastic.clients.elasticsearch.core.search.TotalHitsRelation;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.util.MissingRequiredPropertyException;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import org.junit.Test;
 
@@ -41,6 +44,10 @@ import javax.annotation.Nullable;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Tests that verify common features of generated classes.
@@ -82,7 +89,7 @@ public class ClassStructureTest extends ModelTestCase {
 
         // Not setting a required primitive should throw an exception
         {
-            assertThrows(MissingRequiredPropertyException.class, () -> TotalHits.of(b -> {}));
+            assertThrows(MissingRequiredPropertyException.class, () -> TotalHits.of(b -> b));
         }
     }
 
@@ -142,10 +149,10 @@ public class ClassStructureTest extends ModelTestCase {
 
         // Unset list should be non-null, empty but not serialized
         {
-            SearchRequest search = SearchRequest.of(b -> {});
+            SearchRequest search = SearchRequest.of(b -> b);
             assertNotNull(search.storedFields());
             assertEquals(0, search.storedFields().size());
-            assertFalse(ModelTypeHelper.isDefined(search.storedFields()));
+            assertFalse(ApiTypeHelper.isDefined(search.storedFields()));
             assertEquals("{}", toJson(search));
         }
 
@@ -154,7 +161,7 @@ public class ClassStructureTest extends ModelTestCase {
             SearchRequest search = SearchRequest.of(b -> b.storedFields(Collections.emptyList()));
             assertNotNull(search.storedFields());
             assertEquals(0, search.storedFields().size());
-            assertTrue(ModelTypeHelper.isDefined(search.storedFields()));
+            assertTrue(ApiTypeHelper.isDefined(search.storedFields()));
             assertEquals("{\"stored_fields\":[]}", toJson(search));
         }
 
@@ -163,7 +170,7 @@ public class ClassStructureTest extends ModelTestCase {
             CardinalityAggregate card = CardinalityAggregate.of(b -> b.value(1));
             assertNotNull(card.meta());
             assertEquals(0, card.meta().size());
-            assertFalse(ModelTypeHelper.isDefined(card.meta()));
+            assertFalse(ApiTypeHelper.isDefined(card.meta()));
             assertEquals("{\"value\":1}", toJson(card));
         }
 
@@ -175,8 +182,95 @@ public class ClassStructureTest extends ModelTestCase {
             );
             assertNotNull(card.meta());
             assertEquals(0, card.meta().size());
-            assertTrue(ModelTypeHelper.isDefined(card.meta()));
+            assertTrue(ApiTypeHelper.isDefined(card.meta()));
             assertEquals("{\"meta\":{},\"value\":1}", toJson(card));
+        }
+    }
+
+    @Test
+    public void testListSetters() {
+        List<String> fields = Arrays.asList("a", "b");
+
+        {
+            // Appending doesn't modify the original collection
+            SearchRequest search = SearchRequest.of(b -> b
+                .storedFields(fields)
+                .storedFields("c")
+                .storedFields("d", "e", "f")
+            );
+            assertEquals(Arrays.asList("a", "b"), fields);
+            assertEquals(Arrays.asList("a", "b", "c", "d", "e", "f"), search.storedFields());
+        }
+
+        {
+            // Appending doesn't modify the original collection (appending the same list twice)
+            SearchRequest search = SearchRequest.of(b -> b
+                .storedFields(fields)
+                .storedFields(fields)
+            );
+            assertEquals(Arrays.asList("a", "b"), fields);
+            assertEquals(Arrays.asList("a", "b", "a", "b"), search.storedFields());
+        }
+
+
+        {
+            // List cannot be null
+            List<String> nullFields = null;
+            assertThrows(NullPointerException.class, () -> {
+                SearchRequest.of(b -> b
+                    .storedFields(nullFields)
+                );
+            });
+        }
+
+        {
+            // Combine value and builder
+            FieldAndFormat fieldA = FieldAndFormat.of(f -> f.field("a"));
+            SearchRequest search = SearchRequest.of(b -> b
+                .docvalueFields(fieldA)
+                .docvalueFields(f -> f.field("b"))
+                .docvalueFields(f -> f.field("c"))
+            );
+
+            assertEquals(Arrays.asList("a", "b", "c"), search.docvalueFields().stream()
+                .map(FieldAndFormat::field).collect(Collectors.toList()));
+        }
+    }
+
+    @Test
+    public void testMapSetters() {
+        ValueCountAggregation countA = ValueCountAggregation.of(v -> v.field("a"));
+        ValueCountAggregation countB = ValueCountAggregation.of(v -> v.field("b"));
+        ValueCountAggregation countC = ValueCountAggregation.of(v -> v.field("c"));
+
+        Map<String, Aggregation> aggs = new HashMap<>();
+        aggs.put("aggA", countA._toAggregation());
+        aggs.put("aggB", countB._toAggregation());
+
+        {
+            // Appending doesn't modify the original collection
+            SearchRequest search = SearchRequest.of(b -> b
+                .aggregations(aggs)
+                .aggregations("aggC", countC._toAggregation())
+                .aggregations("aggD", a -> a.valueCount(c -> c.field("d")))
+            );
+
+            // Original map wasn't modified
+            assertEquals(2, aggs.size());
+
+            assertEquals(4, search.aggregations().size());
+            assertEquals("a", search.aggregations().get("aggA").valueCount().field());
+            assertEquals("b", search.aggregations().get("aggB").valueCount().field());
+            assertEquals("c", search.aggregations().get("aggC").valueCount().field());
+            assertEquals("d", search.aggregations().get("aggD").valueCount().field());
+        }
+
+        {
+            // Map cannot be null
+            assertThrows(NullPointerException.class, () -> {
+                Map<String, Aggregation> nullMap = null;
+                SearchRequest.of(b -> b.aggregations(nullMap));
+            });
         }
     }
 
@@ -213,7 +307,7 @@ public class ClassStructureTest extends ModelTestCase {
         assertEquals("id", ex.getPropertyName());
 
         // Disable checks, missing id property is accepted.
-        try (ModelTypeHelper.DisabledChecksHandle h = ModelTypeHelper.DANGEROUS_disableRequiredPropertiesCheck(true)) {
+        try (ApiTypeHelper.DisabledChecksHandle h = ApiTypeHelper.DANGEROUS_disableRequiredPropertiesCheck(true)) {
             GetRequest r1 = GetRequest.of(b -> b.index("foo"));
             assertNull(r1.id());
         }

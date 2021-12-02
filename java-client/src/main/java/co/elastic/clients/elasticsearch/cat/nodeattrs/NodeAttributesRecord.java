@@ -34,10 +34,17 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.nodeattrs.NodeAttributesRecord
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/nodeattrs/types.ts#L20-L55">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeAttributesRecord implements JsonpSerializable {
 	@Nullable
@@ -79,10 +86,8 @@ public class NodeAttributesRecord implements JsonpSerializable {
 
 	}
 
-	public static NodeAttributesRecord of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodeAttributesRecord of(Function<Builder, ObjectBuilder<NodeAttributesRecord>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -224,6 +229,7 @@ public class NodeAttributesRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeAttributesRecord}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeAttributesRecord> {
 		@Nullable
 		private String node;

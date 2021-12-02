@@ -32,10 +32,17 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MatrixStatsAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/matrix.ts#L31-L33">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MatrixStatsAggregation extends MatrixAggregation implements AggregationVariant {
 	@Nullable
@@ -50,10 +57,8 @@ public class MatrixStatsAggregation extends MatrixAggregation implements Aggrega
 
 	}
 
-	public static MatrixStatsAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static MatrixStatsAggregation of(Function<Builder, ObjectBuilder<MatrixStatsAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -87,6 +92,7 @@ public class MatrixStatsAggregation extends MatrixAggregation implements Aggrega
 	/**
 	 * Builder for {@link MatrixStatsAggregation}.
 	 */
+
 	public static class Builder extends MatrixAggregation.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<MatrixStatsAggregation> {

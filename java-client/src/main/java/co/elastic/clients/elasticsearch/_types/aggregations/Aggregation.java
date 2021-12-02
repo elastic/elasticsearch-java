@@ -32,8 +32,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
@@ -43,15 +42,23 @@ import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.AggregationContainer
-// union type: Container[]
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/AggregationContainer.ts#L99-L185">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, JsonpSerializable {
 
+	/**
+	 * {@link Aggregation} variant kinds.
+	 */
 	/**
 	 * {@link Aggregation} variant kinds.
 	 */
@@ -228,8 +235,8 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 
 	public Aggregation(AggregationVariant value) {
 
-		this._kind = ModelTypeHelper.requireNonNull(value._aggregationKind(), this, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(value._aggregationKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
 		this.aggregations = null;
 		this.meta = null;
@@ -238,18 +245,16 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 
 	private Aggregation(Builder builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
-		this.aggregations = ModelTypeHelper.unmodifiable(builder.aggregations);
-		this.meta = ModelTypeHelper.unmodifiable(builder.meta);
+		this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);
+		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 
 	}
 
-	public static Aggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Aggregation of(Function<Builder, ObjectBuilder<Aggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -1461,7 +1466,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 
 		generator.writeStartObject();
 
-		if (ModelTypeHelper.isDefined(this.aggregations)) {
+		if (ApiTypeHelper.isDefined(this.aggregations)) {
 			generator.writeKey("aggregations");
 			generator.writeStartObject();
 			for (Map.Entry<String, Aggregation> item0 : this.aggregations.entrySet()) {
@@ -1472,7 +1477,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.meta)) {
+		if (ApiTypeHelper.isDefined(this.meta)) {
 			generator.writeKey("meta");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
@@ -1507,22 +1512,54 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 		 * Sub-aggregations for this aggregation. Only applies to bucket aggregations.
 		 * <p>
 		 * API name: {@code aggregations}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>aggregations</code>.
 		 */
-		public final Builder aggregations(@Nullable Map<String, Aggregation> value) {
-			this.aggregations = value;
+		public final Builder aggregations(Map<String, Aggregation> map) {
+			this.aggregations = _mapPutAll(this.aggregations, map);
 			return this;
 		}
 
-		public final Builder aggregations(
-				Function<MapBuilder<String, Aggregation, Aggregation.Builder>, ObjectBuilder<Map<String, Aggregation>>> fn) {
-			return aggregations(fn.apply(new MapBuilder<>(Aggregation.Builder::new)).build());
+		/**
+		 * Sub-aggregations for this aggregation. Only applies to bucket aggregations.
+		 * <p>
+		 * API name: {@code aggregations}
+		 * <p>
+		 * Adds an entry to <code>aggregations</code>.
+		 */
+		public final Builder aggregations(String key, Aggregation value) {
+			this.aggregations = _mapPut(this.aggregations, key, value);
+			return this;
+		}
+
+		/**
+		 * Sub-aggregations for this aggregation. Only applies to bucket aggregations.
+		 * <p>
+		 * API name: {@code aggregations}
+		 * <p>
+		 * Adds an entry to <code>aggregations</code> using a builder lambda.
+		 */
+		public final Builder aggregations(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
+			return aggregations(key, fn.apply(new Aggregation.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code meta}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>meta</code>.
 		 */
-		public final Builder meta(@Nullable Map<String, JsonData> value) {
-			this.meta = value;
+		public final Builder meta(Map<String, JsonData> map) {
+			this.meta = _mapPutAll(this.meta, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code meta}
+		 * <p>
+		 * Adds an entry to <code>meta</code>.
+		 */
+		public final Builder meta(String key, JsonData value) {
+			this.meta = _mapPut(this.meta, key, value);
 			return this;
 		}
 
@@ -1532,10 +1569,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder adjacencyMatrix(Consumer<AdjacencyMatrixAggregation.Builder> fn) {
-			AdjacencyMatrixAggregation.Builder builder = new AdjacencyMatrixAggregation.Builder();
-			fn.accept(builder);
-			return this.adjacencyMatrix(builder.build());
+		public ContainerBuilder adjacencyMatrix(
+				Function<AdjacencyMatrixAggregation.Builder, ObjectBuilder<AdjacencyMatrixAggregation>> fn) {
+			return this.adjacencyMatrix(fn.apply(new AdjacencyMatrixAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder autoDateHistogram(AutoDateHistogramAggregation v) {
@@ -1544,10 +1580,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder autoDateHistogram(Consumer<AutoDateHistogramAggregation.Builder> fn) {
-			AutoDateHistogramAggregation.Builder builder = new AutoDateHistogramAggregation.Builder();
-			fn.accept(builder);
-			return this.autoDateHistogram(builder.build());
+		public ContainerBuilder autoDateHistogram(
+				Function<AutoDateHistogramAggregation.Builder, ObjectBuilder<AutoDateHistogramAggregation>> fn) {
+			return this.autoDateHistogram(fn.apply(new AutoDateHistogramAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder avg(AverageAggregation v) {
@@ -1556,10 +1591,8 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder avg(Consumer<AverageAggregation.Builder> fn) {
-			AverageAggregation.Builder builder = new AverageAggregation.Builder();
-			fn.accept(builder);
-			return this.avg(builder.build());
+		public ContainerBuilder avg(Function<AverageAggregation.Builder, ObjectBuilder<AverageAggregation>> fn) {
+			return this.avg(fn.apply(new AverageAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder avgBucket(AverageBucketAggregation v) {
@@ -1568,10 +1601,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder avgBucket(Consumer<AverageBucketAggregation.Builder> fn) {
-			AverageBucketAggregation.Builder builder = new AverageBucketAggregation.Builder();
-			fn.accept(builder);
-			return this.avgBucket(builder.build());
+		public ContainerBuilder avgBucket(
+				Function<AverageBucketAggregation.Builder, ObjectBuilder<AverageBucketAggregation>> fn) {
+			return this.avgBucket(fn.apply(new AverageBucketAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder boxplot(BoxplotAggregation v) {
@@ -1580,10 +1612,8 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder boxplot(Consumer<BoxplotAggregation.Builder> fn) {
-			BoxplotAggregation.Builder builder = new BoxplotAggregation.Builder();
-			fn.accept(builder);
-			return this.boxplot(builder.build());
+		public ContainerBuilder boxplot(Function<BoxplotAggregation.Builder, ObjectBuilder<BoxplotAggregation>> fn) {
+			return this.boxplot(fn.apply(new BoxplotAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder bucketScript(BucketScriptAggregation v) {
@@ -1592,10 +1622,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder bucketScript(Consumer<BucketScriptAggregation.Builder> fn) {
-			BucketScriptAggregation.Builder builder = new BucketScriptAggregation.Builder();
-			fn.accept(builder);
-			return this.bucketScript(builder.build());
+		public ContainerBuilder bucketScript(
+				Function<BucketScriptAggregation.Builder, ObjectBuilder<BucketScriptAggregation>> fn) {
+			return this.bucketScript(fn.apply(new BucketScriptAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder bucketSelector(BucketSelectorAggregation v) {
@@ -1604,10 +1633,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder bucketSelector(Consumer<BucketSelectorAggregation.Builder> fn) {
-			BucketSelectorAggregation.Builder builder = new BucketSelectorAggregation.Builder();
-			fn.accept(builder);
-			return this.bucketSelector(builder.build());
+		public ContainerBuilder bucketSelector(
+				Function<BucketSelectorAggregation.Builder, ObjectBuilder<BucketSelectorAggregation>> fn) {
+			return this.bucketSelector(fn.apply(new BucketSelectorAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder bucketSort(BucketSortAggregation v) {
@@ -1616,10 +1644,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder bucketSort(Consumer<BucketSortAggregation.Builder> fn) {
-			BucketSortAggregation.Builder builder = new BucketSortAggregation.Builder();
-			fn.accept(builder);
-			return this.bucketSort(builder.build());
+		public ContainerBuilder bucketSort(
+				Function<BucketSortAggregation.Builder, ObjectBuilder<BucketSortAggregation>> fn) {
+			return this.bucketSort(fn.apply(new BucketSortAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder cardinality(CardinalityAggregation v) {
@@ -1628,10 +1655,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder cardinality(Consumer<CardinalityAggregation.Builder> fn) {
-			CardinalityAggregation.Builder builder = new CardinalityAggregation.Builder();
-			fn.accept(builder);
-			return this.cardinality(builder.build());
+		public ContainerBuilder cardinality(
+				Function<CardinalityAggregation.Builder, ObjectBuilder<CardinalityAggregation>> fn) {
+			return this.cardinality(fn.apply(new CardinalityAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder children(ChildrenAggregation v) {
@@ -1640,10 +1666,8 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder children(Consumer<ChildrenAggregation.Builder> fn) {
-			ChildrenAggregation.Builder builder = new ChildrenAggregation.Builder();
-			fn.accept(builder);
-			return this.children(builder.build());
+		public ContainerBuilder children(Function<ChildrenAggregation.Builder, ObjectBuilder<ChildrenAggregation>> fn) {
+			return this.children(fn.apply(new ChildrenAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder composite(CompositeAggregation v) {
@@ -1652,10 +1676,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder composite(Consumer<CompositeAggregation.Builder> fn) {
-			CompositeAggregation.Builder builder = new CompositeAggregation.Builder();
-			fn.accept(builder);
-			return this.composite(builder.build());
+		public ContainerBuilder composite(
+				Function<CompositeAggregation.Builder, ObjectBuilder<CompositeAggregation>> fn) {
+			return this.composite(fn.apply(new CompositeAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder cumulativeCardinality(CumulativeCardinalityAggregation v) {
@@ -1664,10 +1687,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder cumulativeCardinality(Consumer<CumulativeCardinalityAggregation.Builder> fn) {
-			CumulativeCardinalityAggregation.Builder builder = new CumulativeCardinalityAggregation.Builder();
-			fn.accept(builder);
-			return this.cumulativeCardinality(builder.build());
+		public ContainerBuilder cumulativeCardinality(
+				Function<CumulativeCardinalityAggregation.Builder, ObjectBuilder<CumulativeCardinalityAggregation>> fn) {
+			return this.cumulativeCardinality(fn.apply(new CumulativeCardinalityAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder cumulativeSum(CumulativeSumAggregation v) {
@@ -1676,10 +1698,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder cumulativeSum(Consumer<CumulativeSumAggregation.Builder> fn) {
-			CumulativeSumAggregation.Builder builder = new CumulativeSumAggregation.Builder();
-			fn.accept(builder);
-			return this.cumulativeSum(builder.build());
+		public ContainerBuilder cumulativeSum(
+				Function<CumulativeSumAggregation.Builder, ObjectBuilder<CumulativeSumAggregation>> fn) {
+			return this.cumulativeSum(fn.apply(new CumulativeSumAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder dateHistogram(DateHistogramAggregation v) {
@@ -1688,10 +1709,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder dateHistogram(Consumer<DateHistogramAggregation.Builder> fn) {
-			DateHistogramAggregation.Builder builder = new DateHistogramAggregation.Builder();
-			fn.accept(builder);
-			return this.dateHistogram(builder.build());
+		public ContainerBuilder dateHistogram(
+				Function<DateHistogramAggregation.Builder, ObjectBuilder<DateHistogramAggregation>> fn) {
+			return this.dateHistogram(fn.apply(new DateHistogramAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder dateRange(DateRangeAggregation v) {
@@ -1700,10 +1720,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder dateRange(Consumer<DateRangeAggregation.Builder> fn) {
-			DateRangeAggregation.Builder builder = new DateRangeAggregation.Builder();
-			fn.accept(builder);
-			return this.dateRange(builder.build());
+		public ContainerBuilder dateRange(
+				Function<DateRangeAggregation.Builder, ObjectBuilder<DateRangeAggregation>> fn) {
+			return this.dateRange(fn.apply(new DateRangeAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder derivative(DerivativeAggregation v) {
@@ -1712,10 +1731,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder derivative(Consumer<DerivativeAggregation.Builder> fn) {
-			DerivativeAggregation.Builder builder = new DerivativeAggregation.Builder();
-			fn.accept(builder);
-			return this.derivative(builder.build());
+		public ContainerBuilder derivative(
+				Function<DerivativeAggregation.Builder, ObjectBuilder<DerivativeAggregation>> fn) {
+			return this.derivative(fn.apply(new DerivativeAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder diversifiedSampler(DiversifiedSamplerAggregation v) {
@@ -1724,10 +1742,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder diversifiedSampler(Consumer<DiversifiedSamplerAggregation.Builder> fn) {
-			DiversifiedSamplerAggregation.Builder builder = new DiversifiedSamplerAggregation.Builder();
-			fn.accept(builder);
-			return this.diversifiedSampler(builder.build());
+		public ContainerBuilder diversifiedSampler(
+				Function<DiversifiedSamplerAggregation.Builder, ObjectBuilder<DiversifiedSamplerAggregation>> fn) {
+			return this.diversifiedSampler(fn.apply(new DiversifiedSamplerAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder extendedStats(ExtendedStatsAggregation v) {
@@ -1736,10 +1753,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder extendedStats(Consumer<ExtendedStatsAggregation.Builder> fn) {
-			ExtendedStatsAggregation.Builder builder = new ExtendedStatsAggregation.Builder();
-			fn.accept(builder);
-			return this.extendedStats(builder.build());
+		public ContainerBuilder extendedStats(
+				Function<ExtendedStatsAggregation.Builder, ObjectBuilder<ExtendedStatsAggregation>> fn) {
+			return this.extendedStats(fn.apply(new ExtendedStatsAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder extendedStatsBucket(ExtendedStatsBucketAggregation v) {
@@ -1748,10 +1764,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder extendedStatsBucket(Consumer<ExtendedStatsBucketAggregation.Builder> fn) {
-			ExtendedStatsBucketAggregation.Builder builder = new ExtendedStatsBucketAggregation.Builder();
-			fn.accept(builder);
-			return this.extendedStatsBucket(builder.build());
+		public ContainerBuilder extendedStatsBucket(
+				Function<ExtendedStatsBucketAggregation.Builder, ObjectBuilder<ExtendedStatsBucketAggregation>> fn) {
+			return this.extendedStatsBucket(fn.apply(new ExtendedStatsBucketAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder filter(Query v) {
@@ -1760,10 +1775,8 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder filter(Consumer<Query.Builder> fn) {
-			Query.Builder builder = new Query.Builder();
-			fn.accept(builder);
-			return this.filter(builder.build());
+		public ContainerBuilder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.filter(fn.apply(new Query.Builder()).build());
 		}
 
 		public ContainerBuilder filters(FiltersAggregation v) {
@@ -1772,10 +1785,8 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder filters(Consumer<FiltersAggregation.Builder> fn) {
-			FiltersAggregation.Builder builder = new FiltersAggregation.Builder();
-			fn.accept(builder);
-			return this.filters(builder.build());
+		public ContainerBuilder filters(Function<FiltersAggregation.Builder, ObjectBuilder<FiltersAggregation>> fn) {
+			return this.filters(fn.apply(new FiltersAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder geoBounds(GeoBoundsAggregation v) {
@@ -1784,10 +1795,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder geoBounds(Consumer<GeoBoundsAggregation.Builder> fn) {
-			GeoBoundsAggregation.Builder builder = new GeoBoundsAggregation.Builder();
-			fn.accept(builder);
-			return this.geoBounds(builder.build());
+		public ContainerBuilder geoBounds(
+				Function<GeoBoundsAggregation.Builder, ObjectBuilder<GeoBoundsAggregation>> fn) {
+			return this.geoBounds(fn.apply(new GeoBoundsAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder geoCentroid(GeoCentroidAggregation v) {
@@ -1796,10 +1806,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder geoCentroid(Consumer<GeoCentroidAggregation.Builder> fn) {
-			GeoCentroidAggregation.Builder builder = new GeoCentroidAggregation.Builder();
-			fn.accept(builder);
-			return this.geoCentroid(builder.build());
+		public ContainerBuilder geoCentroid(
+				Function<GeoCentroidAggregation.Builder, ObjectBuilder<GeoCentroidAggregation>> fn) {
+			return this.geoCentroid(fn.apply(new GeoCentroidAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder geoDistance(GeoDistanceAggregation v) {
@@ -1808,10 +1817,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder geoDistance(Consumer<GeoDistanceAggregation.Builder> fn) {
-			GeoDistanceAggregation.Builder builder = new GeoDistanceAggregation.Builder();
-			fn.accept(builder);
-			return this.geoDistance(builder.build());
+		public ContainerBuilder geoDistance(
+				Function<GeoDistanceAggregation.Builder, ObjectBuilder<GeoDistanceAggregation>> fn) {
+			return this.geoDistance(fn.apply(new GeoDistanceAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder geohashGrid(GeoHashGridAggregation v) {
@@ -1820,10 +1828,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder geohashGrid(Consumer<GeoHashGridAggregation.Builder> fn) {
-			GeoHashGridAggregation.Builder builder = new GeoHashGridAggregation.Builder();
-			fn.accept(builder);
-			return this.geohashGrid(builder.build());
+		public ContainerBuilder geohashGrid(
+				Function<GeoHashGridAggregation.Builder, ObjectBuilder<GeoHashGridAggregation>> fn) {
+			return this.geohashGrid(fn.apply(new GeoHashGridAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder geoLine(GeoLineAggregation v) {
@@ -1832,10 +1839,8 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder geoLine(Consumer<GeoLineAggregation.Builder> fn) {
-			GeoLineAggregation.Builder builder = new GeoLineAggregation.Builder();
-			fn.accept(builder);
-			return this.geoLine(builder.build());
+		public ContainerBuilder geoLine(Function<GeoLineAggregation.Builder, ObjectBuilder<GeoLineAggregation>> fn) {
+			return this.geoLine(fn.apply(new GeoLineAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder geotileGrid(GeoTileGridAggregation v) {
@@ -1844,10 +1849,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder geotileGrid(Consumer<GeoTileGridAggregation.Builder> fn) {
-			GeoTileGridAggregation.Builder builder = new GeoTileGridAggregation.Builder();
-			fn.accept(builder);
-			return this.geotileGrid(builder.build());
+		public ContainerBuilder geotileGrid(
+				Function<GeoTileGridAggregation.Builder, ObjectBuilder<GeoTileGridAggregation>> fn) {
+			return this.geotileGrid(fn.apply(new GeoTileGridAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder global(GlobalAggregation v) {
@@ -1856,10 +1860,8 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder global(Consumer<GlobalAggregation.Builder> fn) {
-			GlobalAggregation.Builder builder = new GlobalAggregation.Builder();
-			fn.accept(builder);
-			return this.global(builder.build());
+		public ContainerBuilder global(Function<GlobalAggregation.Builder, ObjectBuilder<GlobalAggregation>> fn) {
+			return this.global(fn.apply(new GlobalAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder histogram(HistogramAggregation v) {
@@ -1868,10 +1870,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder histogram(Consumer<HistogramAggregation.Builder> fn) {
-			HistogramAggregation.Builder builder = new HistogramAggregation.Builder();
-			fn.accept(builder);
-			return this.histogram(builder.build());
+		public ContainerBuilder histogram(
+				Function<HistogramAggregation.Builder, ObjectBuilder<HistogramAggregation>> fn) {
+			return this.histogram(fn.apply(new HistogramAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder ipRange(IpRangeAggregation v) {
@@ -1880,10 +1881,8 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder ipRange(Consumer<IpRangeAggregation.Builder> fn) {
-			IpRangeAggregation.Builder builder = new IpRangeAggregation.Builder();
-			fn.accept(builder);
-			return this.ipRange(builder.build());
+		public ContainerBuilder ipRange(Function<IpRangeAggregation.Builder, ObjectBuilder<IpRangeAggregation>> fn) {
+			return this.ipRange(fn.apply(new IpRangeAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder inference(InferenceAggregation v) {
@@ -1892,10 +1891,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder inference(Consumer<InferenceAggregation.Builder> fn) {
-			InferenceAggregation.Builder builder = new InferenceAggregation.Builder();
-			fn.accept(builder);
-			return this.inference(builder.build());
+		public ContainerBuilder inference(
+				Function<InferenceAggregation.Builder, ObjectBuilder<InferenceAggregation>> fn) {
+			return this.inference(fn.apply(new InferenceAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder matrixStats(MatrixStatsAggregation v) {
@@ -1904,10 +1902,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder matrixStats(Consumer<MatrixStatsAggregation.Builder> fn) {
-			MatrixStatsAggregation.Builder builder = new MatrixStatsAggregation.Builder();
-			fn.accept(builder);
-			return this.matrixStats(builder.build());
+		public ContainerBuilder matrixStats(
+				Function<MatrixStatsAggregation.Builder, ObjectBuilder<MatrixStatsAggregation>> fn) {
+			return this.matrixStats(fn.apply(new MatrixStatsAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder max(MaxAggregation v) {
@@ -1916,10 +1913,8 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder max(Consumer<MaxAggregation.Builder> fn) {
-			MaxAggregation.Builder builder = new MaxAggregation.Builder();
-			fn.accept(builder);
-			return this.max(builder.build());
+		public ContainerBuilder max(Function<MaxAggregation.Builder, ObjectBuilder<MaxAggregation>> fn) {
+			return this.max(fn.apply(new MaxAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder maxBucket(MaxBucketAggregation v) {
@@ -1928,10 +1923,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder maxBucket(Consumer<MaxBucketAggregation.Builder> fn) {
-			MaxBucketAggregation.Builder builder = new MaxBucketAggregation.Builder();
-			fn.accept(builder);
-			return this.maxBucket(builder.build());
+		public ContainerBuilder maxBucket(
+				Function<MaxBucketAggregation.Builder, ObjectBuilder<MaxBucketAggregation>> fn) {
+			return this.maxBucket(fn.apply(new MaxBucketAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder medianAbsoluteDeviation(MedianAbsoluteDeviationAggregation v) {
@@ -1940,10 +1934,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder medianAbsoluteDeviation(Consumer<MedianAbsoluteDeviationAggregation.Builder> fn) {
-			MedianAbsoluteDeviationAggregation.Builder builder = new MedianAbsoluteDeviationAggregation.Builder();
-			fn.accept(builder);
-			return this.medianAbsoluteDeviation(builder.build());
+		public ContainerBuilder medianAbsoluteDeviation(
+				Function<MedianAbsoluteDeviationAggregation.Builder, ObjectBuilder<MedianAbsoluteDeviationAggregation>> fn) {
+			return this.medianAbsoluteDeviation(fn.apply(new MedianAbsoluteDeviationAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder min(MinAggregation v) {
@@ -1952,10 +1945,8 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder min(Consumer<MinAggregation.Builder> fn) {
-			MinAggregation.Builder builder = new MinAggregation.Builder();
-			fn.accept(builder);
-			return this.min(builder.build());
+		public ContainerBuilder min(Function<MinAggregation.Builder, ObjectBuilder<MinAggregation>> fn) {
+			return this.min(fn.apply(new MinAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder minBucket(MinBucketAggregation v) {
@@ -1964,10 +1955,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder minBucket(Consumer<MinBucketAggregation.Builder> fn) {
-			MinBucketAggregation.Builder builder = new MinBucketAggregation.Builder();
-			fn.accept(builder);
-			return this.minBucket(builder.build());
+		public ContainerBuilder minBucket(
+				Function<MinBucketAggregation.Builder, ObjectBuilder<MinBucketAggregation>> fn) {
+			return this.minBucket(fn.apply(new MinBucketAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder missing(MissingAggregation v) {
@@ -1976,10 +1966,8 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder missing(Consumer<MissingAggregation.Builder> fn) {
-			MissingAggregation.Builder builder = new MissingAggregation.Builder();
-			fn.accept(builder);
-			return this.missing(builder.build());
+		public ContainerBuilder missing(Function<MissingAggregation.Builder, ObjectBuilder<MissingAggregation>> fn) {
+			return this.missing(fn.apply(new MissingAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder movingAvg(MovingAverageAggregation v) {
@@ -1988,10 +1976,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder movingAvg(Consumer<MovingAverageAggregation.Builder> fn) {
-			MovingAverageAggregation.Builder builder = new MovingAverageAggregation.Builder();
-			fn.accept(builder);
-			return this.movingAvg(builder.build());
+		public ContainerBuilder movingAvg(
+				Function<MovingAverageAggregation.Builder, ObjectBuilder<MovingAverageAggregation>> fn) {
+			return this.movingAvg(fn.apply(new MovingAverageAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder movingPercentiles(MovingPercentilesAggregation v) {
@@ -2000,10 +1987,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder movingPercentiles(Consumer<MovingPercentilesAggregation.Builder> fn) {
-			MovingPercentilesAggregation.Builder builder = new MovingPercentilesAggregation.Builder();
-			fn.accept(builder);
-			return this.movingPercentiles(builder.build());
+		public ContainerBuilder movingPercentiles(
+				Function<MovingPercentilesAggregation.Builder, ObjectBuilder<MovingPercentilesAggregation>> fn) {
+			return this.movingPercentiles(fn.apply(new MovingPercentilesAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder movingFn(MovingFunctionAggregation v) {
@@ -2012,10 +1998,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder movingFn(Consumer<MovingFunctionAggregation.Builder> fn) {
-			MovingFunctionAggregation.Builder builder = new MovingFunctionAggregation.Builder();
-			fn.accept(builder);
-			return this.movingFn(builder.build());
+		public ContainerBuilder movingFn(
+				Function<MovingFunctionAggregation.Builder, ObjectBuilder<MovingFunctionAggregation>> fn) {
+			return this.movingFn(fn.apply(new MovingFunctionAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder multiTerms(MultiTermsAggregation v) {
@@ -2024,10 +2009,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder multiTerms(Consumer<MultiTermsAggregation.Builder> fn) {
-			MultiTermsAggregation.Builder builder = new MultiTermsAggregation.Builder();
-			fn.accept(builder);
-			return this.multiTerms(builder.build());
+		public ContainerBuilder multiTerms(
+				Function<MultiTermsAggregation.Builder, ObjectBuilder<MultiTermsAggregation>> fn) {
+			return this.multiTerms(fn.apply(new MultiTermsAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder nested(NestedAggregation v) {
@@ -2036,10 +2020,8 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder nested(Consumer<NestedAggregation.Builder> fn) {
-			NestedAggregation.Builder builder = new NestedAggregation.Builder();
-			fn.accept(builder);
-			return this.nested(builder.build());
+		public ContainerBuilder nested(Function<NestedAggregation.Builder, ObjectBuilder<NestedAggregation>> fn) {
+			return this.nested(fn.apply(new NestedAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder normalize(NormalizeAggregation v) {
@@ -2048,10 +2030,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder normalize(Consumer<NormalizeAggregation.Builder> fn) {
-			NormalizeAggregation.Builder builder = new NormalizeAggregation.Builder();
-			fn.accept(builder);
-			return this.normalize(builder.build());
+		public ContainerBuilder normalize(
+				Function<NormalizeAggregation.Builder, ObjectBuilder<NormalizeAggregation>> fn) {
+			return this.normalize(fn.apply(new NormalizeAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder parent(ParentAggregation v) {
@@ -2060,10 +2041,8 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder parent(Consumer<ParentAggregation.Builder> fn) {
-			ParentAggregation.Builder builder = new ParentAggregation.Builder();
-			fn.accept(builder);
-			return this.parent(builder.build());
+		public ContainerBuilder parent(Function<ParentAggregation.Builder, ObjectBuilder<ParentAggregation>> fn) {
+			return this.parent(fn.apply(new ParentAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder percentileRanks(PercentileRanksAggregation v) {
@@ -2072,10 +2051,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder percentileRanks(Consumer<PercentileRanksAggregation.Builder> fn) {
-			PercentileRanksAggregation.Builder builder = new PercentileRanksAggregation.Builder();
-			fn.accept(builder);
-			return this.percentileRanks(builder.build());
+		public ContainerBuilder percentileRanks(
+				Function<PercentileRanksAggregation.Builder, ObjectBuilder<PercentileRanksAggregation>> fn) {
+			return this.percentileRanks(fn.apply(new PercentileRanksAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder percentiles(PercentilesAggregation v) {
@@ -2084,10 +2062,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder percentiles(Consumer<PercentilesAggregation.Builder> fn) {
-			PercentilesAggregation.Builder builder = new PercentilesAggregation.Builder();
-			fn.accept(builder);
-			return this.percentiles(builder.build());
+		public ContainerBuilder percentiles(
+				Function<PercentilesAggregation.Builder, ObjectBuilder<PercentilesAggregation>> fn) {
+			return this.percentiles(fn.apply(new PercentilesAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder percentilesBucket(PercentilesBucketAggregation v) {
@@ -2096,10 +2073,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder percentilesBucket(Consumer<PercentilesBucketAggregation.Builder> fn) {
-			PercentilesBucketAggregation.Builder builder = new PercentilesBucketAggregation.Builder();
-			fn.accept(builder);
-			return this.percentilesBucket(builder.build());
+		public ContainerBuilder percentilesBucket(
+				Function<PercentilesBucketAggregation.Builder, ObjectBuilder<PercentilesBucketAggregation>> fn) {
+			return this.percentilesBucket(fn.apply(new PercentilesBucketAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder range(RangeAggregation v) {
@@ -2108,10 +2084,8 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder range(Consumer<RangeAggregation.Builder> fn) {
-			RangeAggregation.Builder builder = new RangeAggregation.Builder();
-			fn.accept(builder);
-			return this.range(builder.build());
+		public ContainerBuilder range(Function<RangeAggregation.Builder, ObjectBuilder<RangeAggregation>> fn) {
+			return this.range(fn.apply(new RangeAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder rareTerms(RareTermsAggregation v) {
@@ -2120,10 +2094,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder rareTerms(Consumer<RareTermsAggregation.Builder> fn) {
-			RareTermsAggregation.Builder builder = new RareTermsAggregation.Builder();
-			fn.accept(builder);
-			return this.rareTerms(builder.build());
+		public ContainerBuilder rareTerms(
+				Function<RareTermsAggregation.Builder, ObjectBuilder<RareTermsAggregation>> fn) {
+			return this.rareTerms(fn.apply(new RareTermsAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder rate(RateAggregation v) {
@@ -2132,10 +2105,8 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder rate(Consumer<RateAggregation.Builder> fn) {
-			RateAggregation.Builder builder = new RateAggregation.Builder();
-			fn.accept(builder);
-			return this.rate(builder.build());
+		public ContainerBuilder rate(Function<RateAggregation.Builder, ObjectBuilder<RateAggregation>> fn) {
+			return this.rate(fn.apply(new RateAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder reverseNested(ReverseNestedAggregation v) {
@@ -2144,10 +2115,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder reverseNested(Consumer<ReverseNestedAggregation.Builder> fn) {
-			ReverseNestedAggregation.Builder builder = new ReverseNestedAggregation.Builder();
-			fn.accept(builder);
-			return this.reverseNested(builder.build());
+		public ContainerBuilder reverseNested(
+				Function<ReverseNestedAggregation.Builder, ObjectBuilder<ReverseNestedAggregation>> fn) {
+			return this.reverseNested(fn.apply(new ReverseNestedAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder sampler(SamplerAggregation v) {
@@ -2156,10 +2126,8 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder sampler(Consumer<SamplerAggregation.Builder> fn) {
-			SamplerAggregation.Builder builder = new SamplerAggregation.Builder();
-			fn.accept(builder);
-			return this.sampler(builder.build());
+		public ContainerBuilder sampler(Function<SamplerAggregation.Builder, ObjectBuilder<SamplerAggregation>> fn) {
+			return this.sampler(fn.apply(new SamplerAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder scriptedMetric(ScriptedMetricAggregation v) {
@@ -2168,10 +2136,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder scriptedMetric(Consumer<ScriptedMetricAggregation.Builder> fn) {
-			ScriptedMetricAggregation.Builder builder = new ScriptedMetricAggregation.Builder();
-			fn.accept(builder);
-			return this.scriptedMetric(builder.build());
+		public ContainerBuilder scriptedMetric(
+				Function<ScriptedMetricAggregation.Builder, ObjectBuilder<ScriptedMetricAggregation>> fn) {
+			return this.scriptedMetric(fn.apply(new ScriptedMetricAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder serialDiff(SerialDifferencingAggregation v) {
@@ -2180,10 +2147,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder serialDiff(Consumer<SerialDifferencingAggregation.Builder> fn) {
-			SerialDifferencingAggregation.Builder builder = new SerialDifferencingAggregation.Builder();
-			fn.accept(builder);
-			return this.serialDiff(builder.build());
+		public ContainerBuilder serialDiff(
+				Function<SerialDifferencingAggregation.Builder, ObjectBuilder<SerialDifferencingAggregation>> fn) {
+			return this.serialDiff(fn.apply(new SerialDifferencingAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder significantTerms(SignificantTermsAggregation v) {
@@ -2192,10 +2158,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder significantTerms(Consumer<SignificantTermsAggregation.Builder> fn) {
-			SignificantTermsAggregation.Builder builder = new SignificantTermsAggregation.Builder();
-			fn.accept(builder);
-			return this.significantTerms(builder.build());
+		public ContainerBuilder significantTerms(
+				Function<SignificantTermsAggregation.Builder, ObjectBuilder<SignificantTermsAggregation>> fn) {
+			return this.significantTerms(fn.apply(new SignificantTermsAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder significantText(SignificantTextAggregation v) {
@@ -2204,10 +2169,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder significantText(Consumer<SignificantTextAggregation.Builder> fn) {
-			SignificantTextAggregation.Builder builder = new SignificantTextAggregation.Builder();
-			fn.accept(builder);
-			return this.significantText(builder.build());
+		public ContainerBuilder significantText(
+				Function<SignificantTextAggregation.Builder, ObjectBuilder<SignificantTextAggregation>> fn) {
+			return this.significantText(fn.apply(new SignificantTextAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder stats(StatsAggregation v) {
@@ -2216,10 +2180,8 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder stats(Consumer<StatsAggregation.Builder> fn) {
-			StatsAggregation.Builder builder = new StatsAggregation.Builder();
-			fn.accept(builder);
-			return this.stats(builder.build());
+		public ContainerBuilder stats(Function<StatsAggregation.Builder, ObjectBuilder<StatsAggregation>> fn) {
+			return this.stats(fn.apply(new StatsAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder statsBucket(StatsBucketAggregation v) {
@@ -2228,10 +2190,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder statsBucket(Consumer<StatsBucketAggregation.Builder> fn) {
-			StatsBucketAggregation.Builder builder = new StatsBucketAggregation.Builder();
-			fn.accept(builder);
-			return this.statsBucket(builder.build());
+		public ContainerBuilder statsBucket(
+				Function<StatsBucketAggregation.Builder, ObjectBuilder<StatsBucketAggregation>> fn) {
+			return this.statsBucket(fn.apply(new StatsBucketAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder stringStats(StringStatsAggregation v) {
@@ -2240,10 +2201,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder stringStats(Consumer<StringStatsAggregation.Builder> fn) {
-			StringStatsAggregation.Builder builder = new StringStatsAggregation.Builder();
-			fn.accept(builder);
-			return this.stringStats(builder.build());
+		public ContainerBuilder stringStats(
+				Function<StringStatsAggregation.Builder, ObjectBuilder<StringStatsAggregation>> fn) {
+			return this.stringStats(fn.apply(new StringStatsAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder sum(SumAggregation v) {
@@ -2252,10 +2212,8 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder sum(Consumer<SumAggregation.Builder> fn) {
-			SumAggregation.Builder builder = new SumAggregation.Builder();
-			fn.accept(builder);
-			return this.sum(builder.build());
+		public ContainerBuilder sum(Function<SumAggregation.Builder, ObjectBuilder<SumAggregation>> fn) {
+			return this.sum(fn.apply(new SumAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder sumBucket(SumBucketAggregation v) {
@@ -2264,10 +2222,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder sumBucket(Consumer<SumBucketAggregation.Builder> fn) {
-			SumBucketAggregation.Builder builder = new SumBucketAggregation.Builder();
-			fn.accept(builder);
-			return this.sumBucket(builder.build());
+		public ContainerBuilder sumBucket(
+				Function<SumBucketAggregation.Builder, ObjectBuilder<SumBucketAggregation>> fn) {
+			return this.sumBucket(fn.apply(new SumBucketAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder terms(TermsAggregation v) {
@@ -2276,10 +2233,8 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder terms(Consumer<TermsAggregation.Builder> fn) {
-			TermsAggregation.Builder builder = new TermsAggregation.Builder();
-			fn.accept(builder);
-			return this.terms(builder.build());
+		public ContainerBuilder terms(Function<TermsAggregation.Builder, ObjectBuilder<TermsAggregation>> fn) {
+			return this.terms(fn.apply(new TermsAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder topHits(TopHitsAggregation v) {
@@ -2288,10 +2243,8 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder topHits(Consumer<TopHitsAggregation.Builder> fn) {
-			TopHitsAggregation.Builder builder = new TopHitsAggregation.Builder();
-			fn.accept(builder);
-			return this.topHits(builder.build());
+		public ContainerBuilder topHits(Function<TopHitsAggregation.Builder, ObjectBuilder<TopHitsAggregation>> fn) {
+			return this.topHits(fn.apply(new TopHitsAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder tTest(TTestAggregation v) {
@@ -2300,10 +2253,8 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder tTest(Consumer<TTestAggregation.Builder> fn) {
-			TTestAggregation.Builder builder = new TTestAggregation.Builder();
-			fn.accept(builder);
-			return this.tTest(builder.build());
+		public ContainerBuilder tTest(Function<TTestAggregation.Builder, ObjectBuilder<TTestAggregation>> fn) {
+			return this.tTest(fn.apply(new TTestAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder topMetrics(TopMetricsAggregation v) {
@@ -2312,10 +2263,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder topMetrics(Consumer<TopMetricsAggregation.Builder> fn) {
-			TopMetricsAggregation.Builder builder = new TopMetricsAggregation.Builder();
-			fn.accept(builder);
-			return this.topMetrics(builder.build());
+		public ContainerBuilder topMetrics(
+				Function<TopMetricsAggregation.Builder, ObjectBuilder<TopMetricsAggregation>> fn) {
+			return this.topMetrics(fn.apply(new TopMetricsAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder valueCount(ValueCountAggregation v) {
@@ -2324,10 +2274,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder valueCount(Consumer<ValueCountAggregation.Builder> fn) {
-			ValueCountAggregation.Builder builder = new ValueCountAggregation.Builder();
-			fn.accept(builder);
-			return this.valueCount(builder.build());
+		public ContainerBuilder valueCount(
+				Function<ValueCountAggregation.Builder, ObjectBuilder<ValueCountAggregation>> fn) {
+			return this.valueCount(fn.apply(new ValueCountAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder weightedAvg(WeightedAverageAggregation v) {
@@ -2336,10 +2285,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder weightedAvg(Consumer<WeightedAverageAggregation.Builder> fn) {
-			WeightedAverageAggregation.Builder builder = new WeightedAverageAggregation.Builder();
-			fn.accept(builder);
-			return this.weightedAvg(builder.build());
+		public ContainerBuilder weightedAvg(
+				Function<WeightedAverageAggregation.Builder, ObjectBuilder<WeightedAverageAggregation>> fn) {
+			return this.weightedAvg(fn.apply(new WeightedAverageAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder variableWidthHistogram(VariableWidthHistogramAggregation v) {
@@ -2348,10 +2296,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder variableWidthHistogram(Consumer<VariableWidthHistogramAggregation.Builder> fn) {
-			VariableWidthHistogramAggregation.Builder builder = new VariableWidthHistogramAggregation.Builder();
-			fn.accept(builder);
-			return this.variableWidthHistogram(builder.build());
+		public ContainerBuilder variableWidthHistogram(
+				Function<VariableWidthHistogramAggregation.Builder, ObjectBuilder<VariableWidthHistogramAggregation>> fn) {
+			return this.variableWidthHistogram(fn.apply(new VariableWidthHistogramAggregation.Builder()).build());
 		}
 
 		protected Aggregation build() {
@@ -2365,22 +2312,55 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			 * Sub-aggregations for this aggregation. Only applies to bucket aggregations.
 			 * <p>
 			 * API name: {@code aggregations}
+			 * <p>
+			 * Adds all entries of <code>map</code> to <code>aggregations</code>.
 			 */
-			public final ContainerBuilder aggregations(@Nullable Map<String, Aggregation> value) {
-				Builder.this.aggregations = value;
+			public final ContainerBuilder aggregations(Map<String, Aggregation> map) {
+				Builder.this.aggregations = _mapPutAll(Builder.this.aggregations, map);
 				return this;
 			}
 
-			public final ContainerBuilder aggregations(
-					Function<MapBuilder<String, Aggregation, Aggregation.Builder>, ObjectBuilder<Map<String, Aggregation>>> fn) {
-				return aggregations(fn.apply(new MapBuilder<>(Aggregation.Builder::new)).build());
+			/**
+			 * Sub-aggregations for this aggregation. Only applies to bucket aggregations.
+			 * <p>
+			 * API name: {@code aggregations}
+			 * <p>
+			 * Adds an entry to <code>aggregations</code>.
+			 */
+			public final ContainerBuilder aggregations(String key, Aggregation value) {
+				Builder.this.aggregations = _mapPut(Builder.this.aggregations, key, value);
+				return this;
+			}
+
+			/**
+			 * Sub-aggregations for this aggregation. Only applies to bucket aggregations.
+			 * <p>
+			 * API name: {@code aggregations}
+			 * <p>
+			 * Adds an entry to <code>aggregations</code> using a builder lambda.
+			 */
+			public final ContainerBuilder aggregations(String key,
+					Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
+				return aggregations(key, fn.apply(new Aggregation.Builder()).build());
 			}
 
 			/**
 			 * API name: {@code meta}
+			 * <p>
+			 * Adds all entries of <code>map</code> to <code>meta</code>.
 			 */
-			public final ContainerBuilder meta(@Nullable Map<String, JsonData> value) {
-				Builder.this.meta = value;
+			public final ContainerBuilder meta(Map<String, JsonData> map) {
+				Builder.this.meta = _mapPutAll(Builder.this.meta, map);
+				return this;
+			}
+
+			/**
+			 * API name: {@code meta}
+			 * <p>
+			 * Adds an entry to <code>meta</code>.
+			 */
+			public final ContainerBuilder meta(String key, JsonData value) {
+				Builder.this.meta = _mapPut(Builder.this.meta, key, value);
 				return this;
 			}
 

@@ -28,16 +28,23 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.JsonProcessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/_types/Processors.ts#L257-L261">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class JsonProcessor extends ProcessorBase implements ProcessorVariant {
 	private final boolean addToRoot;
@@ -51,16 +58,14 @@ public class JsonProcessor extends ProcessorBase implements ProcessorVariant {
 	private JsonProcessor(Builder builder) {
 		super(builder);
 
-		this.addToRoot = ModelTypeHelper.requireNonNull(builder.addToRoot, this, "addToRoot");
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
-		this.targetField = ModelTypeHelper.requireNonNull(builder.targetField, this, "targetField");
+		this.addToRoot = ApiTypeHelper.requireNonNull(builder.addToRoot, this, "addToRoot");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.targetField = ApiTypeHelper.requireNonNull(builder.targetField, this, "targetField");
 
 	}
 
-	public static JsonProcessor of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static JsonProcessor of(Function<Builder, ObjectBuilder<JsonProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -111,6 +116,7 @@ public class JsonProcessor extends ProcessorBase implements ProcessorVariant {
 	/**
 	 * Builder for {@link JsonProcessor}.
 	 */
+
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder> implements ObjectBuilder<JsonProcessor> {
 		private Boolean addToRoot;
 

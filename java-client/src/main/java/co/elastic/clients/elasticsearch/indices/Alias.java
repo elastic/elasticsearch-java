@@ -36,10 +36,17 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.Alias
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/_types/Alias.ts#L23-L30">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Alias implements JsonpSerializable {
 	@Nullable
@@ -73,10 +80,8 @@ public class Alias implements JsonpSerializable {
 
 	}
 
-	public static Alias of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Alias of(Function<Builder, ObjectBuilder<Alias>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -176,6 +181,7 @@ public class Alias implements JsonpSerializable {
 	/**
 	 * Builder for {@link Alias}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Alias> {
 		@Nullable
 		private Query filter;
@@ -206,10 +212,8 @@ public class Alias implements JsonpSerializable {
 		/**
 		 * API name: {@code filter}
 		 */
-		public final Builder filter(Consumer<Query.Builder> fn) {
-			Query.Builder builder = new Query.Builder();
-			fn.accept(builder);
-			return this.filter(builder.build());
+		public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.filter(fn.apply(new Query.Builder()).build());
 		}
 
 		/**

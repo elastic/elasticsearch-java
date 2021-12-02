@@ -34,10 +34,17 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.WhitespaceAnalyzer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/analyzers.ts#L108-L111">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class WhitespaceAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	@Nullable
@@ -51,10 +58,8 @@ public class WhitespaceAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
 	}
 
-	public static WhitespaceAnalyzer of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static WhitespaceAnalyzer of(Function<Builder, ObjectBuilder<WhitespaceAnalyzer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -99,6 +104,7 @@ public class WhitespaceAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	/**
 	 * Builder for {@link WhitespaceAnalyzer}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WhitespaceAnalyzer> {
 		@Nullable
 		private String version;

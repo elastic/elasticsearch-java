@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.AllocationDecision
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/allocation_explain/types.ts#L26-L30">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AllocationDecision implements JsonpSerializable {
 	private final String decider;
@@ -51,16 +58,14 @@ public class AllocationDecision implements JsonpSerializable {
 
 	private AllocationDecision(Builder builder) {
 
-		this.decider = ModelTypeHelper.requireNonNull(builder.decider, this, "decider");
-		this.decision = ModelTypeHelper.requireNonNull(builder.decision, this, "decision");
-		this.explanation = ModelTypeHelper.requireNonNull(builder.explanation, this, "explanation");
+		this.decider = ApiTypeHelper.requireNonNull(builder.decider, this, "decider");
+		this.decision = ApiTypeHelper.requireNonNull(builder.decision, this, "decision");
+		this.explanation = ApiTypeHelper.requireNonNull(builder.explanation, this, "explanation");
 
 	}
 
-	public static AllocationDecision of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static AllocationDecision of(Function<Builder, ObjectBuilder<AllocationDecision>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -110,6 +115,7 @@ public class AllocationDecision implements JsonpSerializable {
 	/**
 	 * Builder for {@link AllocationDecision}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AllocationDecision> {
 		private String decider;
 

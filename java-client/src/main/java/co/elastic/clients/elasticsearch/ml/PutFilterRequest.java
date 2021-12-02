@@ -33,19 +33,28 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_filter.Request
+
+/**
+ * Instantiates a filter. A filter contains a list of strings. It can be used by
+ * one or more anomaly detection jobs. Specifically, filters are referenced in
+ * the <code>custom_rules</code> property of detector configuration objects.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/put_filter/MlPutFilterRequest.ts#L23-L50">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutFilterRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -60,15 +69,13 @@ public class PutFilterRequest extends RequestBase implements JsonpSerializable {
 	private PutFilterRequest(Builder builder) {
 
 		this.description = builder.description;
-		this.filterId = ModelTypeHelper.requireNonNull(builder.filterId, this, "filterId");
-		this.items = ModelTypeHelper.unmodifiable(builder.items);
+		this.filterId = ApiTypeHelper.requireNonNull(builder.filterId, this, "filterId");
+		this.items = ApiTypeHelper.unmodifiable(builder.items);
 
 	}
 
-	public static PutFilterRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PutFilterRequest of(Function<Builder, ObjectBuilder<PutFilterRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -117,7 +124,7 @@ public class PutFilterRequest extends RequestBase implements JsonpSerializable {
 			generator.write(this.description);
 
 		}
-		if (ModelTypeHelper.isDefined(this.items)) {
+		if (ApiTypeHelper.isDefined(this.items)) {
 			generator.writeKey("items");
 			generator.writeStartArray();
 			for (String item0 : this.items) {
@@ -135,6 +142,7 @@ public class PutFilterRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link PutFilterRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutFilterRequest> {
 		@Nullable
 		private String description;
@@ -170,9 +178,11 @@ public class PutFilterRequest extends RequestBase implements JsonpSerializable {
 		 * filter.
 		 * <p>
 		 * API name: {@code items}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>items</code>.
 		 */
-		public final Builder items(@Nullable List<String> value) {
-			this.items = value;
+		public final Builder items(List<String> list) {
+			this.items = _listAddAll(this.items, list);
 			return this;
 		}
 
@@ -182,9 +192,11 @@ public class PutFilterRequest extends RequestBase implements JsonpSerializable {
 		 * filter.
 		 * <p>
 		 * API name: {@code items}
+		 * <p>
+		 * Adds one or more values to <code>items</code>.
 		 */
-		public final Builder items(String... value) {
-			this.items = Arrays.asList(value);
+		public final Builder items(String value, String... values) {
+			this.items = _listAdd(this.items, value, values);
 			return this;
 		}
 

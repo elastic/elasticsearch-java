@@ -28,15 +28,22 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.StemmerTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L317-L320">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class StemmerTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final String language;
@@ -46,14 +53,12 @@ public class StemmerTokenFilter extends TokenFilterBase implements TokenFilterDe
 	private StemmerTokenFilter(Builder builder) {
 		super(builder);
 
-		this.language = ModelTypeHelper.requireNonNull(builder.language, this, "language");
+		this.language = ApiTypeHelper.requireNonNull(builder.language, this, "language");
 
 	}
 
-	public static StemmerTokenFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static StemmerTokenFilter of(Function<Builder, ObjectBuilder<StemmerTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -85,6 +90,7 @@ public class StemmerTokenFilter extends TokenFilterBase implements TokenFilterDe
 	/**
 	 * Builder for {@link StemmerTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<StemmerTokenFilter> {

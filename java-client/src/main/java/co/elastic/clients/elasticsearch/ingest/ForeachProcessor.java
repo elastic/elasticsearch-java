@@ -28,16 +28,23 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.ForeachProcessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/_types/Processors.ts#L214-L218">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ForeachProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
@@ -52,16 +59,14 @@ public class ForeachProcessor extends ProcessorBase implements ProcessorVariant 
 	private ForeachProcessor(Builder builder) {
 		super(builder);
 
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.ignoreMissing = builder.ignoreMissing;
-		this.processor = ModelTypeHelper.requireNonNull(builder.processor, this, "processor");
+		this.processor = ApiTypeHelper.requireNonNull(builder.processor, this, "processor");
 
 	}
 
-	public static ForeachProcessor of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ForeachProcessor of(Function<Builder, ObjectBuilder<ForeachProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -115,6 +120,7 @@ public class ForeachProcessor extends ProcessorBase implements ProcessorVariant 
 	/**
 	 * Builder for {@link ForeachProcessor}.
 	 */
+
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ForeachProcessor> {
@@ -152,10 +158,8 @@ public class ForeachProcessor extends ProcessorBase implements ProcessorVariant 
 		/**
 		 * Required - API name: {@code processor}
 		 */
-		public final Builder processor(Consumer<Processor.Builder> fn) {
-			Processor.Builder builder = new Processor.Builder();
-			fn.accept(builder);
-			return this.processor(builder.build());
+		public final Builder processor(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {
+			return this.processor(fn.apply(new Processor.Builder()).build());
 		}
 
 		@Override

@@ -30,9 +30,18 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.aggregations.LongRareTermsAggregate
+
+/**
+ * Result of the <code>rare_terms</code> aggregation when the field is some kind
+ * of whole number like a integer, long, or a date.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L415-L420">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class LongRareTermsAggregate extends MultiBucketAggregateBase<LongRareTermsBucket> implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -42,10 +51,8 @@ public class LongRareTermsAggregate extends MultiBucketAggregateBase<LongRareTer
 
 	}
 
-	public static LongRareTermsAggregate of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static LongRareTermsAggregate of(Function<Builder, ObjectBuilder<LongRareTermsAggregate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,6 +68,7 @@ public class LongRareTermsAggregate extends MultiBucketAggregateBase<LongRareTer
 	/**
 	 * Builder for {@link LongRareTermsAggregate}.
 	 */
+
 	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<LongRareTermsBucket, Builder>
 			implements
 				ObjectBuilder<LongRareTermsAggregate> {

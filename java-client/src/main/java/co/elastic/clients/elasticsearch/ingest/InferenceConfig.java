@@ -33,10 +33,17 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.InferenceConfig
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/_types/Processors.ts#L243-L245">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class InferenceConfig implements JsonpSerializable {
 	@Nullable
@@ -50,10 +57,8 @@ public class InferenceConfig implements JsonpSerializable {
 
 	}
 
-	public static InferenceConfig of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static InferenceConfig of(Function<Builder, ObjectBuilder<InferenceConfig>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -88,6 +93,7 @@ public class InferenceConfig implements JsonpSerializable {
 	/**
 	 * Builder for {@link InferenceConfig}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<InferenceConfig> {
 		@Nullable
 		private InferenceConfigRegression regression;
@@ -103,10 +109,9 @@ public class InferenceConfig implements JsonpSerializable {
 		/**
 		 * API name: {@code regression}
 		 */
-		public final Builder regression(Consumer<InferenceConfigRegression.Builder> fn) {
-			InferenceConfigRegression.Builder builder = new InferenceConfigRegression.Builder();
-			fn.accept(builder);
-			return this.regression(builder.build());
+		public final Builder regression(
+				Function<InferenceConfigRegression.Builder, ObjectBuilder<InferenceConfigRegression>> fn) {
+			return this.regression(fn.apply(new InferenceConfigRegression.Builder()).build());
 		}
 
 		/**

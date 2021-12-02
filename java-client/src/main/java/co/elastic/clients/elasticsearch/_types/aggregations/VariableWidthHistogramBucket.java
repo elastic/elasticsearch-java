@@ -28,16 +28,23 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.VariableWidthHistogramBucket
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L350-L357">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class VariableWidthHistogramBucket extends MultiBucketBase {
 	private final double min;
@@ -60,19 +67,17 @@ public class VariableWidthHistogramBucket extends MultiBucketBase {
 	private VariableWidthHistogramBucket(Builder builder) {
 		super(builder);
 
-		this.min = ModelTypeHelper.requireNonNull(builder.min, this, "min");
-		this.key = ModelTypeHelper.requireNonNull(builder.key, this, "key");
-		this.max = ModelTypeHelper.requireNonNull(builder.max, this, "max");
+		this.min = ApiTypeHelper.requireNonNull(builder.min, this, "min");
+		this.key = ApiTypeHelper.requireNonNull(builder.key, this, "key");
+		this.max = ApiTypeHelper.requireNonNull(builder.max, this, "max");
 		this.minAsString = builder.minAsString;
 		this.keyAsString = builder.keyAsString;
 		this.maxAsString = builder.maxAsString;
 
 	}
 
-	public static VariableWidthHistogramBucket of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static VariableWidthHistogramBucket of(Function<Builder, ObjectBuilder<VariableWidthHistogramBucket>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -155,6 +160,7 @@ public class VariableWidthHistogramBucket extends MultiBucketBase {
 	/**
 	 * Builder for {@link VariableWidthHistogramBucket}.
 	 */
+
 	public static class Builder extends MultiBucketBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<VariableWidthHistogramBucket> {

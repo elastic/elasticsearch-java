@@ -29,20 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_records.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_records/MlGetAnomalyRecordsResponse.ts#L23-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetRecordsResponse implements JsonpSerializable {
 	private final long count;
@@ -53,15 +57,13 @@ public class GetRecordsResponse implements JsonpSerializable {
 
 	private GetRecordsResponse(Builder builder) {
 
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
-		this.records = ModelTypeHelper.unmodifiableRequired(builder.records, this, "records");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.records = ApiTypeHelper.unmodifiableRequired(builder.records, this, "records");
 
 	}
 
-	public static GetRecordsResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetRecordsResponse of(Function<Builder, ObjectBuilder<GetRecordsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -92,7 +94,7 @@ public class GetRecordsResponse implements JsonpSerializable {
 		generator.writeKey("count");
 		generator.write(this.count);
 
-		if (ModelTypeHelper.isDefined(this.records)) {
+		if (ApiTypeHelper.isDefined(this.records)) {
 			generator.writeKey("records");
 			generator.writeStartArray();
 			for (Anomaly item0 : this.records) {
@@ -110,6 +112,7 @@ public class GetRecordsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetRecordsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetRecordsResponse> {
 		private Long count;
 
@@ -125,25 +128,31 @@ public class GetRecordsResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code records}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>records</code>.
 		 */
-		public final Builder records(List<Anomaly> value) {
-			this.records = value;
+		public final Builder records(List<Anomaly> list) {
+			this.records = _listAddAll(this.records, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code records}
+		 * <p>
+		 * Adds one or more values to <code>records</code>.
 		 */
-		public final Builder records(Anomaly... value) {
-			this.records = Arrays.asList(value);
+		public final Builder records(Anomaly value, Anomaly... values) {
+			this.records = _listAdd(this.records, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code records}
+		 * <p>
+		 * Adds a value to <code>records</code> using a builder lambda.
 		 */
-		public final Builder records(Function<ListBuilder<Anomaly, Anomaly.Builder>, ObjectBuilder<List<Anomaly>>> fn) {
-			return records(fn.apply(new ListBuilder<>(Anomaly.Builder::new)).build());
+		public final Builder records(Function<Anomaly.Builder, ObjectBuilder<Anomaly>> fn) {
+			return records(fn.apply(new Anomaly.Builder()).build());
 		}
 
 		/**

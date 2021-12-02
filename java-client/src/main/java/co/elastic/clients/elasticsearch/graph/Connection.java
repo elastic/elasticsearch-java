@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: graph._types.Connection
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/graph/_types/Connection.ts#L22-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Connection implements JsonpSerializable {
 	private final long docCount;
@@ -53,17 +60,15 @@ public class Connection implements JsonpSerializable {
 
 	private Connection(Builder builder) {
 
-		this.docCount = ModelTypeHelper.requireNonNull(builder.docCount, this, "docCount");
-		this.source = ModelTypeHelper.requireNonNull(builder.source, this, "source");
-		this.target = ModelTypeHelper.requireNonNull(builder.target, this, "target");
-		this.weight = ModelTypeHelper.requireNonNull(builder.weight, this, "weight");
+		this.docCount = ApiTypeHelper.requireNonNull(builder.docCount, this, "docCount");
+		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
+		this.target = ApiTypeHelper.requireNonNull(builder.target, this, "target");
+		this.weight = ApiTypeHelper.requireNonNull(builder.weight, this, "weight");
 
 	}
 
-	public static Connection of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Connection of(Function<Builder, ObjectBuilder<Connection>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -124,6 +129,7 @@ public class Connection implements JsonpSerializable {
 	/**
 	 * Builder for {@link Connection}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Connection> {
 		private Long docCount;
 

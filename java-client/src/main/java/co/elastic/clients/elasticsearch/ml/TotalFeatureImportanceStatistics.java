@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: ml._types.TotalFeatureImportanceStatistics
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/TrainedModel.ts#L137-L144">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TotalFeatureImportanceStatistics implements JsonpSerializable {
 	private final double meanMagnitude;
@@ -51,16 +58,15 @@ public class TotalFeatureImportanceStatistics implements JsonpSerializable {
 
 	private TotalFeatureImportanceStatistics(Builder builder) {
 
-		this.meanMagnitude = ModelTypeHelper.requireNonNull(builder.meanMagnitude, this, "meanMagnitude");
-		this.max = ModelTypeHelper.requireNonNull(builder.max, this, "max");
-		this.min = ModelTypeHelper.requireNonNull(builder.min, this, "min");
+		this.meanMagnitude = ApiTypeHelper.requireNonNull(builder.meanMagnitude, this, "meanMagnitude");
+		this.max = ApiTypeHelper.requireNonNull(builder.max, this, "max");
+		this.min = ApiTypeHelper.requireNonNull(builder.min, this, "min");
 
 	}
 
-	public static TotalFeatureImportanceStatistics of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TotalFeatureImportanceStatistics of(
+			Function<Builder, ObjectBuilder<TotalFeatureImportanceStatistics>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -121,6 +127,7 @@ public class TotalFeatureImportanceStatistics implements JsonpSerializable {
 	/**
 	 * Builder for {@link TotalFeatureImportanceStatistics}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TotalFeatureImportanceStatistics> {
 		private Double meanMagnitude;
 

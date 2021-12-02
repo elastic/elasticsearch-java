@@ -29,17 +29,23 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.stats.WatchRecordStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/stats/types.ts#L54-L60">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class WatchRecordStats extends WatchRecordQueuedStats {
 	private final ExecutionPhase executionPhase;
@@ -57,18 +63,16 @@ public class WatchRecordStats extends WatchRecordQueuedStats {
 	private WatchRecordStats(Builder builder) {
 		super(builder);
 
-		this.executionPhase = ModelTypeHelper.requireNonNull(builder.executionPhase, this, "executionPhase");
-		this.triggeredTime = ModelTypeHelper.requireNonNull(builder.triggeredTime, this, "triggeredTime");
-		this.executedActions = ModelTypeHelper.unmodifiable(builder.executedActions);
-		this.watchId = ModelTypeHelper.requireNonNull(builder.watchId, this, "watchId");
-		this.watchRecordId = ModelTypeHelper.requireNonNull(builder.watchRecordId, this, "watchRecordId");
+		this.executionPhase = ApiTypeHelper.requireNonNull(builder.executionPhase, this, "executionPhase");
+		this.triggeredTime = ApiTypeHelper.requireNonNull(builder.triggeredTime, this, "triggeredTime");
+		this.executedActions = ApiTypeHelper.unmodifiable(builder.executedActions);
+		this.watchId = ApiTypeHelper.requireNonNull(builder.watchId, this, "watchId");
+		this.watchRecordId = ApiTypeHelper.requireNonNull(builder.watchRecordId, this, "watchRecordId");
 
 	}
 
-	public static WatchRecordStats of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static WatchRecordStats of(Function<Builder, ObjectBuilder<WatchRecordStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -114,7 +118,7 @@ public class WatchRecordStats extends WatchRecordQueuedStats {
 		generator.writeKey("triggered_time");
 		generator.write(this.triggeredTime);
 
-		if (ModelTypeHelper.isDefined(this.executedActions)) {
+		if (ApiTypeHelper.isDefined(this.executedActions)) {
 			generator.writeKey("executed_actions");
 			generator.writeStartArray();
 			for (String item0 : this.executedActions) {
@@ -137,6 +141,7 @@ public class WatchRecordStats extends WatchRecordQueuedStats {
 	/**
 	 * Builder for {@link WatchRecordStats}.
 	 */
+
 	public static class Builder extends WatchRecordQueuedStats.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<WatchRecordStats> {
@@ -169,17 +174,21 @@ public class WatchRecordStats extends WatchRecordQueuedStats {
 
 		/**
 		 * API name: {@code executed_actions}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>executedActions</code>.
 		 */
-		public final Builder executedActions(@Nullable List<String> value) {
-			this.executedActions = value;
+		public final Builder executedActions(List<String> list) {
+			this.executedActions = _listAddAll(this.executedActions, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code executed_actions}
+		 * <p>
+		 * Adds one or more values to <code>executedActions</code>.
 		 */
-		public final Builder executedActions(String... value) {
-			this.executedActions = Arrays.asList(value);
+		public final Builder executedActions(String value, String... values) {
+			this.executedActions = _listAdd(this.executedActions, value, values);
 			return this;
 		}
 

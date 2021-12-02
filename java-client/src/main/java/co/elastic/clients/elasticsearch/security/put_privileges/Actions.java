@@ -30,19 +30,25 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.put_privileges.Actions
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/put_privileges/types.ts#L22-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Actions implements JsonpSerializable {
 	private final List<String> actions;
@@ -59,17 +65,15 @@ public class Actions implements JsonpSerializable {
 
 	private Actions(Builder builder) {
 
-		this.actions = ModelTypeHelper.unmodifiableRequired(builder.actions, this, "actions");
+		this.actions = ApiTypeHelper.unmodifiableRequired(builder.actions, this, "actions");
 		this.application = builder.application;
 		this.name = builder.name;
-		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
+		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
 
 	}
 
-	public static Actions of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Actions of(Function<Builder, ObjectBuilder<Actions>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -113,7 +117,7 @@ public class Actions implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.actions)) {
+		if (ApiTypeHelper.isDefined(this.actions)) {
 			generator.writeKey("actions");
 			generator.writeStartArray();
 			for (String item0 : this.actions) {
@@ -133,7 +137,7 @@ public class Actions implements JsonpSerializable {
 			generator.write(this.name);
 
 		}
-		if (ModelTypeHelper.isDefined(this.metadata)) {
+		if (ApiTypeHelper.isDefined(this.metadata)) {
 			generator.writeKey("metadata");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
@@ -152,6 +156,7 @@ public class Actions implements JsonpSerializable {
 	/**
 	 * Builder for {@link Actions}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Actions> {
 		private List<String> actions;
 
@@ -166,17 +171,21 @@ public class Actions implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code actions}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>actions</code>.
 		 */
-		public final Builder actions(List<String> value) {
-			this.actions = value;
+		public final Builder actions(List<String> list) {
+			this.actions = _listAddAll(this.actions, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code actions}
+		 * <p>
+		 * Adds one or more values to <code>actions</code>.
 		 */
-		public final Builder actions(String... value) {
-			this.actions = Arrays.asList(value);
+		public final Builder actions(String value, String... values) {
+			this.actions = _listAdd(this.actions, value, values);
 			return this;
 		}
 
@@ -198,9 +207,21 @@ public class Actions implements JsonpSerializable {
 
 		/**
 		 * API name: {@code metadata}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>metadata</code>.
 		 */
-		public final Builder metadata(@Nullable Map<String, JsonData> value) {
-			this.metadata = value;
+		public final Builder metadata(Map<String, JsonData> map) {
+			this.metadata = _mapPutAll(this.metadata, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code metadata}
+		 * <p>
+		 * Adds an entry to <code>metadata</code>.
+		 */
+		public final Builder metadata(String key, JsonData value) {
+			this.metadata = _mapPut(this.metadata, key, value);
 			return this;
 		}
 

@@ -29,18 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.update_aliases.RemoveIndexAction
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/update_aliases/types.ts#L53-L56">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RemoveIndexAction implements ActionVariant, JsonpSerializable {
 	@Nullable
@@ -53,14 +59,12 @@ public class RemoveIndexAction implements ActionVariant, JsonpSerializable {
 	private RemoveIndexAction(Builder builder) {
 
 		this.index = builder.index;
-		this.indices = ModelTypeHelper.unmodifiable(builder.indices);
+		this.indices = ApiTypeHelper.unmodifiable(builder.indices);
 
 	}
 
-	public static RemoveIndexAction of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RemoveIndexAction of(Function<Builder, ObjectBuilder<RemoveIndexAction>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -102,7 +106,7 @@ public class RemoveIndexAction implements ActionVariant, JsonpSerializable {
 			generator.write(this.index);
 
 		}
-		if (ModelTypeHelper.isDefined(this.indices)) {
+		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartArray();
 			for (String item0 : this.indices) {
@@ -120,6 +124,7 @@ public class RemoveIndexAction implements ActionVariant, JsonpSerializable {
 	/**
 	 * Builder for {@link RemoveIndexAction}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RemoveIndexAction> {
 		@Nullable
 		private String index;
@@ -137,17 +142,21 @@ public class RemoveIndexAction implements ActionVariant, JsonpSerializable {
 
 		/**
 		 * API name: {@code indices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 */
-		public final Builder indices(@Nullable List<String> value) {
-			this.indices = value;
+		public final Builder indices(List<String> list) {
+			this.indices = _listAddAll(this.indices, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code indices}
+		 * <p>
+		 * Adds one or more values to <code>indices</code>.
 		 */
-		public final Builder indices(String... value) {
-			this.indices = Arrays.asList(value);
+		public final Builder indices(String value, String... values) {
+			this.indices = _listAdd(this.indices, value, values);
 			return this;
 		}
 

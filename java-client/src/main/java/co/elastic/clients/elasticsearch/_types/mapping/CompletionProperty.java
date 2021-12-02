@@ -28,21 +28,25 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.CompletionProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/specialized.ts#L28-L36">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CompletionProperty extends DocValuesPropertyBase implements PropertyVariant {
 	@Nullable
@@ -68,7 +72,7 @@ public class CompletionProperty extends DocValuesPropertyBase implements Propert
 		super(builder);
 
 		this.analyzer = builder.analyzer;
-		this.contexts = ModelTypeHelper.unmodifiable(builder.contexts);
+		this.contexts = ApiTypeHelper.unmodifiable(builder.contexts);
 		this.maxInputLength = builder.maxInputLength;
 		this.preservePositionIncrements = builder.preservePositionIncrements;
 		this.preserveSeparators = builder.preserveSeparators;
@@ -76,10 +80,8 @@ public class CompletionProperty extends DocValuesPropertyBase implements Propert
 
 	}
 
-	public static CompletionProperty of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CompletionProperty of(Function<Builder, ObjectBuilder<CompletionProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -146,7 +148,7 @@ public class CompletionProperty extends DocValuesPropertyBase implements Propert
 			generator.write(this.analyzer);
 
 		}
-		if (ModelTypeHelper.isDefined(this.contexts)) {
+		if (ApiTypeHelper.isDefined(this.contexts)) {
 			generator.writeKey("contexts");
 			generator.writeStartArray();
 			for (SuggestContext item0 : this.contexts) {
@@ -184,6 +186,7 @@ public class CompletionProperty extends DocValuesPropertyBase implements Propert
 	/**
 	 * Builder for {@link CompletionProperty}.
 	 */
+
 	public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<CompletionProperty> {
@@ -215,26 +218,31 @@ public class CompletionProperty extends DocValuesPropertyBase implements Propert
 
 		/**
 		 * API name: {@code contexts}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>contexts</code>.
 		 */
-		public final Builder contexts(@Nullable List<SuggestContext> value) {
-			this.contexts = value;
+		public final Builder contexts(List<SuggestContext> list) {
+			this.contexts = _listAddAll(this.contexts, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code contexts}
+		 * <p>
+		 * Adds one or more values to <code>contexts</code>.
 		 */
-		public final Builder contexts(SuggestContext... value) {
-			this.contexts = Arrays.asList(value);
+		public final Builder contexts(SuggestContext value, SuggestContext... values) {
+			this.contexts = _listAdd(this.contexts, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code contexts}
+		 * <p>
+		 * Adds a value to <code>contexts</code> using a builder lambda.
 		 */
-		public final Builder contexts(
-				Function<ListBuilder<SuggestContext, SuggestContext.Builder>, ObjectBuilder<List<SuggestContext>>> fn) {
-			return contexts(fn.apply(new ListBuilder<>(SuggestContext.Builder::new)).build());
+		public final Builder contexts(Function<SuggestContext.Builder, ObjectBuilder<SuggestContext>> fn) {
+			return contexts(fn.apply(new SuggestContext.Builder()).build());
 		}
 
 		/**

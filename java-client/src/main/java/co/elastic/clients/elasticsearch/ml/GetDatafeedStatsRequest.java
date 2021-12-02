@@ -31,22 +31,36 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_datafeed_stats.Request
+
+/**
+ * Retrieves usage information for datafeeds. You can get statistics for
+ * multiple datafeeds in a single API request by using a comma-separated list of
+ * datafeeds or a wildcard expression. You can get statistics for all datafeeds
+ * by using <code>_all</code>, by specifying <code>*</code> as the
+ * <code>&lt;feed_id&gt;</code>, or by omitting the
+ * <code>&lt;feed_id&gt;</code>. If the datafeed is stopped, the only
+ * information you receive is the <code>datafeed_id</code> and the
+ * <code>state</code>. This API returns a maximum of 10,000 datafeeds.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_datafeed_stats/MlGetDatafeedStatsRequest.ts#L23-L60">API
+ *      specification</a>
+ */
 
 public class GetDatafeedStatsRequest extends RequestBase {
 	@Nullable
@@ -59,14 +73,12 @@ public class GetDatafeedStatsRequest extends RequestBase {
 	private GetDatafeedStatsRequest(Builder builder) {
 
 		this.allowNoMatch = builder.allowNoMatch;
-		this.datafeedId = ModelTypeHelper.unmodifiable(builder.datafeedId);
+		this.datafeedId = ApiTypeHelper.unmodifiable(builder.datafeedId);
 
 	}
 
-	public static GetDatafeedStatsRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetDatafeedStatsRequest of(Function<Builder, ObjectBuilder<GetDatafeedStatsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -107,6 +119,7 @@ public class GetDatafeedStatsRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetDatafeedStatsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetDatafeedStatsRequest> {
 		@Nullable
 		private Boolean allowNoMatch;
@@ -142,9 +155,11 @@ public class GetDatafeedStatsRequest extends RequestBase {
 		 * information about all datafeeds.
 		 * <p>
 		 * API name: {@code datafeed_id}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>datafeedId</code>.
 		 */
-		public final Builder datafeedId(@Nullable List<String> value) {
-			this.datafeedId = value;
+		public final Builder datafeedId(List<String> list) {
+			this.datafeedId = _listAddAll(this.datafeedId, list);
 			return this;
 		}
 
@@ -154,9 +169,11 @@ public class GetDatafeedStatsRequest extends RequestBase {
 		 * information about all datafeeds.
 		 * <p>
 		 * API name: {@code datafeed_id}
+		 * <p>
+		 * Adds one or more values to <code>datafeedId</code>.
 		 */
-		public final Builder datafeedId(String... value) {
-			this.datafeedId = Arrays.asList(value);
+		public final Builder datafeedId(String value, String... values) {
+			this.datafeedId = _listAdd(this.datafeedId, value, values);
 			return this;
 		}
 
@@ -193,7 +210,7 @@ public class GetDatafeedStatsRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (ModelTypeHelper.isDefined(request.datafeedId()))
+				if (ApiTypeHelper.isDefined(request.datafeedId()))
 					propsSet |= _datafeedId;
 
 				if (propsSet == (_datafeedId)) {

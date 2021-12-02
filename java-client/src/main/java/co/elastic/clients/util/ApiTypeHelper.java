@@ -31,9 +31,9 @@ import java.util.Set;
 /**
  * Utility functions for API model types
  */
-public class ModelTypeHelper {
+public class ApiTypeHelper {
 
-    private ModelTypeHelper() {}
+    private ApiTypeHelper() {}
 
     //----- Required properties
 
@@ -80,7 +80,8 @@ public class ModelTypeHelper {
 
     //----- Lists
 
-    private static final List<Object> UNDEFINED_LIST = new AbstractList<Object>() {
+    /** Immutable empty list implementation so that we can create marker list objects */
+    static class EmptyList extends AbstractList<Object> {
         @Override
         public Object get(int index) {
             throw new IndexOutOfBoundsException();
@@ -96,6 +97,8 @@ public class ModelTypeHelper {
             return Collections.emptyIterator();
         }
     };
+
+    static final List<Object> UNDEFINED_LIST = new EmptyList();
 
     /**
      * Returns an empty list that is undefined from a JSON perspective. It will not be serialized
@@ -141,12 +144,14 @@ public class ModelTypeHelper {
 
     //----- Maps
 
-    private static final Map<Object, Object> UNDEFINED_MAP = new AbstractMap<Object, Object>() {
+    static class EmptyMap extends AbstractMap<Object, Object> {
         @Override
         public Set<Entry<Object, Object>> entrySet() {
             return Collections.emptySet();
         }
-    };
+    }
+
+    static final Map<Object, Object> UNDEFINED_MAP = new EmptyMap();
 
     /**
      * Returns an empty list that is undefined from a JSON perspective. It will not be serialized

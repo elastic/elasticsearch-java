@@ -31,22 +31,29 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: tasks.cancel.Request
+
+/**
+ * Cancels a task, if it can be cancelled through an API.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/tasks/cancel/CancelTasksRequest.ts#L23-L38">API
+ *      specification</a>
+ */
 
 public class CancelRequest extends RequestBase {
 	private final List<String> actions;
@@ -66,18 +73,16 @@ public class CancelRequest extends RequestBase {
 
 	private CancelRequest(Builder builder) {
 
-		this.actions = ModelTypeHelper.unmodifiable(builder.actions);
-		this.nodes = ModelTypeHelper.unmodifiable(builder.nodes);
+		this.actions = ApiTypeHelper.unmodifiable(builder.actions);
+		this.nodes = ApiTypeHelper.unmodifiable(builder.nodes);
 		this.parentTaskId = builder.parentTaskId;
 		this.taskId = builder.taskId;
 		this.waitForCompletion = builder.waitForCompletion;
 
 	}
 
-	public static CancelRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CancelRequest of(Function<Builder, ObjectBuilder<CancelRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -138,6 +143,7 @@ public class CancelRequest extends RequestBase {
 	/**
 	 * Builder for {@link CancelRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CancelRequest> {
 		@Nullable
 		private List<String> actions;
@@ -159,9 +165,11 @@ public class CancelRequest extends RequestBase {
 		 * cancel all.
 		 * <p>
 		 * API name: {@code actions}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>actions</code>.
 		 */
-		public final Builder actions(@Nullable List<String> value) {
-			this.actions = value;
+		public final Builder actions(List<String> list) {
+			this.actions = _listAddAll(this.actions, list);
 			return this;
 		}
 
@@ -170,9 +178,11 @@ public class CancelRequest extends RequestBase {
 		 * cancel all.
 		 * <p>
 		 * API name: {@code actions}
+		 * <p>
+		 * Adds one or more values to <code>actions</code>.
 		 */
-		public final Builder actions(String... value) {
-			this.actions = Arrays.asList(value);
+		public final Builder actions(String value, String... values) {
+			this.actions = _listAdd(this.actions, value, values);
 			return this;
 		}
 
@@ -182,9 +192,11 @@ public class CancelRequest extends RequestBase {
 		 * you're connecting to, leave empty to get information from all nodes
 		 * <p>
 		 * API name: {@code nodes}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>nodes</code>.
 		 */
-		public final Builder nodes(@Nullable List<String> value) {
-			this.nodes = value;
+		public final Builder nodes(List<String> list) {
+			this.nodes = _listAddAll(this.nodes, list);
 			return this;
 		}
 
@@ -194,9 +206,11 @@ public class CancelRequest extends RequestBase {
 		 * you're connecting to, leave empty to get information from all nodes
 		 * <p>
 		 * API name: {@code nodes}
+		 * <p>
+		 * Adds one or more values to <code>nodes</code>.
 		 */
-		public final Builder nodes(String... value) {
-			this.nodes = Arrays.asList(value);
+		public final Builder nodes(String value, String... values) {
+			this.nodes = _listAdd(this.nodes, value, values);
 			return this;
 		}
 
@@ -289,13 +303,13 @@ public class CancelRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (ModelTypeHelper.isDefined(request.nodes)) {
+				if (ApiTypeHelper.isDefined(request.nodes)) {
 					params.put("nodes", request.nodes.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.parentTaskId != null) {
 					params.put("parent_task_id", request.parentTaskId);
 				}
-				if (ModelTypeHelper.isDefined(request.actions)) {
+				if (ApiTypeHelper.isDefined(request.actions)) {
 					params.put("actions", request.actions.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.waitForCompletion != null) {

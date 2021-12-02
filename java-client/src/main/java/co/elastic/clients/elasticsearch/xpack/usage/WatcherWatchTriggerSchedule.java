@@ -28,14 +28,21 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.WatcherWatchTriggerSchedule
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L427-L430">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class WatcherWatchTriggerSchedule extends Counter {
 	private final Counter cron;
@@ -47,15 +54,13 @@ public class WatcherWatchTriggerSchedule extends Counter {
 	private WatcherWatchTriggerSchedule(Builder builder) {
 		super(builder);
 
-		this.cron = ModelTypeHelper.requireNonNull(builder.cron, this, "cron");
-		this.all = ModelTypeHelper.requireNonNull(builder.all, this, "all");
+		this.cron = ApiTypeHelper.requireNonNull(builder.cron, this, "cron");
+		this.all = ApiTypeHelper.requireNonNull(builder.all, this, "all");
 
 	}
 
-	public static WatcherWatchTriggerSchedule of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static WatcherWatchTriggerSchedule of(Function<Builder, ObjectBuilder<WatcherWatchTriggerSchedule>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -88,6 +93,7 @@ public class WatcherWatchTriggerSchedule extends Counter {
 	/**
 	 * Builder for {@link WatcherWatchTriggerSchedule}.
 	 */
+
 	public static class Builder extends Counter.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<WatcherWatchTriggerSchedule> {
@@ -106,10 +112,8 @@ public class WatcherWatchTriggerSchedule extends Counter {
 		/**
 		 * Required - API name: {@code cron}
 		 */
-		public final Builder cron(Consumer<Counter.Builder> fn) {
-			Counter.Builder builder = new Counter.Builder();
-			fn.accept(builder);
-			return this.cron(builder.build());
+		public final Builder cron(Function<Counter.Builder, ObjectBuilder<Counter>> fn) {
+			return this.cron(fn.apply(new Counter.Builder()).build());
 		}
 
 		/**
@@ -123,10 +127,8 @@ public class WatcherWatchTriggerSchedule extends Counter {
 		/**
 		 * Required - API name: {@code _all}
 		 */
-		public final Builder all(Consumer<Counter.Builder> fn) {
-			Counter.Builder builder = new Counter.Builder();
-			fn.accept(builder);
-			return this.all(builder.build());
+		public final Builder all(Function<Counter.Builder, ObjectBuilder<Counter>> fn) {
+			return this.all(fn.apply(new Counter.Builder()).build());
 		}
 
 		@Override

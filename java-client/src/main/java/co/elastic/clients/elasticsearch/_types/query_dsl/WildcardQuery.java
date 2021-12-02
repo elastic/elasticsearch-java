@@ -28,16 +28,23 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.WildcardQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/term.ts#L149-L162">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class WildcardQuery extends QueryBase implements QueryVariant {
 	// Single key dictionary
@@ -59,7 +66,7 @@ public class WildcardQuery extends QueryBase implements QueryVariant {
 
 	private WildcardQuery(Builder builder) {
 		super(builder);
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
 		this.caseInsensitive = builder.caseInsensitive;
 		this.rewrite = builder.rewrite;
@@ -68,10 +75,8 @@ public class WildcardQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public static WildcardQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static WildcardQuery of(Function<Builder, ObjectBuilder<WildcardQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -167,6 +172,7 @@ public class WildcardQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link WildcardQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<WildcardQuery> {
 		private String field;
 

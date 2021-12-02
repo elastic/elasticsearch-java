@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: slm._types.Policy
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/slm/_types/SnapshotLifecycle.ts#L70-L76">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SlmPolicy implements JsonpSerializable {
 	private final SlmConfiguration config;
@@ -55,18 +62,16 @@ public class SlmPolicy implements JsonpSerializable {
 
 	private SlmPolicy(Builder builder) {
 
-		this.config = ModelTypeHelper.requireNonNull(builder.config, this, "config");
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
-		this.repository = ModelTypeHelper.requireNonNull(builder.repository, this, "repository");
-		this.retention = ModelTypeHelper.requireNonNull(builder.retention, this, "retention");
-		this.schedule = ModelTypeHelper.requireNonNull(builder.schedule, this, "schedule");
+		this.config = ApiTypeHelper.requireNonNull(builder.config, this, "config");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.repository = ApiTypeHelper.requireNonNull(builder.repository, this, "repository");
+		this.retention = ApiTypeHelper.requireNonNull(builder.retention, this, "retention");
+		this.schedule = ApiTypeHelper.requireNonNull(builder.schedule, this, "schedule");
 
 	}
 
-	public static SlmPolicy of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SlmPolicy of(Function<Builder, ObjectBuilder<SlmPolicy>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -137,6 +142,7 @@ public class SlmPolicy implements JsonpSerializable {
 	/**
 	 * Builder for {@link SlmPolicy}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SlmPolicy> {
 		private SlmConfiguration config;
 
@@ -159,10 +165,8 @@ public class SlmPolicy implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code config}
 		 */
-		public final Builder config(Consumer<SlmConfiguration.Builder> fn) {
-			SlmConfiguration.Builder builder = new SlmConfiguration.Builder();
-			fn.accept(builder);
-			return this.config(builder.build());
+		public final Builder config(Function<SlmConfiguration.Builder, ObjectBuilder<SlmConfiguration>> fn) {
+			return this.config(fn.apply(new SlmConfiguration.Builder()).build());
 		}
 
 		/**
@@ -192,10 +196,8 @@ public class SlmPolicy implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code retention}
 		 */
-		public final Builder retention(Consumer<Retention.Builder> fn) {
-			Retention.Builder builder = new Retention.Builder();
-			fn.accept(builder);
-			return this.retention(builder.build());
+		public final Builder retention(Function<Retention.Builder, ObjectBuilder<Retention>> fn) {
+			return this.retention(fn.apply(new Retention.Builder()).build());
 		}
 
 		/**

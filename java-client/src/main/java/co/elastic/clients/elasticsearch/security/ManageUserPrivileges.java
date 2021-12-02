@@ -29,18 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security._types.ManageUserPrivileges
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/_types/Privileges.ts#L131-L133">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ManageUserPrivileges implements JsonpSerializable {
 	private final List<String> applications;
@@ -49,14 +55,12 @@ public class ManageUserPrivileges implements JsonpSerializable {
 
 	private ManageUserPrivileges(Builder builder) {
 
-		this.applications = ModelTypeHelper.unmodifiableRequired(builder.applications, this, "applications");
+		this.applications = ApiTypeHelper.unmodifiableRequired(builder.applications, this, "applications");
 
 	}
 
-	public static ManageUserPrivileges of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ManageUserPrivileges of(Function<Builder, ObjectBuilder<ManageUserPrivileges>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -77,7 +81,7 @@ public class ManageUserPrivileges implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.applications)) {
+		if (ApiTypeHelper.isDefined(this.applications)) {
 			generator.writeKey("applications");
 			generator.writeStartArray();
 			for (String item0 : this.applications) {
@@ -95,22 +99,27 @@ public class ManageUserPrivileges implements JsonpSerializable {
 	/**
 	 * Builder for {@link ManageUserPrivileges}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ManageUserPrivileges> {
 		private List<String> applications;
 
 		/**
 		 * Required - API name: {@code applications}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>applications</code>.
 		 */
-		public final Builder applications(List<String> value) {
-			this.applications = value;
+		public final Builder applications(List<String> list) {
+			this.applications = _listAddAll(this.applications, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code applications}
+		 * <p>
+		 * Adds one or more values to <code>applications</code>.
 		 */
-		public final Builder applications(String... value) {
-			this.applications = Arrays.asList(value);
+		public final Builder applications(String value, String... values) {
+			this.applications = _listAdd(this.applications, value, values);
 			return this;
 		}
 

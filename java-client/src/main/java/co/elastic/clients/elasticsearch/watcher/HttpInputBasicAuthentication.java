@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.HttpInputBasicAuthentication
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Input.ts#L56-L59">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class HttpInputBasicAuthentication implements JsonpSerializable {
 	private final String password;
@@ -49,15 +56,13 @@ public class HttpInputBasicAuthentication implements JsonpSerializable {
 
 	private HttpInputBasicAuthentication(Builder builder) {
 
-		this.password = ModelTypeHelper.requireNonNull(builder.password, this, "password");
-		this.username = ModelTypeHelper.requireNonNull(builder.username, this, "username");
+		this.password = ApiTypeHelper.requireNonNull(builder.password, this, "password");
+		this.username = ApiTypeHelper.requireNonNull(builder.username, this, "username");
 
 	}
 
-	public static HttpInputBasicAuthentication of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static HttpInputBasicAuthentication of(Function<Builder, ObjectBuilder<HttpInputBasicAuthentication>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -98,6 +103,7 @@ public class HttpInputBasicAuthentication implements JsonpSerializable {
 	/**
 	 * Builder for {@link HttpInputBasicAuthentication}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HttpInputBasicAuthentication> {
 		private String password;
 

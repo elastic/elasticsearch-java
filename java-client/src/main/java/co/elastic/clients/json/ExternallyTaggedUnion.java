@@ -119,6 +119,9 @@ public interface ExternallyTaggedUnion {
         generator.writeEnd();
     }
 
+    /**
+     * Serialize an externally tagged union using the typed keys encoding, without the enclosing start/end object.
+     */
     static <T extends JsonpSerializable & TaggedUnion<? extends JsonEnum, ?>> void serializeTypedKeysInner(
         Map<String, T> map, JsonGenerator generator, JsonpMapper mapper
     ) {

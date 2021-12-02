@@ -34,10 +34,17 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.FetchProfileBreakdown
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/profile.ts#L147-L154">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FetchProfileBreakdown implements JsonpSerializable {
 	@Nullable
@@ -71,10 +78,8 @@ public class FetchProfileBreakdown implements JsonpSerializable {
 
 	}
 
-	public static FetchProfileBreakdown of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static FetchProfileBreakdown of(Function<Builder, ObjectBuilder<FetchProfileBreakdown>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -174,6 +179,7 @@ public class FetchProfileBreakdown implements JsonpSerializable {
 	/**
 	 * Builder for {@link FetchProfileBreakdown}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FetchProfileBreakdown> {
 		@Nullable
 		private Integer loadStoredFields;

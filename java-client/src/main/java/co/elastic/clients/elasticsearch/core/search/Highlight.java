@@ -30,23 +30,27 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.Highlight
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/highlighting.ts#L31-L54">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Highlight implements JsonpSerializable {
 	private final Map<String, HighlightField> fields;
@@ -110,7 +114,7 @@ public class Highlight implements JsonpSerializable {
 
 	private Highlight(Builder builder) {
 
-		this.fields = ModelTypeHelper.unmodifiableRequired(builder.fields, this, "fields");
+		this.fields = ApiTypeHelper.unmodifiableRequired(builder.fields, this, "fields");
 		this.type = builder.type;
 		this.boundaryChars = builder.boundaryChars;
 		this.boundaryMaxScan = builder.boundaryMaxScan;
@@ -124,8 +128,8 @@ public class Highlight implements JsonpSerializable {
 		this.noMatchSize = builder.noMatchSize;
 		this.numberOfFragments = builder.numberOfFragments;
 		this.order = builder.order;
-		this.postTags = ModelTypeHelper.unmodifiable(builder.postTags);
-		this.preTags = ModelTypeHelper.unmodifiable(builder.preTags);
+		this.postTags = ApiTypeHelper.unmodifiable(builder.postTags);
+		this.preTags = ApiTypeHelper.unmodifiable(builder.preTags);
 		this.requireFieldMatch = builder.requireFieldMatch;
 		this.tagsSchema = builder.tagsSchema;
 		this.highlightQuery = builder.highlightQuery;
@@ -133,10 +137,8 @@ public class Highlight implements JsonpSerializable {
 
 	}
 
-	public static Highlight of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Highlight of(Function<Builder, ObjectBuilder<Highlight>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -307,7 +309,7 @@ public class Highlight implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.fields)) {
+		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartObject();
 			for (Map.Entry<String, HighlightField> item0 : this.fields.entrySet()) {
@@ -379,7 +381,7 @@ public class Highlight implements JsonpSerializable {
 			generator.writeKey("order");
 			this.order.serialize(generator, mapper);
 		}
-		if (ModelTypeHelper.isDefined(this.postTags)) {
+		if (ApiTypeHelper.isDefined(this.postTags)) {
 			generator.writeKey("post_tags");
 			generator.writeStartArray();
 			for (String item0 : this.postTags) {
@@ -389,7 +391,7 @@ public class Highlight implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.preTags)) {
+		if (ApiTypeHelper.isDefined(this.preTags)) {
 			generator.writeKey("pre_tags");
 			generator.writeStartArray();
 			for (String item0 : this.preTags) {
@@ -426,6 +428,7 @@ public class Highlight implements JsonpSerializable {
 	/**
 	 * Builder for {@link Highlight}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Highlight> {
 		private Map<String, HighlightField> fields;
 
@@ -488,15 +491,31 @@ public class Highlight implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code fields}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>fields</code>.
 		 */
-		public final Builder fields(Map<String, HighlightField> value) {
-			this.fields = value;
+		public final Builder fields(Map<String, HighlightField> map) {
+			this.fields = _mapPutAll(this.fields, map);
 			return this;
 		}
 
-		public final Builder fields(
-				Function<MapBuilder<String, HighlightField, HighlightField.Builder>, ObjectBuilder<Map<String, HighlightField>>> fn) {
-			return fields(fn.apply(new MapBuilder<>(HighlightField.Builder::new)).build());
+		/**
+		 * Required - API name: {@code fields}
+		 * <p>
+		 * Adds an entry to <code>fields</code>.
+		 */
+		public final Builder fields(String key, HighlightField value) {
+			this.fields = _mapPut(this.fields, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code fields}
+		 * <p>
+		 * Adds an entry to <code>fields</code> using a builder lambda.
+		 */
+		public final Builder fields(String key, Function<HighlightField.Builder, ObjectBuilder<HighlightField>> fn) {
+			return fields(key, fn.apply(new HighlightField.Builder()).build());
 		}
 
 		/**
@@ -510,10 +529,8 @@ public class Highlight implements JsonpSerializable {
 		/**
 		 * API name: {@code type}
 		 */
-		public final Builder type(Consumer<HighlighterType.Builder> fn) {
-			HighlighterType.Builder builder = new HighlighterType.Builder();
-			fn.accept(builder);
-			return this.type(builder.build());
+		public final Builder type(Function<HighlighterType.Builder, ObjectBuilder<HighlighterType>> fn) {
+			return this.type(fn.apply(new HighlighterType.Builder()).build());
 		}
 
 		/**
@@ -614,33 +631,41 @@ public class Highlight implements JsonpSerializable {
 
 		/**
 		 * API name: {@code post_tags}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>postTags</code>.
 		 */
-		public final Builder postTags(@Nullable List<String> value) {
-			this.postTags = value;
+		public final Builder postTags(List<String> list) {
+			this.postTags = _listAddAll(this.postTags, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code post_tags}
+		 * <p>
+		 * Adds one or more values to <code>postTags</code>.
 		 */
-		public final Builder postTags(String... value) {
-			this.postTags = Arrays.asList(value);
+		public final Builder postTags(String value, String... values) {
+			this.postTags = _listAdd(this.postTags, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code pre_tags}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>preTags</code>.
 		 */
-		public final Builder preTags(@Nullable List<String> value) {
-			this.preTags = value;
+		public final Builder preTags(List<String> list) {
+			this.preTags = _listAddAll(this.preTags, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code pre_tags}
+		 * <p>
+		 * Adds one or more values to <code>preTags</code>.
 		 */
-		public final Builder preTags(String... value) {
-			this.preTags = Arrays.asList(value);
+		public final Builder preTags(String value, String... values) {
+			this.preTags = _listAdd(this.preTags, value, values);
 			return this;
 		}
 
@@ -671,10 +696,8 @@ public class Highlight implements JsonpSerializable {
 		/**
 		 * API name: {@code highlight_query}
 		 */
-		public final Builder highlightQuery(Consumer<Query.Builder> fn) {
-			Query.Builder builder = new Query.Builder();
-			fn.accept(builder);
-			return this.highlightQuery(builder.build());
+		public final Builder highlightQuery(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.highlightQuery(fn.apply(new Query.Builder()).build());
 		}
 
 		/**

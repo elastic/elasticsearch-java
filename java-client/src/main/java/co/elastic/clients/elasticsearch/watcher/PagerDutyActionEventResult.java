@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.PagerDutyActionEventResult
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Actions.ts#L62-L67">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PagerDutyActionEventResult implements JsonpSerializable {
 	private final PagerDutyEvent event;
@@ -53,17 +60,15 @@ public class PagerDutyActionEventResult implements JsonpSerializable {
 
 	private PagerDutyActionEventResult(Builder builder) {
 
-		this.event = ModelTypeHelper.requireNonNull(builder.event, this, "event");
-		this.reason = ModelTypeHelper.requireNonNull(builder.reason, this, "reason");
-		this.request = ModelTypeHelper.requireNonNull(builder.request, this, "request");
-		this.response = ModelTypeHelper.requireNonNull(builder.response, this, "response");
+		this.event = ApiTypeHelper.requireNonNull(builder.event, this, "event");
+		this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
+		this.request = ApiTypeHelper.requireNonNull(builder.request, this, "request");
+		this.response = ApiTypeHelper.requireNonNull(builder.response, this, "response");
 
 	}
 
-	public static PagerDutyActionEventResult of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PagerDutyActionEventResult of(Function<Builder, ObjectBuilder<PagerDutyActionEventResult>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -124,6 +129,7 @@ public class PagerDutyActionEventResult implements JsonpSerializable {
 	/**
 	 * Builder for {@link PagerDutyActionEventResult}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PagerDutyActionEventResult> {
 		private PagerDutyEvent event;
 
@@ -144,10 +150,8 @@ public class PagerDutyActionEventResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code event}
 		 */
-		public final Builder event(Consumer<PagerDutyEvent.Builder> fn) {
-			PagerDutyEvent.Builder builder = new PagerDutyEvent.Builder();
-			fn.accept(builder);
-			return this.event(builder.build());
+		public final Builder event(Function<PagerDutyEvent.Builder, ObjectBuilder<PagerDutyEvent>> fn) {
+			return this.event(fn.apply(new PagerDutyEvent.Builder()).build());
 		}
 
 		/**
@@ -169,10 +173,9 @@ public class PagerDutyActionEventResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code request}
 		 */
-		public final Builder request(Consumer<HttpInputRequestResult.Builder> fn) {
-			HttpInputRequestResult.Builder builder = new HttpInputRequestResult.Builder();
-			fn.accept(builder);
-			return this.request(builder.build());
+		public final Builder request(
+				Function<HttpInputRequestResult.Builder, ObjectBuilder<HttpInputRequestResult>> fn) {
+			return this.request(fn.apply(new HttpInputRequestResult.Builder()).build());
 		}
 
 		/**
@@ -186,10 +189,9 @@ public class PagerDutyActionEventResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code response}
 		 */
-		public final Builder response(Consumer<HttpInputResponseResult.Builder> fn) {
-			HttpInputResponseResult.Builder builder = new HttpInputResponseResult.Builder();
-			fn.accept(builder);
-			return this.response(builder.build());
+		public final Builder response(
+				Function<HttpInputResponseResult.Builder, ObjectBuilder<HttpInputResponseResult>> fn) {
+			return this.response(fn.apply(new HttpInputResponseResult.Builder()).build());
 		}
 
 		/**

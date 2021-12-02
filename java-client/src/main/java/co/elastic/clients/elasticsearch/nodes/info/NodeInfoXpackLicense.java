@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoXpackLicense
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L258-L260">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeInfoXpackLicense implements JsonpSerializable {
 	private final NodeInfoXpackLicenseType selfGenerated;
@@ -46,14 +53,12 @@ public class NodeInfoXpackLicense implements JsonpSerializable {
 
 	private NodeInfoXpackLicense(Builder builder) {
 
-		this.selfGenerated = ModelTypeHelper.requireNonNull(builder.selfGenerated, this, "selfGenerated");
+		this.selfGenerated = ApiTypeHelper.requireNonNull(builder.selfGenerated, this, "selfGenerated");
 
 	}
 
-	public static NodeInfoXpackLicense of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodeInfoXpackLicense of(Function<Builder, ObjectBuilder<NodeInfoXpackLicense>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -84,6 +89,7 @@ public class NodeInfoXpackLicense implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoXpackLicense}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoXpackLicense> {
 		private NodeInfoXpackLicenseType selfGenerated;
 
@@ -98,10 +104,9 @@ public class NodeInfoXpackLicense implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code self_generated}
 		 */
-		public final Builder selfGenerated(Consumer<NodeInfoXpackLicenseType.Builder> fn) {
-			NodeInfoXpackLicenseType.Builder builder = new NodeInfoXpackLicenseType.Builder();
-			fn.accept(builder);
-			return this.selfGenerated(builder.build());
+		public final Builder selfGenerated(
+				Function<NodeInfoXpackLicenseType.Builder, ObjectBuilder<NodeInfoXpackLicenseType>> fn) {
+			return this.selfGenerated(fn.apply(new NodeInfoXpackLicenseType.Builder()).build());
 		}
 
 		/**

@@ -34,10 +34,17 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.health.HealthRecord
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/health/types.ts#L22-L93">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class HealthRecord implements JsonpSerializable {
 	@Nullable
@@ -103,10 +110,8 @@ public class HealthRecord implements JsonpSerializable {
 
 	}
 
-	public static HealthRecord of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static HealthRecord of(Function<Builder, ObjectBuilder<HealthRecord>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -338,6 +343,7 @@ public class HealthRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link HealthRecord}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HealthRecord> {
 		@Nullable
 		private String epoch;

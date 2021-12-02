@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -37,10 +37,17 @@ import java.lang.Double;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.TermSuggestOption
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/suggester.ts#L90-L94">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TermSuggestOption implements JsonpSerializable {
 	private final String text;
@@ -54,16 +61,14 @@ public class TermSuggestOption implements JsonpSerializable {
 
 	private TermSuggestOption(Builder builder) {
 
-		this.text = ModelTypeHelper.requireNonNull(builder.text, this, "text");
+		this.text = ApiTypeHelper.requireNonNull(builder.text, this, "text");
 		this.freq = builder.freq;
-		this.score = ModelTypeHelper.requireNonNull(builder.score, this, "score");
+		this.score = ApiTypeHelper.requireNonNull(builder.score, this, "score");
 
 	}
 
-	public static TermSuggestOption of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TermSuggestOption of(Function<Builder, ObjectBuilder<TermSuggestOption>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -117,6 +122,7 @@ public class TermSuggestOption implements JsonpSerializable {
 	/**
 	 * Builder for {@link TermSuggestOption}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TermSuggestOption> {
 		private String text;
 

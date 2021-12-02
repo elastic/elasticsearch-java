@@ -30,16 +30,23 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ScriptedMetricAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/metric.ts#L128-L134">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ScriptedMetricAggregation extends MetricAggregationBase implements AggregationVariant {
 	@Nullable
@@ -64,15 +71,13 @@ public class ScriptedMetricAggregation extends MetricAggregationBase implements 
 		this.combineScript = builder.combineScript;
 		this.initScript = builder.initScript;
 		this.mapScript = builder.mapScript;
-		this.params = ModelTypeHelper.unmodifiable(builder.params);
+		this.params = ApiTypeHelper.unmodifiable(builder.params);
 		this.reduceScript = builder.reduceScript;
 
 	}
 
-	public static ScriptedMetricAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ScriptedMetricAggregation of(Function<Builder, ObjectBuilder<ScriptedMetricAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -140,7 +145,7 @@ public class ScriptedMetricAggregation extends MetricAggregationBase implements 
 			this.mapScript.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.params)) {
+		if (ApiTypeHelper.isDefined(this.params)) {
 			generator.writeKey("params");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.params.entrySet()) {
@@ -164,6 +169,7 @@ public class ScriptedMetricAggregation extends MetricAggregationBase implements 
 	/**
 	 * Builder for {@link ScriptedMetricAggregation}.
 	 */
+
 	public static class Builder extends MetricAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ScriptedMetricAggregation> {
@@ -193,10 +199,8 @@ public class ScriptedMetricAggregation extends MetricAggregationBase implements 
 		/**
 		 * API name: {@code combine_script}
 		 */
-		public final Builder combineScript(Consumer<Script.Builder> fn) {
-			Script.Builder builder = new Script.Builder();
-			fn.accept(builder);
-			return this.combineScript(builder.build());
+		public final Builder combineScript(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.combineScript(fn.apply(new Script.Builder()).build());
 		}
 
 		/**
@@ -210,10 +214,8 @@ public class ScriptedMetricAggregation extends MetricAggregationBase implements 
 		/**
 		 * API name: {@code init_script}
 		 */
-		public final Builder initScript(Consumer<Script.Builder> fn) {
-			Script.Builder builder = new Script.Builder();
-			fn.accept(builder);
-			return this.initScript(builder.build());
+		public final Builder initScript(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.initScript(fn.apply(new Script.Builder()).build());
 		}
 
 		/**
@@ -227,17 +229,27 @@ public class ScriptedMetricAggregation extends MetricAggregationBase implements 
 		/**
 		 * API name: {@code map_script}
 		 */
-		public final Builder mapScript(Consumer<Script.Builder> fn) {
-			Script.Builder builder = new Script.Builder();
-			fn.accept(builder);
-			return this.mapScript(builder.build());
+		public final Builder mapScript(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.mapScript(fn.apply(new Script.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code params}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>params</code>.
 		 */
-		public final Builder params(@Nullable Map<String, JsonData> value) {
-			this.params = value;
+		public final Builder params(Map<String, JsonData> map) {
+			this.params = _mapPutAll(this.params, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code params}
+		 * <p>
+		 * Adds an entry to <code>params</code>.
+		 */
+		public final Builder params(String key, JsonData value) {
+			this.params = _mapPut(this.params, key, value);
 			return this;
 		}
 
@@ -252,10 +264,8 @@ public class ScriptedMetricAggregation extends MetricAggregationBase implements 
 		/**
 		 * API name: {@code reduce_script}
 		 */
-		public final Builder reduceScript(Consumer<Script.Builder> fn) {
-			Script.Builder builder = new Script.Builder();
-			fn.accept(builder);
-			return this.reduceScript(builder.build());
+		public final Builder reduceScript(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.reduceScript(fn.apply(new Script.Builder()).build());
 		}
 
 		@Override

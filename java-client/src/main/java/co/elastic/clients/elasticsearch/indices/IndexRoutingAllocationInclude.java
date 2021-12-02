@@ -34,10 +34,17 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexRoutingAllocationInclude
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/_types/IndexRouting.ts#L52-L55">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IndexRoutingAllocationInclude implements JsonpSerializable {
 	@Nullable
@@ -55,10 +62,8 @@ public class IndexRoutingAllocationInclude implements JsonpSerializable {
 
 	}
 
-	public static IndexRoutingAllocationInclude of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IndexRoutingAllocationInclude of(Function<Builder, ObjectBuilder<IndexRoutingAllocationInclude>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -106,6 +111,7 @@ public class IndexRoutingAllocationInclude implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexRoutingAllocationInclude}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexRoutingAllocationInclude> {
 		@Nullable
 		private String tierPreference;

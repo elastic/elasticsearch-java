@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.NodeBufferPool
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/_types/Stats.ts#L153-L159">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeBufferPool implements JsonpSerializable {
 	private final long count;
@@ -56,19 +63,17 @@ public class NodeBufferPool implements JsonpSerializable {
 
 	private NodeBufferPool(Builder builder) {
 
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
-		this.totalCapacity = ModelTypeHelper.requireNonNull(builder.totalCapacity, this, "totalCapacity");
-		this.totalCapacityInBytes = ModelTypeHelper.requireNonNull(builder.totalCapacityInBytes, this,
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.totalCapacity = ApiTypeHelper.requireNonNull(builder.totalCapacity, this, "totalCapacity");
+		this.totalCapacityInBytes = ApiTypeHelper.requireNonNull(builder.totalCapacityInBytes, this,
 				"totalCapacityInBytes");
-		this.used = ModelTypeHelper.requireNonNull(builder.used, this, "used");
-		this.usedInBytes = ModelTypeHelper.requireNonNull(builder.usedInBytes, this, "usedInBytes");
+		this.used = ApiTypeHelper.requireNonNull(builder.used, this, "used");
+		this.usedInBytes = ApiTypeHelper.requireNonNull(builder.usedInBytes, this, "usedInBytes");
 
 	}
 
-	public static NodeBufferPool of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodeBufferPool of(Function<Builder, ObjectBuilder<NodeBufferPool>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -139,6 +144,7 @@ public class NodeBufferPool implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeBufferPool}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeBufferPool> {
 		private Long count;
 

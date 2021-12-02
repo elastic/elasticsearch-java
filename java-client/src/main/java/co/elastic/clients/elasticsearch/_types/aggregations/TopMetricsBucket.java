@@ -28,18 +28,22 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TopMetricsBucket
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L664-L666">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TopMetricsBucket extends MultiBucketBase {
 	private final List<TopMetrics> top;
@@ -49,14 +53,12 @@ public class TopMetricsBucket extends MultiBucketBase {
 	private TopMetricsBucket(Builder builder) {
 		super(builder);
 
-		this.top = ModelTypeHelper.unmodifiableRequired(builder.top, this, "top");
+		this.top = ApiTypeHelper.unmodifiableRequired(builder.top, this, "top");
 
 	}
 
-	public static TopMetricsBucket of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TopMetricsBucket of(Function<Builder, ObjectBuilder<TopMetricsBucket>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -69,7 +71,7 @@ public class TopMetricsBucket extends MultiBucketBase {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.top)) {
+		if (ApiTypeHelper.isDefined(this.top)) {
 			generator.writeKey("top");
 			generator.writeStartArray();
 			for (TopMetrics item0 : this.top) {
@@ -87,6 +89,7 @@ public class TopMetricsBucket extends MultiBucketBase {
 	/**
 	 * Builder for {@link TopMetricsBucket}.
 	 */
+
 	public static class Builder extends MultiBucketBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<TopMetricsBucket> {
@@ -94,26 +97,31 @@ public class TopMetricsBucket extends MultiBucketBase {
 
 		/**
 		 * Required - API name: {@code top}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>top</code>.
 		 */
-		public final Builder top(List<TopMetrics> value) {
-			this.top = value;
+		public final Builder top(List<TopMetrics> list) {
+			this.top = _listAddAll(this.top, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code top}
+		 * <p>
+		 * Adds one or more values to <code>top</code>.
 		 */
-		public final Builder top(TopMetrics... value) {
-			this.top = Arrays.asList(value);
+		public final Builder top(TopMetrics value, TopMetrics... values) {
+			this.top = _listAdd(this.top, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code top}
+		 * <p>
+		 * Adds a value to <code>top</code> using a builder lambda.
 		 */
-		public final Builder top(
-				Function<ListBuilder<TopMetrics, TopMetrics.Builder>, ObjectBuilder<List<TopMetrics>>> fn) {
-			return top(fn.apply(new ListBuilder<>(TopMetrics.Builder::new)).build());
+		public final Builder top(Function<TopMetrics.Builder, ObjectBuilder<TopMetrics>> fn) {
+			return top(fn.apply(new TopMetrics.Builder()).build());
 		}
 
 		@Override

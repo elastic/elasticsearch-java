@@ -28,15 +28,22 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.DateHistogramBucket
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L335-L338">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DateHistogramBucket extends MultiBucketBase {
 	@Nullable
@@ -50,14 +57,12 @@ public class DateHistogramBucket extends MultiBucketBase {
 		super(builder);
 
 		this.keyAsString = builder.keyAsString;
-		this.key = ModelTypeHelper.requireNonNull(builder.key, this, "key");
+		this.key = ApiTypeHelper.requireNonNull(builder.key, this, "key");
 
 	}
 
-	public static DateHistogramBucket of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DateHistogramBucket of(Function<Builder, ObjectBuilder<DateHistogramBucket>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -93,6 +98,7 @@ public class DateHistogramBucket extends MultiBucketBase {
 	/**
 	 * Builder for {@link DateHistogramBucket}.
 	 */
+
 	public static class Builder extends MultiBucketBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DateHistogramBucket> {

@@ -28,16 +28,25 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.GeoPolygonQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/geo.ts#L63-L71">API
+ *      specification</a>
+ * @deprecated 7.12.0 Use geo-shape instead.
+ */
+@Deprecated
 @JsonpDeserializable
 public class GeoPolygonQuery extends QueryBase implements QueryVariant {
 	private final String field;
@@ -54,18 +63,16 @@ public class GeoPolygonQuery extends QueryBase implements QueryVariant {
 
 	private GeoPolygonQuery(Builder builder) {
 		super(builder);
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
-		this.polygon = ModelTypeHelper.requireNonNull(builder.polygon, this, "polygon");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.polygon = ApiTypeHelper.requireNonNull(builder.polygon, this, "polygon");
 
 		this.validationMethod = builder.validationMethod;
 		this.ignoreUnmapped = builder.ignoreUnmapped;
 
 	}
 
-	public static GeoPolygonQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GeoPolygonQuery of(Function<Builder, ObjectBuilder<GeoPolygonQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -128,6 +135,7 @@ public class GeoPolygonQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link GeoPolygonQuery}.
 	 */
+	@Deprecated
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<GeoPolygonQuery> {
 		private String field;
 
@@ -152,10 +160,8 @@ public class GeoPolygonQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required -
 		 */
-		public final Builder polygon(Consumer<GeoPolygonPoints.Builder> fn) {
-			GeoPolygonPoints.Builder builder = new GeoPolygonPoints.Builder();
-			fn.accept(builder);
-			return this.polygon(builder.build());
+		public final Builder polygon(Function<GeoPolygonPoints.Builder, ObjectBuilder<GeoPolygonPoints>> fn) {
+			return this.polygon(fn.apply(new GeoPolygonPoints.Builder()).build());
 		}
 
 		@Nullable

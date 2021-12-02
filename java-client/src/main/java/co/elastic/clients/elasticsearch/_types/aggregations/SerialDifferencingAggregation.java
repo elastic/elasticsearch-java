@@ -32,10 +32,17 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.SerialDifferencingAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/pipeline.ts#L207-L209">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SerialDifferencingAggregation extends PipelineAggregationBase implements AggregationVariant {
 	@Nullable
@@ -50,10 +57,8 @@ public class SerialDifferencingAggregation extends PipelineAggregationBase imple
 
 	}
 
-	public static SerialDifferencingAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SerialDifferencingAggregation of(Function<Builder, ObjectBuilder<SerialDifferencingAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -88,6 +93,7 @@ public class SerialDifferencingAggregation extends PipelineAggregationBase imple
 	/**
 	 * Builder for {@link SerialDifferencingAggregation}.
 	 */
+
 	public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<SerialDifferencingAggregation> {

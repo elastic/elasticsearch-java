@@ -33,7 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,10 +42,18 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.update_data_frame_analytics.Request
+
+/**
+ * Updates an existing data frame analytics job.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/update_data_frame_analytics/MlUpdateDataFrameAnalyticsRequest.ts#L24-L72">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class UpdateDataFrameAnalyticsRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -68,16 +76,15 @@ public class UpdateDataFrameAnalyticsRequest extends RequestBase implements Json
 
 		this.allowLazyStart = builder.allowLazyStart;
 		this.description = builder.description;
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.maxNumThreads = builder.maxNumThreads;
 		this.modelMemoryLimit = builder.modelMemoryLimit;
 
 	}
 
-	public static UpdateDataFrameAnalyticsRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static UpdateDataFrameAnalyticsRequest of(
+			Function<Builder, ObjectBuilder<UpdateDataFrameAnalyticsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -179,6 +186,7 @@ public class UpdateDataFrameAnalyticsRequest extends RequestBase implements Json
 	/**
 	 * Builder for {@link UpdateDataFrameAnalyticsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UpdateDataFrameAnalyticsRequest> {
 		@Nullable
 		private Boolean allowLazyStart;

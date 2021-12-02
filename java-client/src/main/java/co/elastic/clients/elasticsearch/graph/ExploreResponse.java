@@ -30,21 +30,25 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: graph.explore.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/graph/explore/GraphExploreResponse.ts#L25-L33">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ExploreResponse implements JsonpSerializable {
 	private final List<Connection> connections;
@@ -61,18 +65,16 @@ public class ExploreResponse implements JsonpSerializable {
 
 	private ExploreResponse(Builder builder) {
 
-		this.connections = ModelTypeHelper.unmodifiableRequired(builder.connections, this, "connections");
-		this.failures = ModelTypeHelper.unmodifiableRequired(builder.failures, this, "failures");
-		this.timedOut = ModelTypeHelper.requireNonNull(builder.timedOut, this, "timedOut");
-		this.took = ModelTypeHelper.requireNonNull(builder.took, this, "took");
-		this.vertices = ModelTypeHelper.unmodifiableRequired(builder.vertices, this, "vertices");
+		this.connections = ApiTypeHelper.unmodifiableRequired(builder.connections, this, "connections");
+		this.failures = ApiTypeHelper.unmodifiableRequired(builder.failures, this, "failures");
+		this.timedOut = ApiTypeHelper.requireNonNull(builder.timedOut, this, "timedOut");
+		this.took = ApiTypeHelper.requireNonNull(builder.took, this, "took");
+		this.vertices = ApiTypeHelper.unmodifiableRequired(builder.vertices, this, "vertices");
 
 	}
 
-	public static ExploreResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ExploreResponse of(Function<Builder, ObjectBuilder<ExploreResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -121,7 +123,7 @@ public class ExploreResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.connections)) {
+		if (ApiTypeHelper.isDefined(this.connections)) {
 			generator.writeKey("connections");
 			generator.writeStartArray();
 			for (Connection item0 : this.connections) {
@@ -131,7 +133,7 @@ public class ExploreResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.failures)) {
+		if (ApiTypeHelper.isDefined(this.failures)) {
 			generator.writeKey("failures");
 			generator.writeStartArray();
 			for (ShardFailure item0 : this.failures) {
@@ -147,7 +149,7 @@ public class ExploreResponse implements JsonpSerializable {
 		generator.writeKey("took");
 		generator.write(this.took);
 
-		if (ModelTypeHelper.isDefined(this.vertices)) {
+		if (ApiTypeHelper.isDefined(this.vertices)) {
 			generator.writeKey("vertices");
 			generator.writeStartArray();
 			for (Vertex item0 : this.vertices) {
@@ -165,6 +167,7 @@ public class ExploreResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link ExploreResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExploreResponse> {
 		private List<Connection> connections;
 
@@ -178,50 +181,60 @@ public class ExploreResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code connections}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>connections</code>.
 		 */
-		public final Builder connections(List<Connection> value) {
-			this.connections = value;
+		public final Builder connections(List<Connection> list) {
+			this.connections = _listAddAll(this.connections, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code connections}
+		 * <p>
+		 * Adds one or more values to <code>connections</code>.
 		 */
-		public final Builder connections(Connection... value) {
-			this.connections = Arrays.asList(value);
+		public final Builder connections(Connection value, Connection... values) {
+			this.connections = _listAdd(this.connections, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code connections}
+		 * <p>
+		 * Adds a value to <code>connections</code> using a builder lambda.
 		 */
-		public final Builder connections(
-				Function<ListBuilder<Connection, Connection.Builder>, ObjectBuilder<List<Connection>>> fn) {
-			return connections(fn.apply(new ListBuilder<>(Connection.Builder::new)).build());
+		public final Builder connections(Function<Connection.Builder, ObjectBuilder<Connection>> fn) {
+			return connections(fn.apply(new Connection.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code failures}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>failures</code>.
 		 */
-		public final Builder failures(List<ShardFailure> value) {
-			this.failures = value;
+		public final Builder failures(List<ShardFailure> list) {
+			this.failures = _listAddAll(this.failures, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code failures}
+		 * <p>
+		 * Adds one or more values to <code>failures</code>.
 		 */
-		public final Builder failures(ShardFailure... value) {
-			this.failures = Arrays.asList(value);
+		public final Builder failures(ShardFailure value, ShardFailure... values) {
+			this.failures = _listAdd(this.failures, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code failures}
+		 * <p>
+		 * Adds a value to <code>failures</code> using a builder lambda.
 		 */
-		public final Builder failures(
-				Function<ListBuilder<ShardFailure, ShardFailure.Builder>, ObjectBuilder<List<ShardFailure>>> fn) {
-			return failures(fn.apply(new ListBuilder<>(ShardFailure.Builder::new)).build());
+		public final Builder failures(Function<ShardFailure.Builder, ObjectBuilder<ShardFailure>> fn) {
+			return failures(fn.apply(new ShardFailure.Builder()).build());
 		}
 
 		/**
@@ -242,25 +255,31 @@ public class ExploreResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code vertices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>vertices</code>.
 		 */
-		public final Builder vertices(List<Vertex> value) {
-			this.vertices = value;
+		public final Builder vertices(List<Vertex> list) {
+			this.vertices = _listAddAll(this.vertices, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code vertices}
+		 * <p>
+		 * Adds one or more values to <code>vertices</code>.
 		 */
-		public final Builder vertices(Vertex... value) {
-			this.vertices = Arrays.asList(value);
+		public final Builder vertices(Vertex value, Vertex... values) {
+			this.vertices = _listAdd(this.vertices, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code vertices}
+		 * <p>
+		 * Adds a value to <code>vertices</code> using a builder lambda.
 		 */
-		public final Builder vertices(Function<ListBuilder<Vertex, Vertex.Builder>, ObjectBuilder<List<Vertex>>> fn) {
-			return vertices(fn.apply(new ListBuilder<>(Vertex.Builder::new)).build());
+		public final Builder vertices(Function<Vertex.Builder, ObjectBuilder<Vertex>> fn) {
+			return vertices(fn.apply(new Vertex.Builder()).build());
 		}
 
 		/**

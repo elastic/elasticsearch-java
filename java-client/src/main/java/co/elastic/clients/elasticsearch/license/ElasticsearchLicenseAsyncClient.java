@@ -34,7 +34,7 @@ import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 /**
@@ -101,11 +101,10 @@ public class ElasticsearchLicenseAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<GetLicenseResponse> get(Consumer<GetLicenseRequest.Builder> fn)
+	public final CompletableFuture<GetLicenseResponse> get(
+			Function<GetLicenseRequest.Builder, ObjectBuilder<GetLicenseRequest>> fn)
 			throws IOException, ElasticsearchException {
-		GetLicenseRequest.Builder builder = new GetLicenseRequest.Builder();
-		fn.accept(builder);
-		return get(builder.build());
+		return get(fn.apply(new GetLicenseRequest.Builder()).build());
 	}
 
 	/**
@@ -177,11 +176,9 @@ public class ElasticsearchLicenseAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<PostResponse> post(Consumer<PostRequest.Builder> fn)
+	public final CompletableFuture<PostResponse> post(Function<PostRequest.Builder, ObjectBuilder<PostRequest>> fn)
 			throws IOException, ElasticsearchException {
-		PostRequest.Builder builder = new PostRequest.Builder();
-		fn.accept(builder);
-		return post(builder.build());
+		return post(fn.apply(new PostRequest.Builder()).build());
 	}
 
 	/**
@@ -226,11 +223,10 @@ public class ElasticsearchLicenseAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<PostStartBasicResponse> postStartBasic(Consumer<PostStartBasicRequest.Builder> fn)
+	public final CompletableFuture<PostStartBasicResponse> postStartBasic(
+			Function<PostStartBasicRequest.Builder, ObjectBuilder<PostStartBasicRequest>> fn)
 			throws IOException, ElasticsearchException {
-		PostStartBasicRequest.Builder builder = new PostStartBasicRequest.Builder();
-		fn.accept(builder);
-		return postStartBasic(builder.build());
+		return postStartBasic(fn.apply(new PostStartBasicRequest.Builder()).build());
 	}
 
 	/**
@@ -275,11 +271,10 @@ public class ElasticsearchLicenseAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<PostStartTrialResponse> postStartTrial(Consumer<PostStartTrialRequest.Builder> fn)
+	public final CompletableFuture<PostStartTrialResponse> postStartTrial(
+			Function<PostStartTrialRequest.Builder, ObjectBuilder<PostStartTrialRequest>> fn)
 			throws IOException, ElasticsearchException {
-		PostStartTrialRequest.Builder builder = new PostStartTrialRequest.Builder();
-		fn.accept(builder);
-		return postStartTrial(builder.build());
+		return postStartTrial(fn.apply(new PostStartTrialRequest.Builder()).build());
 	}
 
 	/**

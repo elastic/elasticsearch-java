@@ -36,10 +36,17 @@ import java.lang.Boolean;
 import java.lang.Float;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.HoltWintersModelSettings
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/pipeline.ts#L162-L169">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class HoltWintersModelSettings implements JsonpSerializable {
 	@Nullable
@@ -73,10 +80,8 @@ public class HoltWintersModelSettings implements JsonpSerializable {
 
 	}
 
-	public static HoltWintersModelSettings of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static HoltWintersModelSettings of(Function<Builder, ObjectBuilder<HoltWintersModelSettings>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -175,6 +180,7 @@ public class HoltWintersModelSettings implements JsonpSerializable {
 	/**
 	 * Builder for {@link HoltWintersModelSettings}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HoltWintersModelSettings> {
 		@Nullable
 		private Float alpha;

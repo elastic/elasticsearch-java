@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.NdJsonpSerializable;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
@@ -39,14 +39,23 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Iterator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.bulk.OperationContainer
-// union type: Container[]
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/bulk/types.ts#L85-L91">API
+ *      specification</a>
+ */
 
 public class BulkOperation implements TaggedUnion<BulkOperation.Kind, Object>, NdJsonpSerializable, JsonpSerializable {
 
+	/**
+	 * {@link BulkOperation} variant kinds.
+	 */
 	/**
 	 * {@link BulkOperation} variant kinds.
 	 */
@@ -89,22 +98,20 @@ public class BulkOperation implements TaggedUnion<BulkOperation.Kind, Object>, N
 
 	public BulkOperation(BulkOperationVariant value) {
 
-		this._kind = ModelTypeHelper.requireNonNull(value._bulkOperationKind(), this, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(value._bulkOperationKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
 	private BulkOperation(Builder builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static BulkOperation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static BulkOperation of(Function<Builder, ObjectBuilder<BulkOperation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	@Override
@@ -205,10 +212,9 @@ public class BulkOperation implements TaggedUnion<BulkOperation.Kind, Object>, N
 			return this;
 		}
 
-		public <TDocument> ObjectBuilder<BulkOperation> index(Consumer<IndexOperation.Builder<TDocument>> fn) {
-			IndexOperation.Builder builder = new IndexOperation.Builder();
-			fn.accept(builder);
-			return this.index(builder.build());
+		public <TDocument> ObjectBuilder<BulkOperation> index(
+				Function<IndexOperation.Builder<TDocument>, ObjectBuilder<IndexOperation<TDocument>>> fn) {
+			return this.index(fn.apply(new IndexOperation.Builder<TDocument>()).build());
 		}
 
 		public <TDocument> ObjectBuilder<BulkOperation> create(CreateOperation<TDocument> v) {
@@ -217,10 +223,9 @@ public class BulkOperation implements TaggedUnion<BulkOperation.Kind, Object>, N
 			return this;
 		}
 
-		public <TDocument> ObjectBuilder<BulkOperation> create(Consumer<CreateOperation.Builder<TDocument>> fn) {
-			CreateOperation.Builder builder = new CreateOperation.Builder();
-			fn.accept(builder);
-			return this.create(builder.build());
+		public <TDocument> ObjectBuilder<BulkOperation> create(
+				Function<CreateOperation.Builder<TDocument>, ObjectBuilder<CreateOperation<TDocument>>> fn) {
+			return this.create(fn.apply(new CreateOperation.Builder<TDocument>()).build());
 		}
 
 		public <TDocument> ObjectBuilder<BulkOperation> update(UpdateOperation<TDocument> v) {
@@ -229,10 +234,9 @@ public class BulkOperation implements TaggedUnion<BulkOperation.Kind, Object>, N
 			return this;
 		}
 
-		public <TDocument> ObjectBuilder<BulkOperation> update(Consumer<UpdateOperation.Builder<TDocument>> fn) {
-			UpdateOperation.Builder builder = new UpdateOperation.Builder();
-			fn.accept(builder);
-			return this.update(builder.build());
+		public <TDocument> ObjectBuilder<BulkOperation> update(
+				Function<UpdateOperation.Builder<TDocument>, ObjectBuilder<UpdateOperation<TDocument>>> fn) {
+			return this.update(fn.apply(new UpdateOperation.Builder<TDocument>()).build());
 		}
 
 		public ObjectBuilder<BulkOperation> delete(DeleteOperation v) {
@@ -241,10 +245,9 @@ public class BulkOperation implements TaggedUnion<BulkOperation.Kind, Object>, N
 			return this;
 		}
 
-		public ObjectBuilder<BulkOperation> delete(Consumer<DeleteOperation.Builder> fn) {
-			DeleteOperation.Builder builder = new DeleteOperation.Builder();
-			fn.accept(builder);
-			return this.delete(builder.build());
+		public ObjectBuilder<BulkOperation> delete(
+				Function<DeleteOperation.Builder, ObjectBuilder<DeleteOperation>> fn) {
+			return this.delete(fn.apply(new DeleteOperation.Builder()).build());
 		}
 
 		public BulkOperation build() {

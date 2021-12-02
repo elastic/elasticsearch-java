@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: sql.clear_cursor.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/sql/clear_cursor/ClearSqlCursorResponse.ts#L20-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ClearCursorResponse implements JsonpSerializable {
 	private final boolean succeeded;
@@ -46,14 +53,12 @@ public class ClearCursorResponse implements JsonpSerializable {
 
 	private ClearCursorResponse(Builder builder) {
 
-		this.succeeded = ModelTypeHelper.requireNonNull(builder.succeeded, this, "succeeded");
+		this.succeeded = ApiTypeHelper.requireNonNull(builder.succeeded, this, "succeeded");
 
 	}
 
-	public static ClearCursorResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ClearCursorResponse of(Function<Builder, ObjectBuilder<ClearCursorResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -84,6 +89,7 @@ public class ClearCursorResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClearCursorResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClearCursorResponse> {
 		private Boolean succeeded;
 

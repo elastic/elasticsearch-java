@@ -30,9 +30,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.aggregations.VariableWidthHistogramAggregate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L346-L348">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class VariableWidthHistogramAggregate extends MultiBucketAggregateBase<VariableWidthHistogramBucket>
 		implements
@@ -44,10 +51,9 @@ public class VariableWidthHistogramAggregate extends MultiBucketAggregateBase<Va
 
 	}
 
-	public static VariableWidthHistogramAggregate of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static VariableWidthHistogramAggregate of(
+			Function<Builder, ObjectBuilder<VariableWidthHistogramAggregate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -63,6 +69,7 @@ public class VariableWidthHistogramAggregate extends MultiBucketAggregateBase<Va
 	/**
 	 * Builder for {@link VariableWidthHistogramAggregate}.
 	 */
+
 	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<VariableWidthHistogramBucket, Builder>
 			implements
 				ObjectBuilder<VariableWidthHistogramAggregate> {

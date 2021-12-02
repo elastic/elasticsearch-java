@@ -30,19 +30,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_index_template.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/get_index_template/IndicesGetIndexTemplateResponse.ts#L27-L31">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetIndexTemplateResponse implements JsonpSerializable {
 	private final List<IndexTemplateItem> indexTemplates;
@@ -51,14 +55,12 @@ public class GetIndexTemplateResponse implements JsonpSerializable {
 
 	private GetIndexTemplateResponse(Builder builder) {
 
-		this.indexTemplates = ModelTypeHelper.unmodifiableRequired(builder.indexTemplates, this, "indexTemplates");
+		this.indexTemplates = ApiTypeHelper.unmodifiableRequired(builder.indexTemplates, this, "indexTemplates");
 
 	}
 
-	public static GetIndexTemplateResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetIndexTemplateResponse of(Function<Builder, ObjectBuilder<GetIndexTemplateResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -79,7 +81,7 @@ public class GetIndexTemplateResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.indexTemplates)) {
+		if (ApiTypeHelper.isDefined(this.indexTemplates)) {
 			generator.writeKey("index_templates");
 			generator.writeStartArray();
 			for (IndexTemplateItem item0 : this.indexTemplates) {
@@ -97,31 +99,37 @@ public class GetIndexTemplateResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetIndexTemplateResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetIndexTemplateResponse> {
 		private List<IndexTemplateItem> indexTemplates;
 
 		/**
 		 * Required - API name: {@code index_templates}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>indexTemplates</code>.
 		 */
-		public final Builder indexTemplates(List<IndexTemplateItem> value) {
-			this.indexTemplates = value;
+		public final Builder indexTemplates(List<IndexTemplateItem> list) {
+			this.indexTemplates = _listAddAll(this.indexTemplates, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code index_templates}
+		 * <p>
+		 * Adds one or more values to <code>indexTemplates</code>.
 		 */
-		public final Builder indexTemplates(IndexTemplateItem... value) {
-			this.indexTemplates = Arrays.asList(value);
+		public final Builder indexTemplates(IndexTemplateItem value, IndexTemplateItem... values) {
+			this.indexTemplates = _listAdd(this.indexTemplates, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code index_templates}
+		 * <p>
+		 * Adds a value to <code>indexTemplates</code> using a builder lambda.
 		 */
-		public final Builder indexTemplates(
-				Function<ListBuilder<IndexTemplateItem, IndexTemplateItem.Builder>, ObjectBuilder<List<IndexTemplateItem>>> fn) {
-			return indexTemplates(fn.apply(new ListBuilder<>(IndexTemplateItem.Builder::new)).build());
+		public final Builder indexTemplates(Function<IndexTemplateItem.Builder, ObjectBuilder<IndexTemplateItem>> fn) {
+			return indexTemplates(fn.apply(new IndexTemplateItem.Builder()).build());
 		}
 
 		/**

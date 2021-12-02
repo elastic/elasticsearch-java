@@ -28,18 +28,24 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.CombinedFieldsQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/abstractions.ts#L178-L192">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CombinedFieldsQuery extends QueryBase implements QueryVariant {
 	private final List<String> fields;
@@ -63,8 +69,8 @@ public class CombinedFieldsQuery extends QueryBase implements QueryVariant {
 	private CombinedFieldsQuery(Builder builder) {
 		super(builder);
 
-		this.fields = ModelTypeHelper.unmodifiableRequired(builder.fields, this, "fields");
-		this.query = ModelTypeHelper.requireNonNull(builder.query, this, "query");
+		this.fields = ApiTypeHelper.unmodifiableRequired(builder.fields, this, "fields");
+		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 		this.autoGenerateSynonymsPhraseQuery = builder.autoGenerateSynonymsPhraseQuery;
 		this.operator = builder.operator;
 		this.mimimumShouldMatch = builder.mimimumShouldMatch;
@@ -72,10 +78,8 @@ public class CombinedFieldsQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public static CombinedFieldsQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CombinedFieldsQuery of(Function<Builder, ObjectBuilder<CombinedFieldsQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -135,7 +139,7 @@ public class CombinedFieldsQuery extends QueryBase implements QueryVariant {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.fields)) {
+		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartArray();
 			for (String item0 : this.fields) {
@@ -174,6 +178,7 @@ public class CombinedFieldsQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link CombinedFieldsQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<CombinedFieldsQuery> {
@@ -195,17 +200,21 @@ public class CombinedFieldsQuery extends QueryBase implements QueryVariant {
 
 		/**
 		 * Required - API name: {@code fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fields</code>.
 		 */
-		public final Builder fields(List<String> value) {
-			this.fields = value;
+		public final Builder fields(List<String> list) {
+			this.fields = _listAddAll(this.fields, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code fields}
+		 * <p>
+		 * Adds one or more values to <code>fields</code>.
 		 */
-		public final Builder fields(String... value) {
-			this.fields = Arrays.asList(value);
+		public final Builder fields(String value, String... values) {
+			this.fields = _listAdd(this.fields, value, values);
 			return this;
 		}
 

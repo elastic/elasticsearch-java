@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: slm._types.SnapshotLifecycle
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/slm/_types/SnapshotLifecycle.ts#L32-L43">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SnapshotLifecycle implements JsonpSerializable {
 	@Nullable
@@ -75,21 +82,18 @@ public class SnapshotLifecycle implements JsonpSerializable {
 		this.lastFailure = builder.lastFailure;
 		this.lastSuccess = builder.lastSuccess;
 		this.modifiedDate = builder.modifiedDate;
-		this.modifiedDateMillis = ModelTypeHelper.requireNonNull(builder.modifiedDateMillis, this,
-				"modifiedDateMillis");
+		this.modifiedDateMillis = ApiTypeHelper.requireNonNull(builder.modifiedDateMillis, this, "modifiedDateMillis");
 		this.nextExecution = builder.nextExecution;
-		this.nextExecutionMillis = ModelTypeHelper.requireNonNull(builder.nextExecutionMillis, this,
+		this.nextExecutionMillis = ApiTypeHelper.requireNonNull(builder.nextExecutionMillis, this,
 				"nextExecutionMillis");
-		this.policy = ModelTypeHelper.requireNonNull(builder.policy, this, "policy");
-		this.version = ModelTypeHelper.requireNonNull(builder.version, this, "version");
-		this.stats = ModelTypeHelper.requireNonNull(builder.stats, this, "stats");
+		this.policy = ApiTypeHelper.requireNonNull(builder.policy, this, "policy");
+		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
+		this.stats = ApiTypeHelper.requireNonNull(builder.stats, this, "stats");
 
 	}
 
-	public static SnapshotLifecycle of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SnapshotLifecycle of(Function<Builder, ObjectBuilder<SnapshotLifecycle>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -225,6 +229,7 @@ public class SnapshotLifecycle implements JsonpSerializable {
 	/**
 	 * Builder for {@link SnapshotLifecycle}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SnapshotLifecycle> {
 		@Nullable
 		private InProgress inProgress;
@@ -262,10 +267,8 @@ public class SnapshotLifecycle implements JsonpSerializable {
 		/**
 		 * API name: {@code in_progress}
 		 */
-		public final Builder inProgress(Consumer<InProgress.Builder> fn) {
-			InProgress.Builder builder = new InProgress.Builder();
-			fn.accept(builder);
-			return this.inProgress(builder.build());
+		public final Builder inProgress(Function<InProgress.Builder, ObjectBuilder<InProgress>> fn) {
+			return this.inProgress(fn.apply(new InProgress.Builder()).build());
 		}
 
 		/**
@@ -279,10 +282,8 @@ public class SnapshotLifecycle implements JsonpSerializable {
 		/**
 		 * API name: {@code last_failure}
 		 */
-		public final Builder lastFailure(Consumer<Invocation.Builder> fn) {
-			Invocation.Builder builder = new Invocation.Builder();
-			fn.accept(builder);
-			return this.lastFailure(builder.build());
+		public final Builder lastFailure(Function<Invocation.Builder, ObjectBuilder<Invocation>> fn) {
+			return this.lastFailure(fn.apply(new Invocation.Builder()).build());
 		}
 
 		/**
@@ -296,10 +297,8 @@ public class SnapshotLifecycle implements JsonpSerializable {
 		/**
 		 * API name: {@code last_success}
 		 */
-		public final Builder lastSuccess(Consumer<Invocation.Builder> fn) {
-			Invocation.Builder builder = new Invocation.Builder();
-			fn.accept(builder);
-			return this.lastSuccess(builder.build());
+		public final Builder lastSuccess(Function<Invocation.Builder, ObjectBuilder<Invocation>> fn) {
+			return this.lastSuccess(fn.apply(new Invocation.Builder()).build());
 		}
 
 		/**
@@ -345,10 +344,8 @@ public class SnapshotLifecycle implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code policy}
 		 */
-		public final Builder policy(Consumer<SlmPolicy.Builder> fn) {
-			SlmPolicy.Builder builder = new SlmPolicy.Builder();
-			fn.accept(builder);
-			return this.policy(builder.build());
+		public final Builder policy(Function<SlmPolicy.Builder, ObjectBuilder<SlmPolicy>> fn) {
+			return this.policy(fn.apply(new SlmPolicy.Builder()).build());
 		}
 
 		/**
@@ -370,10 +367,8 @@ public class SnapshotLifecycle implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code stats}
 		 */
-		public final Builder stats(Consumer<Statistics.Builder> fn) {
-			Statistics.Builder builder = new Statistics.Builder();
-			fn.accept(builder);
-			return this.stats(builder.build());
+		public final Builder stats(Function<Statistics.Builder, ObjectBuilder<Statistics>> fn) {
+			return this.stats(fn.apply(new Statistics.Builder()).build());
 		}
 
 		/**

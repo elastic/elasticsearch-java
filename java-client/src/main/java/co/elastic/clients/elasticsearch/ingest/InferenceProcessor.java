@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.InferenceProcessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/_types/Processors.ts#L236-L241">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class InferenceProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String modelId;
@@ -55,17 +62,15 @@ public class InferenceProcessor extends ProcessorBase implements ProcessorVarian
 	private InferenceProcessor(Builder builder) {
 		super(builder);
 
-		this.modelId = ModelTypeHelper.requireNonNull(builder.modelId, this, "modelId");
-		this.targetField = ModelTypeHelper.requireNonNull(builder.targetField, this, "targetField");
-		this.fieldMap = ModelTypeHelper.unmodifiable(builder.fieldMap);
+		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
+		this.targetField = ApiTypeHelper.requireNonNull(builder.targetField, this, "targetField");
+		this.fieldMap = ApiTypeHelper.unmodifiable(builder.fieldMap);
 		this.inferenceConfig = builder.inferenceConfig;
 
 	}
 
-	public static InferenceProcessor of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static InferenceProcessor of(Function<Builder, ObjectBuilder<InferenceProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -114,7 +119,7 @@ public class InferenceProcessor extends ProcessorBase implements ProcessorVarian
 		generator.writeKey("target_field");
 		generator.write(this.targetField);
 
-		if (ModelTypeHelper.isDefined(this.fieldMap)) {
+		if (ApiTypeHelper.isDefined(this.fieldMap)) {
 			generator.writeKey("field_map");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.fieldMap.entrySet()) {
@@ -138,6 +143,7 @@ public class InferenceProcessor extends ProcessorBase implements ProcessorVarian
 	/**
 	 * Builder for {@link InferenceProcessor}.
 	 */
+
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<InferenceProcessor> {
@@ -169,9 +175,21 @@ public class InferenceProcessor extends ProcessorBase implements ProcessorVarian
 
 		/**
 		 * API name: {@code field_map}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>fieldMap</code>.
 		 */
-		public final Builder fieldMap(@Nullable Map<String, JsonData> value) {
-			this.fieldMap = value;
+		public final Builder fieldMap(Map<String, JsonData> map) {
+			this.fieldMap = _mapPutAll(this.fieldMap, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code field_map}
+		 * <p>
+		 * Adds an entry to <code>fieldMap</code>.
+		 */
+		public final Builder fieldMap(String key, JsonData value) {
+			this.fieldMap = _mapPut(this.fieldMap, key, value);
 			return this;
 		}
 
@@ -186,10 +204,8 @@ public class InferenceProcessor extends ProcessorBase implements ProcessorVarian
 		/**
 		 * API name: {@code inference_config}
 		 */
-		public final Builder inferenceConfig(Consumer<InferenceConfig.Builder> fn) {
-			InferenceConfig.Builder builder = new InferenceConfig.Builder();
-			fn.accept(builder);
-			return this.inferenceConfig(builder.build());
+		public final Builder inferenceConfig(Function<InferenceConfig.Builder, ObjectBuilder<InferenceConfig>> fn) {
+			return this.inferenceConfig(fn.apply(new InferenceConfig.Builder()).build());
 		}
 
 		@Override

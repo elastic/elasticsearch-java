@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,13 +38,19 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.remote_info.ClusterRemoteSniffInfo
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/remote_info/ClusterRemoteInfoResponse.ts#L32-L40">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, JsonpSerializable {
 	private final boolean connected;
@@ -63,21 +69,19 @@ public class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, JsonpSe
 
 	private ClusterRemoteSniffInfo(Builder builder) {
 
-		this.connected = ModelTypeHelper.requireNonNull(builder.connected, this, "connected");
-		this.maxConnectionsPerCluster = ModelTypeHelper.requireNonNull(builder.maxConnectionsPerCluster, this,
+		this.connected = ApiTypeHelper.requireNonNull(builder.connected, this, "connected");
+		this.maxConnectionsPerCluster = ApiTypeHelper.requireNonNull(builder.maxConnectionsPerCluster, this,
 				"maxConnectionsPerCluster");
-		this.numNodesConnected = ModelTypeHelper.requireNonNull(builder.numNodesConnected, this, "numNodesConnected");
-		this.initialConnectTimeout = ModelTypeHelper.requireNonNull(builder.initialConnectTimeout, this,
+		this.numNodesConnected = ApiTypeHelper.requireNonNull(builder.numNodesConnected, this, "numNodesConnected");
+		this.initialConnectTimeout = ApiTypeHelper.requireNonNull(builder.initialConnectTimeout, this,
 				"initialConnectTimeout");
-		this.skipUnavailable = ModelTypeHelper.requireNonNull(builder.skipUnavailable, this, "skipUnavailable");
-		this.seeds = ModelTypeHelper.unmodifiableRequired(builder.seeds, this, "seeds");
+		this.skipUnavailable = ApiTypeHelper.requireNonNull(builder.skipUnavailable, this, "skipUnavailable");
+		this.seeds = ApiTypeHelper.unmodifiableRequired(builder.seeds, this, "seeds");
 
 	}
 
-	public static ClusterRemoteSniffInfo of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ClusterRemoteSniffInfo of(Function<Builder, ObjectBuilder<ClusterRemoteSniffInfo>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -158,7 +162,7 @@ public class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, JsonpSe
 		generator.writeKey("skip_unavailable");
 		generator.write(this.skipUnavailable);
 
-		if (ModelTypeHelper.isDefined(this.seeds)) {
+		if (ApiTypeHelper.isDefined(this.seeds)) {
 			generator.writeKey("seeds");
 			generator.writeStartArray();
 			for (String item0 : this.seeds) {
@@ -176,6 +180,7 @@ public class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, JsonpSe
 	/**
 	 * Builder for {@link ClusterRemoteSniffInfo}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterRemoteSniffInfo> {
 		private Boolean connected;
 
@@ -224,10 +229,8 @@ public class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, JsonpSe
 		/**
 		 * Required - API name: {@code initial_connect_timeout}
 		 */
-		public final Builder initialConnectTimeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.initialConnectTimeout(builder.build());
+		public final Builder initialConnectTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.initialConnectTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -240,17 +243,21 @@ public class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, JsonpSe
 
 		/**
 		 * Required - API name: {@code seeds}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>seeds</code>.
 		 */
-		public final Builder seeds(List<String> value) {
-			this.seeds = value;
+		public final Builder seeds(List<String> list) {
+			this.seeds = _listAddAll(this.seeds, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code seeds}
+		 * <p>
+		 * Adds one or more values to <code>seeds</code>.
 		 */
-		public final Builder seeds(String... value) {
-			this.seeds = Arrays.asList(value);
+		public final Builder seeds(String value, String... values) {
+			this.seeds = _listAdd(this.seeds, value, values);
 			return this;
 		}
 

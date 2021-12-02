@@ -28,17 +28,23 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.SetSecurityUserProcessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/_types/Processors.ts#L311-L314">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SetSecurityUserProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
@@ -50,15 +56,13 @@ public class SetSecurityUserProcessor extends ProcessorBase implements Processor
 	private SetSecurityUserProcessor(Builder builder) {
 		super(builder);
 
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
-		this.properties = ModelTypeHelper.unmodifiable(builder.properties);
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.properties = ApiTypeHelper.unmodifiable(builder.properties);
 
 	}
 
-	public static SetSecurityUserProcessor of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SetSecurityUserProcessor of(Function<Builder, ObjectBuilder<SetSecurityUserProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -89,7 +93,7 @@ public class SetSecurityUserProcessor extends ProcessorBase implements Processor
 		generator.writeKey("field");
 		generator.write(this.field);
 
-		if (ModelTypeHelper.isDefined(this.properties)) {
+		if (ApiTypeHelper.isDefined(this.properties)) {
 			generator.writeKey("properties");
 			generator.writeStartArray();
 			for (String item0 : this.properties) {
@@ -107,6 +111,7 @@ public class SetSecurityUserProcessor extends ProcessorBase implements Processor
 	/**
 	 * Builder for {@link SetSecurityUserProcessor}.
 	 */
+
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<SetSecurityUserProcessor> {
@@ -125,17 +130,21 @@ public class SetSecurityUserProcessor extends ProcessorBase implements Processor
 
 		/**
 		 * API name: {@code properties}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>properties</code>.
 		 */
-		public final Builder properties(@Nullable List<String> value) {
-			this.properties = value;
+		public final Builder properties(List<String> list) {
+			this.properties = _listAddAll(this.properties, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code properties}
+		 * <p>
+		 * Adds one or more values to <code>properties</code>.
 		 */
-		public final Builder properties(String... value) {
-			this.properties = Arrays.asList(value);
+		public final Builder properties(String value, String... values) {
+			this.properties = _listAdd(this.properties, value, values);
 			return this;
 		}
 

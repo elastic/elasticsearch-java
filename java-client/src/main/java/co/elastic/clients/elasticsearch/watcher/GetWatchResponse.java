@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,10 +38,17 @@ import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.get_watch.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/get_watch/GetWatchResponse.ts#L24-L34">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetWatchResponse implements JsonpSerializable {
 	private final boolean found;
@@ -67,8 +74,8 @@ public class GetWatchResponse implements JsonpSerializable {
 
 	private GetWatchResponse(Builder builder) {
 
-		this.found = ModelTypeHelper.requireNonNull(builder.found, this, "found");
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.status = builder.status;
 		this.watch = builder.watch;
 		this.primaryTerm = builder.primaryTerm;
@@ -77,10 +84,8 @@ public class GetWatchResponse implements JsonpSerializable {
 
 	}
 
-	public static GetWatchResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetWatchResponse of(Function<Builder, ObjectBuilder<GetWatchResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -187,6 +192,7 @@ public class GetWatchResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetWatchResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetWatchResponse> {
 		private Boolean found;
 
@@ -234,10 +240,8 @@ public class GetWatchResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code status}
 		 */
-		public final Builder status(Consumer<WatchStatus.Builder> fn) {
-			WatchStatus.Builder builder = new WatchStatus.Builder();
-			fn.accept(builder);
-			return this.status(builder.build());
+		public final Builder status(Function<WatchStatus.Builder, ObjectBuilder<WatchStatus>> fn) {
+			return this.status(fn.apply(new WatchStatus.Builder()).build());
 		}
 
 		/**
@@ -251,10 +255,8 @@ public class GetWatchResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code watch}
 		 */
-		public final Builder watch(Consumer<Watch.Builder> fn) {
-			Watch.Builder builder = new Watch.Builder();
-			fn.accept(builder);
-			return this.watch(builder.build());
+		public final Builder watch(Function<Watch.Builder, ObjectBuilder<Watch>> fn) {
+			return this.watch(fn.apply(new Watch.Builder()).build());
 		}
 
 		/**

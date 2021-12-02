@@ -37,10 +37,18 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_service_accounts.Request
+
+/**
+ * Retrieves information about service accounts.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_service_accounts/GetServiceAccountsRequest.ts#L23-L33">API
+ *      specification</a>
+ */
 
 public class GetServiceAccountsRequest extends RequestBase {
 	@Nullable
@@ -58,10 +66,8 @@ public class GetServiceAccountsRequest extends RequestBase {
 
 	}
 
-	public static GetServiceAccountsRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetServiceAccountsRequest of(Function<Builder, ObjectBuilder<GetServiceAccountsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -89,6 +95,7 @@ public class GetServiceAccountsRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetServiceAccountsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetServiceAccountsRequest> {
 		@Nullable
 		private String namespace;

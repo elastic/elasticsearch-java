@@ -36,7 +36,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -44,15 +44,23 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.simulate_index_template.Request
+
+/**
+ * Simulate matching the given index name against the index templates in the
+ * system
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/simulate_index_template/IndicesSimulateIndexTemplateRequest.ts#L33-L71">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSerializable {
 	private final Map<String, JsonData> meta;
@@ -88,24 +96,22 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 
 	private SimulateIndexTemplateRequest(Builder builder) {
 
-		this.meta = ModelTypeHelper.unmodifiable(builder.meta);
+		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 		this.allowAutoCreate = builder.allowAutoCreate;
-		this.composedOf = ModelTypeHelper.unmodifiable(builder.composedOf);
+		this.composedOf = ApiTypeHelper.unmodifiable(builder.composedOf);
 		this.create = builder.create;
 		this.dataStream = builder.dataStream;
-		this.indexPatterns = ModelTypeHelper.unmodifiable(builder.indexPatterns);
+		this.indexPatterns = ApiTypeHelper.unmodifiable(builder.indexPatterns);
 		this.masterTimeout = builder.masterTimeout;
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.priority = builder.priority;
 		this.template = builder.template;
 		this.version = builder.version;
 
 	}
 
-	public static SimulateIndexTemplateRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SimulateIndexTemplateRequest of(Function<Builder, ObjectBuilder<SimulateIndexTemplateRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -214,7 +220,7 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.meta)) {
+		if (ApiTypeHelper.isDefined(this.meta)) {
 			generator.writeKey("_meta");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
@@ -230,7 +236,7 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 			generator.write(this.allowAutoCreate);
 
 		}
-		if (ModelTypeHelper.isDefined(this.composedOf)) {
+		if (ApiTypeHelper.isDefined(this.composedOf)) {
 			generator.writeKey("composed_of");
 			generator.writeStartArray();
 			for (String item0 : this.composedOf) {
@@ -245,7 +251,7 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 			this.dataStream.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.indexPatterns)) {
+		if (ApiTypeHelper.isDefined(this.indexPatterns)) {
 			generator.writeKey("index_patterns");
 			generator.writeStartArray();
 			for (String item0 : this.indexPatterns) {
@@ -278,6 +284,7 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 	/**
 	 * Builder for {@link SimulateIndexTemplateRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SimulateIndexTemplateRequest> {
 		@Nullable
 		private Map<String, JsonData> meta;
@@ -313,9 +320,21 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 
 		/**
 		 * API name: {@code _meta}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>meta</code>.
 		 */
-		public final Builder meta(@Nullable Map<String, JsonData> value) {
-			this.meta = value;
+		public final Builder meta(Map<String, JsonData> map) {
+			this.meta = _mapPutAll(this.meta, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code _meta}
+		 * <p>
+		 * Adds an entry to <code>meta</code>.
+		 */
+		public final Builder meta(String key, JsonData value) {
+			this.meta = _mapPut(this.meta, key, value);
 			return this;
 		}
 
@@ -329,17 +348,21 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 
 		/**
 		 * API name: {@code composed_of}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>composedOf</code>.
 		 */
-		public final Builder composedOf(@Nullable List<String> value) {
-			this.composedOf = value;
+		public final Builder composedOf(List<String> list) {
+			this.composedOf = _listAddAll(this.composedOf, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code composed_of}
+		 * <p>
+		 * Adds one or more values to <code>composedOf</code>.
 		 */
-		public final Builder composedOf(String... value) {
-			this.composedOf = Arrays.asList(value);
+		public final Builder composedOf(String value, String... values) {
+			this.composedOf = _listAdd(this.composedOf, value, values);
 			return this;
 		}
 
@@ -368,25 +391,27 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 		/**
 		 * API name: {@code data_stream}
 		 */
-		public final Builder dataStream(Consumer<DataStream.Builder> fn) {
-			DataStream.Builder builder = new DataStream.Builder();
-			fn.accept(builder);
-			return this.dataStream(builder.build());
+		public final Builder dataStream(Function<DataStream.Builder, ObjectBuilder<DataStream>> fn) {
+			return this.dataStream(fn.apply(new DataStream.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code index_patterns}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>indexPatterns</code>.
 		 */
-		public final Builder indexPatterns(@Nullable List<String> value) {
-			this.indexPatterns = value;
+		public final Builder indexPatterns(List<String> list) {
+			this.indexPatterns = _listAddAll(this.indexPatterns, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code index_patterns}
+		 * <p>
+		 * Adds one or more values to <code>indexPatterns</code>.
 		 */
-		public final Builder indexPatterns(String... value) {
-			this.indexPatterns = Arrays.asList(value);
+		public final Builder indexPatterns(String value, String... values) {
+			this.indexPatterns = _listAdd(this.indexPatterns, value, values);
 			return this;
 		}
 
@@ -407,10 +432,8 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.masterTimeout(builder.build());
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -442,10 +465,8 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 		/**
 		 * API name: {@code template}
 		 */
-		public final Builder template(Consumer<IndexTemplateMapping.Builder> fn) {
-			IndexTemplateMapping.Builder builder = new IndexTemplateMapping.Builder();
-			fn.accept(builder);
-			return this.template(builder.build());
+		public final Builder template(Function<IndexTemplateMapping.Builder, ObjectBuilder<IndexTemplateMapping>> fn) {
+			return this.template(fn.apply(new IndexTemplateMapping.Builder()).build());
 		}
 
 		/**

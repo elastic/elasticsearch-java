@@ -30,19 +30,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm.explain_lifecycle.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ilm/explain_lifecycle/ExplainLifecycleResponse.ts#L24-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ExplainLifecycleResponse implements JsonpSerializable {
 	private final Map<String, LifecycleExplain> indices;
@@ -51,14 +56,12 @@ public class ExplainLifecycleResponse implements JsonpSerializable {
 
 	private ExplainLifecycleResponse(Builder builder) {
 
-		this.indices = ModelTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
+		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
 
 	}
 
-	public static ExplainLifecycleResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ExplainLifecycleResponse of(Function<Builder, ObjectBuilder<ExplainLifecycleResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -79,7 +82,7 @@ public class ExplainLifecycleResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.indices)) {
+		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartObject();
 			for (Map.Entry<String, LifecycleExplain> item0 : this.indices.entrySet()) {
@@ -98,20 +101,38 @@ public class ExplainLifecycleResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link ExplainLifecycleResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExplainLifecycleResponse> {
 		private Map<String, LifecycleExplain> indices;
 
 		/**
 		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>indices</code>.
 		 */
-		public final Builder indices(Map<String, LifecycleExplain> value) {
-			this.indices = value;
+		public final Builder indices(Map<String, LifecycleExplain> map) {
+			this.indices = _mapPutAll(this.indices, map);
 			return this;
 		}
 
-		public final Builder indices(
-				Function<MapBuilder<String, LifecycleExplain, LifecycleExplain.Builder>, ObjectBuilder<Map<String, LifecycleExplain>>> fn) {
-			return indices(fn.apply(new MapBuilder<>(LifecycleExplain.Builder::new)).build());
+		/**
+		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds an entry to <code>indices</code>.
+		 */
+		public final Builder indices(String key, LifecycleExplain value) {
+			this.indices = _mapPut(this.indices, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds an entry to <code>indices</code> using a builder lambda.
+		 */
+		public final Builder indices(String key,
+				Function<LifecycleExplain.Builder, ObjectBuilder<LifecycleExplain>> fn) {
+			return indices(key, fn.apply(new LifecycleExplain.Builder()).build());
 		}
 
 		/**

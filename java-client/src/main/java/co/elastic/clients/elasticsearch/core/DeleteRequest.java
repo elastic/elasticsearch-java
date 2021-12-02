@@ -35,7 +35,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -44,10 +44,18 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.delete.Request
+
+/**
+ * Removes a document from the index.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/delete/DeleteRequest.ts#L35-L56">API
+ *      specification</a>
+ */
 
 public class DeleteRequest extends RequestBase {
 	private final String id;
@@ -85,10 +93,10 @@ public class DeleteRequest extends RequestBase {
 
 	private DeleteRequest(Builder builder) {
 
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.ifPrimaryTerm = builder.ifPrimaryTerm;
 		this.ifSeqNo = builder.ifSeqNo;
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.refresh = builder.refresh;
 		this.routing = builder.routing;
 		this.timeout = builder.timeout;
@@ -99,10 +107,8 @@ public class DeleteRequest extends RequestBase {
 
 	}
 
-	public static DeleteRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DeleteRequest of(Function<Builder, ObjectBuilder<DeleteRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -227,6 +233,7 @@ public class DeleteRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteRequest> {
 		private String id;
 
@@ -339,10 +346,8 @@ public class DeleteRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.timeout(builder.build());
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -398,10 +403,9 @@ public class DeleteRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
-		public final Builder waitForActiveShards(Consumer<WaitForActiveShards.Builder> fn) {
-			WaitForActiveShards.Builder builder = new WaitForActiveShards.Builder();
-			fn.accept(builder);
-			return this.waitForActiveShards(builder.build());
+		public final Builder waitForActiveShards(
+				Function<WaitForActiveShards.Builder, ObjectBuilder<WaitForActiveShards>> fn) {
+			return this.waitForActiveShards(fn.apply(new WaitForActiveShards.Builder()).build());
 		}
 
 		/**

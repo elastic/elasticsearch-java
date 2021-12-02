@@ -39,10 +39,27 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.preview_datafeed.Request
+
+/**
+ * Previews a datafeed. This API returns the first &quot;page&quot; of search
+ * results from a datafeed. You can preview an existing datafeed or provide
+ * configuration details for a datafeed and anomaly detection job in the API.
+ * The preview shows the structure of the data that will be passed to the
+ * anomaly detection engine. IMPORTANT: When Elasticsearch security features are
+ * enabled, the preview uses the credentials of the user that called the API.
+ * However, when the datafeed starts it uses the roles of the last user that
+ * created or updated the datafeed. To get a preview that accurately reflects
+ * the behavior of the datafeed, use the appropriate credentials. You can also
+ * use secondary authorization headers to supply the credentials.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/preview_datafeed/MlPreviewDatafeedRequest.ts#L25-L64">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PreviewDatafeedRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -64,10 +81,8 @@ public class PreviewDatafeedRequest extends RequestBase implements JsonpSerializ
 
 	}
 
-	public static PreviewDatafeedRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PreviewDatafeedRequest of(Function<Builder, ObjectBuilder<PreviewDatafeedRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -139,6 +154,7 @@ public class PreviewDatafeedRequest extends RequestBase implements JsonpSerializ
 	/**
 	 * Builder for {@link PreviewDatafeedRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PreviewDatafeedRequest> {
 		@Nullable
 		private DatafeedConfig datafeedConfig;
@@ -164,10 +180,8 @@ public class PreviewDatafeedRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code datafeed_config}
 		 */
-		public final Builder datafeedConfig(Consumer<DatafeedConfig.Builder> fn) {
-			DatafeedConfig.Builder builder = new DatafeedConfig.Builder();
-			fn.accept(builder);
-			return this.datafeedConfig(builder.build());
+		public final Builder datafeedConfig(Function<DatafeedConfig.Builder, ObjectBuilder<DatafeedConfig>> fn) {
+			return this.datafeedConfig(fn.apply(new DatafeedConfig.Builder()).build());
 		}
 
 		/**
@@ -211,10 +225,8 @@ public class PreviewDatafeedRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code job_config}
 		 */
-		public final Builder jobConfig(Consumer<JobConfig.Builder> fn) {
-			JobConfig.Builder builder = new JobConfig.Builder();
-			fn.accept(builder);
-			return this.jobConfig(builder.build());
+		public final Builder jobConfig(Function<JobConfig.Builder, ObjectBuilder<JobConfig>> fn) {
+			return this.jobConfig(fn.apply(new JobConfig.Builder()).build());
 		}
 
 		/**

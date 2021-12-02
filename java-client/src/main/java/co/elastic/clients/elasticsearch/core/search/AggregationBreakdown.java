@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.AggregationBreakdown
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/profile.ts#L22-L35">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AggregationBreakdown implements JsonpSerializable {
 	private final long buildAggregation;
@@ -71,28 +78,25 @@ public class AggregationBreakdown implements JsonpSerializable {
 
 	private AggregationBreakdown(Builder builder) {
 
-		this.buildAggregation = ModelTypeHelper.requireNonNull(builder.buildAggregation, this, "buildAggregation");
-		this.buildAggregationCount = ModelTypeHelper.requireNonNull(builder.buildAggregationCount, this,
+		this.buildAggregation = ApiTypeHelper.requireNonNull(builder.buildAggregation, this, "buildAggregation");
+		this.buildAggregationCount = ApiTypeHelper.requireNonNull(builder.buildAggregationCount, this,
 				"buildAggregationCount");
-		this.buildLeafCollector = ModelTypeHelper.requireNonNull(builder.buildLeafCollector, this,
-				"buildLeafCollector");
-		this.buildLeafCollectorCount = ModelTypeHelper.requireNonNull(builder.buildLeafCollectorCount, this,
+		this.buildLeafCollector = ApiTypeHelper.requireNonNull(builder.buildLeafCollector, this, "buildLeafCollector");
+		this.buildLeafCollectorCount = ApiTypeHelper.requireNonNull(builder.buildLeafCollectorCount, this,
 				"buildLeafCollectorCount");
-		this.collect = ModelTypeHelper.requireNonNull(builder.collect, this, "collect");
-		this.collectCount = ModelTypeHelper.requireNonNull(builder.collectCount, this, "collectCount");
-		this.initialize = ModelTypeHelper.requireNonNull(builder.initialize, this, "initialize");
-		this.initializeCount = ModelTypeHelper.requireNonNull(builder.initializeCount, this, "initializeCount");
+		this.collect = ApiTypeHelper.requireNonNull(builder.collect, this, "collect");
+		this.collectCount = ApiTypeHelper.requireNonNull(builder.collectCount, this, "collectCount");
+		this.initialize = ApiTypeHelper.requireNonNull(builder.initialize, this, "initialize");
+		this.initializeCount = ApiTypeHelper.requireNonNull(builder.initializeCount, this, "initializeCount");
 		this.postCollection = builder.postCollection;
 		this.postCollectionCount = builder.postCollectionCount;
-		this.reduce = ModelTypeHelper.requireNonNull(builder.reduce, this, "reduce");
-		this.reduceCount = ModelTypeHelper.requireNonNull(builder.reduceCount, this, "reduceCount");
+		this.reduce = ApiTypeHelper.requireNonNull(builder.reduce, this, "reduce");
+		this.reduceCount = ApiTypeHelper.requireNonNull(builder.reduceCount, this, "reduceCount");
 
 	}
 
-	public static AggregationBreakdown of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static AggregationBreakdown of(Function<Builder, ObjectBuilder<AggregationBreakdown>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -239,6 +243,7 @@ public class AggregationBreakdown implements JsonpSerializable {
 	/**
 	 * Builder for {@link AggregationBreakdown}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AggregationBreakdown> {
 		private Long buildAggregation;
 

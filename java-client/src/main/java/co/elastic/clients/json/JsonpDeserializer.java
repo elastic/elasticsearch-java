@@ -33,12 +33,15 @@ import java.util.function.Supplier;
 public interface JsonpDeserializer<V> {
 
     /**
-     * The "native" event this deserializer accepts as a starting point.
+     * The native JSON events this deserializer accepts as a starting point. For example, native events for
+     * a boolean are {@link Event#VALUE_TRUE} and {@link Event#VALUE_FALSE}.
      */
     EnumSet<Event> nativeEvents();
 
     /**
-     * The json events this deserializer accepts as a starting point
+     * The JSON events this deserializer accepts as a starting point. For example, events for a boolean are
+     * {@link Event#VALUE_TRUE}, {@link Event#VALUE_FALSE} and {@link Event#VALUE_STRING}, the latter being
+     * converted to a boolean using {@link Boolean#parseBoolean(String)}.
      */
     EnumSet<Event> acceptedEvents();
 
@@ -50,15 +53,16 @@ public interface JsonpDeserializer<V> {
     }
 
     /**
-     * Deserialize a value. The value starts at the next state in the json stream.
+     * Deserialize a value. The value starts at the next state in the JSON stream.
      * <p>
      * Default implementation delegates to {@link #deserialize(JsonParser, JsonpMapper, Event)}
      * after having checked that the next event is part of the accepted events.
      * <p>
-     * If the next event is {@code Event.NULL}, {@code null} is returned.
+     * If the next event is {@link Event#VALUE_NULL}, {@code null} is returned unless {@link Event#VALUE_NULL}
+     * is part of the deserializer's accepted events.
      *
-     * @param parser the json parser
-     * @param mapper the jsonp mapper
+     * @param parser the JSON parser
+     * @param mapper the JSON-P mapper
      * @return the parsed value or null
      */
     default V deserialize(JsonParser parser, JsonpMapper mapper) {
@@ -72,10 +76,10 @@ public interface JsonpDeserializer<V> {
     }
 
     /**
-     * Deserialize a value. The value starts at the current state in the json stream.
+     * Deserialize a value. The value starts at the current state in the JSON stream.
      *
-     * @param parser the json parser
-     * @param mapper the jsonp mapper
+     * @param parser the JSON parser
+     * @param mapper the JSON-P mapper
      * @param event the current state of {@code parser}, which must be part of {@link #acceptedEvents}
      * @return the parsed value
      */
@@ -175,6 +179,16 @@ public interface JsonpDeserializer<V> {
 
     static JsonpDeserializer<Double> doubleDeserializer() {
         return JsonpDeserializerBase.DOUBLE;
+    }
+
+    /** A {@code double} deserializer that will return a default value when the JSON value is {@code null} */
+    static JsonpDeserializer<Double> doubleOrNullDeserializer(double defaultValue) {
+        return new JsonpDeserializerBase.DoubleOrNullDeserializer(defaultValue);
+    }
+
+    /** An {@code integer} deserializer that will return a default value when the JSON value is {@code null} */
+    static JsonpDeserializer<Integer> intOrNullDeserializer(int defaultValue) {
+        return new JsonpDeserializerBase.IntOrNullDeserializer(defaultValue);
     }
 
     static JsonpDeserializer<Number> numberDeserializer() {

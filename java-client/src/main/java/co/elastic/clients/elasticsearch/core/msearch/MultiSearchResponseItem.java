@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.UnionDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
@@ -39,11 +39,17 @@ import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.msearch.ResponseItem
-// union type: Union[]
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/msearch/types.ts#L66-L69">API
+ *      specification</a>
+ */
 
 public class MultiSearchResponseItem<TDocument>
 		implements
@@ -77,15 +83,14 @@ public class MultiSearchResponseItem<TDocument>
 
 	private MultiSearchResponseItem(Builder<TDocument> builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static <TDocument> MultiSearchResponseItem<TDocument> of(Consumer<Builder<TDocument>> fn) {
-		Builder<TDocument> builder = new Builder<>();
-		fn.accept(builder);
-		return builder.build();
+	public static <TDocument> MultiSearchResponseItem<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<MultiSearchResponseItem<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
@@ -143,10 +148,8 @@ public class MultiSearchResponseItem<TDocument>
 		}
 
 		public ObjectBuilder<MultiSearchResponseItem<TDocument>> result(
-				Consumer<MultiSearchItem.Builder<TDocument>> fn) {
-			MultiSearchItem.Builder<TDocument> builder = new MultiSearchItem.Builder<TDocument>();
-			fn.accept(builder);
-			return this.result(builder.build());
+				Function<MultiSearchItem.Builder<TDocument>, ObjectBuilder<MultiSearchItem<TDocument>>> fn) {
+			return this.result(fn.apply(new MultiSearchItem.Builder<TDocument>()).build());
 		}
 
 		public ObjectBuilder<MultiSearchResponseItem<TDocument>> failure(ErrorResponse v) {
@@ -155,10 +158,9 @@ public class MultiSearchResponseItem<TDocument>
 			return this;
 		}
 
-		public ObjectBuilder<MultiSearchResponseItem<TDocument>> failure(Consumer<ErrorResponse.Builder> fn) {
-			ErrorResponse.Builder builder = new ErrorResponse.Builder();
-			fn.accept(builder);
-			return this.failure(builder.build());
+		public ObjectBuilder<MultiSearchResponseItem<TDocument>> failure(
+				Function<ErrorResponse.Builder, ObjectBuilder<ErrorResponse>> fn) {
+			return this.failure(fn.apply(new ErrorResponse.Builder()).build());
 		}
 
 		public MultiSearchResponseItem<TDocument> build() {

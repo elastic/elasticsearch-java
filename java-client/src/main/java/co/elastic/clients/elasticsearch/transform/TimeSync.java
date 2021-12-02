@@ -30,16 +30,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform._types.TimeSync
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/transform/_types/Transform.ts#L128-L133">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TimeSync implements SyncVariant, JsonpSerializable {
 	@Nullable
@@ -52,14 +59,12 @@ public class TimeSync implements SyncVariant, JsonpSerializable {
 	private TimeSync(Builder builder) {
 
 		this.delay = builder.delay;
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
 	}
 
-	public static TimeSync of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TimeSync of(Function<Builder, ObjectBuilder<TimeSync>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -116,6 +121,7 @@ public class TimeSync implements SyncVariant, JsonpSerializable {
 	/**
 	 * Builder for {@link TimeSync}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TimeSync> {
 		@Nullable
 		private Time delay;
@@ -137,10 +143,8 @@ public class TimeSync implements SyncVariant, JsonpSerializable {
 		 * <p>
 		 * API name: {@code delay}
 		 */
-		public final Builder delay(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.delay(builder.build());
+		public final Builder delay(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.delay(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

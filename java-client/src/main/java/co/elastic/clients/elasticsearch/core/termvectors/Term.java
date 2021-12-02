@@ -29,21 +29,25 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Integer;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.termvectors.Term
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/termvectors/types.ts#L34-L40">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Term implements JsonpSerializable {
 	@Nullable
@@ -65,16 +69,14 @@ public class Term implements JsonpSerializable {
 
 		this.docFreq = builder.docFreq;
 		this.score = builder.score;
-		this.termFreq = ModelTypeHelper.requireNonNull(builder.termFreq, this, "termFreq");
-		this.tokens = ModelTypeHelper.unmodifiableRequired(builder.tokens, this, "tokens");
+		this.termFreq = ApiTypeHelper.requireNonNull(builder.termFreq, this, "termFreq");
+		this.tokens = ApiTypeHelper.unmodifiableRequired(builder.tokens, this, "tokens");
 		this.ttf = builder.ttf;
 
 	}
 
-	public static Term of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Term of(Function<Builder, ObjectBuilder<Term>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -139,7 +141,7 @@ public class Term implements JsonpSerializable {
 		generator.writeKey("term_freq");
 		generator.write(this.termFreq);
 
-		if (ModelTypeHelper.isDefined(this.tokens)) {
+		if (ApiTypeHelper.isDefined(this.tokens)) {
 			generator.writeKey("tokens");
 			generator.writeStartArray();
 			for (Token item0 : this.tokens) {
@@ -162,6 +164,7 @@ public class Term implements JsonpSerializable {
 	/**
 	 * Builder for {@link Term}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Term> {
 		@Nullable
 		private Integer docFreq;
@@ -202,25 +205,31 @@ public class Term implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code tokens}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>tokens</code>.
 		 */
-		public final Builder tokens(List<Token> value) {
-			this.tokens = value;
+		public final Builder tokens(List<Token> list) {
+			this.tokens = _listAddAll(this.tokens, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code tokens}
+		 * <p>
+		 * Adds one or more values to <code>tokens</code>.
 		 */
-		public final Builder tokens(Token... value) {
-			this.tokens = Arrays.asList(value);
+		public final Builder tokens(Token value, Token... values) {
+			this.tokens = _listAdd(this.tokens, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code tokens}
+		 * <p>
+		 * Adds a value to <code>tokens</code> using a builder lambda.
 		 */
-		public final Builder tokens(Function<ListBuilder<Token, Token.Builder>, ObjectBuilder<List<Token>>> fn) {
-			return tokens(fn.apply(new ListBuilder<>(Token.Builder::new)).build());
+		public final Builder tokens(Function<Token.Builder, ObjectBuilder<Token>> fn) {
+			return tokens(fn.apply(new Token.Builder()).build());
 		}
 
 		/**

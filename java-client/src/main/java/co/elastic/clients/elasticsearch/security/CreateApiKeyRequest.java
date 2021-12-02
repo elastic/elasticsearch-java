@@ -37,8 +37,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.MapBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -46,11 +45,18 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.create_api_key.Request
+
+/**
+ * Creates an API key for access without requiring basic authentication.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/create_api_key/SecurityCreateApiKeyRequest.ts#L26-L51">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CreateApiKeyRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -71,17 +77,15 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 	private CreateApiKeyRequest(Builder builder) {
 
 		this.expiration = builder.expiration;
-		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
+		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
 		this.name = builder.name;
 		this.refresh = builder.refresh;
-		this.roleDescriptors = ModelTypeHelper.unmodifiable(builder.roleDescriptors);
+		this.roleDescriptors = ApiTypeHelper.unmodifiable(builder.roleDescriptors);
 
 	}
 
-	public static CreateApiKeyRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CreateApiKeyRequest of(Function<Builder, ObjectBuilder<CreateApiKeyRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -160,7 +164,7 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 			this.expiration.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.metadata)) {
+		if (ApiTypeHelper.isDefined(this.metadata)) {
 			generator.writeKey("metadata");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
@@ -176,7 +180,7 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 			generator.write(this.name);
 
 		}
-		if (ModelTypeHelper.isDefined(this.roleDescriptors)) {
+		if (ApiTypeHelper.isDefined(this.roleDescriptors)) {
 			generator.writeKey("role_descriptors");
 			generator.writeStartObject();
 			for (Map.Entry<String, RoleDescriptor> item0 : this.roleDescriptors.entrySet()) {
@@ -195,6 +199,7 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Builder for {@link CreateApiKeyRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CreateApiKeyRequest> {
 		@Nullable
 		private Time expiration;
@@ -226,10 +231,8 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code expiration}
 		 */
-		public final Builder expiration(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.expiration(builder.build());
+		public final Builder expiration(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.expiration(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -238,9 +241,25 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 		 * reserved for system usage.
 		 * <p>
 		 * API name: {@code metadata}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>metadata</code>.
 		 */
-		public final Builder metadata(@Nullable Map<String, JsonData> value) {
-			this.metadata = value;
+		public final Builder metadata(Map<String, JsonData> map) {
+			this.metadata = _mapPutAll(this.metadata, map);
+			return this;
+		}
+
+		/**
+		 * Arbitrary metadata that you want to associate with the API key. It supports
+		 * nested data structure. Within the metadata object, keys beginning with _ are
+		 * reserved for system usage.
+		 * <p>
+		 * API name: {@code metadata}
+		 * <p>
+		 * Adds an entry to <code>metadata</code>.
+		 */
+		public final Builder metadata(String key, JsonData value) {
+			this.metadata = _mapPut(this.metadata, key, value);
 			return this;
 		}
 
@@ -278,15 +297,50 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 		 * see create or update roles API.
 		 * <p>
 		 * API name: {@code role_descriptors}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>roleDescriptors</code>.
 		 */
-		public final Builder roleDescriptors(@Nullable Map<String, RoleDescriptor> value) {
-			this.roleDescriptors = value;
+		public final Builder roleDescriptors(Map<String, RoleDescriptor> map) {
+			this.roleDescriptors = _mapPutAll(this.roleDescriptors, map);
 			return this;
 		}
 
-		public final Builder roleDescriptors(
-				Function<MapBuilder<String, RoleDescriptor, RoleDescriptor.Builder>, ObjectBuilder<Map<String, RoleDescriptor>>> fn) {
-			return roleDescriptors(fn.apply(new MapBuilder<>(RoleDescriptor.Builder::new)).build());
+		/**
+		 * An array of role descriptors for this API key. This parameter is optional.
+		 * When it is not specified or is an empty array, then the API key will have a
+		 * point in time snapshot of permissions of the authenticated user. If you
+		 * supply role descriptors then the resultant permissions would be an
+		 * intersection of API keys permissions and authenticated user’s permissions
+		 * thereby limiting the access scope for API keys. The structure of role
+		 * descriptor is the same as the request for create role API. For more details,
+		 * see create or update roles API.
+		 * <p>
+		 * API name: {@code role_descriptors}
+		 * <p>
+		 * Adds an entry to <code>roleDescriptors</code>.
+		 */
+		public final Builder roleDescriptors(String key, RoleDescriptor value) {
+			this.roleDescriptors = _mapPut(this.roleDescriptors, key, value);
+			return this;
+		}
+
+		/**
+		 * An array of role descriptors for this API key. This parameter is optional.
+		 * When it is not specified or is an empty array, then the API key will have a
+		 * point in time snapshot of permissions of the authenticated user. If you
+		 * supply role descriptors then the resultant permissions would be an
+		 * intersection of API keys permissions and authenticated user’s permissions
+		 * thereby limiting the access scope for API keys. The structure of role
+		 * descriptor is the same as the request for create role API. For more details,
+		 * see create or update roles API.
+		 * <p>
+		 * API name: {@code role_descriptors}
+		 * <p>
+		 * Adds an entry to <code>roleDescriptors</code> using a builder lambda.
+		 */
+		public final Builder roleDescriptors(String key,
+				Function<RoleDescriptor.Builder, ObjectBuilder<RoleDescriptor>> fn) {
+			return roleDescriptors(key, fn.apply(new RoleDescriptor.Builder()).build());
 		}
 
 		/**

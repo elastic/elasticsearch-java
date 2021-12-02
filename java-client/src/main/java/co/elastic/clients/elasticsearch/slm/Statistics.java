@@ -35,10 +35,17 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: slm._types.Statistics
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/slm/_types/SnapshotLifecycle.ts#L45-L68">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Statistics implements JsonpSerializable {
 	@Nullable
@@ -88,10 +95,8 @@ public class Statistics implements JsonpSerializable {
 
 	}
 
-	public static Statistics of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Statistics of(Function<Builder, ObjectBuilder<Statistics>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -243,6 +248,7 @@ public class Statistics implements JsonpSerializable {
 	/**
 	 * Builder for {@link Statistics}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Statistics> {
 		@Nullable
 		private String retentionDeletionTime;

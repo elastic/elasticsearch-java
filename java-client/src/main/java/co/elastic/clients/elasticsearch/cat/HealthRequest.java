@@ -37,10 +37,18 @@ import java.lang.Boolean;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.health.Request
+
+/**
+ * Returns a concise representation of the cluster health.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/health/CatHealthRequest.ts#L22-L31">API
+ *      specification</a>
+ */
 
 public class HealthRequest extends CatRequestBase {
 	@Nullable
@@ -54,10 +62,8 @@ public class HealthRequest extends CatRequestBase {
 
 	}
 
-	public static HealthRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static HealthRequest of(Function<Builder, ObjectBuilder<HealthRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -75,6 +81,7 @@ public class HealthRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link HealthRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HealthRequest> {
 		@Nullable
 		private Boolean ts;

@@ -29,20 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Ilm
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L148-L151">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Ilm implements JsonpSerializable {
 	private final int policyCount;
@@ -53,15 +57,13 @@ public class Ilm implements JsonpSerializable {
 
 	private Ilm(Builder builder) {
 
-		this.policyCount = ModelTypeHelper.requireNonNull(builder.policyCount, this, "policyCount");
-		this.policyStats = ModelTypeHelper.unmodifiableRequired(builder.policyStats, this, "policyStats");
+		this.policyCount = ApiTypeHelper.requireNonNull(builder.policyCount, this, "policyCount");
+		this.policyStats = ApiTypeHelper.unmodifiableRequired(builder.policyStats, this, "policyStats");
 
 	}
 
-	public static Ilm of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Ilm of(Function<Builder, ObjectBuilder<Ilm>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -92,7 +94,7 @@ public class Ilm implements JsonpSerializable {
 		generator.writeKey("policy_count");
 		generator.write(this.policyCount);
 
-		if (ModelTypeHelper.isDefined(this.policyStats)) {
+		if (ApiTypeHelper.isDefined(this.policyStats)) {
 			generator.writeKey("policy_stats");
 			generator.writeStartArray();
 			for (IlmPolicyStatistics item0 : this.policyStats) {
@@ -110,6 +112,7 @@ public class Ilm implements JsonpSerializable {
 	/**
 	 * Builder for {@link Ilm}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Ilm> {
 		private Integer policyCount;
 
@@ -125,26 +128,31 @@ public class Ilm implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code policy_stats}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>policyStats</code>.
 		 */
-		public final Builder policyStats(List<IlmPolicyStatistics> value) {
-			this.policyStats = value;
+		public final Builder policyStats(List<IlmPolicyStatistics> list) {
+			this.policyStats = _listAddAll(this.policyStats, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code policy_stats}
+		 * <p>
+		 * Adds one or more values to <code>policyStats</code>.
 		 */
-		public final Builder policyStats(IlmPolicyStatistics... value) {
-			this.policyStats = Arrays.asList(value);
+		public final Builder policyStats(IlmPolicyStatistics value, IlmPolicyStatistics... values) {
+			this.policyStats = _listAdd(this.policyStats, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code policy_stats}
+		 * <p>
+		 * Adds a value to <code>policyStats</code> using a builder lambda.
 		 */
-		public final Builder policyStats(
-				Function<ListBuilder<IlmPolicyStatistics, IlmPolicyStatistics.Builder>, ObjectBuilder<List<IlmPolicyStatistics>>> fn) {
-			return policyStats(fn.apply(new ListBuilder<>(IlmPolicyStatistics.Builder::new)).build());
+		public final Builder policyStats(Function<IlmPolicyStatistics.Builder, ObjectBuilder<IlmPolicyStatistics>> fn) {
+			return policyStats(fn.apply(new IlmPolicyStatistics.Builder()).build());
 		}
 
 		/**

@@ -32,21 +32,25 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search_shards.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search_shards/SearchShardsResponse.ts#L25-L31">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SearchShardsResponse implements JsonpSerializable {
 	private final Map<String, NodeAttributes> nodes;
@@ -59,16 +63,14 @@ public class SearchShardsResponse implements JsonpSerializable {
 
 	private SearchShardsResponse(Builder builder) {
 
-		this.nodes = ModelTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
-		this.shards = ModelTypeHelper.unmodifiableRequired(builder.shards, this, "shards");
-		this.indices = ModelTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
+		this.nodes = ApiTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
+		this.shards = ApiTypeHelper.unmodifiableRequired(builder.shards, this, "shards");
+		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
 
 	}
 
-	public static SearchShardsResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SearchShardsResponse of(Function<Builder, ObjectBuilder<SearchShardsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -103,7 +105,7 @@ public class SearchShardsResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.nodes)) {
+		if (ApiTypeHelper.isDefined(this.nodes)) {
 			generator.writeKey("nodes");
 			generator.writeStartObject();
 			for (Map.Entry<String, NodeAttributes> item0 : this.nodes.entrySet()) {
@@ -114,7 +116,7 @@ public class SearchShardsResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.shards)) {
+		if (ApiTypeHelper.isDefined(this.shards)) {
 			generator.writeKey("shards");
 			generator.writeStartArray();
 			for (List<NodeShard> item0 : this.shards) {
@@ -131,7 +133,7 @@ public class SearchShardsResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.indices)) {
+		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartObject();
 			for (Map.Entry<String, ShardStoreIndex> item0 : this.indices.entrySet()) {
@@ -150,6 +152,7 @@ public class SearchShardsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link SearchShardsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SearchShardsResponse> {
 		private Map<String, NodeAttributes> nodes;
 
@@ -159,44 +162,80 @@ public class SearchShardsResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code nodes}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>nodes</code>.
 		 */
-		public final Builder nodes(Map<String, NodeAttributes> value) {
-			this.nodes = value;
-			return this;
-		}
-
-		public final Builder nodes(
-				Function<MapBuilder<String, NodeAttributes, NodeAttributes.Builder>, ObjectBuilder<Map<String, NodeAttributes>>> fn) {
-			return nodes(fn.apply(new MapBuilder<>(NodeAttributes.Builder::new)).build());
-		}
-
-		/**
-		 * Required - API name: {@code shards}
-		 */
-		public final Builder shards(List<List<NodeShard>> value) {
-			this.shards = value;
+		public final Builder nodes(Map<String, NodeAttributes> map) {
+			this.nodes = _mapPutAll(this.nodes, map);
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code shards}
+		 * Required - API name: {@code nodes}
+		 * <p>
+		 * Adds an entry to <code>nodes</code>.
 		 */
-		public final Builder shards(List<NodeShard>... value) {
-			this.shards = Arrays.asList(value);
+		public final Builder nodes(String key, NodeAttributes value) {
+			this.nodes = _mapPut(this.nodes, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code nodes}
+		 * <p>
+		 * Adds an entry to <code>nodes</code> using a builder lambda.
+		 */
+		public final Builder nodes(String key, Function<NodeAttributes.Builder, ObjectBuilder<NodeAttributes>> fn) {
+			return nodes(key, fn.apply(new NodeAttributes.Builder()).build());
+		}
+
+		/**
+		 * Required - API name: {@code shards}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>shards</code>.
+		 */
+		public final Builder shards(List<List<NodeShard>> list) {
+			this.shards = _listAddAll(this.shards, list);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code shards}
+		 * <p>
+		 * Adds one or more values to <code>shards</code>.
+		 */
+		public final Builder shards(List<NodeShard> value, List<NodeShard>... values) {
+			this.shards = _listAdd(this.shards, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>indices</code>.
 		 */
-		public final Builder indices(Map<String, ShardStoreIndex> value) {
-			this.indices = value;
+		public final Builder indices(Map<String, ShardStoreIndex> map) {
+			this.indices = _mapPutAll(this.indices, map);
 			return this;
 		}
 
-		public final Builder indices(
-				Function<MapBuilder<String, ShardStoreIndex, ShardStoreIndex.Builder>, ObjectBuilder<Map<String, ShardStoreIndex>>> fn) {
-			return indices(fn.apply(new MapBuilder<>(ShardStoreIndex.Builder::new)).build());
+		/**
+		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds an entry to <code>indices</code>.
+		 */
+		public final Builder indices(String key, ShardStoreIndex value) {
+			this.indices = _mapPut(this.indices, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds an entry to <code>indices</code> using a builder lambda.
+		 */
+		public final Builder indices(String key, Function<ShardStoreIndex.Builder, ObjectBuilder<ShardStoreIndex>> fn) {
+			return indices(key, fn.apply(new ShardStoreIndex.Builder()).build());
 		}
 
 		/**

@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoSearch
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L271-L273">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeInfoSearch implements JsonpSerializable {
 	private final NodeInfoSearchRemote remote;
@@ -46,14 +53,12 @@ public class NodeInfoSearch implements JsonpSerializable {
 
 	private NodeInfoSearch(Builder builder) {
 
-		this.remote = ModelTypeHelper.requireNonNull(builder.remote, this, "remote");
+		this.remote = ApiTypeHelper.requireNonNull(builder.remote, this, "remote");
 
 	}
 
-	public static NodeInfoSearch of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodeInfoSearch of(Function<Builder, ObjectBuilder<NodeInfoSearch>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -84,6 +89,7 @@ public class NodeInfoSearch implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoSearch}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoSearch> {
 		private NodeInfoSearchRemote remote;
 
@@ -98,10 +104,8 @@ public class NodeInfoSearch implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code remote}
 		 */
-		public final Builder remote(Consumer<NodeInfoSearchRemote.Builder> fn) {
-			NodeInfoSearchRemote.Builder builder = new NodeInfoSearchRemote.Builder();
-			fn.accept(builder);
-			return this.remote(builder.build());
+		public final Builder remote(Function<NodeInfoSearchRemote.Builder, ObjectBuilder<NodeInfoSearchRemote>> fn) {
+			return this.remote(fn.apply(new NodeInfoSearchRemote.Builder()).build());
 		}
 
 		/**

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -37,10 +37,17 @@ import java.lang.Double;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.FrequencyEncodingPreprocessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/put_trained_model/types.ts#L38-L42">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FrequencyEncodingPreprocessor implements PreprocessorVariant, JsonpSerializable {
 	private final String field;
@@ -53,16 +60,14 @@ public class FrequencyEncodingPreprocessor implements PreprocessorVariant, Jsonp
 
 	private FrequencyEncodingPreprocessor(Builder builder) {
 
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
-		this.featureName = ModelTypeHelper.requireNonNull(builder.featureName, this, "featureName");
-		this.frequencyMap = ModelTypeHelper.unmodifiableRequired(builder.frequencyMap, this, "frequencyMap");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.featureName = ApiTypeHelper.requireNonNull(builder.featureName, this, "featureName");
+		this.frequencyMap = ApiTypeHelper.unmodifiableRequired(builder.frequencyMap, this, "frequencyMap");
 
 	}
 
-	public static FrequencyEncodingPreprocessor of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static FrequencyEncodingPreprocessor of(Function<Builder, ObjectBuilder<FrequencyEncodingPreprocessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -111,7 +116,7 @@ public class FrequencyEncodingPreprocessor implements PreprocessorVariant, Jsonp
 		generator.writeKey("feature_name");
 		generator.write(this.featureName);
 
-		if (ModelTypeHelper.isDefined(this.frequencyMap)) {
+		if (ApiTypeHelper.isDefined(this.frequencyMap)) {
 			generator.writeKey("frequency_map");
 			generator.writeStartObject();
 			for (Map.Entry<String, Double> item0 : this.frequencyMap.entrySet()) {
@@ -130,6 +135,7 @@ public class FrequencyEncodingPreprocessor implements PreprocessorVariant, Jsonp
 	/**
 	 * Builder for {@link FrequencyEncodingPreprocessor}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FrequencyEncodingPreprocessor> {
 		private String field;
 
@@ -155,9 +161,21 @@ public class FrequencyEncodingPreprocessor implements PreprocessorVariant, Jsonp
 
 		/**
 		 * Required - API name: {@code frequency_map}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>frequencyMap</code>.
 		 */
-		public final Builder frequencyMap(Map<String, Double> value) {
-			this.frequencyMap = value;
+		public final Builder frequencyMap(Map<String, Double> map) {
+			this.frequencyMap = _mapPutAll(this.frequencyMap, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code frequency_map}
+		 * <p>
+		 * Adds an entry to <code>frequencyMap</code>.
+		 */
+		public final Builder frequencyMap(String key, Double value) {
+			this.frequencyMap = _mapPut(this.frequencyMap, key, value);
 			return this;
 		}
 

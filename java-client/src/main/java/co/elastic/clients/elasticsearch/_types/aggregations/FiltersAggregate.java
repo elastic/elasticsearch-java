@@ -30,9 +30,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.aggregations.FiltersAggregate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L533-L534">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FiltersAggregate extends MultiBucketAggregateBase<FiltersBucket> implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -42,10 +49,8 @@ public class FiltersAggregate extends MultiBucketAggregateBase<FiltersBucket> im
 
 	}
 
-	public static FiltersAggregate of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static FiltersAggregate of(Function<Builder, ObjectBuilder<FiltersAggregate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,6 +66,7 @@ public class FiltersAggregate extends MultiBucketAggregateBase<FiltersBucket> im
 	/**
 	 * Builder for {@link FiltersAggregate}.
 	 */
+
 	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<FiltersBucket, Builder>
 			implements
 				ObjectBuilder<FiltersAggregate> {

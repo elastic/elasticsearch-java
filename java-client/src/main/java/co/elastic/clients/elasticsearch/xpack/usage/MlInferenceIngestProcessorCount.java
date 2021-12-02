@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: xpack.usage.MlInferenceIngestProcessorCount
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L196-L200">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MlInferenceIngestProcessorCount implements JsonpSerializable {
 	private final long max;
@@ -50,16 +57,15 @@ public class MlInferenceIngestProcessorCount implements JsonpSerializable {
 
 	private MlInferenceIngestProcessorCount(Builder builder) {
 
-		this.max = ModelTypeHelper.requireNonNull(builder.max, this, "max");
-		this.sum = ModelTypeHelper.requireNonNull(builder.sum, this, "sum");
-		this.min = ModelTypeHelper.requireNonNull(builder.min, this, "min");
+		this.max = ApiTypeHelper.requireNonNull(builder.max, this, "max");
+		this.sum = ApiTypeHelper.requireNonNull(builder.sum, this, "sum");
+		this.min = ApiTypeHelper.requireNonNull(builder.min, this, "min");
 
 	}
 
-	public static MlInferenceIngestProcessorCount of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static MlInferenceIngestProcessorCount of(
+			Function<Builder, ObjectBuilder<MlInferenceIngestProcessorCount>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -110,6 +116,7 @@ public class MlInferenceIngestProcessorCount implements JsonpSerializable {
 	/**
 	 * Builder for {@link MlInferenceIngestProcessorCount}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MlInferenceIngestProcessorCount> {
 		private Long max;
 

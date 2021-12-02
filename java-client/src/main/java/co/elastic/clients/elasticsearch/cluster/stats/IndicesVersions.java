@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -37,10 +37,17 @@ import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.IndicesVersions
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/stats/types.ts#L136-L141">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IndicesVersions implements JsonpSerializable {
 	private final int indexCount;
@@ -55,17 +62,15 @@ public class IndicesVersions implements JsonpSerializable {
 
 	private IndicesVersions(Builder builder) {
 
-		this.indexCount = ModelTypeHelper.requireNonNull(builder.indexCount, this, "indexCount");
-		this.primaryShardCount = ModelTypeHelper.requireNonNull(builder.primaryShardCount, this, "primaryShardCount");
-		this.totalPrimaryBytes = ModelTypeHelper.requireNonNull(builder.totalPrimaryBytes, this, "totalPrimaryBytes");
-		this.version = ModelTypeHelper.requireNonNull(builder.version, this, "version");
+		this.indexCount = ApiTypeHelper.requireNonNull(builder.indexCount, this, "indexCount");
+		this.primaryShardCount = ApiTypeHelper.requireNonNull(builder.primaryShardCount, this, "primaryShardCount");
+		this.totalPrimaryBytes = ApiTypeHelper.requireNonNull(builder.totalPrimaryBytes, this, "totalPrimaryBytes");
+		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
 
 	}
 
-	public static IndicesVersions of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IndicesVersions of(Function<Builder, ObjectBuilder<IndicesVersions>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -126,6 +131,7 @@ public class IndicesVersions implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndicesVersions}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndicesVersions> {
 		private Integer indexCount;
 

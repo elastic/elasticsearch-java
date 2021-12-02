@@ -28,18 +28,24 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.CommonGramsTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L172-L178">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CommonGramsTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final List<String> commonWords;
@@ -58,17 +64,15 @@ public class CommonGramsTokenFilter extends TokenFilterBase implements TokenFilt
 	private CommonGramsTokenFilter(Builder builder) {
 		super(builder);
 
-		this.commonWords = ModelTypeHelper.unmodifiable(builder.commonWords);
+		this.commonWords = ApiTypeHelper.unmodifiable(builder.commonWords);
 		this.commonWordsPath = builder.commonWordsPath;
 		this.ignoreCase = builder.ignoreCase;
 		this.queryMode = builder.queryMode;
 
 	}
 
-	public static CommonGramsTokenFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CommonGramsTokenFilter of(Function<Builder, ObjectBuilder<CommonGramsTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -114,7 +118,7 @@ public class CommonGramsTokenFilter extends TokenFilterBase implements TokenFilt
 
 		generator.write("type", "common_grams");
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.commonWords)) {
+		if (ApiTypeHelper.isDefined(this.commonWords)) {
 			generator.writeKey("common_words");
 			generator.writeStartArray();
 			for (String item0 : this.commonWords) {
@@ -147,6 +151,7 @@ public class CommonGramsTokenFilter extends TokenFilterBase implements TokenFilt
 	/**
 	 * Builder for {@link CommonGramsTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<CommonGramsTokenFilter> {
@@ -164,17 +169,21 @@ public class CommonGramsTokenFilter extends TokenFilterBase implements TokenFilt
 
 		/**
 		 * API name: {@code common_words}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>commonWords</code>.
 		 */
-		public final Builder commonWords(@Nullable List<String> value) {
-			this.commonWords = value;
+		public final Builder commonWords(List<String> list) {
+			this.commonWords = _listAddAll(this.commonWords, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code common_words}
+		 * <p>
+		 * Adds one or more values to <code>commonWords</code>.
 		 */
-		public final Builder commonWords(String... value) {
-			this.commonWords = Arrays.asList(value);
+		public final Builder commonWords(String value, String... values) {
+			this.commonWords = _listAdd(this.commonWords, value, values);
 			return this;
 		}
 

@@ -36,8 +36,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.MapBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -45,11 +44,19 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.split.Request
+
+/**
+ * Allows you to split an existing index into a new index with more primary
+ * shards.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/split/IndicesSplitRequest.ts#L27-L46">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SplitRequest extends RequestBase implements JsonpSerializable {
 	private final Map<String, Alias> aliases;
@@ -73,20 +80,18 @@ public class SplitRequest extends RequestBase implements JsonpSerializable {
 
 	private SplitRequest(Builder builder) {
 
-		this.aliases = ModelTypeHelper.unmodifiable(builder.aliases);
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.masterTimeout = builder.masterTimeout;
-		this.settings = ModelTypeHelper.unmodifiable(builder.settings);
-		this.target = ModelTypeHelper.requireNonNull(builder.target, this, "target");
+		this.settings = ApiTypeHelper.unmodifiable(builder.settings);
+		this.target = ApiTypeHelper.requireNonNull(builder.target, this, "target");
 		this.timeout = builder.timeout;
 		this.waitForActiveShards = builder.waitForActiveShards;
 
 	}
 
-	public static SplitRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SplitRequest of(Function<Builder, ObjectBuilder<SplitRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -163,7 +168,7 @@ public class SplitRequest extends RequestBase implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.aliases)) {
+		if (ApiTypeHelper.isDefined(this.aliases)) {
 			generator.writeKey("aliases");
 			generator.writeStartObject();
 			for (Map.Entry<String, Alias> item0 : this.aliases.entrySet()) {
@@ -174,7 +179,7 @@ public class SplitRequest extends RequestBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.settings)) {
+		if (ApiTypeHelper.isDefined(this.settings)) {
 			generator.writeKey("settings");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.settings.entrySet()) {
@@ -193,6 +198,7 @@ public class SplitRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link SplitRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SplitRequest> {
 		@Nullable
 		private Map<String, Alias> aliases;
@@ -215,15 +221,31 @@ public class SplitRequest extends RequestBase implements JsonpSerializable {
 
 		/**
 		 * API name: {@code aliases}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>aliases</code>.
 		 */
-		public final Builder aliases(@Nullable Map<String, Alias> value) {
-			this.aliases = value;
+		public final Builder aliases(Map<String, Alias> map) {
+			this.aliases = _mapPutAll(this.aliases, map);
 			return this;
 		}
 
-		public final Builder aliases(
-				Function<MapBuilder<String, Alias, Alias.Builder>, ObjectBuilder<Map<String, Alias>>> fn) {
-			return aliases(fn.apply(new MapBuilder<>(Alias.Builder::new)).build());
+		/**
+		 * API name: {@code aliases}
+		 * <p>
+		 * Adds an entry to <code>aliases</code>.
+		 */
+		public final Builder aliases(String key, Alias value) {
+			this.aliases = _mapPut(this.aliases, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code aliases}
+		 * <p>
+		 * Adds an entry to <code>aliases</code> using a builder lambda.
+		 */
+		public final Builder aliases(String key, Function<Alias.Builder, ObjectBuilder<Alias>> fn) {
+			return aliases(key, fn.apply(new Alias.Builder()).build());
 		}
 
 		/**
@@ -251,17 +273,27 @@ public class SplitRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.masterTimeout(builder.build());
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code settings}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>settings</code>.
 		 */
-		public final Builder settings(@Nullable Map<String, JsonData> value) {
-			this.settings = value;
+		public final Builder settings(Map<String, JsonData> map) {
+			this.settings = _mapPutAll(this.settings, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code settings}
+		 * <p>
+		 * Adds an entry to <code>settings</code>.
+		 */
+		public final Builder settings(String key, JsonData value) {
+			this.settings = _mapPut(this.settings, key, value);
 			return this;
 		}
 
@@ -290,10 +322,8 @@ public class SplitRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.timeout(builder.build());
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -313,10 +343,9 @@ public class SplitRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
-		public final Builder waitForActiveShards(Consumer<WaitForActiveShards.Builder> fn) {
-			WaitForActiveShards.Builder builder = new WaitForActiveShards.Builder();
-			fn.accept(builder);
-			return this.waitForActiveShards(builder.build());
+		public final Builder waitForActiveShards(
+				Function<WaitForActiveShards.Builder, ObjectBuilder<WaitForActiveShards>> fn) {
+			return this.waitForActiveShards(fn.apply(new WaitForActiveShards.Builder()).build());
 		}
 
 		/**

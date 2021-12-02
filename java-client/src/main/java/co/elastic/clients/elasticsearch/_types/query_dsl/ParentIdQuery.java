@@ -33,10 +33,17 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.ParentIdQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/joining.ts#L73-L78">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ParentIdQuery extends QueryBase implements QueryVariant {
 	@Nullable
@@ -59,10 +66,8 @@ public class ParentIdQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public static ParentIdQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ParentIdQuery of(Function<Builder, ObjectBuilder<ParentIdQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -123,6 +128,7 @@ public class ParentIdQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link ParentIdQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<ParentIdQuery> {
 		@Nullable
 		private String id;

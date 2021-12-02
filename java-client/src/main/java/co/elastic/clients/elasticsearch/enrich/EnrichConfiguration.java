@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: enrich._types.Configuration
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/enrich/_types/Policy.ts#L26-L29">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class EnrichConfiguration implements JsonpSerializable {
 	@Nullable
@@ -50,14 +57,12 @@ public class EnrichConfiguration implements JsonpSerializable {
 	private EnrichConfiguration(Builder builder) {
 
 		this.geoMatch = builder.geoMatch;
-		this.match = ModelTypeHelper.requireNonNull(builder.match, this, "match");
+		this.match = ApiTypeHelper.requireNonNull(builder.match, this, "match");
 
 	}
 
-	public static EnrichConfiguration of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static EnrichConfiguration of(Function<Builder, ObjectBuilder<EnrichConfiguration>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -101,6 +106,7 @@ public class EnrichConfiguration implements JsonpSerializable {
 	/**
 	 * Builder for {@link EnrichConfiguration}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<EnrichConfiguration> {
 		@Nullable
 		private EnrichPolicy geoMatch;
@@ -118,10 +124,8 @@ public class EnrichConfiguration implements JsonpSerializable {
 		/**
 		 * API name: {@code geo_match}
 		 */
-		public final Builder geoMatch(Consumer<EnrichPolicy.Builder> fn) {
-			EnrichPolicy.Builder builder = new EnrichPolicy.Builder();
-			fn.accept(builder);
-			return this.geoMatch(builder.build());
+		public final Builder geoMatch(Function<EnrichPolicy.Builder, ObjectBuilder<EnrichPolicy>> fn) {
+			return this.geoMatch(fn.apply(new EnrichPolicy.Builder()).build());
 		}
 
 		/**
@@ -135,10 +139,8 @@ public class EnrichConfiguration implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code match}
 		 */
-		public final Builder match(Consumer<EnrichPolicy.Builder> fn) {
-			EnrichPolicy.Builder builder = new EnrichPolicy.Builder();
-			fn.accept(builder);
-			return this.match(builder.build());
+		public final Builder match(Function<EnrichPolicy.Builder, ObjectBuilder<EnrichPolicy>> fn) {
+			return this.match(fn.apply(new EnrichPolicy.Builder()).build());
 		}
 
 		/**

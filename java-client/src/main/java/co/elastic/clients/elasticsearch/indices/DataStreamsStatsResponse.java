@@ -31,21 +31,25 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.data_streams_stats.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/data_streams_stats/IndicesDataStreamsStatsResponse.ts#L24-L33">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataStreamsStatsResponse implements JsonpSerializable {
 	private final ShardStatistics shards;
@@ -65,20 +69,18 @@ public class DataStreamsStatsResponse implements JsonpSerializable {
 
 	private DataStreamsStatsResponse(Builder builder) {
 
-		this.shards = ModelTypeHelper.requireNonNull(builder.shards, this, "shards");
-		this.backingIndices = ModelTypeHelper.requireNonNull(builder.backingIndices, this, "backingIndices");
-		this.dataStreamCount = ModelTypeHelper.requireNonNull(builder.dataStreamCount, this, "dataStreamCount");
+		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
+		this.backingIndices = ApiTypeHelper.requireNonNull(builder.backingIndices, this, "backingIndices");
+		this.dataStreamCount = ApiTypeHelper.requireNonNull(builder.dataStreamCount, this, "dataStreamCount");
 		this.totalStoreSizes = builder.totalStoreSizes;
-		this.totalStoreSizeBytes = ModelTypeHelper.requireNonNull(builder.totalStoreSizeBytes, this,
+		this.totalStoreSizeBytes = ApiTypeHelper.requireNonNull(builder.totalStoreSizeBytes, this,
 				"totalStoreSizeBytes");
-		this.dataStreams = ModelTypeHelper.unmodifiableRequired(builder.dataStreams, this, "dataStreams");
+		this.dataStreams = ApiTypeHelper.unmodifiableRequired(builder.dataStreams, this, "dataStreams");
 
 	}
 
-	public static DataStreamsStatsResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DataStreamsStatsResponse of(Function<Builder, ObjectBuilder<DataStreamsStatsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -152,7 +154,7 @@ public class DataStreamsStatsResponse implements JsonpSerializable {
 		generator.writeKey("total_store_size_bytes");
 		generator.write(this.totalStoreSizeBytes);
 
-		if (ModelTypeHelper.isDefined(this.dataStreams)) {
+		if (ApiTypeHelper.isDefined(this.dataStreams)) {
 			generator.writeKey("data_streams");
 			generator.writeStartArray();
 			for (DataStreamsStatsItem item0 : this.dataStreams) {
@@ -170,6 +172,7 @@ public class DataStreamsStatsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link DataStreamsStatsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataStreamsStatsResponse> {
 		private ShardStatistics shards;
 
@@ -195,10 +198,8 @@ public class DataStreamsStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _shards}
 		 */
-		public final Builder shards(Consumer<ShardStatistics.Builder> fn) {
-			ShardStatistics.Builder builder = new ShardStatistics.Builder();
-			fn.accept(builder);
-			return this.shards(builder.build());
+		public final Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
 		/**
@@ -235,26 +236,32 @@ public class DataStreamsStatsResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code data_streams}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>dataStreams</code>.
 		 */
-		public final Builder dataStreams(List<DataStreamsStatsItem> value) {
-			this.dataStreams = value;
+		public final Builder dataStreams(List<DataStreamsStatsItem> list) {
+			this.dataStreams = _listAddAll(this.dataStreams, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code data_streams}
+		 * <p>
+		 * Adds one or more values to <code>dataStreams</code>.
 		 */
-		public final Builder dataStreams(DataStreamsStatsItem... value) {
-			this.dataStreams = Arrays.asList(value);
+		public final Builder dataStreams(DataStreamsStatsItem value, DataStreamsStatsItem... values) {
+			this.dataStreams = _listAdd(this.dataStreams, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code data_streams}
+		 * <p>
+		 * Adds a value to <code>dataStreams</code> using a builder lambda.
 		 */
 		public final Builder dataStreams(
-				Function<ListBuilder<DataStreamsStatsItem, DataStreamsStatsItem.Builder>, ObjectBuilder<List<DataStreamsStatsItem>>> fn) {
-			return dataStreams(fn.apply(new ListBuilder<>(DataStreamsStatsItem.Builder::new)).build());
+				Function<DataStreamsStatsItem.Builder, ObjectBuilder<DataStreamsStatsItem>> fn) {
+			return dataStreams(fn.apply(new DataStreamsStatsItem.Builder()).build());
 		}
 
 		/**

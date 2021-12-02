@@ -29,20 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.Ensemble
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/put_trained_model/types.ts#L93-L99">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Ensemble implements JsonpSerializable {
 	@Nullable
@@ -62,17 +66,15 @@ public class Ensemble implements JsonpSerializable {
 	private Ensemble(Builder builder) {
 
 		this.aggregateOutput = builder.aggregateOutput;
-		this.classificationLabels = ModelTypeHelper.unmodifiable(builder.classificationLabels);
-		this.featureNames = ModelTypeHelper.unmodifiable(builder.featureNames);
+		this.classificationLabels = ApiTypeHelper.unmodifiable(builder.classificationLabels);
+		this.featureNames = ApiTypeHelper.unmodifiable(builder.featureNames);
 		this.targetType = builder.targetType;
-		this.trainedModels = ModelTypeHelper.unmodifiableRequired(builder.trainedModels, this, "trainedModels");
+		this.trainedModels = ApiTypeHelper.unmodifiableRequired(builder.trainedModels, this, "trainedModels");
 
 	}
 
-	public static Ensemble of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Ensemble of(Function<Builder, ObjectBuilder<Ensemble>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -128,7 +130,7 @@ public class Ensemble implements JsonpSerializable {
 			this.aggregateOutput.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.classificationLabels)) {
+		if (ApiTypeHelper.isDefined(this.classificationLabels)) {
 			generator.writeKey("classification_labels");
 			generator.writeStartArray();
 			for (String item0 : this.classificationLabels) {
@@ -138,7 +140,7 @@ public class Ensemble implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.featureNames)) {
+		if (ApiTypeHelper.isDefined(this.featureNames)) {
 			generator.writeKey("feature_names");
 			generator.writeStartArray();
 			for (String item0 : this.featureNames) {
@@ -153,7 +155,7 @@ public class Ensemble implements JsonpSerializable {
 			generator.write(this.targetType);
 
 		}
-		if (ModelTypeHelper.isDefined(this.trainedModels)) {
+		if (ApiTypeHelper.isDefined(this.trainedModels)) {
 			generator.writeKey("trained_models");
 			generator.writeStartArray();
 			for (TrainedModel item0 : this.trainedModels) {
@@ -171,6 +173,7 @@ public class Ensemble implements JsonpSerializable {
 	/**
 	 * Builder for {@link Ensemble}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Ensemble> {
 		@Nullable
 		private AggregateOutput aggregateOutput;
@@ -197,41 +200,47 @@ public class Ensemble implements JsonpSerializable {
 		/**
 		 * API name: {@code aggregate_output}
 		 */
-		public final Builder aggregateOutput(Consumer<AggregateOutput.Builder> fn) {
-			AggregateOutput.Builder builder = new AggregateOutput.Builder();
-			fn.accept(builder);
-			return this.aggregateOutput(builder.build());
+		public final Builder aggregateOutput(Function<AggregateOutput.Builder, ObjectBuilder<AggregateOutput>> fn) {
+			return this.aggregateOutput(fn.apply(new AggregateOutput.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code classification_labels}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>classificationLabels</code>.
 		 */
-		public final Builder classificationLabels(@Nullable List<String> value) {
-			this.classificationLabels = value;
+		public final Builder classificationLabels(List<String> list) {
+			this.classificationLabels = _listAddAll(this.classificationLabels, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code classification_labels}
+		 * <p>
+		 * Adds one or more values to <code>classificationLabels</code>.
 		 */
-		public final Builder classificationLabels(String... value) {
-			this.classificationLabels = Arrays.asList(value);
+		public final Builder classificationLabels(String value, String... values) {
+			this.classificationLabels = _listAdd(this.classificationLabels, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code feature_names}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>featureNames</code>.
 		 */
-		public final Builder featureNames(@Nullable List<String> value) {
-			this.featureNames = value;
+		public final Builder featureNames(List<String> list) {
+			this.featureNames = _listAddAll(this.featureNames, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code feature_names}
+		 * <p>
+		 * Adds one or more values to <code>featureNames</code>.
 		 */
-		public final Builder featureNames(String... value) {
-			this.featureNames = Arrays.asList(value);
+		public final Builder featureNames(String value, String... values) {
+			this.featureNames = _listAdd(this.featureNames, value, values);
 			return this;
 		}
 
@@ -245,26 +254,31 @@ public class Ensemble implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code trained_models}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>trainedModels</code>.
 		 */
-		public final Builder trainedModels(List<TrainedModel> value) {
-			this.trainedModels = value;
+		public final Builder trainedModels(List<TrainedModel> list) {
+			this.trainedModels = _listAddAll(this.trainedModels, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code trained_models}
+		 * <p>
+		 * Adds one or more values to <code>trainedModels</code>.
 		 */
-		public final Builder trainedModels(TrainedModel... value) {
-			this.trainedModels = Arrays.asList(value);
+		public final Builder trainedModels(TrainedModel value, TrainedModel... values) {
+			this.trainedModels = _listAdd(this.trainedModels, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code trained_models}
+		 * <p>
+		 * Adds a value to <code>trainedModels</code> using a builder lambda.
 		 */
-		public final Builder trainedModels(
-				Function<ListBuilder<TrainedModel, TrainedModel.Builder>, ObjectBuilder<List<TrainedModel>>> fn) {
-			return trainedModels(fn.apply(new ListBuilder<>(TrainedModel.Builder::new)).build());
+		public final Builder trainedModels(Function<TrainedModel.Builder, ObjectBuilder<TrainedModel>> fn) {
+			return trainedModels(fn.apply(new TrainedModel.Builder()).build());
 		}
 
 		/**

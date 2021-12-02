@@ -38,6 +38,14 @@ import java.util.Objects;
 
 // typedef: cat.master.Request
 
+/**
+ * Returns information about the master node.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/master/CatMasterRequest.ts#L22-L27">API
+ *      specification</a>
+ */
+
 public class MasterRequest extends CatRequestBase {
 	public MasterRequest() {
 	}

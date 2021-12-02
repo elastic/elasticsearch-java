@@ -28,15 +28,22 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SpanFieldMaskingQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/span.ts#L30-L33">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SpanFieldMaskingQuery extends QueryBase implements SpanQueryVariant, QueryVariant {
 	private final String field;
@@ -48,15 +55,13 @@ public class SpanFieldMaskingQuery extends QueryBase implements SpanQueryVariant
 	private SpanFieldMaskingQuery(Builder builder) {
 		super(builder);
 
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
-		this.query = ModelTypeHelper.requireNonNull(builder.query, this, "query");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 
 	}
 
-	public static SpanFieldMaskingQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SpanFieldMaskingQuery of(Function<Builder, ObjectBuilder<SpanFieldMaskingQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -105,6 +110,7 @@ public class SpanFieldMaskingQuery extends QueryBase implements SpanQueryVariant
 	/**
 	 * Builder for {@link SpanFieldMaskingQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<SpanFieldMaskingQuery> {
@@ -131,10 +137,8 @@ public class SpanFieldMaskingQuery extends QueryBase implements SpanQueryVariant
 		/**
 		 * Required - API name: {@code query}
 		 */
-		public final Builder query(Consumer<SpanQuery.Builder> fn) {
-			SpanQuery.Builder builder = new SpanQuery.Builder();
-			fn.accept(builder);
-			return this.query(builder.build());
+		public final Builder query(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
+			return this.query(fn.apply(new SpanQuery.Builder()).build());
 		}
 
 		@Override

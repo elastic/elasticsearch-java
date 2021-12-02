@@ -34,7 +34,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,10 +42,19 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.clone.Request
+
+/**
+ * Clones indices from one snapshot into another snapshot in the same
+ * repository.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/snapshot/clone/SnapshotCloneRequest.ts#L24-L42">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CloneSnapshotRequest extends RequestBase implements JsonpSerializable {
 	private final String indices;
@@ -66,19 +75,17 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 
 	private CloneSnapshotRequest(Builder builder) {
 
-		this.indices = ModelTypeHelper.requireNonNull(builder.indices, this, "indices");
+		this.indices = ApiTypeHelper.requireNonNull(builder.indices, this, "indices");
 		this.masterTimeout = builder.masterTimeout;
-		this.repository = ModelTypeHelper.requireNonNull(builder.repository, this, "repository");
-		this.snapshot = ModelTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
-		this.targetSnapshot = ModelTypeHelper.requireNonNull(builder.targetSnapshot, this, "targetSnapshot");
+		this.repository = ApiTypeHelper.requireNonNull(builder.repository, this, "repository");
+		this.snapshot = ApiTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
+		this.targetSnapshot = ApiTypeHelper.requireNonNull(builder.targetSnapshot, this, "targetSnapshot");
 		this.timeout = builder.timeout;
 
 	}
 
-	public static CloneSnapshotRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CloneSnapshotRequest of(Function<Builder, ObjectBuilder<CloneSnapshotRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -154,6 +161,7 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Builder for {@link CloneSnapshotRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CloneSnapshotRequest> {
 		private String indices;
 
@@ -192,10 +200,8 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.masterTimeout(builder.build());
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -239,10 +245,8 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.timeout(builder.build());
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

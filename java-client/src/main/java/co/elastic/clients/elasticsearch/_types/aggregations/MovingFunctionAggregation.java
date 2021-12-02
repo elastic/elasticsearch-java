@@ -33,10 +33,17 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MovingFunctionAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/pipeline.ts#L177-L181">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MovingFunctionAggregation extends PipelineAggregationBase implements AggregationVariant {
 	@Nullable
@@ -59,10 +66,8 @@ public class MovingFunctionAggregation extends PipelineAggregationBase implement
 
 	}
 
-	public static MovingFunctionAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static MovingFunctionAggregation of(Function<Builder, ObjectBuilder<MovingFunctionAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -123,6 +128,7 @@ public class MovingFunctionAggregation extends PipelineAggregationBase implement
 	/**
 	 * Builder for {@link MovingFunctionAggregation}.
 	 */
+
 	public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<MovingFunctionAggregation> {

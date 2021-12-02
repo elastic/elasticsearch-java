@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,13 +39,19 @@ import java.lang.Boolean;
 import java.lang.Float;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: tasks._types.Status
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/tasks/_types/TaskStatus.ts#L24-L42">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Status implements JsonpSerializable {
 	private final long batches;
@@ -91,31 +97,29 @@ public class Status implements JsonpSerializable {
 
 	private Status(Builder builder) {
 
-		this.batches = ModelTypeHelper.requireNonNull(builder.batches, this, "batches");
+		this.batches = ApiTypeHelper.requireNonNull(builder.batches, this, "batches");
 		this.canceled = builder.canceled;
-		this.created = ModelTypeHelper.requireNonNull(builder.created, this, "created");
-		this.deleted = ModelTypeHelper.requireNonNull(builder.deleted, this, "deleted");
-		this.noops = ModelTypeHelper.requireNonNull(builder.noops, this, "noops");
-		this.failures = ModelTypeHelper.unmodifiable(builder.failures);
-		this.requestsPerSecond = ModelTypeHelper.requireNonNull(builder.requestsPerSecond, this, "requestsPerSecond");
-		this.retries = ModelTypeHelper.requireNonNull(builder.retries, this, "retries");
+		this.created = ApiTypeHelper.requireNonNull(builder.created, this, "created");
+		this.deleted = ApiTypeHelper.requireNonNull(builder.deleted, this, "deleted");
+		this.noops = ApiTypeHelper.requireNonNull(builder.noops, this, "noops");
+		this.failures = ApiTypeHelper.unmodifiable(builder.failures);
+		this.requestsPerSecond = ApiTypeHelper.requireNonNull(builder.requestsPerSecond, this, "requestsPerSecond");
+		this.retries = ApiTypeHelper.requireNonNull(builder.retries, this, "retries");
 		this.throttled = builder.throttled;
-		this.throttledMillis = ModelTypeHelper.requireNonNull(builder.throttledMillis, this, "throttledMillis");
+		this.throttledMillis = ApiTypeHelper.requireNonNull(builder.throttledMillis, this, "throttledMillis");
 		this.throttledUntil = builder.throttledUntil;
-		this.throttledUntilMillis = ModelTypeHelper.requireNonNull(builder.throttledUntilMillis, this,
+		this.throttledUntilMillis = ApiTypeHelper.requireNonNull(builder.throttledUntilMillis, this,
 				"throttledUntilMillis");
 		this.timedOut = builder.timedOut;
 		this.took = builder.took;
-		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
-		this.updated = ModelTypeHelper.requireNonNull(builder.updated, this, "updated");
-		this.versionConflicts = ModelTypeHelper.requireNonNull(builder.versionConflicts, this, "versionConflicts");
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+		this.updated = ApiTypeHelper.requireNonNull(builder.updated, this, "updated");
+		this.versionConflicts = ApiTypeHelper.requireNonNull(builder.versionConflicts, this, "versionConflicts");
 
 	}
 
-	public static Status of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Status of(Function<Builder, ObjectBuilder<Status>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -270,7 +274,7 @@ public class Status implements JsonpSerializable {
 		generator.writeKey("noops");
 		generator.write(this.noops);
 
-		if (ModelTypeHelper.isDefined(this.failures)) {
+		if (ApiTypeHelper.isDefined(this.failures)) {
 			generator.writeKey("failures");
 			generator.writeStartArray();
 			for (String item0 : this.failures) {
@@ -328,6 +332,7 @@ public class Status implements JsonpSerializable {
 	/**
 	 * Builder for {@link Status}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Status> {
 		private Long batches;
 
@@ -411,17 +416,21 @@ public class Status implements JsonpSerializable {
 
 		/**
 		 * API name: {@code failures}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>failures</code>.
 		 */
-		public final Builder failures(@Nullable List<String> value) {
-			this.failures = value;
+		public final Builder failures(List<String> list) {
+			this.failures = _listAddAll(this.failures, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code failures}
+		 * <p>
+		 * Adds one or more values to <code>failures</code>.
 		 */
-		public final Builder failures(String... value) {
-			this.failures = Arrays.asList(value);
+		public final Builder failures(String value, String... values) {
+			this.failures = _listAdd(this.failures, value, values);
 			return this;
 		}
 
@@ -444,10 +453,8 @@ public class Status implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code retries}
 		 */
-		public final Builder retries(Consumer<Retries.Builder> fn) {
-			Retries.Builder builder = new Retries.Builder();
-			fn.accept(builder);
-			return this.retries(builder.build());
+		public final Builder retries(Function<Retries.Builder, ObjectBuilder<Retries>> fn) {
+			return this.retries(fn.apply(new Retries.Builder()).build());
 		}
 
 		/**
@@ -461,10 +468,8 @@ public class Status implements JsonpSerializable {
 		/**
 		 * API name: {@code throttled}
 		 */
-		public final Builder throttled(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.throttled(builder.build());
+		public final Builder throttled(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.throttled(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -486,10 +491,8 @@ public class Status implements JsonpSerializable {
 		/**
 		 * API name: {@code throttled_until}
 		 */
-		public final Builder throttledUntil(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.throttledUntil(builder.build());
+		public final Builder throttledUntil(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.throttledUntil(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

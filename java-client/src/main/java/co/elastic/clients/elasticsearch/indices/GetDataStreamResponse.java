@@ -30,19 +30,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_data_stream.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/get_data_stream/IndicesGetDataStreamResponse.ts#L31-L33">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetDataStreamResponse implements JsonpSerializable {
 	private final List<IndicesGetDataStreamItem> dataStreams;
@@ -51,14 +55,12 @@ public class GetDataStreamResponse implements JsonpSerializable {
 
 	private GetDataStreamResponse(Builder builder) {
 
-		this.dataStreams = ModelTypeHelper.unmodifiableRequired(builder.dataStreams, this, "dataStreams");
+		this.dataStreams = ApiTypeHelper.unmodifiableRequired(builder.dataStreams, this, "dataStreams");
 
 	}
 
-	public static GetDataStreamResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetDataStreamResponse of(Function<Builder, ObjectBuilder<GetDataStreamResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -79,7 +81,7 @@ public class GetDataStreamResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.dataStreams)) {
+		if (ApiTypeHelper.isDefined(this.dataStreams)) {
 			generator.writeKey("data_streams");
 			generator.writeStartArray();
 			for (IndicesGetDataStreamItem item0 : this.dataStreams) {
@@ -97,31 +99,38 @@ public class GetDataStreamResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetDataStreamResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetDataStreamResponse> {
 		private List<IndicesGetDataStreamItem> dataStreams;
 
 		/**
 		 * Required - API name: {@code data_streams}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>dataStreams</code>.
 		 */
-		public final Builder dataStreams(List<IndicesGetDataStreamItem> value) {
-			this.dataStreams = value;
+		public final Builder dataStreams(List<IndicesGetDataStreamItem> list) {
+			this.dataStreams = _listAddAll(this.dataStreams, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code data_streams}
+		 * <p>
+		 * Adds one or more values to <code>dataStreams</code>.
 		 */
-		public final Builder dataStreams(IndicesGetDataStreamItem... value) {
-			this.dataStreams = Arrays.asList(value);
+		public final Builder dataStreams(IndicesGetDataStreamItem value, IndicesGetDataStreamItem... values) {
+			this.dataStreams = _listAdd(this.dataStreams, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code data_streams}
+		 * <p>
+		 * Adds a value to <code>dataStreams</code> using a builder lambda.
 		 */
 		public final Builder dataStreams(
-				Function<ListBuilder<IndicesGetDataStreamItem, IndicesGetDataStreamItem.Builder>, ObjectBuilder<List<IndicesGetDataStreamItem>>> fn) {
-			return dataStreams(fn.apply(new ListBuilder<>(IndicesGetDataStreamItem.Builder::new)).build());
+				Function<IndicesGetDataStreamItem.Builder, ObjectBuilder<IndicesGetDataStreamItem>> fn) {
+			return dataStreams(fn.apply(new IndicesGetDataStreamItem.Builder()).build());
 		}
 
 		/**

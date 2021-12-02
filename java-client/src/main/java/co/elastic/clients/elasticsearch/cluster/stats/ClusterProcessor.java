@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: cluster.stats.ClusterProcessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/stats/types.ts#L259-L264">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ClusterProcessor implements JsonpSerializable {
 	private final long count;
@@ -52,17 +59,15 @@ public class ClusterProcessor implements JsonpSerializable {
 
 	private ClusterProcessor(Builder builder) {
 
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
-		this.current = ModelTypeHelper.requireNonNull(builder.current, this, "current");
-		this.failed = ModelTypeHelper.requireNonNull(builder.failed, this, "failed");
-		this.timeInMillis = ModelTypeHelper.requireNonNull(builder.timeInMillis, this, "timeInMillis");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.current = ApiTypeHelper.requireNonNull(builder.current, this, "current");
+		this.failed = ApiTypeHelper.requireNonNull(builder.failed, this, "failed");
+		this.timeInMillis = ApiTypeHelper.requireNonNull(builder.timeInMillis, this, "timeInMillis");
 
 	}
 
-	public static ClusterProcessor of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ClusterProcessor of(Function<Builder, ObjectBuilder<ClusterProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -123,6 +128,7 @@ public class ClusterProcessor implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClusterProcessor}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterProcessor> {
 		private Long count;
 

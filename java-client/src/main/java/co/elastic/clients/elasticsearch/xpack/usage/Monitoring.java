@@ -28,7 +28,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -36,10 +36,17 @@ import java.lang.Long;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Monitoring
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L342-L345">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Monitoring extends Base {
 	private final boolean collectionEnabled;
@@ -51,16 +58,13 @@ public class Monitoring extends Base {
 	private Monitoring(Builder builder) {
 		super(builder);
 
-		this.collectionEnabled = ModelTypeHelper.requireNonNull(builder.collectionEnabled, this, "collectionEnabled");
-		this.enabledExporters = ModelTypeHelper.unmodifiableRequired(builder.enabledExporters, this,
-				"enabledExporters");
+		this.collectionEnabled = ApiTypeHelper.requireNonNull(builder.collectionEnabled, this, "collectionEnabled");
+		this.enabledExporters = ApiTypeHelper.unmodifiableRequired(builder.enabledExporters, this, "enabledExporters");
 
 	}
 
-	public static Monitoring of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Monitoring of(Function<Builder, ObjectBuilder<Monitoring>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -83,7 +87,7 @@ public class Monitoring extends Base {
 		generator.writeKey("collection_enabled");
 		generator.write(this.collectionEnabled);
 
-		if (ModelTypeHelper.isDefined(this.enabledExporters)) {
+		if (ApiTypeHelper.isDefined(this.enabledExporters)) {
 			generator.writeKey("enabled_exporters");
 			generator.writeStartObject();
 			for (Map.Entry<String, Long> item0 : this.enabledExporters.entrySet()) {
@@ -102,6 +106,7 @@ public class Monitoring extends Base {
 	/**
 	 * Builder for {@link Monitoring}.
 	 */
+
 	public static class Builder extends Base.AbstractBuilder<Builder> implements ObjectBuilder<Monitoring> {
 		private Boolean collectionEnabled;
 
@@ -117,9 +122,21 @@ public class Monitoring extends Base {
 
 		/**
 		 * Required - API name: {@code enabled_exporters}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>enabledExporters</code>.
 		 */
-		public final Builder enabledExporters(Map<String, Long> value) {
-			this.enabledExporters = value;
+		public final Builder enabledExporters(Map<String, Long> map) {
+			this.enabledExporters = _mapPutAll(this.enabledExporters, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code enabled_exporters}
+		 * <p>
+		 * Adds an entry to <code>enabledExporters</code>.
+		 */
+		public final Builder enabledExporters(String key, Long value) {
+			this.enabledExporters = _mapPut(this.enabledExporters, key, value);
 			return this;
 		}
 

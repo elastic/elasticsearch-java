@@ -29,18 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.HourAndMinute
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Schedule.ts#L106-L109">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class HourAndMinute implements JsonpSerializable {
 	private final List<Integer> hour;
@@ -51,15 +57,13 @@ public class HourAndMinute implements JsonpSerializable {
 
 	private HourAndMinute(Builder builder) {
 
-		this.hour = ModelTypeHelper.unmodifiableRequired(builder.hour, this, "hour");
-		this.minute = ModelTypeHelper.unmodifiableRequired(builder.minute, this, "minute");
+		this.hour = ApiTypeHelper.unmodifiableRequired(builder.hour, this, "hour");
+		this.minute = ApiTypeHelper.unmodifiableRequired(builder.minute, this, "minute");
 
 	}
 
-	public static HourAndMinute of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static HourAndMinute of(Function<Builder, ObjectBuilder<HourAndMinute>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -87,7 +91,7 @@ public class HourAndMinute implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.hour)) {
+		if (ApiTypeHelper.isDefined(this.hour)) {
 			generator.writeKey("hour");
 			generator.writeStartArray();
 			for (Integer item0 : this.hour) {
@@ -97,7 +101,7 @@ public class HourAndMinute implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.minute)) {
+		if (ApiTypeHelper.isDefined(this.minute)) {
 			generator.writeKey("minute");
 			generator.writeStartArray();
 			for (Integer item0 : this.minute) {
@@ -115,6 +119,7 @@ public class HourAndMinute implements JsonpSerializable {
 	/**
 	 * Builder for {@link HourAndMinute}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HourAndMinute> {
 		private List<Integer> hour;
 
@@ -122,33 +127,41 @@ public class HourAndMinute implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code hour}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>hour</code>.
 		 */
-		public final Builder hour(List<Integer> value) {
-			this.hour = value;
+		public final Builder hour(List<Integer> list) {
+			this.hour = _listAddAll(this.hour, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code hour}
+		 * <p>
+		 * Adds one or more values to <code>hour</code>.
 		 */
-		public final Builder hour(Integer... value) {
-			this.hour = Arrays.asList(value);
+		public final Builder hour(Integer value, Integer... values) {
+			this.hour = _listAdd(this.hour, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code minute}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>minute</code>.
 		 */
-		public final Builder minute(List<Integer> value) {
-			this.minute = value;
+		public final Builder minute(List<Integer> list) {
+			this.minute = _listAddAll(this.minute, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code minute}
+		 * <p>
+		 * Adds one or more values to <code>minute</code>.
 		 */
-		public final Builder minute(Integer... value) {
-			this.minute = Arrays.asList(value);
+		public final Builder minute(Integer value, Integer... values) {
+			this.minute = _listAdd(this.minute, value, values);
 			return this;
 		}
 

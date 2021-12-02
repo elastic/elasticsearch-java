@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -37,10 +37,17 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.IntervalsMatch
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/fulltext.ts#L99-L108">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IntervalsMatch implements IntervalsQueryVariant, IntervalsVariant, JsonpSerializable {
 	@Nullable
@@ -67,16 +74,14 @@ public class IntervalsMatch implements IntervalsQueryVariant, IntervalsVariant, 
 		this.analyzer = builder.analyzer;
 		this.maxGaps = builder.maxGaps;
 		this.ordered = builder.ordered;
-		this.query = ModelTypeHelper.requireNonNull(builder.query, this, "query");
+		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 		this.useField = builder.useField;
 		this.filter = builder.filter;
 
 	}
 
-	public static IntervalsMatch of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IntervalsMatch of(Function<Builder, ObjectBuilder<IntervalsMatch>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -189,6 +194,7 @@ public class IntervalsMatch implements IntervalsQueryVariant, IntervalsVariant, 
 	/**
 	 * Builder for {@link IntervalsMatch}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IntervalsMatch> {
 		@Nullable
 		private String analyzer;
@@ -258,10 +264,8 @@ public class IntervalsMatch implements IntervalsQueryVariant, IntervalsVariant, 
 		/**
 		 * API name: {@code filter}
 		 */
-		public final Builder filter(Consumer<IntervalsFilter.Builder> fn) {
-			IntervalsFilter.Builder builder = new IntervalsFilter.Builder();
-			fn.accept(builder);
-			return this.filter(builder.build());
+		public final Builder filter(Function<IntervalsFilter.Builder, ObjectBuilder<IntervalsFilter>> fn) {
+			return this.filter(fn.apply(new IntervalsFilter.Builder()).build());
 		}
 
 		/**

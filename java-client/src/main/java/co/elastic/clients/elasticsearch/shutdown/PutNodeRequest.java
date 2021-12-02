@@ -31,17 +31,26 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: shutdown.put_node.Request
+
+/**
+ * Adds a node to be shut down. Designed for indirect use by ECE/ESS and ECK.
+ * Direct use is not supported.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/shutdown/put_node/ShutdownPutNodeRequest.ts#L23-L32">API
+ *      specification</a>
+ */
 
 public class PutNodeRequest extends RequestBase {
 	private final String nodeId;
@@ -50,14 +59,12 @@ public class PutNodeRequest extends RequestBase {
 
 	private PutNodeRequest(Builder builder) {
 
-		this.nodeId = ModelTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
+		this.nodeId = ApiTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
 
 	}
 
-	public static PutNodeRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PutNodeRequest of(Function<Builder, ObjectBuilder<PutNodeRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -74,6 +81,7 @@ public class PutNodeRequest extends RequestBase {
 	/**
 	 * Builder for {@link PutNodeRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutNodeRequest> {
 		private String nodeId;
 

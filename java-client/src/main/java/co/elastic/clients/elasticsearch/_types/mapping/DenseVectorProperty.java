@@ -28,17 +28,24 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.DenseVectorProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/complex.ts#L50-L56">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DenseVectorProperty extends PropertyBase implements PropertyVariant {
 	private final int dims;
@@ -57,17 +64,15 @@ public class DenseVectorProperty extends PropertyBase implements PropertyVariant
 	private DenseVectorProperty(Builder builder) {
 		super(builder);
 
-		this.dims = ModelTypeHelper.requireNonNull(builder.dims, this, "dims");
+		this.dims = ApiTypeHelper.requireNonNull(builder.dims, this, "dims");
 		this.similarity = builder.similarity;
 		this.index = builder.index;
 		this.indexOptions = builder.indexOptions;
 
 	}
 
-	public static DenseVectorProperty of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DenseVectorProperty of(Function<Builder, ObjectBuilder<DenseVectorProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -139,6 +144,7 @@ public class DenseVectorProperty extends PropertyBase implements PropertyVariant
 	/**
 	 * Builder for {@link DenseVectorProperty}.
 	 */
+
 	public static class Builder extends PropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DenseVectorProperty> {
@@ -188,10 +194,9 @@ public class DenseVectorProperty extends PropertyBase implements PropertyVariant
 		/**
 		 * API name: {@code index_options}
 		 */
-		public final Builder indexOptions(Consumer<DenseVectorIndexOptions.Builder> fn) {
-			DenseVectorIndexOptions.Builder builder = new DenseVectorIndexOptions.Builder();
-			fn.accept(builder);
-			return this.indexOptions(builder.build());
+		public final Builder indexOptions(
+				Function<DenseVectorIndexOptions.Builder, ObjectBuilder<DenseVectorIndexOptions>> fn) {
+			return this.indexOptions(fn.apply(new DenseVectorIndexOptions.Builder()).build());
 		}
 
 		@Override

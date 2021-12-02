@@ -31,19 +31,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.stats.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/stats/IndicesStatsResponse.ts#L24-L30">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IndicesStatsResponse implements JsonpSerializable {
 	private final Map<String, IndicesStats> indices;
@@ -56,16 +61,14 @@ public class IndicesStatsResponse implements JsonpSerializable {
 
 	private IndicesStatsResponse(Builder builder) {
 
-		this.indices = ModelTypeHelper.unmodifiable(builder.indices);
-		this.shards = ModelTypeHelper.requireNonNull(builder.shards, this, "shards");
-		this.all = ModelTypeHelper.requireNonNull(builder.all, this, "all");
+		this.indices = ApiTypeHelper.unmodifiable(builder.indices);
+		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
+		this.all = ApiTypeHelper.requireNonNull(builder.all, this, "all");
 
 	}
 
-	public static IndicesStatsResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IndicesStatsResponse of(Function<Builder, ObjectBuilder<IndicesStatsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -100,7 +103,7 @@ public class IndicesStatsResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.indices)) {
+		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartObject();
 			for (Map.Entry<String, IndicesStats> item0 : this.indices.entrySet()) {
@@ -124,6 +127,7 @@ public class IndicesStatsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndicesStatsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndicesStatsResponse> {
 		@Nullable
 		private Map<String, IndicesStats> indices;
@@ -134,15 +138,31 @@ public class IndicesStatsResponse implements JsonpSerializable {
 
 		/**
 		 * API name: {@code indices}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>indices</code>.
 		 */
-		public final Builder indices(@Nullable Map<String, IndicesStats> value) {
-			this.indices = value;
+		public final Builder indices(Map<String, IndicesStats> map) {
+			this.indices = _mapPutAll(this.indices, map);
 			return this;
 		}
 
-		public final Builder indices(
-				Function<MapBuilder<String, IndicesStats, IndicesStats.Builder>, ObjectBuilder<Map<String, IndicesStats>>> fn) {
-			return indices(fn.apply(new MapBuilder<>(IndicesStats.Builder::new)).build());
+		/**
+		 * API name: {@code indices}
+		 * <p>
+		 * Adds an entry to <code>indices</code>.
+		 */
+		public final Builder indices(String key, IndicesStats value) {
+			this.indices = _mapPut(this.indices, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code indices}
+		 * <p>
+		 * Adds an entry to <code>indices</code> using a builder lambda.
+		 */
+		public final Builder indices(String key, Function<IndicesStats.Builder, ObjectBuilder<IndicesStats>> fn) {
+			return indices(key, fn.apply(new IndicesStats.Builder()).build());
 		}
 
 		/**
@@ -156,10 +176,8 @@ public class IndicesStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _shards}
 		 */
-		public final Builder shards(Consumer<ShardStatistics.Builder> fn) {
-			ShardStatistics.Builder builder = new ShardStatistics.Builder();
-			fn.accept(builder);
-			return this.shards(builder.build());
+		public final Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
 		/**
@@ -173,10 +191,8 @@ public class IndicesStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _all}
 		 */
-		public final Builder all(Consumer<IndicesStats.Builder> fn) {
-			IndicesStats.Builder builder = new IndicesStats.Builder();
-			fn.accept(builder);
-			return this.all(builder.build());
+		public final Builder all(Function<IndicesStats.Builder, ObjectBuilder<IndicesStats>> fn) {
+			return this.all(fn.apply(new IndicesStats.Builder()).build());
 		}
 
 		/**

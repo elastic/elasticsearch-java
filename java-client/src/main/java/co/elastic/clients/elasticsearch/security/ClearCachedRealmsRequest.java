@@ -31,21 +31,29 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: security.clear_cached_realms.Request
+
+/**
+ * Evicts users from the user cache. Can completely clear the cache or evict
+ * specific users.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/clear_cached_realms/SecurityClearCachedRealmsRequest.ts#L23-L35">API
+ *      specification</a>
+ */
 
 public class ClearCachedRealmsRequest extends RequestBase {
 	private final List<String> realms;
@@ -56,15 +64,13 @@ public class ClearCachedRealmsRequest extends RequestBase {
 
 	private ClearCachedRealmsRequest(Builder builder) {
 
-		this.realms = ModelTypeHelper.unmodifiableRequired(builder.realms, this, "realms");
-		this.usernames = ModelTypeHelper.unmodifiable(builder.usernames);
+		this.realms = ApiTypeHelper.unmodifiableRequired(builder.realms, this, "realms");
+		this.usernames = ApiTypeHelper.unmodifiable(builder.usernames);
 
 	}
 
-	public static ClearCachedRealmsRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ClearCachedRealmsRequest of(Function<Builder, ObjectBuilder<ClearCachedRealmsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -90,6 +96,7 @@ public class ClearCachedRealmsRequest extends RequestBase {
 	/**
 	 * Builder for {@link ClearCachedRealmsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClearCachedRealmsRequest> {
 		private List<String> realms;
 
@@ -100,9 +107,11 @@ public class ClearCachedRealmsRequest extends RequestBase {
 		 * Required - Comma-separated list of realms to clear
 		 * <p>
 		 * API name: {@code realms}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>realms</code>.
 		 */
-		public final Builder realms(List<String> value) {
-			this.realms = value;
+		public final Builder realms(List<String> list) {
+			this.realms = _listAddAll(this.realms, list);
 			return this;
 		}
 
@@ -110,9 +119,11 @@ public class ClearCachedRealmsRequest extends RequestBase {
 		 * Required - Comma-separated list of realms to clear
 		 * <p>
 		 * API name: {@code realms}
+		 * <p>
+		 * Adds one or more values to <code>realms</code>.
 		 */
-		public final Builder realms(String... value) {
-			this.realms = Arrays.asList(value);
+		public final Builder realms(String value, String... values) {
+			this.realms = _listAdd(this.realms, value, values);
 			return this;
 		}
 
@@ -120,9 +131,11 @@ public class ClearCachedRealmsRequest extends RequestBase {
 		 * Comma-separated list of usernames to clear from the cache
 		 * <p>
 		 * API name: {@code usernames}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>usernames</code>.
 		 */
-		public final Builder usernames(@Nullable List<String> value) {
-			this.usernames = value;
+		public final Builder usernames(List<String> list) {
+			this.usernames = _listAddAll(this.usernames, list);
 			return this;
 		}
 
@@ -130,9 +143,11 @@ public class ClearCachedRealmsRequest extends RequestBase {
 		 * Comma-separated list of usernames to clear from the cache
 		 * <p>
 		 * API name: {@code usernames}
+		 * <p>
+		 * Adds one or more values to <code>usernames</code>.
 		 */
-		public final Builder usernames(String... value) {
-			this.usernames = Arrays.asList(value);
+		public final Builder usernames(String value, String... values) {
+			this.usernames = _listAdd(this.usernames, value, values);
 			return this;
 		}
 
@@ -188,7 +203,7 @@ public class ClearCachedRealmsRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (ModelTypeHelper.isDefined(request.usernames)) {
+				if (ApiTypeHelper.isDefined(request.usernames)) {
 					params.put("usernames", request.usernames.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				return params;

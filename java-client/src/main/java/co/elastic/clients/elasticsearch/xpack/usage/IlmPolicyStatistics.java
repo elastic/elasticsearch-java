@@ -30,16 +30,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.IlmPolicyStatistics
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L143-L146">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IlmPolicyStatistics implements JsonpSerializable {
 	private final int indicesManaged;
@@ -50,15 +57,13 @@ public class IlmPolicyStatistics implements JsonpSerializable {
 
 	private IlmPolicyStatistics(Builder builder) {
 
-		this.indicesManaged = ModelTypeHelper.requireNonNull(builder.indicesManaged, this, "indicesManaged");
-		this.phases = ModelTypeHelper.requireNonNull(builder.phases, this, "phases");
+		this.indicesManaged = ApiTypeHelper.requireNonNull(builder.indicesManaged, this, "indicesManaged");
+		this.phases = ApiTypeHelper.requireNonNull(builder.phases, this, "phases");
 
 	}
 
-	public static IlmPolicyStatistics of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IlmPolicyStatistics of(Function<Builder, ObjectBuilder<IlmPolicyStatistics>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -99,6 +104,7 @@ public class IlmPolicyStatistics implements JsonpSerializable {
 	/**
 	 * Builder for {@link IlmPolicyStatistics}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IlmPolicyStatistics> {
 		private Integer indicesManaged;
 
@@ -123,10 +129,8 @@ public class IlmPolicyStatistics implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code phases}
 		 */
-		public final Builder phases(Consumer<Phases.Builder> fn) {
-			Phases.Builder builder = new Phases.Builder();
-			fn.accept(builder);
-			return this.phases(builder.build());
+		public final Builder phases(Function<Phases.Builder, ObjectBuilder<Phases>> fn) {
+			return this.phases(fn.apply(new Phases.Builder()).build());
 		}
 
 		/**

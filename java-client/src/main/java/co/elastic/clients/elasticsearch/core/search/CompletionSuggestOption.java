@@ -32,7 +32,7 @@ import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,11 +42,18 @@ import java.lang.String;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.CompletionSuggestOption
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/suggester.ts#L71-L82">API
+ *      specification</a>
+ */
 
 public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 	@Nullable
@@ -80,23 +87,22 @@ public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 	private CompletionSuggestOption(Builder<TDocument> builder) {
 
 		this.collateMatch = builder.collateMatch;
-		this.contexts = ModelTypeHelper.unmodifiable(builder.contexts);
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.contexts = ApiTypeHelper.unmodifiable(builder.contexts);
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.type = builder.type;
 		this.routing = builder.routing;
-		this.score = ModelTypeHelper.requireNonNull(builder.score, this, "score");
-		this.source = ModelTypeHelper.requireNonNull(builder.source, this, "source");
-		this.text = ModelTypeHelper.requireNonNull(builder.text, this, "text");
+		this.score = ApiTypeHelper.requireNonNull(builder.score, this, "score");
+		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
+		this.text = ApiTypeHelper.requireNonNull(builder.text, this, "text");
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}
 
-	public static <TDocument> CompletionSuggestOption<TDocument> of(Consumer<Builder<TDocument>> fn) {
-		Builder<TDocument> builder = new Builder<>();
-		fn.accept(builder);
-		return builder.build();
+	public static <TDocument> CompletionSuggestOption<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<CompletionSuggestOption<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
@@ -188,7 +194,7 @@ public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 			generator.write(this.collateMatch);
 
 		}
-		if (ModelTypeHelper.isDefined(this.contexts)) {
+		if (ApiTypeHelper.isDefined(this.contexts)) {
 			generator.writeKey("contexts");
 			generator.writeStartObject();
 			for (Map.Entry<String, List<Context>> item0 : this.contexts.entrySet()) {
@@ -206,7 +212,7 @@ public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.fields)) {
+		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.fields.entrySet()) {
@@ -249,6 +255,7 @@ public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 	/**
 	 * Builder for {@link CompletionSuggestOption}.
 	 */
+
 	public static class Builder<TDocument> extends ObjectBuilderBase
 			implements
 				ObjectBuilder<CompletionSuggestOption<TDocument>> {
@@ -290,17 +297,41 @@ public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 
 		/**
 		 * API name: {@code contexts}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>contexts</code>.
 		 */
-		public final Builder<TDocument> contexts(@Nullable Map<String, List<Context>> value) {
-			this.contexts = value;
+		public final Builder<TDocument> contexts(Map<String, List<Context>> map) {
+			this.contexts = _mapPutAll(this.contexts, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code contexts}
+		 * <p>
+		 * Adds an entry to <code>contexts</code>.
+		 */
+		public final Builder<TDocument> contexts(String key, List<Context> value) {
+			this.contexts = _mapPut(this.contexts, key, value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>fields</code>.
 		 */
-		public final Builder<TDocument> fields(@Nullable Map<String, JsonData> value) {
-			this.fields = value;
+		public final Builder<TDocument> fields(Map<String, JsonData> map) {
+			this.fields = _mapPutAll(this.fields, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code fields}
+		 * <p>
+		 * Adds an entry to <code>fields</code>.
+		 */
+		public final Builder<TDocument> fields(String key, JsonData value) {
+			this.fields = _mapPut(this.fields, key, value);
 			return this;
 		}
 
@@ -385,7 +416,7 @@ public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for CompletionSuggestOption
+	 * Create a JSON deserializer for CompletionSuggestOption
 	 */
 	public static <TDocument> JsonpDeserializer<CompletionSuggestOption<TDocument>> createCompletionSuggestOptionDeserializer(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {

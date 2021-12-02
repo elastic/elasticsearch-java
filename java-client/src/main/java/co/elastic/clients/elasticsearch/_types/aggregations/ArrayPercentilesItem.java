@@ -27,19 +27,27 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ArrayPercentilesItem
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L146-L150">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ArrayPercentilesItem implements JsonpSerializable {
 	private final String key;
@@ -53,16 +61,14 @@ public class ArrayPercentilesItem implements JsonpSerializable {
 
 	private ArrayPercentilesItem(Builder builder) {
 
-		this.key = ModelTypeHelper.requireNonNull(builder.key, this, "key");
-		this.value = ModelTypeHelper.requireNonNull(builder.value, this, "value");
+		this.key = ApiTypeHelper.requireNonNull(builder.key, this, "key");
+		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
 		this.valueAsString = builder.valueAsString;
 
 	}
 
-	public static ArrayPercentilesItem of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ArrayPercentilesItem of(Function<Builder, ObjectBuilder<ArrayPercentilesItem>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -74,6 +80,8 @@ public class ArrayPercentilesItem implements JsonpSerializable {
 
 	/**
 	 * Required - API name: {@code value}
+	 * <p>
+	 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
 	 */
 	public final double value() {
 		return this.value;
@@ -102,8 +110,7 @@ public class ArrayPercentilesItem implements JsonpSerializable {
 		generator.write(this.key);
 
 		generator.writeKey("value");
-		generator.write(this.value);
-
+		JsonpUtils.serializeDoubleOrNull(generator, this.value, 0);
 		if (this.valueAsString != null) {
 			generator.writeKey("value_as_string");
 			generator.write(this.valueAsString);
@@ -117,6 +124,7 @@ public class ArrayPercentilesItem implements JsonpSerializable {
 	/**
 	 * Builder for {@link ArrayPercentilesItem}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ArrayPercentilesItem> {
 		private String key;
 
@@ -135,6 +143,8 @@ public class ArrayPercentilesItem implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code value}
+		 * <p>
+		 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
 		 */
 		public final Builder value(double value) {
 			this.value = value;
@@ -173,7 +183,7 @@ public class ArrayPercentilesItem implements JsonpSerializable {
 	protected static void setupArrayPercentilesItemDeserializer(ObjectDeserializer<ArrayPercentilesItem.Builder> op) {
 
 		op.add(Builder::key, JsonpDeserializer.stringDeserializer(), "key");
-		op.add(Builder::value, JsonpDeserializer.doubleDeserializer(), "value");
+		op.add(Builder::value, JsonpDeserializer.doubleOrNullDeserializer(0), "value");
 		op.add(Builder::valueAsString, JsonpDeserializer.stringDeserializer(), "value_as_string");
 
 	}

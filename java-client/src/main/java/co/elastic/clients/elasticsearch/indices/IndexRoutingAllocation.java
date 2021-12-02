@@ -33,10 +33,17 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexRoutingAllocation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/_types/IndexRouting.ts#L27-L32">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IndexRoutingAllocation implements JsonpSerializable {
 	@Nullable
@@ -62,10 +69,8 @@ public class IndexRoutingAllocation implements JsonpSerializable {
 
 	}
 
-	public static IndexRoutingAllocation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IndexRoutingAllocation of(Function<Builder, ObjectBuilder<IndexRoutingAllocation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -138,6 +143,7 @@ public class IndexRoutingAllocation implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexRoutingAllocation}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexRoutingAllocation> {
 		@Nullable
 		private IndexRoutingAllocationOptions enable;
@@ -170,10 +176,9 @@ public class IndexRoutingAllocation implements JsonpSerializable {
 		/**
 		 * API name: {@code include}
 		 */
-		public final Builder include(Consumer<IndexRoutingAllocationInclude.Builder> fn) {
-			IndexRoutingAllocationInclude.Builder builder = new IndexRoutingAllocationInclude.Builder();
-			fn.accept(builder);
-			return this.include(builder.build());
+		public final Builder include(
+				Function<IndexRoutingAllocationInclude.Builder, ObjectBuilder<IndexRoutingAllocationInclude>> fn) {
+			return this.include(fn.apply(new IndexRoutingAllocationInclude.Builder()).build());
 		}
 
 		/**
@@ -187,10 +192,9 @@ public class IndexRoutingAllocation implements JsonpSerializable {
 		/**
 		 * API name: {@code initial_recovery}
 		 */
-		public final Builder initialRecovery(Consumer<IndexRoutingAllocationInitialRecovery.Builder> fn) {
-			IndexRoutingAllocationInitialRecovery.Builder builder = new IndexRoutingAllocationInitialRecovery.Builder();
-			fn.accept(builder);
-			return this.initialRecovery(builder.build());
+		public final Builder initialRecovery(
+				Function<IndexRoutingAllocationInitialRecovery.Builder, ObjectBuilder<IndexRoutingAllocationInitialRecovery>> fn) {
+			return this.initialRecovery(fn.apply(new IndexRoutingAllocationInitialRecovery.Builder()).build());
 		}
 
 		/**
@@ -204,10 +208,9 @@ public class IndexRoutingAllocation implements JsonpSerializable {
 		/**
 		 * API name: {@code disk}
 		 */
-		public final Builder disk(Consumer<IndexRoutingAllocationDisk.Builder> fn) {
-			IndexRoutingAllocationDisk.Builder builder = new IndexRoutingAllocationDisk.Builder();
-			fn.accept(builder);
-			return this.disk(builder.build());
+		public final Builder disk(
+				Function<IndexRoutingAllocationDisk.Builder, ObjectBuilder<IndexRoutingAllocationDisk>> fn) {
+			return this.disk(fn.apply(new IndexRoutingAllocationDisk.Builder()).build());
 		}
 
 		/**

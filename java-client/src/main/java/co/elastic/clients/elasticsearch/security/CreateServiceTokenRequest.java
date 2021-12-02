@@ -31,17 +31,26 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.create_service_token.Request
+
+/**
+ * Creates a service account token for access without requiring basic
+ * authentication.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/create_service_token/CreateServiceTokenRequest.ts#L23-L34">API
+ *      specification</a>
+ */
 
 public class CreateServiceTokenRequest extends RequestBase {
 	private final String name;
@@ -54,16 +63,14 @@ public class CreateServiceTokenRequest extends RequestBase {
 
 	private CreateServiceTokenRequest(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
-		this.namespace = ModelTypeHelper.requireNonNull(builder.namespace, this, "namespace");
-		this.service = ModelTypeHelper.requireNonNull(builder.service, this, "service");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.namespace = ApiTypeHelper.requireNonNull(builder.namespace, this, "namespace");
+		this.service = ApiTypeHelper.requireNonNull(builder.service, this, "service");
 
 	}
 
-	public static CreateServiceTokenRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CreateServiceTokenRequest of(Function<Builder, ObjectBuilder<CreateServiceTokenRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -98,6 +105,7 @@ public class CreateServiceTokenRequest extends RequestBase {
 	/**
 	 * Builder for {@link CreateServiceTokenRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CreateServiceTokenRequest> {
 		private String name;
 

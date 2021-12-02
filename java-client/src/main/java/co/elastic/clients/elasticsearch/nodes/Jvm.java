@@ -29,8 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,11 +37,17 @@ import java.lang.Long;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.Jvm
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/_types/Stats.ts#L161-L170">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Jvm implements JsonpSerializable {
 	private final Map<String, NodeBufferPool> bufferPools;
@@ -65,21 +70,19 @@ public class Jvm implements JsonpSerializable {
 
 	private Jvm(Builder builder) {
 
-		this.bufferPools = ModelTypeHelper.unmodifiableRequired(builder.bufferPools, this, "bufferPools");
-		this.classes = ModelTypeHelper.requireNonNull(builder.classes, this, "classes");
-		this.gc = ModelTypeHelper.requireNonNull(builder.gc, this, "gc");
-		this.mem = ModelTypeHelper.requireNonNull(builder.mem, this, "mem");
-		this.threads = ModelTypeHelper.requireNonNull(builder.threads, this, "threads");
-		this.timestamp = ModelTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
-		this.uptime = ModelTypeHelper.requireNonNull(builder.uptime, this, "uptime");
-		this.uptimeInMillis = ModelTypeHelper.requireNonNull(builder.uptimeInMillis, this, "uptimeInMillis");
+		this.bufferPools = ApiTypeHelper.unmodifiableRequired(builder.bufferPools, this, "bufferPools");
+		this.classes = ApiTypeHelper.requireNonNull(builder.classes, this, "classes");
+		this.gc = ApiTypeHelper.requireNonNull(builder.gc, this, "gc");
+		this.mem = ApiTypeHelper.requireNonNull(builder.mem, this, "mem");
+		this.threads = ApiTypeHelper.requireNonNull(builder.threads, this, "threads");
+		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+		this.uptime = ApiTypeHelper.requireNonNull(builder.uptime, this, "uptime");
+		this.uptimeInMillis = ApiTypeHelper.requireNonNull(builder.uptimeInMillis, this, "uptimeInMillis");
 
 	}
 
-	public static Jvm of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Jvm of(Function<Builder, ObjectBuilder<Jvm>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -149,7 +152,7 @@ public class Jvm implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.bufferPools)) {
+		if (ApiTypeHelper.isDefined(this.bufferPools)) {
 			generator.writeKey("buffer_pools");
 			generator.writeStartObject();
 			for (Map.Entry<String, NodeBufferPool> item0 : this.bufferPools.entrySet()) {
@@ -188,6 +191,7 @@ public class Jvm implements JsonpSerializable {
 	/**
 	 * Builder for {@link Jvm}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Jvm> {
 		private Map<String, NodeBufferPool> bufferPools;
 
@@ -207,15 +211,32 @@ public class Jvm implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code buffer_pools}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>bufferPools</code>.
 		 */
-		public final Builder bufferPools(Map<String, NodeBufferPool> value) {
-			this.bufferPools = value;
+		public final Builder bufferPools(Map<String, NodeBufferPool> map) {
+			this.bufferPools = _mapPutAll(this.bufferPools, map);
 			return this;
 		}
 
-		public final Builder bufferPools(
-				Function<MapBuilder<String, NodeBufferPool, NodeBufferPool.Builder>, ObjectBuilder<Map<String, NodeBufferPool>>> fn) {
-			return bufferPools(fn.apply(new MapBuilder<>(NodeBufferPool.Builder::new)).build());
+		/**
+		 * Required - API name: {@code buffer_pools}
+		 * <p>
+		 * Adds an entry to <code>bufferPools</code>.
+		 */
+		public final Builder bufferPools(String key, NodeBufferPool value) {
+			this.bufferPools = _mapPut(this.bufferPools, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code buffer_pools}
+		 * <p>
+		 * Adds an entry to <code>bufferPools</code> using a builder lambda.
+		 */
+		public final Builder bufferPools(String key,
+				Function<NodeBufferPool.Builder, ObjectBuilder<NodeBufferPool>> fn) {
+			return bufferPools(key, fn.apply(new NodeBufferPool.Builder()).build());
 		}
 
 		/**
@@ -229,10 +250,8 @@ public class Jvm implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code classes}
 		 */
-		public final Builder classes(Consumer<JvmClasses.Builder> fn) {
-			JvmClasses.Builder builder = new JvmClasses.Builder();
-			fn.accept(builder);
-			return this.classes(builder.build());
+		public final Builder classes(Function<JvmClasses.Builder, ObjectBuilder<JvmClasses>> fn) {
+			return this.classes(fn.apply(new JvmClasses.Builder()).build());
 		}
 
 		/**
@@ -246,10 +265,8 @@ public class Jvm implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code gc}
 		 */
-		public final Builder gc(Consumer<GarbageCollector.Builder> fn) {
-			GarbageCollector.Builder builder = new GarbageCollector.Builder();
-			fn.accept(builder);
-			return this.gc(builder.build());
+		public final Builder gc(Function<GarbageCollector.Builder, ObjectBuilder<GarbageCollector>> fn) {
+			return this.gc(fn.apply(new GarbageCollector.Builder()).build());
 		}
 
 		/**
@@ -263,10 +280,8 @@ public class Jvm implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code mem}
 		 */
-		public final Builder mem(Consumer<MemoryStats.Builder> fn) {
-			MemoryStats.Builder builder = new MemoryStats.Builder();
-			fn.accept(builder);
-			return this.mem(builder.build());
+		public final Builder mem(Function<MemoryStats.Builder, ObjectBuilder<MemoryStats>> fn) {
+			return this.mem(fn.apply(new MemoryStats.Builder()).build());
 		}
 
 		/**
@@ -280,10 +295,8 @@ public class Jvm implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code threads}
 		 */
-		public final Builder threads(Consumer<JvmThreads.Builder> fn) {
-			JvmThreads.Builder builder = new JvmThreads.Builder();
-			fn.accept(builder);
-			return this.threads(builder.build());
+		public final Builder threads(Function<JvmThreads.Builder, ObjectBuilder<JvmThreads>> fn) {
+			return this.threads(fn.apply(new JvmThreads.Builder()).build());
 		}
 
 		/**

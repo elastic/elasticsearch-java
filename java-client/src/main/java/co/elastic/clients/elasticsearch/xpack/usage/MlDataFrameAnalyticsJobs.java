@@ -30,15 +30,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.MlDataFrameAnalyticsJobs
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L163-L167">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MlDataFrameAnalyticsJobs implements JsonpSerializable {
 	@Nullable
@@ -54,15 +61,13 @@ public class MlDataFrameAnalyticsJobs implements JsonpSerializable {
 	private MlDataFrameAnalyticsJobs(Builder builder) {
 
 		this.memoryUsage = builder.memoryUsage;
-		this.all = ModelTypeHelper.requireNonNull(builder.all, this, "all");
+		this.all = ApiTypeHelper.requireNonNull(builder.all, this, "all");
 		this.analysisCounts = builder.analysisCounts;
 
 	}
 
-	public static MlDataFrameAnalyticsJobs of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static MlDataFrameAnalyticsJobs of(Function<Builder, ObjectBuilder<MlDataFrameAnalyticsJobs>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -120,6 +125,7 @@ public class MlDataFrameAnalyticsJobs implements JsonpSerializable {
 	/**
 	 * Builder for {@link MlDataFrameAnalyticsJobs}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MlDataFrameAnalyticsJobs> {
 		@Nullable
 		private MlDataFrameAnalyticsJobsMemory memoryUsage;
@@ -140,10 +146,9 @@ public class MlDataFrameAnalyticsJobs implements JsonpSerializable {
 		/**
 		 * API name: {@code memory_usage}
 		 */
-		public final Builder memoryUsage(Consumer<MlDataFrameAnalyticsJobsMemory.Builder> fn) {
-			MlDataFrameAnalyticsJobsMemory.Builder builder = new MlDataFrameAnalyticsJobsMemory.Builder();
-			fn.accept(builder);
-			return this.memoryUsage(builder.build());
+		public final Builder memoryUsage(
+				Function<MlDataFrameAnalyticsJobsMemory.Builder, ObjectBuilder<MlDataFrameAnalyticsJobsMemory>> fn) {
+			return this.memoryUsage(fn.apply(new MlDataFrameAnalyticsJobsMemory.Builder()).build());
 		}
 
 		/**
@@ -157,10 +162,9 @@ public class MlDataFrameAnalyticsJobs implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _all}
 		 */
-		public final Builder all(Consumer<MlDataFrameAnalyticsJobsCount.Builder> fn) {
-			MlDataFrameAnalyticsJobsCount.Builder builder = new MlDataFrameAnalyticsJobsCount.Builder();
-			fn.accept(builder);
-			return this.all(builder.build());
+		public final Builder all(
+				Function<MlDataFrameAnalyticsJobsCount.Builder, ObjectBuilder<MlDataFrameAnalyticsJobsCount>> fn) {
+			return this.all(fn.apply(new MlDataFrameAnalyticsJobsCount.Builder()).build());
 		}
 
 		/**
@@ -174,10 +178,8 @@ public class MlDataFrameAnalyticsJobs implements JsonpSerializable {
 		/**
 		 * API name: {@code analysis_counts}
 		 */
-		public final Builder analysisCounts(Consumer<EmptyObject.Builder> fn) {
-			EmptyObject.Builder builder = new EmptyObject.Builder();
-			fn.accept(builder);
-			return this.analysisCounts(builder.build());
+		public final Builder analysisCounts(Function<EmptyObject.Builder, ObjectBuilder<EmptyObject>> fn) {
+			return this.analysisCounts(fn.apply(new EmptyObject.Builder()).build());
 		}
 
 		/**

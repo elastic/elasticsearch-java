@@ -29,21 +29,25 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.ConfusionMatrixItem
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/evaluate_data_frame/types.ts#L84-L89">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ConfusionMatrixItem implements JsonpSerializable {
 	private final String actualClass;
@@ -58,20 +62,17 @@ public class ConfusionMatrixItem implements JsonpSerializable {
 
 	private ConfusionMatrixItem(Builder builder) {
 
-		this.actualClass = ModelTypeHelper.requireNonNull(builder.actualClass, this, "actualClass");
-		this.actualClassDocCount = ModelTypeHelper.requireNonNull(builder.actualClassDocCount, this,
+		this.actualClass = ApiTypeHelper.requireNonNull(builder.actualClass, this, "actualClass");
+		this.actualClassDocCount = ApiTypeHelper.requireNonNull(builder.actualClassDocCount, this,
 				"actualClassDocCount");
-		this.predictedClasses = ModelTypeHelper.unmodifiableRequired(builder.predictedClasses, this,
-				"predictedClasses");
-		this.otherPredictedClassDocCount = ModelTypeHelper.requireNonNull(builder.otherPredictedClassDocCount, this,
+		this.predictedClasses = ApiTypeHelper.unmodifiableRequired(builder.predictedClasses, this, "predictedClasses");
+		this.otherPredictedClassDocCount = ApiTypeHelper.requireNonNull(builder.otherPredictedClassDocCount, this,
 				"otherPredictedClassDocCount");
 
 	}
 
-	public static ConfusionMatrixItem of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ConfusionMatrixItem of(Function<Builder, ObjectBuilder<ConfusionMatrixItem>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -119,7 +120,7 @@ public class ConfusionMatrixItem implements JsonpSerializable {
 		generator.writeKey("actual_class_doc_count");
 		generator.write(this.actualClassDocCount);
 
-		if (ModelTypeHelper.isDefined(this.predictedClasses)) {
+		if (ApiTypeHelper.isDefined(this.predictedClasses)) {
 			generator.writeKey("predicted_classes");
 			generator.writeStartArray();
 			for (ConfusionMatrixPrediction item0 : this.predictedClasses) {
@@ -139,6 +140,7 @@ public class ConfusionMatrixItem implements JsonpSerializable {
 	/**
 	 * Builder for {@link ConfusionMatrixItem}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ConfusionMatrixItem> {
 		private String actualClass;
 
@@ -166,26 +168,32 @@ public class ConfusionMatrixItem implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code predicted_classes}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>predictedClasses</code>.
 		 */
-		public final Builder predictedClasses(List<ConfusionMatrixPrediction> value) {
-			this.predictedClasses = value;
+		public final Builder predictedClasses(List<ConfusionMatrixPrediction> list) {
+			this.predictedClasses = _listAddAll(this.predictedClasses, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code predicted_classes}
+		 * <p>
+		 * Adds one or more values to <code>predictedClasses</code>.
 		 */
-		public final Builder predictedClasses(ConfusionMatrixPrediction... value) {
-			this.predictedClasses = Arrays.asList(value);
+		public final Builder predictedClasses(ConfusionMatrixPrediction value, ConfusionMatrixPrediction... values) {
+			this.predictedClasses = _listAdd(this.predictedClasses, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code predicted_classes}
+		 * <p>
+		 * Adds a value to <code>predictedClasses</code> using a builder lambda.
 		 */
 		public final Builder predictedClasses(
-				Function<ListBuilder<ConfusionMatrixPrediction, ConfusionMatrixPrediction.Builder>, ObjectBuilder<List<ConfusionMatrixPrediction>>> fn) {
-			return predictedClasses(fn.apply(new ListBuilder<>(ConfusionMatrixPrediction.Builder::new)).build());
+				Function<ConfusionMatrixPrediction.Builder, ObjectBuilder<ConfusionMatrixPrediction>> fn) {
+			return predictedClasses(fn.apply(new ConfusionMatrixPrediction.Builder()).build());
 		}
 
 		/**

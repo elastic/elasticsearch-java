@@ -31,22 +31,26 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: sql.translate.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/sql/translate/TranslateSqlResponse.ts#L26-L33">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TranslateResponse implements JsonpSerializable {
 	private final long size;
@@ -61,17 +65,15 @@ public class TranslateResponse implements JsonpSerializable {
 
 	private TranslateResponse(Builder builder) {
 
-		this.size = ModelTypeHelper.requireNonNull(builder.size, this, "size");
-		this.source = ModelTypeHelper.requireNonNull(builder.source, this, "source");
-		this.fields = ModelTypeHelper.unmodifiableRequired(builder.fields, this, "fields");
-		this.sort = ModelTypeHelper.unmodifiableRequired(builder.sort, this, "sort");
+		this.size = ApiTypeHelper.requireNonNull(builder.size, this, "size");
+		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
+		this.fields = ApiTypeHelper.unmodifiableRequired(builder.fields, this, "fields");
+		this.sort = ApiTypeHelper.unmodifiableRequired(builder.sort, this, "sort");
 
 	}
 
-	public static TranslateResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TranslateResponse of(Function<Builder, ObjectBuilder<TranslateResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -119,7 +121,7 @@ public class TranslateResponse implements JsonpSerializable {
 		generator.writeKey("_source");
 		this.source.serialize(generator, mapper);
 
-		if (ModelTypeHelper.isDefined(this.fields)) {
+		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartArray();
 			for (Map<String, String> item0 : this.fields) {
@@ -137,7 +139,7 @@ public class TranslateResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.sort)) {
+		if (ApiTypeHelper.isDefined(this.sort)) {
 			generator.writeKey("sort");
 			generator.writeStartArray();
 			for (SortOptions item0 : this.sort) {
@@ -155,6 +157,7 @@ public class TranslateResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link TranslateResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TranslateResponse> {
 		private Long size;
 
@@ -183,50 +186,57 @@ public class TranslateResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _source}
 		 */
-		public final Builder source(Consumer<SourceConfig.Builder> fn) {
-			SourceConfig.Builder builder = new SourceConfig.Builder();
-			fn.accept(builder);
-			return this.source(builder.build());
+		public final Builder source(Function<SourceConfig.Builder, ObjectBuilder<SourceConfig>> fn) {
+			return this.source(fn.apply(new SourceConfig.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fields</code>.
 		 */
-		public final Builder fields(List<Map<String, String>> value) {
-			this.fields = value;
+		public final Builder fields(List<Map<String, String>> list) {
+			this.fields = _listAddAll(this.fields, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code fields}
+		 * <p>
+		 * Adds one or more values to <code>fields</code>.
 		 */
-		public final Builder fields(Map<String, String>... value) {
-			this.fields = Arrays.asList(value);
+		public final Builder fields(Map<String, String> value, Map<String, String>... values) {
+			this.fields = _listAdd(this.fields, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code sort}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>sort</code>.
 		 */
-		public final Builder sort(List<SortOptions> value) {
-			this.sort = value;
+		public final Builder sort(List<SortOptions> list) {
+			this.sort = _listAddAll(this.sort, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code sort}
+		 * <p>
+		 * Adds one or more values to <code>sort</code>.
 		 */
-		public final Builder sort(SortOptions... value) {
-			this.sort = Arrays.asList(value);
+		public final Builder sort(SortOptions value, SortOptions... values) {
+			this.sort = _listAdd(this.sort, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code sort}
+		 * <p>
+		 * Adds a value to <code>sort</code> using a builder lambda.
 		 */
-		public final Builder sort(
-				Function<ListBuilder<SortOptions, SortOptions.Builder>, ObjectBuilder<List<SortOptions>>> fn) {
-			return sort(fn.apply(new ListBuilder<>(SortOptions.Builder::new)).build());
+		public final Builder sort(Function<SortOptions.Builder, ObjectBuilder<SortOptions>> fn) {
+			return sort(fn.apply(new SortOptions.Builder()).build());
 		}
 
 		/**

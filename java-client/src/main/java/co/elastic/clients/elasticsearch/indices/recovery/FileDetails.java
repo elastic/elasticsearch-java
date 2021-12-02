@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.recovery.FileDetails
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/recovery/types.ts#L45-L49">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FileDetails implements JsonpSerializable {
 	private final long length;
@@ -52,16 +59,14 @@ public class FileDetails implements JsonpSerializable {
 
 	private FileDetails(Builder builder) {
 
-		this.length = ModelTypeHelper.requireNonNull(builder.length, this, "length");
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
-		this.recovered = ModelTypeHelper.requireNonNull(builder.recovered, this, "recovered");
+		this.length = ApiTypeHelper.requireNonNull(builder.length, this, "length");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.recovered = ApiTypeHelper.requireNonNull(builder.recovered, this, "recovered");
 
 	}
 
-	public static FileDetails of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static FileDetails of(Function<Builder, ObjectBuilder<FileDetails>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -112,6 +117,7 @@ public class FileDetails implements JsonpSerializable {
 	/**
 	 * Builder for {@link FileDetails}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FileDetails> {
 		private Long length;
 

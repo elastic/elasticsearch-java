@@ -28,14 +28,21 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.ConstantScoreQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/compound.ts#L42-L44">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ConstantScoreQuery extends QueryBase implements QueryVariant {
 	private final Query filter;
@@ -45,14 +52,12 @@ public class ConstantScoreQuery extends QueryBase implements QueryVariant {
 	private ConstantScoreQuery(Builder builder) {
 		super(builder);
 
-		this.filter = ModelTypeHelper.requireNonNull(builder.filter, this, "filter");
+		this.filter = ApiTypeHelper.requireNonNull(builder.filter, this, "filter");
 
 	}
 
-	public static ConstantScoreQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ConstantScoreQuery of(Function<Builder, ObjectBuilder<ConstantScoreQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -83,6 +88,7 @@ public class ConstantScoreQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link ConstantScoreQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ConstantScoreQuery> {
@@ -99,10 +105,8 @@ public class ConstantScoreQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - API name: {@code filter}
 		 */
-		public final Builder filter(Consumer<Query.Builder> fn) {
-			Query.Builder builder = new Query.Builder();
-			fn.accept(builder);
-			return this.filter(builder.build());
+		public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.filter(fn.apply(new Query.Builder()).build());
 		}
 
 		@Override

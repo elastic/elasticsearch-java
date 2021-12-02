@@ -34,10 +34,17 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.SearchAsYouTypeProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/core.ts#L232-L242">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SearchAsYouTypeProperty extends CorePropertyBase implements PropertyVariant {
 	@Nullable
@@ -80,10 +87,8 @@ public class SearchAsYouTypeProperty extends CorePropertyBase implements Propert
 
 	}
 
-	public static SearchAsYouTypeProperty of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SearchAsYouTypeProperty of(Function<Builder, ObjectBuilder<SearchAsYouTypeProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -208,6 +213,7 @@ public class SearchAsYouTypeProperty extends CorePropertyBase implements Propert
 	/**
 	 * Builder for {@link SearchAsYouTypeProperty}.
 	 */
+
 	public static class Builder extends CorePropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<SearchAsYouTypeProperty> {

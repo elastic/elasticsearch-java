@@ -34,10 +34,17 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.tasks.TasksRecord
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/tasks/types.ts#L22-L101">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TasksRecord implements JsonpSerializable {
 	@Nullable
@@ -111,10 +118,8 @@ public class TasksRecord implements JsonpSerializable {
 
 	}
 
-	public static TasksRecord of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TasksRecord of(Function<Builder, ObjectBuilder<TasksRecord>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -376,6 +381,7 @@ public class TasksRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link TasksRecord}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TasksRecord> {
 		@Nullable
 		private String id;

@@ -34,7 +34,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,10 +43,18 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.execute_watch.Request
+
+/**
+ * Forces the execution of a stored watch.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/execute_watch/WatcherExecuteWatchRequest.ts#L28-L49">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ExecuteWatchRequest extends RequestBase implements JsonpSerializable {
 	private final Map<String, ActionExecutionMode> actionModes;
@@ -78,8 +86,8 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 
 	private ExecuteWatchRequest(Builder builder) {
 
-		this.actionModes = ModelTypeHelper.unmodifiable(builder.actionModes);
-		this.alternativeInput = ModelTypeHelper.unmodifiable(builder.alternativeInput);
+		this.actionModes = ApiTypeHelper.unmodifiable(builder.actionModes);
+		this.alternativeInput = ApiTypeHelper.unmodifiable(builder.alternativeInput);
 		this.debug = builder.debug;
 		this.id = builder.id;
 		this.ignoreCondition = builder.ignoreCondition;
@@ -90,10 +98,8 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 
 	}
 
-	public static ExecuteWatchRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ExecuteWatchRequest of(Function<Builder, ObjectBuilder<ExecuteWatchRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -181,7 +187,7 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.actionModes)) {
+		if (ApiTypeHelper.isDefined(this.actionModes)) {
 			generator.writeKey("action_modes");
 			generator.writeStartObject();
 			for (Map.Entry<String, ActionExecutionMode> item0 : this.actionModes.entrySet()) {
@@ -191,7 +197,7 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.alternativeInput)) {
+		if (ApiTypeHelper.isDefined(this.alternativeInput)) {
 			generator.writeKey("alternative_input");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.alternativeInput.entrySet()) {
@@ -235,6 +241,7 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Builder for {@link ExecuteWatchRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExecuteWatchRequest> {
 		@Nullable
 		private Map<String, ActionExecutionMode> actionModes;
@@ -265,17 +272,41 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 
 		/**
 		 * API name: {@code action_modes}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>actionModes</code>.
 		 */
-		public final Builder actionModes(@Nullable Map<String, ActionExecutionMode> value) {
-			this.actionModes = value;
+		public final Builder actionModes(Map<String, ActionExecutionMode> map) {
+			this.actionModes = _mapPutAll(this.actionModes, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code action_modes}
+		 * <p>
+		 * Adds an entry to <code>actionModes</code>.
+		 */
+		public final Builder actionModes(String key, ActionExecutionMode value) {
+			this.actionModes = _mapPut(this.actionModes, key, value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code alternative_input}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>alternativeInput</code>.
 		 */
-		public final Builder alternativeInput(@Nullable Map<String, JsonData> value) {
-			this.alternativeInput = value;
+		public final Builder alternativeInput(Map<String, JsonData> map) {
+			this.alternativeInput = _mapPutAll(this.alternativeInput, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code alternative_input}
+		 * <p>
+		 * Adds an entry to <code>alternativeInput</code>.
+		 */
+		public final Builder alternativeInput(String key, JsonData value) {
+			this.alternativeInput = _mapPut(this.alternativeInput, key, value);
 			return this;
 		}
 
@@ -326,10 +357,8 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code simulated_actions}
 		 */
-		public final Builder simulatedActions(Consumer<SimulatedActions.Builder> fn) {
-			SimulatedActions.Builder builder = new SimulatedActions.Builder();
-			fn.accept(builder);
-			return this.simulatedActions(builder.build());
+		public final Builder simulatedActions(Function<SimulatedActions.Builder, ObjectBuilder<SimulatedActions>> fn) {
+			return this.simulatedActions(fn.apply(new SimulatedActions.Builder()).build());
 		}
 
 		/**
@@ -343,10 +372,9 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code trigger_data}
 		 */
-		public final Builder triggerData(Consumer<ScheduleTriggerEvent.Builder> fn) {
-			ScheduleTriggerEvent.Builder builder = new ScheduleTriggerEvent.Builder();
-			fn.accept(builder);
-			return this.triggerData(builder.build());
+		public final Builder triggerData(
+				Function<ScheduleTriggerEvent.Builder, ObjectBuilder<ScheduleTriggerEvent>> fn) {
+			return this.triggerData(fn.apply(new ScheduleTriggerEvent.Builder()).build());
 		}
 
 		/**
@@ -360,10 +388,8 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code watch}
 		 */
-		public final Builder watch(Consumer<Watch.Builder> fn) {
-			Watch.Builder builder = new Watch.Builder();
-			fn.accept(builder);
-			return this.watch(builder.build());
+		public final Builder watch(Function<Watch.Builder, ObjectBuilder<Watch>> fn) {
+			return this.watch(fn.apply(new Watch.Builder()).build());
 		}
 
 		/**

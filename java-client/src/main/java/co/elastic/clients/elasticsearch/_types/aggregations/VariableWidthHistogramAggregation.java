@@ -35,10 +35,17 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.VariableWidthHistogramAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/bucket.ts#L386-L391">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class VariableWidthHistogramAggregation implements AggregationVariant, JsonpSerializable {
 	@Nullable
@@ -64,10 +71,9 @@ public class VariableWidthHistogramAggregation implements AggregationVariant, Js
 
 	}
 
-	public static VariableWidthHistogramAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static VariableWidthHistogramAggregation of(
+			Function<Builder, ObjectBuilder<VariableWidthHistogramAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -149,6 +155,7 @@ public class VariableWidthHistogramAggregation implements AggregationVariant, Js
 	/**
 	 * Builder for {@link VariableWidthHistogramAggregation}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<VariableWidthHistogramAggregation> {
 		@Nullable
 		private String field;

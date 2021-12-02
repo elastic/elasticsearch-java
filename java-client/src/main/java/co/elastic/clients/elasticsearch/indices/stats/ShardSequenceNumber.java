@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: indices.stats.ShardSequenceNumber
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/stats/types.ts#L152-L156">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ShardSequenceNumber implements JsonpSerializable {
 	private final long globalCheckpoint;
@@ -50,16 +57,14 @@ public class ShardSequenceNumber implements JsonpSerializable {
 
 	private ShardSequenceNumber(Builder builder) {
 
-		this.globalCheckpoint = ModelTypeHelper.requireNonNull(builder.globalCheckpoint, this, "globalCheckpoint");
-		this.localCheckpoint = ModelTypeHelper.requireNonNull(builder.localCheckpoint, this, "localCheckpoint");
-		this.maxSeqNo = ModelTypeHelper.requireNonNull(builder.maxSeqNo, this, "maxSeqNo");
+		this.globalCheckpoint = ApiTypeHelper.requireNonNull(builder.globalCheckpoint, this, "globalCheckpoint");
+		this.localCheckpoint = ApiTypeHelper.requireNonNull(builder.localCheckpoint, this, "localCheckpoint");
+		this.maxSeqNo = ApiTypeHelper.requireNonNull(builder.maxSeqNo, this, "maxSeqNo");
 
 	}
 
-	public static ShardSequenceNumber of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ShardSequenceNumber of(Function<Builder, ObjectBuilder<ShardSequenceNumber>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -110,6 +115,7 @@ public class ShardSequenceNumber implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardSequenceNumber}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardSequenceNumber> {
 		private Long globalCheckpoint;
 

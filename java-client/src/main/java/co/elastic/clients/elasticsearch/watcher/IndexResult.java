@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.IndexResult
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Actions.ts#L171-L173">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IndexResult implements JsonpSerializable {
 	private final IndexResultSummary response;
@@ -46,14 +53,12 @@ public class IndexResult implements JsonpSerializable {
 
 	private IndexResult(Builder builder) {
 
-		this.response = ModelTypeHelper.requireNonNull(builder.response, this, "response");
+		this.response = ApiTypeHelper.requireNonNull(builder.response, this, "response");
 
 	}
 
-	public static IndexResult of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IndexResult of(Function<Builder, ObjectBuilder<IndexResult>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -84,6 +89,7 @@ public class IndexResult implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexResult}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexResult> {
 		private IndexResultSummary response;
 
@@ -98,10 +104,8 @@ public class IndexResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code response}
 		 */
-		public final Builder response(Consumer<IndexResultSummary.Builder> fn) {
-			IndexResultSummary.Builder builder = new IndexResultSummary.Builder();
-			fn.accept(builder);
-			return this.response(builder.build());
+		public final Builder response(Function<IndexResultSummary.Builder, ObjectBuilder<IndexResultSummary>> fn) {
+			return this.response(fn.apply(new IndexResultSummary.Builder()).build());
 		}
 
 		/**

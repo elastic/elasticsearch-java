@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -37,10 +37,17 @@ import java.lang.String;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.stats.IndicesStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/stats/types.ts#L81-L86">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IndicesStats implements JsonpSerializable {
 	private final IndexStats primaries;
@@ -56,17 +63,15 @@ public class IndicesStats implements JsonpSerializable {
 
 	private IndicesStats(Builder builder) {
 
-		this.primaries = ModelTypeHelper.requireNonNull(builder.primaries, this, "primaries");
-		this.shards = ModelTypeHelper.unmodifiable(builder.shards);
-		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
+		this.primaries = ApiTypeHelper.requireNonNull(builder.primaries, this, "primaries");
+		this.shards = ApiTypeHelper.unmodifiable(builder.shards);
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
 		this.uuid = builder.uuid;
 
 	}
 
-	public static IndicesStats of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IndicesStats of(Function<Builder, ObjectBuilder<IndicesStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -112,7 +117,7 @@ public class IndicesStats implements JsonpSerializable {
 		generator.writeKey("primaries");
 		this.primaries.serialize(generator, mapper);
 
-		if (ModelTypeHelper.isDefined(this.shards)) {
+		if (ApiTypeHelper.isDefined(this.shards)) {
 			generator.writeKey("shards");
 			generator.writeStartObject();
 			for (Map.Entry<String, List<ShardStats>> item0 : this.shards.entrySet()) {
@@ -146,6 +151,7 @@ public class IndicesStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndicesStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndicesStats> {
 		private IndexStats primaries;
 
@@ -168,17 +174,27 @@ public class IndicesStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code primaries}
 		 */
-		public final Builder primaries(Consumer<IndexStats.Builder> fn) {
-			IndexStats.Builder builder = new IndexStats.Builder();
-			fn.accept(builder);
-			return this.primaries(builder.build());
+		public final Builder primaries(Function<IndexStats.Builder, ObjectBuilder<IndexStats>> fn) {
+			return this.primaries(fn.apply(new IndexStats.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code shards}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>shards</code>.
 		 */
-		public final Builder shards(@Nullable Map<String, List<ShardStats>> value) {
-			this.shards = value;
+		public final Builder shards(Map<String, List<ShardStats>> map) {
+			this.shards = _mapPutAll(this.shards, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code shards}
+		 * <p>
+		 * Adds an entry to <code>shards</code>.
+		 */
+		public final Builder shards(String key, List<ShardStats> value) {
+			this.shards = _mapPut(this.shards, key, value);
 			return this;
 		}
 
@@ -193,10 +209,8 @@ public class IndicesStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total}
 		 */
-		public final Builder total(Consumer<IndexStats.Builder> fn) {
-			IndexStats.Builder builder = new IndexStats.Builder();
-			fn.accept(builder);
-			return this.total(builder.build());
+		public final Builder total(Function<IndexStats.Builder, ObjectBuilder<IndexStats>> fn) {
+			return this.total(fn.apply(new IndexStats.Builder()).build());
 		}
 
 		/**

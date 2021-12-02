@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot._types.Repository
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/snapshot/_types/SnapshotRepository.ts#L23-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Repository implements JsonpSerializable {
 	private final String type;
@@ -52,16 +59,14 @@ public class Repository implements JsonpSerializable {
 
 	private Repository(Builder builder) {
 
-		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 		this.uuid = builder.uuid;
-		this.settings = ModelTypeHelper.requireNonNull(builder.settings, this, "settings");
+		this.settings = ApiTypeHelper.requireNonNull(builder.settings, this, "settings");
 
 	}
 
-	public static Repository of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Repository of(Function<Builder, ObjectBuilder<Repository>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -115,6 +120,7 @@ public class Repository implements JsonpSerializable {
 	/**
 	 * Builder for {@link Repository}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Repository> {
 		private String type;
 
@@ -150,10 +156,8 @@ public class Repository implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code settings}
 		 */
-		public final Builder settings(Consumer<RepositorySettings.Builder> fn) {
-			RepositorySettings.Builder builder = new RepositorySettings.Builder();
-			fn.accept(builder);
-			return this.settings(builder.build());
+		public final Builder settings(Function<RepositorySettings.Builder, ObjectBuilder<RepositorySettings>> fn) {
+			return this.settings(fn.apply(new RepositorySettings.Builder()).build());
 		}
 
 		/**

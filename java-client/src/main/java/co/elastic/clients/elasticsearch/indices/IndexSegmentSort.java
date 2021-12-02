@@ -29,18 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexSegmentSort
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/_types/IndexSegmentSort.ts#L22-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IndexSegmentSort implements JsonpSerializable {
 	private final List<String> field;
@@ -55,17 +61,15 @@ public class IndexSegmentSort implements JsonpSerializable {
 
 	private IndexSegmentSort(Builder builder) {
 
-		this.field = ModelTypeHelper.unmodifiableRequired(builder.field, this, "field");
-		this.order = ModelTypeHelper.unmodifiableRequired(builder.order, this, "order");
-		this.mode = ModelTypeHelper.unmodifiable(builder.mode);
-		this.missing = ModelTypeHelper.unmodifiable(builder.missing);
+		this.field = ApiTypeHelper.unmodifiableRequired(builder.field, this, "field");
+		this.order = ApiTypeHelper.unmodifiableRequired(builder.order, this, "order");
+		this.mode = ApiTypeHelper.unmodifiable(builder.mode);
+		this.missing = ApiTypeHelper.unmodifiable(builder.missing);
 
 	}
 
-	public static IndexSegmentSort of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IndexSegmentSort of(Function<Builder, ObjectBuilder<IndexSegmentSort>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -107,7 +111,7 @@ public class IndexSegmentSort implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.field)) {
+		if (ApiTypeHelper.isDefined(this.field)) {
 			generator.writeKey("field");
 			generator.writeStartArray();
 			for (String item0 : this.field) {
@@ -117,7 +121,7 @@ public class IndexSegmentSort implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.order)) {
+		if (ApiTypeHelper.isDefined(this.order)) {
 			generator.writeKey("order");
 			generator.writeStartArray();
 			for (SegmentSortOrder item0 : this.order) {
@@ -126,7 +130,7 @@ public class IndexSegmentSort implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.mode)) {
+		if (ApiTypeHelper.isDefined(this.mode)) {
 			generator.writeKey("mode");
 			generator.writeStartArray();
 			for (SegmentSortMode item0 : this.mode) {
@@ -135,7 +139,7 @@ public class IndexSegmentSort implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.missing)) {
+		if (ApiTypeHelper.isDefined(this.missing)) {
 			generator.writeKey("missing");
 			generator.writeStartArray();
 			for (SegmentSortMissing item0 : this.missing) {
@@ -152,6 +156,7 @@ public class IndexSegmentSort implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexSegmentSort}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexSegmentSort> {
 		private List<String> field;
 
@@ -165,65 +170,81 @@ public class IndexSegmentSort implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code field}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>field</code>.
 		 */
-		public final Builder field(List<String> value) {
-			this.field = value;
+		public final Builder field(List<String> list) {
+			this.field = _listAddAll(this.field, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code field}
+		 * <p>
+		 * Adds one or more values to <code>field</code>.
 		 */
-		public final Builder field(String... value) {
-			this.field = Arrays.asList(value);
+		public final Builder field(String value, String... values) {
+			this.field = _listAdd(this.field, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code order}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>order</code>.
 		 */
-		public final Builder order(List<SegmentSortOrder> value) {
-			this.order = value;
+		public final Builder order(List<SegmentSortOrder> list) {
+			this.order = _listAddAll(this.order, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code order}
+		 * <p>
+		 * Adds one or more values to <code>order</code>.
 		 */
-		public final Builder order(SegmentSortOrder... value) {
-			this.order = Arrays.asList(value);
+		public final Builder order(SegmentSortOrder value, SegmentSortOrder... values) {
+			this.order = _listAdd(this.order, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code mode}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>mode</code>.
 		 */
-		public final Builder mode(@Nullable List<SegmentSortMode> value) {
-			this.mode = value;
+		public final Builder mode(List<SegmentSortMode> list) {
+			this.mode = _listAddAll(this.mode, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code mode}
+		 * <p>
+		 * Adds one or more values to <code>mode</code>.
 		 */
-		public final Builder mode(SegmentSortMode... value) {
-			this.mode = Arrays.asList(value);
+		public final Builder mode(SegmentSortMode value, SegmentSortMode... values) {
+			this.mode = _listAdd(this.mode, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code missing}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>missing</code>.
 		 */
-		public final Builder missing(@Nullable List<SegmentSortMissing> value) {
-			this.missing = value;
+		public final Builder missing(List<SegmentSortMissing> list) {
+			this.missing = _listAddAll(this.missing, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code missing}
+		 * <p>
+		 * Adds one or more values to <code>missing</code>.
 		 */
-		public final Builder missing(SegmentSortMissing... value) {
-			this.missing = Arrays.asList(value);
+		public final Builder missing(SegmentSortMissing value, SegmentSortMissing... values) {
+			this.missing = _listAdd(this.missing, value, values);
 			return this;
 		}
 

@@ -29,18 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L217-L219">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeInfoAggregation implements JsonpSerializable {
 	private final List<String> types;
@@ -49,14 +55,12 @@ public class NodeInfoAggregation implements JsonpSerializable {
 
 	private NodeInfoAggregation(Builder builder) {
 
-		this.types = ModelTypeHelper.unmodifiableRequired(builder.types, this, "types");
+		this.types = ApiTypeHelper.unmodifiableRequired(builder.types, this, "types");
 
 	}
 
-	public static NodeInfoAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodeInfoAggregation of(Function<Builder, ObjectBuilder<NodeInfoAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -77,7 +81,7 @@ public class NodeInfoAggregation implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.types)) {
+		if (ApiTypeHelper.isDefined(this.types)) {
 			generator.writeKey("types");
 			generator.writeStartArray();
 			for (String item0 : this.types) {
@@ -95,22 +99,27 @@ public class NodeInfoAggregation implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoAggregation}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoAggregation> {
 		private List<String> types;
 
 		/**
 		 * Required - API name: {@code types}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>types</code>.
 		 */
-		public final Builder types(List<String> value) {
-			this.types = value;
+		public final Builder types(List<String> list) {
+			this.types = _listAddAll(this.types, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code types}
+		 * <p>
+		 * Adds one or more values to <code>types</code>.
 		 */
-		public final Builder types(String... value) {
-			this.types = Arrays.asList(value);
+		public final Builder types(String value, String... values) {
+			this.types = _listAdd(this.types, value, values);
 			return this;
 		}
 

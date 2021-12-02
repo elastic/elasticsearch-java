@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: transform.get_transform_stats.TransformProgress
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/transform/get_transform_stats/types.ts#L34-L40">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TransformProgress implements JsonpSerializable {
 	private final long docsIndexed;
@@ -55,18 +62,16 @@ public class TransformProgress implements JsonpSerializable {
 
 	private TransformProgress(Builder builder) {
 
-		this.docsIndexed = ModelTypeHelper.requireNonNull(builder.docsIndexed, this, "docsIndexed");
-		this.docsProcessed = ModelTypeHelper.requireNonNull(builder.docsProcessed, this, "docsProcessed");
-		this.docsRemaining = ModelTypeHelper.requireNonNull(builder.docsRemaining, this, "docsRemaining");
-		this.percentComplete = ModelTypeHelper.requireNonNull(builder.percentComplete, this, "percentComplete");
-		this.totalDocs = ModelTypeHelper.requireNonNull(builder.totalDocs, this, "totalDocs");
+		this.docsIndexed = ApiTypeHelper.requireNonNull(builder.docsIndexed, this, "docsIndexed");
+		this.docsProcessed = ApiTypeHelper.requireNonNull(builder.docsProcessed, this, "docsProcessed");
+		this.docsRemaining = ApiTypeHelper.requireNonNull(builder.docsRemaining, this, "docsRemaining");
+		this.percentComplete = ApiTypeHelper.requireNonNull(builder.percentComplete, this, "percentComplete");
+		this.totalDocs = ApiTypeHelper.requireNonNull(builder.totalDocs, this, "totalDocs");
 
 	}
 
-	public static TransformProgress of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TransformProgress of(Function<Builder, ObjectBuilder<TransformProgress>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -137,6 +142,7 @@ public class TransformProgress implements JsonpSerializable {
 	/**
 	 * Builder for {@link TransformProgress}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TransformProgress> {
 		private Long docsIndexed;
 

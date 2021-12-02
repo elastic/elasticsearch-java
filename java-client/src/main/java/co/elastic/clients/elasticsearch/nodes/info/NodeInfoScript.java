@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoScript
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L266-L269">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeInfoScript implements JsonpSerializable {
 	private final String allowedTypes;
@@ -49,16 +56,14 @@ public class NodeInfoScript implements JsonpSerializable {
 
 	private NodeInfoScript(Builder builder) {
 
-		this.allowedTypes = ModelTypeHelper.requireNonNull(builder.allowedTypes, this, "allowedTypes");
-		this.disableMaxCompilationsRate = ModelTypeHelper.requireNonNull(builder.disableMaxCompilationsRate, this,
+		this.allowedTypes = ApiTypeHelper.requireNonNull(builder.allowedTypes, this, "allowedTypes");
+		this.disableMaxCompilationsRate = ApiTypeHelper.requireNonNull(builder.disableMaxCompilationsRate, this,
 				"disableMaxCompilationsRate");
 
 	}
 
-	public static NodeInfoScript of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodeInfoScript of(Function<Builder, ObjectBuilder<NodeInfoScript>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -99,6 +104,7 @@ public class NodeInfoScript implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoScript}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoScript> {
 		private String allowedTypes;
 

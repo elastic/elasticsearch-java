@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.UnionDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
@@ -38,11 +38,22 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SimpleQueryStringFlags
-// union type: Union[]
+
+/**
+ * Query flags can be either a single flag or a combination of flags, e.g.
+ * <code>OR|AND|PREFIX</code>
+ * 
+ * @see <a href=
+ *      "https://www.elastic.co/guide/en/elasticsearch/reference/7.15/query-dsl-simple-query-string-query.html#supported-flags">Documentation
+ *      on elastic.co</a>
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/fulltext.ts#L271-L276">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SimpleQueryStringFlags implements TaggedUnion<SimpleQueryStringFlags.Kind, Object>, JsonpSerializable {
 
@@ -83,15 +94,13 @@ public class SimpleQueryStringFlags implements TaggedUnion<SimpleQueryStringFlag
 
 	private SimpleQueryStringFlags(Builder builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static SimpleQueryStringFlags of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SimpleQueryStringFlags of(Function<Builder, ObjectBuilder<SimpleQueryStringFlags>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

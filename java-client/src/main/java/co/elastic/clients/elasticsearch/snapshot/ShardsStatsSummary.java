@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot._types.ShardsStatsSummary
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/snapshot/_types/SnapshotShardsStatus.ts#L28-L33">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ShardsStatsSummary implements JsonpSerializable {
 	private final ShardsStatsSummaryItem incremental;
@@ -53,17 +60,15 @@ public class ShardsStatsSummary implements JsonpSerializable {
 
 	private ShardsStatsSummary(Builder builder) {
 
-		this.incremental = ModelTypeHelper.requireNonNull(builder.incremental, this, "incremental");
-		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
-		this.startTimeInMillis = ModelTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
-		this.timeInMillis = ModelTypeHelper.requireNonNull(builder.timeInMillis, this, "timeInMillis");
+		this.incremental = ApiTypeHelper.requireNonNull(builder.incremental, this, "incremental");
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+		this.startTimeInMillis = ApiTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
+		this.timeInMillis = ApiTypeHelper.requireNonNull(builder.timeInMillis, this, "timeInMillis");
 
 	}
 
-	public static ShardsStatsSummary of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ShardsStatsSummary of(Function<Builder, ObjectBuilder<ShardsStatsSummary>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -124,6 +129,7 @@ public class ShardsStatsSummary implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardsStatsSummary}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardsStatsSummary> {
 		private ShardsStatsSummaryItem incremental;
 
@@ -144,10 +150,9 @@ public class ShardsStatsSummary implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code incremental}
 		 */
-		public final Builder incremental(Consumer<ShardsStatsSummaryItem.Builder> fn) {
-			ShardsStatsSummaryItem.Builder builder = new ShardsStatsSummaryItem.Builder();
-			fn.accept(builder);
-			return this.incremental(builder.build());
+		public final Builder incremental(
+				Function<ShardsStatsSummaryItem.Builder, ObjectBuilder<ShardsStatsSummaryItem>> fn) {
+			return this.incremental(fn.apply(new ShardsStatsSummaryItem.Builder()).build());
 		}
 
 		/**
@@ -161,10 +166,8 @@ public class ShardsStatsSummary implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total}
 		 */
-		public final Builder total(Consumer<ShardsStatsSummaryItem.Builder> fn) {
-			ShardsStatsSummaryItem.Builder builder = new ShardsStatsSummaryItem.Builder();
-			fn.accept(builder);
-			return this.total(builder.build());
+		public final Builder total(Function<ShardsStatsSummaryItem.Builder, ObjectBuilder<ShardsStatsSummaryItem>> fn) {
+			return this.total(fn.apply(new ShardsStatsSummaryItem.Builder()).build());
 		}
 
 		/**

@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -37,10 +37,17 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.IntervalsFuzzy
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/fulltext.ts#L88-L97">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IntervalsFuzzy implements IntervalsQueryVariant, IntervalsVariant, JsonpSerializable {
 	@Nullable
@@ -67,16 +74,14 @@ public class IntervalsFuzzy implements IntervalsQueryVariant, IntervalsVariant, 
 		this.analyzer = builder.analyzer;
 		this.fuzziness = builder.fuzziness;
 		this.prefixLength = builder.prefixLength;
-		this.term = ModelTypeHelper.requireNonNull(builder.term, this, "term");
+		this.term = ApiTypeHelper.requireNonNull(builder.term, this, "term");
 		this.transpositions = builder.transpositions;
 		this.useField = builder.useField;
 
 	}
 
-	public static IntervalsFuzzy of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IntervalsFuzzy of(Function<Builder, ObjectBuilder<IntervalsFuzzy>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -189,6 +194,7 @@ public class IntervalsFuzzy implements IntervalsQueryVariant, IntervalsVariant, 
 	/**
 	 * Builder for {@link IntervalsFuzzy}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IntervalsFuzzy> {
 		@Nullable
 		private String analyzer;

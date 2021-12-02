@@ -30,17 +30,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoXpack
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L221-L225">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeInfoXpack implements JsonpSerializable {
 	@Nullable
@@ -55,15 +62,13 @@ public class NodeInfoXpack implements JsonpSerializable {
 	private NodeInfoXpack(Builder builder) {
 
 		this.license = builder.license;
-		this.security = ModelTypeHelper.requireNonNull(builder.security, this, "security");
-		this.notification = ModelTypeHelper.unmodifiable(builder.notification);
+		this.security = ApiTypeHelper.requireNonNull(builder.security, this, "security");
+		this.notification = ApiTypeHelper.unmodifiable(builder.notification);
 
 	}
 
-	public static NodeInfoXpack of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodeInfoXpack of(Function<Builder, ObjectBuilder<NodeInfoXpack>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -107,7 +112,7 @@ public class NodeInfoXpack implements JsonpSerializable {
 		generator.writeKey("security");
 		this.security.serialize(generator, mapper);
 
-		if (ModelTypeHelper.isDefined(this.notification)) {
+		if (ApiTypeHelper.isDefined(this.notification)) {
 			generator.writeKey("notification");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.notification.entrySet()) {
@@ -126,6 +131,7 @@ public class NodeInfoXpack implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoXpack}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoXpack> {
 		@Nullable
 		private NodeInfoXpackLicense license;
@@ -146,10 +152,8 @@ public class NodeInfoXpack implements JsonpSerializable {
 		/**
 		 * API name: {@code license}
 		 */
-		public final Builder license(Consumer<NodeInfoXpackLicense.Builder> fn) {
-			NodeInfoXpackLicense.Builder builder = new NodeInfoXpackLicense.Builder();
-			fn.accept(builder);
-			return this.license(builder.build());
+		public final Builder license(Function<NodeInfoXpackLicense.Builder, ObjectBuilder<NodeInfoXpackLicense>> fn) {
+			return this.license(fn.apply(new NodeInfoXpackLicense.Builder()).build());
 		}
 
 		/**
@@ -163,17 +167,28 @@ public class NodeInfoXpack implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code security}
 		 */
-		public final Builder security(Consumer<NodeInfoXpackSecurity.Builder> fn) {
-			NodeInfoXpackSecurity.Builder builder = new NodeInfoXpackSecurity.Builder();
-			fn.accept(builder);
-			return this.security(builder.build());
+		public final Builder security(
+				Function<NodeInfoXpackSecurity.Builder, ObjectBuilder<NodeInfoXpackSecurity>> fn) {
+			return this.security(fn.apply(new NodeInfoXpackSecurity.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code notification}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>notification</code>.
 		 */
-		public final Builder notification(@Nullable Map<String, JsonData> value) {
-			this.notification = value;
+		public final Builder notification(Map<String, JsonData> map) {
+			this.notification = _mapPutAll(this.notification, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code notification}
+		 * <p>
+		 * Adds an entry to <code>notification</code>.
+		 */
+		public final Builder notification(String key, JsonData value) {
+			this.notification = _mapPut(this.notification, key, value);
 			return this;
 		}
 

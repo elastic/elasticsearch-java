@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.EqlFeaturesKeys
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L107-L113">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class EqlFeaturesKeys implements JsonpSerializable {
 	private final Number joinKeysTwo;
@@ -55,19 +62,16 @@ public class EqlFeaturesKeys implements JsonpSerializable {
 
 	private EqlFeaturesKeys(Builder builder) {
 
-		this.joinKeysTwo = ModelTypeHelper.requireNonNull(builder.joinKeysTwo, this, "joinKeysTwo");
-		this.joinKeysOne = ModelTypeHelper.requireNonNull(builder.joinKeysOne, this, "joinKeysOne");
-		this.joinKeysThree = ModelTypeHelper.requireNonNull(builder.joinKeysThree, this, "joinKeysThree");
-		this.joinKeysFiveOrMore = ModelTypeHelper.requireNonNull(builder.joinKeysFiveOrMore, this,
-				"joinKeysFiveOrMore");
-		this.joinKeysFour = ModelTypeHelper.requireNonNull(builder.joinKeysFour, this, "joinKeysFour");
+		this.joinKeysTwo = ApiTypeHelper.requireNonNull(builder.joinKeysTwo, this, "joinKeysTwo");
+		this.joinKeysOne = ApiTypeHelper.requireNonNull(builder.joinKeysOne, this, "joinKeysOne");
+		this.joinKeysThree = ApiTypeHelper.requireNonNull(builder.joinKeysThree, this, "joinKeysThree");
+		this.joinKeysFiveOrMore = ApiTypeHelper.requireNonNull(builder.joinKeysFiveOrMore, this, "joinKeysFiveOrMore");
+		this.joinKeysFour = ApiTypeHelper.requireNonNull(builder.joinKeysFour, this, "joinKeysFour");
 
 	}
 
-	public static EqlFeaturesKeys of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static EqlFeaturesKeys of(Function<Builder, ObjectBuilder<EqlFeaturesKeys>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -138,6 +142,7 @@ public class EqlFeaturesKeys implements JsonpSerializable {
 	/**
 	 * Builder for {@link EqlFeaturesKeys}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<EqlFeaturesKeys> {
 		private Number joinKeysTwo;
 

@@ -31,9 +31,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.mapping.VersionProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/core.ts#L274-L276">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class VersionProperty extends DocValuesPropertyBase implements PropertyVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -43,10 +50,8 @@ public class VersionProperty extends DocValuesPropertyBase implements PropertyVa
 
 	}
 
-	public static VersionProperty of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static VersionProperty of(Function<Builder, ObjectBuilder<VersionProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -69,6 +74,7 @@ public class VersionProperty extends DocValuesPropertyBase implements PropertyVa
 	/**
 	 * Builder for {@link VersionProperty}.
 	 */
+
 	public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<VersionProperty> {

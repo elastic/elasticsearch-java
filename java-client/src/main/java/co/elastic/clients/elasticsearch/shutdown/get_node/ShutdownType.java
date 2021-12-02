@@ -27,6 +27,12 @@ import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/shutdown/get_node/ShutdownGetNodeResponse.ts#L40-L43">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public enum ShutdownType implements JsonEnum {
 	Remove("remove"),

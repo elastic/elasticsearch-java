@@ -28,16 +28,23 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.FingerprintTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L192-L196">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FingerprintTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final int maxOutputSize;
@@ -49,15 +56,13 @@ public class FingerprintTokenFilter extends TokenFilterBase implements TokenFilt
 	private FingerprintTokenFilter(Builder builder) {
 		super(builder);
 
-		this.maxOutputSize = ModelTypeHelper.requireNonNull(builder.maxOutputSize, this, "maxOutputSize");
-		this.separator = ModelTypeHelper.requireNonNull(builder.separator, this, "separator");
+		this.maxOutputSize = ApiTypeHelper.requireNonNull(builder.maxOutputSize, this, "maxOutputSize");
+		this.separator = ApiTypeHelper.requireNonNull(builder.separator, this, "separator");
 
 	}
 
-	public static FingerprintTokenFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static FingerprintTokenFilter of(Function<Builder, ObjectBuilder<FingerprintTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -99,6 +104,7 @@ public class FingerprintTokenFilter extends TokenFilterBase implements TokenFilt
 	/**
 	 * Builder for {@link FingerprintTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<FingerprintTokenFilter> {

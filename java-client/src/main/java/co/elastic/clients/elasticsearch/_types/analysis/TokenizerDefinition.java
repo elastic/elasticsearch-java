@@ -30,24 +30,33 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.TokenizerDefinition
-// union type: InternalTag[tag=type]
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/tokenizers.ts#L123-L138">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TokenizerDefinition
 		implements
 			TaggedUnion<TokenizerDefinition.Kind, TokenizerDefinitionVariant>,
 			JsonpSerializable {
 
+	/**
+	 * {@link TokenizerDefinition} variant kinds.
+	 */
 	/**
 	 * {@link TokenizerDefinition} variant kinds.
 	 */
@@ -110,22 +119,20 @@ public class TokenizerDefinition
 
 	public TokenizerDefinition(TokenizerDefinitionVariant value) {
 
-		this._kind = ModelTypeHelper.requireNonNull(value._tokenizerDefinitionKind(), this, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(value._tokenizerDefinitionKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
 	private TokenizerDefinition(Builder builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static TokenizerDefinition of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TokenizerDefinition of(Function<Builder, ObjectBuilder<TokenizerDefinition>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -384,10 +391,9 @@ public class TokenizerDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenizerDefinition> charGroup(Consumer<CharGroupTokenizer.Builder> fn) {
-			CharGroupTokenizer.Builder builder = new CharGroupTokenizer.Builder();
-			fn.accept(builder);
-			return this.charGroup(builder.build());
+		public ObjectBuilder<TokenizerDefinition> charGroup(
+				Function<CharGroupTokenizer.Builder, ObjectBuilder<CharGroupTokenizer>> fn) {
+			return this.charGroup(fn.apply(new CharGroupTokenizer.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenizerDefinition> edgeNgram(EdgeNGramTokenizer v) {
@@ -396,10 +402,9 @@ public class TokenizerDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenizerDefinition> edgeNgram(Consumer<EdgeNGramTokenizer.Builder> fn) {
-			EdgeNGramTokenizer.Builder builder = new EdgeNGramTokenizer.Builder();
-			fn.accept(builder);
-			return this.edgeNgram(builder.build());
+		public ObjectBuilder<TokenizerDefinition> edgeNgram(
+				Function<EdgeNGramTokenizer.Builder, ObjectBuilder<EdgeNGramTokenizer>> fn) {
+			return this.edgeNgram(fn.apply(new EdgeNGramTokenizer.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenizerDefinition> icuTokenizer(IcuTokenizer v) {
@@ -408,10 +413,9 @@ public class TokenizerDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenizerDefinition> icuTokenizer(Consumer<IcuTokenizer.Builder> fn) {
-			IcuTokenizer.Builder builder = new IcuTokenizer.Builder();
-			fn.accept(builder);
-			return this.icuTokenizer(builder.build());
+		public ObjectBuilder<TokenizerDefinition> icuTokenizer(
+				Function<IcuTokenizer.Builder, ObjectBuilder<IcuTokenizer>> fn) {
+			return this.icuTokenizer(fn.apply(new IcuTokenizer.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenizerDefinition> keyword(KeywordTokenizer v) {
@@ -420,10 +424,9 @@ public class TokenizerDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenizerDefinition> keyword(Consumer<KeywordTokenizer.Builder> fn) {
-			KeywordTokenizer.Builder builder = new KeywordTokenizer.Builder();
-			fn.accept(builder);
-			return this.keyword(builder.build());
+		public ObjectBuilder<TokenizerDefinition> keyword(
+				Function<KeywordTokenizer.Builder, ObjectBuilder<KeywordTokenizer>> fn) {
+			return this.keyword(fn.apply(new KeywordTokenizer.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenizerDefinition> kuromojiTokenizer(KuromojiTokenizer v) {
@@ -432,10 +435,9 @@ public class TokenizerDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenizerDefinition> kuromojiTokenizer(Consumer<KuromojiTokenizer.Builder> fn) {
-			KuromojiTokenizer.Builder builder = new KuromojiTokenizer.Builder();
-			fn.accept(builder);
-			return this.kuromojiTokenizer(builder.build());
+		public ObjectBuilder<TokenizerDefinition> kuromojiTokenizer(
+				Function<KuromojiTokenizer.Builder, ObjectBuilder<KuromojiTokenizer>> fn) {
+			return this.kuromojiTokenizer(fn.apply(new KuromojiTokenizer.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenizerDefinition> letter(LetterTokenizer v) {
@@ -444,10 +446,9 @@ public class TokenizerDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenizerDefinition> letter(Consumer<LetterTokenizer.Builder> fn) {
-			LetterTokenizer.Builder builder = new LetterTokenizer.Builder();
-			fn.accept(builder);
-			return this.letter(builder.build());
+		public ObjectBuilder<TokenizerDefinition> letter(
+				Function<LetterTokenizer.Builder, ObjectBuilder<LetterTokenizer>> fn) {
+			return this.letter(fn.apply(new LetterTokenizer.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenizerDefinition> lowercase(LowercaseTokenizer v) {
@@ -456,10 +457,9 @@ public class TokenizerDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenizerDefinition> lowercase(Consumer<LowercaseTokenizer.Builder> fn) {
-			LowercaseTokenizer.Builder builder = new LowercaseTokenizer.Builder();
-			fn.accept(builder);
-			return this.lowercase(builder.build());
+		public ObjectBuilder<TokenizerDefinition> lowercase(
+				Function<LowercaseTokenizer.Builder, ObjectBuilder<LowercaseTokenizer>> fn) {
+			return this.lowercase(fn.apply(new LowercaseTokenizer.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenizerDefinition> ngram(NGramTokenizer v) {
@@ -468,10 +468,9 @@ public class TokenizerDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenizerDefinition> ngram(Consumer<NGramTokenizer.Builder> fn) {
-			NGramTokenizer.Builder builder = new NGramTokenizer.Builder();
-			fn.accept(builder);
-			return this.ngram(builder.build());
+		public ObjectBuilder<TokenizerDefinition> ngram(
+				Function<NGramTokenizer.Builder, ObjectBuilder<NGramTokenizer>> fn) {
+			return this.ngram(fn.apply(new NGramTokenizer.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenizerDefinition> noriTokenizer(NoriTokenizer v) {
@@ -480,10 +479,9 @@ public class TokenizerDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenizerDefinition> noriTokenizer(Consumer<NoriTokenizer.Builder> fn) {
-			NoriTokenizer.Builder builder = new NoriTokenizer.Builder();
-			fn.accept(builder);
-			return this.noriTokenizer(builder.build());
+		public ObjectBuilder<TokenizerDefinition> noriTokenizer(
+				Function<NoriTokenizer.Builder, ObjectBuilder<NoriTokenizer>> fn) {
+			return this.noriTokenizer(fn.apply(new NoriTokenizer.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenizerDefinition> pathHierarchy(PathHierarchyTokenizer v) {
@@ -492,10 +490,9 @@ public class TokenizerDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenizerDefinition> pathHierarchy(Consumer<PathHierarchyTokenizer.Builder> fn) {
-			PathHierarchyTokenizer.Builder builder = new PathHierarchyTokenizer.Builder();
-			fn.accept(builder);
-			return this.pathHierarchy(builder.build());
+		public ObjectBuilder<TokenizerDefinition> pathHierarchy(
+				Function<PathHierarchyTokenizer.Builder, ObjectBuilder<PathHierarchyTokenizer>> fn) {
+			return this.pathHierarchy(fn.apply(new PathHierarchyTokenizer.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenizerDefinition> pattern(PatternTokenizer v) {
@@ -504,10 +501,9 @@ public class TokenizerDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenizerDefinition> pattern(Consumer<PatternTokenizer.Builder> fn) {
-			PatternTokenizer.Builder builder = new PatternTokenizer.Builder();
-			fn.accept(builder);
-			return this.pattern(builder.build());
+		public ObjectBuilder<TokenizerDefinition> pattern(
+				Function<PatternTokenizer.Builder, ObjectBuilder<PatternTokenizer>> fn) {
+			return this.pattern(fn.apply(new PatternTokenizer.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenizerDefinition> standard(StandardTokenizer v) {
@@ -516,10 +512,9 @@ public class TokenizerDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenizerDefinition> standard(Consumer<StandardTokenizer.Builder> fn) {
-			StandardTokenizer.Builder builder = new StandardTokenizer.Builder();
-			fn.accept(builder);
-			return this.standard(builder.build());
+		public ObjectBuilder<TokenizerDefinition> standard(
+				Function<StandardTokenizer.Builder, ObjectBuilder<StandardTokenizer>> fn) {
+			return this.standard(fn.apply(new StandardTokenizer.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenizerDefinition> uaxUrlEmail(UaxEmailUrlTokenizer v) {
@@ -528,10 +523,9 @@ public class TokenizerDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenizerDefinition> uaxUrlEmail(Consumer<UaxEmailUrlTokenizer.Builder> fn) {
-			UaxEmailUrlTokenizer.Builder builder = new UaxEmailUrlTokenizer.Builder();
-			fn.accept(builder);
-			return this.uaxUrlEmail(builder.build());
+		public ObjectBuilder<TokenizerDefinition> uaxUrlEmail(
+				Function<UaxEmailUrlTokenizer.Builder, ObjectBuilder<UaxEmailUrlTokenizer>> fn) {
+			return this.uaxUrlEmail(fn.apply(new UaxEmailUrlTokenizer.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenizerDefinition> whitespace(WhitespaceTokenizer v) {
@@ -540,10 +534,9 @@ public class TokenizerDefinition
 			return this;
 		}
 
-		public ObjectBuilder<TokenizerDefinition> whitespace(Consumer<WhitespaceTokenizer.Builder> fn) {
-			WhitespaceTokenizer.Builder builder = new WhitespaceTokenizer.Builder();
-			fn.accept(builder);
-			return this.whitespace(builder.build());
+		public ObjectBuilder<TokenizerDefinition> whitespace(
+				Function<WhitespaceTokenizer.Builder, ObjectBuilder<WhitespaceTokenizer>> fn) {
+			return this.whitespace(fn.apply(new WhitespaceTokenizer.Builder()).build());
 		}
 
 		public TokenizerDefinition build() {

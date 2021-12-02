@@ -30,17 +30,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: graph._types.ExploreControls
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/graph/_types/ExploreControls.ts#L24-L29">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ExploreControls implements JsonpSerializable {
 	@Nullable
@@ -61,14 +68,12 @@ public class ExploreControls implements JsonpSerializable {
 		this.sampleDiversity = builder.sampleDiversity;
 		this.sampleSize = builder.sampleSize;
 		this.timeout = builder.timeout;
-		this.useSignificance = ModelTypeHelper.requireNonNull(builder.useSignificance, this, "useSignificance");
+		this.useSignificance = ApiTypeHelper.requireNonNull(builder.useSignificance, this, "useSignificance");
 
 	}
 
-	public static ExploreControls of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ExploreControls of(Function<Builder, ObjectBuilder<ExploreControls>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -138,6 +143,7 @@ public class ExploreControls implements JsonpSerializable {
 	/**
 	 * Builder for {@link ExploreControls}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExploreControls> {
 		@Nullable
 		private SampleDiversity sampleDiversity;
@@ -161,10 +167,8 @@ public class ExploreControls implements JsonpSerializable {
 		/**
 		 * API name: {@code sample_diversity}
 		 */
-		public final Builder sampleDiversity(Consumer<SampleDiversity.Builder> fn) {
-			SampleDiversity.Builder builder = new SampleDiversity.Builder();
-			fn.accept(builder);
-			return this.sampleDiversity(builder.build());
+		public final Builder sampleDiversity(Function<SampleDiversity.Builder, ObjectBuilder<SampleDiversity>> fn) {
+			return this.sampleDiversity(fn.apply(new SampleDiversity.Builder()).build());
 		}
 
 		/**
@@ -186,10 +190,8 @@ public class ExploreControls implements JsonpSerializable {
 		/**
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.timeout(builder.build());
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

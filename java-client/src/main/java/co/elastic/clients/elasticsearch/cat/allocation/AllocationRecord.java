@@ -34,10 +34,17 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.allocation.AllocationRecord
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/allocation/types.ts#L24-L69">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AllocationRecord implements JsonpSerializable {
 	@Nullable
@@ -83,10 +90,8 @@ public class AllocationRecord implements JsonpSerializable {
 
 	}
 
-	public static AllocationRecord of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static AllocationRecord of(Function<Builder, ObjectBuilder<AllocationRecord>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -243,6 +248,7 @@ public class AllocationRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link AllocationRecord}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AllocationRecord> {
 		@Nullable
 		private String shards;

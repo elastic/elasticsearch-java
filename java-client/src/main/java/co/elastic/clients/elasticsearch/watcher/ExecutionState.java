@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ExecutionState
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Action.ts#L92-L95">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ExecutionState implements JsonpSerializable {
 	private final boolean successful;
@@ -50,15 +57,13 @@ public class ExecutionState implements JsonpSerializable {
 
 	private ExecutionState(Builder builder) {
 
-		this.successful = ModelTypeHelper.requireNonNull(builder.successful, this, "successful");
-		this.timestamp = ModelTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+		this.successful = ApiTypeHelper.requireNonNull(builder.successful, this, "successful");
+		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
 
 	}
 
-	public static ExecutionState of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ExecutionState of(Function<Builder, ObjectBuilder<ExecutionState>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -99,6 +104,7 @@ public class ExecutionState implements JsonpSerializable {
 	/**
 	 * Builder for {@link ExecutionState}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExecutionState> {
 		private Boolean successful;
 

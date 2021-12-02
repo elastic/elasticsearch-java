@@ -39,10 +39,18 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_api_key.Request
+
+/**
+ * Retrieves information for one or more API keys.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_api_key/SecurityGetApiKeyRequest.ts#L23-L36">API
+ *      specification</a>
+ */
 
 public class GetApiKeyRequest extends RequestBase {
 	@Nullable
@@ -72,10 +80,8 @@ public class GetApiKeyRequest extends RequestBase {
 
 	}
 
-	public static GetApiKeyRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetApiKeyRequest of(Function<Builder, ObjectBuilder<GetApiKeyRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -133,6 +139,7 @@ public class GetApiKeyRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetApiKeyRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetApiKeyRequest> {
 		@Nullable
 		private String id;

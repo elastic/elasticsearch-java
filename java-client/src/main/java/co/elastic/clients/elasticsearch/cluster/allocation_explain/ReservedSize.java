@@ -29,19 +29,25 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.ReservedSize
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/allocation_explain/types.ts#L71-L76">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ReservedSize implements JsonpSerializable {
 	private final String nodeId;
@@ -56,17 +62,15 @@ public class ReservedSize implements JsonpSerializable {
 
 	private ReservedSize(Builder builder) {
 
-		this.nodeId = ModelTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
-		this.path = ModelTypeHelper.requireNonNull(builder.path, this, "path");
-		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
-		this.shards = ModelTypeHelper.unmodifiableRequired(builder.shards, this, "shards");
+		this.nodeId = ApiTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
+		this.path = ApiTypeHelper.requireNonNull(builder.path, this, "path");
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+		this.shards = ApiTypeHelper.unmodifiableRequired(builder.shards, this, "shards");
 
 	}
 
-	public static ReservedSize of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ReservedSize of(Function<Builder, ObjectBuilder<ReservedSize>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -117,7 +121,7 @@ public class ReservedSize implements JsonpSerializable {
 		generator.writeKey("total");
 		generator.write(this.total);
 
-		if (ModelTypeHelper.isDefined(this.shards)) {
+		if (ApiTypeHelper.isDefined(this.shards)) {
 			generator.writeKey("shards");
 			generator.writeStartArray();
 			for (String item0 : this.shards) {
@@ -135,6 +139,7 @@ public class ReservedSize implements JsonpSerializable {
 	/**
 	 * Builder for {@link ReservedSize}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ReservedSize> {
 		private String nodeId;
 
@@ -170,17 +175,21 @@ public class ReservedSize implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code shards}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>shards</code>.
 		 */
-		public final Builder shards(List<String> value) {
-			this.shards = value;
+		public final Builder shards(List<String> list) {
+			this.shards = _listAddAll(this.shards, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code shards}
+		 * <p>
+		 * Adds one or more values to <code>shards</code>.
 		 */
-		public final Builder shards(String... value) {
-			this.shards = Arrays.asList(value);
+		public final Builder shards(String value, String... values) {
+			this.shards = _listAdd(this.shards, value, values);
 			return this;
 		}
 

@@ -30,15 +30,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.state.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/state/ClusterStateResponse.ts#L22-L29">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class StateResponse implements JsonpSerializable {
 	private final JsonData valueBody;
@@ -47,14 +54,12 @@ public class StateResponse implements JsonpSerializable {
 
 	private StateResponse(Builder builder) {
 
-		this.valueBody = ModelTypeHelper.requireNonNull(builder.valueBody, this, "valueBody");
+		this.valueBody = ApiTypeHelper.requireNonNull(builder.valueBody, this, "valueBody");
 
 	}
 
-	public static StateResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static StateResponse of(Function<Builder, ObjectBuilder<StateResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -79,6 +84,7 @@ public class StateResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link StateResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StateResponse> {
 		private JsonData valueBody;
 

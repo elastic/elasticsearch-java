@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
+import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.elasticsearch._types.SortOrder;
 import co.elastic.clients.elasticsearch.transform.PivotGroupBy;
@@ -32,20 +33,26 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TermsAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/bucket.ts#L341-L357">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TermsAggregation extends BucketAggregationBase implements AggregationVariant, PivotGroupByVariant {
 	@Nullable
@@ -67,7 +74,7 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 	private final Integer minDocCount;
 
 	@Nullable
-	private final String missing;
+	private final FieldValue missing;
 
 	@Nullable
 	private final MissingOrder missingOrder;
@@ -107,7 +114,7 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		this.missingOrder = builder.missingOrder;
 		this.missingBucket = builder.missingBucket;
 		this.valueType = builder.valueType;
-		this.order = ModelTypeHelper.unmodifiable(builder.order);
+		this.order = ApiTypeHelper.unmodifiable(builder.order);
 		this.script = builder.script;
 		this.shardSize = builder.shardSize;
 		this.showTermDocCountError = builder.showTermDocCountError;
@@ -115,10 +122,8 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 
 	}
 
-	public static TermsAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TermsAggregation of(Function<Builder, ObjectBuilder<TermsAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -189,7 +194,7 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 	 * API name: {@code missing}
 	 */
 	@Nullable
-	public final String missing() {
+	public final FieldValue missing() {
 		return this.missing;
 	}
 
@@ -289,7 +294,7 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		}
 		if (this.missing != null) {
 			generator.writeKey("missing");
-			generator.write(this.missing);
+			this.missing.serialize(generator, mapper);
 
 		}
 		if (this.missingOrder != null) {
@@ -306,7 +311,7 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 			generator.write(this.valueType);
 
 		}
-		if (ModelTypeHelper.isDefined(this.order)) {
+		if (ApiTypeHelper.isDefined(this.order)) {
 			generator.writeKey("order");
 			generator.writeStartArray();
 			for (Map<String, SortOrder> item0 : this.order) {
@@ -351,6 +356,7 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 	/**
 	 * Builder for {@link TermsAggregation}.
 	 */
+
 	public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<TermsAggregation> {
@@ -373,7 +379,7 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		private Integer minDocCount;
 
 		@Nullable
-		private String missing;
+		private FieldValue missing;
 
 		@Nullable
 		private MissingOrder missingOrder;
@@ -418,10 +424,8 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		/**
 		 * API name: {@code exclude}
 		 */
-		public final Builder exclude(Consumer<TermsExclude.Builder> fn) {
-			TermsExclude.Builder builder = new TermsExclude.Builder();
-			fn.accept(builder);
-			return this.exclude(builder.build());
+		public final Builder exclude(Function<TermsExclude.Builder, ObjectBuilder<TermsExclude>> fn) {
+			return this.exclude(fn.apply(new TermsExclude.Builder()).build());
 		}
 
 		/**
@@ -451,10 +455,8 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		/**
 		 * API name: {@code include}
 		 */
-		public final Builder include(Consumer<TermsInclude.Builder> fn) {
-			TermsInclude.Builder builder = new TermsInclude.Builder();
-			fn.accept(builder);
-			return this.include(builder.build());
+		public final Builder include(Function<TermsInclude.Builder, ObjectBuilder<TermsInclude>> fn) {
+			return this.include(fn.apply(new TermsInclude.Builder()).build());
 		}
 
 		/**
@@ -468,9 +470,16 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		/**
 		 * API name: {@code missing}
 		 */
-		public final Builder missing(@Nullable String value) {
+		public final Builder missing(@Nullable FieldValue value) {
 			this.missing = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code missing}
+		 */
+		public final Builder missing(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
+			return this.missing(fn.apply(new FieldValue.Builder()).build());
 		}
 
 		/**
@@ -499,17 +508,21 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 
 		/**
 		 * API name: {@code order}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>order</code>.
 		 */
-		public final Builder order(@Nullable List<Map<String, SortOrder>> value) {
-			this.order = value;
+		public final Builder order(List<Map<String, SortOrder>> list) {
+			this.order = _listAddAll(this.order, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code order}
+		 * <p>
+		 * Adds one or more values to <code>order</code>.
 		 */
-		public final Builder order(Map<String, SortOrder>... value) {
-			this.order = Arrays.asList(value);
+		public final Builder order(Map<String, SortOrder> value, Map<String, SortOrder>... values) {
+			this.order = _listAdd(this.order, value, values);
 			return this;
 		}
 
@@ -524,10 +537,8 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		/**
 		 * API name: {@code script}
 		 */
-		public final Builder script(Consumer<Script.Builder> fn) {
-			Script.Builder builder = new Script.Builder();
-			fn.accept(builder);
-			return this.script(builder.build());
+		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
 		/**
@@ -588,7 +599,7 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::include, TermsInclude._DESERIALIZER, "include");
 		op.add(Builder::minDocCount, JsonpDeserializer.integerDeserializer(), "min_doc_count");
-		op.add(Builder::missing, JsonpDeserializer.stringDeserializer(), "missing");
+		op.add(Builder::missing, FieldValue._DESERIALIZER, "missing");
 		op.add(Builder::missingOrder, MissingOrder._DESERIALIZER, "missing_order");
 		op.add(Builder::missingBucket, JsonpDeserializer.booleanDeserializer(), "missing_bucket");
 		op.add(Builder::valueType, JsonpDeserializer.stringDeserializer(), "value_type");

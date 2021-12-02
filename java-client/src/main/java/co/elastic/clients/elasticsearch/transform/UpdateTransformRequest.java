@@ -36,7 +36,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -45,10 +45,18 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform.update_transform.Request
+
+/**
+ * Updates certain properties of a transform.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/transform/update_transform/UpdateTransformRequest.ts#L30-L63">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class UpdateTransformRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -89,14 +97,12 @@ public class UpdateTransformRequest extends RequestBase implements JsonpSerializ
 		this.settings = builder.settings;
 		this.source = builder.source;
 		this.sync = builder.sync;
-		this.transformId = ModelTypeHelper.requireNonNull(builder.transformId, this, "transformId");
+		this.transformId = ApiTypeHelper.requireNonNull(builder.transformId, this, "transformId");
 
 	}
 
-	public static UpdateTransformRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static UpdateTransformRequest of(Function<Builder, ObjectBuilder<UpdateTransformRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -249,6 +255,7 @@ public class UpdateTransformRequest extends RequestBase implements JsonpSerializ
 	/**
 	 * Builder for {@link UpdateTransformRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UpdateTransformRequest> {
 		@Nullable
 		private Boolean deferValidation;
@@ -312,10 +319,8 @@ public class UpdateTransformRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code dest}
 		 */
-		public final Builder dest(Consumer<Destination.Builder> fn) {
-			Destination.Builder builder = new Destination.Builder();
-			fn.accept(builder);
-			return this.dest(builder.build());
+		public final Builder dest(Function<Destination.Builder, ObjectBuilder<Destination>> fn) {
+			return this.dest(fn.apply(new Destination.Builder()).build());
 		}
 
 		/**
@@ -339,10 +344,8 @@ public class UpdateTransformRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code frequency}
 		 */
-		public final Builder frequency(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.frequency(builder.build());
+		public final Builder frequency(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.frequency(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -362,10 +365,8 @@ public class UpdateTransformRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code retention_policy}
 		 */
-		public final Builder retentionPolicy(Consumer<RetentionPolicy.Builder> fn) {
-			RetentionPolicy.Builder builder = new RetentionPolicy.Builder();
-			fn.accept(builder);
-			return this.retentionPolicy(builder.build());
+		public final Builder retentionPolicy(Function<RetentionPolicy.Builder, ObjectBuilder<RetentionPolicy>> fn) {
+			return this.retentionPolicy(fn.apply(new RetentionPolicy.Builder()).build());
 		}
 
 		/**
@@ -383,10 +384,8 @@ public class UpdateTransformRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code settings}
 		 */
-		public final Builder settings(Consumer<Settings.Builder> fn) {
-			Settings.Builder builder = new Settings.Builder();
-			fn.accept(builder);
-			return this.settings(builder.build());
+		public final Builder settings(Function<Settings.Builder, ObjectBuilder<Settings>> fn) {
+			return this.settings(fn.apply(new Settings.Builder()).build());
 		}
 
 		/**
@@ -404,10 +403,8 @@ public class UpdateTransformRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code source}
 		 */
-		public final Builder source(Consumer<Source.Builder> fn) {
-			Source.Builder builder = new Source.Builder();
-			fn.accept(builder);
-			return this.source(builder.build());
+		public final Builder source(Function<Source.Builder, ObjectBuilder<Source>> fn) {
+			return this.source(fn.apply(new Source.Builder()).build());
 		}
 
 		/**
@@ -425,10 +422,8 @@ public class UpdateTransformRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code sync}
 		 */
-		public final Builder sync(Consumer<Sync.Builder> fn) {
-			Sync.Builder builder = new Sync.Builder();
-			fn.accept(builder);
-			return this.sync(builder.build());
+		public final Builder sync(Function<Sync.Builder, ObjectBuilder<Sync>> fn) {
+			return this.sync(fn.apply(new Sync.Builder()).build());
 		}
 
 		/**

@@ -31,9 +31,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.analysis.TrimTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L322-L324">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TrimTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -43,10 +50,8 @@ public class TrimTokenFilter extends TokenFilterBase implements TokenFilterDefin
 
 	}
 
-	public static TrimTokenFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TrimTokenFilter of(Function<Builder, ObjectBuilder<TrimTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -69,6 +74,7 @@ public class TrimTokenFilter extends TokenFilterBase implements TokenFilterDefin
 	/**
 	 * Builder for {@link TrimTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<TrimTokenFilter> {

@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.delete_job.TaskFailureReason
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/rollup/delete_job/types.ts#L29-L32">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TaskFailureReason implements JsonpSerializable {
 	private final String type;
@@ -49,15 +56,13 @@ public class TaskFailureReason implements JsonpSerializable {
 
 	private TaskFailureReason(Builder builder) {
 
-		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
-		this.reason = ModelTypeHelper.requireNonNull(builder.reason, this, "reason");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
 
 	}
 
-	public static TaskFailureReason of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TaskFailureReason of(Function<Builder, ObjectBuilder<TaskFailureReason>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -98,6 +103,7 @@ public class TaskFailureReason implements JsonpSerializable {
 	/**
 	 * Builder for {@link TaskFailureReason}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TaskFailureReason> {
 		private String type;
 

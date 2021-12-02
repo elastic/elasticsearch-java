@@ -31,10 +31,17 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 // typedef: async_search.submit.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/async_search/submit/AsyncSearchSubmitResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SubmitResponse<TDocument> extends AsyncSearchDocumentResponseBase<TDocument> {
 	// ---------------------------------------------------------------------------------------------
@@ -44,10 +51,9 @@ public class SubmitResponse<TDocument> extends AsyncSearchDocumentResponseBase<T
 
 	}
 
-	public static <TDocument> SubmitResponse<TDocument> of(Consumer<Builder<TDocument>> fn) {
-		Builder<TDocument> builder = new Builder<>();
-		fn.accept(builder);
-		return builder.build();
+	public static <TDocument> SubmitResponse<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<SubmitResponse<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -55,6 +61,7 @@ public class SubmitResponse<TDocument> extends AsyncSearchDocumentResponseBase<T
 	/**
 	 * Builder for {@link SubmitResponse}.
 	 */
+
 	public static class Builder<TDocument>
 			extends
 				AsyncSearchDocumentResponseBase.AbstractBuilder<TDocument, Builder<TDocument>>
@@ -81,7 +88,7 @@ public class SubmitResponse<TDocument> extends AsyncSearchDocumentResponseBase<T
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for SubmitResponse
+	 * Create a JSON deserializer for SubmitResponse
 	 */
 	public static <TDocument> JsonpDeserializer<SubmitResponse<TDocument>> createSubmitResponseDeserializer(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {

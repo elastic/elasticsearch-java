@@ -32,10 +32,17 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ParentAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/bucket.ts#L249-L251">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ParentAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
@@ -50,10 +57,8 @@ public class ParentAggregation extends BucketAggregationBase implements Aggregat
 
 	}
 
-	public static ParentAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ParentAggregation of(Function<Builder, ObjectBuilder<ParentAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -88,6 +93,7 @@ public class ParentAggregation extends BucketAggregationBase implements Aggregat
 	/**
 	 * Builder for {@link ParentAggregation}.
 	 */
+
 	public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ParentAggregation> {

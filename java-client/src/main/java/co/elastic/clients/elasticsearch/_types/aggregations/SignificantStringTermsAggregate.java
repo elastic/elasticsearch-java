@@ -30,9 +30,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.aggregations.SignificantStringTermsAggregate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L558-L560">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SignificantStringTermsAggregate extends MultiBucketAggregateBase<SignificantStringTermsBucket>
 		implements
@@ -44,10 +51,9 @@ public class SignificantStringTermsAggregate extends MultiBucketAggregateBase<Si
 
 	}
 
-	public static SignificantStringTermsAggregate of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SignificantStringTermsAggregate of(
+			Function<Builder, ObjectBuilder<SignificantStringTermsAggregate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -63,6 +69,7 @@ public class SignificantStringTermsAggregate extends MultiBucketAggregateBase<Si
 	/**
 	 * Builder for {@link SignificantStringTermsAggregate}.
 	 */
+
 	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<SignificantStringTermsBucket, Builder>
 			implements
 				ObjectBuilder<SignificantStringTermsAggregate> {

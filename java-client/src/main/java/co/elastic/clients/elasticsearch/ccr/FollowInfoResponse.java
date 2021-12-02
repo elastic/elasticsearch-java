@@ -30,19 +30,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr.follow_info.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ccr/follow_info/FollowInfoResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FollowInfoResponse implements JsonpSerializable {
 	private final List<FollowerIndex> followerIndices;
@@ -51,14 +55,12 @@ public class FollowInfoResponse implements JsonpSerializable {
 
 	private FollowInfoResponse(Builder builder) {
 
-		this.followerIndices = ModelTypeHelper.unmodifiableRequired(builder.followerIndices, this, "followerIndices");
+		this.followerIndices = ApiTypeHelper.unmodifiableRequired(builder.followerIndices, this, "followerIndices");
 
 	}
 
-	public static FollowInfoResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static FollowInfoResponse of(Function<Builder, ObjectBuilder<FollowInfoResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -79,7 +81,7 @@ public class FollowInfoResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.followerIndices)) {
+		if (ApiTypeHelper.isDefined(this.followerIndices)) {
 			generator.writeKey("follower_indices");
 			generator.writeStartArray();
 			for (FollowerIndex item0 : this.followerIndices) {
@@ -97,31 +99,37 @@ public class FollowInfoResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link FollowInfoResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FollowInfoResponse> {
 		private List<FollowerIndex> followerIndices;
 
 		/**
 		 * Required - API name: {@code follower_indices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>followerIndices</code>.
 		 */
-		public final Builder followerIndices(List<FollowerIndex> value) {
-			this.followerIndices = value;
+		public final Builder followerIndices(List<FollowerIndex> list) {
+			this.followerIndices = _listAddAll(this.followerIndices, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code follower_indices}
+		 * <p>
+		 * Adds one or more values to <code>followerIndices</code>.
 		 */
-		public final Builder followerIndices(FollowerIndex... value) {
-			this.followerIndices = Arrays.asList(value);
+		public final Builder followerIndices(FollowerIndex value, FollowerIndex... values) {
+			this.followerIndices = _listAdd(this.followerIndices, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code follower_indices}
+		 * <p>
+		 * Adds a value to <code>followerIndices</code> using a builder lambda.
 		 */
-		public final Builder followerIndices(
-				Function<ListBuilder<FollowerIndex, FollowerIndex.Builder>, ObjectBuilder<List<FollowerIndex>>> fn) {
-			return followerIndices(fn.apply(new ListBuilder<>(FollowerIndex.Builder::new)).build());
+		public final Builder followerIndices(Function<FollowerIndex.Builder, ObjectBuilder<FollowerIndex>> fn) {
+			return followerIndices(fn.apply(new FollowerIndex.Builder()).build());
 		}
 
 		/**

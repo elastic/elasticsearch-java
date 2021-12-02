@@ -30,9 +30,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: watcher._types.HttpInputRequestResult
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Actions.ts#L203-L203">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class HttpInputRequestResult extends HttpInputRequestDefinition {
 	// ---------------------------------------------------------------------------------------------
@@ -42,10 +49,8 @@ public class HttpInputRequestResult extends HttpInputRequestDefinition {
 
 	}
 
-	public static HttpInputRequestResult of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static HttpInputRequestResult of(Function<Builder, ObjectBuilder<HttpInputRequestResult>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +58,7 @@ public class HttpInputRequestResult extends HttpInputRequestDefinition {
 	/**
 	 * Builder for {@link HttpInputRequestResult}.
 	 */
+
 	public static class Builder extends HttpInputRequestDefinition.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<HttpInputRequestResult> {

@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_index_template.IndexTemplateItem
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/get_index_template/IndicesGetIndexTemplateResponse.ts#L33-L36">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IndexTemplateItem implements JsonpSerializable {
 	private final String name;
@@ -49,15 +56,13 @@ public class IndexTemplateItem implements JsonpSerializable {
 
 	private IndexTemplateItem(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
-		this.indexTemplate = ModelTypeHelper.requireNonNull(builder.indexTemplate, this, "indexTemplate");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.indexTemplate = ApiTypeHelper.requireNonNull(builder.indexTemplate, this, "indexTemplate");
 
 	}
 
-	public static IndexTemplateItem of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IndexTemplateItem of(Function<Builder, ObjectBuilder<IndexTemplateItem>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -98,6 +103,7 @@ public class IndexTemplateItem implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexTemplateItem}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexTemplateItem> {
 		private String name;
 
@@ -122,10 +128,8 @@ public class IndexTemplateItem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index_template}
 		 */
-		public final Builder indexTemplate(Consumer<IndexTemplate.Builder> fn) {
-			IndexTemplate.Builder builder = new IndexTemplate.Builder();
-			fn.accept(builder);
-			return this.indexTemplate(builder.build());
+		public final Builder indexTemplate(Function<IndexTemplate.Builder, ObjectBuilder<IndexTemplate>> fn) {
+			return this.indexTemplate(fn.apply(new IndexTemplate.Builder()).build());
 		}
 
 		/**

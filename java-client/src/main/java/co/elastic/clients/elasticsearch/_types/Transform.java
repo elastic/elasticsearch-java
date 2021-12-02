@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
@@ -38,14 +38,23 @@ import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.TransformContainer
-// union type: Container[]
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Transform.ts#L27-L34">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Transform implements TaggedUnion<Transform.Kind, Object>, JsonpSerializable {
 
+	/**
+	 * {@link Transform} variant kinds.
+	 */
 	/**
 	 * {@link Transform} variant kinds.
 	 */
@@ -86,22 +95,20 @@ public class Transform implements TaggedUnion<Transform.Kind, Object>, JsonpSeri
 
 	public Transform(TransformVariant value) {
 
-		this._kind = ModelTypeHelper.requireNonNull(value._transformKind(), this, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(value._transformKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
 	private Transform(Builder builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static Transform of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Transform of(Function<Builder, ObjectBuilder<Transform>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -180,10 +187,8 @@ public class Transform implements TaggedUnion<Transform.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<Transform> chain(Consumer<ChainTransform.Builder> fn) {
-			ChainTransform.Builder builder = new ChainTransform.Builder();
-			fn.accept(builder);
-			return this.chain(builder.build());
+		public ObjectBuilder<Transform> chain(Function<ChainTransform.Builder, ObjectBuilder<ChainTransform>> fn) {
+			return this.chain(fn.apply(new ChainTransform.Builder()).build());
 		}
 
 		public ObjectBuilder<Transform> script(ScriptTransform v) {
@@ -192,10 +197,8 @@ public class Transform implements TaggedUnion<Transform.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<Transform> script(Consumer<ScriptTransform.Builder> fn) {
-			ScriptTransform.Builder builder = new ScriptTransform.Builder();
-			fn.accept(builder);
-			return this.script(builder.build());
+		public ObjectBuilder<Transform> script(Function<ScriptTransform.Builder, ObjectBuilder<ScriptTransform>> fn) {
+			return this.script(fn.apply(new ScriptTransform.Builder()).build());
 		}
 
 		public ObjectBuilder<Transform> search(SearchTransform v) {
@@ -204,10 +207,8 @@ public class Transform implements TaggedUnion<Transform.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<Transform> search(Consumer<SearchTransform.Builder> fn) {
-			SearchTransform.Builder builder = new SearchTransform.Builder();
-			fn.accept(builder);
-			return this.search(builder.build());
+		public ObjectBuilder<Transform> search(Function<SearchTransform.Builder, ObjectBuilder<SearchTransform>> fn) {
+			return this.search(fn.apply(new SearchTransform.Builder()).build());
 		}
 
 		public Transform build() {

@@ -30,17 +30,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.NestedSortValue
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/sort.ts#L29-L34">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NestedSortValue implements JsonpSerializable {
 	@Nullable
@@ -61,14 +68,12 @@ public class NestedSortValue implements JsonpSerializable {
 		this.filter = builder.filter;
 		this.maxChildren = builder.maxChildren;
 		this.nested = builder.nested;
-		this.path = ModelTypeHelper.requireNonNull(builder.path, this, "path");
+		this.path = ApiTypeHelper.requireNonNull(builder.path, this, "path");
 
 	}
 
-	public static NestedSortValue of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NestedSortValue of(Function<Builder, ObjectBuilder<NestedSortValue>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -138,6 +143,7 @@ public class NestedSortValue implements JsonpSerializable {
 	/**
 	 * Builder for {@link NestedSortValue}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NestedSortValue> {
 		@Nullable
 		private Query filter;
@@ -161,10 +167,8 @@ public class NestedSortValue implements JsonpSerializable {
 		/**
 		 * API name: {@code filter}
 		 */
-		public final Builder filter(Consumer<Query.Builder> fn) {
-			Query.Builder builder = new Query.Builder();
-			fn.accept(builder);
-			return this.filter(builder.build());
+		public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.filter(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
@@ -186,10 +190,8 @@ public class NestedSortValue implements JsonpSerializable {
 		/**
 		 * API name: {@code nested}
 		 */
-		public final Builder nested(Consumer<NestedSortValue.Builder> fn) {
-			NestedSortValue.Builder builder = new NestedSortValue.Builder();
-			fn.accept(builder);
-			return this.nested(builder.build());
+		public final Builder nested(Function<NestedSortValue.Builder, ObjectBuilder<NestedSortValue>> fn) {
+			return this.nested(fn.apply(new NestedSortValue.Builder()).build());
 		}
 
 		/**

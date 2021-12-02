@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.ack_watch.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/ack_watch/WatcherAckWatchResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AckWatchResponse implements JsonpSerializable {
 	private final WatchStatus status;
@@ -46,14 +53,12 @@ public class AckWatchResponse implements JsonpSerializable {
 
 	private AckWatchResponse(Builder builder) {
 
-		this.status = ModelTypeHelper.requireNonNull(builder.status, this, "status");
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 
 	}
 
-	public static AckWatchResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static AckWatchResponse of(Function<Builder, ObjectBuilder<AckWatchResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -84,6 +89,7 @@ public class AckWatchResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link AckWatchResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AckWatchResponse> {
 		private WatchStatus status;
 
@@ -98,10 +104,8 @@ public class AckWatchResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code status}
 		 */
-		public final Builder status(Consumer<WatchStatus.Builder> fn) {
-			WatchStatus.Builder builder = new WatchStatus.Builder();
-			fn.accept(builder);
-			return this.status(builder.build());
+		public final Builder status(Function<WatchStatus.Builder, ObjectBuilder<WatchStatus>> fn) {
+			return this.status(fn.apply(new WatchStatus.Builder()).build());
 		}
 
 		/**

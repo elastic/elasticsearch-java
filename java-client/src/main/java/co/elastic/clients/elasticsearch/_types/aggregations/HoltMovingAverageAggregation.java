@@ -28,14 +28,21 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.HoltMovingAverageAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/pipeline.ts#L144-L147">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class HoltMovingAverageAggregation extends MovingAverageAggregationBase
 		implements
@@ -47,14 +54,12 @@ public class HoltMovingAverageAggregation extends MovingAverageAggregationBase
 	private HoltMovingAverageAggregation(Builder builder) {
 		super(builder);
 
-		this.settings = ModelTypeHelper.requireNonNull(builder.settings, this, "settings");
+		this.settings = ApiTypeHelper.requireNonNull(builder.settings, this, "settings");
 
 	}
 
-	public static HoltMovingAverageAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static HoltMovingAverageAggregation of(Function<Builder, ObjectBuilder<HoltMovingAverageAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -86,6 +91,7 @@ public class HoltMovingAverageAggregation extends MovingAverageAggregationBase
 	/**
 	 * Builder for {@link HoltMovingAverageAggregation}.
 	 */
+
 	public static class Builder extends MovingAverageAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<HoltMovingAverageAggregation> {
@@ -102,10 +108,9 @@ public class HoltMovingAverageAggregation extends MovingAverageAggregationBase
 		/**
 		 * Required - API name: {@code settings}
 		 */
-		public final Builder settings(Consumer<HoltLinearModelSettings.Builder> fn) {
-			HoltLinearModelSettings.Builder builder = new HoltLinearModelSettings.Builder();
-			fn.accept(builder);
-			return this.settings(builder.build());
+		public final Builder settings(
+				Function<HoltLinearModelSettings.Builder, ObjectBuilder<HoltLinearModelSettings>> fn) {
+			return this.settings(fn.apply(new HoltLinearModelSettings.Builder()).build());
 		}
 
 		@Override

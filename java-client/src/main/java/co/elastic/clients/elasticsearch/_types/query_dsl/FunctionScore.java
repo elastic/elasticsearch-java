@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
@@ -39,14 +39,23 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.FunctionScoreContainer
-// union type: Container[]
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/compound.ts#L114-L131">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, JsonpSerializable {
 
+	/**
+	 * {@link FunctionScore} variant kinds.
+	 */
 	/**
 	 * {@link FunctionScore} variant kinds.
 	 */
@@ -99,8 +108,8 @@ public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, J
 
 	public FunctionScore(FunctionScoreVariant value) {
 
-		this._kind = ModelTypeHelper.requireNonNull(value._functionScoreKind(), this, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(value._functionScoreKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
 		this.filter = null;
 		this.weight = null;
@@ -109,18 +118,16 @@ public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, J
 
 	private FunctionScore(Builder builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 		this.filter = builder.filter;
 		this.weight = builder.weight;
 
 	}
 
-	public static FunctionScore of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static FunctionScore of(Function<Builder, ObjectBuilder<FunctionScore>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -289,10 +296,8 @@ public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, J
 		/**
 		 * API name: {@code filter}
 		 */
-		public final Builder filter(Consumer<Query.Builder> fn) {
-			Query.Builder builder = new Query.Builder();
-			fn.accept(builder);
-			return this.filter(builder.build());
+		public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.filter(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
@@ -309,10 +314,8 @@ public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, J
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder exp(Consumer<DecayFunction.Builder> fn) {
-			DecayFunction.Builder builder = new DecayFunction.Builder();
-			fn.accept(builder);
-			return this.exp(builder.build());
+		public ContainerBuilder exp(Function<DecayFunction.Builder, ObjectBuilder<DecayFunction>> fn) {
+			return this.exp(fn.apply(new DecayFunction.Builder()).build());
 		}
 
 		public ContainerBuilder gauss(DecayFunction v) {
@@ -321,10 +324,8 @@ public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, J
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder gauss(Consumer<DecayFunction.Builder> fn) {
-			DecayFunction.Builder builder = new DecayFunction.Builder();
-			fn.accept(builder);
-			return this.gauss(builder.build());
+		public ContainerBuilder gauss(Function<DecayFunction.Builder, ObjectBuilder<DecayFunction>> fn) {
+			return this.gauss(fn.apply(new DecayFunction.Builder()).build());
 		}
 
 		public ContainerBuilder linear(DecayFunction v) {
@@ -333,10 +334,8 @@ public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, J
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder linear(Consumer<DecayFunction.Builder> fn) {
-			DecayFunction.Builder builder = new DecayFunction.Builder();
-			fn.accept(builder);
-			return this.linear(builder.build());
+		public ContainerBuilder linear(Function<DecayFunction.Builder, ObjectBuilder<DecayFunction>> fn) {
+			return this.linear(fn.apply(new DecayFunction.Builder()).build());
 		}
 
 		public ContainerBuilder fieldValueFactor(FieldValueFactorScoreFunction v) {
@@ -345,10 +344,9 @@ public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, J
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder fieldValueFactor(Consumer<FieldValueFactorScoreFunction.Builder> fn) {
-			FieldValueFactorScoreFunction.Builder builder = new FieldValueFactorScoreFunction.Builder();
-			fn.accept(builder);
-			return this.fieldValueFactor(builder.build());
+		public ContainerBuilder fieldValueFactor(
+				Function<FieldValueFactorScoreFunction.Builder, ObjectBuilder<FieldValueFactorScoreFunction>> fn) {
+			return this.fieldValueFactor(fn.apply(new FieldValueFactorScoreFunction.Builder()).build());
 		}
 
 		public ContainerBuilder randomScore(RandomScoreFunction v) {
@@ -357,10 +355,9 @@ public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, J
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder randomScore(Consumer<RandomScoreFunction.Builder> fn) {
-			RandomScoreFunction.Builder builder = new RandomScoreFunction.Builder();
-			fn.accept(builder);
-			return this.randomScore(builder.build());
+		public ContainerBuilder randomScore(
+				Function<RandomScoreFunction.Builder, ObjectBuilder<RandomScoreFunction>> fn) {
+			return this.randomScore(fn.apply(new RandomScoreFunction.Builder()).build());
 		}
 
 		public ContainerBuilder scriptScore(ScriptScoreFunction v) {
@@ -369,10 +366,9 @@ public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, J
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder scriptScore(Consumer<ScriptScoreFunction.Builder> fn) {
-			ScriptScoreFunction.Builder builder = new ScriptScoreFunction.Builder();
-			fn.accept(builder);
-			return this.scriptScore(builder.build());
+		public ContainerBuilder scriptScore(
+				Function<ScriptScoreFunction.Builder, ObjectBuilder<ScriptScoreFunction>> fn) {
+			return this.scriptScore(fn.apply(new ScriptScoreFunction.Builder()).build());
 		}
 
 		protected FunctionScore build() {
@@ -393,10 +389,8 @@ public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, J
 			/**
 			 * API name: {@code filter}
 			 */
-			public final ContainerBuilder filter(Consumer<Query.Builder> fn) {
-				Query.Builder builder = new Query.Builder();
-				fn.accept(builder);
-				return this.filter(builder.build());
+			public final ContainerBuilder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+				return this.filter(fn.apply(new Query.Builder()).build());
 			}
 
 			/**

@@ -31,9 +31,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: ccr.put_auto_follow_pattern.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ccr/put_auto_follow_pattern/PutAutoFollowPatternResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutAutoFollowPatternResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
@@ -43,10 +50,8 @@ public class PutAutoFollowPatternResponse extends AcknowledgedResponseBase {
 
 	}
 
-	public static PutAutoFollowPatternResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PutAutoFollowPatternResponse of(Function<Builder, ObjectBuilder<PutAutoFollowPatternResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -54,6 +59,7 @@ public class PutAutoFollowPatternResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link PutAutoFollowPatternResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PutAutoFollowPatternResponse> {

@@ -32,10 +32,17 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.SamplerAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/bucket.ts#L281-L283">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SamplerAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
@@ -50,10 +57,8 @@ public class SamplerAggregation extends BucketAggregationBase implements Aggrega
 
 	}
 
-	public static SamplerAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SamplerAggregation of(Function<Builder, ObjectBuilder<SamplerAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -88,6 +93,7 @@ public class SamplerAggregation extends BucketAggregationBase implements Aggrega
 	/**
 	 * Builder for {@link SamplerAggregation}.
 	 */
+
 	public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<SamplerAggregation> {

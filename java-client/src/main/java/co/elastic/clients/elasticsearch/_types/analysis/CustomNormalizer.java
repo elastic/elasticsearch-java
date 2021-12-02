@@ -29,18 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.CustomNormalizer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/normalizers.ts#L30-L34">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CustomNormalizer implements NormalizerVariant, JsonpSerializable {
 	private final List<String> charFilter;
@@ -51,15 +57,13 @@ public class CustomNormalizer implements NormalizerVariant, JsonpSerializable {
 
 	private CustomNormalizer(Builder builder) {
 
-		this.charFilter = ModelTypeHelper.unmodifiable(builder.charFilter);
-		this.filter = ModelTypeHelper.unmodifiable(builder.filter);
+		this.charFilter = ApiTypeHelper.unmodifiable(builder.charFilter);
+		this.filter = ApiTypeHelper.unmodifiable(builder.filter);
 
 	}
 
-	public static CustomNormalizer of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CustomNormalizer of(Function<Builder, ObjectBuilder<CustomNormalizer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -97,7 +101,7 @@ public class CustomNormalizer implements NormalizerVariant, JsonpSerializable {
 
 		generator.write("type", "custom");
 
-		if (ModelTypeHelper.isDefined(this.charFilter)) {
+		if (ApiTypeHelper.isDefined(this.charFilter)) {
 			generator.writeKey("char_filter");
 			generator.writeStartArray();
 			for (String item0 : this.charFilter) {
@@ -107,7 +111,7 @@ public class CustomNormalizer implements NormalizerVariant, JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.filter)) {
+		if (ApiTypeHelper.isDefined(this.filter)) {
 			generator.writeKey("filter");
 			generator.writeStartArray();
 			for (String item0 : this.filter) {
@@ -125,6 +129,7 @@ public class CustomNormalizer implements NormalizerVariant, JsonpSerializable {
 	/**
 	 * Builder for {@link CustomNormalizer}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CustomNormalizer> {
 		@Nullable
 		private List<String> charFilter;
@@ -134,33 +139,41 @@ public class CustomNormalizer implements NormalizerVariant, JsonpSerializable {
 
 		/**
 		 * API name: {@code char_filter}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>charFilter</code>.
 		 */
-		public final Builder charFilter(@Nullable List<String> value) {
-			this.charFilter = value;
+		public final Builder charFilter(List<String> list) {
+			this.charFilter = _listAddAll(this.charFilter, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code char_filter}
+		 * <p>
+		 * Adds one or more values to <code>charFilter</code>.
 		 */
-		public final Builder charFilter(String... value) {
-			this.charFilter = Arrays.asList(value);
+		public final Builder charFilter(String value, String... values) {
+			this.charFilter = _listAdd(this.charFilter, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code filter}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>filter</code>.
 		 */
-		public final Builder filter(@Nullable List<String> value) {
-			this.filter = value;
+		public final Builder filter(List<String> list) {
+			this.filter = _listAddAll(this.filter, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code filter}
+		 * <p>
+		 * Adds one or more values to <code>filter</code>.
 		 */
-		public final Builder filter(String... value) {
-			this.filter = Arrays.asList(value);
+		public final Builder filter(String value, String... values) {
+			this.filter = _listAdd(this.filter, value, values);
 			return this;
 		}
 

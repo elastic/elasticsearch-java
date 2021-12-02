@@ -30,9 +30,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.aggregations.IpRangeAggregate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L522-L524">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IpRangeAggregate extends MultiBucketAggregateBase<IpRangeBucket> implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -42,10 +49,8 @@ public class IpRangeAggregate extends MultiBucketAggregateBase<IpRangeBucket> im
 
 	}
 
-	public static IpRangeAggregate of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IpRangeAggregate of(Function<Builder, ObjectBuilder<IpRangeAggregate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,6 +66,7 @@ public class IpRangeAggregate extends MultiBucketAggregateBase<IpRangeBucket> im
 	/**
 	 * Builder for {@link IpRangeAggregate}.
 	 */
+
 	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<IpRangeBucket, Builder>
 			implements
 				ObjectBuilder<IpRangeAggregate> {

@@ -28,18 +28,22 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.DataframeEvaluationSummaryAucRoc
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/evaluate_data_frame/types.ts#L50-L52">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeEvaluationSummaryAucRoc extends DataframeEvaluationValue {
 	private final List<DataframeEvaluationSummaryAucRocCurveItem> curve;
@@ -49,14 +53,13 @@ public class DataframeEvaluationSummaryAucRoc extends DataframeEvaluationValue {
 	private DataframeEvaluationSummaryAucRoc(Builder builder) {
 		super(builder);
 
-		this.curve = ModelTypeHelper.unmodifiable(builder.curve);
+		this.curve = ApiTypeHelper.unmodifiable(builder.curve);
 
 	}
 
-	public static DataframeEvaluationSummaryAucRoc of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DataframeEvaluationSummaryAucRoc of(
+			Function<Builder, ObjectBuilder<DataframeEvaluationSummaryAucRoc>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -69,7 +72,7 @@ public class DataframeEvaluationSummaryAucRoc extends DataframeEvaluationValue {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.curve)) {
+		if (ApiTypeHelper.isDefined(this.curve)) {
 			generator.writeKey("curve");
 			generator.writeStartArray();
 			for (DataframeEvaluationSummaryAucRocCurveItem item0 : this.curve) {
@@ -87,6 +90,7 @@ public class DataframeEvaluationSummaryAucRoc extends DataframeEvaluationValue {
 	/**
 	 * Builder for {@link DataframeEvaluationSummaryAucRoc}.
 	 */
+
 	public static class Builder extends DataframeEvaluationValue.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DataframeEvaluationSummaryAucRoc> {
@@ -95,26 +99,33 @@ public class DataframeEvaluationSummaryAucRoc extends DataframeEvaluationValue {
 
 		/**
 		 * API name: {@code curve}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>curve</code>.
 		 */
-		public final Builder curve(@Nullable List<DataframeEvaluationSummaryAucRocCurveItem> value) {
-			this.curve = value;
+		public final Builder curve(List<DataframeEvaluationSummaryAucRocCurveItem> list) {
+			this.curve = _listAddAll(this.curve, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code curve}
+		 * <p>
+		 * Adds one or more values to <code>curve</code>.
 		 */
-		public final Builder curve(DataframeEvaluationSummaryAucRocCurveItem... value) {
-			this.curve = Arrays.asList(value);
+		public final Builder curve(DataframeEvaluationSummaryAucRocCurveItem value,
+				DataframeEvaluationSummaryAucRocCurveItem... values) {
+			this.curve = _listAdd(this.curve, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code curve}
+		 * <p>
+		 * Adds a value to <code>curve</code> using a builder lambda.
 		 */
 		public final Builder curve(
-				Function<ListBuilder<DataframeEvaluationSummaryAucRocCurveItem, DataframeEvaluationSummaryAucRocCurveItem.Builder>, ObjectBuilder<List<DataframeEvaluationSummaryAucRocCurveItem>>> fn) {
-			return curve(fn.apply(new ListBuilder<>(DataframeEvaluationSummaryAucRocCurveItem.Builder::new)).build());
+				Function<DataframeEvaluationSummaryAucRocCurveItem.Builder, ObjectBuilder<DataframeEvaluationSummaryAucRocCurveItem>> fn) {
+			return curve(fn.apply(new DataframeEvaluationSummaryAucRocCurveItem.Builder()).build());
 		}
 
 		@Override

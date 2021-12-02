@@ -34,10 +34,17 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TDigest
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/metric.ts#L114-L116">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TDigest implements JsonpSerializable {
 	@Nullable
@@ -51,10 +58,8 @@ public class TDigest implements JsonpSerializable {
 
 	}
 
-	public static TDigest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TDigest of(Function<Builder, ObjectBuilder<TDigest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -89,6 +94,7 @@ public class TDigest implements JsonpSerializable {
 	/**
 	 * Builder for {@link TDigest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TDigest> {
 		@Nullable
 		private Integer compression;

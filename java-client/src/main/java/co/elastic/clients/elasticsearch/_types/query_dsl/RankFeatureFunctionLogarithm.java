@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Float;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.query_dsl.RankFeatureFunctionLogarithm
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/specialized.ts#L143-L145">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RankFeatureFunctionLogarithm extends RankFeatureFunction implements JsonpSerializable {
 	private final float scalingFactor;
@@ -46,14 +53,12 @@ public class RankFeatureFunctionLogarithm extends RankFeatureFunction implements
 
 	private RankFeatureFunctionLogarithm(Builder builder) {
 
-		this.scalingFactor = ModelTypeHelper.requireNonNull(builder.scalingFactor, this, "scalingFactor");
+		this.scalingFactor = ApiTypeHelper.requireNonNull(builder.scalingFactor, this, "scalingFactor");
 
 	}
 
-	public static RankFeatureFunctionLogarithm of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RankFeatureFunctionLogarithm of(Function<Builder, ObjectBuilder<RankFeatureFunctionLogarithm>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -84,6 +89,7 @@ public class RankFeatureFunctionLogarithm extends RankFeatureFunction implements
 	/**
 	 * Builder for {@link RankFeatureFunctionLogarithm}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RankFeatureFunctionLogarithm> {
 		private Float scalingFactor;
 

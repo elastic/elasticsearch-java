@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.PagerDutyContext
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Actions.ts#L45-L49">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PagerDutyContext implements JsonpSerializable {
 	private final String href;
@@ -51,16 +58,14 @@ public class PagerDutyContext implements JsonpSerializable {
 
 	private PagerDutyContext(Builder builder) {
 
-		this.href = ModelTypeHelper.requireNonNull(builder.href, this, "href");
-		this.src = ModelTypeHelper.requireNonNull(builder.src, this, "src");
-		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
+		this.href = ApiTypeHelper.requireNonNull(builder.href, this, "href");
+		this.src = ApiTypeHelper.requireNonNull(builder.src, this, "src");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 
-	public static PagerDutyContext of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PagerDutyContext of(Function<Builder, ObjectBuilder<PagerDutyContext>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -111,6 +116,7 @@ public class PagerDutyContext implements JsonpSerializable {
 	/**
 	 * Builder for {@link PagerDutyContext}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PagerDutyContext> {
 		private String href;
 

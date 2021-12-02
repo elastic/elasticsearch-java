@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.TermsLookup
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/term.ts#L132-L137">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TermsLookup implements JsonpSerializable {
 	private final String index;
@@ -54,17 +61,15 @@ public class TermsLookup implements JsonpSerializable {
 
 	private TermsLookup(Builder builder) {
 
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
-		this.path = ModelTypeHelper.requireNonNull(builder.path, this, "path");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.path = ApiTypeHelper.requireNonNull(builder.path, this, "path");
 		this.routing = builder.routing;
 
 	}
 
-	public static TermsLookup of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TermsLookup of(Function<Builder, ObjectBuilder<TermsLookup>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -129,6 +134,7 @@ public class TermsLookup implements JsonpSerializable {
 	/**
 	 * Builder for {@link TermsLookup}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TermsLookup> {
 		private String index;
 

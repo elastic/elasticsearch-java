@@ -31,17 +31,25 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: slm.delete_lifecycle.Request
+
+/**
+ * Deletes an existing snapshot lifecycle policy.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/slm/delete_lifecycle/DeleteSnapshotLifecycleRequest.ts#L23-L32">API
+ *      specification</a>
+ */
 
 public class DeleteLifecycleRequest extends RequestBase {
 	private final String policyId;
@@ -50,14 +58,12 @@ public class DeleteLifecycleRequest extends RequestBase {
 
 	private DeleteLifecycleRequest(Builder builder) {
 
-		this.policyId = ModelTypeHelper.requireNonNull(builder.policyId, this, "policyId");
+		this.policyId = ApiTypeHelper.requireNonNull(builder.policyId, this, "policyId");
 
 	}
 
-	public static DeleteLifecycleRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DeleteLifecycleRequest of(Function<Builder, ObjectBuilder<DeleteLifecycleRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -74,6 +80,7 @@ public class DeleteLifecycleRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteLifecycleRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteLifecycleRequest> {
 		private String policyId;
 

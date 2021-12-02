@@ -30,22 +30,29 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.ErrorCause
+
+/**
+ * Cause and details about a request failure. This class defines the properties
+ * common to all error types. Additional details are also provided, that depend
+ * on the error type.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Errors.ts#L25-L48">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ErrorCause implements JsonpSerializable {
 	private final Map<String, JsonData> metadata;
@@ -68,21 +75,19 @@ public class ErrorCause implements JsonpSerializable {
 
 	private ErrorCause(Builder builder) {
 
-		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
+		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
 
-		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
-		this.reason = ModelTypeHelper.requireNonNull(builder.reason, this, "reason");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
 		this.stackTrace = builder.stackTrace;
 		this.causedBy = builder.causedBy;
-		this.rootCause = ModelTypeHelper.unmodifiable(builder.rootCause);
-		this.suppressed = ModelTypeHelper.unmodifiable(builder.suppressed);
+		this.rootCause = ApiTypeHelper.unmodifiable(builder.rootCause);
+		this.suppressed = ApiTypeHelper.unmodifiable(builder.suppressed);
 
 	}
 
-	public static ErrorCause of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ErrorCause of(Function<Builder, ObjectBuilder<ErrorCause>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -176,7 +181,7 @@ public class ErrorCause implements JsonpSerializable {
 			this.causedBy.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.rootCause)) {
+		if (ApiTypeHelper.isDefined(this.rootCause)) {
 			generator.writeKey("root_cause");
 			generator.writeStartArray();
 			for (ErrorCause item0 : this.rootCause) {
@@ -186,7 +191,7 @@ public class ErrorCause implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.suppressed)) {
+		if (ApiTypeHelper.isDefined(this.suppressed)) {
 			generator.writeKey("suppressed");
 			generator.writeStartArray();
 			for (ErrorCause item0 : this.suppressed) {
@@ -204,15 +209,28 @@ public class ErrorCause implements JsonpSerializable {
 	/**
 	 * Builder for {@link ErrorCause}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ErrorCause> {
 		@Nullable
 		private Map<String, JsonData> metadata = new HashMap<>();
 
 		/**
 		 * Additional details about the error
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>metadata</code>.
 		 */
-		public final Builder metadata(@Nullable Map<String, JsonData> value) {
-			this.metadata = value;
+		public final Builder metadata(Map<String, JsonData> map) {
+			this.metadata = _mapPutAll(this.metadata, map);
+			return this;
+		}
+
+		/**
+		 * Additional details about the error
+		 * <p>
+		 * Adds an entry to <code>metadata</code>.
+		 */
+		public final Builder metadata(String key, JsonData value) {
+			this.metadata = _mapPut(this.metadata, key, value);
 			return this;
 		}
 
@@ -274,58 +292,66 @@ public class ErrorCause implements JsonpSerializable {
 		/**
 		 * API name: {@code caused_by}
 		 */
-		public final Builder causedBy(Consumer<ErrorCause.Builder> fn) {
-			ErrorCause.Builder builder = new ErrorCause.Builder();
-			fn.accept(builder);
-			return this.causedBy(builder.build());
+		public final Builder causedBy(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+			return this.causedBy(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code root_cause}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>rootCause</code>.
 		 */
-		public final Builder rootCause(@Nullable List<ErrorCause> value) {
-			this.rootCause = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code root_cause}
-		 */
-		public final Builder rootCause(ErrorCause... value) {
-			this.rootCause = Arrays.asList(value);
+		public final Builder rootCause(List<ErrorCause> list) {
+			this.rootCause = _listAddAll(this.rootCause, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code root_cause}
+		 * <p>
+		 * Adds one or more values to <code>rootCause</code>.
 		 */
-		public final Builder rootCause(
-				Function<ListBuilder<ErrorCause, ErrorCause.Builder>, ObjectBuilder<List<ErrorCause>>> fn) {
-			return rootCause(fn.apply(new ListBuilder<>(ErrorCause.Builder::new)).build());
+		public final Builder rootCause(ErrorCause value, ErrorCause... values) {
+			this.rootCause = _listAdd(this.rootCause, value, values);
+			return this;
+		}
+
+		/**
+		 * API name: {@code root_cause}
+		 * <p>
+		 * Adds a value to <code>rootCause</code> using a builder lambda.
+		 */
+		public final Builder rootCause(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+			return rootCause(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code suppressed}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>suppressed</code>.
 		 */
-		public final Builder suppressed(@Nullable List<ErrorCause> value) {
-			this.suppressed = value;
+		public final Builder suppressed(List<ErrorCause> list) {
+			this.suppressed = _listAddAll(this.suppressed, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code suppressed}
+		 * <p>
+		 * Adds one or more values to <code>suppressed</code>.
 		 */
-		public final Builder suppressed(ErrorCause... value) {
-			this.suppressed = Arrays.asList(value);
+		public final Builder suppressed(ErrorCause value, ErrorCause... values) {
+			this.suppressed = _listAdd(this.suppressed, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code suppressed}
+		 * <p>
+		 * Adds a value to <code>suppressed</code> using a builder lambda.
 		 */
-		public final Builder suppressed(
-				Function<ListBuilder<ErrorCause, ErrorCause.Builder>, ObjectBuilder<List<ErrorCause>>> fn) {
-			return suppressed(fn.apply(new ListBuilder<>(ErrorCause.Builder::new)).build());
+		public final Builder suppressed(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+			return suppressed(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		/**

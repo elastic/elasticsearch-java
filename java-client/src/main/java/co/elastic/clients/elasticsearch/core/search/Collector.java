@@ -29,21 +29,25 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.Collector
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/profile.ts#L85-L90">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Collector implements JsonpSerializable {
 	private final String name;
@@ -58,17 +62,15 @@ public class Collector implements JsonpSerializable {
 
 	private Collector(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
-		this.reason = ModelTypeHelper.requireNonNull(builder.reason, this, "reason");
-		this.timeInNanos = ModelTypeHelper.requireNonNull(builder.timeInNanos, this, "timeInNanos");
-		this.children = ModelTypeHelper.unmodifiable(builder.children);
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
+		this.timeInNanos = ApiTypeHelper.requireNonNull(builder.timeInNanos, this, "timeInNanos");
+		this.children = ApiTypeHelper.unmodifiable(builder.children);
 
 	}
 
-	public static Collector of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Collector of(Function<Builder, ObjectBuilder<Collector>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -119,7 +121,7 @@ public class Collector implements JsonpSerializable {
 		generator.writeKey("time_in_nanos");
 		generator.write(this.timeInNanos);
 
-		if (ModelTypeHelper.isDefined(this.children)) {
+		if (ApiTypeHelper.isDefined(this.children)) {
 			generator.writeKey("children");
 			generator.writeStartArray();
 			for (Collector item0 : this.children) {
@@ -137,6 +139,7 @@ public class Collector implements JsonpSerializable {
 	/**
 	 * Builder for {@link Collector}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Collector> {
 		private String name;
 
@@ -173,26 +176,31 @@ public class Collector implements JsonpSerializable {
 
 		/**
 		 * API name: {@code children}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>children</code>.
 		 */
-		public final Builder children(@Nullable List<Collector> value) {
-			this.children = value;
+		public final Builder children(List<Collector> list) {
+			this.children = _listAddAll(this.children, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code children}
+		 * <p>
+		 * Adds one or more values to <code>children</code>.
 		 */
-		public final Builder children(Collector... value) {
-			this.children = Arrays.asList(value);
+		public final Builder children(Collector value, Collector... values) {
+			this.children = _listAdd(this.children, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code children}
+		 * <p>
+		 * Adds a value to <code>children</code> using a builder lambda.
 		 */
-		public final Builder children(
-				Function<ListBuilder<Collector, Collector.Builder>, ObjectBuilder<List<Collector>>> fn) {
-			return children(fn.apply(new ListBuilder<>(Collector.Builder::new)).build());
+		public final Builder children(Function<Collector.Builder, ObjectBuilder<Collector>> fn) {
+			return children(fn.apply(new Collector.Builder()).build());
 		}
 
 		/**

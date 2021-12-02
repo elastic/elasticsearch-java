@@ -38,25 +38,30 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Number;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: eql.search.Request
+
+/**
+ * Returns results matching a query expressed in Event Query Language (EQL)
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/eql/search/EqlSearchRequest.ts#L27-L112">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -113,15 +118,15 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		this.allowNoIndices = builder.allowNoIndices;
 		this.caseSensitive = builder.caseSensitive;
 		this.eventCategoryField = builder.eventCategoryField;
-		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
+		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.fetchSize = builder.fetchSize;
 		this.fields = builder.fields;
-		this.filter = ModelTypeHelper.unmodifiable(builder.filter);
+		this.filter = ApiTypeHelper.unmodifiable(builder.filter);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.keepAlive = builder.keepAlive;
 		this.keepOnCompletion = builder.keepOnCompletion;
-		this.query = ModelTypeHelper.requireNonNull(builder.query, this, "query");
+		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 		this.resultPosition = builder.resultPosition;
 		this.size = builder.size;
 		this.tiebreakerField = builder.tiebreakerField;
@@ -130,10 +135,8 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 
 	}
 
-	public static EqlSearchRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static EqlSearchRequest of(Function<Builder, ObjectBuilder<EqlSearchRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -322,7 +325,7 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 			this.fields.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.filter)) {
+		if (ApiTypeHelper.isDefined(this.filter)) {
 			generator.writeKey("filter");
 			generator.writeStartArray();
 			for (Query item0 : this.filter) {
@@ -377,6 +380,7 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link EqlSearchRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<EqlSearchRequest> {
 		@Nullable
 		private Boolean allowNoIndices;
@@ -455,17 +459,21 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 
 		/**
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
 		 */
-		public final Builder expandWildcards(@Nullable List<ExpandWildcard> value) {
-			this.expandWildcards = value;
+		public final Builder expandWildcards(List<ExpandWildcard> list) {
+			this.expandWildcards = _listAddAll(this.expandWildcards, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds one or more values to <code>expandWildcards</code>.
 		 */
-		public final Builder expandWildcards(ExpandWildcard... value) {
-			this.expandWildcards = Arrays.asList(value);
+		public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
+			this.expandWildcards = _listAdd(this.expandWildcards, value, values);
 			return this;
 		}
 
@@ -496,10 +504,8 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code fields}
 		 */
-		public final Builder fields(Consumer<FieldAndFormat.Builder> fn) {
-			FieldAndFormat.Builder builder = new FieldAndFormat.Builder();
-			fn.accept(builder);
-			return this.fields(builder.build());
+		public final Builder fields(Function<FieldAndFormat.Builder, ObjectBuilder<FieldAndFormat>> fn) {
+			return this.fields(fn.apply(new FieldAndFormat.Builder()).build());
 		}
 
 		/**
@@ -507,9 +513,11 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		 * runs.
 		 * <p>
 		 * API name: {@code filter}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>filter</code>.
 		 */
-		public final Builder filter(@Nullable List<Query> value) {
-			this.filter = value;
+		public final Builder filter(List<Query> list) {
+			this.filter = _listAddAll(this.filter, list);
 			return this;
 		}
 
@@ -518,9 +526,11 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		 * runs.
 		 * <p>
 		 * API name: {@code filter}
+		 * <p>
+		 * Adds one or more values to <code>filter</code>.
 		 */
-		public final Builder filter(Query... value) {
-			this.filter = Arrays.asList(value);
+		public final Builder filter(Query value, Query... values) {
+			this.filter = _listAdd(this.filter, value, values);
 			return this;
 		}
 
@@ -529,9 +539,11 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		 * runs.
 		 * <p>
 		 * API name: {@code filter}
+		 * <p>
+		 * Adds a value to <code>filter</code> using a builder lambda.
 		 */
-		public final Builder filter(Function<ListBuilder<Query, Query.Builder>, ObjectBuilder<List<Query>>> fn) {
-			return filter(fn.apply(new ListBuilder<>(Query.Builder::new)).build());
+		public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return filter(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
@@ -565,10 +577,8 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code keep_alive}
 		 */
-		public final Builder keepAlive(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.keepAlive(builder.build());
+		public final Builder keepAlive(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.keepAlive(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -639,10 +649,8 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code wait_for_completion_timeout}
 		 */
-		public final Builder waitForCompletionTimeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.waitForCompletionTimeout(builder.build());
+		public final Builder waitForCompletionTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.waitForCompletionTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -720,7 +728,7 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (ModelTypeHelper.isDefined(request.expandWildcards)) {
+				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}

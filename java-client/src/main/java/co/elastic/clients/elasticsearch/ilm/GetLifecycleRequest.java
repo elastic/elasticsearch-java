@@ -37,10 +37,19 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm.get_lifecycle.Request
+
+/**
+ * Returns the specified policy definition. Includes the policy version and last
+ * modified date.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ilm/get_lifecycle/GetLifecycleRequest.ts#L23-L33">API
+ *      specification</a>
+ */
 
 public class GetLifecycleRequest extends RequestBase {
 	@Nullable
@@ -54,10 +63,8 @@ public class GetLifecycleRequest extends RequestBase {
 
 	}
 
-	public static GetLifecycleRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetLifecycleRequest of(Function<Builder, ObjectBuilder<GetLifecycleRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -75,6 +82,7 @@ public class GetLifecycleRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetLifecycleRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetLifecycleRequest> {
 		@Nullable
 		private String name;

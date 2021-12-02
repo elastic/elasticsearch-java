@@ -23,22 +23,30 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
+import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.FuzzyQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/term.ts#L40-L51">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FuzzyQuery extends QueryBase implements QueryVariant {
 	// Single key dictionary
@@ -59,27 +67,25 @@ public class FuzzyQuery extends QueryBase implements QueryVariant {
 	@Nullable
 	private final String fuzziness;
 
-	private final String value;
+	private final FieldValue value;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private FuzzyQuery(Builder builder) {
 		super(builder);
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
 		this.maxExpansions = builder.maxExpansions;
 		this.prefixLength = builder.prefixLength;
 		this.rewrite = builder.rewrite;
 		this.transpositions = builder.transpositions;
 		this.fuzziness = builder.fuzziness;
-		this.value = ModelTypeHelper.requireNonNull(builder.value, this, "value");
+		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
 
 	}
 
-	public static FuzzyQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static FuzzyQuery of(Function<Builder, ObjectBuilder<FuzzyQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -140,7 +146,7 @@ public class FuzzyQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Required - API name: {@code value}
 	 */
-	public final String value() {
+	public final FieldValue value() {
 		return this.value;
 	}
 
@@ -174,7 +180,7 @@ public class FuzzyQuery extends QueryBase implements QueryVariant {
 
 		}
 		generator.writeKey("value");
-		generator.write(this.value);
+		this.value.serialize(generator, mapper);
 
 		generator.writeEnd();
 
@@ -185,6 +191,7 @@ public class FuzzyQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link FuzzyQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<FuzzyQuery> {
 		private String field;
 
@@ -211,7 +218,7 @@ public class FuzzyQuery extends QueryBase implements QueryVariant {
 		@Nullable
 		private String fuzziness;
 
-		private String value;
+		private FieldValue value;
 
 		/**
 		 * API name: {@code max_expansions}
@@ -256,9 +263,16 @@ public class FuzzyQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - API name: {@code value}
 		 */
-		public final Builder value(String value) {
+		public final Builder value(FieldValue value) {
 			this.value = value;
 			return this;
+		}
+
+		/**
+		 * Required - API name: {@code value}
+		 */
+		public final Builder value(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
+			return this.value(fn.apply(new FieldValue.Builder()).build());
 		}
 
 		@Override
@@ -294,7 +308,7 @@ public class FuzzyQuery extends QueryBase implements QueryVariant {
 		op.add(Builder::rewrite, JsonpDeserializer.stringDeserializer(), "rewrite");
 		op.add(Builder::transpositions, JsonpDeserializer.booleanDeserializer(), "transpositions");
 		op.add(Builder::fuzziness, JsonpDeserializer.stringDeserializer(), "fuzziness");
-		op.add(Builder::value, JsonpDeserializer.stringDeserializer(), "value");
+		op.add(Builder::value, FieldValue._DESERIALIZER, "value");
 
 		op.setKey(Builder::field, JsonpDeserializer.stringDeserializer());
 		op.shortcutProperty("value");

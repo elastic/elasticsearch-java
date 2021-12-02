@@ -30,15 +30,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.MlDataFrameAnalyticsJobsMemory
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L169-L171">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MlDataFrameAnalyticsJobsMemory implements JsonpSerializable {
 	private final JobStatistics peakUsageBytes;
@@ -47,14 +54,13 @@ public class MlDataFrameAnalyticsJobsMemory implements JsonpSerializable {
 
 	private MlDataFrameAnalyticsJobsMemory(Builder builder) {
 
-		this.peakUsageBytes = ModelTypeHelper.requireNonNull(builder.peakUsageBytes, this, "peakUsageBytes");
+		this.peakUsageBytes = ApiTypeHelper.requireNonNull(builder.peakUsageBytes, this, "peakUsageBytes");
 
 	}
 
-	public static MlDataFrameAnalyticsJobsMemory of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static MlDataFrameAnalyticsJobsMemory of(
+			Function<Builder, ObjectBuilder<MlDataFrameAnalyticsJobsMemory>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -85,6 +91,7 @@ public class MlDataFrameAnalyticsJobsMemory implements JsonpSerializable {
 	/**
 	 * Builder for {@link MlDataFrameAnalyticsJobsMemory}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MlDataFrameAnalyticsJobsMemory> {
 		private JobStatistics peakUsageBytes;
 
@@ -99,10 +106,8 @@ public class MlDataFrameAnalyticsJobsMemory implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code peak_usage_bytes}
 		 */
-		public final Builder peakUsageBytes(Consumer<JobStatistics.Builder> fn) {
-			JobStatistics.Builder builder = new JobStatistics.Builder();
-			fn.accept(builder);
-			return this.peakUsageBytes(builder.build());
+		public final Builder peakUsageBytes(Function<JobStatistics.Builder, ObjectBuilder<JobStatistics>> fn) {
+			return this.peakUsageBytes(fn.apply(new JobStatistics.Builder()).build());
 		}
 
 		/**

@@ -34,7 +34,7 @@ import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 /**
@@ -86,11 +86,10 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<AliasesResponse> aliases(Consumer<AliasesRequest.Builder> fn)
+	public final CompletableFuture<AliasesResponse> aliases(
+			Function<AliasesRequest.Builder, ObjectBuilder<AliasesRequest>> fn)
 			throws IOException, ElasticsearchException {
-		AliasesRequest.Builder builder = new AliasesRequest.Builder();
-		fn.accept(builder);
-		return aliases(builder.build());
+		return aliases(fn.apply(new AliasesRequest.Builder()).build());
 	}
 
 	/**
@@ -138,11 +137,10 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<AllocationResponse> allocation(Consumer<AllocationRequest.Builder> fn)
+	public final CompletableFuture<AllocationResponse> allocation(
+			Function<AllocationRequest.Builder, ObjectBuilder<AllocationRequest>> fn)
 			throws IOException, ElasticsearchException {
-		AllocationRequest.Builder builder = new AllocationRequest.Builder();
-		fn.accept(builder);
-		return allocation(builder.build());
+		return allocation(fn.apply(new AllocationRequest.Builder()).build());
 	}
 
 	/**
@@ -189,11 +187,9 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<CountResponse> count(Consumer<CountRequest.Builder> fn)
+	public final CompletableFuture<CountResponse> count(Function<CountRequest.Builder, ObjectBuilder<CountRequest>> fn)
 			throws IOException, ElasticsearchException {
-		CountRequest.Builder builder = new CountRequest.Builder();
-		fn.accept(builder);
-		return count(builder.build());
+		return count(fn.apply(new CountRequest.Builder()).build());
 	}
 
 	/**
@@ -241,11 +237,10 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<FielddataResponse> fielddata(Consumer<FielddataRequest.Builder> fn)
+	public final CompletableFuture<FielddataResponse> fielddata(
+			Function<FielddataRequest.Builder, ObjectBuilder<FielddataRequest>> fn)
 			throws IOException, ElasticsearchException {
-		FielddataRequest.Builder builder = new FielddataRequest.Builder();
-		fn.accept(builder);
-		return fielddata(builder.build());
+		return fielddata(fn.apply(new FielddataRequest.Builder()).build());
 	}
 
 	/**
@@ -290,11 +285,10 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<HealthResponse> health(Consumer<HealthRequest.Builder> fn)
+	public final CompletableFuture<HealthResponse> health(
+			Function<HealthRequest.Builder, ObjectBuilder<HealthRequest>> fn)
 			throws IOException, ElasticsearchException {
-		HealthRequest.Builder builder = new HealthRequest.Builder();
-		fn.accept(builder);
-		return health(builder.build());
+		return health(fn.apply(new HealthRequest.Builder()).build());
 	}
 
 	/**
@@ -354,11 +348,10 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<IndicesResponse> indices(Consumer<IndicesRequest.Builder> fn)
+	public final CompletableFuture<IndicesResponse> indices(
+			Function<IndicesRequest.Builder, ObjectBuilder<IndicesRequest>> fn)
 			throws IOException, ElasticsearchException {
-		IndicesRequest.Builder builder = new IndicesRequest.Builder();
-		fn.accept(builder);
-		return indices(builder.build());
+		return indices(fn.apply(new IndicesRequest.Builder()).build());
 	}
 
 	/**
@@ -419,10 +412,9 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	 */
 
 	public final CompletableFuture<MlDataFrameAnalyticsResponse> mlDataFrameAnalytics(
-			Consumer<MlDataFrameAnalyticsRequest.Builder> fn) throws IOException, ElasticsearchException {
-		MlDataFrameAnalyticsRequest.Builder builder = new MlDataFrameAnalyticsRequest.Builder();
-		fn.accept(builder);
-		return mlDataFrameAnalytics(builder.build());
+			Function<MlDataFrameAnalyticsRequest.Builder, ObjectBuilder<MlDataFrameAnalyticsRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return mlDataFrameAnalytics(fn.apply(new MlDataFrameAnalyticsRequest.Builder()).build());
 	}
 
 	/**
@@ -468,11 +460,10 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<MlDatafeedsResponse> mlDatafeeds(Consumer<MlDatafeedsRequest.Builder> fn)
+	public final CompletableFuture<MlDatafeedsResponse> mlDatafeeds(
+			Function<MlDatafeedsRequest.Builder, ObjectBuilder<MlDatafeedsRequest>> fn)
 			throws IOException, ElasticsearchException {
-		MlDatafeedsRequest.Builder builder = new MlDatafeedsRequest.Builder();
-		fn.accept(builder);
-		return mlDatafeeds(builder.build());
+		return mlDatafeeds(fn.apply(new MlDatafeedsRequest.Builder()).build());
 	}
 
 	/**
@@ -516,11 +507,10 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<MlJobsResponse> mlJobs(Consumer<MlJobsRequest.Builder> fn)
+	public final CompletableFuture<MlJobsResponse> mlJobs(
+			Function<MlJobsRequest.Builder, ObjectBuilder<MlJobsRequest>> fn)
 			throws IOException, ElasticsearchException {
-		MlJobsRequest.Builder builder = new MlJobsRequest.Builder();
-		fn.accept(builder);
-		return mlJobs(builder.build());
+		return mlJobs(fn.apply(new MlJobsRequest.Builder()).build());
 	}
 
 	/**
@@ -565,11 +555,10 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<MlTrainedModelsResponse> mlTrainedModels(Consumer<MlTrainedModelsRequest.Builder> fn)
+	public final CompletableFuture<MlTrainedModelsResponse> mlTrainedModels(
+			Function<MlTrainedModelsRequest.Builder, ObjectBuilder<MlTrainedModelsRequest>> fn)
 			throws IOException, ElasticsearchException {
-		MlTrainedModelsRequest.Builder builder = new MlTrainedModelsRequest.Builder();
-		fn.accept(builder);
-		return mlTrainedModels(builder.build());
+		return mlTrainedModels(fn.apply(new MlTrainedModelsRequest.Builder()).build());
 	}
 
 	/**
@@ -627,11 +616,9 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<NodesResponse> nodes(Consumer<NodesRequest.Builder> fn)
+	public final CompletableFuture<NodesResponse> nodes(Function<NodesRequest.Builder, ObjectBuilder<NodesRequest>> fn)
 			throws IOException, ElasticsearchException {
-		NodesRequest.Builder builder = new NodesRequest.Builder();
-		fn.accept(builder);
-		return nodes(builder.build());
+		return nodes(fn.apply(new NodesRequest.Builder()).build());
 	}
 
 	/**
@@ -704,11 +691,10 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<RecoveryResponse> recovery(Consumer<RecoveryRequest.Builder> fn)
+	public final CompletableFuture<RecoveryResponse> recovery(
+			Function<RecoveryRequest.Builder, ObjectBuilder<RecoveryRequest>> fn)
 			throws IOException, ElasticsearchException {
-		RecoveryRequest.Builder builder = new RecoveryRequest.Builder();
-		fn.accept(builder);
-		return recovery(builder.build());
+		return recovery(fn.apply(new RecoveryRequest.Builder()).build());
 	}
 
 	/**
@@ -767,11 +753,10 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<SegmentsResponse> segments(Consumer<SegmentsRequest.Builder> fn)
+	public final CompletableFuture<SegmentsResponse> segments(
+			Function<SegmentsRequest.Builder, ObjectBuilder<SegmentsRequest>> fn)
 			throws IOException, ElasticsearchException {
-		SegmentsRequest.Builder builder = new SegmentsRequest.Builder();
-		fn.accept(builder);
-		return segments(builder.build());
+		return segments(fn.apply(new SegmentsRequest.Builder()).build());
 	}
 
 	/**
@@ -815,11 +800,10 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<ShardsResponse> shards(Consumer<ShardsRequest.Builder> fn)
+	public final CompletableFuture<ShardsResponse> shards(
+			Function<ShardsRequest.Builder, ObjectBuilder<ShardsRequest>> fn)
 			throws IOException, ElasticsearchException {
-		ShardsRequest.Builder builder = new ShardsRequest.Builder();
-		fn.accept(builder);
-		return shards(builder.build());
+		return shards(fn.apply(new ShardsRequest.Builder()).build());
 	}
 
 	/**
@@ -864,11 +848,10 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<SnapshotsResponse> snapshots(Consumer<SnapshotsRequest.Builder> fn)
+	public final CompletableFuture<SnapshotsResponse> snapshots(
+			Function<SnapshotsRequest.Builder, ObjectBuilder<SnapshotsRequest>> fn)
 			throws IOException, ElasticsearchException {
-		SnapshotsRequest.Builder builder = new SnapshotsRequest.Builder();
-		fn.accept(builder);
-		return snapshots(builder.build());
+		return snapshots(fn.apply(new SnapshotsRequest.Builder()).build());
 	}
 
 	/**
@@ -914,11 +897,9 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<TasksResponse> tasks(Consumer<TasksRequest.Builder> fn)
+	public final CompletableFuture<TasksResponse> tasks(Function<TasksRequest.Builder, ObjectBuilder<TasksRequest>> fn)
 			throws IOException, ElasticsearchException {
-		TasksRequest.Builder builder = new TasksRequest.Builder();
-		fn.accept(builder);
-		return tasks(builder.build());
+		return tasks(fn.apply(new TasksRequest.Builder()).build());
 	}
 
 	/**
@@ -964,11 +945,10 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<TemplatesResponse> templates(Consumer<TemplatesRequest.Builder> fn)
+	public final CompletableFuture<TemplatesResponse> templates(
+			Function<TemplatesRequest.Builder, ObjectBuilder<TemplatesRequest>> fn)
 			throws IOException, ElasticsearchException {
-		TemplatesRequest.Builder builder = new TemplatesRequest.Builder();
-		fn.accept(builder);
-		return templates(builder.build());
+		return templates(fn.apply(new TemplatesRequest.Builder()).build());
 	}
 
 	/**
@@ -1015,11 +995,10 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<ThreadPoolResponse> threadPool(Consumer<ThreadPoolRequest.Builder> fn)
+	public final CompletableFuture<ThreadPoolResponse> threadPool(
+			Function<ThreadPoolRequest.Builder, ObjectBuilder<ThreadPoolRequest>> fn)
 			throws IOException, ElasticsearchException {
-		ThreadPoolRequest.Builder builder = new ThreadPoolRequest.Builder();
-		fn.accept(builder);
-		return threadPool(builder.build());
+		return threadPool(fn.apply(new ThreadPoolRequest.Builder()).build());
 	}
 
 	/**
@@ -1065,11 +1044,10 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<TransformsResponse> transforms(Consumer<TransformsRequest.Builder> fn)
+	public final CompletableFuture<TransformsResponse> transforms(
+			Function<TransformsRequest.Builder, ObjectBuilder<TransformsRequest>> fn)
 			throws IOException, ElasticsearchException {
-		TransformsRequest.Builder builder = new TransformsRequest.Builder();
-		fn.accept(builder);
-		return transforms(builder.build());
+		return transforms(fn.apply(new TransformsRequest.Builder()).build());
 	}
 
 	/**

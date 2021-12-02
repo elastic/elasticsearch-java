@@ -32,10 +32,23 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.ShapeProperty
+
+/**
+ * The <code>shape</code> data type facilitates the indexing of and searching
+ * with arbitrary <code>x, y</code> cartesian shapes such as rectangles and
+ * polygons.
+ * 
+ * @see <a href=
+ *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/shape.html">Documentation
+ *      on elastic.co</a>
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/geo.ts#L69-L81">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ShapeProperty extends DocValuesPropertyBase implements PropertyVariant {
 	@Nullable
@@ -62,10 +75,8 @@ public class ShapeProperty extends DocValuesPropertyBase implements PropertyVari
 
 	}
 
-	public static ShapeProperty of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ShapeProperty of(Function<Builder, ObjectBuilder<ShapeProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -139,6 +150,7 @@ public class ShapeProperty extends DocValuesPropertyBase implements PropertyVari
 	/**
 	 * Builder for {@link ShapeProperty}.
 	 */
+
 	public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ShapeProperty> {

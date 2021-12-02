@@ -29,19 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.MlInference
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L177-L180">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MlInference implements JsonpSerializable {
 	private final Map<String, MlInferenceIngestProcessor> ingestProcessors;
@@ -52,16 +57,13 @@ public class MlInference implements JsonpSerializable {
 
 	private MlInference(Builder builder) {
 
-		this.ingestProcessors = ModelTypeHelper.unmodifiableRequired(builder.ingestProcessors, this,
-				"ingestProcessors");
-		this.trainedModels = ModelTypeHelper.requireNonNull(builder.trainedModels, this, "trainedModels");
+		this.ingestProcessors = ApiTypeHelper.unmodifiableRequired(builder.ingestProcessors, this, "ingestProcessors");
+		this.trainedModels = ApiTypeHelper.requireNonNull(builder.trainedModels, this, "trainedModels");
 
 	}
 
-	public static MlInference of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static MlInference of(Function<Builder, ObjectBuilder<MlInference>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -89,7 +91,7 @@ public class MlInference implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.ingestProcessors)) {
+		if (ApiTypeHelper.isDefined(this.ingestProcessors)) {
 			generator.writeKey("ingest_processors");
 			generator.writeStartObject();
 			for (Map.Entry<String, MlInferenceIngestProcessor> item0 : this.ingestProcessors.entrySet()) {
@@ -110,6 +112,7 @@ public class MlInference implements JsonpSerializable {
 	/**
 	 * Builder for {@link MlInference}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MlInference> {
 		private Map<String, MlInferenceIngestProcessor> ingestProcessors;
 
@@ -117,15 +120,32 @@ public class MlInference implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code ingest_processors}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>ingestProcessors</code>.
 		 */
-		public final Builder ingestProcessors(Map<String, MlInferenceIngestProcessor> value) {
-			this.ingestProcessors = value;
+		public final Builder ingestProcessors(Map<String, MlInferenceIngestProcessor> map) {
+			this.ingestProcessors = _mapPutAll(this.ingestProcessors, map);
 			return this;
 		}
 
-		public final Builder ingestProcessors(
-				Function<MapBuilder<String, MlInferenceIngestProcessor, MlInferenceIngestProcessor.Builder>, ObjectBuilder<Map<String, MlInferenceIngestProcessor>>> fn) {
-			return ingestProcessors(fn.apply(new MapBuilder<>(MlInferenceIngestProcessor.Builder::new)).build());
+		/**
+		 * Required - API name: {@code ingest_processors}
+		 * <p>
+		 * Adds an entry to <code>ingestProcessors</code>.
+		 */
+		public final Builder ingestProcessors(String key, MlInferenceIngestProcessor value) {
+			this.ingestProcessors = _mapPut(this.ingestProcessors, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code ingest_processors}
+		 * <p>
+		 * Adds an entry to <code>ingestProcessors</code> using a builder lambda.
+		 */
+		public final Builder ingestProcessors(String key,
+				Function<MlInferenceIngestProcessor.Builder, ObjectBuilder<MlInferenceIngestProcessor>> fn) {
+			return ingestProcessors(key, fn.apply(new MlInferenceIngestProcessor.Builder()).build());
 		}
 
 		/**
@@ -139,10 +159,9 @@ public class MlInference implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code trained_models}
 		 */
-		public final Builder trainedModels(Consumer<MlInferenceTrainedModels.Builder> fn) {
-			MlInferenceTrainedModels.Builder builder = new MlInferenceTrainedModels.Builder();
-			fn.accept(builder);
-			return this.trainedModels(builder.build());
+		public final Builder trainedModels(
+				Function<MlInferenceTrainedModels.Builder, ObjectBuilder<MlInferenceTrainedModels>> fn) {
+			return this.trainedModels(fn.apply(new MlInferenceTrainedModels.Builder()).build());
 		}
 
 		/**

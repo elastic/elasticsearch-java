@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoNetworkInterface
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L318-L322">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeInfoNetworkInterface implements JsonpSerializable {
 	private final String address;
@@ -51,16 +58,14 @@ public class NodeInfoNetworkInterface implements JsonpSerializable {
 
 	private NodeInfoNetworkInterface(Builder builder) {
 
-		this.address = ModelTypeHelper.requireNonNull(builder.address, this, "address");
-		this.macAddress = ModelTypeHelper.requireNonNull(builder.macAddress, this, "macAddress");
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.address = ApiTypeHelper.requireNonNull(builder.address, this, "address");
+		this.macAddress = ApiTypeHelper.requireNonNull(builder.macAddress, this, "macAddress");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
-	public static NodeInfoNetworkInterface of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodeInfoNetworkInterface of(Function<Builder, ObjectBuilder<NodeInfoNetworkInterface>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -111,6 +116,7 @@ public class NodeInfoNetworkInterface implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoNetworkInterface}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoNetworkInterface> {
 		private String address;
 

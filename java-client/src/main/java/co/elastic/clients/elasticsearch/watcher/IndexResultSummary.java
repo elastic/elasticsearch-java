@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,10 +38,17 @@ import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.IndexResultSummary
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Actions.ts#L175-L182">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IndexResultSummary implements JsonpSerializable {
 	private final boolean created;
@@ -61,19 +68,17 @@ public class IndexResultSummary implements JsonpSerializable {
 
 	private IndexResultSummary(Builder builder) {
 
-		this.created = ModelTypeHelper.requireNonNull(builder.created, this, "created");
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
-		this.result = ModelTypeHelper.requireNonNull(builder.result, this, "result");
-		this.version = ModelTypeHelper.requireNonNull(builder.version, this, "version");
+		this.created = ApiTypeHelper.requireNonNull(builder.created, this, "created");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.result = ApiTypeHelper.requireNonNull(builder.result, this, "result");
+		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
 		this.type = builder.type;
 
 	}
 
-	public static IndexResultSummary of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IndexResultSummary of(Function<Builder, ObjectBuilder<IndexResultSummary>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -157,6 +162,7 @@ public class IndexResultSummary implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexResultSummary}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexResultSummary> {
 		private Boolean created;
 

@@ -32,17 +32,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.preview_data_frame_analytics.DataframePreviewConfig
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/preview_data_frame_analytics/types.ts#L27-L33">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframePreviewConfig implements JsonpSerializable {
 	private final DataframeAnalyticsSource source;
@@ -62,18 +69,16 @@ public class DataframePreviewConfig implements JsonpSerializable {
 
 	private DataframePreviewConfig(Builder builder) {
 
-		this.source = ModelTypeHelper.requireNonNull(builder.source, this, "source");
-		this.analysis = ModelTypeHelper.requireNonNull(builder.analysis, this, "analysis");
+		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
+		this.analysis = ApiTypeHelper.requireNonNull(builder.analysis, this, "analysis");
 		this.modelMemoryLimit = builder.modelMemoryLimit;
 		this.maxNumThreads = builder.maxNumThreads;
 		this.analyzedFields = builder.analyzedFields;
 
 	}
 
-	public static DataframePreviewConfig of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DataframePreviewConfig of(Function<Builder, ObjectBuilder<DataframePreviewConfig>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -154,6 +159,7 @@ public class DataframePreviewConfig implements JsonpSerializable {
 	/**
 	 * Builder for {@link DataframePreviewConfig}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframePreviewConfig> {
 		private DataframeAnalyticsSource source;
 
@@ -179,10 +185,9 @@ public class DataframePreviewConfig implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code source}
 		 */
-		public final Builder source(Consumer<DataframeAnalyticsSource.Builder> fn) {
-			DataframeAnalyticsSource.Builder builder = new DataframeAnalyticsSource.Builder();
-			fn.accept(builder);
-			return this.source(builder.build());
+		public final Builder source(
+				Function<DataframeAnalyticsSource.Builder, ObjectBuilder<DataframeAnalyticsSource>> fn) {
+			return this.source(fn.apply(new DataframeAnalyticsSource.Builder()).build());
 		}
 
 		/**
@@ -196,10 +201,8 @@ public class DataframePreviewConfig implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code analysis}
 		 */
-		public final Builder analysis(Consumer<DataframeAnalysis.Builder> fn) {
-			DataframeAnalysis.Builder builder = new DataframeAnalysis.Builder();
-			fn.accept(builder);
-			return this.analysis(builder.build());
+		public final Builder analysis(Function<DataframeAnalysis.Builder, ObjectBuilder<DataframeAnalysis>> fn) {
+			return this.analysis(fn.apply(new DataframeAnalysis.Builder()).build());
 		}
 
 		/**
@@ -229,10 +232,9 @@ public class DataframePreviewConfig implements JsonpSerializable {
 		/**
 		 * API name: {@code analyzed_fields}
 		 */
-		public final Builder analyzedFields(Consumer<DataframeAnalysisAnalyzedFields.Builder> fn) {
-			DataframeAnalysisAnalyzedFields.Builder builder = new DataframeAnalysisAnalyzedFields.Builder();
-			fn.accept(builder);
-			return this.analyzedFields(builder.build());
+		public final Builder analyzedFields(
+				Function<DataframeAnalysisAnalyzedFields.Builder, ObjectBuilder<DataframeAnalysisAnalyzedFields>> fn) {
+			return this.analyzedFields(fn.apply(new DataframeAnalysisAnalyzedFields.Builder()).build());
 		}
 
 		/**

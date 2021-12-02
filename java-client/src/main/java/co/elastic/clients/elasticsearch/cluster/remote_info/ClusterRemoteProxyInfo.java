@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,10 +38,17 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.remote_info.ClusterRemoteProxyInfo
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/remote_info/ClusterRemoteInfoResponse.ts#L42-L51">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, JsonpSerializable {
 	private final boolean connected;
@@ -62,23 +69,21 @@ public class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, JsonpSe
 
 	private ClusterRemoteProxyInfo(Builder builder) {
 
-		this.connected = ModelTypeHelper.requireNonNull(builder.connected, this, "connected");
-		this.initialConnectTimeout = ModelTypeHelper.requireNonNull(builder.initialConnectTimeout, this,
+		this.connected = ApiTypeHelper.requireNonNull(builder.connected, this, "connected");
+		this.initialConnectTimeout = ApiTypeHelper.requireNonNull(builder.initialConnectTimeout, this,
 				"initialConnectTimeout");
-		this.skipUnavailable = ModelTypeHelper.requireNonNull(builder.skipUnavailable, this, "skipUnavailable");
-		this.proxyAddress = ModelTypeHelper.requireNonNull(builder.proxyAddress, this, "proxyAddress");
-		this.serverName = ModelTypeHelper.requireNonNull(builder.serverName, this, "serverName");
-		this.numProxySocketsConnected = ModelTypeHelper.requireNonNull(builder.numProxySocketsConnected, this,
+		this.skipUnavailable = ApiTypeHelper.requireNonNull(builder.skipUnavailable, this, "skipUnavailable");
+		this.proxyAddress = ApiTypeHelper.requireNonNull(builder.proxyAddress, this, "proxyAddress");
+		this.serverName = ApiTypeHelper.requireNonNull(builder.serverName, this, "serverName");
+		this.numProxySocketsConnected = ApiTypeHelper.requireNonNull(builder.numProxySocketsConnected, this,
 				"numProxySocketsConnected");
-		this.maxProxySocketConnections = ModelTypeHelper.requireNonNull(builder.maxProxySocketConnections, this,
+		this.maxProxySocketConnections = ApiTypeHelper.requireNonNull(builder.maxProxySocketConnections, this,
 				"maxProxySocketConnections");
 
 	}
 
-	public static ClusterRemoteProxyInfo of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ClusterRemoteProxyInfo of(Function<Builder, ObjectBuilder<ClusterRemoteProxyInfo>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -179,6 +184,7 @@ public class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, JsonpSe
 	/**
 	 * Builder for {@link ClusterRemoteProxyInfo}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterRemoteProxyInfo> {
 		private Boolean connected;
 
@@ -213,10 +219,8 @@ public class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, JsonpSe
 		/**
 		 * Required - API name: {@code initial_connect_timeout}
 		 */
-		public final Builder initialConnectTimeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.initialConnectTimeout(builder.build());
+		public final Builder initialConnectTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.initialConnectTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

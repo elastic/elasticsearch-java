@@ -30,24 +30,33 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MovingAverageAggregation
-// union type: InternalTag[tag=model]
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/pipeline.ts#L115-L121">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MovingAverageAggregation
 		implements
 			TaggedUnion<MovingAverageAggregation.Kind, MovingAverageAggregationVariant>,
 			JsonpSerializable {
 
+	/**
+	 * {@link MovingAverageAggregation} variant kinds.
+	 */
 	/**
 	 * {@link MovingAverageAggregation} variant kinds.
 	 */
@@ -92,22 +101,20 @@ public class MovingAverageAggregation
 
 	public MovingAverageAggregation(MovingAverageAggregationVariant value) {
 
-		this._kind = ModelTypeHelper.requireNonNull(value._movingAverageAggregationKind(), this, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(value._movingAverageAggregationKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
 	private MovingAverageAggregation(Builder builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static MovingAverageAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static MovingAverageAggregation of(Function<Builder, ObjectBuilder<MovingAverageAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -212,10 +219,9 @@ public class MovingAverageAggregation
 			return this;
 		}
 
-		public ObjectBuilder<MovingAverageAggregation> ewma(Consumer<EwmaMovingAverageAggregation.Builder> fn) {
-			EwmaMovingAverageAggregation.Builder builder = new EwmaMovingAverageAggregation.Builder();
-			fn.accept(builder);
-			return this.ewma(builder.build());
+		public ObjectBuilder<MovingAverageAggregation> ewma(
+				Function<EwmaMovingAverageAggregation.Builder, ObjectBuilder<EwmaMovingAverageAggregation>> fn) {
+			return this.ewma(fn.apply(new EwmaMovingAverageAggregation.Builder()).build());
 		}
 
 		public ObjectBuilder<MovingAverageAggregation> holt(HoltMovingAverageAggregation v) {
@@ -224,10 +230,9 @@ public class MovingAverageAggregation
 			return this;
 		}
 
-		public ObjectBuilder<MovingAverageAggregation> holt(Consumer<HoltMovingAverageAggregation.Builder> fn) {
-			HoltMovingAverageAggregation.Builder builder = new HoltMovingAverageAggregation.Builder();
-			fn.accept(builder);
-			return this.holt(builder.build());
+		public ObjectBuilder<MovingAverageAggregation> holt(
+				Function<HoltMovingAverageAggregation.Builder, ObjectBuilder<HoltMovingAverageAggregation>> fn) {
+			return this.holt(fn.apply(new HoltMovingAverageAggregation.Builder()).build());
 		}
 
 		public ObjectBuilder<MovingAverageAggregation> holtWinters(HoltWintersMovingAverageAggregation v) {
@@ -237,10 +242,8 @@ public class MovingAverageAggregation
 		}
 
 		public ObjectBuilder<MovingAverageAggregation> holtWinters(
-				Consumer<HoltWintersMovingAverageAggregation.Builder> fn) {
-			HoltWintersMovingAverageAggregation.Builder builder = new HoltWintersMovingAverageAggregation.Builder();
-			fn.accept(builder);
-			return this.holtWinters(builder.build());
+				Function<HoltWintersMovingAverageAggregation.Builder, ObjectBuilder<HoltWintersMovingAverageAggregation>> fn) {
+			return this.holtWinters(fn.apply(new HoltWintersMovingAverageAggregation.Builder()).build());
 		}
 
 		public ObjectBuilder<MovingAverageAggregation> linear(LinearMovingAverageAggregation v) {
@@ -249,10 +252,9 @@ public class MovingAverageAggregation
 			return this;
 		}
 
-		public ObjectBuilder<MovingAverageAggregation> linear(Consumer<LinearMovingAverageAggregation.Builder> fn) {
-			LinearMovingAverageAggregation.Builder builder = new LinearMovingAverageAggregation.Builder();
-			fn.accept(builder);
-			return this.linear(builder.build());
+		public ObjectBuilder<MovingAverageAggregation> linear(
+				Function<LinearMovingAverageAggregation.Builder, ObjectBuilder<LinearMovingAverageAggregation>> fn) {
+			return this.linear(fn.apply(new LinearMovingAverageAggregation.Builder()).build());
 		}
 
 		public ObjectBuilder<MovingAverageAggregation> simple(SimpleMovingAverageAggregation v) {
@@ -261,10 +263,9 @@ public class MovingAverageAggregation
 			return this;
 		}
 
-		public ObjectBuilder<MovingAverageAggregation> simple(Consumer<SimpleMovingAverageAggregation.Builder> fn) {
-			SimpleMovingAverageAggregation.Builder builder = new SimpleMovingAverageAggregation.Builder();
-			fn.accept(builder);
-			return this.simple(builder.build());
+		public ObjectBuilder<MovingAverageAggregation> simple(
+				Function<SimpleMovingAverageAggregation.Builder, ObjectBuilder<SimpleMovingAverageAggregation>> fn) {
+			return this.simple(fn.apply(new SimpleMovingAverageAggregation.Builder()).build());
 		}
 
 		public MovingAverageAggregation build() {

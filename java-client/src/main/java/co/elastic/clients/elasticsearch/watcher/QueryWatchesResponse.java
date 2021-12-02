@@ -29,20 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.query_watches.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/query_watches/WatcherQueryWatchesResponse.ts#L23-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class QueryWatchesResponse implements JsonpSerializable {
 	private final int count;
@@ -53,15 +57,13 @@ public class QueryWatchesResponse implements JsonpSerializable {
 
 	private QueryWatchesResponse(Builder builder) {
 
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
-		this.watches = ModelTypeHelper.unmodifiableRequired(builder.watches, this, "watches");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.watches = ApiTypeHelper.unmodifiableRequired(builder.watches, this, "watches");
 
 	}
 
-	public static QueryWatchesResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static QueryWatchesResponse of(Function<Builder, ObjectBuilder<QueryWatchesResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -92,7 +94,7 @@ public class QueryWatchesResponse implements JsonpSerializable {
 		generator.writeKey("count");
 		generator.write(this.count);
 
-		if (ModelTypeHelper.isDefined(this.watches)) {
+		if (ApiTypeHelper.isDefined(this.watches)) {
 			generator.writeKey("watches");
 			generator.writeStartArray();
 			for (QueryWatch item0 : this.watches) {
@@ -110,6 +112,7 @@ public class QueryWatchesResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link QueryWatchesResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<QueryWatchesResponse> {
 		private Integer count;
 
@@ -125,26 +128,31 @@ public class QueryWatchesResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code watches}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>watches</code>.
 		 */
-		public final Builder watches(List<QueryWatch> value) {
-			this.watches = value;
+		public final Builder watches(List<QueryWatch> list) {
+			this.watches = _listAddAll(this.watches, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code watches}
+		 * <p>
+		 * Adds one or more values to <code>watches</code>.
 		 */
-		public final Builder watches(QueryWatch... value) {
-			this.watches = Arrays.asList(value);
+		public final Builder watches(QueryWatch value, QueryWatch... values) {
+			this.watches = _listAdd(this.watches, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code watches}
+		 * <p>
+		 * Adds a value to <code>watches</code> using a builder lambda.
 		 */
-		public final Builder watches(
-				Function<ListBuilder<QueryWatch, QueryWatch.Builder>, ObjectBuilder<List<QueryWatch>>> fn) {
-			return watches(fn.apply(new ListBuilder<>(QueryWatch.Builder::new)).build());
+		public final Builder watches(Function<QueryWatch.Builder, ObjectBuilder<QueryWatch>> fn) {
+			return watches(fn.apply(new QueryWatch.Builder()).build());
 		}
 
 		/**

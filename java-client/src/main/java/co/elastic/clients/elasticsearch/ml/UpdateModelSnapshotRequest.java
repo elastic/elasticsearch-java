@@ -33,7 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,10 +41,18 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.update_model_snapshot.Request
+
+/**
+ * Updates certain properties of a snapshot.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/update_model_snapshot/MlUpdateModelSnapshotRequest.ts#L23-L54">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class UpdateModelSnapshotRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -62,16 +70,14 @@ public class UpdateModelSnapshotRequest extends RequestBase implements JsonpSeri
 	private UpdateModelSnapshotRequest(Builder builder) {
 
 		this.description = builder.description;
-		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.retain = builder.retain;
-		this.snapshotId = ModelTypeHelper.requireNonNull(builder.snapshotId, this, "snapshotId");
+		this.snapshotId = ApiTypeHelper.requireNonNull(builder.snapshotId, this, "snapshotId");
 
 	}
 
-	public static UpdateModelSnapshotRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static UpdateModelSnapshotRequest of(Function<Builder, ObjectBuilder<UpdateModelSnapshotRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -143,6 +149,7 @@ public class UpdateModelSnapshotRequest extends RequestBase implements JsonpSeri
 	/**
 	 * Builder for {@link UpdateModelSnapshotRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UpdateModelSnapshotRequest> {
 		@Nullable
 		private String description;

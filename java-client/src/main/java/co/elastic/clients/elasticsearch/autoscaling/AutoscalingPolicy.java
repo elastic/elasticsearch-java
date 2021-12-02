@@ -30,18 +30,25 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: autoscaling._types.AutoscalingPolicy
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/autoscaling/_types/AutoscalingPolicy.ts#L23-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AutoscalingPolicy implements JsonpSerializable {
 	private final List<String> roles;
@@ -52,9 +59,13 @@ public class AutoscalingPolicy implements JsonpSerializable {
 
 	protected AutoscalingPolicy(AbstractBuilder<?> builder) {
 
-		this.roles = ModelTypeHelper.unmodifiableRequired(builder.roles, this, "roles");
-		this.deciders = ModelTypeHelper.unmodifiableRequired(builder.deciders, this, "deciders");
+		this.roles = ApiTypeHelper.unmodifiableRequired(builder.roles, this, "roles");
+		this.deciders = ApiTypeHelper.unmodifiableRequired(builder.deciders, this, "deciders");
 
+	}
+
+	public static AutoscalingPolicy autoscalingPolicyOf(Function<Builder, ObjectBuilder<AutoscalingPolicy>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -84,7 +95,7 @@ public class AutoscalingPolicy implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.roles)) {
+		if (ApiTypeHelper.isDefined(this.roles)) {
 			generator.writeKey("roles");
 			generator.writeStartArray();
 			for (String item0 : this.roles) {
@@ -94,7 +105,7 @@ public class AutoscalingPolicy implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.deciders)) {
+		if (ApiTypeHelper.isDefined(this.deciders)) {
 			generator.writeKey("deciders");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.deciders.entrySet()) {
@@ -113,6 +124,7 @@ public class AutoscalingPolicy implements JsonpSerializable {
 	/**
 	 * Builder for {@link AutoscalingPolicy}.
 	 */
+
 	public static class Builder extends AutoscalingPolicy.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<AutoscalingPolicy> {
@@ -143,17 +155,21 @@ public class AutoscalingPolicy implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code roles}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>roles</code>.
 		 */
-		public final BuilderT roles(List<String> value) {
-			this.roles = value;
+		public final BuilderT roles(List<String> list) {
+			this.roles = _listAddAll(this.roles, list);
 			return self();
 		}
 
 		/**
 		 * Required - API name: {@code roles}
+		 * <p>
+		 * Adds one or more values to <code>roles</code>.
 		 */
-		public final BuilderT roles(String... value) {
-			this.roles = Arrays.asList(value);
+		public final BuilderT roles(String value, String... values) {
+			this.roles = _listAdd(this.roles, value, values);
 			return self();
 		}
 
@@ -161,9 +177,23 @@ public class AutoscalingPolicy implements JsonpSerializable {
 		 * Required - Decider settings
 		 * <p>
 		 * API name: {@code deciders}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>deciders</code>.
 		 */
-		public final BuilderT deciders(Map<String, JsonData> value) {
-			this.deciders = value;
+		public final BuilderT deciders(Map<String, JsonData> map) {
+			this.deciders = _mapPutAll(this.deciders, map);
+			return self();
+		}
+
+		/**
+		 * Required - Decider settings
+		 * <p>
+		 * API name: {@code deciders}
+		 * <p>
+		 * Adds an entry to <code>deciders</code>.
+		 */
+		public final BuilderT deciders(String key, JsonData value) {
+			this.deciders = _mapPut(this.deciders, key, value);
 			return self();
 		}
 

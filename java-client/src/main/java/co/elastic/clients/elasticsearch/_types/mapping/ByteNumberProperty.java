@@ -32,10 +32,17 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.ByteNumberProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/core.ts#L191-L194">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ByteNumberProperty extends StandardNumberProperty implements PropertyVariant {
 	@Nullable
@@ -50,10 +57,8 @@ public class ByteNumberProperty extends StandardNumberProperty implements Proper
 
 	}
 
-	public static ByteNumberProperty of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ByteNumberProperty of(Function<Builder, ObjectBuilder<ByteNumberProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -89,6 +94,7 @@ public class ByteNumberProperty extends StandardNumberProperty implements Proper
 	/**
 	 * Builder for {@link ByteNumberProperty}.
 	 */
+
 	public static class Builder extends StandardNumberProperty.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ByteNumberProperty> {

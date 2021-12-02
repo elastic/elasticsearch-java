@@ -35,10 +35,17 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.Hyperparameters
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/DataframeAnalytics.ts#L390-L405">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Hyperparameters implements JsonpSerializable {
 	@Nullable
@@ -104,10 +111,8 @@ public class Hyperparameters implements JsonpSerializable {
 
 	}
 
-	public static Hyperparameters of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Hyperparameters of(Function<Builder, ObjectBuilder<Hyperparameters>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -311,6 +316,7 @@ public class Hyperparameters implements JsonpSerializable {
 	/**
 	 * Builder for {@link Hyperparameters}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Hyperparameters> {
 		@Nullable
 		private Double alpha;

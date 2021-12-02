@@ -30,19 +30,25 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.update_aliases.AddAction
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/update_aliases/types.ts#L30-L42">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AddAction implements ActionVariant, JsonpSerializable {
 	@Nullable
@@ -78,10 +84,10 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 	private AddAction(Builder builder) {
 
 		this.alias = builder.alias;
-		this.aliases = ModelTypeHelper.unmodifiable(builder.aliases);
+		this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
 		this.filter = builder.filter;
 		this.index = builder.index;
-		this.indices = ModelTypeHelper.unmodifiable(builder.indices);
+		this.indices = ApiTypeHelper.unmodifiable(builder.indices);
 		this.indexRouting = builder.indexRouting;
 		this.isHidden = builder.isHidden;
 		this.isWriteIndex = builder.isWriteIndex;
@@ -90,10 +96,8 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 
 	}
 
-	public static AddAction of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static AddAction of(Function<Builder, ObjectBuilder<AddAction>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -198,7 +202,7 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 			generator.write(this.alias);
 
 		}
-		if (ModelTypeHelper.isDefined(this.aliases)) {
+		if (ApiTypeHelper.isDefined(this.aliases)) {
 			generator.writeKey("aliases");
 			generator.writeStartArray();
 			for (String item0 : this.aliases) {
@@ -218,7 +222,7 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 			generator.write(this.index);
 
 		}
-		if (ModelTypeHelper.isDefined(this.indices)) {
+		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartArray();
 			for (String item0 : this.indices) {
@@ -261,6 +265,7 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 	/**
 	 * Builder for {@link AddAction}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AddAction> {
 		@Nullable
 		private String alias;
@@ -302,17 +307,21 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 
 		/**
 		 * API name: {@code aliases}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>aliases</code>.
 		 */
-		public final Builder aliases(@Nullable List<String> value) {
-			this.aliases = value;
+		public final Builder aliases(List<String> list) {
+			this.aliases = _listAddAll(this.aliases, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code aliases}
+		 * <p>
+		 * Adds one or more values to <code>aliases</code>.
 		 */
-		public final Builder aliases(String... value) {
-			this.aliases = Arrays.asList(value);
+		public final Builder aliases(String value, String... values) {
+			this.aliases = _listAdd(this.aliases, value, values);
 			return this;
 		}
 
@@ -327,10 +336,8 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 		/**
 		 * API name: {@code filter}
 		 */
-		public final Builder filter(Consumer<Query.Builder> fn) {
-			Query.Builder builder = new Query.Builder();
-			fn.accept(builder);
-			return this.filter(builder.build());
+		public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.filter(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
@@ -343,17 +350,21 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 
 		/**
 		 * API name: {@code indices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 */
-		public final Builder indices(@Nullable List<String> value) {
-			this.indices = value;
+		public final Builder indices(List<String> list) {
+			this.indices = _listAddAll(this.indices, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code indices}
+		 * <p>
+		 * Adds one or more values to <code>indices</code>.
 		 */
-		public final Builder indices(String... value) {
-			this.indices = Arrays.asList(value);
+		public final Builder indices(String value, String... values) {
+			this.indices = _listAdd(this.indices, value, values);
 			return this;
 		}
 

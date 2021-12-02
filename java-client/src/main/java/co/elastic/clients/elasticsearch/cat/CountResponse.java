@@ -30,19 +30,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.count.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/count/CatCountResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CountResponse implements JsonpSerializable {
 	private final List<CountRecord> valueBody;
@@ -51,14 +55,12 @@ public class CountResponse implements JsonpSerializable {
 
 	private CountResponse(Builder builder) {
 
-		this.valueBody = ModelTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
+		this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
 
 	}
 
-	public static CountResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CountResponse of(Function<Builder, ObjectBuilder<CountResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -88,6 +90,7 @@ public class CountResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link CountResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CountResponse> {
 		private List<CountRecord> valueBody;
 
@@ -95,9 +98,11 @@ public class CountResponse implements JsonpSerializable {
 		 * Required - Response value.
 		 * <p>
 		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>valueBody</code>.
 		 */
-		public final Builder valueBody(List<CountRecord> value) {
-			this.valueBody = value;
+		public final Builder valueBody(List<CountRecord> list) {
+			this.valueBody = _listAddAll(this.valueBody, list);
 			return this;
 		}
 
@@ -105,9 +110,11 @@ public class CountResponse implements JsonpSerializable {
 		 * Required - Response value.
 		 * <p>
 		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds one or more values to <code>valueBody</code>.
 		 */
-		public final Builder valueBody(CountRecord... value) {
-			this.valueBody = Arrays.asList(value);
+		public final Builder valueBody(CountRecord value, CountRecord... values) {
+			this.valueBody = _listAdd(this.valueBody, value, values);
 			return this;
 		}
 
@@ -115,10 +122,11 @@ public class CountResponse implements JsonpSerializable {
 		 * Required - Response value.
 		 * <p>
 		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds a value to <code>valueBody</code> using a builder lambda.
 		 */
-		public final Builder valueBody(
-				Function<ListBuilder<CountRecord, CountRecord.Builder>, ObjectBuilder<List<CountRecord>>> fn) {
-			return valueBody(fn.apply(new ListBuilder<>(CountRecord.Builder::new)).build());
+		public final Builder valueBody(Function<CountRecord.Builder, ObjectBuilder<CountRecord>> fn) {
+			return valueBody(fn.apply(new CountRecord.Builder()).build());
 		}
 
 		/**

@@ -32,10 +32,17 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.LongNumberProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/core.ts#L181-L184">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class LongNumberProperty extends StandardNumberProperty implements PropertyVariant {
 	@Nullable
@@ -50,10 +57,8 @@ public class LongNumberProperty extends StandardNumberProperty implements Proper
 
 	}
 
-	public static LongNumberProperty of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static LongNumberProperty of(Function<Builder, ObjectBuilder<LongNumberProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -89,6 +94,7 @@ public class LongNumberProperty extends StandardNumberProperty implements Proper
 	/**
 	 * Builder for {@link LongNumberProperty}.
 	 */
+
 	public static class Builder extends StandardNumberProperty.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<LongNumberProperty> {

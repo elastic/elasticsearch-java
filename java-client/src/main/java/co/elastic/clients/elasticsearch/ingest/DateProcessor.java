@@ -28,17 +28,23 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.DateProcessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/_types/Processors.ts#L178-L184">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DateProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
@@ -59,18 +65,16 @@ public class DateProcessor extends ProcessorBase implements ProcessorVariant {
 	private DateProcessor(Builder builder) {
 		super(builder);
 
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
-		this.formats = ModelTypeHelper.unmodifiableRequired(builder.formats, this, "formats");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.formats = ApiTypeHelper.unmodifiableRequired(builder.formats, this, "formats");
 		this.locale = builder.locale;
 		this.targetField = builder.targetField;
 		this.timezone = builder.timezone;
 
 	}
 
-	public static DateProcessor of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DateProcessor of(Function<Builder, ObjectBuilder<DateProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -125,7 +129,7 @@ public class DateProcessor extends ProcessorBase implements ProcessorVariant {
 		generator.writeKey("field");
 		generator.write(this.field);
 
-		if (ModelTypeHelper.isDefined(this.formats)) {
+		if (ApiTypeHelper.isDefined(this.formats)) {
 			generator.writeKey("formats");
 			generator.writeStartArray();
 			for (String item0 : this.formats) {
@@ -158,6 +162,7 @@ public class DateProcessor extends ProcessorBase implements ProcessorVariant {
 	/**
 	 * Builder for {@link DateProcessor}.
 	 */
+
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder> implements ObjectBuilder<DateProcessor> {
 		private String field;
 
@@ -182,17 +187,21 @@ public class DateProcessor extends ProcessorBase implements ProcessorVariant {
 
 		/**
 		 * Required - API name: {@code formats}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>formats</code>.
 		 */
-		public final Builder formats(List<String> value) {
-			this.formats = value;
+		public final Builder formats(List<String> list) {
+			this.formats = _listAddAll(this.formats, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code formats}
+		 * <p>
+		 * Adds one or more values to <code>formats</code>.
 		 */
-		public final Builder formats(String... value) {
-			this.formats = Arrays.asList(value);
+		public final Builder formats(String value, String... values) {
+			this.formats = _listAdd(this.formats, value, values);
 			return this;
 		}
 

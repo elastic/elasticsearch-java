@@ -29,19 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.termvectors.TermVector
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/termvectors/types.ts#L23-L26">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TermVector implements JsonpSerializable {
 	private final FieldStatistics fieldStatistics;
@@ -52,15 +57,13 @@ public class TermVector implements JsonpSerializable {
 
 	private TermVector(Builder builder) {
 
-		this.fieldStatistics = ModelTypeHelper.requireNonNull(builder.fieldStatistics, this, "fieldStatistics");
-		this.terms = ModelTypeHelper.unmodifiableRequired(builder.terms, this, "terms");
+		this.fieldStatistics = ApiTypeHelper.requireNonNull(builder.fieldStatistics, this, "fieldStatistics");
+		this.terms = ApiTypeHelper.unmodifiableRequired(builder.terms, this, "terms");
 
 	}
 
-	public static TermVector of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TermVector of(Function<Builder, ObjectBuilder<TermVector>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -91,7 +94,7 @@ public class TermVector implements JsonpSerializable {
 		generator.writeKey("field_statistics");
 		this.fieldStatistics.serialize(generator, mapper);
 
-		if (ModelTypeHelper.isDefined(this.terms)) {
+		if (ApiTypeHelper.isDefined(this.terms)) {
 			generator.writeKey("terms");
 			generator.writeStartObject();
 			for (Map.Entry<String, Term> item0 : this.terms.entrySet()) {
@@ -110,6 +113,7 @@ public class TermVector implements JsonpSerializable {
 	/**
 	 * Builder for {@link TermVector}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TermVector> {
 		private FieldStatistics fieldStatistics;
 
@@ -126,23 +130,37 @@ public class TermVector implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code field_statistics}
 		 */
-		public final Builder fieldStatistics(Consumer<FieldStatistics.Builder> fn) {
-			FieldStatistics.Builder builder = new FieldStatistics.Builder();
-			fn.accept(builder);
-			return this.fieldStatistics(builder.build());
+		public final Builder fieldStatistics(Function<FieldStatistics.Builder, ObjectBuilder<FieldStatistics>> fn) {
+			return this.fieldStatistics(fn.apply(new FieldStatistics.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code terms}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>terms</code>.
 		 */
-		public final Builder terms(Map<String, Term> value) {
-			this.terms = value;
+		public final Builder terms(Map<String, Term> map) {
+			this.terms = _mapPutAll(this.terms, map);
 			return this;
 		}
 
-		public final Builder terms(
-				Function<MapBuilder<String, Term, Term.Builder>, ObjectBuilder<Map<String, Term>>> fn) {
-			return terms(fn.apply(new MapBuilder<>(Term.Builder::new)).build());
+		/**
+		 * Required - API name: {@code terms}
+		 * <p>
+		 * Adds an entry to <code>terms</code>.
+		 */
+		public final Builder terms(String key, Term value) {
+			this.terms = _mapPut(this.terms, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code terms}
+		 * <p>
+		 * Adds an entry to <code>terms</code> using a builder lambda.
+		 */
+		public final Builder terms(String key, Function<Term.Builder, ObjectBuilder<Term>> fn) {
+			return terms(key, fn.apply(new Term.Builder()).build());
 		}
 
 		/**

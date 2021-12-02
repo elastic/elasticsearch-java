@@ -32,9 +32,16 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: indices.get.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/get/IndicesGetResponse.ts#L24-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetIndexResponse extends DictionaryResponse<String, IndexState> {
 	// ---------------------------------------------------------------------------------------------
@@ -44,10 +51,8 @@ public class GetIndexResponse extends DictionaryResponse<String, IndexState> {
 
 	}
 
-	public static GetIndexResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetIndexResponse of(Function<Builder, ObjectBuilder<GetIndexResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -55,6 +60,7 @@ public class GetIndexResponse extends DictionaryResponse<String, IndexState> {
 	/**
 	 * Builder for {@link GetIndexResponse}.
 	 */
+
 	public static class Builder extends DictionaryResponse.AbstractBuilder<String, IndexState, Builder>
 			implements
 				ObjectBuilder<GetIndexResponse> {

@@ -34,10 +34,17 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.master.MasterRecord
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/master/types.ts#L20-L39">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MasterRecord implements JsonpSerializable {
 	@Nullable
@@ -63,10 +70,8 @@ public class MasterRecord implements JsonpSerializable {
 
 	}
 
-	public static MasterRecord of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static MasterRecord of(Function<Builder, ObjectBuilder<MasterRecord>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -148,6 +153,7 @@ public class MasterRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link MasterRecord}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MasterRecord> {
 		@Nullable
 		private String id;

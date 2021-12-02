@@ -29,20 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_buckets.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_buckets/MlGetBucketsResponse.ts#L23-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetBucketsResponse implements JsonpSerializable {
 	private final List<BucketSummary> buckets;
@@ -53,15 +57,13 @@ public class GetBucketsResponse implements JsonpSerializable {
 
 	private GetBucketsResponse(Builder builder) {
 
-		this.buckets = ModelTypeHelper.unmodifiableRequired(builder.buckets, this, "buckets");
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
+		this.buckets = ApiTypeHelper.unmodifiableRequired(builder.buckets, this, "buckets");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
 
 	}
 
-	public static GetBucketsResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetBucketsResponse of(Function<Builder, ObjectBuilder<GetBucketsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -89,7 +91,7 @@ public class GetBucketsResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.buckets)) {
+		if (ApiTypeHelper.isDefined(this.buckets)) {
 			generator.writeKey("buckets");
 			generator.writeStartArray();
 			for (BucketSummary item0 : this.buckets) {
@@ -109,6 +111,7 @@ public class GetBucketsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetBucketsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetBucketsResponse> {
 		private List<BucketSummary> buckets;
 
@@ -116,26 +119,31 @@ public class GetBucketsResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code buckets}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>buckets</code>.
 		 */
-		public final Builder buckets(List<BucketSummary> value) {
-			this.buckets = value;
+		public final Builder buckets(List<BucketSummary> list) {
+			this.buckets = _listAddAll(this.buckets, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code buckets}
+		 * <p>
+		 * Adds one or more values to <code>buckets</code>.
 		 */
-		public final Builder buckets(BucketSummary... value) {
-			this.buckets = Arrays.asList(value);
+		public final Builder buckets(BucketSummary value, BucketSummary... values) {
+			this.buckets = _listAdd(this.buckets, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code buckets}
+		 * <p>
+		 * Adds a value to <code>buckets</code> using a builder lambda.
 		 */
-		public final Builder buckets(
-				Function<ListBuilder<BucketSummary, BucketSummary.Builder>, ObjectBuilder<List<BucketSummary>>> fn) {
-			return buckets(fn.apply(new ListBuilder<>(BucketSummary.Builder::new)).build());
+		public final Builder buckets(Function<BucketSummary.Builder, ObjectBuilder<BucketSummary>> fn) {
+			return buckets(fn.apply(new BucketSummary.Builder()).build());
 		}
 
 		/**

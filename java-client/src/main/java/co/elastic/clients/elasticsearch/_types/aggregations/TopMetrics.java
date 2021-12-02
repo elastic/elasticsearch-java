@@ -30,22 +30,25 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.MapBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TopMetrics
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L668-L672">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TopMetrics implements JsonpSerializable {
 	private final List<FieldValue> sort;
@@ -56,15 +59,13 @@ public class TopMetrics implements JsonpSerializable {
 
 	private TopMetrics(Builder builder) {
 
-		this.sort = ModelTypeHelper.unmodifiableRequired(builder.sort, this, "sort");
-		this.metrics = ModelTypeHelper.unmodifiableRequired(builder.metrics, this, "metrics");
+		this.sort = ApiTypeHelper.unmodifiableRequired(builder.sort, this, "sort");
+		this.metrics = ApiTypeHelper.unmodifiableRequired(builder.metrics, this, "metrics");
 
 	}
 
-	public static TopMetrics of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TopMetrics of(Function<Builder, ObjectBuilder<TopMetrics>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -92,7 +93,7 @@ public class TopMetrics implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.sort)) {
+		if (ApiTypeHelper.isDefined(this.sort)) {
 			generator.writeKey("sort");
 			generator.writeStartArray();
 			for (FieldValue item0 : this.sort) {
@@ -102,7 +103,7 @@ public class TopMetrics implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.metrics)) {
+		if (ApiTypeHelper.isDefined(this.metrics)) {
 			generator.writeKey("metrics");
 			generator.writeStartObject();
 			for (Map.Entry<String, FieldValue> item0 : this.metrics.entrySet()) {
@@ -121,6 +122,7 @@ public class TopMetrics implements JsonpSerializable {
 	/**
 	 * Builder for {@link TopMetrics}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TopMetrics> {
 		private List<FieldValue> sort;
 
@@ -128,39 +130,60 @@ public class TopMetrics implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code sort}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>sort</code>.
 		 */
-		public final Builder sort(List<FieldValue> value) {
-			this.sort = value;
+		public final Builder sort(List<FieldValue> list) {
+			this.sort = _listAddAll(this.sort, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code sort}
+		 * <p>
+		 * Adds one or more values to <code>sort</code>.
 		 */
-		public final Builder sort(FieldValue... value) {
-			this.sort = Arrays.asList(value);
+		public final Builder sort(FieldValue value, FieldValue... values) {
+			this.sort = _listAdd(this.sort, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code sort}
+		 * <p>
+		 * Adds a value to <code>sort</code> using a builder lambda.
 		 */
-		public final Builder sort(
-				Function<ListBuilder<FieldValue, FieldValue.Builder>, ObjectBuilder<List<FieldValue>>> fn) {
-			return sort(fn.apply(new ListBuilder<>(FieldValue.Builder::new)).build());
+		public final Builder sort(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
+			return sort(fn.apply(new FieldValue.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code metrics}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>metrics</code>.
 		 */
-		public final Builder metrics(Map<String, FieldValue> value) {
-			this.metrics = value;
+		public final Builder metrics(Map<String, FieldValue> map) {
+			this.metrics = _mapPutAll(this.metrics, map);
 			return this;
 		}
 
-		public final Builder metrics(
-				Function<MapBuilder<String, FieldValue, FieldValue.Builder>, ObjectBuilder<Map<String, FieldValue>>> fn) {
-			return metrics(fn.apply(new MapBuilder<>(FieldValue.Builder::new)).build());
+		/**
+		 * Required - API name: {@code metrics}
+		 * <p>
+		 * Adds an entry to <code>metrics</code>.
+		 */
+		public final Builder metrics(String key, FieldValue value) {
+			this.metrics = _mapPut(this.metrics, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code metrics}
+		 * <p>
+		 * Adds an entry to <code>metrics</code> using a builder lambda.
+		 */
+		public final Builder metrics(String key, Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
+			return metrics(key, fn.apply(new FieldValue.Builder()).build());
 		}
 
 		/**

@@ -28,16 +28,23 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.FieldValueFactorScoreFunction
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/compound.ts#L77-L82">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FieldValueFactorScoreFunction extends ScoreFunctionBase implements FunctionScoreVariant {
 	private final String field;
@@ -56,17 +63,15 @@ public class FieldValueFactorScoreFunction extends ScoreFunctionBase implements 
 	private FieldValueFactorScoreFunction(Builder builder) {
 		super(builder);
 
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.factor = builder.factor;
 		this.missing = builder.missing;
 		this.modifier = builder.modifier;
 
 	}
 
-	public static FieldValueFactorScoreFunction of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static FieldValueFactorScoreFunction of(Function<Builder, ObjectBuilder<FieldValueFactorScoreFunction>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -136,6 +141,7 @@ public class FieldValueFactorScoreFunction extends ScoreFunctionBase implements 
 	/**
 	 * Builder for {@link FieldValueFactorScoreFunction}.
 	 */
+
 	public static class Builder extends ScoreFunctionBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<FieldValueFactorScoreFunction> {

@@ -28,17 +28,24 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.JoinProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/core.ts#L125-L128">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class JoinProperty extends PropertyBase implements PropertyVariant {
 	private final Map<String, List<String>> relations;
@@ -48,14 +55,12 @@ public class JoinProperty extends PropertyBase implements PropertyVariant {
 	private JoinProperty(Builder builder) {
 		super(builder);
 
-		this.relations = ModelTypeHelper.unmodifiable(builder.relations);
+		this.relations = ApiTypeHelper.unmodifiable(builder.relations);
 
 	}
 
-	public static JoinProperty of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static JoinProperty of(Function<Builder, ObjectBuilder<JoinProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -77,7 +82,7 @@ public class JoinProperty extends PropertyBase implements PropertyVariant {
 
 		generator.write("type", "join");
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.relations)) {
+		if (ApiTypeHelper.isDefined(this.relations)) {
 			generator.writeKey("relations");
 			generator.writeStartObject();
 			for (Map.Entry<String, List<String>> item0 : this.relations.entrySet()) {
@@ -103,15 +108,28 @@ public class JoinProperty extends PropertyBase implements PropertyVariant {
 	/**
 	 * Builder for {@link JoinProperty}.
 	 */
+
 	public static class Builder extends PropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<JoinProperty> {
 		@Nullable
 		private Map<String, List<String>> relations;
 
 		/**
 		 * API name: {@code relations}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>relations</code>.
 		 */
-		public final Builder relations(@Nullable Map<String, List<String>> value) {
-			this.relations = value;
+		public final Builder relations(Map<String, List<String>> map) {
+			this.relations = _mapPutAll(this.relations, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code relations}
+		 * <p>
+		 * Adds an entry to <code>relations</code>.
+		 */
+		public final Builder relations(String key, List<String> value) {
+			this.relations = _mapPut(this.relations, key, value);
 			return this;
 		}
 

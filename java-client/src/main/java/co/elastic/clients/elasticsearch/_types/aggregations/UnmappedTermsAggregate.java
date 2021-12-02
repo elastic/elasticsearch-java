@@ -31,9 +31,18 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Void;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.aggregations.UnmappedTermsAggregate
+
+/**
+ * Result of a <code>terms</code> aggregation when the field is unmapped.
+ * <code>buckets</code> is always empty.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L407-L413">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class UnmappedTermsAggregate extends TermsAggregateBase<Void> implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -43,10 +52,8 @@ public class UnmappedTermsAggregate extends TermsAggregateBase<Void> implements 
 
 	}
 
-	public static UnmappedTermsAggregate of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static UnmappedTermsAggregate of(Function<Builder, ObjectBuilder<UnmappedTermsAggregate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -62,6 +69,7 @@ public class UnmappedTermsAggregate extends TermsAggregateBase<Void> implements 
 	/**
 	 * Builder for {@link UnmappedTermsAggregate}.
 	 */
+
 	public static class Builder extends TermsAggregateBase.AbstractBuilder<Void, Builder>
 			implements
 				ObjectBuilder<UnmappedTermsAggregate> {

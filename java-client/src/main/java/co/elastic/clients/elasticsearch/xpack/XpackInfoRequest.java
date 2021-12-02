@@ -31,21 +31,28 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: xpack.info.Request
+
+/**
+ * Retrieves information about the installed X-Pack features.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/info/XPackInfoRequest.ts#L22-L31">API
+ *      specification</a>
+ */
 
 public class XpackInfoRequest extends RequestBase {
 	private final List<String> categories;
@@ -54,14 +61,12 @@ public class XpackInfoRequest extends RequestBase {
 
 	private XpackInfoRequest(Builder builder) {
 
-		this.categories = ModelTypeHelper.unmodifiable(builder.categories);
+		this.categories = ApiTypeHelper.unmodifiable(builder.categories);
 
 	}
 
-	public static XpackInfoRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static XpackInfoRequest of(Function<Builder, ObjectBuilder<XpackInfoRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -79,6 +84,7 @@ public class XpackInfoRequest extends RequestBase {
 	/**
 	 * Builder for {@link XpackInfoRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<XpackInfoRequest> {
 		@Nullable
 		private List<String> categories;
@@ -88,9 +94,11 @@ public class XpackInfoRequest extends RequestBase {
 		 * features
 		 * <p>
 		 * API name: {@code categories}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>categories</code>.
 		 */
-		public final Builder categories(@Nullable List<String> value) {
-			this.categories = value;
+		public final Builder categories(List<String> list) {
+			this.categories = _listAddAll(this.categories, list);
 			return this;
 		}
 
@@ -99,9 +107,11 @@ public class XpackInfoRequest extends RequestBase {
 		 * features
 		 * <p>
 		 * API name: {@code categories}
+		 * <p>
+		 * Adds one or more values to <code>categories</code>.
 		 */
-		public final Builder categories(String... value) {
-			this.categories = Arrays.asList(value);
+		public final Builder categories(String value, String... values) {
+			this.categories = _listAdd(this.categories, value, values);
 			return this;
 		}
 
@@ -141,7 +151,7 @@ public class XpackInfoRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (ModelTypeHelper.isDefined(request.categories)) {
+				if (ApiTypeHelper.isDefined(request.categories)) {
 					params.put("categories", request.categories.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				return params;

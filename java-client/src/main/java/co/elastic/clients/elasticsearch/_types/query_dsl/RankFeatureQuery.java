@@ -28,15 +28,22 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.RankFeatureQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/specialized.ts#L156-L164">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RankFeatureQuery extends QueryBase implements QueryVariant {
 	private final String field;
@@ -58,7 +65,7 @@ public class RankFeatureQuery extends QueryBase implements QueryVariant {
 	private RankFeatureQuery(Builder builder) {
 		super(builder);
 
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.saturation = builder.saturation;
 		this.log = builder.log;
 		this.linear = builder.linear;
@@ -66,10 +73,8 @@ public class RankFeatureQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public static RankFeatureQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RankFeatureQuery of(Function<Builder, ObjectBuilder<RankFeatureQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -153,6 +158,7 @@ public class RankFeatureQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link RankFeatureQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<RankFeatureQuery> {
 		private String field;
 
@@ -187,10 +193,9 @@ public class RankFeatureQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code saturation}
 		 */
-		public final Builder saturation(Consumer<RankFeatureFunctionSaturation.Builder> fn) {
-			RankFeatureFunctionSaturation.Builder builder = new RankFeatureFunctionSaturation.Builder();
-			fn.accept(builder);
-			return this.saturation(builder.build());
+		public final Builder saturation(
+				Function<RankFeatureFunctionSaturation.Builder, ObjectBuilder<RankFeatureFunctionSaturation>> fn) {
+			return this.saturation(fn.apply(new RankFeatureFunctionSaturation.Builder()).build());
 		}
 
 		/**
@@ -204,10 +209,9 @@ public class RankFeatureQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code log}
 		 */
-		public final Builder log(Consumer<RankFeatureFunctionLogarithm.Builder> fn) {
-			RankFeatureFunctionLogarithm.Builder builder = new RankFeatureFunctionLogarithm.Builder();
-			fn.accept(builder);
-			return this.log(builder.build());
+		public final Builder log(
+				Function<RankFeatureFunctionLogarithm.Builder, ObjectBuilder<RankFeatureFunctionLogarithm>> fn) {
+			return this.log(fn.apply(new RankFeatureFunctionLogarithm.Builder()).build());
 		}
 
 		/**
@@ -221,10 +225,9 @@ public class RankFeatureQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code linear}
 		 */
-		public final Builder linear(Consumer<RankFeatureFunctionLinear.Builder> fn) {
-			RankFeatureFunctionLinear.Builder builder = new RankFeatureFunctionLinear.Builder();
-			fn.accept(builder);
-			return this.linear(builder.build());
+		public final Builder linear(
+				Function<RankFeatureFunctionLinear.Builder, ObjectBuilder<RankFeatureFunctionLinear>> fn) {
+			return this.linear(fn.apply(new RankFeatureFunctionLinear.Builder()).build());
 		}
 
 		/**
@@ -238,10 +241,9 @@ public class RankFeatureQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code sigmoid}
 		 */
-		public final Builder sigmoid(Consumer<RankFeatureFunctionSigmoid.Builder> fn) {
-			RankFeatureFunctionSigmoid.Builder builder = new RankFeatureFunctionSigmoid.Builder();
-			fn.accept(builder);
-			return this.sigmoid(builder.build());
+		public final Builder sigmoid(
+				Function<RankFeatureFunctionSigmoid.Builder, ObjectBuilder<RankFeatureFunctionSigmoid>> fn) {
+			return this.sigmoid(fn.apply(new RankFeatureFunctionSigmoid.Builder()).build());
 		}
 
 		@Override

@@ -30,17 +30,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.info.AnomalyDetectors
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/info/types.ts#L44-L50">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AnomalyDetectors implements JsonpSerializable {
 	private final CategorizationAnalyzer categorizationAnalyzer;
@@ -57,22 +64,20 @@ public class AnomalyDetectors implements JsonpSerializable {
 
 	private AnomalyDetectors(Builder builder) {
 
-		this.categorizationAnalyzer = ModelTypeHelper.requireNonNull(builder.categorizationAnalyzer, this,
+		this.categorizationAnalyzer = ApiTypeHelper.requireNonNull(builder.categorizationAnalyzer, this,
 				"categorizationAnalyzer");
-		this.categorizationExamplesLimit = ModelTypeHelper.requireNonNull(builder.categorizationExamplesLimit, this,
+		this.categorizationExamplesLimit = ApiTypeHelper.requireNonNull(builder.categorizationExamplesLimit, this,
 				"categorizationExamplesLimit");
-		this.modelMemoryLimit = ModelTypeHelper.requireNonNull(builder.modelMemoryLimit, this, "modelMemoryLimit");
-		this.modelSnapshotRetentionDays = ModelTypeHelper.requireNonNull(builder.modelSnapshotRetentionDays, this,
+		this.modelMemoryLimit = ApiTypeHelper.requireNonNull(builder.modelMemoryLimit, this, "modelMemoryLimit");
+		this.modelSnapshotRetentionDays = ApiTypeHelper.requireNonNull(builder.modelSnapshotRetentionDays, this,
 				"modelSnapshotRetentionDays");
-		this.dailyModelSnapshotRetentionAfterDays = ModelTypeHelper.requireNonNull(
+		this.dailyModelSnapshotRetentionAfterDays = ApiTypeHelper.requireNonNull(
 				builder.dailyModelSnapshotRetentionAfterDays, this, "dailyModelSnapshotRetentionAfterDays");
 
 	}
 
-	public static AnomalyDetectors of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static AnomalyDetectors of(Function<Builder, ObjectBuilder<AnomalyDetectors>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -143,6 +148,7 @@ public class AnomalyDetectors implements JsonpSerializable {
 	/**
 	 * Builder for {@link AnomalyDetectors}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AnomalyDetectors> {
 		private CategorizationAnalyzer categorizationAnalyzer;
 
@@ -165,10 +171,9 @@ public class AnomalyDetectors implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code categorization_analyzer}
 		 */
-		public final Builder categorizationAnalyzer(Consumer<CategorizationAnalyzer.Builder> fn) {
-			CategorizationAnalyzer.Builder builder = new CategorizationAnalyzer.Builder();
-			fn.accept(builder);
-			return this.categorizationAnalyzer(builder.build());
+		public final Builder categorizationAnalyzer(
+				Function<CategorizationAnalyzer.Builder, ObjectBuilder<CategorizationAnalyzer>> fn) {
+			return this.categorizationAnalyzer(fn.apply(new CategorizationAnalyzer.Builder()).build());
 		}
 
 		/**

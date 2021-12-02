@@ -31,23 +31,27 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_data_stream.IndicesGetDataStreamItem
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/get_data_stream/IndicesGetDataStreamResponse.ts#L35-L48">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IndicesGetDataStreamItem implements JsonpSerializable {
 	private final String name;
@@ -76,23 +80,21 @@ public class IndicesGetDataStreamItem implements JsonpSerializable {
 
 	private IndicesGetDataStreamItem(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
-		this.timestampField = ModelTypeHelper.requireNonNull(builder.timestampField, this, "timestampField");
-		this.indices = ModelTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
-		this.generation = ModelTypeHelper.requireNonNull(builder.generation, this, "generation");
-		this.template = ModelTypeHelper.requireNonNull(builder.template, this, "template");
-		this.hidden = ModelTypeHelper.requireNonNull(builder.hidden, this, "hidden");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.timestampField = ApiTypeHelper.requireNonNull(builder.timestampField, this, "timestampField");
+		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
+		this.generation = ApiTypeHelper.requireNonNull(builder.generation, this, "generation");
+		this.template = ApiTypeHelper.requireNonNull(builder.template, this, "template");
+		this.hidden = ApiTypeHelper.requireNonNull(builder.hidden, this, "hidden");
 		this.system = builder.system;
-		this.status = ModelTypeHelper.requireNonNull(builder.status, this, "status");
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 		this.ilmPolicy = builder.ilmPolicy;
-		this.meta = ModelTypeHelper.unmodifiable(builder.meta);
+		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 
 	}
 
-	public static IndicesGetDataStreamItem of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IndicesGetDataStreamItem of(Function<Builder, ObjectBuilder<IndicesGetDataStreamItem>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -184,7 +186,7 @@ public class IndicesGetDataStreamItem implements JsonpSerializable {
 		generator.writeKey("timestamp_field");
 		this.timestampField.serialize(generator, mapper);
 
-		if (ModelTypeHelper.isDefined(this.indices)) {
+		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartArray();
 			for (IndicesGetDataStreamItemIndex item0 : this.indices) {
@@ -215,7 +217,7 @@ public class IndicesGetDataStreamItem implements JsonpSerializable {
 			generator.write(this.ilmPolicy);
 
 		}
-		if (ModelTypeHelper.isDefined(this.meta)) {
+		if (ApiTypeHelper.isDefined(this.meta)) {
 			generator.writeKey("_meta");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
@@ -234,6 +236,7 @@ public class IndicesGetDataStreamItem implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndicesGetDataStreamItem}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndicesGetDataStreamItem> {
 		private String name;
 
@@ -277,34 +280,39 @@ public class IndicesGetDataStreamItem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code timestamp_field}
 		 */
-		public final Builder timestampField(Consumer<IndicesGetDataStreamItemTimestampField.Builder> fn) {
-			IndicesGetDataStreamItemTimestampField.Builder builder = new IndicesGetDataStreamItemTimestampField.Builder();
-			fn.accept(builder);
-			return this.timestampField(builder.build());
+		public final Builder timestampField(
+				Function<IndicesGetDataStreamItemTimestampField.Builder, ObjectBuilder<IndicesGetDataStreamItemTimestampField>> fn) {
+			return this.timestampField(fn.apply(new IndicesGetDataStreamItemTimestampField.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 */
-		public final Builder indices(List<IndicesGetDataStreamItemIndex> value) {
-			this.indices = value;
+		public final Builder indices(List<IndicesGetDataStreamItemIndex> list) {
+			this.indices = _listAddAll(this.indices, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds one or more values to <code>indices</code>.
 		 */
-		public final Builder indices(IndicesGetDataStreamItemIndex... value) {
-			this.indices = Arrays.asList(value);
+		public final Builder indices(IndicesGetDataStreamItemIndex value, IndicesGetDataStreamItemIndex... values) {
+			this.indices = _listAdd(this.indices, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds a value to <code>indices</code> using a builder lambda.
 		 */
 		public final Builder indices(
-				Function<ListBuilder<IndicesGetDataStreamItemIndex, IndicesGetDataStreamItemIndex.Builder>, ObjectBuilder<List<IndicesGetDataStreamItemIndex>>> fn) {
-			return indices(fn.apply(new ListBuilder<>(IndicesGetDataStreamItemIndex.Builder::new)).build());
+				Function<IndicesGetDataStreamItemIndex.Builder, ObjectBuilder<IndicesGetDataStreamItemIndex>> fn) {
+			return indices(fn.apply(new IndicesGetDataStreamItemIndex.Builder()).build());
 		}
 
 		/**
@@ -357,9 +365,21 @@ public class IndicesGetDataStreamItem implements JsonpSerializable {
 
 		/**
 		 * API name: {@code _meta}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>meta</code>.
 		 */
-		public final Builder meta(@Nullable Map<String, JsonData> value) {
-			this.meta = value;
+		public final Builder meta(Map<String, JsonData> map) {
+			this.meta = _mapPutAll(this.meta, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code _meta}
+		 * <p>
+		 * Adds an entry to <code>meta</code>.
+		 */
+		public final Builder meta(String key, JsonData value) {
+			this.meta = _mapPut(this.meta, key, value);
 			return this;
 		}
 

@@ -33,22 +33,27 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.put_job.Request
+
+/**
+ * Creates a rollup job.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/rollup/put_job/CreateRollupJobRequest.ts#L26-L43">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutJobRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -76,18 +81,16 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 
 		this.cron = builder.cron;
 		this.groups = builder.groups;
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.indexPattern = builder.indexPattern;
-		this.metrics = ModelTypeHelper.unmodifiable(builder.metrics);
+		this.metrics = ApiTypeHelper.unmodifiable(builder.metrics);
 		this.pageSize = builder.pageSize;
 		this.rollupIndex = builder.rollupIndex;
 
 	}
 
-	public static PutJobRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PutJobRequest of(Function<Builder, ObjectBuilder<PutJobRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -172,7 +175,7 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 			generator.write(this.indexPattern);
 
 		}
-		if (ModelTypeHelper.isDefined(this.metrics)) {
+		if (ApiTypeHelper.isDefined(this.metrics)) {
 			generator.writeKey("metrics");
 			generator.writeStartArray();
 			for (FieldMetric item0 : this.metrics) {
@@ -200,6 +203,7 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link PutJobRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutJobRequest> {
 		@Nullable
 		private String cron;
@@ -240,10 +244,8 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code groups}
 		 */
-		public final Builder groups(Consumer<Groupings.Builder> fn) {
-			Groupings.Builder builder = new Groupings.Builder();
-			fn.accept(builder);
-			return this.groups(builder.build());
+		public final Builder groups(Function<Groupings.Builder, ObjectBuilder<Groupings>> fn) {
+			return this.groups(fn.apply(new Groupings.Builder()).build());
 		}
 
 		/**
@@ -266,26 +268,31 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 
 		/**
 		 * API name: {@code metrics}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>metrics</code>.
 		 */
-		public final Builder metrics(@Nullable List<FieldMetric> value) {
-			this.metrics = value;
+		public final Builder metrics(List<FieldMetric> list) {
+			this.metrics = _listAddAll(this.metrics, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code metrics}
+		 * <p>
+		 * Adds one or more values to <code>metrics</code>.
 		 */
-		public final Builder metrics(FieldMetric... value) {
-			this.metrics = Arrays.asList(value);
+		public final Builder metrics(FieldMetric value, FieldMetric... values) {
+			this.metrics = _listAdd(this.metrics, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code metrics}
+		 * <p>
+		 * Adds a value to <code>metrics</code> using a builder lambda.
 		 */
-		public final Builder metrics(
-				Function<ListBuilder<FieldMetric, FieldMetric.Builder>, ObjectBuilder<List<FieldMetric>>> fn) {
-			return metrics(fn.apply(new ListBuilder<>(FieldMetric.Builder::new)).build());
+		public final Builder metrics(Function<FieldMetric.Builder, ObjectBuilder<FieldMetric>> fn) {
+			return metrics(fn.apply(new FieldMetric.Builder()).build());
 		}
 
 		/**

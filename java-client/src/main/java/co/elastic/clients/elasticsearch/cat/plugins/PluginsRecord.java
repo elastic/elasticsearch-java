@@ -34,10 +34,17 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.plugins.PluginsRecord
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/plugins/types.ts#L22-L52">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PluginsRecord implements JsonpSerializable {
 	@Nullable
@@ -71,10 +78,8 @@ public class PluginsRecord implements JsonpSerializable {
 
 	}
 
-	public static PluginsRecord of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PluginsRecord of(Function<Builder, ObjectBuilder<PluginsRecord>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -186,6 +191,7 @@ public class PluginsRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link PluginsRecord}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PluginsRecord> {
 		@Nullable
 		private String id;

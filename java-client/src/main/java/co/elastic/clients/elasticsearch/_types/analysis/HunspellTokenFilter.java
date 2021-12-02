@@ -28,16 +28,23 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.HunspellTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L198-L204">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class HunspellTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final boolean dedup;
@@ -53,17 +60,15 @@ public class HunspellTokenFilter extends TokenFilterBase implements TokenFilterD
 	private HunspellTokenFilter(Builder builder) {
 		super(builder);
 
-		this.dedup = ModelTypeHelper.requireNonNull(builder.dedup, this, "dedup");
-		this.dictionary = ModelTypeHelper.requireNonNull(builder.dictionary, this, "dictionary");
-		this.locale = ModelTypeHelper.requireNonNull(builder.locale, this, "locale");
-		this.longestOnly = ModelTypeHelper.requireNonNull(builder.longestOnly, this, "longestOnly");
+		this.dedup = ApiTypeHelper.requireNonNull(builder.dedup, this, "dedup");
+		this.dictionary = ApiTypeHelper.requireNonNull(builder.dictionary, this, "dictionary");
+		this.locale = ApiTypeHelper.requireNonNull(builder.locale, this, "locale");
+		this.longestOnly = ApiTypeHelper.requireNonNull(builder.longestOnly, this, "longestOnly");
 
 	}
 
-	public static HunspellTokenFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static HunspellTokenFilter of(Function<Builder, ObjectBuilder<HunspellTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -125,6 +130,7 @@ public class HunspellTokenFilter extends TokenFilterBase implements TokenFilterD
 	/**
 	 * Builder for {@link HunspellTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<HunspellTokenFilter> {

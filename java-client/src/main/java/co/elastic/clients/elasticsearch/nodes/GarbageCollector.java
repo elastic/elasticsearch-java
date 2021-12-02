@@ -29,19 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.GarbageCollector
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/_types/Stats.ts#L183-L185">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GarbageCollector implements JsonpSerializable {
 	private final Map<String, GarbageCollectorTotal> collectors;
@@ -50,14 +55,12 @@ public class GarbageCollector implements JsonpSerializable {
 
 	private GarbageCollector(Builder builder) {
 
-		this.collectors = ModelTypeHelper.unmodifiableRequired(builder.collectors, this, "collectors");
+		this.collectors = ApiTypeHelper.unmodifiableRequired(builder.collectors, this, "collectors");
 
 	}
 
-	public static GarbageCollector of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GarbageCollector of(Function<Builder, ObjectBuilder<GarbageCollector>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -78,7 +81,7 @@ public class GarbageCollector implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.collectors)) {
+		if (ApiTypeHelper.isDefined(this.collectors)) {
 			generator.writeKey("collectors");
 			generator.writeStartObject();
 			for (Map.Entry<String, GarbageCollectorTotal> item0 : this.collectors.entrySet()) {
@@ -97,20 +100,38 @@ public class GarbageCollector implements JsonpSerializable {
 	/**
 	 * Builder for {@link GarbageCollector}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GarbageCollector> {
 		private Map<String, GarbageCollectorTotal> collectors;
 
 		/**
 		 * Required - API name: {@code collectors}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>collectors</code>.
 		 */
-		public final Builder collectors(Map<String, GarbageCollectorTotal> value) {
-			this.collectors = value;
+		public final Builder collectors(Map<String, GarbageCollectorTotal> map) {
+			this.collectors = _mapPutAll(this.collectors, map);
 			return this;
 		}
 
-		public final Builder collectors(
-				Function<MapBuilder<String, GarbageCollectorTotal, GarbageCollectorTotal.Builder>, ObjectBuilder<Map<String, GarbageCollectorTotal>>> fn) {
-			return collectors(fn.apply(new MapBuilder<>(GarbageCollectorTotal.Builder::new)).build());
+		/**
+		 * Required - API name: {@code collectors}
+		 * <p>
+		 * Adds an entry to <code>collectors</code>.
+		 */
+		public final Builder collectors(String key, GarbageCollectorTotal value) {
+			this.collectors = _mapPut(this.collectors, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code collectors}
+		 * <p>
+		 * Adds an entry to <code>collectors</code> using a builder lambda.
+		 */
+		public final Builder collectors(String key,
+				Function<GarbageCollectorTotal.Builder, ObjectBuilder<GarbageCollectorTotal>> fn) {
+			return collectors(key, fn.apply(new GarbageCollectorTotal.Builder()).build());
 		}
 
 		/**

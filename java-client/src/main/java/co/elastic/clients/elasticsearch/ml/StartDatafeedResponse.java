@@ -29,19 +29,25 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.start_datafeed.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/start_datafeed/MlStartDatafeedResponse.ts#L22-L34">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class StartDatafeedResponse implements JsonpSerializable {
 	private final List<String> node;
@@ -52,15 +58,13 @@ public class StartDatafeedResponse implements JsonpSerializable {
 
 	private StartDatafeedResponse(Builder builder) {
 
-		this.node = ModelTypeHelper.unmodifiableRequired(builder.node, this, "node");
-		this.started = ModelTypeHelper.requireNonNull(builder.started, this, "started");
+		this.node = ApiTypeHelper.unmodifiableRequired(builder.node, this, "node");
+		this.started = ApiTypeHelper.requireNonNull(builder.started, this, "started");
 
 	}
 
-	public static StartDatafeedResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static StartDatafeedResponse of(Function<Builder, ObjectBuilder<StartDatafeedResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -95,7 +99,7 @@ public class StartDatafeedResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.node)) {
+		if (ApiTypeHelper.isDefined(this.node)) {
 			generator.writeKey("node");
 			generator.writeStartArray();
 			for (String item0 : this.node) {
@@ -115,6 +119,7 @@ public class StartDatafeedResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link StartDatafeedResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StartDatafeedResponse> {
 		private List<String> node;
 
@@ -126,9 +131,11 @@ public class StartDatafeedResponse implements JsonpSerializable {
 		 * this value is an empty string.
 		 * <p>
 		 * API name: {@code node}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>node</code>.
 		 */
-		public final Builder node(List<String> value) {
-			this.node = value;
+		public final Builder node(List<String> list) {
+			this.node = _listAddAll(this.node, list);
 			return this;
 		}
 
@@ -138,9 +145,11 @@ public class StartDatafeedResponse implements JsonpSerializable {
 		 * this value is an empty string.
 		 * <p>
 		 * API name: {@code node}
+		 * <p>
+		 * Adds one or more values to <code>node</code>.
 		 */
-		public final Builder node(String... value) {
-			this.node = Arrays.asList(value);
+		public final Builder node(String value, String... values) {
+			this.node = _listAdd(this.node, value, values);
 			return this;
 		}
 

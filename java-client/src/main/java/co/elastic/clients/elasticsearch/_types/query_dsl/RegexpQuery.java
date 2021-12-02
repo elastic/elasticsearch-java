@@ -28,17 +28,24 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.RegexpQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/term.ts#L102-L114">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RegexpQuery extends QueryBase implements QueryVariant {
 	// Single key dictionary
@@ -62,20 +69,18 @@ public class RegexpQuery extends QueryBase implements QueryVariant {
 
 	private RegexpQuery(Builder builder) {
 		super(builder);
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
 		this.caseInsensitive = builder.caseInsensitive;
 		this.flags = builder.flags;
 		this.maxDeterminizedStates = builder.maxDeterminizedStates;
 		this.rewrite = builder.rewrite;
-		this.value = ModelTypeHelper.requireNonNull(builder.value, this, "value");
+		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
 
 	}
 
-	public static RegexpQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RegexpQuery of(Function<Builder, ObjectBuilder<RegexpQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -168,6 +173,7 @@ public class RegexpQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link RegexpQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<RegexpQuery> {
 		private String field;
 

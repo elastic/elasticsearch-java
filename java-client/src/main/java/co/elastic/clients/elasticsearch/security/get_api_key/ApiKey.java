@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,10 +39,17 @@ import java.lang.Long;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_api_key.ApiKey
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_api_key/types.ts#L23-L33">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ApiKey implements JsonpSerializable {
 	private final long creation;
@@ -66,21 +73,19 @@ public class ApiKey implements JsonpSerializable {
 
 	private ApiKey(Builder builder) {
 
-		this.creation = ModelTypeHelper.requireNonNull(builder.creation, this, "creation");
+		this.creation = ApiTypeHelper.requireNonNull(builder.creation, this, "creation");
 		this.expiration = builder.expiration;
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
-		this.invalidated = ModelTypeHelper.requireNonNull(builder.invalidated, this, "invalidated");
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
-		this.realm = ModelTypeHelper.requireNonNull(builder.realm, this, "realm");
-		this.username = ModelTypeHelper.requireNonNull(builder.username, this, "username");
-		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.invalidated = ApiTypeHelper.requireNonNull(builder.invalidated, this, "invalidated");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.realm = ApiTypeHelper.requireNonNull(builder.realm, this, "realm");
+		this.username = ApiTypeHelper.requireNonNull(builder.username, this, "username");
+		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
 
 	}
 
-	public static ApiKey of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ApiKey of(Function<Builder, ObjectBuilder<ApiKey>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -174,7 +179,7 @@ public class ApiKey implements JsonpSerializable {
 		generator.writeKey("username");
 		generator.write(this.username);
 
-		if (ModelTypeHelper.isDefined(this.metadata)) {
+		if (ApiTypeHelper.isDefined(this.metadata)) {
 			generator.writeKey("metadata");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
@@ -193,6 +198,7 @@ public class ApiKey implements JsonpSerializable {
 	/**
 	 * Builder for {@link ApiKey}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ApiKey> {
 		private Long creation;
 
@@ -270,9 +276,21 @@ public class ApiKey implements JsonpSerializable {
 
 		/**
 		 * API name: {@code metadata}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>metadata</code>.
 		 */
-		public final Builder metadata(@Nullable Map<String, JsonData> value) {
-			this.metadata = value;
+		public final Builder metadata(Map<String, JsonData> map) {
+			this.metadata = _mapPutAll(this.metadata, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code metadata}
+		 * <p>
+		 * Adds an entry to <code>metadata</code>.
+		 */
+		public final Builder metadata(String key, JsonData value) {
+			this.metadata = _mapPut(this.metadata, key, value);
 			return this;
 		}
 

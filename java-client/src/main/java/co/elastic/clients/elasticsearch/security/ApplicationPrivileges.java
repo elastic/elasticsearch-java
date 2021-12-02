@@ -29,18 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security._types.ApplicationPrivileges
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/_types/Privileges.ts#L24-L37">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ApplicationPrivileges implements JsonpSerializable {
 	private final String application;
@@ -53,16 +59,14 @@ public class ApplicationPrivileges implements JsonpSerializable {
 
 	private ApplicationPrivileges(Builder builder) {
 
-		this.application = ModelTypeHelper.requireNonNull(builder.application, this, "application");
-		this.privileges = ModelTypeHelper.unmodifiableRequired(builder.privileges, this, "privileges");
-		this.resources = ModelTypeHelper.unmodifiableRequired(builder.resources, this, "resources");
+		this.application = ApiTypeHelper.requireNonNull(builder.application, this, "application");
+		this.privileges = ApiTypeHelper.unmodifiableRequired(builder.privileges, this, "privileges");
+		this.resources = ApiTypeHelper.unmodifiableRequired(builder.resources, this, "resources");
 
 	}
 
-	public static ApplicationPrivileges of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ApplicationPrivileges of(Function<Builder, ObjectBuilder<ApplicationPrivileges>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -107,7 +111,7 @@ public class ApplicationPrivileges implements JsonpSerializable {
 		generator.writeKey("application");
 		generator.write(this.application);
 
-		if (ModelTypeHelper.isDefined(this.privileges)) {
+		if (ApiTypeHelper.isDefined(this.privileges)) {
 			generator.writeKey("privileges");
 			generator.writeStartArray();
 			for (String item0 : this.privileges) {
@@ -117,7 +121,7 @@ public class ApplicationPrivileges implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.resources)) {
+		if (ApiTypeHelper.isDefined(this.resources)) {
 			generator.writeKey("resources");
 			generator.writeStartArray();
 			for (String item0 : this.resources) {
@@ -135,6 +139,7 @@ public class ApplicationPrivileges implements JsonpSerializable {
 	/**
 	 * Builder for {@link ApplicationPrivileges}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ApplicationPrivileges> {
 		private String application;
 
@@ -157,9 +162,11 @@ public class ApplicationPrivileges implements JsonpSerializable {
 		 * application privilege or action.
 		 * <p>
 		 * API name: {@code privileges}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>privileges</code>.
 		 */
-		public final Builder privileges(List<String> value) {
-			this.privileges = value;
+		public final Builder privileges(List<String> list) {
+			this.privileges = _listAddAll(this.privileges, list);
 			return this;
 		}
 
@@ -168,9 +175,11 @@ public class ApplicationPrivileges implements JsonpSerializable {
 		 * application privilege or action.
 		 * <p>
 		 * API name: {@code privileges}
+		 * <p>
+		 * Adds one or more values to <code>privileges</code>.
 		 */
-		public final Builder privileges(String... value) {
-			this.privileges = Arrays.asList(value);
+		public final Builder privileges(String value, String... values) {
+			this.privileges = _listAdd(this.privileges, value, values);
 			return this;
 		}
 
@@ -178,9 +187,11 @@ public class ApplicationPrivileges implements JsonpSerializable {
 		 * Required - A list resources to which the privileges are applied.
 		 * <p>
 		 * API name: {@code resources}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>resources</code>.
 		 */
-		public final Builder resources(List<String> value) {
-			this.resources = value;
+		public final Builder resources(List<String> list) {
+			this.resources = _listAddAll(this.resources, list);
 			return this;
 		}
 
@@ -188,9 +199,11 @@ public class ApplicationPrivileges implements JsonpSerializable {
 		 * Required - A list resources to which the privileges are applied.
 		 * <p>
 		 * API name: {@code resources}
+		 * <p>
+		 * Adds one or more values to <code>resources</code>.
 		 */
-		public final Builder resources(String... value) {
-			this.resources = Arrays.asList(value);
+		public final Builder resources(String value, String... values) {
+			this.resources = _listAdd(this.resources, value, values);
 			return this;
 		}
 

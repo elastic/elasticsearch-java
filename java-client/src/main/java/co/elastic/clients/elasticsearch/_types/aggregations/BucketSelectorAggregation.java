@@ -32,10 +32,17 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.BucketSelectorAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/pipeline.ts#L52-L54">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class BucketSelectorAggregation extends PipelineAggregationBase implements AggregationVariant {
 	@Nullable
@@ -50,10 +57,8 @@ public class BucketSelectorAggregation extends PipelineAggregationBase implement
 
 	}
 
-	public static BucketSelectorAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static BucketSelectorAggregation of(Function<Builder, ObjectBuilder<BucketSelectorAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -88,6 +93,7 @@ public class BucketSelectorAggregation extends PipelineAggregationBase implement
 	/**
 	 * Builder for {@link BucketSelectorAggregation}.
 	 */
+
 	public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<BucketSelectorAggregation> {
@@ -105,10 +111,8 @@ public class BucketSelectorAggregation extends PipelineAggregationBase implement
 		/**
 		 * API name: {@code script}
 		 */
-		public final Builder script(Consumer<Script.Builder> fn) {
-			Script.Builder builder = new Script.Builder();
-			fn.accept(builder);
-			return this.script(builder.build());
+		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
 		@Override

@@ -31,9 +31,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _global.delete.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/delete/DeleteResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DeleteResponse extends WriteResponseBase {
 	// ---------------------------------------------------------------------------------------------
@@ -43,10 +50,8 @@ public class DeleteResponse extends WriteResponseBase {
 
 	}
 
-	public static DeleteResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DeleteResponse of(Function<Builder, ObjectBuilder<DeleteResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -54,6 +59,7 @@ public class DeleteResponse extends WriteResponseBase {
 	/**
 	 * Builder for {@link DeleteResponse}.
 	 */
+
 	public static class Builder extends WriteResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeleteResponse> {

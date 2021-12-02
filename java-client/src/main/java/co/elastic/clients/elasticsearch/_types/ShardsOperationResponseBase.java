@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.ShardsOperationResponseBase
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Base.ts#L85-L87">API
+ *      specification</a>
+ */
 
 public abstract class ShardsOperationResponseBase implements JsonpSerializable {
 	private final ShardStatistics shards;
@@ -46,7 +53,7 @@ public abstract class ShardsOperationResponseBase implements JsonpSerializable {
 
 	protected ShardsOperationResponseBase(AbstractBuilder<?> builder) {
 
-		this.shards = ModelTypeHelper.requireNonNull(builder.shards, this, "shards");
+		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
 
 	}
 
@@ -89,10 +96,8 @@ public abstract class ShardsOperationResponseBase implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _shards}
 		 */
-		public final BuilderT shards(Consumer<ShardStatistics.Builder> fn) {
-			ShardStatistics.Builder builder = new ShardStatistics.Builder();
-			fn.accept(builder);
-			return this.shards(builder.build());
+		public final BuilderT shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
 		protected abstract BuilderT self();

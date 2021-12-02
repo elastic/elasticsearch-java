@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.upgrade_job_snapshot.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/upgrade_job_snapshot/MlUpgradeJobSnapshotResponse.ts#L22-L29">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class UpgradeJobSnapshotResponse implements JsonpSerializable {
 	private final String node;
@@ -50,15 +57,13 @@ public class UpgradeJobSnapshotResponse implements JsonpSerializable {
 
 	private UpgradeJobSnapshotResponse(Builder builder) {
 
-		this.node = ModelTypeHelper.requireNonNull(builder.node, this, "node");
-		this.completed = ModelTypeHelper.requireNonNull(builder.completed, this, "completed");
+		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
+		this.completed = ApiTypeHelper.requireNonNull(builder.completed, this, "completed");
 
 	}
 
-	public static UpgradeJobSnapshotResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static UpgradeJobSnapshotResponse of(Function<Builder, ObjectBuilder<UpgradeJobSnapshotResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -105,6 +110,7 @@ public class UpgradeJobSnapshotResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link UpgradeJobSnapshotResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UpgradeJobSnapshotResponse> {
 		private String node;
 

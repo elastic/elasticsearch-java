@@ -29,18 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.Input
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/put_trained_model/types.ts#L56-L58">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Input implements JsonpSerializable {
 	private final List<String> fieldNames;
@@ -49,14 +55,12 @@ public class Input implements JsonpSerializable {
 
 	private Input(Builder builder) {
 
-		this.fieldNames = ModelTypeHelper.unmodifiableRequired(builder.fieldNames, this, "fieldNames");
+		this.fieldNames = ApiTypeHelper.unmodifiableRequired(builder.fieldNames, this, "fieldNames");
 
 	}
 
-	public static Input of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Input of(Function<Builder, ObjectBuilder<Input>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -77,7 +81,7 @@ public class Input implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.fieldNames)) {
+		if (ApiTypeHelper.isDefined(this.fieldNames)) {
 			generator.writeKey("field_names");
 			generator.writeStartArray();
 			for (String item0 : this.fieldNames) {
@@ -95,22 +99,27 @@ public class Input implements JsonpSerializable {
 	/**
 	 * Builder for {@link Input}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Input> {
 		private List<String> fieldNames;
 
 		/**
 		 * Required - API name: {@code field_names}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fieldNames</code>.
 		 */
-		public final Builder fieldNames(List<String> value) {
-			this.fieldNames = value;
+		public final Builder fieldNames(List<String> list) {
+			this.fieldNames = _listAddAll(this.fieldNames, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code field_names}
+		 * <p>
+		 * Adds one or more values to <code>fieldNames</code>.
 		 */
-		public final Builder fieldNames(String... value) {
-			this.fieldNames = Arrays.asList(value);
+		public final Builder fieldNames(String value, String... values) {
+			this.fieldNames = _listAdd(this.fieldNames, value, values);
 			return this;
 		}
 

@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoSettingsTransportType
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L196-L199">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeInfoSettingsTransportType implements JsonpSerializable {
 	private final String default_;
@@ -47,14 +54,12 @@ public class NodeInfoSettingsTransportType implements JsonpSerializable {
 
 	private NodeInfoSettingsTransportType(Builder builder) {
 
-		this.default_ = ModelTypeHelper.requireNonNull(builder.default_, this, "default_");
+		this.default_ = ApiTypeHelper.requireNonNull(builder.default_, this, "default_");
 
 	}
 
-	public static NodeInfoSettingsTransportType of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodeInfoSettingsTransportType of(Function<Builder, ObjectBuilder<NodeInfoSettingsTransportType>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -85,6 +90,7 @@ public class NodeInfoSettingsTransportType implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoSettingsTransportType}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoSettingsTransportType> {
 		private String default_;
 

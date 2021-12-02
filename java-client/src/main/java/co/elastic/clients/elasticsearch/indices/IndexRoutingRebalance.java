@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexRoutingRebalance
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/_types/IndexRouting.ts#L34-L36">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IndexRoutingRebalance implements JsonpSerializable {
 	private final IndexRoutingRebalanceOptions enable;
@@ -46,14 +53,12 @@ public class IndexRoutingRebalance implements JsonpSerializable {
 
 	private IndexRoutingRebalance(Builder builder) {
 
-		this.enable = ModelTypeHelper.requireNonNull(builder.enable, this, "enable");
+		this.enable = ApiTypeHelper.requireNonNull(builder.enable, this, "enable");
 
 	}
 
-	public static IndexRoutingRebalance of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IndexRoutingRebalance of(Function<Builder, ObjectBuilder<IndexRoutingRebalance>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -84,6 +89,7 @@ public class IndexRoutingRebalance implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexRoutingRebalance}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexRoutingRebalance> {
 		private IndexRoutingRebalanceOptions enable;
 

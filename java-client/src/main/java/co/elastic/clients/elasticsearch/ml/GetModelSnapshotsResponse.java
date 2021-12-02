@@ -29,20 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_model_snapshots.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_model_snapshots/MlGetModelSnapshotsResponse.ts#L23-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetModelSnapshotsResponse implements JsonpSerializable {
 	private final long count;
@@ -53,15 +57,13 @@ public class GetModelSnapshotsResponse implements JsonpSerializable {
 
 	private GetModelSnapshotsResponse(Builder builder) {
 
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
-		this.modelSnapshots = ModelTypeHelper.unmodifiableRequired(builder.modelSnapshots, this, "modelSnapshots");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.modelSnapshots = ApiTypeHelper.unmodifiableRequired(builder.modelSnapshots, this, "modelSnapshots");
 
 	}
 
-	public static GetModelSnapshotsResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetModelSnapshotsResponse of(Function<Builder, ObjectBuilder<GetModelSnapshotsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -92,7 +94,7 @@ public class GetModelSnapshotsResponse implements JsonpSerializable {
 		generator.writeKey("count");
 		generator.write(this.count);
 
-		if (ModelTypeHelper.isDefined(this.modelSnapshots)) {
+		if (ApiTypeHelper.isDefined(this.modelSnapshots)) {
 			generator.writeKey("model_snapshots");
 			generator.writeStartArray();
 			for (ModelSnapshot item0 : this.modelSnapshots) {
@@ -110,6 +112,7 @@ public class GetModelSnapshotsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetModelSnapshotsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetModelSnapshotsResponse> {
 		private Long count;
 
@@ -125,26 +128,31 @@ public class GetModelSnapshotsResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code model_snapshots}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>modelSnapshots</code>.
 		 */
-		public final Builder modelSnapshots(List<ModelSnapshot> value) {
-			this.modelSnapshots = value;
+		public final Builder modelSnapshots(List<ModelSnapshot> list) {
+			this.modelSnapshots = _listAddAll(this.modelSnapshots, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code model_snapshots}
+		 * <p>
+		 * Adds one or more values to <code>modelSnapshots</code>.
 		 */
-		public final Builder modelSnapshots(ModelSnapshot... value) {
-			this.modelSnapshots = Arrays.asList(value);
+		public final Builder modelSnapshots(ModelSnapshot value, ModelSnapshot... values) {
+			this.modelSnapshots = _listAdd(this.modelSnapshots, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code model_snapshots}
+		 * <p>
+		 * Adds a value to <code>modelSnapshots</code> using a builder lambda.
 		 */
-		public final Builder modelSnapshots(
-				Function<ListBuilder<ModelSnapshot, ModelSnapshot.Builder>, ObjectBuilder<List<ModelSnapshot>>> fn) {
-			return modelSnapshots(fn.apply(new ListBuilder<>(ModelSnapshot.Builder::new)).build());
+		public final Builder modelSnapshots(Function<ModelSnapshot.Builder, ObjectBuilder<ModelSnapshot>> fn) {
+			return modelSnapshots(fn.apply(new ModelSnapshot.Builder()).build());
 		}
 
 		/**

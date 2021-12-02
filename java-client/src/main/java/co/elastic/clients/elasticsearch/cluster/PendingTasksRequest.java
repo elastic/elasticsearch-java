@@ -39,10 +39,19 @@ import java.lang.Boolean;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.pending_tasks.Request
+
+/**
+ * Returns a list of any cluster-level changes (e.g. create index, update
+ * mapping, allocate or fail shard) which have not yet been executed.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/pending_tasks/ClusterPendingTasksRequest.ts#L23-L34">API
+ *      specification</a>
+ */
 
 public class PendingTasksRequest extends RequestBase {
 	@Nullable
@@ -60,10 +69,8 @@ public class PendingTasksRequest extends RequestBase {
 
 	}
 
-	public static PendingTasksRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PendingTasksRequest of(Function<Builder, ObjectBuilder<PendingTasksRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -92,6 +99,7 @@ public class PendingTasksRequest extends RequestBase {
 	/**
 	 * Builder for {@link PendingTasksRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PendingTasksRequest> {
 		@Nullable
 		private Boolean local;
@@ -125,10 +133,8 @@ public class PendingTasksRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.masterTimeout(builder.build());
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

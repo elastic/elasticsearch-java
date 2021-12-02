@@ -29,19 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.FieldMapping
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/meta-fields.ts#L24-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FieldMapping implements JsonpSerializable {
 	// Single key dictionary
@@ -55,17 +60,15 @@ public class FieldMapping implements JsonpSerializable {
 
 	private FieldMapping(Builder builder) {
 
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
-		this.fullName = ModelTypeHelper.requireNonNull(builder.fullName, this, "fullName");
-		this.mapping = ModelTypeHelper.unmodifiableRequired(builder.mapping, this, "mapping");
+		this.fullName = ApiTypeHelper.requireNonNull(builder.fullName, this, "fullName");
+		this.mapping = ApiTypeHelper.unmodifiableRequired(builder.mapping, this, "mapping");
 
 	}
 
-	public static FieldMapping of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static FieldMapping of(Function<Builder, ObjectBuilder<FieldMapping>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -104,7 +107,7 @@ public class FieldMapping implements JsonpSerializable {
 		generator.writeKey("full_name");
 		generator.write(this.fullName);
 
-		if (ModelTypeHelper.isDefined(this.mapping)) {
+		if (ApiTypeHelper.isDefined(this.mapping)) {
 			generator.writeKey("mapping");
 			generator.writeStartObject();
 			for (Map.Entry<String, Property> item0 : this.mapping.entrySet()) {
@@ -125,6 +128,7 @@ public class FieldMapping implements JsonpSerializable {
 	/**
 	 * Builder for {@link FieldMapping}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldMapping> {
 		private String field;
 
@@ -150,15 +154,31 @@ public class FieldMapping implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code mapping}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>mapping</code>.
 		 */
-		public final Builder mapping(Map<String, Property> value) {
-			this.mapping = value;
+		public final Builder mapping(Map<String, Property> map) {
+			this.mapping = _mapPutAll(this.mapping, map);
 			return this;
 		}
 
-		public final Builder mapping(
-				Function<MapBuilder<String, Property, Property.Builder>, ObjectBuilder<Map<String, Property>>> fn) {
-			return mapping(fn.apply(new MapBuilder<>(Property.Builder::new)).build());
+		/**
+		 * Required - API name: {@code mapping}
+		 * <p>
+		 * Adds an entry to <code>mapping</code>.
+		 */
+		public final Builder mapping(String key, Property value) {
+			this.mapping = _mapPut(this.mapping, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code mapping}
+		 * <p>
+		 * Adds an entry to <code>mapping</code> using a builder lambda.
+		 */
+		public final Builder mapping(String key, Function<Property.Builder, ObjectBuilder<Property>> fn) {
+			return mapping(key, fn.apply(new Property.Builder()).build());
 		}
 
 		/**

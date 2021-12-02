@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.UnionDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
@@ -38,11 +38,17 @@ import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.SuggestOption
-// union type: Union[]
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/suggester.ts#L65-L69">API
+ *      specification</a>
+ */
 
 public class SuggestOption<TDocument> implements TaggedUnion<SuggestOption.Kind, Object>, JsonpSerializable {
 
@@ -73,15 +79,14 @@ public class SuggestOption<TDocument> implements TaggedUnion<SuggestOption.Kind,
 
 	private SuggestOption(Builder<TDocument> builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static <TDocument> SuggestOption<TDocument> of(Consumer<Builder<TDocument>> fn) {
-		Builder<TDocument> builder = new Builder<>();
-		fn.accept(builder);
-		return builder.build();
+	public static <TDocument> SuggestOption<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<SuggestOption<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
@@ -156,10 +161,8 @@ public class SuggestOption<TDocument> implements TaggedUnion<SuggestOption.Kind,
 		}
 
 		public ObjectBuilder<SuggestOption<TDocument>> completion(
-				Consumer<CompletionSuggestOption.Builder<TDocument>> fn) {
-			CompletionSuggestOption.Builder<TDocument> builder = new CompletionSuggestOption.Builder<TDocument>();
-			fn.accept(builder);
-			return this.completion(builder.build());
+				Function<CompletionSuggestOption.Builder<TDocument>, ObjectBuilder<CompletionSuggestOption<TDocument>>> fn) {
+			return this.completion(fn.apply(new CompletionSuggestOption.Builder<TDocument>()).build());
 		}
 
 		public ObjectBuilder<SuggestOption<TDocument>> phrase(PhraseSuggestOption v) {
@@ -168,10 +171,9 @@ public class SuggestOption<TDocument> implements TaggedUnion<SuggestOption.Kind,
 			return this;
 		}
 
-		public ObjectBuilder<SuggestOption<TDocument>> phrase(Consumer<PhraseSuggestOption.Builder> fn) {
-			PhraseSuggestOption.Builder builder = new PhraseSuggestOption.Builder();
-			fn.accept(builder);
-			return this.phrase(builder.build());
+		public ObjectBuilder<SuggestOption<TDocument>> phrase(
+				Function<PhraseSuggestOption.Builder, ObjectBuilder<PhraseSuggestOption>> fn) {
+			return this.phrase(fn.apply(new PhraseSuggestOption.Builder()).build());
 		}
 
 		public ObjectBuilder<SuggestOption<TDocument>> term(TermSuggestOption v) {
@@ -180,10 +182,9 @@ public class SuggestOption<TDocument> implements TaggedUnion<SuggestOption.Kind,
 			return this;
 		}
 
-		public ObjectBuilder<SuggestOption<TDocument>> term(Consumer<TermSuggestOption.Builder> fn) {
-			TermSuggestOption.Builder builder = new TermSuggestOption.Builder();
-			fn.accept(builder);
-			return this.term(builder.build());
+		public ObjectBuilder<SuggestOption<TDocument>> term(
+				Function<TermSuggestOption.Builder, ObjectBuilder<TermSuggestOption>> fn) {
+			return this.term(fn.apply(new TermSuggestOption.Builder()).build());
 		}
 
 		public SuggestOption<TDocument> build() {

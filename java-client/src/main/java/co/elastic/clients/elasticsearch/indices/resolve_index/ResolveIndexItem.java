@@ -29,18 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.resolve_index.ResolveIndexItem
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/resolve_index/ResolveIndexResponse.ts#L30-L35">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ResolveIndexItem implements JsonpSerializable {
 	private final String name;
@@ -56,17 +62,15 @@ public class ResolveIndexItem implements JsonpSerializable {
 
 	private ResolveIndexItem(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
-		this.aliases = ModelTypeHelper.unmodifiable(builder.aliases);
-		this.attributes = ModelTypeHelper.unmodifiableRequired(builder.attributes, this, "attributes");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
+		this.attributes = ApiTypeHelper.unmodifiableRequired(builder.attributes, this, "attributes");
 		this.dataStream = builder.dataStream;
 
 	}
 
-	public static ResolveIndexItem of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ResolveIndexItem of(Function<Builder, ObjectBuilder<ResolveIndexItem>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -112,7 +116,7 @@ public class ResolveIndexItem implements JsonpSerializable {
 		generator.writeKey("name");
 		generator.write(this.name);
 
-		if (ModelTypeHelper.isDefined(this.aliases)) {
+		if (ApiTypeHelper.isDefined(this.aliases)) {
 			generator.writeKey("aliases");
 			generator.writeStartArray();
 			for (String item0 : this.aliases) {
@@ -122,7 +126,7 @@ public class ResolveIndexItem implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.attributes)) {
+		if (ApiTypeHelper.isDefined(this.attributes)) {
 			generator.writeKey("attributes");
 			generator.writeStartArray();
 			for (String item0 : this.attributes) {
@@ -145,6 +149,7 @@ public class ResolveIndexItem implements JsonpSerializable {
 	/**
 	 * Builder for {@link ResolveIndexItem}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ResolveIndexItem> {
 		private String name;
 
@@ -166,33 +171,41 @@ public class ResolveIndexItem implements JsonpSerializable {
 
 		/**
 		 * API name: {@code aliases}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>aliases</code>.
 		 */
-		public final Builder aliases(@Nullable List<String> value) {
-			this.aliases = value;
+		public final Builder aliases(List<String> list) {
+			this.aliases = _listAddAll(this.aliases, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code aliases}
+		 * <p>
+		 * Adds one or more values to <code>aliases</code>.
 		 */
-		public final Builder aliases(String... value) {
-			this.aliases = Arrays.asList(value);
+		public final Builder aliases(String value, String... values) {
+			this.aliases = _listAdd(this.aliases, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code attributes}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>attributes</code>.
 		 */
-		public final Builder attributes(List<String> value) {
-			this.attributes = value;
+		public final Builder attributes(List<String> list) {
+			this.attributes = _listAddAll(this.attributes, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code attributes}
+		 * <p>
+		 * Adds one or more values to <code>attributes</code>.
 		 */
-		public final Builder attributes(String... value) {
-			this.attributes = Arrays.asList(value);
+		public final Builder attributes(String value, String... values) {
+			this.attributes = _listAdd(this.attributes, value, values);
 			return this;
 		}
 

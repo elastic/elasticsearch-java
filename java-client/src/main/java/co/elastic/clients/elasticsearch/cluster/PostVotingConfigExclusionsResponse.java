@@ -33,6 +33,13 @@ import java.util.Objects;
 
 // typedef: cluster.post_voting_config_exclusions.Response
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/post_voting_config_exclusions/ClusterPostVotingConfigExclusionsResponse.ts#L22-L24">API
+ *      specification</a>
+ */
+
 public class PostVotingConfigExclusionsResponse {
 	public PostVotingConfigExclusionsResponse() {
 	}

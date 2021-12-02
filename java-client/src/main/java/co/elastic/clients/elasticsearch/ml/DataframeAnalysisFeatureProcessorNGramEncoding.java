@@ -29,20 +29,26 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisFeatureProcessorNGramEncoding
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/DataframeAnalytics.ts#L273-L285">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeAnalysisFeatureProcessorNGramEncoding
 		implements
@@ -69,18 +75,17 @@ public class DataframeAnalysisFeatureProcessorNGramEncoding
 	private DataframeAnalysisFeatureProcessorNGramEncoding(Builder builder) {
 
 		this.featurePrefix = builder.featurePrefix;
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.length = builder.length;
-		this.nGrams = ModelTypeHelper.unmodifiableRequired(builder.nGrams, this, "nGrams");
+		this.nGrams = ApiTypeHelper.unmodifiableRequired(builder.nGrams, this, "nGrams");
 		this.start = builder.start;
 		this.custom = builder.custom;
 
 	}
 
-	public static DataframeAnalysisFeatureProcessorNGramEncoding of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DataframeAnalysisFeatureProcessorNGramEncoding of(
+			Function<Builder, ObjectBuilder<DataframeAnalysisFeatureProcessorNGramEncoding>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -174,7 +179,7 @@ public class DataframeAnalysisFeatureProcessorNGramEncoding
 			generator.write(this.length);
 
 		}
-		if (ModelTypeHelper.isDefined(this.nGrams)) {
+		if (ApiTypeHelper.isDefined(this.nGrams)) {
 			generator.writeKey("n_grams");
 			generator.writeStartArray();
 			for (Integer item0 : this.nGrams) {
@@ -202,6 +207,7 @@ public class DataframeAnalysisFeatureProcessorNGramEncoding
 	/**
 	 * Builder for {@link DataframeAnalysisFeatureProcessorNGramEncoding}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase
 			implements
 				ObjectBuilder<DataframeAnalysisFeatureProcessorNGramEncoding> {
@@ -257,9 +263,11 @@ public class DataframeAnalysisFeatureProcessorNGramEncoding
 		 * where the minimum value is 1, and a maximum value is 5.
 		 * <p>
 		 * API name: {@code n_grams}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>nGrams</code>.
 		 */
-		public final Builder nGrams(List<Integer> value) {
-			this.nGrams = value;
+		public final Builder nGrams(List<Integer> list) {
+			this.nGrams = _listAddAll(this.nGrams, list);
 			return this;
 		}
 
@@ -268,9 +276,11 @@ public class DataframeAnalysisFeatureProcessorNGramEncoding
 		 * where the minimum value is 1, and a maximum value is 5.
 		 * <p>
 		 * API name: {@code n_grams}
+		 * <p>
+		 * Adds one or more values to <code>nGrams</code>.
 		 */
-		public final Builder nGrams(Integer... value) {
-			this.nGrams = Arrays.asList(value);
+		public final Builder nGrams(Integer value, Integer... values) {
+			this.nGrams = _listAdd(this.nGrams, value, values);
 			return this;
 		}
 

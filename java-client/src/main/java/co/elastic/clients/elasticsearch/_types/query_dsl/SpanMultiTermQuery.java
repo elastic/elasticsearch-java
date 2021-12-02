@@ -28,14 +28,21 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SpanMultiTermQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/span.ts#L44-L47">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SpanMultiTermQuery extends QueryBase implements SpanQueryVariant, QueryVariant {
 	private final Query match;
@@ -45,14 +52,12 @@ public class SpanMultiTermQuery extends QueryBase implements SpanQueryVariant, Q
 	private SpanMultiTermQuery(Builder builder) {
 		super(builder);
 
-		this.match = ModelTypeHelper.requireNonNull(builder.match, this, "match");
+		this.match = ApiTypeHelper.requireNonNull(builder.match, this, "match");
 
 	}
 
-	public static SpanMultiTermQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SpanMultiTermQuery of(Function<Builder, ObjectBuilder<SpanMultiTermQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -94,6 +99,7 @@ public class SpanMultiTermQuery extends QueryBase implements SpanQueryVariant, Q
 	/**
 	 * Builder for {@link SpanMultiTermQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<SpanMultiTermQuery> {
@@ -116,10 +122,8 @@ public class SpanMultiTermQuery extends QueryBase implements SpanQueryVariant, Q
 		 * <p>
 		 * API name: {@code match}
 		 */
-		public final Builder match(Consumer<Query.Builder> fn) {
-			Query.Builder builder = new Query.Builder();
-			fn.accept(builder);
-			return this.match(builder.build());
+		public final Builder match(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.match(fn.apply(new Query.Builder()).build());
 		}
 
 		@Override

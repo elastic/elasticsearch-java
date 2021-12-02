@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeOperatingSystemInfo
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L357-L374">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeOperatingSystemInfo implements JsonpSerializable {
 	private final String arch;
@@ -70,25 +77,23 @@ public class NodeOperatingSystemInfo implements JsonpSerializable {
 
 	private NodeOperatingSystemInfo(Builder builder) {
 
-		this.arch = ModelTypeHelper.requireNonNull(builder.arch, this, "arch");
-		this.availableProcessors = ModelTypeHelper.requireNonNull(builder.availableProcessors, this,
+		this.arch = ApiTypeHelper.requireNonNull(builder.arch, this, "arch");
+		this.availableProcessors = ApiTypeHelper.requireNonNull(builder.availableProcessors, this,
 				"availableProcessors");
 		this.allocatedProcessors = builder.allocatedProcessors;
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
-		this.prettyName = ModelTypeHelper.requireNonNull(builder.prettyName, this, "prettyName");
-		this.refreshIntervalInMillis = ModelTypeHelper.requireNonNull(builder.refreshIntervalInMillis, this,
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.prettyName = ApiTypeHelper.requireNonNull(builder.prettyName, this, "prettyName");
+		this.refreshIntervalInMillis = ApiTypeHelper.requireNonNull(builder.refreshIntervalInMillis, this,
 				"refreshIntervalInMillis");
-		this.version = ModelTypeHelper.requireNonNull(builder.version, this, "version");
+		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
 		this.cpu = builder.cpu;
 		this.mem = builder.mem;
 		this.swap = builder.swap;
 
 	}
 
-	public static NodeOperatingSystemInfo of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodeOperatingSystemInfo of(Function<Builder, ObjectBuilder<NodeOperatingSystemInfo>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -236,6 +241,7 @@ public class NodeOperatingSystemInfo implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeOperatingSystemInfo}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeOperatingSystemInfo> {
 		private String arch;
 
@@ -342,10 +348,8 @@ public class NodeOperatingSystemInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code cpu}
 		 */
-		public final Builder cpu(Consumer<NodeInfoOSCPU.Builder> fn) {
-			NodeInfoOSCPU.Builder builder = new NodeInfoOSCPU.Builder();
-			fn.accept(builder);
-			return this.cpu(builder.build());
+		public final Builder cpu(Function<NodeInfoOSCPU.Builder, ObjectBuilder<NodeInfoOSCPU>> fn) {
+			return this.cpu(fn.apply(new NodeInfoOSCPU.Builder()).build());
 		}
 
 		/**
@@ -359,10 +363,8 @@ public class NodeOperatingSystemInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code mem}
 		 */
-		public final Builder mem(Consumer<NodeInfoMemory.Builder> fn) {
-			NodeInfoMemory.Builder builder = new NodeInfoMemory.Builder();
-			fn.accept(builder);
-			return this.mem(builder.build());
+		public final Builder mem(Function<NodeInfoMemory.Builder, ObjectBuilder<NodeInfoMemory>> fn) {
+			return this.mem(fn.apply(new NodeInfoMemory.Builder()).build());
 		}
 
 		/**
@@ -376,10 +378,8 @@ public class NodeOperatingSystemInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code swap}
 		 */
-		public final Builder swap(Consumer<NodeInfoMemory.Builder> fn) {
-			NodeInfoMemory.Builder builder = new NodeInfoMemory.Builder();
-			fn.accept(builder);
-			return this.swap(builder.build());
+		public final Builder swap(Function<NodeInfoMemory.Builder, ObjectBuilder<NodeInfoMemory>> fn) {
+			return this.swap(fn.apply(new NodeInfoMemory.Builder()).build());
 		}
 
 		/**

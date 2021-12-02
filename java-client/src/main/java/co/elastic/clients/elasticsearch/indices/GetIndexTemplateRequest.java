@@ -40,10 +40,18 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_index_template.Request
+
+/**
+ * Returns an index template.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/get_index_template/IndicesGetIndexTemplateRequest.ts#L24-L56">API
+ *      specification</a>
+ */
 
 public class GetIndexTemplateRequest extends RequestBase {
 	@Nullable
@@ -73,10 +81,8 @@ public class GetIndexTemplateRequest extends RequestBase {
 
 	}
 
-	public static GetIndexTemplateRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetIndexTemplateRequest of(Function<Builder, ObjectBuilder<GetIndexTemplateRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -137,6 +143,7 @@ public class GetIndexTemplateRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetIndexTemplateRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetIndexTemplateRequest> {
 		@Nullable
 		private Boolean flatSettings;
@@ -201,10 +208,8 @@ public class GetIndexTemplateRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.masterTimeout(builder.build());
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

@@ -30,17 +30,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr._types.ReadException
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ccr/_types/FollowIndexStats.ts#L67-L71">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ReadException implements JsonpSerializable {
 	private final ErrorCause exception;
@@ -53,16 +60,14 @@ public class ReadException implements JsonpSerializable {
 
 	private ReadException(Builder builder) {
 
-		this.exception = ModelTypeHelper.requireNonNull(builder.exception, this, "exception");
-		this.fromSeqNo = ModelTypeHelper.requireNonNull(builder.fromSeqNo, this, "fromSeqNo");
-		this.retries = ModelTypeHelper.requireNonNull(builder.retries, this, "retries");
+		this.exception = ApiTypeHelper.requireNonNull(builder.exception, this, "exception");
+		this.fromSeqNo = ApiTypeHelper.requireNonNull(builder.fromSeqNo, this, "fromSeqNo");
+		this.retries = ApiTypeHelper.requireNonNull(builder.retries, this, "retries");
 
 	}
 
-	public static ReadException of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ReadException of(Function<Builder, ObjectBuilder<ReadException>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -113,6 +118,7 @@ public class ReadException implements JsonpSerializable {
 	/**
 	 * Builder for {@link ReadException}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ReadException> {
 		private ErrorCause exception;
 
@@ -131,10 +137,8 @@ public class ReadException implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code exception}
 		 */
-		public final Builder exception(Consumer<ErrorCause.Builder> fn) {
-			ErrorCause.Builder builder = new ErrorCause.Builder();
-			fn.accept(builder);
-			return this.exception(builder.build());
+		public final Builder exception(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+			return this.exception(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		/**

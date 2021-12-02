@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoIngestInfo
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L122-L124">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeInfoIngestInfo implements JsonpSerializable {
 	private final NodeInfoIngestDownloader downloader;
@@ -46,14 +53,12 @@ public class NodeInfoIngestInfo implements JsonpSerializable {
 
 	private NodeInfoIngestInfo(Builder builder) {
 
-		this.downloader = ModelTypeHelper.requireNonNull(builder.downloader, this, "downloader");
+		this.downloader = ApiTypeHelper.requireNonNull(builder.downloader, this, "downloader");
 
 	}
 
-	public static NodeInfoIngestInfo of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodeInfoIngestInfo of(Function<Builder, ObjectBuilder<NodeInfoIngestInfo>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -84,6 +89,7 @@ public class NodeInfoIngestInfo implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoIngestInfo}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoIngestInfo> {
 		private NodeInfoIngestDownloader downloader;
 
@@ -98,10 +104,9 @@ public class NodeInfoIngestInfo implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code downloader}
 		 */
-		public final Builder downloader(Consumer<NodeInfoIngestDownloader.Builder> fn) {
-			NodeInfoIngestDownloader.Builder builder = new NodeInfoIngestDownloader.Builder();
-			fn.accept(builder);
-			return this.downloader(builder.build());
+		public final Builder downloader(
+				Function<NodeInfoIngestDownloader.Builder, ObjectBuilder<NodeInfoIngestDownloader>> fn) {
+			return this.downloader(fn.apply(new NodeInfoIngestDownloader.Builder()).build());
 		}
 
 		/**

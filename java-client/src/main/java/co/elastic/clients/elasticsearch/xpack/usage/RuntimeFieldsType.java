@@ -29,19 +29,25 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.RuntimeFieldsType
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L234-L249">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RuntimeFieldsType implements JsonpSerializable {
 	private final long charsMax;
@@ -76,27 +82,25 @@ public class RuntimeFieldsType implements JsonpSerializable {
 
 	private RuntimeFieldsType(Builder builder) {
 
-		this.charsMax = ModelTypeHelper.requireNonNull(builder.charsMax, this, "charsMax");
-		this.charsTotal = ModelTypeHelper.requireNonNull(builder.charsTotal, this, "charsTotal");
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
-		this.docMax = ModelTypeHelper.requireNonNull(builder.docMax, this, "docMax");
-		this.docTotal = ModelTypeHelper.requireNonNull(builder.docTotal, this, "docTotal");
-		this.indexCount = ModelTypeHelper.requireNonNull(builder.indexCount, this, "indexCount");
-		this.lang = ModelTypeHelper.unmodifiableRequired(builder.lang, this, "lang");
-		this.linesMax = ModelTypeHelper.requireNonNull(builder.linesMax, this, "linesMax");
-		this.linesTotal = ModelTypeHelper.requireNonNull(builder.linesTotal, this, "linesTotal");
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
-		this.scriptlessCount = ModelTypeHelper.requireNonNull(builder.scriptlessCount, this, "scriptlessCount");
-		this.shadowedCount = ModelTypeHelper.requireNonNull(builder.shadowedCount, this, "shadowedCount");
-		this.sourceMax = ModelTypeHelper.requireNonNull(builder.sourceMax, this, "sourceMax");
-		this.sourceTotal = ModelTypeHelper.requireNonNull(builder.sourceTotal, this, "sourceTotal");
+		this.charsMax = ApiTypeHelper.requireNonNull(builder.charsMax, this, "charsMax");
+		this.charsTotal = ApiTypeHelper.requireNonNull(builder.charsTotal, this, "charsTotal");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.docMax = ApiTypeHelper.requireNonNull(builder.docMax, this, "docMax");
+		this.docTotal = ApiTypeHelper.requireNonNull(builder.docTotal, this, "docTotal");
+		this.indexCount = ApiTypeHelper.requireNonNull(builder.indexCount, this, "indexCount");
+		this.lang = ApiTypeHelper.unmodifiableRequired(builder.lang, this, "lang");
+		this.linesMax = ApiTypeHelper.requireNonNull(builder.linesMax, this, "linesMax");
+		this.linesTotal = ApiTypeHelper.requireNonNull(builder.linesTotal, this, "linesTotal");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.scriptlessCount = ApiTypeHelper.requireNonNull(builder.scriptlessCount, this, "scriptlessCount");
+		this.shadowedCount = ApiTypeHelper.requireNonNull(builder.shadowedCount, this, "shadowedCount");
+		this.sourceMax = ApiTypeHelper.requireNonNull(builder.sourceMax, this, "sourceMax");
+		this.sourceTotal = ApiTypeHelper.requireNonNull(builder.sourceTotal, this, "sourceTotal");
 
 	}
 
-	public static RuntimeFieldsType of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RuntimeFieldsType of(Function<Builder, ObjectBuilder<RuntimeFieldsType>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -226,7 +230,7 @@ public class RuntimeFieldsType implements JsonpSerializable {
 		generator.writeKey("index_count");
 		generator.write(this.indexCount);
 
-		if (ModelTypeHelper.isDefined(this.lang)) {
+		if (ApiTypeHelper.isDefined(this.lang)) {
 			generator.writeKey("lang");
 			generator.writeStartArray();
 			for (String item0 : this.lang) {
@@ -264,6 +268,7 @@ public class RuntimeFieldsType implements JsonpSerializable {
 	/**
 	 * Builder for {@link RuntimeFieldsType}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RuntimeFieldsType> {
 		private Long charsMax;
 
@@ -343,17 +348,21 @@ public class RuntimeFieldsType implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code lang}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>lang</code>.
 		 */
-		public final Builder lang(List<String> value) {
-			this.lang = value;
+		public final Builder lang(List<String> list) {
+			this.lang = _listAddAll(this.lang, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code lang}
+		 * <p>
+		 * Adds one or more values to <code>lang</code>.
 		 */
-		public final Builder lang(String... value) {
-			this.lang = Arrays.asList(value);
+		public final Builder lang(String value, String... values) {
+			this.lang = _listAdd(this.lang, value, values);
 			return this;
 		}
 

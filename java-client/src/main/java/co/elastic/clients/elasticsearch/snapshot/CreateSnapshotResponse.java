@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.create.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/snapshot/create/SnapshotCreateResponse.ts#L22-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CreateSnapshotResponse implements JsonpSerializable {
 	@Nullable
@@ -51,14 +58,12 @@ public class CreateSnapshotResponse implements JsonpSerializable {
 	private CreateSnapshotResponse(Builder builder) {
 
 		this.accepted = builder.accepted;
-		this.snapshot = ModelTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
+		this.snapshot = ApiTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
 
 	}
 
-	public static CreateSnapshotResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CreateSnapshotResponse of(Function<Builder, ObjectBuilder<CreateSnapshotResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -102,6 +107,7 @@ public class CreateSnapshotResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link CreateSnapshotResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CreateSnapshotResponse> {
 		@Nullable
 		private Boolean accepted;
@@ -127,10 +133,8 @@ public class CreateSnapshotResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code snapshot}
 		 */
-		public final Builder snapshot(Consumer<SnapshotInfo.Builder> fn) {
-			SnapshotInfo.Builder builder = new SnapshotInfo.Builder();
-			fn.accept(builder);
-			return this.snapshot(builder.build());
+		public final Builder snapshot(Function<SnapshotInfo.Builder, ObjectBuilder<SnapshotInfo>> fn) {
+			return this.snapshot(fn.apply(new SnapshotInfo.Builder()).build());
 		}
 
 		/**

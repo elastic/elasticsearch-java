@@ -30,19 +30,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: graph._types.Hop
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/graph/_types/Hop.ts#L23-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Hop implements JsonpSerializable {
 	@Nullable
@@ -57,15 +61,13 @@ public class Hop implements JsonpSerializable {
 	private Hop(Builder builder) {
 
 		this.connections = builder.connections;
-		this.query = ModelTypeHelper.requireNonNull(builder.query, this, "query");
-		this.vertices = ModelTypeHelper.unmodifiableRequired(builder.vertices, this, "vertices");
+		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
+		this.vertices = ApiTypeHelper.unmodifiableRequired(builder.vertices, this, "vertices");
 
 	}
 
-	public static Hop of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Hop of(Function<Builder, ObjectBuilder<Hop>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -109,7 +111,7 @@ public class Hop implements JsonpSerializable {
 		generator.writeKey("query");
 		this.query.serialize(generator, mapper);
 
-		if (ModelTypeHelper.isDefined(this.vertices)) {
+		if (ApiTypeHelper.isDefined(this.vertices)) {
 			generator.writeKey("vertices");
 			generator.writeStartArray();
 			for (VertexDefinition item0 : this.vertices) {
@@ -127,6 +129,7 @@ public class Hop implements JsonpSerializable {
 	/**
 	 * Builder for {@link Hop}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Hop> {
 		@Nullable
 		private Hop connections;
@@ -146,10 +149,8 @@ public class Hop implements JsonpSerializable {
 		/**
 		 * API name: {@code connections}
 		 */
-		public final Builder connections(Consumer<Hop.Builder> fn) {
-			Hop.Builder builder = new Hop.Builder();
-			fn.accept(builder);
-			return this.connections(builder.build());
+		public final Builder connections(Function<Hop.Builder, ObjectBuilder<Hop>> fn) {
+			return this.connections(fn.apply(new Hop.Builder()).build());
 		}
 
 		/**
@@ -163,34 +164,37 @@ public class Hop implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code query}
 		 */
-		public final Builder query(Consumer<Query.Builder> fn) {
-			Query.Builder builder = new Query.Builder();
-			fn.accept(builder);
-			return this.query(builder.build());
+		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code vertices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>vertices</code>.
 		 */
-		public final Builder vertices(List<VertexDefinition> value) {
-			this.vertices = value;
+		public final Builder vertices(List<VertexDefinition> list) {
+			this.vertices = _listAddAll(this.vertices, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code vertices}
+		 * <p>
+		 * Adds one or more values to <code>vertices</code>.
 		 */
-		public final Builder vertices(VertexDefinition... value) {
-			this.vertices = Arrays.asList(value);
+		public final Builder vertices(VertexDefinition value, VertexDefinition... values) {
+			this.vertices = _listAdd(this.vertices, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code vertices}
+		 * <p>
+		 * Adds a value to <code>vertices</code> using a builder lambda.
 		 */
-		public final Builder vertices(
-				Function<ListBuilder<VertexDefinition, VertexDefinition.Builder>, ObjectBuilder<List<VertexDefinition>>> fn) {
-			return vertices(fn.apply(new ListBuilder<>(VertexDefinition.Builder::new)).build());
+		public final Builder vertices(Function<VertexDefinition.Builder, ObjectBuilder<VertexDefinition>> fn) {
+			return vertices(fn.apply(new VertexDefinition.Builder()).build());
 		}
 
 		/**

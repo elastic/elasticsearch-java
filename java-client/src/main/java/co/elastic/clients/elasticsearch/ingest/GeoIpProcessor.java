@@ -28,18 +28,24 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.GeoIpProcessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/_types/Processors.ts#L104-L111">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GeoIpProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String databaseFile;
@@ -59,19 +65,17 @@ public class GeoIpProcessor extends ProcessorBase implements ProcessorVariant {
 	private GeoIpProcessor(Builder builder) {
 		super(builder);
 
-		this.databaseFile = ModelTypeHelper.requireNonNull(builder.databaseFile, this, "databaseFile");
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
-		this.firstOnly = ModelTypeHelper.requireNonNull(builder.firstOnly, this, "firstOnly");
-		this.ignoreMissing = ModelTypeHelper.requireNonNull(builder.ignoreMissing, this, "ignoreMissing");
-		this.properties = ModelTypeHelper.unmodifiableRequired(builder.properties, this, "properties");
-		this.targetField = ModelTypeHelper.requireNonNull(builder.targetField, this, "targetField");
+		this.databaseFile = ApiTypeHelper.requireNonNull(builder.databaseFile, this, "databaseFile");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.firstOnly = ApiTypeHelper.requireNonNull(builder.firstOnly, this, "firstOnly");
+		this.ignoreMissing = ApiTypeHelper.requireNonNull(builder.ignoreMissing, this, "ignoreMissing");
+		this.properties = ApiTypeHelper.unmodifiableRequired(builder.properties, this, "properties");
+		this.targetField = ApiTypeHelper.requireNonNull(builder.targetField, this, "targetField");
 
 	}
 
-	public static GeoIpProcessor of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GeoIpProcessor of(Function<Builder, ObjectBuilder<GeoIpProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -139,7 +143,7 @@ public class GeoIpProcessor extends ProcessorBase implements ProcessorVariant {
 		generator.writeKey("ignore_missing");
 		generator.write(this.ignoreMissing);
 
-		if (ModelTypeHelper.isDefined(this.properties)) {
+		if (ApiTypeHelper.isDefined(this.properties)) {
 			generator.writeKey("properties");
 			generator.writeStartArray();
 			for (String item0 : this.properties) {
@@ -159,6 +163,7 @@ public class GeoIpProcessor extends ProcessorBase implements ProcessorVariant {
 	/**
 	 * Builder for {@link GeoIpProcessor}.
 	 */
+
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<GeoIpProcessor> {
@@ -208,17 +213,21 @@ public class GeoIpProcessor extends ProcessorBase implements ProcessorVariant {
 
 		/**
 		 * Required - API name: {@code properties}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>properties</code>.
 		 */
-		public final Builder properties(List<String> value) {
-			this.properties = value;
+		public final Builder properties(List<String> list) {
+			this.properties = _listAddAll(this.properties, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code properties}
+		 * <p>
+		 * Adds one or more values to <code>properties</code>.
 		 */
-		public final Builder properties(String... value) {
-			this.properties = Arrays.asList(value);
+		public final Builder properties(String value, String... values) {
+			this.properties = _listAdd(this.properties, value, values);
 			return this;
 		}
 

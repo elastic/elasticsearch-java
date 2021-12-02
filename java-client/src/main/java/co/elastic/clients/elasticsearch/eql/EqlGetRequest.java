@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,10 +40,19 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: eql.get.Request
+
+/**
+ * Returns async results from previously executed Event Query Language (EQL)
+ * search
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/eql/get/EqlGetRequest.ts#L24-L46">API
+ *      specification</a>
+ */
 
 public class EqlGetRequest extends RequestBase {
 	private final String id;
@@ -58,16 +67,14 @@ public class EqlGetRequest extends RequestBase {
 
 	private EqlGetRequest(Builder builder) {
 
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.keepAlive = builder.keepAlive;
 		this.waitForCompletionTimeout = builder.waitForCompletionTimeout;
 
 	}
 
-	public static EqlGetRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static EqlGetRequest of(Function<Builder, ObjectBuilder<EqlGetRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -106,6 +113,7 @@ public class EqlGetRequest extends RequestBase {
 	/**
 	 * Builder for {@link EqlGetRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<EqlGetRequest> {
 		private String id;
 
@@ -142,10 +150,8 @@ public class EqlGetRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code keep_alive}
 		 */
-		public final Builder keepAlive(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.keepAlive(builder.build());
+		public final Builder keepAlive(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.keepAlive(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -165,10 +171,8 @@ public class EqlGetRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code wait_for_completion_timeout}
 		 */
-		public final Builder waitForCompletionTimeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.waitForCompletionTimeout(builder.build());
+		public final Builder waitForCompletionTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.waitForCompletionTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

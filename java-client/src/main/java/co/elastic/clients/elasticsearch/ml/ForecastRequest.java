@@ -34,17 +34,30 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.forecast.Request
+
+/**
+ * Predicts the future behavior of a time series by using its historical
+ * behavior.
+ * <p>
+ * Forecasts are not supported for jobs that perform population analysis; an
+ * error occurs if you try to create a forecast for a job that has an
+ * <code>over_field_name</code> in its configuration.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/forecast/MlForecastJobRequest.ts#L24-L87">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ForecastRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -64,15 +77,13 @@ public class ForecastRequest extends RequestBase implements JsonpSerializable {
 
 		this.duration = builder.duration;
 		this.expiresIn = builder.expiresIn;
-		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.maxModelMemory = builder.maxModelMemory;
 
 	}
 
-	public static ForecastRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ForecastRequest of(Function<Builder, ObjectBuilder<ForecastRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -150,6 +161,7 @@ public class ForecastRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link ForecastRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ForecastRequest> {
 		@Nullable
 		private Time duration;
@@ -177,10 +189,8 @@ public class ForecastRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code duration}
 		 */
-		public final Builder duration(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.duration(builder.build());
+		public final Builder duration(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.duration(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -198,10 +208,8 @@ public class ForecastRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code expires_in}
 		 */
-		public final Builder expiresIn(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.expiresIn(builder.build());
+		public final Builder expiresIn(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.expiresIn(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

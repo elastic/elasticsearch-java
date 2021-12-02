@@ -34,7 +34,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,10 +42,31 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.close_job.Request
+
+/**
+ * Closes one or more anomaly detection jobs. A job can be opened and closed
+ * multiple times throughout its lifecycle. A closed job cannot receive data or
+ * perform analysis operations, but you can still explore and navigate results.
+ * When you close a job, it runs housekeeping tasks such as pruning the model
+ * history, flushing buffers, calculating final results and persisting the model
+ * snapshots. Depending upon the size of the job, it could take several minutes
+ * to close and the equivalent time to re-open. After it is closed, the job has
+ * a minimal overhead on the cluster except for maintaining its meta data.
+ * Therefore it is a best practice to close jobs that are no longer required to
+ * process data. If you close an anomaly detection job whose datafeed is
+ * running, the request first tries to stop the datafeed. This behavior is
+ * equivalent to calling stop datafeed API with the same timeout and force
+ * parameters as the close job request. When a datafeed that has a specified end
+ * date stops, it automatically closes its associated job.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/close_job/MlCloseJobRequest.ts#L24-L76">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CloseJobRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -65,15 +86,13 @@ public class CloseJobRequest extends RequestBase implements JsonpSerializable {
 
 		this.allowNoMatch = builder.allowNoMatch;
 		this.force = builder.force;
-		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.timeout = builder.timeout;
 
 	}
 
-	public static CloseJobRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CloseJobRequest of(Function<Builder, ObjectBuilder<CloseJobRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -154,6 +173,7 @@ public class CloseJobRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link CloseJobRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CloseJobRequest> {
 		@Nullable
 		private Boolean allowNoMatch;
@@ -216,10 +236,8 @@ public class CloseJobRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.timeout(builder.build());
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

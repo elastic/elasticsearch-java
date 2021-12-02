@@ -35,21 +35,29 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.put_user.Request
+
+/**
+ * Adds and updates users in the native realm. These users are commonly referred
+ * to as native users.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/put_user/SecurityPutUserRequest.ts#L23-L45">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutUserRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -83,19 +91,17 @@ public class PutUserRequest extends RequestBase implements JsonpSerializable {
 		this.email = builder.email;
 		this.enabled = builder.enabled;
 		this.fullName = builder.fullName;
-		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
+		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
 		this.password = builder.password;
 		this.passwordHash = builder.passwordHash;
 		this.refresh = builder.refresh;
-		this.roles = ModelTypeHelper.unmodifiable(builder.roles);
-		this.username = ModelTypeHelper.requireNonNull(builder.username, this, "username");
+		this.roles = ApiTypeHelper.unmodifiable(builder.roles);
+		this.username = ApiTypeHelper.requireNonNull(builder.username, this, "username");
 
 	}
 
-	public static PutUserRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PutUserRequest of(Function<Builder, ObjectBuilder<PutUserRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -200,7 +206,7 @@ public class PutUserRequest extends RequestBase implements JsonpSerializable {
 			generator.write(this.fullName);
 
 		}
-		if (ModelTypeHelper.isDefined(this.metadata)) {
+		if (ApiTypeHelper.isDefined(this.metadata)) {
 			generator.writeKey("metadata");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
@@ -221,7 +227,7 @@ public class PutUserRequest extends RequestBase implements JsonpSerializable {
 			generator.write(this.passwordHash);
 
 		}
-		if (ModelTypeHelper.isDefined(this.roles)) {
+		if (ApiTypeHelper.isDefined(this.roles)) {
 			generator.writeKey("roles");
 			generator.writeStartArray();
 			for (String item0 : this.roles) {
@@ -239,6 +245,7 @@ public class PutUserRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link PutUserRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutUserRequest> {
 		@Nullable
 		private String email;
@@ -292,9 +299,21 @@ public class PutUserRequest extends RequestBase implements JsonpSerializable {
 
 		/**
 		 * API name: {@code metadata}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>metadata</code>.
 		 */
-		public final Builder metadata(@Nullable Map<String, JsonData> value) {
-			this.metadata = value;
+		public final Builder metadata(Map<String, JsonData> map) {
+			this.metadata = _mapPutAll(this.metadata, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code metadata}
+		 * <p>
+		 * Adds an entry to <code>metadata</code>.
+		 */
+		public final Builder metadata(String key, JsonData value) {
+			this.metadata = _mapPut(this.metadata, key, value);
 			return this;
 		}
 
@@ -329,17 +348,21 @@ public class PutUserRequest extends RequestBase implements JsonpSerializable {
 
 		/**
 		 * API name: {@code roles}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>roles</code>.
 		 */
-		public final Builder roles(@Nullable List<String> value) {
-			this.roles = value;
+		public final Builder roles(List<String> list) {
+			this.roles = _listAddAll(this.roles, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code roles}
+		 * <p>
+		 * Adds one or more values to <code>roles</code>.
 		 */
-		public final Builder roles(String... value) {
-			this.roles = Arrays.asList(value);
+		public final Builder roles(String value, String... values) {
+			this.roles = _listAdd(this.roles, value, values);
 			return this;
 		}
 

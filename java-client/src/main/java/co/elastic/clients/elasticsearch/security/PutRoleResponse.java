@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.put_role.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/put_role/SecurityPutRoleResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutRoleResponse implements JsonpSerializable {
 	private final CreatedStatus role;
@@ -46,14 +53,12 @@ public class PutRoleResponse implements JsonpSerializable {
 
 	private PutRoleResponse(Builder builder) {
 
-		this.role = ModelTypeHelper.requireNonNull(builder.role, this, "role");
+		this.role = ApiTypeHelper.requireNonNull(builder.role, this, "role");
 
 	}
 
-	public static PutRoleResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PutRoleResponse of(Function<Builder, ObjectBuilder<PutRoleResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -84,6 +89,7 @@ public class PutRoleResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link PutRoleResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutRoleResponse> {
 		private CreatedStatus role;
 
@@ -98,10 +104,8 @@ public class PutRoleResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code role}
 		 */
-		public final Builder role(Consumer<CreatedStatus.Builder> fn) {
-			CreatedStatus.Builder builder = new CreatedStatus.Builder();
-			fn.accept(builder);
-			return this.role(builder.build());
+		public final Builder role(Function<CreatedStatus.Builder, ObjectBuilder<CreatedStatus>> fn) {
+			return this.role(fn.apply(new CreatedStatus.Builder()).build());
 		}
 
 		/**

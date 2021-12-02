@@ -30,24 +30,33 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.remote_info.ClusterRemoteInfo
-// union type: InternalTag[tag=mode]
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/remote_info/ClusterRemoteInfoResponse.ts#L29-L30">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ClusterRemoteInfo
 		implements
 			TaggedUnion<ClusterRemoteInfo.Kind, ClusterRemoteInfoVariant>,
 			JsonpSerializable {
 
+	/**
+	 * {@link ClusterRemoteInfo} variant kinds.
+	 */
 	/**
 	 * {@link ClusterRemoteInfo} variant kinds.
 	 */
@@ -86,22 +95,20 @@ public class ClusterRemoteInfo
 
 	public ClusterRemoteInfo(ClusterRemoteInfoVariant value) {
 
-		this._kind = ModelTypeHelper.requireNonNull(value._clusterRemoteInfoKind(), this, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(value._clusterRemoteInfoKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
 	private ClusterRemoteInfo(Builder builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static ClusterRemoteInfo of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ClusterRemoteInfo of(Function<Builder, ObjectBuilder<ClusterRemoteInfo>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -155,10 +162,9 @@ public class ClusterRemoteInfo
 			return this;
 		}
 
-		public ObjectBuilder<ClusterRemoteInfo> proxy(Consumer<ClusterRemoteProxyInfo.Builder> fn) {
-			ClusterRemoteProxyInfo.Builder builder = new ClusterRemoteProxyInfo.Builder();
-			fn.accept(builder);
-			return this.proxy(builder.build());
+		public ObjectBuilder<ClusterRemoteInfo> proxy(
+				Function<ClusterRemoteProxyInfo.Builder, ObjectBuilder<ClusterRemoteProxyInfo>> fn) {
+			return this.proxy(fn.apply(new ClusterRemoteProxyInfo.Builder()).build());
 		}
 
 		public ObjectBuilder<ClusterRemoteInfo> sniff(ClusterRemoteSniffInfo v) {
@@ -167,10 +173,9 @@ public class ClusterRemoteInfo
 			return this;
 		}
 
-		public ObjectBuilder<ClusterRemoteInfo> sniff(Consumer<ClusterRemoteSniffInfo.Builder> fn) {
-			ClusterRemoteSniffInfo.Builder builder = new ClusterRemoteSniffInfo.Builder();
-			fn.accept(builder);
-			return this.sniff(builder.build());
+		public ObjectBuilder<ClusterRemoteInfo> sniff(
+				Function<ClusterRemoteSniffInfo.Builder, ObjectBuilder<ClusterRemoteSniffInfo>> fn) {
+			return this.sniff(fn.apply(new ClusterRemoteSniffInfo.Builder()).build());
 		}
 
 		public ClusterRemoteInfo build() {

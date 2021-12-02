@@ -29,20 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.analyze.TokenDetail
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/analyze/types.ts#L63-L66">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TokenDetail implements JsonpSerializable {
 	private final String name;
@@ -53,15 +57,13 @@ public class TokenDetail implements JsonpSerializable {
 
 	private TokenDetail(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
-		this.tokens = ModelTypeHelper.unmodifiableRequired(builder.tokens, this, "tokens");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.tokens = ApiTypeHelper.unmodifiableRequired(builder.tokens, this, "tokens");
 
 	}
 
-	public static TokenDetail of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TokenDetail of(Function<Builder, ObjectBuilder<TokenDetail>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -92,7 +94,7 @@ public class TokenDetail implements JsonpSerializable {
 		generator.writeKey("name");
 		generator.write(this.name);
 
-		if (ModelTypeHelper.isDefined(this.tokens)) {
+		if (ApiTypeHelper.isDefined(this.tokens)) {
 			generator.writeKey("tokens");
 			generator.writeStartArray();
 			for (ExplainAnalyzeToken item0 : this.tokens) {
@@ -110,6 +112,7 @@ public class TokenDetail implements JsonpSerializable {
 	/**
 	 * Builder for {@link TokenDetail}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TokenDetail> {
 		private String name;
 
@@ -125,26 +128,31 @@ public class TokenDetail implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code tokens}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>tokens</code>.
 		 */
-		public final Builder tokens(List<ExplainAnalyzeToken> value) {
-			this.tokens = value;
+		public final Builder tokens(List<ExplainAnalyzeToken> list) {
+			this.tokens = _listAddAll(this.tokens, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code tokens}
+		 * <p>
+		 * Adds one or more values to <code>tokens</code>.
 		 */
-		public final Builder tokens(ExplainAnalyzeToken... value) {
-			this.tokens = Arrays.asList(value);
+		public final Builder tokens(ExplainAnalyzeToken value, ExplainAnalyzeToken... values) {
+			this.tokens = _listAdd(this.tokens, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code tokens}
+		 * <p>
+		 * Adds a value to <code>tokens</code> using a builder lambda.
 		 */
-		public final Builder tokens(
-				Function<ListBuilder<ExplainAnalyzeToken, ExplainAnalyzeToken.Builder>, ObjectBuilder<List<ExplainAnalyzeToken>>> fn) {
-			return tokens(fn.apply(new ListBuilder<>(ExplainAnalyzeToken.Builder::new)).build());
+		public final Builder tokens(Function<ExplainAnalyzeToken.Builder, ObjectBuilder<ExplainAnalyzeToken>> fn) {
+			return tokens(fn.apply(new ExplainAnalyzeToken.Builder()).build());
 		}
 
 		/**

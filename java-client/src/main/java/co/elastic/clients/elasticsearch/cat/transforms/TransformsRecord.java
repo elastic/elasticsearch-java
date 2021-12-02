@@ -34,10 +34,17 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.transforms.TransformsRecord
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/transforms/types.ts#L22-L187">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TransformsRecord implements JsonpSerializable {
 	@Nullable
@@ -179,10 +186,8 @@ public class TransformsRecord implements JsonpSerializable {
 
 	}
 
-	public static TransformsRecord of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TransformsRecord of(Function<Builder, ObjectBuilder<TransformsRecord>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -699,6 +704,7 @@ public class TransformsRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link TransformsRecord}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TransformsRecord> {
 		@Nullable
 		private String id;

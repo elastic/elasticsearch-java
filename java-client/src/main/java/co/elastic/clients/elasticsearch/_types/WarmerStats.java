@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.WarmerStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Stats.ts#L247-L252">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class WarmerStats implements JsonpSerializable {
 	private final long current;
@@ -55,17 +62,15 @@ public class WarmerStats implements JsonpSerializable {
 
 	private WarmerStats(Builder builder) {
 
-		this.current = ModelTypeHelper.requireNonNull(builder.current, this, "current");
-		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
+		this.current = ApiTypeHelper.requireNonNull(builder.current, this, "current");
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
 		this.totalTime = builder.totalTime;
-		this.totalTimeInMillis = ModelTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
+		this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
 
 	}
 
-	public static WarmerStats of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static WarmerStats of(Function<Builder, ObjectBuilder<WarmerStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -129,6 +134,7 @@ public class WarmerStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link WarmerStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WarmerStats> {
 		private Long current;
 

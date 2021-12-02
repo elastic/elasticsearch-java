@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: ml.info.Datafeeds
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/info/types.ts#L40-L42">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Datafeeds implements JsonpSerializable {
 	private final int scrollSize;
@@ -46,14 +53,12 @@ public class Datafeeds implements JsonpSerializable {
 
 	private Datafeeds(Builder builder) {
 
-		this.scrollSize = ModelTypeHelper.requireNonNull(builder.scrollSize, this, "scrollSize");
+		this.scrollSize = ApiTypeHelper.requireNonNull(builder.scrollSize, this, "scrollSize");
 
 	}
 
-	public static Datafeeds of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Datafeeds of(Function<Builder, ObjectBuilder<Datafeeds>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -84,6 +89,7 @@ public class Datafeeds implements JsonpSerializable {
 	/**
 	 * Builder for {@link Datafeeds}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Datafeeds> {
 		private Integer scrollSize;
 

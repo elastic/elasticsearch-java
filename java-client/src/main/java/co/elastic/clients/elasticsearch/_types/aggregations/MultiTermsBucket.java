@@ -28,18 +28,24 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MultiTermsBucket
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L449-L453">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MultiTermsBucket extends MultiBucketBase {
 	private final List<String> key;
@@ -55,16 +61,14 @@ public class MultiTermsBucket extends MultiBucketBase {
 	private MultiTermsBucket(Builder builder) {
 		super(builder);
 
-		this.key = ModelTypeHelper.unmodifiableRequired(builder.key, this, "key");
+		this.key = ApiTypeHelper.unmodifiableRequired(builder.key, this, "key");
 		this.keyAsString = builder.keyAsString;
 		this.docCountErrorUpperBound = builder.docCountErrorUpperBound;
 
 	}
 
-	public static MultiTermsBucket of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static MultiTermsBucket of(Function<Builder, ObjectBuilder<MultiTermsBucket>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -93,7 +97,7 @@ public class MultiTermsBucket extends MultiBucketBase {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.key)) {
+		if (ApiTypeHelper.isDefined(this.key)) {
 			generator.writeKey("key");
 			generator.writeStartArray();
 			for (String item0 : this.key) {
@@ -121,6 +125,7 @@ public class MultiTermsBucket extends MultiBucketBase {
 	/**
 	 * Builder for {@link MultiTermsBucket}.
 	 */
+
 	public static class Builder extends MultiBucketBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<MultiTermsBucket> {
@@ -134,17 +139,21 @@ public class MultiTermsBucket extends MultiBucketBase {
 
 		/**
 		 * Required - API name: {@code key}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>key</code>.
 		 */
-		public final Builder key(List<String> value) {
-			this.key = value;
+		public final Builder key(List<String> list) {
+			this.key = _listAddAll(this.key, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code key}
+		 * <p>
+		 * Adds one or more values to <code>key</code>.
 		 */
-		public final Builder key(String... value) {
-			this.key = Arrays.asList(value);
+		public final Builder key(String value, String... values) {
+			this.key = _listAdd(this.key, value, values);
 			return this;
 		}
 

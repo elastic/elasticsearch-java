@@ -33,10 +33,17 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.PointProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/geo.ts#L62-L67">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PointProperty extends DocValuesPropertyBase implements PropertyVariant {
 	@Nullable
@@ -59,10 +66,8 @@ public class PointProperty extends DocValuesPropertyBase implements PropertyVari
 
 	}
 
-	public static PointProperty of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PointProperty of(Function<Builder, ObjectBuilder<PointProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -124,6 +129,7 @@ public class PointProperty extends DocValuesPropertyBase implements PropertyVari
 	/**
 	 * Builder for {@link PointProperty}.
 	 */
+
 	public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PointProperty> {

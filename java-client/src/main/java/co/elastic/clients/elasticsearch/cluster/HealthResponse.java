@@ -31,8 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,11 +40,17 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.health.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/health/ClusterHealthResponse.ts#L26-L60">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class HealthResponse implements JsonpSerializable {
 	private final int activePrimaryShards;
@@ -84,36 +89,33 @@ public class HealthResponse implements JsonpSerializable {
 
 	private HealthResponse(Builder builder) {
 
-		this.activePrimaryShards = ModelTypeHelper.requireNonNull(builder.activePrimaryShards, this,
+		this.activePrimaryShards = ApiTypeHelper.requireNonNull(builder.activePrimaryShards, this,
 				"activePrimaryShards");
-		this.activeShards = ModelTypeHelper.requireNonNull(builder.activeShards, this, "activeShards");
-		this.activeShardsPercentAsNumber = ModelTypeHelper.requireNonNull(builder.activeShardsPercentAsNumber, this,
+		this.activeShards = ApiTypeHelper.requireNonNull(builder.activeShards, this, "activeShards");
+		this.activeShardsPercentAsNumber = ApiTypeHelper.requireNonNull(builder.activeShardsPercentAsNumber, this,
 				"activeShardsPercentAsNumber");
-		this.clusterName = ModelTypeHelper.requireNonNull(builder.clusterName, this, "clusterName");
-		this.delayedUnassignedShards = ModelTypeHelper.requireNonNull(builder.delayedUnassignedShards, this,
+		this.clusterName = ApiTypeHelper.requireNonNull(builder.clusterName, this, "clusterName");
+		this.delayedUnassignedShards = ApiTypeHelper.requireNonNull(builder.delayedUnassignedShards, this,
 				"delayedUnassignedShards");
-		this.indices = ModelTypeHelper.unmodifiable(builder.indices);
-		this.initializingShards = ModelTypeHelper.requireNonNull(builder.initializingShards, this,
-				"initializingShards");
-		this.numberOfDataNodes = ModelTypeHelper.requireNonNull(builder.numberOfDataNodes, this, "numberOfDataNodes");
-		this.numberOfInFlightFetch = ModelTypeHelper.requireNonNull(builder.numberOfInFlightFetch, this,
+		this.indices = ApiTypeHelper.unmodifiable(builder.indices);
+		this.initializingShards = ApiTypeHelper.requireNonNull(builder.initializingShards, this, "initializingShards");
+		this.numberOfDataNodes = ApiTypeHelper.requireNonNull(builder.numberOfDataNodes, this, "numberOfDataNodes");
+		this.numberOfInFlightFetch = ApiTypeHelper.requireNonNull(builder.numberOfInFlightFetch, this,
 				"numberOfInFlightFetch");
-		this.numberOfNodes = ModelTypeHelper.requireNonNull(builder.numberOfNodes, this, "numberOfNodes");
-		this.numberOfPendingTasks = ModelTypeHelper.requireNonNull(builder.numberOfPendingTasks, this,
+		this.numberOfNodes = ApiTypeHelper.requireNonNull(builder.numberOfNodes, this, "numberOfNodes");
+		this.numberOfPendingTasks = ApiTypeHelper.requireNonNull(builder.numberOfPendingTasks, this,
 				"numberOfPendingTasks");
-		this.relocatingShards = ModelTypeHelper.requireNonNull(builder.relocatingShards, this, "relocatingShards");
-		this.status = ModelTypeHelper.requireNonNull(builder.status, this, "status");
-		this.taskMaxWaitingInQueueMillis = ModelTypeHelper.requireNonNull(builder.taskMaxWaitingInQueueMillis, this,
+		this.relocatingShards = ApiTypeHelper.requireNonNull(builder.relocatingShards, this, "relocatingShards");
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
+		this.taskMaxWaitingInQueueMillis = ApiTypeHelper.requireNonNull(builder.taskMaxWaitingInQueueMillis, this,
 				"taskMaxWaitingInQueueMillis");
-		this.timedOut = ModelTypeHelper.requireNonNull(builder.timedOut, this, "timedOut");
-		this.unassignedShards = ModelTypeHelper.requireNonNull(builder.unassignedShards, this, "unassignedShards");
+		this.timedOut = ApiTypeHelper.requireNonNull(builder.timedOut, this, "timedOut");
+		this.unassignedShards = ApiTypeHelper.requireNonNull(builder.unassignedShards, this, "unassignedShards");
 
 	}
 
-	public static HealthResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static HealthResponse of(Function<Builder, ObjectBuilder<HealthResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -285,7 +287,7 @@ public class HealthResponse implements JsonpSerializable {
 		generator.writeKey("delayed_unassigned_shards");
 		generator.write(this.delayedUnassignedShards);
 
-		if (ModelTypeHelper.isDefined(this.indices)) {
+		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartObject();
 			for (Map.Entry<String, IndexHealthStats> item0 : this.indices.entrySet()) {
@@ -332,6 +334,7 @@ public class HealthResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link HealthResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HealthResponse> {
 		private Integer activePrimaryShards;
 
@@ -420,15 +423,32 @@ public class HealthResponse implements JsonpSerializable {
 
 		/**
 		 * API name: {@code indices}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>indices</code>.
 		 */
-		public final Builder indices(@Nullable Map<String, IndexHealthStats> value) {
-			this.indices = value;
+		public final Builder indices(Map<String, IndexHealthStats> map) {
+			this.indices = _mapPutAll(this.indices, map);
 			return this;
 		}
 
-		public final Builder indices(
-				Function<MapBuilder<String, IndexHealthStats, IndexHealthStats.Builder>, ObjectBuilder<Map<String, IndexHealthStats>>> fn) {
-			return indices(fn.apply(new MapBuilder<>(IndexHealthStats.Builder::new)).build());
+		/**
+		 * API name: {@code indices}
+		 * <p>
+		 * Adds an entry to <code>indices</code>.
+		 */
+		public final Builder indices(String key, IndexHealthStats value) {
+			this.indices = _mapPut(this.indices, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code indices}
+		 * <p>
+		 * Adds an entry to <code>indices</code> using a builder lambda.
+		 */
+		public final Builder indices(String key,
+				Function<IndexHealthStats.Builder, ObjectBuilder<IndexHealthStats>> fn) {
+			return indices(key, fn.apply(new IndexHealthStats.Builder()).build());
 		}
 
 		/**

@@ -38,6 +38,14 @@ import java.util.Objects;
 
 // typedef: _global.info.Request
 
+/**
+ * Returns basic information about the cluster.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/info/RootNodeInfoRequest.ts#L22-L27">API
+ *      specification</a>
+ */
+
 public class InfoRequest extends RequestBase {
 	public InfoRequest() {
 	}

@@ -28,19 +28,23 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MatrixStatsAggregate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L696-L700">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MatrixStatsAggregate extends AggregateBase implements AggregateVariant {
 	private final long docCount;
@@ -52,15 +56,13 @@ public class MatrixStatsAggregate extends AggregateBase implements AggregateVari
 	private MatrixStatsAggregate(Builder builder) {
 		super(builder);
 
-		this.docCount = ModelTypeHelper.requireNonNull(builder.docCount, this, "docCount");
-		this.fields = ModelTypeHelper.unmodifiableRequired(builder.fields, this, "fields");
+		this.docCount = ApiTypeHelper.requireNonNull(builder.docCount, this, "docCount");
+		this.fields = ApiTypeHelper.unmodifiableRequired(builder.fields, this, "fields");
 
 	}
 
-	public static MatrixStatsAggregate of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static MatrixStatsAggregate of(Function<Builder, ObjectBuilder<MatrixStatsAggregate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -91,7 +93,7 @@ public class MatrixStatsAggregate extends AggregateBase implements AggregateVari
 		generator.writeKey("doc_count");
 		generator.write(this.docCount);
 
-		if (ModelTypeHelper.isDefined(this.fields)) {
+		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartArray();
 			for (MatrixStatsFields item0 : this.fields) {
@@ -109,6 +111,7 @@ public class MatrixStatsAggregate extends AggregateBase implements AggregateVari
 	/**
 	 * Builder for {@link MatrixStatsAggregate}.
 	 */
+
 	public static class Builder extends AggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<MatrixStatsAggregate> {
@@ -126,26 +129,31 @@ public class MatrixStatsAggregate extends AggregateBase implements AggregateVari
 
 		/**
 		 * Required - API name: {@code fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fields</code>.
 		 */
-		public final Builder fields(List<MatrixStatsFields> value) {
-			this.fields = value;
+		public final Builder fields(List<MatrixStatsFields> list) {
+			this.fields = _listAddAll(this.fields, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code fields}
+		 * <p>
+		 * Adds one or more values to <code>fields</code>.
 		 */
-		public final Builder fields(MatrixStatsFields... value) {
-			this.fields = Arrays.asList(value);
+		public final Builder fields(MatrixStatsFields value, MatrixStatsFields... values) {
+			this.fields = _listAdd(this.fields, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code fields}
+		 * <p>
+		 * Adds a value to <code>fields</code> using a builder lambda.
 		 */
-		public final Builder fields(
-				Function<ListBuilder<MatrixStatsFields, MatrixStatsFields.Builder>, ObjectBuilder<List<MatrixStatsFields>>> fn) {
-			return fields(fn.apply(new ListBuilder<>(MatrixStatsFields.Builder::new)).build());
+		public final Builder fields(Function<MatrixStatsFields.Builder, ObjectBuilder<MatrixStatsFields>> fn) {
+			return fields(fn.apply(new MatrixStatsFields.Builder()).build());
 		}
 
 		@Override

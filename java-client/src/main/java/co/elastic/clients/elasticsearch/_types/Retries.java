@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.Retries
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Retries.ts#L22-L25">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Retries implements JsonpSerializable {
 	private final long bulk;
@@ -48,15 +55,13 @@ public class Retries implements JsonpSerializable {
 
 	private Retries(Builder builder) {
 
-		this.bulk = ModelTypeHelper.requireNonNull(builder.bulk, this, "bulk");
-		this.search = ModelTypeHelper.requireNonNull(builder.search, this, "search");
+		this.bulk = ApiTypeHelper.requireNonNull(builder.bulk, this, "bulk");
+		this.search = ApiTypeHelper.requireNonNull(builder.search, this, "search");
 
 	}
 
-	public static Retries of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Retries of(Function<Builder, ObjectBuilder<Retries>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -97,6 +102,7 @@ public class Retries implements JsonpSerializable {
 	/**
 	 * Builder for {@link Retries}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Retries> {
 		private Long bulk;
 

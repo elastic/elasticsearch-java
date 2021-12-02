@@ -30,16 +30,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.mget.MultiGetError
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/mget/types.ts#L49-L55">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MultiGetError implements JsonpSerializable {
 	private final ErrorCause error;
@@ -55,17 +62,15 @@ public class MultiGetError implements JsonpSerializable {
 
 	private MultiGetError(Builder builder) {
 
-		this.error = ModelTypeHelper.requireNonNull(builder.error, this, "error");
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.error = ApiTypeHelper.requireNonNull(builder.error, this, "error");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.type = builder.type;
 
 	}
 
-	public static MultiGetError of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static MultiGetError of(Function<Builder, ObjectBuilder<MultiGetError>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -91,7 +96,10 @@ public class MultiGetError implements JsonpSerializable {
 
 	/**
 	 * API name: {@code _type}
+	 * 
+	 * @deprecated 7.0.0
 	 */
+	@Deprecated
 	@Nullable
 	public final String type() {
 		return this.type;
@@ -130,6 +138,7 @@ public class MultiGetError implements JsonpSerializable {
 	/**
 	 * Builder for {@link MultiGetError}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MultiGetError> {
 		private ErrorCause error;
 
@@ -151,10 +160,8 @@ public class MultiGetError implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code error}
 		 */
-		public final Builder error(Consumer<ErrorCause.Builder> fn) {
-			ErrorCause.Builder builder = new ErrorCause.Builder();
-			fn.accept(builder);
-			return this.error(builder.build());
+		public final Builder error(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+			return this.error(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		/**
@@ -175,7 +182,10 @@ public class MultiGetError implements JsonpSerializable {
 
 		/**
 		 * API name: {@code _type}
+		 * 
+		 * @deprecated 7.0.0
 		 */
+		@Deprecated
 		public final Builder type(@Nullable String value) {
 			this.type = value;
 			return this;

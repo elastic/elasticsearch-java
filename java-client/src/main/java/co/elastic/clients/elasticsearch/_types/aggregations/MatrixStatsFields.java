@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,10 +38,17 @@ import java.lang.Long;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MatrixStatsFields
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L702-L711">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MatrixStatsFields implements JsonpSerializable {
 	private final String name;
@@ -64,21 +71,19 @@ public class MatrixStatsFields implements JsonpSerializable {
 
 	private MatrixStatsFields(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
-		this.mean = ModelTypeHelper.requireNonNull(builder.mean, this, "mean");
-		this.variance = ModelTypeHelper.requireNonNull(builder.variance, this, "variance");
-		this.skewness = ModelTypeHelper.requireNonNull(builder.skewness, this, "skewness");
-		this.kurtosis = ModelTypeHelper.requireNonNull(builder.kurtosis, this, "kurtosis");
-		this.covariance = ModelTypeHelper.unmodifiableRequired(builder.covariance, this, "covariance");
-		this.correlation = ModelTypeHelper.unmodifiableRequired(builder.correlation, this, "correlation");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.mean = ApiTypeHelper.requireNonNull(builder.mean, this, "mean");
+		this.variance = ApiTypeHelper.requireNonNull(builder.variance, this, "variance");
+		this.skewness = ApiTypeHelper.requireNonNull(builder.skewness, this, "skewness");
+		this.kurtosis = ApiTypeHelper.requireNonNull(builder.kurtosis, this, "kurtosis");
+		this.covariance = ApiTypeHelper.unmodifiableRequired(builder.covariance, this, "covariance");
+		this.correlation = ApiTypeHelper.unmodifiableRequired(builder.correlation, this, "correlation");
 
 	}
 
-	public static MatrixStatsFields of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static MatrixStatsFields of(Function<Builder, ObjectBuilder<MatrixStatsFields>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -166,7 +171,7 @@ public class MatrixStatsFields implements JsonpSerializable {
 		generator.writeKey("kurtosis");
 		generator.write(this.kurtosis);
 
-		if (ModelTypeHelper.isDefined(this.covariance)) {
+		if (ApiTypeHelper.isDefined(this.covariance)) {
 			generator.writeKey("covariance");
 			generator.writeStartObject();
 			for (Map.Entry<String, Double> item0 : this.covariance.entrySet()) {
@@ -177,7 +182,7 @@ public class MatrixStatsFields implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.correlation)) {
+		if (ApiTypeHelper.isDefined(this.correlation)) {
 			generator.writeKey("correlation");
 			generator.writeStartObject();
 			for (Map.Entry<String, Double> item0 : this.correlation.entrySet()) {
@@ -196,6 +201,7 @@ public class MatrixStatsFields implements JsonpSerializable {
 	/**
 	 * Builder for {@link MatrixStatsFields}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MatrixStatsFields> {
 		private String name;
 
@@ -263,17 +269,41 @@ public class MatrixStatsFields implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code covariance}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>covariance</code>.
 		 */
-		public final Builder covariance(Map<String, Double> value) {
-			this.covariance = value;
+		public final Builder covariance(Map<String, Double> map) {
+			this.covariance = _mapPutAll(this.covariance, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code covariance}
+		 * <p>
+		 * Adds an entry to <code>covariance</code>.
+		 */
+		public final Builder covariance(String key, Double value) {
+			this.covariance = _mapPut(this.covariance, key, value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code correlation}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>correlation</code>.
 		 */
-		public final Builder correlation(Map<String, Double> value) {
-			this.correlation = value;
+		public final Builder correlation(Map<String, Double> map) {
+			this.correlation = _mapPutAll(this.correlation, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code correlation}
+		 * <p>
+		 * Adds an entry to <code>correlation</code>.
+		 */
+		public final Builder correlation(String key, Double value) {
+			this.correlation = _mapPut(this.correlation, key, value);
 			return this;
 		}
 

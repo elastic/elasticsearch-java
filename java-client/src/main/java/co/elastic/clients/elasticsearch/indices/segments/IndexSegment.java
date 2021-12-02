@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -37,10 +37,17 @@ import java.lang.String;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.segments.IndexSegment
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/segments/types.ts#L24-L26">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IndexSegment implements JsonpSerializable {
 	private final Map<String, List<ShardsSegment>> shards;
@@ -49,14 +56,12 @@ public class IndexSegment implements JsonpSerializable {
 
 	private IndexSegment(Builder builder) {
 
-		this.shards = ModelTypeHelper.unmodifiableRequired(builder.shards, this, "shards");
+		this.shards = ApiTypeHelper.unmodifiableRequired(builder.shards, this, "shards");
 
 	}
 
-	public static IndexSegment of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IndexSegment of(Function<Builder, ObjectBuilder<IndexSegment>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -77,7 +82,7 @@ public class IndexSegment implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.shards)) {
+		if (ApiTypeHelper.isDefined(this.shards)) {
 			generator.writeKey("shards");
 			generator.writeStartObject();
 			for (Map.Entry<String, List<ShardsSegment>> item0 : this.shards.entrySet()) {
@@ -103,14 +108,27 @@ public class IndexSegment implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexSegment}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexSegment> {
 		private Map<String, List<ShardsSegment>> shards;
 
 		/**
 		 * Required - API name: {@code shards}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>shards</code>.
 		 */
-		public final Builder shards(Map<String, List<ShardsSegment>> value) {
-			this.shards = value;
+		public final Builder shards(Map<String, List<ShardsSegment>> map) {
+			this.shards = _mapPutAll(this.shards, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code shards}
+		 * <p>
+		 * Adds an entry to <code>shards</code>.
+		 */
+		public final Builder shards(String key, List<ShardsSegment> value) {
+			this.shards = _mapPut(this.shards, key, value);
 			return this;
 		}
 

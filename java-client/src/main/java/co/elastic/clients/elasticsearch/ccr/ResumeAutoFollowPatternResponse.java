@@ -31,9 +31,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: ccr.resume_auto_follow_pattern.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ccr/resume_auto_follow_pattern/ResumeAutoFollowPatternResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ResumeAutoFollowPatternResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
@@ -43,10 +50,9 @@ public class ResumeAutoFollowPatternResponse extends AcknowledgedResponseBase {
 
 	}
 
-	public static ResumeAutoFollowPatternResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ResumeAutoFollowPatternResponse of(
+			Function<Builder, ObjectBuilder<ResumeAutoFollowPatternResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -54,6 +60,7 @@ public class ResumeAutoFollowPatternResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link ResumeAutoFollowPatternResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ResumeAutoFollowPatternResponse> {

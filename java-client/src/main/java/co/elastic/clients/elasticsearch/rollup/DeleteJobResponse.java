@@ -30,18 +30,22 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.delete_job.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/rollup/delete_job/DeleteRollupJobResponse.ts#L23-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DeleteJobResponse extends AcknowledgedResponseBase {
 	private final List<TaskFailure> taskFailures;
@@ -51,14 +55,12 @@ public class DeleteJobResponse extends AcknowledgedResponseBase {
 	private DeleteJobResponse(Builder builder) {
 		super(builder);
 
-		this.taskFailures = ModelTypeHelper.unmodifiable(builder.taskFailures);
+		this.taskFailures = ApiTypeHelper.unmodifiable(builder.taskFailures);
 
 	}
 
-	public static DeleteJobResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DeleteJobResponse of(Function<Builder, ObjectBuilder<DeleteJobResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -71,7 +73,7 @@ public class DeleteJobResponse extends AcknowledgedResponseBase {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.taskFailures)) {
+		if (ApiTypeHelper.isDefined(this.taskFailures)) {
 			generator.writeKey("task_failures");
 			generator.writeStartArray();
 			for (TaskFailure item0 : this.taskFailures) {
@@ -89,6 +91,7 @@ public class DeleteJobResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link DeleteJobResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeleteJobResponse> {
@@ -97,26 +100,31 @@ public class DeleteJobResponse extends AcknowledgedResponseBase {
 
 		/**
 		 * API name: {@code task_failures}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>taskFailures</code>.
 		 */
-		public final Builder taskFailures(@Nullable List<TaskFailure> value) {
-			this.taskFailures = value;
+		public final Builder taskFailures(List<TaskFailure> list) {
+			this.taskFailures = _listAddAll(this.taskFailures, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code task_failures}
+		 * <p>
+		 * Adds one or more values to <code>taskFailures</code>.
 		 */
-		public final Builder taskFailures(TaskFailure... value) {
-			this.taskFailures = Arrays.asList(value);
+		public final Builder taskFailures(TaskFailure value, TaskFailure... values) {
+			this.taskFailures = _listAdd(this.taskFailures, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code task_failures}
+		 * <p>
+		 * Adds a value to <code>taskFailures</code> using a builder lambda.
 		 */
-		public final Builder taskFailures(
-				Function<ListBuilder<TaskFailure, TaskFailure.Builder>, ObjectBuilder<List<TaskFailure>>> fn) {
-			return taskFailures(fn.apply(new ListBuilder<>(TaskFailure.Builder::new)).build());
+		public final Builder taskFailures(Function<TaskFailure.Builder, ObjectBuilder<TaskFailure>> fn) {
+			return taskFailures(fn.apply(new TaskFailure.Builder()).build());
 		}
 
 		@Override

@@ -27,6 +27,12 @@ import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/_types/Privileges.ts#L39-L75">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public enum ClusterPrivilege implements JsonEnum {
 	All("all"),

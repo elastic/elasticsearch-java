@@ -31,17 +31,26 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr.pause_follow.Request
+
+/**
+ * Pauses a follower index. The follower index will not fetch any additional
+ * operations from the leader index.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ccr/pause_follow/PauseFollowIndexRequest.ts#L23-L32">API
+ *      specification</a>
+ */
 
 public class PauseFollowRequest extends RequestBase {
 	private final String index;
@@ -50,14 +59,12 @@ public class PauseFollowRequest extends RequestBase {
 
 	private PauseFollowRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 
 	}
 
-	public static PauseFollowRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PauseFollowRequest of(Function<Builder, ObjectBuilder<PauseFollowRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -75,6 +82,7 @@ public class PauseFollowRequest extends RequestBase {
 	/**
 	 * Builder for {@link PauseFollowRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PauseFollowRequest> {
 		private String index;
 

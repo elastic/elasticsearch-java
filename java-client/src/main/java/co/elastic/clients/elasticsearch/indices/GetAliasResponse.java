@@ -33,9 +33,16 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: indices.get_alias.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/get_alias/IndicesGetAliasResponse.ts#L25-L25">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetAliasResponse extends DictionaryResponse<String, IndexAliases> {
 	// ---------------------------------------------------------------------------------------------
@@ -45,10 +52,8 @@ public class GetAliasResponse extends DictionaryResponse<String, IndexAliases> {
 
 	}
 
-	public static GetAliasResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetAliasResponse of(Function<Builder, ObjectBuilder<GetAliasResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -56,6 +61,7 @@ public class GetAliasResponse extends DictionaryResponse<String, IndexAliases> {
 	/**
 	 * Builder for {@link GetAliasResponse}.
 	 */
+
 	public static class Builder extends DictionaryResponse.AbstractBuilder<String, IndexAliases, Builder>
 			implements
 				ObjectBuilder<GetAliasResponse> {

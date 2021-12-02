@@ -33,7 +33,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,10 +43,17 @@ import java.lang.Long;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.bulk.ResponseItem
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/bulk/types.ts#L35-L49">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class BulkResponseItem implements JsonpSerializable {
 	// Single key dictionary
@@ -90,11 +97,11 @@ public class BulkResponseItem implements JsonpSerializable {
 
 	private BulkResponseItem(Builder builder) {
 
-		this.operationType = ModelTypeHelper.requireNonNull(builder.operationType, this, "operationType");
+		this.operationType = ApiTypeHelper.requireNonNull(builder.operationType, this, "operationType");
 
 		this.id = builder.id;
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
-		this.status = ModelTypeHelper.requireNonNull(builder.status, this, "status");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 		this.error = builder.error;
 		this.primaryTerm = builder.primaryTerm;
 		this.result = builder.result;
@@ -107,10 +114,8 @@ public class BulkResponseItem implements JsonpSerializable {
 
 	}
 
-	public static BulkResponseItem of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static BulkResponseItem of(Function<Builder, ObjectBuilder<BulkResponseItem>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -292,6 +297,7 @@ public class BulkResponseItem implements JsonpSerializable {
 	/**
 	 * Builder for {@link BulkResponseItem}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<BulkResponseItem> {
 		private OperationType operationType;
 
@@ -372,10 +378,8 @@ public class BulkResponseItem implements JsonpSerializable {
 		/**
 		 * API name: {@code error}
 		 */
-		public final Builder error(Consumer<ErrorCause.Builder> fn) {
-			ErrorCause.Builder builder = new ErrorCause.Builder();
-			fn.accept(builder);
-			return this.error(builder.build());
+		public final Builder error(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+			return this.error(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		/**
@@ -413,10 +417,8 @@ public class BulkResponseItem implements JsonpSerializable {
 		/**
 		 * API name: {@code _shards}
 		 */
-		public final Builder shards(Consumer<ShardStatistics.Builder> fn) {
-			ShardStatistics.Builder builder = new ShardStatistics.Builder();
-			fn.accept(builder);
-			return this.shards(builder.build());
+		public final Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
 		/**
@@ -454,10 +456,9 @@ public class BulkResponseItem implements JsonpSerializable {
 		/**
 		 * API name: {@code get}
 		 */
-		public final Builder get(Consumer<InlineGet.Builder<Map<String, JsonData>>> fn) {
-			InlineGet.Builder<Map<String, JsonData>> builder = new InlineGet.Builder<Map<String, JsonData>>();
-			fn.accept(builder);
-			return this.get(builder.build());
+		public final Builder get(
+				Function<InlineGet.Builder<Map<String, JsonData>>, ObjectBuilder<InlineGet<Map<String, JsonData>>>> fn) {
+			return this.get(fn.apply(new InlineGet.Builder<Map<String, JsonData>>()).build());
 		}
 
 		/**

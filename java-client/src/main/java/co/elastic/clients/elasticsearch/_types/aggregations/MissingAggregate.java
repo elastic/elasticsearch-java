@@ -30,9 +30,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.aggregations.MissingAggregate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L461-L462">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MissingAggregate extends SingleBucketAggregateBase implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -42,10 +49,8 @@ public class MissingAggregate extends SingleBucketAggregateBase implements Aggre
 
 	}
 
-	public static MissingAggregate of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static MissingAggregate of(Function<Builder, ObjectBuilder<MissingAggregate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,6 +66,7 @@ public class MissingAggregate extends SingleBucketAggregateBase implements Aggre
 	/**
 	 * Builder for {@link MissingAggregate}.
 	 */
+
 	public static class Builder extends SingleBucketAggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<MissingAggregate> {

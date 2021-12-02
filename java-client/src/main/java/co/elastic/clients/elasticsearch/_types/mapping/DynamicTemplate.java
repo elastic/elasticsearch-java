@@ -34,10 +34,17 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.DynamicTemplate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/dynamic-template.ts#L22-L30">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DynamicTemplate implements JsonpSerializable {
 	@Nullable
@@ -75,10 +82,8 @@ public class DynamicTemplate implements JsonpSerializable {
 
 	}
 
-	public static DynamicTemplate of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DynamicTemplate of(Function<Builder, ObjectBuilder<DynamicTemplate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -190,6 +195,7 @@ public class DynamicTemplate implements JsonpSerializable {
 	/**
 	 * Builder for {@link DynamicTemplate}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DynamicTemplate> {
 		@Nullable
 		private Property mapping;
@@ -223,10 +229,8 @@ public class DynamicTemplate implements JsonpSerializable {
 		/**
 		 * API name: {@code mapping}
 		 */
-		public final Builder mapping(Consumer<Property.Builder> fn) {
-			Property.Builder builder = new Property.Builder();
-			fn.accept(builder);
-			return this.mapping(builder.build());
+		public final Builder mapping(Function<Property.Builder, ObjectBuilder<Property>> fn) {
+			return this.mapping(fn.apply(new Property.Builder()).build());
 		}
 
 		/**

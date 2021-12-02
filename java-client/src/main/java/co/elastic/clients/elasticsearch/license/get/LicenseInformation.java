@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,10 +39,17 @@ import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: license.get.LicenseInformation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/license/get/types.ts#L25-L38">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class LicenseInformation implements JsonpSerializable {
 	private final String expiryDate;
@@ -74,26 +81,23 @@ public class LicenseInformation implements JsonpSerializable {
 
 	private LicenseInformation(Builder builder) {
 
-		this.expiryDate = ModelTypeHelper.requireNonNull(builder.expiryDate, this, "expiryDate");
-		this.expiryDateInMillis = ModelTypeHelper.requireNonNull(builder.expiryDateInMillis, this,
-				"expiryDateInMillis");
-		this.issueDate = ModelTypeHelper.requireNonNull(builder.issueDate, this, "issueDate");
-		this.issueDateInMillis = ModelTypeHelper.requireNonNull(builder.issueDateInMillis, this, "issueDateInMillis");
-		this.issuedTo = ModelTypeHelper.requireNonNull(builder.issuedTo, this, "issuedTo");
-		this.issuer = ModelTypeHelper.requireNonNull(builder.issuer, this, "issuer");
-		this.maxNodes = ModelTypeHelper.requireNonNull(builder.maxNodes, this, "maxNodes");
+		this.expiryDate = ApiTypeHelper.requireNonNull(builder.expiryDate, this, "expiryDate");
+		this.expiryDateInMillis = ApiTypeHelper.requireNonNull(builder.expiryDateInMillis, this, "expiryDateInMillis");
+		this.issueDate = ApiTypeHelper.requireNonNull(builder.issueDate, this, "issueDate");
+		this.issueDateInMillis = ApiTypeHelper.requireNonNull(builder.issueDateInMillis, this, "issueDateInMillis");
+		this.issuedTo = ApiTypeHelper.requireNonNull(builder.issuedTo, this, "issuedTo");
+		this.issuer = ApiTypeHelper.requireNonNull(builder.issuer, this, "issuer");
+		this.maxNodes = ApiTypeHelper.requireNonNull(builder.maxNodes, this, "maxNodes");
 		this.maxResourceUnits = builder.maxResourceUnits;
-		this.status = ModelTypeHelper.requireNonNull(builder.status, this, "status");
-		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
-		this.uid = ModelTypeHelper.requireNonNull(builder.uid, this, "uid");
-		this.startDateInMillis = ModelTypeHelper.requireNonNull(builder.startDateInMillis, this, "startDateInMillis");
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.uid = ApiTypeHelper.requireNonNull(builder.uid, this, "uid");
+		this.startDateInMillis = ApiTypeHelper.requireNonNull(builder.startDateInMillis, this, "startDateInMillis");
 
 	}
 
-	public static LicenseInformation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static LicenseInformation of(Function<Builder, ObjectBuilder<LicenseInformation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -235,6 +239,7 @@ public class LicenseInformation implements JsonpSerializable {
 	/**
 	 * Builder for {@link LicenseInformation}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<LicenseInformation> {
 		private String expiryDate;
 

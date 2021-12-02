@@ -30,18 +30,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.SearchInput
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Input.ts#L114-L118">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SearchInput implements InputVariant, JsonpSerializable {
 	private final List<String> extract;
@@ -55,16 +61,14 @@ public class SearchInput implements InputVariant, JsonpSerializable {
 
 	private SearchInput(Builder builder) {
 
-		this.extract = ModelTypeHelper.unmodifiable(builder.extract);
-		this.request = ModelTypeHelper.requireNonNull(builder.request, this, "request");
+		this.extract = ApiTypeHelper.unmodifiable(builder.extract);
+		this.request = ApiTypeHelper.requireNonNull(builder.request, this, "request");
 		this.timeout = builder.timeout;
 
 	}
 
-	public static SearchInput of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SearchInput of(Function<Builder, ObjectBuilder<SearchInput>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -108,7 +112,7 @@ public class SearchInput implements InputVariant, JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.extract)) {
+		if (ApiTypeHelper.isDefined(this.extract)) {
 			generator.writeKey("extract");
 			generator.writeStartArray();
 			for (String item0 : this.extract) {
@@ -134,6 +138,7 @@ public class SearchInput implements InputVariant, JsonpSerializable {
 	/**
 	 * Builder for {@link SearchInput}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SearchInput> {
 		@Nullable
 		private List<String> extract;
@@ -145,17 +150,21 @@ public class SearchInput implements InputVariant, JsonpSerializable {
 
 		/**
 		 * API name: {@code extract}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>extract</code>.
 		 */
-		public final Builder extract(@Nullable List<String> value) {
-			this.extract = value;
+		public final Builder extract(List<String> list) {
+			this.extract = _listAddAll(this.extract, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code extract}
+		 * <p>
+		 * Adds one or more values to <code>extract</code>.
 		 */
-		public final Builder extract(String... value) {
-			this.extract = Arrays.asList(value);
+		public final Builder extract(String value, String... values) {
+			this.extract = _listAdd(this.extract, value, values);
 			return this;
 		}
 
@@ -170,10 +179,9 @@ public class SearchInput implements InputVariant, JsonpSerializable {
 		/**
 		 * Required - API name: {@code request}
 		 */
-		public final Builder request(Consumer<SearchInputRequestDefinition.Builder> fn) {
-			SearchInputRequestDefinition.Builder builder = new SearchInputRequestDefinition.Builder();
-			fn.accept(builder);
-			return this.request(builder.build());
+		public final Builder request(
+				Function<SearchInputRequestDefinition.Builder, ObjectBuilder<SearchInputRequestDefinition>> fn) {
+			return this.request(fn.apply(new SearchInputRequestDefinition.Builder()).build());
 		}
 
 		/**
@@ -187,10 +195,8 @@ public class SearchInput implements InputVariant, JsonpSerializable {
 		/**
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.timeout(builder.build());
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

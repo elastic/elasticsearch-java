@@ -30,20 +30,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.invalidate_token.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/invalidate_token/SecurityInvalidateTokenResponse.ts#L23-L30">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class InvalidateTokenResponse implements JsonpSerializable {
 	private final long errorCount;
@@ -58,18 +62,16 @@ public class InvalidateTokenResponse implements JsonpSerializable {
 
 	private InvalidateTokenResponse(Builder builder) {
 
-		this.errorCount = ModelTypeHelper.requireNonNull(builder.errorCount, this, "errorCount");
-		this.errorDetails = ModelTypeHelper.unmodifiable(builder.errorDetails);
-		this.invalidatedTokens = ModelTypeHelper.requireNonNull(builder.invalidatedTokens, this, "invalidatedTokens");
-		this.previouslyInvalidatedTokens = ModelTypeHelper.requireNonNull(builder.previouslyInvalidatedTokens, this,
+		this.errorCount = ApiTypeHelper.requireNonNull(builder.errorCount, this, "errorCount");
+		this.errorDetails = ApiTypeHelper.unmodifiable(builder.errorDetails);
+		this.invalidatedTokens = ApiTypeHelper.requireNonNull(builder.invalidatedTokens, this, "invalidatedTokens");
+		this.previouslyInvalidatedTokens = ApiTypeHelper.requireNonNull(builder.previouslyInvalidatedTokens, this,
 				"previouslyInvalidatedTokens");
 
 	}
 
-	public static InvalidateTokenResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static InvalidateTokenResponse of(Function<Builder, ObjectBuilder<InvalidateTokenResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -114,7 +116,7 @@ public class InvalidateTokenResponse implements JsonpSerializable {
 		generator.writeKey("error_count");
 		generator.write(this.errorCount);
 
-		if (ModelTypeHelper.isDefined(this.errorDetails)) {
+		if (ApiTypeHelper.isDefined(this.errorDetails)) {
 			generator.writeKey("error_details");
 			generator.writeStartArray();
 			for (ErrorCause item0 : this.errorDetails) {
@@ -137,6 +139,7 @@ public class InvalidateTokenResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link InvalidateTokenResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<InvalidateTokenResponse> {
 		private Long errorCount;
 
@@ -157,26 +160,31 @@ public class InvalidateTokenResponse implements JsonpSerializable {
 
 		/**
 		 * API name: {@code error_details}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>errorDetails</code>.
 		 */
-		public final Builder errorDetails(@Nullable List<ErrorCause> value) {
-			this.errorDetails = value;
+		public final Builder errorDetails(List<ErrorCause> list) {
+			this.errorDetails = _listAddAll(this.errorDetails, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code error_details}
+		 * <p>
+		 * Adds one or more values to <code>errorDetails</code>.
 		 */
-		public final Builder errorDetails(ErrorCause... value) {
-			this.errorDetails = Arrays.asList(value);
+		public final Builder errorDetails(ErrorCause value, ErrorCause... values) {
+			this.errorDetails = _listAdd(this.errorDetails, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code error_details}
+		 * <p>
+		 * Adds a value to <code>errorDetails</code> using a builder lambda.
 		 */
-		public final Builder errorDetails(
-				Function<ListBuilder<ErrorCause, ErrorCause.Builder>, ObjectBuilder<List<ErrorCause>>> fn) {
-			return errorDetails(fn.apply(new ListBuilder<>(ErrorCause.Builder::new)).build());
+		public final Builder errorDetails(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+			return errorDetails(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		/**

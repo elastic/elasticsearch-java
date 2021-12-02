@@ -30,19 +30,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.verify_repository.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/snapshot/verify_repository/SnapshotVerifyRepositoryResponse.ts#L23-L25">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class VerifyRepositoryResponse implements JsonpSerializable {
 	private final Map<String, CompactNodeInfo> nodes;
@@ -51,14 +56,12 @@ public class VerifyRepositoryResponse implements JsonpSerializable {
 
 	private VerifyRepositoryResponse(Builder builder) {
 
-		this.nodes = ModelTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
+		this.nodes = ApiTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
 
 	}
 
-	public static VerifyRepositoryResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static VerifyRepositoryResponse of(Function<Builder, ObjectBuilder<VerifyRepositoryResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -79,7 +82,7 @@ public class VerifyRepositoryResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.nodes)) {
+		if (ApiTypeHelper.isDefined(this.nodes)) {
 			generator.writeKey("nodes");
 			generator.writeStartObject();
 			for (Map.Entry<String, CompactNodeInfo> item0 : this.nodes.entrySet()) {
@@ -98,20 +101,37 @@ public class VerifyRepositoryResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link VerifyRepositoryResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<VerifyRepositoryResponse> {
 		private Map<String, CompactNodeInfo> nodes;
 
 		/**
 		 * Required - API name: {@code nodes}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>nodes</code>.
 		 */
-		public final Builder nodes(Map<String, CompactNodeInfo> value) {
-			this.nodes = value;
+		public final Builder nodes(Map<String, CompactNodeInfo> map) {
+			this.nodes = _mapPutAll(this.nodes, map);
 			return this;
 		}
 
-		public final Builder nodes(
-				Function<MapBuilder<String, CompactNodeInfo, CompactNodeInfo.Builder>, ObjectBuilder<Map<String, CompactNodeInfo>>> fn) {
-			return nodes(fn.apply(new MapBuilder<>(CompactNodeInfo.Builder::new)).build());
+		/**
+		 * Required - API name: {@code nodes}
+		 * <p>
+		 * Adds an entry to <code>nodes</code>.
+		 */
+		public final Builder nodes(String key, CompactNodeInfo value) {
+			this.nodes = _mapPut(this.nodes, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code nodes}
+		 * <p>
+		 * Adds an entry to <code>nodes</code> using a builder lambda.
+		 */
+		public final Builder nodes(String key, Function<CompactNodeInfo.Builder, ObjectBuilder<CompactNodeInfo>> fn) {
+			return nodes(key, fn.apply(new CompactNodeInfo.Builder()).build());
 		}
 
 		/**

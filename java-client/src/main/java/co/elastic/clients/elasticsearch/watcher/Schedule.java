@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
@@ -41,14 +41,23 @@ import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ScheduleContainer
-// union type: Container[]
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Schedule.ts#L85-L96">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Schedule implements TaggedUnion<Schedule.Kind, Object>, TriggerVariant, JsonpSerializable {
 
+	/**
+	 * {@link Schedule} variant kinds.
+	 */
 	/**
 	 * {@link Schedule} variant kinds.
 	 */
@@ -105,22 +114,20 @@ public class Schedule implements TaggedUnion<Schedule.Kind, Object>, TriggerVari
 
 	public Schedule(ScheduleVariant value) {
 
-		this._kind = ModelTypeHelper.requireNonNull(value._scheduleKind(), this, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(value._scheduleKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
 	private Schedule(Builder builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static Schedule of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Schedule of(Function<Builder, ObjectBuilder<Schedule>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -307,10 +314,8 @@ public class Schedule implements TaggedUnion<Schedule.Kind, Object>, TriggerVari
 			return this;
 		}
 
-		public ObjectBuilder<Schedule> daily(Consumer<DailySchedule.Builder> fn) {
-			DailySchedule.Builder builder = new DailySchedule.Builder();
-			fn.accept(builder);
-			return this.daily(builder.build());
+		public ObjectBuilder<Schedule> daily(Function<DailySchedule.Builder, ObjectBuilder<DailySchedule>> fn) {
+			return this.daily(fn.apply(new DailySchedule.Builder()).build());
 		}
 
 		public ObjectBuilder<Schedule> hourly(HourlySchedule v) {
@@ -319,10 +324,8 @@ public class Schedule implements TaggedUnion<Schedule.Kind, Object>, TriggerVari
 			return this;
 		}
 
-		public ObjectBuilder<Schedule> hourly(Consumer<HourlySchedule.Builder> fn) {
-			HourlySchedule.Builder builder = new HourlySchedule.Builder();
-			fn.accept(builder);
-			return this.hourly(builder.build());
+		public ObjectBuilder<Schedule> hourly(Function<HourlySchedule.Builder, ObjectBuilder<HourlySchedule>> fn) {
+			return this.hourly(fn.apply(new HourlySchedule.Builder()).build());
 		}
 
 		public ObjectBuilder<Schedule> interval(Time v) {
@@ -331,10 +334,8 @@ public class Schedule implements TaggedUnion<Schedule.Kind, Object>, TriggerVari
 			return this;
 		}
 
-		public ObjectBuilder<Schedule> interval(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.interval(builder.build());
+		public ObjectBuilder<Schedule> interval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.interval(fn.apply(new Time.Builder()).build());
 		}
 
 		public ObjectBuilder<Schedule> monthly(List<TimeOfMonth> v) {

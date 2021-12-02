@@ -28,16 +28,23 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.BoxPlotAggregate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L643-L659">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class BoxPlotAggregate extends AggregateBase implements AggregateVariant {
 	private final double min;
@@ -80,13 +87,13 @@ public class BoxPlotAggregate extends AggregateBase implements AggregateVariant 
 	private BoxPlotAggregate(Builder builder) {
 		super(builder);
 
-		this.min = ModelTypeHelper.requireNonNull(builder.min, this, "min");
-		this.max = ModelTypeHelper.requireNonNull(builder.max, this, "max");
-		this.q1 = ModelTypeHelper.requireNonNull(builder.q1, this, "q1");
-		this.q2 = ModelTypeHelper.requireNonNull(builder.q2, this, "q2");
-		this.q3 = ModelTypeHelper.requireNonNull(builder.q3, this, "q3");
-		this.lower = ModelTypeHelper.requireNonNull(builder.lower, this, "lower");
-		this.upper = ModelTypeHelper.requireNonNull(builder.upper, this, "upper");
+		this.min = ApiTypeHelper.requireNonNull(builder.min, this, "min");
+		this.max = ApiTypeHelper.requireNonNull(builder.max, this, "max");
+		this.q1 = ApiTypeHelper.requireNonNull(builder.q1, this, "q1");
+		this.q2 = ApiTypeHelper.requireNonNull(builder.q2, this, "q2");
+		this.q3 = ApiTypeHelper.requireNonNull(builder.q3, this, "q3");
+		this.lower = ApiTypeHelper.requireNonNull(builder.lower, this, "lower");
+		this.upper = ApiTypeHelper.requireNonNull(builder.upper, this, "upper");
 		this.minAsString = builder.minAsString;
 		this.maxAsString = builder.maxAsString;
 		this.q1AsString = builder.q1AsString;
@@ -97,10 +104,8 @@ public class BoxPlotAggregate extends AggregateBase implements AggregateVariant 
 
 	}
 
-	public static BoxPlotAggregate of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static BoxPlotAggregate of(Function<Builder, ObjectBuilder<BoxPlotAggregate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -283,6 +288,7 @@ public class BoxPlotAggregate extends AggregateBase implements AggregateVariant 
 	/**
 	 * Builder for {@link BoxPlotAggregate}.
 	 */
+
 	public static class Builder extends AggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<BoxPlotAggregate> {

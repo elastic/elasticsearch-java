@@ -28,16 +28,23 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.MatchPhraseQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/fulltext.ts#L173-L180">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MatchPhraseQuery extends QueryBase implements QueryVariant {
 	// Single key dictionary
@@ -58,19 +65,17 @@ public class MatchPhraseQuery extends QueryBase implements QueryVariant {
 
 	private MatchPhraseQuery(Builder builder) {
 		super(builder);
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
 		this.analyzer = builder.analyzer;
-		this.query = ModelTypeHelper.requireNonNull(builder.query, this, "query");
+		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 		this.slop = builder.slop;
 		this.zeroTermsQuery = builder.zeroTermsQuery;
 
 	}
 
-	public static MatchPhraseQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static MatchPhraseQuery of(Function<Builder, ObjectBuilder<MatchPhraseQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -150,6 +155,7 @@ public class MatchPhraseQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link MatchPhraseQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<MatchPhraseQuery> {
 		private String field;
 

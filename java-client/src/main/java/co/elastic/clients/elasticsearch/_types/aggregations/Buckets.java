@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.UnionDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
@@ -42,11 +42,20 @@ import java.lang.String;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.Buckets
-// union type: Union[]
+
+/**
+ * Aggregation buckets. By default they are returned as an array, but if the
+ * aggregation has keys configured for the different buckets, the result is a
+ * dictionary.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L300-L309">API
+ *      specification</a>
+ */
 
 public class Buckets<TBucket> implements TaggedUnion<Buckets.Kind, Object>, JsonpSerializable {
 
@@ -77,15 +86,13 @@ public class Buckets<TBucket> implements TaggedUnion<Buckets.Kind, Object>, Json
 
 	private Buckets(Builder<TBucket> builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static <TBucket> Buckets<TBucket> of(Consumer<Builder<TBucket>> fn) {
-		Builder<TBucket> builder = new Builder<>();
-		fn.accept(builder);
-		return builder.build();
+	public static <TBucket> Buckets<TBucket> of(Function<Builder<TBucket>, ObjectBuilder<Buckets<TBucket>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**

@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: logstash._types.PipelineSettings
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/logstash/_types/Pipeline.ts#L28-L36">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PipelineSettings implements JsonpSerializable {
 	private final int pipelineWorkers;
@@ -60,24 +67,20 @@ public class PipelineSettings implements JsonpSerializable {
 
 	private PipelineSettings(Builder builder) {
 
-		this.pipelineWorkers = ModelTypeHelper.requireNonNull(builder.pipelineWorkers, this, "pipelineWorkers");
-		this.pipelineBatchSize = ModelTypeHelper.requireNonNull(builder.pipelineBatchSize, this, "pipelineBatchSize");
-		this.pipelineBatchDelay = ModelTypeHelper.requireNonNull(builder.pipelineBatchDelay, this,
-				"pipelineBatchDelay");
-		this.queueType = ModelTypeHelper.requireNonNull(builder.queueType, this, "queueType");
-		this.queueMaxBytesNumber = ModelTypeHelper.requireNonNull(builder.queueMaxBytesNumber, this,
+		this.pipelineWorkers = ApiTypeHelper.requireNonNull(builder.pipelineWorkers, this, "pipelineWorkers");
+		this.pipelineBatchSize = ApiTypeHelper.requireNonNull(builder.pipelineBatchSize, this, "pipelineBatchSize");
+		this.pipelineBatchDelay = ApiTypeHelper.requireNonNull(builder.pipelineBatchDelay, this, "pipelineBatchDelay");
+		this.queueType = ApiTypeHelper.requireNonNull(builder.queueType, this, "queueType");
+		this.queueMaxBytesNumber = ApiTypeHelper.requireNonNull(builder.queueMaxBytesNumber, this,
 				"queueMaxBytesNumber");
-		this.queueMaxBytesUnits = ModelTypeHelper.requireNonNull(builder.queueMaxBytesUnits, this,
-				"queueMaxBytesUnits");
-		this.queueCheckpointWrites = ModelTypeHelper.requireNonNull(builder.queueCheckpointWrites, this,
+		this.queueMaxBytesUnits = ApiTypeHelper.requireNonNull(builder.queueMaxBytesUnits, this, "queueMaxBytesUnits");
+		this.queueCheckpointWrites = ApiTypeHelper.requireNonNull(builder.queueCheckpointWrites, this,
 				"queueCheckpointWrites");
 
 	}
 
-	public static PipelineSettings of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PipelineSettings of(Function<Builder, ObjectBuilder<PipelineSettings>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -168,6 +171,7 @@ public class PipelineSettings implements JsonpSerializable {
 	/**
 	 * Builder for {@link PipelineSettings}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PipelineSettings> {
 		private Integer pipelineWorkers;
 

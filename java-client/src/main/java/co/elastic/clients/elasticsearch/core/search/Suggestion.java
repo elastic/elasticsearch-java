@@ -30,22 +30,26 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.Suggest
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/suggester.ts#L35-L40">API
+ *      specification</a>
+ */
 
 public class Suggestion<T> implements JsonpSerializable {
 	private final int length;
@@ -63,18 +67,16 @@ public class Suggestion<T> implements JsonpSerializable {
 
 	private Suggestion(Builder<T> builder) {
 
-		this.length = ModelTypeHelper.requireNonNull(builder.length, this, "length");
-		this.offset = ModelTypeHelper.requireNonNull(builder.offset, this, "offset");
-		this.options = ModelTypeHelper.unmodifiableRequired(builder.options, this, "options");
-		this.text = ModelTypeHelper.requireNonNull(builder.text, this, "text");
+		this.length = ApiTypeHelper.requireNonNull(builder.length, this, "length");
+		this.offset = ApiTypeHelper.requireNonNull(builder.offset, this, "offset");
+		this.options = ApiTypeHelper.unmodifiableRequired(builder.options, this, "options");
+		this.text = ApiTypeHelper.requireNonNull(builder.text, this, "text");
 		this.tSerializer = builder.tSerializer;
 
 	}
 
-	public static <T> Suggestion<T> of(Consumer<Builder<T>> fn) {
-		Builder<T> builder = new Builder<>();
-		fn.accept(builder);
-		return builder.build();
+	public static <T> Suggestion<T> of(Function<Builder<T>, ObjectBuilder<Suggestion<T>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
@@ -122,7 +124,7 @@ public class Suggestion<T> implements JsonpSerializable {
 		generator.writeKey("offset");
 		generator.write(this.offset);
 
-		if (ModelTypeHelper.isDefined(this.options)) {
+		if (ApiTypeHelper.isDefined(this.options)) {
 			generator.writeKey("options");
 			generator.writeStartArray();
 			for (SuggestOption<T> item0 : this.options) {
@@ -142,6 +144,7 @@ public class Suggestion<T> implements JsonpSerializable {
 	/**
 	 * Builder for {@link Suggestion}.
 	 */
+
 	public static class Builder<T> extends ObjectBuilderBase implements ObjectBuilder<Suggestion<T>> {
 		private Integer length;
 
@@ -172,26 +175,31 @@ public class Suggestion<T> implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code options}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>options</code>.
 		 */
-		public final Builder<T> options(List<SuggestOption<T>> value) {
-			this.options = value;
+		public final Builder<T> options(List<SuggestOption<T>> list) {
+			this.options = _listAddAll(this.options, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code options}
+		 * <p>
+		 * Adds one or more values to <code>options</code>.
 		 */
-		public final Builder<T> options(SuggestOption<T>... value) {
-			this.options = Arrays.asList(value);
+		public final Builder<T> options(SuggestOption<T> value, SuggestOption<T>... values) {
+			this.options = _listAdd(this.options, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code options}
+		 * <p>
+		 * Adds a value to <code>options</code> using a builder lambda.
 		 */
-		public final Builder<T> options(
-				Function<ListBuilder<SuggestOption<T>, SuggestOption.Builder<T>>, ObjectBuilder<List<SuggestOption<T>>>> fn) {
-			return options(fn.apply(new ListBuilder<>(SuggestOption.Builder<T>::new)).build());
+		public final Builder<T> options(Function<SuggestOption.Builder<T>, ObjectBuilder<SuggestOption<T>>> fn) {
+			return options(fn.apply(new SuggestOption.Builder<T>()).build());
 		}
 
 		/**
@@ -227,7 +235,7 @@ public class Suggestion<T> implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for Suggestion
+	 * Create a JSON deserializer for Suggestion
 	 */
 	public static <T> JsonpDeserializer<Suggestion<T>> createSuggestionDeserializer(
 			JsonpDeserializer<T> tDeserializer) {

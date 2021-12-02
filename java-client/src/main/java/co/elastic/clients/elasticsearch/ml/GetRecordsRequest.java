@@ -33,7 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -44,10 +44,26 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_records.Request
+
+/**
+ * Retrieves anomaly records for an anomaly detection job. Records contain the
+ * detailed analytical results. They describe the anomalous activity that has
+ * been identified in the input data based on the detector configuration. There
+ * can be many anomaly records depending on the characteristics and size of the
+ * input data. In practice, there are often too many to be able to manually
+ * process them. The machine learning features therefore perform a sophisticated
+ * aggregation of the anomaly records into buckets. The number of record results
+ * depends on the number of anomalies found in each bucket, which relates to the
+ * number of time series being modeled and the number of detectors.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_records/MlGetAnomalyRecordsRequest.ts#L26-L127">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetRecordsRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -87,7 +103,7 @@ public class GetRecordsRequest extends RequestBase implements JsonpSerializable 
 		this.end = builder.end;
 		this.excludeInterim = builder.excludeInterim;
 		this.from = builder.from;
-		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.page = builder.page;
 		this.recordScore = builder.recordScore;
 		this.size = builder.size;
@@ -96,10 +112,8 @@ public class GetRecordsRequest extends RequestBase implements JsonpSerializable 
 
 	}
 
-	public static GetRecordsRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetRecordsRequest of(Function<Builder, ObjectBuilder<GetRecordsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -254,6 +268,7 @@ public class GetRecordsRequest extends RequestBase implements JsonpSerializable 
 	/**
 	 * Builder for {@link GetRecordsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetRecordsRequest> {
 		@Nullable
 		private Boolean desc;
@@ -346,10 +361,8 @@ public class GetRecordsRequest extends RequestBase implements JsonpSerializable 
 		/**
 		 * API name: {@code page}
 		 */
-		public final Builder page(Consumer<Page.Builder> fn) {
-			Page.Builder builder = new Page.Builder();
-			fn.accept(builder);
-			return this.page(builder.build());
+		public final Builder page(Function<Page.Builder, ObjectBuilder<Page>> fn) {
+			return this.page(fn.apply(new Page.Builder()).build());
 		}
 
 		/**

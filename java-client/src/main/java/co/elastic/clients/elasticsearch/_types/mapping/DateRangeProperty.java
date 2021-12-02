@@ -32,10 +32,17 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.DateRangeProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/range.ts#L37-L40">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DateRangeProperty extends RangePropertyBase implements PropertyVariant {
 	@Nullable
@@ -50,10 +57,8 @@ public class DateRangeProperty extends RangePropertyBase implements PropertyVari
 
 	}
 
-	public static DateRangeProperty of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DateRangeProperty of(Function<Builder, ObjectBuilder<DateRangeProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -89,6 +94,7 @@ public class DateRangeProperty extends RangePropertyBase implements PropertyVari
 	/**
 	 * Builder for {@link DateRangeProperty}.
 	 */
+
 	public static class Builder extends RangePropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DateRangeProperty> {

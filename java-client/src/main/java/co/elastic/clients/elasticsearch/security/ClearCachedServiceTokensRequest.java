@@ -31,20 +31,27 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: security.clear_cached_service_tokens.Request
+
+/**
+ * Evicts tokens from the service account token caches.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/clear_cached_service_tokens/ClearCachedServiceTokensRequest.ts#L23-L34">API
+ *      specification</a>
+ */
 
 public class ClearCachedServiceTokensRequest extends RequestBase {
 	private final List<String> name;
@@ -57,16 +64,15 @@ public class ClearCachedServiceTokensRequest extends RequestBase {
 
 	private ClearCachedServiceTokensRequest(Builder builder) {
 
-		this.name = ModelTypeHelper.unmodifiableRequired(builder.name, this, "name");
-		this.namespace = ModelTypeHelper.requireNonNull(builder.namespace, this, "namespace");
-		this.service = ModelTypeHelper.requireNonNull(builder.service, this, "service");
+		this.name = ApiTypeHelper.unmodifiableRequired(builder.name, this, "name");
+		this.namespace = ApiTypeHelper.requireNonNull(builder.namespace, this, "namespace");
+		this.service = ApiTypeHelper.requireNonNull(builder.service, this, "service");
 
 	}
 
-	public static ClearCachedServiceTokensRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ClearCachedServiceTokensRequest of(
+			Function<Builder, ObjectBuilder<ClearCachedServiceTokensRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -101,6 +107,7 @@ public class ClearCachedServiceTokensRequest extends RequestBase {
 	/**
 	 * Builder for {@link ClearCachedServiceTokensRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClearCachedServiceTokensRequest> {
 		private List<String> name;
 
@@ -112,9 +119,11 @@ public class ClearCachedServiceTokensRequest extends RequestBase {
 		 * Required - A comma-separated list of service token names
 		 * <p>
 		 * API name: {@code name}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>name</code>.
 		 */
-		public final Builder name(List<String> value) {
-			this.name = value;
+		public final Builder name(List<String> list) {
+			this.name = _listAddAll(this.name, list);
 			return this;
 		}
 
@@ -122,9 +131,11 @@ public class ClearCachedServiceTokensRequest extends RequestBase {
 		 * Required - A comma-separated list of service token names
 		 * <p>
 		 * API name: {@code name}
+		 * <p>
+		 * Adds one or more values to <code>name</code>.
 		 */
-		public final Builder name(String... value) {
-			this.name = Arrays.asList(value);
+		public final Builder name(String value, String... values) {
+			this.name = _listAdd(this.name, value, values);
 			return this;
 		}
 

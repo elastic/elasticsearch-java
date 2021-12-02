@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoIngestDownloader
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L126-L128">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeInfoIngestDownloader implements JsonpSerializable {
 	private final String enabled;
@@ -47,14 +54,12 @@ public class NodeInfoIngestDownloader implements JsonpSerializable {
 
 	private NodeInfoIngestDownloader(Builder builder) {
 
-		this.enabled = ModelTypeHelper.requireNonNull(builder.enabled, this, "enabled");
+		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
 
 	}
 
-	public static NodeInfoIngestDownloader of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodeInfoIngestDownloader of(Function<Builder, ObjectBuilder<NodeInfoIngestDownloader>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -85,6 +90,7 @@ public class NodeInfoIngestDownloader implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoIngestDownloader}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoIngestDownloader> {
 		private String enabled;
 

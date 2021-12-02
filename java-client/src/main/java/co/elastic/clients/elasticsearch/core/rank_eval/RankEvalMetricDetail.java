@@ -30,22 +30,26 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.RankEvalMetricDetail
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/rank_eval/types.ts#L125-L134">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RankEvalMetricDetail implements JsonpSerializable {
 	private final double metricScore;
@@ -60,17 +64,15 @@ public class RankEvalMetricDetail implements JsonpSerializable {
 
 	private RankEvalMetricDetail(Builder builder) {
 
-		this.metricScore = ModelTypeHelper.requireNonNull(builder.metricScore, this, "metricScore");
-		this.unratedDocs = ModelTypeHelper.unmodifiableRequired(builder.unratedDocs, this, "unratedDocs");
-		this.hits = ModelTypeHelper.unmodifiableRequired(builder.hits, this, "hits");
-		this.metricDetails = ModelTypeHelper.unmodifiableRequired(builder.metricDetails, this, "metricDetails");
+		this.metricScore = ApiTypeHelper.requireNonNull(builder.metricScore, this, "metricScore");
+		this.unratedDocs = ApiTypeHelper.unmodifiableRequired(builder.unratedDocs, this, "unratedDocs");
+		this.hits = ApiTypeHelper.unmodifiableRequired(builder.hits, this, "hits");
+		this.metricDetails = ApiTypeHelper.unmodifiableRequired(builder.metricDetails, this, "metricDetails");
 
 	}
 
-	public static RankEvalMetricDetail of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RankEvalMetricDetail of(Function<Builder, ObjectBuilder<RankEvalMetricDetail>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -130,7 +132,7 @@ public class RankEvalMetricDetail implements JsonpSerializable {
 		generator.writeKey("metric_score");
 		generator.write(this.metricScore);
 
-		if (ModelTypeHelper.isDefined(this.unratedDocs)) {
+		if (ApiTypeHelper.isDefined(this.unratedDocs)) {
 			generator.writeKey("unrated_docs");
 			generator.writeStartArray();
 			for (UnratedDocument item0 : this.unratedDocs) {
@@ -140,7 +142,7 @@ public class RankEvalMetricDetail implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.hits)) {
+		if (ApiTypeHelper.isDefined(this.hits)) {
 			generator.writeKey("hits");
 			generator.writeStartArray();
 			for (RankEvalHitItem item0 : this.hits) {
@@ -150,7 +152,7 @@ public class RankEvalMetricDetail implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.metricDetails)) {
+		if (ApiTypeHelper.isDefined(this.metricDetails)) {
 			generator.writeKey("metric_details");
 			generator.writeStartObject();
 			for (Map.Entry<String, Map<String, JsonData>> item0 : this.metricDetails.entrySet()) {
@@ -177,6 +179,7 @@ public class RankEvalMetricDetail implements JsonpSerializable {
 	/**
 	 * Builder for {@link RankEvalMetricDetail}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RankEvalMetricDetail> {
 		private Double metricScore;
 
@@ -203,9 +206,11 @@ public class RankEvalMetricDetail implements JsonpSerializable {
 		 * value. This can be used to ask the user to supply ratings for these documents
 		 * <p>
 		 * API name: {@code unrated_docs}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>unratedDocs</code>.
 		 */
-		public final Builder unratedDocs(List<UnratedDocument> value) {
-			this.unratedDocs = value;
+		public final Builder unratedDocs(List<UnratedDocument> list) {
+			this.unratedDocs = _listAddAll(this.unratedDocs, list);
 			return this;
 		}
 
@@ -215,9 +220,11 @@ public class RankEvalMetricDetail implements JsonpSerializable {
 		 * value. This can be used to ask the user to supply ratings for these documents
 		 * <p>
 		 * API name: {@code unrated_docs}
+		 * <p>
+		 * Adds one or more values to <code>unratedDocs</code>.
 		 */
-		public final Builder unratedDocs(UnratedDocument... value) {
-			this.unratedDocs = Arrays.asList(value);
+		public final Builder unratedDocs(UnratedDocument value, UnratedDocument... values) {
+			this.unratedDocs = _listAdd(this.unratedDocs, value, values);
 			return this;
 		}
 
@@ -227,10 +234,11 @@ public class RankEvalMetricDetail implements JsonpSerializable {
 		 * value. This can be used to ask the user to supply ratings for these documents
 		 * <p>
 		 * API name: {@code unrated_docs}
+		 * <p>
+		 * Adds a value to <code>unratedDocs</code> using a builder lambda.
 		 */
-		public final Builder unratedDocs(
-				Function<ListBuilder<UnratedDocument, UnratedDocument.Builder>, ObjectBuilder<List<UnratedDocument>>> fn) {
-			return unratedDocs(fn.apply(new ListBuilder<>(UnratedDocument.Builder::new)).build());
+		public final Builder unratedDocs(Function<UnratedDocument.Builder, ObjectBuilder<UnratedDocument>> fn) {
+			return unratedDocs(fn.apply(new UnratedDocument.Builder()).build());
 		}
 
 		/**
@@ -238,9 +246,11 @@ public class RankEvalMetricDetail implements JsonpSerializable {
 		 * supplied ratings
 		 * <p>
 		 * API name: {@code hits}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>hits</code>.
 		 */
-		public final Builder hits(List<RankEvalHitItem> value) {
-			this.hits = value;
+		public final Builder hits(List<RankEvalHitItem> list) {
+			this.hits = _listAddAll(this.hits, list);
 			return this;
 		}
 
@@ -249,9 +259,11 @@ public class RankEvalMetricDetail implements JsonpSerializable {
 		 * supplied ratings
 		 * <p>
 		 * API name: {@code hits}
+		 * <p>
+		 * Adds one or more values to <code>hits</code>.
 		 */
-		public final Builder hits(RankEvalHitItem... value) {
-			this.hits = Arrays.asList(value);
+		public final Builder hits(RankEvalHitItem value, RankEvalHitItem... values) {
+			this.hits = _listAdd(this.hits, value, values);
 			return this;
 		}
 
@@ -260,10 +272,11 @@ public class RankEvalMetricDetail implements JsonpSerializable {
 		 * supplied ratings
 		 * <p>
 		 * API name: {@code hits}
+		 * <p>
+		 * Adds a value to <code>hits</code> using a builder lambda.
 		 */
-		public final Builder hits(
-				Function<ListBuilder<RankEvalHitItem, RankEvalHitItem.Builder>, ObjectBuilder<List<RankEvalHitItem>>> fn) {
-			return hits(fn.apply(new ListBuilder<>(RankEvalHitItem.Builder::new)).build());
+		public final Builder hits(Function<RankEvalHitItem.Builder, ObjectBuilder<RankEvalHitItem>> fn) {
+			return hits(fn.apply(new RankEvalHitItem.Builder()).build());
 		}
 
 		/**
@@ -273,9 +286,26 @@ public class RankEvalMetricDetail implements JsonpSerializable {
 		 * interpretation of the results
 		 * <p>
 		 * API name: {@code metric_details}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>metricDetails</code>.
 		 */
-		public final Builder metricDetails(Map<String, Map<String, JsonData>> value) {
-			this.metricDetails = value;
+		public final Builder metricDetails(Map<String, Map<String, JsonData>> map) {
+			this.metricDetails = _mapPutAll(this.metricDetails, map);
+			return this;
+		}
+
+		/**
+		 * Required - The metric_details give additional information about the
+		 * calculated quality metric (e.g. how many of the retrieved documents were
+		 * relevant). The content varies for each metric but allows for better
+		 * interpretation of the results
+		 * <p>
+		 * API name: {@code metric_details}
+		 * <p>
+		 * Adds an entry to <code>metricDetails</code>.
+		 */
+		public final Builder metricDetails(String key, Map<String, JsonData> value) {
+			this.metricDetails = _mapPut(this.metricDetails, key, value);
 			return this;
 		}
 

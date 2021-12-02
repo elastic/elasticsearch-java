@@ -28,22 +28,26 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.PhraseSuggester
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/suggester.ts#L160-L174">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVariant {
 	@Nullable
@@ -91,7 +95,7 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 
 		this.collate = builder.collate;
 		this.confidence = builder.confidence;
-		this.directGenerator = ModelTypeHelper.unmodifiable(builder.directGenerator);
+		this.directGenerator = ApiTypeHelper.unmodifiable(builder.directGenerator);
 		this.forceUnigrams = builder.forceUnigrams;
 		this.gramSize = builder.gramSize;
 		this.highlight = builder.highlight;
@@ -105,10 +109,8 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 
 	}
 
-	public static PhraseSuggester of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PhraseSuggester of(Function<Builder, ObjectBuilder<PhraseSuggester>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -235,7 +237,7 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 			generator.write(this.confidence);
 
 		}
-		if (ModelTypeHelper.isDefined(this.directGenerator)) {
+		if (ApiTypeHelper.isDefined(this.directGenerator)) {
 			generator.writeKey("direct_generator");
 			generator.writeStartArray();
 			for (DirectGenerator item0 : this.directGenerator) {
@@ -303,6 +305,7 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 	/**
 	 * Builder for {@link PhraseSuggester}.
 	 */
+
 	public static class Builder extends SuggesterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PhraseSuggester> {
@@ -356,10 +359,8 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 		/**
 		 * API name: {@code collate}
 		 */
-		public final Builder collate(Consumer<PhraseSuggestCollate.Builder> fn) {
-			PhraseSuggestCollate.Builder builder = new PhraseSuggestCollate.Builder();
-			fn.accept(builder);
-			return this.collate(builder.build());
+		public final Builder collate(Function<PhraseSuggestCollate.Builder, ObjectBuilder<PhraseSuggestCollate>> fn) {
+			return this.collate(fn.apply(new PhraseSuggestCollate.Builder()).build());
 		}
 
 		/**
@@ -372,26 +373,31 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 
 		/**
 		 * API name: {@code direct_generator}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>directGenerator</code>.
 		 */
-		public final Builder directGenerator(@Nullable List<DirectGenerator> value) {
-			this.directGenerator = value;
+		public final Builder directGenerator(List<DirectGenerator> list) {
+			this.directGenerator = _listAddAll(this.directGenerator, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code direct_generator}
+		 * <p>
+		 * Adds one or more values to <code>directGenerator</code>.
 		 */
-		public final Builder directGenerator(DirectGenerator... value) {
-			this.directGenerator = Arrays.asList(value);
+		public final Builder directGenerator(DirectGenerator value, DirectGenerator... values) {
+			this.directGenerator = _listAdd(this.directGenerator, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code direct_generator}
+		 * <p>
+		 * Adds a value to <code>directGenerator</code> using a builder lambda.
 		 */
-		public final Builder directGenerator(
-				Function<ListBuilder<DirectGenerator, DirectGenerator.Builder>, ObjectBuilder<List<DirectGenerator>>> fn) {
-			return directGenerator(fn.apply(new ListBuilder<>(DirectGenerator.Builder::new)).build());
+		public final Builder directGenerator(Function<DirectGenerator.Builder, ObjectBuilder<DirectGenerator>> fn) {
+			return directGenerator(fn.apply(new DirectGenerator.Builder()).build());
 		}
 
 		/**
@@ -421,10 +427,9 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 		/**
 		 * API name: {@code highlight}
 		 */
-		public final Builder highlight(Consumer<PhraseSuggestHighlight.Builder> fn) {
-			PhraseSuggestHighlight.Builder builder = new PhraseSuggestHighlight.Builder();
-			fn.accept(builder);
-			return this.highlight(builder.build());
+		public final Builder highlight(
+				Function<PhraseSuggestHighlight.Builder, ObjectBuilder<PhraseSuggestHighlight>> fn) {
+			return this.highlight(fn.apply(new PhraseSuggestHighlight.Builder()).build());
 		}
 
 		/**
@@ -470,10 +475,8 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 		/**
 		 * API name: {@code smoothing}
 		 */
-		public final Builder smoothing(Consumer<SmoothingModel.Builder> fn) {
-			SmoothingModel.Builder builder = new SmoothingModel.Builder();
-			fn.accept(builder);
-			return this.smoothing(builder.build());
+		public final Builder smoothing(Function<SmoothingModel.Builder, ObjectBuilder<SmoothingModel>> fn) {
+			return this.smoothing(fn.apply(new SmoothingModel.Builder()).build());
 		}
 
 		/**

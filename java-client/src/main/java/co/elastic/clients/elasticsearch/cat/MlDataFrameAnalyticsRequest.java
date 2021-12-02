@@ -39,10 +39,18 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.ml_data_frame_analytics.Request
+
+/**
+ * Gets configuration and usage information about data frame analytics jobs.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/ml_data_frame_analytics/CatDataFrameAnalyticsRequest.ts#L23-L36">API
+ *      specification</a>
+ */
 
 public class MlDataFrameAnalyticsRequest extends CatRequestBase {
 	@Nullable
@@ -64,10 +72,8 @@ public class MlDataFrameAnalyticsRequest extends CatRequestBase {
 
 	}
 
-	public static MlDataFrameAnalyticsRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static MlDataFrameAnalyticsRequest of(Function<Builder, ObjectBuilder<MlDataFrameAnalyticsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -106,6 +112,7 @@ public class MlDataFrameAnalyticsRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link MlDataFrameAnalyticsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MlDataFrameAnalyticsRequest> {
 		@Nullable
 		private Boolean allowNoMatch;

@@ -30,16 +30,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.create_service_token.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/create_service_token/CreateServiceTokenResponse.ts#L22-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CreateServiceTokenResponse implements JsonpSerializable {
 	private final boolean created;
@@ -50,15 +57,13 @@ public class CreateServiceTokenResponse implements JsonpSerializable {
 
 	private CreateServiceTokenResponse(Builder builder) {
 
-		this.created = ModelTypeHelper.requireNonNull(builder.created, this, "created");
-		this.token = ModelTypeHelper.requireNonNull(builder.token, this, "token");
+		this.created = ApiTypeHelper.requireNonNull(builder.created, this, "created");
+		this.token = ApiTypeHelper.requireNonNull(builder.token, this, "token");
 
 	}
 
-	public static CreateServiceTokenResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CreateServiceTokenResponse of(Function<Builder, ObjectBuilder<CreateServiceTokenResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -99,6 +104,7 @@ public class CreateServiceTokenResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link CreateServiceTokenResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CreateServiceTokenResponse> {
 		private Boolean created;
 
@@ -123,10 +129,8 @@ public class CreateServiceTokenResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code token}
 		 */
-		public final Builder token(Consumer<Token.Builder> fn) {
-			Token.Builder builder = new Token.Builder();
-			fn.accept(builder);
-			return this.token(builder.build());
+		public final Builder token(Function<Token.Builder, ObjectBuilder<Token>> fn) {
+			return this.token(fn.apply(new Token.Builder()).build());
 		}
 
 		/**

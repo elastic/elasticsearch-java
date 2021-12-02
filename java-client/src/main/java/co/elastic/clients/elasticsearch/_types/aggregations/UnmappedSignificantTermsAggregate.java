@@ -31,9 +31,18 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Void;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.aggregations.UnmappedSignificantTermsAggregate
+
+/**
+ * Result of the <code>significant_terms</code> aggregation on an unmapped
+ * field. <code>buckets</code> is always empty.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L566-L572">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class UnmappedSignificantTermsAggregate extends MultiBucketAggregateBase<Void> implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -43,10 +52,9 @@ public class UnmappedSignificantTermsAggregate extends MultiBucketAggregateBase<
 
 	}
 
-	public static UnmappedSignificantTermsAggregate of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static UnmappedSignificantTermsAggregate of(
+			Function<Builder, ObjectBuilder<UnmappedSignificantTermsAggregate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -62,6 +70,7 @@ public class UnmappedSignificantTermsAggregate extends MultiBucketAggregateBase<
 	/**
 	 * Builder for {@link UnmappedSignificantTermsAggregate}.
 	 */
+
 	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<Void, Builder>
 			implements
 				ObjectBuilder<UnmappedSignificantTermsAggregate> {

@@ -34,7 +34,7 @@ import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 /**
@@ -85,11 +85,10 @@ public class ElasticsearchXpackAsyncClient extends ApiClient<ElasticsearchTransp
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<XpackInfoResponse> info(Consumer<XpackInfoRequest.Builder> fn)
+	public final CompletableFuture<XpackInfoResponse> info(
+			Function<XpackInfoRequest.Builder, ObjectBuilder<XpackInfoRequest>> fn)
 			throws IOException, ElasticsearchException {
-		XpackInfoRequest.Builder builder = new XpackInfoRequest.Builder();
-		fn.accept(builder);
-		return info(builder.build());
+		return info(fn.apply(new XpackInfoRequest.Builder()).build());
 	}
 
 	/**
@@ -134,11 +133,10 @@ public class ElasticsearchXpackAsyncClient extends ApiClient<ElasticsearchTransp
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<XpackUsageResponse> usage(Consumer<XpackUsageRequest.Builder> fn)
+	public final CompletableFuture<XpackUsageResponse> usage(
+			Function<XpackUsageRequest.Builder, ObjectBuilder<XpackUsageRequest>> fn)
 			throws IOException, ElasticsearchException {
-		XpackUsageRequest.Builder builder = new XpackUsageRequest.Builder();
-		fn.accept(builder);
-		return usage(builder.build());
+		return usage(fn.apply(new XpackUsageRequest.Builder()).build());
 	}
 
 	/**

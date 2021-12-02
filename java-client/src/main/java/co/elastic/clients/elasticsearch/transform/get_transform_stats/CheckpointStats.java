@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform.get_transform_stats.CheckpointStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/transform/get_transform_stats/types.ts#L60-L67">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CheckpointStats implements JsonpSerializable {
 	private final long checkpoint;
@@ -62,19 +69,17 @@ public class CheckpointStats implements JsonpSerializable {
 
 	private CheckpointStats(Builder builder) {
 
-		this.checkpoint = ModelTypeHelper.requireNonNull(builder.checkpoint, this, "checkpoint");
+		this.checkpoint = ApiTypeHelper.requireNonNull(builder.checkpoint, this, "checkpoint");
 		this.checkpointProgress = builder.checkpointProgress;
 		this.timestamp = builder.timestamp;
-		this.timestampMillis = ModelTypeHelper.requireNonNull(builder.timestampMillis, this, "timestampMillis");
+		this.timestampMillis = ApiTypeHelper.requireNonNull(builder.timestampMillis, this, "timestampMillis");
 		this.timeUpperBound = builder.timeUpperBound;
 		this.timeUpperBoundMillis = builder.timeUpperBoundMillis;
 
 	}
 
-	public static CheckpointStats of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CheckpointStats of(Function<Builder, ObjectBuilder<CheckpointStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -168,6 +173,7 @@ public class CheckpointStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link CheckpointStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CheckpointStats> {
 		private Long checkpoint;
 
@@ -204,10 +210,9 @@ public class CheckpointStats implements JsonpSerializable {
 		/**
 		 * API name: {@code checkpoint_progress}
 		 */
-		public final Builder checkpointProgress(Consumer<TransformProgress.Builder> fn) {
-			TransformProgress.Builder builder = new TransformProgress.Builder();
-			fn.accept(builder);
-			return this.checkpointProgress(builder.build());
+		public final Builder checkpointProgress(
+				Function<TransformProgress.Builder, ObjectBuilder<TransformProgress>> fn) {
+			return this.checkpointProgress(fn.apply(new TransformProgress.Builder()).build());
 		}
 
 		/**

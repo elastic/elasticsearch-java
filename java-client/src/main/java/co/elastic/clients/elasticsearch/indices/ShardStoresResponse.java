@@ -30,19 +30,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.shard_stores.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/shard_stores/IndicesShardStoresResponse.ts#L24-L26">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ShardStoresResponse implements JsonpSerializable {
 	private final Map<String, IndicesShardStores> indices;
@@ -51,14 +56,12 @@ public class ShardStoresResponse implements JsonpSerializable {
 
 	private ShardStoresResponse(Builder builder) {
 
-		this.indices = ModelTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
+		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
 
 	}
 
-	public static ShardStoresResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ShardStoresResponse of(Function<Builder, ObjectBuilder<ShardStoresResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -79,7 +82,7 @@ public class ShardStoresResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.indices)) {
+		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartObject();
 			for (Map.Entry<String, IndicesShardStores> item0 : this.indices.entrySet()) {
@@ -98,20 +101,38 @@ public class ShardStoresResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardStoresResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardStoresResponse> {
 		private Map<String, IndicesShardStores> indices;
 
 		/**
 		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>indices</code>.
 		 */
-		public final Builder indices(Map<String, IndicesShardStores> value) {
-			this.indices = value;
+		public final Builder indices(Map<String, IndicesShardStores> map) {
+			this.indices = _mapPutAll(this.indices, map);
 			return this;
 		}
 
-		public final Builder indices(
-				Function<MapBuilder<String, IndicesShardStores, IndicesShardStores.Builder>, ObjectBuilder<Map<String, IndicesShardStores>>> fn) {
-			return indices(fn.apply(new MapBuilder<>(IndicesShardStores.Builder::new)).build());
+		/**
+		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds an entry to <code>indices</code>.
+		 */
+		public final Builder indices(String key, IndicesShardStores value) {
+			this.indices = _mapPut(this.indices, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds an entry to <code>indices</code> using a builder lambda.
+		 */
+		public final Builder indices(String key,
+				Function<IndicesShardStores.Builder, ObjectBuilder<IndicesShardStores>> fn) {
+			return indices(key, fn.apply(new IndicesShardStores.Builder()).build());
 		}
 
 		/**

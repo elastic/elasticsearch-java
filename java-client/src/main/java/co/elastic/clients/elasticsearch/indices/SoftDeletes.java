@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: indices._types.SoftDeletes
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/_types/IndexSettings.ts#L32-L34">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SoftDeletes implements JsonpSerializable {
 	private final boolean enabled;
@@ -46,14 +53,12 @@ public class SoftDeletes implements JsonpSerializable {
 
 	private SoftDeletes(Builder builder) {
 
-		this.enabled = ModelTypeHelper.requireNonNull(builder.enabled, this, "enabled");
+		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
 
 	}
 
-	public static SoftDeletes of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SoftDeletes of(Function<Builder, ObjectBuilder<SoftDeletes>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -84,6 +89,7 @@ public class SoftDeletes implements JsonpSerializable {
 	/**
 	 * Builder for {@link SoftDeletes}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SoftDeletes> {
 		private Boolean enabled;
 

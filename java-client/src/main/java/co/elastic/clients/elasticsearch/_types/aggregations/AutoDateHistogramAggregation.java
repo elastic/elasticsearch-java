@@ -30,17 +30,24 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.AutoDateHistogramAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/bucket.ts#L51-L61">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AutoDateHistogramAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
@@ -80,16 +87,14 @@ public class AutoDateHistogramAggregation extends BucketAggregationBase implemen
 		this.minimumInterval = builder.minimumInterval;
 		this.missing = builder.missing;
 		this.offset = builder.offset;
-		this.params = ModelTypeHelper.unmodifiable(builder.params);
+		this.params = ApiTypeHelper.unmodifiable(builder.params);
 		this.script = builder.script;
 		this.timeZone = builder.timeZone;
 
 	}
 
-	public static AutoDateHistogramAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static AutoDateHistogramAggregation of(Function<Builder, ObjectBuilder<AutoDateHistogramAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -203,7 +208,7 @@ public class AutoDateHistogramAggregation extends BucketAggregationBase implemen
 			generator.write(this.offset);
 
 		}
-		if (ModelTypeHelper.isDefined(this.params)) {
+		if (ApiTypeHelper.isDefined(this.params)) {
 			generator.writeKey("params");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.params.entrySet()) {
@@ -232,6 +237,7 @@ public class AutoDateHistogramAggregation extends BucketAggregationBase implemen
 	/**
 	 * Builder for {@link AutoDateHistogramAggregation}.
 	 */
+
 	public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<AutoDateHistogramAggregation> {
@@ -312,9 +318,21 @@ public class AutoDateHistogramAggregation extends BucketAggregationBase implemen
 
 		/**
 		 * API name: {@code params}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>params</code>.
 		 */
-		public final Builder params(@Nullable Map<String, JsonData> value) {
-			this.params = value;
+		public final Builder params(Map<String, JsonData> map) {
+			this.params = _mapPutAll(this.params, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code params}
+		 * <p>
+		 * Adds an entry to <code>params</code>.
+		 */
+		public final Builder params(String key, JsonData value) {
+			this.params = _mapPut(this.params, key, value);
 			return this;
 		}
 
@@ -329,10 +347,8 @@ public class AutoDateHistogramAggregation extends BucketAggregationBase implemen
 		/**
 		 * API name: {@code script}
 		 */
-		public final Builder script(Consumer<Script.Builder> fn) {
-			Script.Builder builder = new Script.Builder();
-			fn.accept(builder);
-			return this.script(builder.build());
+		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
 		/**

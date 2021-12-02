@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_data_stream.IndicesGetDataStreamItemTimestampField
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/get_data_stream/IndicesGetDataStreamResponse.ts#L50-L52">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IndicesGetDataStreamItemTimestampField implements JsonpSerializable {
 	private final String name;
@@ -47,14 +54,13 @@ public class IndicesGetDataStreamItemTimestampField implements JsonpSerializable
 
 	private IndicesGetDataStreamItemTimestampField(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
-	public static IndicesGetDataStreamItemTimestampField of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IndicesGetDataStreamItemTimestampField of(
+			Function<Builder, ObjectBuilder<IndicesGetDataStreamItemTimestampField>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -85,6 +91,7 @@ public class IndicesGetDataStreamItemTimestampField implements JsonpSerializable
 	/**
 	 * Builder for {@link IndicesGetDataStreamItemTimestampField}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase
 			implements
 				ObjectBuilder<IndicesGetDataStreamItemTimestampField> {

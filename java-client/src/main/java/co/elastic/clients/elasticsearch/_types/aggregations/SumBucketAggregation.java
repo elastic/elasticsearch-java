@@ -30,9 +30,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.aggregations.SumBucketAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/pipeline.ts#L213-L213">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SumBucketAggregation extends PipelineAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -42,10 +49,8 @@ public class SumBucketAggregation extends PipelineAggregationBase implements Agg
 
 	}
 
-	public static SumBucketAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SumBucketAggregation of(Function<Builder, ObjectBuilder<SumBucketAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,6 +66,7 @@ public class SumBucketAggregation extends PipelineAggregationBase implements Agg
 	/**
 	 * Builder for {@link SumBucketAggregation}.
 	 */
+
 	public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<SumBucketAggregation> {

@@ -29,8 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,11 +37,17 @@ import java.lang.Long;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.WatchStatus
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Watch.ts#L49-L56">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class WatchStatus implements JsonpSerializable {
 	private final Map<String, ActionStatus> actions;
@@ -64,19 +69,17 @@ public class WatchStatus implements JsonpSerializable {
 
 	private WatchStatus(Builder builder) {
 
-		this.actions = ModelTypeHelper.unmodifiableRequired(builder.actions, this, "actions");
+		this.actions = ApiTypeHelper.unmodifiableRequired(builder.actions, this, "actions");
 		this.lastChecked = builder.lastChecked;
 		this.lastMetCondition = builder.lastMetCondition;
-		this.state = ModelTypeHelper.requireNonNull(builder.state, this, "state");
-		this.version = ModelTypeHelper.requireNonNull(builder.version, this, "version");
+		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
+		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
 		this.executionState = builder.executionState;
 
 	}
 
-	public static WatchStatus of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static WatchStatus of(Function<Builder, ObjectBuilder<WatchStatus>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -135,7 +138,7 @@ public class WatchStatus implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.actions)) {
+		if (ApiTypeHelper.isDefined(this.actions)) {
 			generator.writeKey("actions");
 			generator.writeStartObject();
 			for (Map.Entry<String, ActionStatus> item0 : this.actions.entrySet()) {
@@ -175,6 +178,7 @@ public class WatchStatus implements JsonpSerializable {
 	/**
 	 * Builder for {@link WatchStatus}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WatchStatus> {
 		private Map<String, ActionStatus> actions;
 
@@ -193,15 +197,31 @@ public class WatchStatus implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code actions}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>actions</code>.
 		 */
-		public final Builder actions(Map<String, ActionStatus> value) {
-			this.actions = value;
+		public final Builder actions(Map<String, ActionStatus> map) {
+			this.actions = _mapPutAll(this.actions, map);
 			return this;
 		}
 
-		public final Builder actions(
-				Function<MapBuilder<String, ActionStatus, ActionStatus.Builder>, ObjectBuilder<Map<String, ActionStatus>>> fn) {
-			return actions(fn.apply(new MapBuilder<>(ActionStatus.Builder::new)).build());
+		/**
+		 * Required - API name: {@code actions}
+		 * <p>
+		 * Adds an entry to <code>actions</code>.
+		 */
+		public final Builder actions(String key, ActionStatus value) {
+			this.actions = _mapPut(this.actions, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code actions}
+		 * <p>
+		 * Adds an entry to <code>actions</code> using a builder lambda.
+		 */
+		public final Builder actions(String key, Function<ActionStatus.Builder, ObjectBuilder<ActionStatus>> fn) {
+			return actions(key, fn.apply(new ActionStatus.Builder()).build());
 		}
 
 		/**
@@ -231,10 +251,8 @@ public class WatchStatus implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code state}
 		 */
-		public final Builder state(Consumer<ActivationState.Builder> fn) {
-			ActivationState.Builder builder = new ActivationState.Builder();
-			fn.accept(builder);
-			return this.state(builder.build());
+		public final Builder state(Function<ActivationState.Builder, ObjectBuilder<ActivationState>> fn) {
+			return this.state(fn.apply(new ActivationState.Builder()).build());
 		}
 
 		/**

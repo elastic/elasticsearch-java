@@ -47,10 +47,20 @@ import java.lang.Long;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.reindex.Request
+
+/**
+ * Allows to copy documents from one index to another, optionally filtering the
+ * source documents by a query, changing the destination index settings, or
+ * fetching the documents from a remote cluster.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/reindex/ReindexRequest.ts#L27-L51">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ReindexRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -116,10 +126,8 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 
 	}
 
-	public static ReindexRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ReindexRequest of(Function<Builder, ObjectBuilder<ReindexRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -303,6 +311,7 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link ReindexRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ReindexRequest> {
 		@Nullable
 		private Conflicts conflicts;
@@ -365,10 +374,8 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code dest}
 		 */
-		public final Builder dest(Consumer<Destination.Builder> fn) {
-			Destination.Builder builder = new Destination.Builder();
-			fn.accept(builder);
-			return this.dest(builder.build());
+		public final Builder dest(Function<Destination.Builder, ObjectBuilder<Destination>> fn) {
+			return this.dest(fn.apply(new Destination.Builder()).build());
 		}
 
 		/**
@@ -419,10 +426,8 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code script}
 		 */
-		public final Builder script(Consumer<Script.Builder> fn) {
-			Script.Builder builder = new Script.Builder();
-			fn.accept(builder);
-			return this.script(builder.build());
+		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
 		/**
@@ -440,10 +445,8 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code scroll}
 		 */
-		public final Builder scroll(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.scroll(builder.build());
+		public final Builder scroll(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.scroll(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -476,10 +479,8 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code source}
 		 */
-		public final Builder source(Consumer<Source.Builder> fn) {
-			Source.Builder builder = new Source.Builder();
-			fn.accept(builder);
-			return this.source(builder.build());
+		public final Builder source(Function<Source.Builder, ObjectBuilder<Source>> fn) {
+			return this.source(fn.apply(new Source.Builder()).build());
 		}
 
 		/**
@@ -499,10 +500,8 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.timeout(builder.build());
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -528,10 +527,9 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
-		public final Builder waitForActiveShards(Consumer<WaitForActiveShards.Builder> fn) {
-			WaitForActiveShards.Builder builder = new WaitForActiveShards.Builder();
-			fn.accept(builder);
-			return this.waitForActiveShards(builder.build());
+		public final Builder waitForActiveShards(
+				Function<WaitForActiveShards.Builder, ObjectBuilder<WaitForActiveShards>> fn) {
+			return this.waitForActiveShards(fn.apply(new WaitForActiveShards.Builder()).build());
 		}
 
 		/**

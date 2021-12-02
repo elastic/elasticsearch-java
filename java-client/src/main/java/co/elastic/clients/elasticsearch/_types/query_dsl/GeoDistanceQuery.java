@@ -30,15 +30,22 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.GeoDistanceQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/geo.ts#L48-L57">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GeoDistanceQuery extends QueryBase implements QueryVariant {
 	private final String field;
@@ -58,8 +65,8 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant {
 
 	private GeoDistanceQuery(Builder builder) {
 		super(builder);
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
-		this.location = ModelTypeHelper.requireNonNull(builder.location, this, "location");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.location = ApiTypeHelper.requireNonNull(builder.location, this, "location");
 
 		this.distance = builder.distance;
 		this.distanceType = builder.distanceType;
@@ -67,10 +74,8 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public static GeoDistanceQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GeoDistanceQuery of(Function<Builder, ObjectBuilder<GeoDistanceQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -145,6 +150,7 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link GeoDistanceQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<GeoDistanceQuery> {
 		private String field;
 
@@ -169,10 +175,8 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required -
 		 */
-		public final Builder location(Consumer<GeoLocation.Builder> fn) {
-			GeoLocation.Builder builder = new GeoLocation.Builder();
-			fn.accept(builder);
-			return this.location(builder.build());
+		public final Builder location(Function<GeoLocation.Builder, ObjectBuilder<GeoLocation>> fn) {
+			return this.location(fn.apply(new GeoLocation.Builder()).build());
 		}
 
 		@Nullable

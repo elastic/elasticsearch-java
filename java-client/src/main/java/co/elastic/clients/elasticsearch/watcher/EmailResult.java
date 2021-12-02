@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.EmailResult
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Actions.ts#L144-L148">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class EmailResult implements JsonpSerializable {
 	@Nullable
@@ -54,15 +61,13 @@ public class EmailResult implements JsonpSerializable {
 	private EmailResult(Builder builder) {
 
 		this.account = builder.account;
-		this.message = ModelTypeHelper.requireNonNull(builder.message, this, "message");
+		this.message = ApiTypeHelper.requireNonNull(builder.message, this, "message");
 		this.reason = builder.reason;
 
 	}
 
-	public static EmailResult of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static EmailResult of(Function<Builder, ObjectBuilder<EmailResult>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -120,6 +125,7 @@ public class EmailResult implements JsonpSerializable {
 	/**
 	 * Builder for {@link EmailResult}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<EmailResult> {
 		@Nullable
 		private String account;
@@ -148,10 +154,8 @@ public class EmailResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code message}
 		 */
-		public final Builder message(Consumer<EmailResult.Builder> fn) {
-			EmailResult.Builder builder = new EmailResult.Builder();
-			fn.accept(builder);
-			return this.message(builder.build());
+		public final Builder message(Function<EmailResult.Builder, ObjectBuilder<EmailResult>> fn) {
+			return this.message(fn.apply(new EmailResult.Builder()).build());
 		}
 
 		/**

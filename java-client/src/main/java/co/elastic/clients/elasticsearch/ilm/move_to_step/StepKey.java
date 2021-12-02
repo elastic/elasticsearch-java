@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm.move_to_step.StepKey
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ilm/move_to_step/types.ts#L20-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class StepKey implements JsonpSerializable {
 	private final String action;
@@ -51,16 +58,14 @@ public class StepKey implements JsonpSerializable {
 
 	private StepKey(Builder builder) {
 
-		this.action = ModelTypeHelper.requireNonNull(builder.action, this, "action");
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
-		this.phase = ModelTypeHelper.requireNonNull(builder.phase, this, "phase");
+		this.action = ApiTypeHelper.requireNonNull(builder.action, this, "action");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.phase = ApiTypeHelper.requireNonNull(builder.phase, this, "phase");
 
 	}
 
-	public static StepKey of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static StepKey of(Function<Builder, ObjectBuilder<StepKey>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -111,6 +116,7 @@ public class StepKey implements JsonpSerializable {
 	/**
 	 * Builder for {@link StepKey}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StepKey> {
 		private String action;
 

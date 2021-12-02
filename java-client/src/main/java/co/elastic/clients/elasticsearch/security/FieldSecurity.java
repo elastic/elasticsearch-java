@@ -29,18 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security._types.FieldSecurity
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/_types/FieldSecurity.ts#L22-L25">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FieldSecurity implements JsonpSerializable {
 	private final List<String> except;
@@ -51,15 +57,13 @@ public class FieldSecurity implements JsonpSerializable {
 
 	private FieldSecurity(Builder builder) {
 
-		this.except = ModelTypeHelper.unmodifiable(builder.except);
-		this.grant = ModelTypeHelper.unmodifiableRequired(builder.grant, this, "grant");
+		this.except = ApiTypeHelper.unmodifiable(builder.except);
+		this.grant = ApiTypeHelper.unmodifiableRequired(builder.grant, this, "grant");
 
 	}
 
-	public static FieldSecurity of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static FieldSecurity of(Function<Builder, ObjectBuilder<FieldSecurity>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -87,7 +91,7 @@ public class FieldSecurity implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.except)) {
+		if (ApiTypeHelper.isDefined(this.except)) {
 			generator.writeKey("except");
 			generator.writeStartArray();
 			for (String item0 : this.except) {
@@ -97,7 +101,7 @@ public class FieldSecurity implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.grant)) {
+		if (ApiTypeHelper.isDefined(this.grant)) {
 			generator.writeKey("grant");
 			generator.writeStartArray();
 			for (String item0 : this.grant) {
@@ -115,6 +119,7 @@ public class FieldSecurity implements JsonpSerializable {
 	/**
 	 * Builder for {@link FieldSecurity}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldSecurity> {
 		@Nullable
 		private List<String> except;
@@ -123,33 +128,41 @@ public class FieldSecurity implements JsonpSerializable {
 
 		/**
 		 * API name: {@code except}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>except</code>.
 		 */
-		public final Builder except(@Nullable List<String> value) {
-			this.except = value;
+		public final Builder except(List<String> list) {
+			this.except = _listAddAll(this.except, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code except}
+		 * <p>
+		 * Adds one or more values to <code>except</code>.
 		 */
-		public final Builder except(String... value) {
-			this.except = Arrays.asList(value);
+		public final Builder except(String value, String... values) {
+			this.except = _listAdd(this.except, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code grant}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>grant</code>.
 		 */
-		public final Builder grant(List<String> value) {
-			this.grant = value;
+		public final Builder grant(List<String> list) {
+			this.grant = _listAddAll(this.grant, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code grant}
+		 * <p>
+		 * Adds one or more values to <code>grant</code>.
 		 */
-		public final Builder grant(String... value) {
-			this.grant = Arrays.asList(value);
+		public final Builder grant(String value, String... values) {
+			this.grant = _listAdd(this.grant, value, values);
 			return this;
 		}
 

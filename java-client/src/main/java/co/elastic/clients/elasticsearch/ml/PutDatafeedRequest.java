@@ -40,25 +40,36 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.MapBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_datafeed.Request
+
+/**
+ * Instantiates a datafeed. Datafeeds retrieve data from Elasticsearch for
+ * analysis by an anomaly detection job. You can associate only one datafeed
+ * with each anomaly detection job. The datafeed contains a query that runs at a
+ * defined interval (<code>frequency</code>). If you are concerned about delayed
+ * data, you can add a delay
+ * (<code>query_delay') at each interval. When Elasticsearch security features are enabled, your datafeed remembers which roles the user who created it had at the time of creation and runs the query using those same roles. If you provide secondary authorization headers, those credentials are used instead. You must use Kibana, this API, or the create anomaly detection jobs API to create a datafeed. Do not add a datafeed directly to the </code>.ml-config<code>index. Do not give users</code>write<code>privileges on the</code>.ml-config`
+ * index.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/put_datafeed/MlPutDatafeedRequest.ts#L31-L161">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutDatafeedRequest extends RequestBase implements JsonpSerializable {
 	private final Map<String, Aggregation> aggregations;
@@ -113,31 +124,29 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 
 	private PutDatafeedRequest(Builder builder) {
 
-		this.aggregations = ModelTypeHelper.unmodifiable(builder.aggregations);
+		this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);
 		this.allowNoIndices = builder.allowNoIndices;
 		this.chunkingConfig = builder.chunkingConfig;
-		this.datafeedId = ModelTypeHelper.requireNonNull(builder.datafeedId, this, "datafeedId");
+		this.datafeedId = ApiTypeHelper.requireNonNull(builder.datafeedId, this, "datafeedId");
 		this.delayedDataCheckConfig = builder.delayedDataCheckConfig;
-		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
+		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.frequency = builder.frequency;
 		this.ignoreThrottled = builder.ignoreThrottled;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
-		this.indices = ModelTypeHelper.unmodifiable(builder.indices);
+		this.indices = ApiTypeHelper.unmodifiable(builder.indices);
 		this.indicesOptions = builder.indicesOptions;
 		this.jobId = builder.jobId;
 		this.maxEmptySearches = builder.maxEmptySearches;
 		this.query = builder.query;
 		this.queryDelay = builder.queryDelay;
-		this.runtimeMappings = ModelTypeHelper.unmodifiable(builder.runtimeMappings);
-		this.scriptFields = ModelTypeHelper.unmodifiable(builder.scriptFields);
+		this.runtimeMappings = ApiTypeHelper.unmodifiable(builder.runtimeMappings);
+		this.scriptFields = ApiTypeHelper.unmodifiable(builder.scriptFields);
 		this.scrollSize = builder.scrollSize;
 
 	}
 
-	public static PutDatafeedRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PutDatafeedRequest of(Function<Builder, ObjectBuilder<PutDatafeedRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -235,7 +244,10 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 	 * If true, concrete, expanded, or aliased indices are ignored when frozen.
 	 * <p>
 	 * API name: {@code ignore_throttled}
+	 * 
+	 * @deprecated 7.16.0
 	 */
+	@Deprecated
 	@Nullable
 	public final Boolean ignoreThrottled() {
 		return this.ignoreThrottled;
@@ -369,7 +381,7 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.aggregations)) {
+		if (ApiTypeHelper.isDefined(this.aggregations)) {
 			generator.writeKey("aggregations");
 			generator.writeStartObject();
 			for (Map.Entry<String, Aggregation> item0 : this.aggregations.entrySet()) {
@@ -395,7 +407,7 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 			this.frequency.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.indices)) {
+		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartArray();
 			for (String item0 : this.indices) {
@@ -430,7 +442,7 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 			this.queryDelay.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.runtimeMappings)) {
+		if (ApiTypeHelper.isDefined(this.runtimeMappings)) {
 			generator.writeKey("runtime_mappings");
 			generator.writeStartObject();
 			for (Map.Entry<String, RuntimeField> item0 : this.runtimeMappings.entrySet()) {
@@ -441,7 +453,7 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.scriptFields)) {
+		if (ApiTypeHelper.isDefined(this.scriptFields)) {
 			generator.writeKey("script_fields");
 			generator.writeStartObject();
 			for (Map.Entry<String, ScriptField> item0 : this.scriptFields.entrySet()) {
@@ -465,6 +477,7 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 	/**
 	 * Builder for {@link PutDatafeedRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutDatafeedRequest> {
 		@Nullable
 		private Map<String, Aggregation> aggregations;
@@ -524,15 +537,37 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 		 * is limited and should be used only with low cardinality data.
 		 * <p>
 		 * API name: {@code aggregations}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>aggregations</code>.
 		 */
-		public final Builder aggregations(@Nullable Map<String, Aggregation> value) {
-			this.aggregations = value;
+		public final Builder aggregations(Map<String, Aggregation> map) {
+			this.aggregations = _mapPutAll(this.aggregations, map);
 			return this;
 		}
 
-		public final Builder aggregations(
-				Function<MapBuilder<String, Aggregation, Aggregation.Builder>, ObjectBuilder<Map<String, Aggregation>>> fn) {
-			return aggregations(fn.apply(new MapBuilder<>(Aggregation.Builder::new)).build());
+		/**
+		 * If set, the datafeed performs aggregation searches. Support for aggregations
+		 * is limited and should be used only with low cardinality data.
+		 * <p>
+		 * API name: {@code aggregations}
+		 * <p>
+		 * Adds an entry to <code>aggregations</code>.
+		 */
+		public final Builder aggregations(String key, Aggregation value) {
+			this.aggregations = _mapPut(this.aggregations, key, value);
+			return this;
+		}
+
+		/**
+		 * If set, the datafeed performs aggregation searches. Support for aggregations
+		 * is limited and should be used only with low cardinality data.
+		 * <p>
+		 * API name: {@code aggregations}
+		 * <p>
+		 * Adds an entry to <code>aggregations</code> using a builder lambda.
+		 */
+		public final Builder aggregations(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
+			return aggregations(key, fn.apply(new Aggregation.Builder()).build());
 		}
 
 		/**
@@ -570,10 +605,8 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 		 * <p>
 		 * API name: {@code chunking_config}
 		 */
-		public final Builder chunkingConfig(Consumer<ChunkingConfig.Builder> fn) {
-			ChunkingConfig.Builder builder = new ChunkingConfig.Builder();
-			fn.accept(builder);
-			return this.chunkingConfig(builder.build());
+		public final Builder chunkingConfig(Function<ChunkingConfig.Builder, ObjectBuilder<ChunkingConfig>> fn) {
+			return this.chunkingConfig(fn.apply(new ChunkingConfig.Builder()).build());
 		}
 
 		/**
@@ -616,10 +649,9 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 		 * <p>
 		 * API name: {@code delayed_data_check_config}
 		 */
-		public final Builder delayedDataCheckConfig(Consumer<DelayedDataCheckConfig.Builder> fn) {
-			DelayedDataCheckConfig.Builder builder = new DelayedDataCheckConfig.Builder();
-			fn.accept(builder);
-			return this.delayedDataCheckConfig(builder.build());
+		public final Builder delayedDataCheckConfig(
+				Function<DelayedDataCheckConfig.Builder, ObjectBuilder<DelayedDataCheckConfig>> fn) {
+			return this.delayedDataCheckConfig(fn.apply(new DelayedDataCheckConfig.Builder()).build());
 		}
 
 		/**
@@ -628,9 +660,11 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 		 * hidden data streams. Supports comma-separated values.
 		 * <p>
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
 		 */
-		public final Builder expandWildcards(@Nullable List<ExpandWildcard> value) {
-			this.expandWildcards = value;
+		public final Builder expandWildcards(List<ExpandWildcard> list) {
+			this.expandWildcards = _listAddAll(this.expandWildcards, list);
 			return this;
 		}
 
@@ -640,9 +674,11 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 		 * hidden data streams. Supports comma-separated values.
 		 * <p>
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds one or more values to <code>expandWildcards</code>.
 		 */
-		public final Builder expandWildcards(ExpandWildcard... value) {
-			this.expandWildcards = Arrays.asList(value);
+		public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
+			this.expandWildcards = _listAdd(this.expandWildcards, value, values);
 			return this;
 		}
 
@@ -673,17 +709,18 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 		 * <p>
 		 * API name: {@code frequency}
 		 */
-		public final Builder frequency(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.frequency(builder.build());
+		public final Builder frequency(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.frequency(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
 		 * If true, concrete, expanded, or aliased indices are ignored when frozen.
 		 * <p>
 		 * API name: {@code ignore_throttled}
+		 * 
+		 * @deprecated 7.16.0
 		 */
+		@Deprecated
 		public final Builder ignoreThrottled(@Nullable Boolean value) {
 			this.ignoreThrottled = value;
 			return this;
@@ -705,9 +742,11 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 		 * <code>remote_cluster_client</code> role.
 		 * <p>
 		 * API name: {@code indices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 */
-		public final Builder indices(@Nullable List<String> value) {
-			this.indices = value;
+		public final Builder indices(List<String> list) {
+			this.indices = _listAddAll(this.indices, list);
 			return this;
 		}
 
@@ -717,9 +756,11 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 		 * <code>remote_cluster_client</code> role.
 		 * <p>
 		 * API name: {@code indices}
+		 * <p>
+		 * Adds one or more values to <code>indices</code>.
 		 */
-		public final Builder indices(String... value) {
-			this.indices = Arrays.asList(value);
+		public final Builder indices(String value, String... values) {
+			this.indices = _listAdd(this.indices, value, values);
 			return this;
 		}
 
@@ -738,10 +779,8 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 		 * <p>
 		 * API name: {@code indices_options}
 		 */
-		public final Builder indicesOptions(Consumer<IndicesOptions.Builder> fn) {
-			IndicesOptions.Builder builder = new IndicesOptions.Builder();
-			fn.accept(builder);
-			return this.indicesOptions(builder.build());
+		public final Builder indicesOptions(Function<IndicesOptions.Builder, ObjectBuilder<IndicesOptions>> fn) {
+			return this.indicesOptions(fn.apply(new IndicesOptions.Builder()).build());
 		}
 
 		/**
@@ -791,10 +830,8 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 		 * <p>
 		 * API name: {@code query}
 		 */
-		public final Builder query(Consumer<Query.Builder> fn) {
-			Query.Builder builder = new Query.Builder();
-			fn.accept(builder);
-			return this.query(builder.build());
+		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
@@ -822,25 +859,44 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 		 * <p>
 		 * API name: {@code query_delay}
 		 */
-		public final Builder queryDelay(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.queryDelay(builder.build());
+		public final Builder queryDelay(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.queryDelay(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
 		 * Specifies runtime fields for the datafeed search.
 		 * <p>
 		 * API name: {@code runtime_mappings}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>runtimeMappings</code>.
 		 */
-		public final Builder runtimeMappings(@Nullable Map<String, RuntimeField> value) {
-			this.runtimeMappings = value;
+		public final Builder runtimeMappings(Map<String, RuntimeField> map) {
+			this.runtimeMappings = _mapPutAll(this.runtimeMappings, map);
 			return this;
 		}
 
-		public final Builder runtimeMappings(
-				Function<MapBuilder<String, RuntimeField, RuntimeField.Builder>, ObjectBuilder<Map<String, RuntimeField>>> fn) {
-			return runtimeMappings(fn.apply(new MapBuilder<>(RuntimeField.Builder::new)).build());
+		/**
+		 * Specifies runtime fields for the datafeed search.
+		 * <p>
+		 * API name: {@code runtime_mappings}
+		 * <p>
+		 * Adds an entry to <code>runtimeMappings</code>.
+		 */
+		public final Builder runtimeMappings(String key, RuntimeField value) {
+			this.runtimeMappings = _mapPut(this.runtimeMappings, key, value);
+			return this;
+		}
+
+		/**
+		 * Specifies runtime fields for the datafeed search.
+		 * <p>
+		 * API name: {@code runtime_mappings}
+		 * <p>
+		 * Adds an entry to <code>runtimeMappings</code> using a builder lambda.
+		 */
+		public final Builder runtimeMappings(String key,
+				Function<RuntimeField.Builder, ObjectBuilder<RuntimeField>> fn) {
+			return runtimeMappings(key, fn.apply(new RuntimeField.Builder()).build());
 		}
 
 		/**
@@ -849,15 +905,39 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 		 * functions that use these script fields.
 		 * <p>
 		 * API name: {@code script_fields}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>scriptFields</code>.
 		 */
-		public final Builder scriptFields(@Nullable Map<String, ScriptField> value) {
-			this.scriptFields = value;
+		public final Builder scriptFields(Map<String, ScriptField> map) {
+			this.scriptFields = _mapPutAll(this.scriptFields, map);
 			return this;
 		}
 
-		public final Builder scriptFields(
-				Function<MapBuilder<String, ScriptField, ScriptField.Builder>, ObjectBuilder<Map<String, ScriptField>>> fn) {
-			return scriptFields(fn.apply(new MapBuilder<>(ScriptField.Builder::new)).build());
+		/**
+		 * Specifies scripts that evaluate custom expressions and returns script fields
+		 * to the datafeed. The detector configuration objects in a job can contain
+		 * functions that use these script fields.
+		 * <p>
+		 * API name: {@code script_fields}
+		 * <p>
+		 * Adds an entry to <code>scriptFields</code>.
+		 */
+		public final Builder scriptFields(String key, ScriptField value) {
+			this.scriptFields = _mapPut(this.scriptFields, key, value);
+			return this;
+		}
+
+		/**
+		 * Specifies scripts that evaluate custom expressions and returns script fields
+		 * to the datafeed. The detector configuration objects in a job can contain
+		 * functions that use these script fields.
+		 * <p>
+		 * API name: {@code script_fields}
+		 * <p>
+		 * Adds an entry to <code>scriptFields</code> using a builder lambda.
+		 */
+		public final Builder scriptFields(String key, Function<ScriptField.Builder, ObjectBuilder<ScriptField>> fn) {
+			return scriptFields(key, fn.apply(new ScriptField.Builder()).build());
 		}
 
 		/**
@@ -952,7 +1032,7 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (ModelTypeHelper.isDefined(request.expandWildcards)) {
+				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}

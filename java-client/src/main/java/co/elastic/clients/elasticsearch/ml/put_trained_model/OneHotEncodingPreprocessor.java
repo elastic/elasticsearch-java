@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.OneHotEncodingPreprocessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/put_trained_model/types.ts#L44-L47">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class OneHotEncodingPreprocessor implements PreprocessorVariant, JsonpSerializable {
 	private final String field;
@@ -50,15 +57,13 @@ public class OneHotEncodingPreprocessor implements PreprocessorVariant, JsonpSer
 
 	private OneHotEncodingPreprocessor(Builder builder) {
 
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
-		this.hotMap = ModelTypeHelper.unmodifiableRequired(builder.hotMap, this, "hotMap");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.hotMap = ApiTypeHelper.unmodifiableRequired(builder.hotMap, this, "hotMap");
 
 	}
 
-	public static OneHotEncodingPreprocessor of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static OneHotEncodingPreprocessor of(Function<Builder, ObjectBuilder<OneHotEncodingPreprocessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -97,7 +102,7 @@ public class OneHotEncodingPreprocessor implements PreprocessorVariant, JsonpSer
 		generator.writeKey("field");
 		generator.write(this.field);
 
-		if (ModelTypeHelper.isDefined(this.hotMap)) {
+		if (ApiTypeHelper.isDefined(this.hotMap)) {
 			generator.writeKey("hot_map");
 			generator.writeStartObject();
 			for (Map.Entry<String, String> item0 : this.hotMap.entrySet()) {
@@ -116,6 +121,7 @@ public class OneHotEncodingPreprocessor implements PreprocessorVariant, JsonpSer
 	/**
 	 * Builder for {@link OneHotEncodingPreprocessor}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<OneHotEncodingPreprocessor> {
 		private String field;
 
@@ -131,9 +137,21 @@ public class OneHotEncodingPreprocessor implements PreprocessorVariant, JsonpSer
 
 		/**
 		 * Required - API name: {@code hot_map}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>hotMap</code>.
 		 */
-		public final Builder hotMap(Map<String, String> value) {
-			this.hotMap = value;
+		public final Builder hotMap(Map<String, String> map) {
+			this.hotMap = _mapPutAll(this.hotMap, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code hot_map}
+		 * <p>
+		 * Adds an entry to <code>hotMap</code>.
+		 */
+		public final Builder hotMap(String key, String value) {
+			this.hotMap = _mapPut(this.hotMap, key, value);
 			return this;
 		}
 

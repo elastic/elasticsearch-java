@@ -31,9 +31,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _global.delete_by_query_rethrottle.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/delete_by_query_rethrottle/DeleteByQueryRethrottleResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DeleteByQueryRethrottleResponse extends ListResponse {
 	// ---------------------------------------------------------------------------------------------
@@ -43,10 +50,9 @@ public class DeleteByQueryRethrottleResponse extends ListResponse {
 
 	}
 
-	public static DeleteByQueryRethrottleResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DeleteByQueryRethrottleResponse of(
+			Function<Builder, ObjectBuilder<DeleteByQueryRethrottleResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -54,6 +60,7 @@ public class DeleteByQueryRethrottleResponse extends ListResponse {
 	/**
 	 * Builder for {@link DeleteByQueryRethrottleResponse}.
 	 */
+
 	public static class Builder extends ListResponse.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeleteByQueryRethrottleResponse> {

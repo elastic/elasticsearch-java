@@ -30,19 +30,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.mtermvectors.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/mtermvectors/MultiTermVectorsResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MtermvectorsResponse implements JsonpSerializable {
 	private final List<MultiTermVectorsResult> docs;
@@ -51,14 +55,12 @@ public class MtermvectorsResponse implements JsonpSerializable {
 
 	private MtermvectorsResponse(Builder builder) {
 
-		this.docs = ModelTypeHelper.unmodifiableRequired(builder.docs, this, "docs");
+		this.docs = ApiTypeHelper.unmodifiableRequired(builder.docs, this, "docs");
 
 	}
 
-	public static MtermvectorsResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static MtermvectorsResponse of(Function<Builder, ObjectBuilder<MtermvectorsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -79,7 +81,7 @@ public class MtermvectorsResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.docs)) {
+		if (ApiTypeHelper.isDefined(this.docs)) {
 			generator.writeKey("docs");
 			generator.writeStartArray();
 			for (MultiTermVectorsResult item0 : this.docs) {
@@ -97,31 +99,37 @@ public class MtermvectorsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link MtermvectorsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MtermvectorsResponse> {
 		private List<MultiTermVectorsResult> docs;
 
 		/**
 		 * Required - API name: {@code docs}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>docs</code>.
 		 */
-		public final Builder docs(List<MultiTermVectorsResult> value) {
-			this.docs = value;
+		public final Builder docs(List<MultiTermVectorsResult> list) {
+			this.docs = _listAddAll(this.docs, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code docs}
+		 * <p>
+		 * Adds one or more values to <code>docs</code>.
 		 */
-		public final Builder docs(MultiTermVectorsResult... value) {
-			this.docs = Arrays.asList(value);
+		public final Builder docs(MultiTermVectorsResult value, MultiTermVectorsResult... values) {
+			this.docs = _listAdd(this.docs, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code docs}
+		 * <p>
+		 * Adds a value to <code>docs</code> using a builder lambda.
 		 */
-		public final Builder docs(
-				Function<ListBuilder<MultiTermVectorsResult, MultiTermVectorsResult.Builder>, ObjectBuilder<List<MultiTermVectorsResult>>> fn) {
-			return docs(fn.apply(new ListBuilder<>(MultiTermVectorsResult.Builder::new)).build());
+		public final Builder docs(Function<MultiTermVectorsResult.Builder, ObjectBuilder<MultiTermVectorsResult>> fn) {
+			return docs(fn.apply(new MultiTermVectorsResult.Builder()).build());
 		}
 
 		/**

@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.HttpInputProxy
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Input.ts#L69-L72">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class HttpInputProxy implements JsonpSerializable {
 	private final String host;
@@ -50,15 +57,13 @@ public class HttpInputProxy implements JsonpSerializable {
 
 	private HttpInputProxy(Builder builder) {
 
-		this.host = ModelTypeHelper.requireNonNull(builder.host, this, "host");
-		this.port = ModelTypeHelper.requireNonNull(builder.port, this, "port");
+		this.host = ApiTypeHelper.requireNonNull(builder.host, this, "host");
+		this.port = ApiTypeHelper.requireNonNull(builder.port, this, "port");
 
 	}
 
-	public static HttpInputProxy of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static HttpInputProxy of(Function<Builder, ObjectBuilder<HttpInputProxy>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -99,6 +104,7 @@ public class HttpInputProxy implements JsonpSerializable {
 	/**
 	 * Builder for {@link HttpInputProxy}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HttpInputProxy> {
 		private String host;
 

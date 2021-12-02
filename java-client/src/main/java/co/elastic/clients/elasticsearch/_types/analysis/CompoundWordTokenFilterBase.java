@@ -28,18 +28,24 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.CompoundWordTokenFilterBase
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L43-L51">API
+ *      specification</a>
+ */
 
 public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 	@Nullable
@@ -72,7 +78,7 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 		this.minSubwordSize = builder.minSubwordSize;
 		this.minWordSize = builder.minWordSize;
 		this.onlyLongestMatch = builder.onlyLongestMatch;
-		this.wordList = ModelTypeHelper.unmodifiable(builder.wordList);
+		this.wordList = ApiTypeHelper.unmodifiable(builder.wordList);
 		this.wordListPath = builder.wordListPath;
 
 	}
@@ -160,7 +166,7 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 			generator.write(this.onlyLongestMatch);
 
 		}
-		if (ModelTypeHelper.isDefined(this.wordList)) {
+		if (ApiTypeHelper.isDefined(this.wordList)) {
 			generator.writeKey("word_list");
 			generator.writeStartArray();
 			for (String item0 : this.wordList) {
@@ -244,17 +250,21 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 
 		/**
 		 * API name: {@code word_list}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>wordList</code>.
 		 */
-		public final BuilderT wordList(@Nullable List<String> value) {
-			this.wordList = value;
+		public final BuilderT wordList(List<String> list) {
+			this.wordList = _listAddAll(this.wordList, list);
 			return self();
 		}
 
 		/**
 		 * API name: {@code word_list}
+		 * <p>
+		 * Adds one or more values to <code>wordList</code>.
 		 */
-		public final BuilderT wordList(String... value) {
-			this.wordList = Arrays.asList(value);
+		public final BuilderT wordList(String value, String... values) {
+			this.wordList = _listAdd(this.wordList, value, values);
 			return self();
 		}
 

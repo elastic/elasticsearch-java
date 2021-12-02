@@ -33,23 +33,30 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: nodes.hot_threads.Request
+
+/**
+ * Returns information about hot threads on each node in the cluster.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/hot_threads/NodesHotThreadsRequest.ts#L25-L78">API
+ *      specification</a>
+ */
 
 public class HotThreadsRequest extends RequestBase {
 	@Nullable
@@ -82,7 +89,7 @@ public class HotThreadsRequest extends RequestBase {
 		this.ignoreIdleThreads = builder.ignoreIdleThreads;
 		this.interval = builder.interval;
 		this.masterTimeout = builder.masterTimeout;
-		this.nodeId = ModelTypeHelper.unmodifiable(builder.nodeId);
+		this.nodeId = ApiTypeHelper.unmodifiable(builder.nodeId);
 		this.snapshots = builder.snapshots;
 		this.threads = builder.threads;
 		this.timeout = builder.timeout;
@@ -90,10 +97,8 @@ public class HotThreadsRequest extends RequestBase {
 
 	}
 
-	public static HotThreadsRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static HotThreadsRequest of(Function<Builder, ObjectBuilder<HotThreadsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -183,6 +188,7 @@ public class HotThreadsRequest extends RequestBase {
 	/**
 	 * Builder for {@link HotThreadsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HotThreadsRequest> {
 		@Nullable
 		private Boolean ignoreIdleThreads;
@@ -234,10 +240,8 @@ public class HotThreadsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code interval}
 		 */
-		public final Builder interval(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.interval(builder.build());
+		public final Builder interval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.interval(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -257,19 +261,19 @@ public class HotThreadsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.masterTimeout(builder.build());
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
 		 * List of node IDs or names used to limit returned information.
 		 * <p>
 		 * API name: {@code node_id}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>nodeId</code>.
 		 */
-		public final Builder nodeId(@Nullable List<String> value) {
-			this.nodeId = value;
+		public final Builder nodeId(List<String> list) {
+			this.nodeId = _listAddAll(this.nodeId, list);
 			return this;
 		}
 
@@ -277,9 +281,11 @@ public class HotThreadsRequest extends RequestBase {
 		 * List of node IDs or names used to limit returned information.
 		 * <p>
 		 * API name: {@code node_id}
+		 * <p>
+		 * Adds one or more values to <code>nodeId</code>.
 		 */
-		public final Builder nodeId(String... value) {
-			this.nodeId = Arrays.asList(value);
+		public final Builder nodeId(String value, String... values) {
+			this.nodeId = _listAdd(this.nodeId, value, values);
 			return this;
 		}
 
@@ -320,10 +326,8 @@ public class HotThreadsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.timeout(builder.build());
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -369,7 +373,7 @@ public class HotThreadsRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (ModelTypeHelper.isDefined(request.nodeId()))
+				if (ApiTypeHelper.isDefined(request.nodeId()))
 					propsSet |= _nodeId;
 
 				if (propsSet == 0) {

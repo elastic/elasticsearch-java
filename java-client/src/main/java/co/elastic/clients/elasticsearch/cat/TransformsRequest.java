@@ -39,10 +39,18 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.transforms.Request
+
+/**
+ * Gets configuration and usage information about transforms.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/transforms/CatTransformsRequest.ts#L24-L38">API
+ *      specification</a>
+ */
 
 public class TransformsRequest extends CatRequestBase {
 	@Nullable
@@ -68,10 +76,8 @@ public class TransformsRequest extends CatRequestBase {
 
 	}
 
-	public static TransformsRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TransformsRequest of(Function<Builder, ObjectBuilder<TransformsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -121,6 +127,7 @@ public class TransformsRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link TransformsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TransformsRequest> {
 		@Nullable
 		private Boolean allowNoMatch;

@@ -35,8 +35,7 @@ import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -45,12 +44,18 @@ import java.lang.Long;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: rollup.rollup_search.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/rollup/rollup_search/RollupSearchResponse.ts#L27-L36">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RollupSearchResponse<TDocument> implements JsonpSerializable {
 	private final long took;
@@ -73,20 +78,19 @@ public class RollupSearchResponse<TDocument> implements JsonpSerializable {
 
 	private RollupSearchResponse(Builder<TDocument> builder) {
 
-		this.took = ModelTypeHelper.requireNonNull(builder.took, this, "took");
-		this.timedOut = ModelTypeHelper.requireNonNull(builder.timedOut, this, "timedOut");
+		this.took = ApiTypeHelper.requireNonNull(builder.took, this, "took");
+		this.timedOut = ApiTypeHelper.requireNonNull(builder.timedOut, this, "timedOut");
 		this.terminatedEarly = builder.terminatedEarly;
-		this.shards = ModelTypeHelper.requireNonNull(builder.shards, this, "shards");
-		this.hits = ModelTypeHelper.requireNonNull(builder.hits, this, "hits");
-		this.aggregations = ModelTypeHelper.unmodifiable(builder.aggregations);
+		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
+		this.hits = ApiTypeHelper.requireNonNull(builder.hits, this, "hits");
+		this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}
 
-	public static <TDocument> RollupSearchResponse<TDocument> of(Consumer<Builder<TDocument>> fn) {
-		Builder<TDocument> builder = new Builder<>();
-		fn.accept(builder);
-		return builder.build();
+	public static <TDocument> RollupSearchResponse<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<RollupSearchResponse<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
@@ -160,7 +164,7 @@ public class RollupSearchResponse<TDocument> implements JsonpSerializable {
 		generator.writeKey("hits");
 		this.hits.serialize(generator, mapper);
 
-		if (ModelTypeHelper.isDefined(this.aggregations)) {
+		if (ApiTypeHelper.isDefined(this.aggregations)) {
 			generator.writeKey("aggregations");
 			ExternallyTaggedUnion.serializeTypedKeys(this.aggregations, generator, mapper);
 
@@ -173,6 +177,7 @@ public class RollupSearchResponse<TDocument> implements JsonpSerializable {
 	/**
 	 * Builder for {@link RollupSearchResponse}.
 	 */
+
 	public static class Builder<TDocument> extends ObjectBuilderBase
 			implements
 				ObjectBuilder<RollupSearchResponse<TDocument>> {
@@ -228,10 +233,8 @@ public class RollupSearchResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _shards}
 		 */
-		public final Builder<TDocument> shards(Consumer<ShardStatistics.Builder> fn) {
-			ShardStatistics.Builder builder = new ShardStatistics.Builder();
-			fn.accept(builder);
-			return this.shards(builder.build());
+		public final Builder<TDocument> shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
 		/**
@@ -245,23 +248,39 @@ public class RollupSearchResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code hits}
 		 */
-		public final Builder<TDocument> hits(Consumer<HitsMetadata.Builder<TDocument>> fn) {
-			HitsMetadata.Builder<TDocument> builder = new HitsMetadata.Builder<TDocument>();
-			fn.accept(builder);
-			return this.hits(builder.build());
+		public final Builder<TDocument> hits(
+				Function<HitsMetadata.Builder<TDocument>, ObjectBuilder<HitsMetadata<TDocument>>> fn) {
+			return this.hits(fn.apply(new HitsMetadata.Builder<TDocument>()).build());
 		}
 
 		/**
 		 * API name: {@code aggregations}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>aggregations</code>.
 		 */
-		public final Builder<TDocument> aggregations(@Nullable Map<String, Aggregate> value) {
-			this.aggregations = value;
+		public final Builder<TDocument> aggregations(Map<String, Aggregate> map) {
+			this.aggregations = _mapPutAll(this.aggregations, map);
 			return this;
 		}
 
-		public final Builder<TDocument> aggregations(
-				Function<MapBuilder<String, Aggregate, Aggregate.Builder>, ObjectBuilder<Map<String, Aggregate>>> fn) {
-			return aggregations(fn.apply(new MapBuilder<>(Aggregate.Builder::new)).build());
+		/**
+		 * API name: {@code aggregations}
+		 * <p>
+		 * Adds an entry to <code>aggregations</code>.
+		 */
+		public final Builder<TDocument> aggregations(String key, Aggregate value) {
+			this.aggregations = _mapPut(this.aggregations, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code aggregations}
+		 * <p>
+		 * Adds an entry to <code>aggregations</code> using a builder lambda.
+		 */
+		public final Builder<TDocument> aggregations(String key,
+				Function<Aggregate.Builder, ObjectBuilder<Aggregate>> fn) {
+			return aggregations(key, fn.apply(new Aggregate.Builder()).build());
 		}
 
 		/**
@@ -289,7 +308,7 @@ public class RollupSearchResponse<TDocument> implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for RollupSearchResponse
+	 * Create a JSON deserializer for RollupSearchResponse
 	 */
 	public static <TDocument> JsonpDeserializer<RollupSearchResponse<TDocument>> createRollupSearchResponseDeserializer(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {

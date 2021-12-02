@@ -29,18 +29,24 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.PercolateQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/specialized.ts#L112-L122">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PercolateQuery extends QueryBase implements QueryVariant {
 	@Nullable
@@ -74,8 +80,8 @@ public class PercolateQuery extends QueryBase implements QueryVariant {
 		super(builder);
 
 		this.document = builder.document;
-		this.documents = ModelTypeHelper.unmodifiable(builder.documents);
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.documents = ApiTypeHelper.unmodifiable(builder.documents);
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.id = builder.id;
 		this.index = builder.index;
 		this.name = builder.name;
@@ -85,10 +91,8 @@ public class PercolateQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public static PercolateQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PercolateQuery of(Function<Builder, ObjectBuilder<PercolateQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -177,7 +181,7 @@ public class PercolateQuery extends QueryBase implements QueryVariant {
 			this.document.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.documents)) {
+		if (ApiTypeHelper.isDefined(this.documents)) {
 			generator.writeKey("documents");
 			generator.writeStartArray();
 			for (JsonData item0 : this.documents) {
@@ -228,6 +232,7 @@ public class PercolateQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link PercolateQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<PercolateQuery> {
 		@Nullable
 		private JsonData document;
@@ -265,17 +270,21 @@ public class PercolateQuery extends QueryBase implements QueryVariant {
 
 		/**
 		 * API name: {@code documents}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>documents</code>.
 		 */
-		public final Builder documents(@Nullable List<JsonData> value) {
-			this.documents = value;
+		public final Builder documents(List<JsonData> list) {
+			this.documents = _listAddAll(this.documents, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code documents}
+		 * <p>
+		 * Adds one or more values to <code>documents</code>.
 		 */
-		public final Builder documents(JsonData... value) {
-			this.documents = Arrays.asList(value);
+		public final Builder documents(JsonData value, JsonData... values) {
+			this.documents = _listAdd(this.documents, value, values);
 			return this;
 		}
 

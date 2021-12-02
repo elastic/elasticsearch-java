@@ -36,10 +36,17 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.rollover.RolloverConditions
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/rollover/types.ts#L26-L31">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RolloverConditions implements JsonpSerializable {
 	@Nullable
@@ -65,10 +72,8 @@ public class RolloverConditions implements JsonpSerializable {
 
 	}
 
-	public static RolloverConditions of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RolloverConditions of(Function<Builder, ObjectBuilder<RolloverConditions>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -142,6 +147,7 @@ public class RolloverConditions implements JsonpSerializable {
 	/**
 	 * Builder for {@link RolloverConditions}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RolloverConditions> {
 		@Nullable
 		private Time maxAge;
@@ -166,10 +172,8 @@ public class RolloverConditions implements JsonpSerializable {
 		/**
 		 * API name: {@code max_age}
 		 */
-		public final Builder maxAge(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.maxAge(builder.build());
+		public final Builder maxAge(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.maxAge(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

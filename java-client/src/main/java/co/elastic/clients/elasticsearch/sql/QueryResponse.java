@@ -31,20 +31,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: sql.query.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/sql/query/QuerySqlResponse.ts#L22-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class QueryResponse implements JsonpSerializable {
 	private final List<Column> columns;
@@ -58,16 +62,14 @@ public class QueryResponse implements JsonpSerializable {
 
 	private QueryResponse(Builder builder) {
 
-		this.columns = ModelTypeHelper.unmodifiable(builder.columns);
+		this.columns = ApiTypeHelper.unmodifiable(builder.columns);
 		this.cursor = builder.cursor;
-		this.rows = ModelTypeHelper.unmodifiableRequired(builder.rows, this, "rows");
+		this.rows = ApiTypeHelper.unmodifiableRequired(builder.rows, this, "rows");
 
 	}
 
-	public static QueryResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static QueryResponse of(Function<Builder, ObjectBuilder<QueryResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -103,7 +105,7 @@ public class QueryResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.columns)) {
+		if (ApiTypeHelper.isDefined(this.columns)) {
 			generator.writeKey("columns");
 			generator.writeStartArray();
 			for (Column item0 : this.columns) {
@@ -118,7 +120,7 @@ public class QueryResponse implements JsonpSerializable {
 			generator.write(this.cursor);
 
 		}
-		if (ModelTypeHelper.isDefined(this.rows)) {
+		if (ApiTypeHelper.isDefined(this.rows)) {
 			generator.writeKey("rows");
 			generator.writeStartArray();
 			for (List<JsonData> item0 : this.rows) {
@@ -143,6 +145,7 @@ public class QueryResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link QueryResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<QueryResponse> {
 		@Nullable
 		private List<Column> columns;
@@ -154,25 +157,31 @@ public class QueryResponse implements JsonpSerializable {
 
 		/**
 		 * API name: {@code columns}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>columns</code>.
 		 */
-		public final Builder columns(@Nullable List<Column> value) {
-			this.columns = value;
+		public final Builder columns(List<Column> list) {
+			this.columns = _listAddAll(this.columns, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code columns}
+		 * <p>
+		 * Adds one or more values to <code>columns</code>.
 		 */
-		public final Builder columns(Column... value) {
-			this.columns = Arrays.asList(value);
+		public final Builder columns(Column value, Column... values) {
+			this.columns = _listAdd(this.columns, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code columns}
+		 * <p>
+		 * Adds a value to <code>columns</code> using a builder lambda.
 		 */
-		public final Builder columns(Function<ListBuilder<Column, Column.Builder>, ObjectBuilder<List<Column>>> fn) {
-			return columns(fn.apply(new ListBuilder<>(Column.Builder::new)).build());
+		public final Builder columns(Function<Column.Builder, ObjectBuilder<Column>> fn) {
+			return columns(fn.apply(new Column.Builder()).build());
 		}
 
 		/**
@@ -185,17 +194,21 @@ public class QueryResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code rows}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>rows</code>.
 		 */
-		public final Builder rows(List<List<JsonData>> value) {
-			this.rows = value;
+		public final Builder rows(List<List<JsonData>> list) {
+			this.rows = _listAddAll(this.rows, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code rows}
+		 * <p>
+		 * Adds one or more values to <code>rows</code>.
 		 */
-		public final Builder rows(List<JsonData>... value) {
-			this.rows = Arrays.asList(value);
+		public final Builder rows(List<JsonData> value, List<JsonData>... values) {
+			this.rows = _listAdd(this.rows, value, values);
 			return this;
 		}
 

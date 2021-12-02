@@ -31,21 +31,25 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.validate_query.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/validate_query/IndicesValidateQueryResponse.ts#L23-L30">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ValidateQueryResponse implements JsonpSerializable {
 	private final List<IndicesValidationExplanation> explanations;
@@ -62,17 +66,15 @@ public class ValidateQueryResponse implements JsonpSerializable {
 
 	private ValidateQueryResponse(Builder builder) {
 
-		this.explanations = ModelTypeHelper.unmodifiable(builder.explanations);
+		this.explanations = ApiTypeHelper.unmodifiable(builder.explanations);
 		this.shards = builder.shards;
-		this.valid = ModelTypeHelper.requireNonNull(builder.valid, this, "valid");
+		this.valid = ApiTypeHelper.requireNonNull(builder.valid, this, "valid");
 		this.error = builder.error;
 
 	}
 
-	public static ValidateQueryResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ValidateQueryResponse of(Function<Builder, ObjectBuilder<ValidateQueryResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -116,7 +118,7 @@ public class ValidateQueryResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.explanations)) {
+		if (ApiTypeHelper.isDefined(this.explanations)) {
 			generator.writeKey("explanations");
 			generator.writeStartArray();
 			for (IndicesValidationExplanation item0 : this.explanations) {
@@ -147,6 +149,7 @@ public class ValidateQueryResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link ValidateQueryResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ValidateQueryResponse> {
 		@Nullable
 		private List<IndicesValidationExplanation> explanations;
@@ -161,26 +164,32 @@ public class ValidateQueryResponse implements JsonpSerializable {
 
 		/**
 		 * API name: {@code explanations}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>explanations</code>.
 		 */
-		public final Builder explanations(@Nullable List<IndicesValidationExplanation> value) {
-			this.explanations = value;
+		public final Builder explanations(List<IndicesValidationExplanation> list) {
+			this.explanations = _listAddAll(this.explanations, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code explanations}
+		 * <p>
+		 * Adds one or more values to <code>explanations</code>.
 		 */
-		public final Builder explanations(IndicesValidationExplanation... value) {
-			this.explanations = Arrays.asList(value);
+		public final Builder explanations(IndicesValidationExplanation value, IndicesValidationExplanation... values) {
+			this.explanations = _listAdd(this.explanations, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code explanations}
+		 * <p>
+		 * Adds a value to <code>explanations</code> using a builder lambda.
 		 */
 		public final Builder explanations(
-				Function<ListBuilder<IndicesValidationExplanation, IndicesValidationExplanation.Builder>, ObjectBuilder<List<IndicesValidationExplanation>>> fn) {
-			return explanations(fn.apply(new ListBuilder<>(IndicesValidationExplanation.Builder::new)).build());
+				Function<IndicesValidationExplanation.Builder, ObjectBuilder<IndicesValidationExplanation>> fn) {
+			return explanations(fn.apply(new IndicesValidationExplanation.Builder()).build());
 		}
 
 		/**
@@ -194,10 +203,8 @@ public class ValidateQueryResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code _shards}
 		 */
-		public final Builder shards(Consumer<ShardStatistics.Builder> fn) {
-			ShardStatistics.Builder builder = new ShardStatistics.Builder();
-			fn.accept(builder);
-			return this.shards(builder.build());
+		public final Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
 		/**

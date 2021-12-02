@@ -40,10 +40,18 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform.get_transform.Request
+
+/**
+ * Retrieves configuration information for transforms.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/transform/get_transform/GetTransformRequest.ts#L24-L39">API
+ *      specification</a>
+ */
 
 public class GetTransformRequest extends RequestBase {
 	@Nullable
@@ -73,10 +81,8 @@ public class GetTransformRequest extends RequestBase {
 
 	}
 
-	public static GetTransformRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetTransformRequest of(Function<Builder, ObjectBuilder<GetTransformRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -136,6 +142,7 @@ public class GetTransformRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetTransformRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetTransformRequest> {
 		@Nullable
 		private Boolean allowNoMatch;

@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
@@ -39,11 +39,17 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security._types.RoleMappingRule
-// union type: Container[]
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/_types/RoleMappingRule.ts#L23-L31">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RoleMappingRule
 		implements
@@ -51,6 +57,9 @@ public class RoleMappingRule
 			RoleMappingRuleVariant,
 			JsonpSerializable {
 
+	/**
+	 * {@link RoleMappingRule} variant kinds.
+	 */
 	/**
 	 * {@link RoleMappingRule} variant kinds.
 	 */
@@ -101,22 +110,20 @@ public class RoleMappingRule
 
 	public RoleMappingRule(RoleMappingRuleVariant value) {
 
-		this._kind = ModelTypeHelper.requireNonNull(value._roleMappingRuleKind(), this, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(value._roleMappingRuleKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
 	private RoleMappingRule(Builder builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static RoleMappingRule of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RoleMappingRule of(Function<Builder, ObjectBuilder<RoleMappingRule>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -245,10 +252,8 @@ public class RoleMappingRule
 			return this;
 		}
 
-		public ObjectBuilder<RoleMappingRule> field(Consumer<FieldRule.Builder> fn) {
-			FieldRule.Builder builder = new FieldRule.Builder();
-			fn.accept(builder);
-			return this.field(builder.build());
+		public ObjectBuilder<RoleMappingRule> field(Function<FieldRule.Builder, ObjectBuilder<FieldRule>> fn) {
+			return this.field(fn.apply(new FieldRule.Builder()).build());
 		}
 
 		public ObjectBuilder<RoleMappingRule> except(RoleMappingRule v) {
@@ -257,10 +262,9 @@ public class RoleMappingRule
 			return this;
 		}
 
-		public ObjectBuilder<RoleMappingRule> except(Consumer<RoleMappingRule.Builder> fn) {
-			RoleMappingRule.Builder builder = new RoleMappingRule.Builder();
-			fn.accept(builder);
-			return this.except(builder.build());
+		public ObjectBuilder<RoleMappingRule> except(
+				Function<RoleMappingRule.Builder, ObjectBuilder<RoleMappingRule>> fn) {
+			return this.except(fn.apply(new RoleMappingRule.Builder()).build());
 		}
 
 		public RoleMappingRule build() {

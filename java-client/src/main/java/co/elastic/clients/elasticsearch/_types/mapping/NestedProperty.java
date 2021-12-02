@@ -32,10 +32,17 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.NestedProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/complex.ts#L38-L43">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NestedProperty extends CorePropertyBase implements PropertyVariant {
 	@Nullable
@@ -58,10 +65,8 @@ public class NestedProperty extends CorePropertyBase implements PropertyVariant 
 
 	}
 
-	public static NestedProperty of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NestedProperty of(Function<Builder, ObjectBuilder<NestedProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -123,6 +128,7 @@ public class NestedProperty extends CorePropertyBase implements PropertyVariant 
 	/**
 	 * Builder for {@link NestedProperty}.
 	 */
+
 	public static class Builder extends CorePropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<NestedProperty> {

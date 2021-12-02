@@ -30,8 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,11 +39,17 @@ import java.lang.Long;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.termvectors.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/termvectors/TermVectorsResponse.ts#L25-L35">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TermvectorsResponse implements JsonpSerializable {
 	private final boolean found;
@@ -66,20 +71,18 @@ public class TermvectorsResponse implements JsonpSerializable {
 
 	private TermvectorsResponse(Builder builder) {
 
-		this.found = ModelTypeHelper.requireNonNull(builder.found, this, "found");
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
-		this.termVectors = ModelTypeHelper.unmodifiable(builder.termVectors);
-		this.took = ModelTypeHelper.requireNonNull(builder.took, this, "took");
+		this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.termVectors = ApiTypeHelper.unmodifiable(builder.termVectors);
+		this.took = ApiTypeHelper.requireNonNull(builder.took, this, "took");
 		this.type = builder.type;
-		this.version = ModelTypeHelper.requireNonNull(builder.version, this, "version");
+		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
 
 	}
 
-	public static TermvectorsResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TermvectorsResponse of(Function<Builder, ObjectBuilder<TermvectorsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -152,7 +155,7 @@ public class TermvectorsResponse implements JsonpSerializable {
 		generator.writeKey("_index");
 		generator.write(this.index);
 
-		if (ModelTypeHelper.isDefined(this.termVectors)) {
+		if (ApiTypeHelper.isDefined(this.termVectors)) {
 			generator.writeKey("term_vectors");
 			generator.writeStartObject();
 			for (Map.Entry<String, TermVector> item0 : this.termVectors.entrySet()) {
@@ -181,6 +184,7 @@ public class TermvectorsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link TermvectorsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TermvectorsResponse> {
 		private Boolean found;
 
@@ -224,15 +228,31 @@ public class TermvectorsResponse implements JsonpSerializable {
 
 		/**
 		 * API name: {@code term_vectors}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>termVectors</code>.
 		 */
-		public final Builder termVectors(@Nullable Map<String, TermVector> value) {
-			this.termVectors = value;
+		public final Builder termVectors(Map<String, TermVector> map) {
+			this.termVectors = _mapPutAll(this.termVectors, map);
 			return this;
 		}
 
-		public final Builder termVectors(
-				Function<MapBuilder<String, TermVector, TermVector.Builder>, ObjectBuilder<Map<String, TermVector>>> fn) {
-			return termVectors(fn.apply(new MapBuilder<>(TermVector.Builder::new)).build());
+		/**
+		 * API name: {@code term_vectors}
+		 * <p>
+		 * Adds an entry to <code>termVectors</code>.
+		 */
+		public final Builder termVectors(String key, TermVector value) {
+			this.termVectors = _mapPut(this.termVectors, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code term_vectors}
+		 * <p>
+		 * Adds an entry to <code>termVectors</code> using a builder lambda.
+		 */
+		public final Builder termVectors(String key, Function<TermVector.Builder, ObjectBuilder<TermVector>> fn) {
+			return termVectors(key, fn.apply(new TermVector.Builder()).build());
 		}
 
 		/**

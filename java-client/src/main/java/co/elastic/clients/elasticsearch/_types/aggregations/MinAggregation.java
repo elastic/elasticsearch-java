@@ -30,9 +30,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.aggregations.MinAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/metric.ts#L94-L94">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MinAggregation extends FormatMetricAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -42,10 +49,8 @@ public class MinAggregation extends FormatMetricAggregationBase implements Aggre
 
 	}
 
-	public static MinAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static MinAggregation of(Function<Builder, ObjectBuilder<MinAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,6 +66,7 @@ public class MinAggregation extends FormatMetricAggregationBase implements Aggre
 	/**
 	 * Builder for {@link MinAggregation}.
 	 */
+
 	public static class Builder extends FormatMetricAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<MinAggregation> {

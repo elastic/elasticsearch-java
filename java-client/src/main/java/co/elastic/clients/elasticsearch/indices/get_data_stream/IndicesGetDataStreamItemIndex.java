@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_data_stream.IndicesGetDataStreamItemIndex
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/get_data_stream/IndicesGetDataStreamResponse.ts#L54-L57">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IndicesGetDataStreamItemIndex implements JsonpSerializable {
 	private final String indexName;
@@ -49,15 +56,13 @@ public class IndicesGetDataStreamItemIndex implements JsonpSerializable {
 
 	private IndicesGetDataStreamItemIndex(Builder builder) {
 
-		this.indexName = ModelTypeHelper.requireNonNull(builder.indexName, this, "indexName");
-		this.indexUuid = ModelTypeHelper.requireNonNull(builder.indexUuid, this, "indexUuid");
+		this.indexName = ApiTypeHelper.requireNonNull(builder.indexName, this, "indexName");
+		this.indexUuid = ApiTypeHelper.requireNonNull(builder.indexUuid, this, "indexUuid");
 
 	}
 
-	public static IndicesGetDataStreamItemIndex of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IndicesGetDataStreamItemIndex of(Function<Builder, ObjectBuilder<IndicesGetDataStreamItemIndex>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -98,6 +103,7 @@ public class IndicesGetDataStreamItemIndex implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndicesGetDataStreamItemIndex}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndicesGetDataStreamItemIndex> {
 		private String indexName;
 

@@ -31,8 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,11 +39,17 @@ import java.lang.Double;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/rank_eval/RankEvalResponse.ts#L26-L34">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RankEvalResponse implements JsonpSerializable {
 	private final double metricScore;
@@ -57,16 +62,14 @@ public class RankEvalResponse implements JsonpSerializable {
 
 	private RankEvalResponse(Builder builder) {
 
-		this.metricScore = ModelTypeHelper.requireNonNull(builder.metricScore, this, "metricScore");
-		this.details = ModelTypeHelper.unmodifiableRequired(builder.details, this, "details");
-		this.failures = ModelTypeHelper.unmodifiableRequired(builder.failures, this, "failures");
+		this.metricScore = ApiTypeHelper.requireNonNull(builder.metricScore, this, "metricScore");
+		this.details = ApiTypeHelper.unmodifiableRequired(builder.details, this, "details");
+		this.failures = ApiTypeHelper.unmodifiableRequired(builder.failures, this, "failures");
 
 	}
 
-	public static RankEvalResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RankEvalResponse of(Function<Builder, ObjectBuilder<RankEvalResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -109,7 +112,7 @@ public class RankEvalResponse implements JsonpSerializable {
 		generator.writeKey("metric_score");
 		generator.write(this.metricScore);
 
-		if (ModelTypeHelper.isDefined(this.details)) {
+		if (ApiTypeHelper.isDefined(this.details)) {
 			generator.writeKey("details");
 			generator.writeStartObject();
 			for (Map.Entry<String, RankEvalMetricDetail> item0 : this.details.entrySet()) {
@@ -120,7 +123,7 @@ public class RankEvalResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.failures)) {
+		if (ApiTypeHelper.isDefined(this.failures)) {
 			generator.writeKey("failures");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.failures.entrySet()) {
@@ -139,6 +142,7 @@ public class RankEvalResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link RankEvalResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RankEvalResponse> {
 		private Double metricScore;
 
@@ -161,22 +165,57 @@ public class RankEvalResponse implements JsonpSerializable {
 		 * original requests section, keyed by the search request id
 		 * <p>
 		 * API name: {@code details}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>details</code>.
 		 */
-		public final Builder details(Map<String, RankEvalMetricDetail> value) {
-			this.details = value;
+		public final Builder details(Map<String, RankEvalMetricDetail> map) {
+			this.details = _mapPutAll(this.details, map);
 			return this;
 		}
 
-		public final Builder details(
-				Function<MapBuilder<String, RankEvalMetricDetail, RankEvalMetricDetail.Builder>, ObjectBuilder<Map<String, RankEvalMetricDetail>>> fn) {
-			return details(fn.apply(new MapBuilder<>(RankEvalMetricDetail.Builder::new)).build());
+		/**
+		 * Required - The details section contains one entry for every query in the
+		 * original requests section, keyed by the search request id
+		 * <p>
+		 * API name: {@code details}
+		 * <p>
+		 * Adds an entry to <code>details</code>.
+		 */
+		public final Builder details(String key, RankEvalMetricDetail value) {
+			this.details = _mapPut(this.details, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - The details section contains one entry for every query in the
+		 * original requests section, keyed by the search request id
+		 * <p>
+		 * API name: {@code details}
+		 * <p>
+		 * Adds an entry to <code>details</code> using a builder lambda.
+		 */
+		public final Builder details(String key,
+				Function<RankEvalMetricDetail.Builder, ObjectBuilder<RankEvalMetricDetail>> fn) {
+			return details(key, fn.apply(new RankEvalMetricDetail.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code failures}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>failures</code>.
 		 */
-		public final Builder failures(Map<String, JsonData> value) {
-			this.failures = value;
+		public final Builder failures(Map<String, JsonData> map) {
+			this.failures = _mapPutAll(this.failures, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code failures}
+		 * <p>
+		 * Adds an entry to <code>failures</code>.
+		 */
+		public final Builder failures(String key, JsonData value) {
+			this.failures = _mapPut(this.failures, key, value);
 			return this;
 		}
 

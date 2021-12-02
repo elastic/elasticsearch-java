@@ -29,20 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.DataframeClassificationSummaryMulticlassConfusionMatrix
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/evaluate_data_frame/types.ts#L79-L82">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeClassificationSummaryMulticlassConfusionMatrix implements JsonpSerializable {
 	private final List<ConfusionMatrixItem> confusionMatrix;
@@ -53,16 +57,15 @@ public class DataframeClassificationSummaryMulticlassConfusionMatrix implements 
 
 	private DataframeClassificationSummaryMulticlassConfusionMatrix(Builder builder) {
 
-		this.confusionMatrix = ModelTypeHelper.unmodifiableRequired(builder.confusionMatrix, this, "confusionMatrix");
-		this.otherActualClassCount = ModelTypeHelper.requireNonNull(builder.otherActualClassCount, this,
+		this.confusionMatrix = ApiTypeHelper.unmodifiableRequired(builder.confusionMatrix, this, "confusionMatrix");
+		this.otherActualClassCount = ApiTypeHelper.requireNonNull(builder.otherActualClassCount, this,
 				"otherActualClassCount");
 
 	}
 
-	public static DataframeClassificationSummaryMulticlassConfusionMatrix of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DataframeClassificationSummaryMulticlassConfusionMatrix of(
+			Function<Builder, ObjectBuilder<DataframeClassificationSummaryMulticlassConfusionMatrix>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -90,7 +93,7 @@ public class DataframeClassificationSummaryMulticlassConfusionMatrix implements 
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.confusionMatrix)) {
+		if (ApiTypeHelper.isDefined(this.confusionMatrix)) {
 			generator.writeKey("confusion_matrix");
 			generator.writeStartArray();
 			for (ConfusionMatrixItem item0 : this.confusionMatrix) {
@@ -110,6 +113,7 @@ public class DataframeClassificationSummaryMulticlassConfusionMatrix implements 
 	/**
 	 * Builder for {@link DataframeClassificationSummaryMulticlassConfusionMatrix}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase
 			implements
 				ObjectBuilder<DataframeClassificationSummaryMulticlassConfusionMatrix> {
@@ -119,26 +123,32 @@ public class DataframeClassificationSummaryMulticlassConfusionMatrix implements 
 
 		/**
 		 * Required - API name: {@code confusion_matrix}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>confusionMatrix</code>.
 		 */
-		public final Builder confusionMatrix(List<ConfusionMatrixItem> value) {
-			this.confusionMatrix = value;
+		public final Builder confusionMatrix(List<ConfusionMatrixItem> list) {
+			this.confusionMatrix = _listAddAll(this.confusionMatrix, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code confusion_matrix}
+		 * <p>
+		 * Adds one or more values to <code>confusionMatrix</code>.
 		 */
-		public final Builder confusionMatrix(ConfusionMatrixItem... value) {
-			this.confusionMatrix = Arrays.asList(value);
+		public final Builder confusionMatrix(ConfusionMatrixItem value, ConfusionMatrixItem... values) {
+			this.confusionMatrix = _listAdd(this.confusionMatrix, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code confusion_matrix}
+		 * <p>
+		 * Adds a value to <code>confusionMatrix</code> using a builder lambda.
 		 */
 		public final Builder confusionMatrix(
-				Function<ListBuilder<ConfusionMatrixItem, ConfusionMatrixItem.Builder>, ObjectBuilder<List<ConfusionMatrixItem>>> fn) {
-			return confusionMatrix(fn.apply(new ListBuilder<>(ConfusionMatrixItem.Builder::new)).build());
+				Function<ConfusionMatrixItem.Builder, ObjectBuilder<ConfusionMatrixItem>> fn) {
+			return confusionMatrix(fn.apply(new ConfusionMatrixItem.Builder()).build());
 		}
 
 		/**

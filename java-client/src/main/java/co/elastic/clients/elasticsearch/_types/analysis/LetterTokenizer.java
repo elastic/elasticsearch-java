@@ -31,9 +31,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.analysis.LetterTokenizer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/tokenizers.ts#L66-L68">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class LetterTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -43,10 +50,8 @@ public class LetterTokenizer extends TokenizerBase implements TokenizerDefinitio
 
 	}
 
-	public static LetterTokenizer of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static LetterTokenizer of(Function<Builder, ObjectBuilder<LetterTokenizer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -69,6 +74,7 @@ public class LetterTokenizer extends TokenizerBase implements TokenizerDefinitio
 	/**
 	 * Builder for {@link LetterTokenizer}.
 	 */
+
 	public static class Builder extends TokenizerBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<LetterTokenizer> {

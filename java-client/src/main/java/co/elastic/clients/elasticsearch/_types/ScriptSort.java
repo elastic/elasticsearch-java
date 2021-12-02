@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.ScriptSort
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/sort.ts#L67-L73">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ScriptSort implements SortOptionsVariant, JsonpSerializable {
 	@Nullable
@@ -59,17 +66,15 @@ public class ScriptSort implements SortOptionsVariant, JsonpSerializable {
 	private ScriptSort(Builder builder) {
 
 		this.order = builder.order;
-		this.script = ModelTypeHelper.requireNonNull(builder.script, this, "script");
+		this.script = ApiTypeHelper.requireNonNull(builder.script, this, "script");
 		this.type = builder.type;
 		this.mode = builder.mode;
 		this.nested = builder.nested;
 
 	}
 
-	public static ScriptSort of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ScriptSort of(Function<Builder, ObjectBuilder<ScriptSort>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -158,6 +163,7 @@ public class ScriptSort implements SortOptionsVariant, JsonpSerializable {
 	/**
 	 * Builder for {@link ScriptSort}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ScriptSort> {
 		@Nullable
 		private SortOrder order;
@@ -192,10 +198,8 @@ public class ScriptSort implements SortOptionsVariant, JsonpSerializable {
 		/**
 		 * Required - API name: {@code script}
 		 */
-		public final Builder script(Consumer<Script.Builder> fn) {
-			Script.Builder builder = new Script.Builder();
-			fn.accept(builder);
-			return this.script(builder.build());
+		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
 		/**
@@ -225,10 +229,8 @@ public class ScriptSort implements SortOptionsVariant, JsonpSerializable {
 		/**
 		 * API name: {@code nested}
 		 */
-		public final Builder nested(Consumer<NestedSortValue.Builder> fn) {
-			NestedSortValue.Builder builder = new NestedSortValue.Builder();
-			fn.accept(builder);
-			return this.nested(builder.build());
+		public final Builder nested(Function<NestedSortValue.Builder, ObjectBuilder<NestedSortValue>> fn) {
+			return this.nested(fn.apply(new NestedSortValue.Builder()).build());
 		}
 
 		/**

@@ -31,17 +31,26 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: autoscaling.delete_autoscaling_policy.Request
+
+/**
+ * Deletes an autoscaling policy. Designed for indirect use by ECE/ESS and ECK.
+ * Direct use is not supported.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/autoscaling/delete_autoscaling_policy/DeleteAutoscalingPolicyRequest.ts#L23-L32">API
+ *      specification</a>
+ */
 
 public class DeleteAutoscalingPolicyRequest extends RequestBase {
 	private final String name;
@@ -50,14 +59,13 @@ public class DeleteAutoscalingPolicyRequest extends RequestBase {
 
 	private DeleteAutoscalingPolicyRequest(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
-	public static DeleteAutoscalingPolicyRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DeleteAutoscalingPolicyRequest of(
+			Function<Builder, ObjectBuilder<DeleteAutoscalingPolicyRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -74,6 +82,7 @@ public class DeleteAutoscalingPolicyRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteAutoscalingPolicyRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteAutoscalingPolicyRequest> {
 		private String name;
 

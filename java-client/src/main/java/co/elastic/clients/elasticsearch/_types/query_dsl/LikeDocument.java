@@ -31,20 +31,26 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.LikeDocument
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/specialized.ts#L92-L103">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class LikeDocument implements JsonpSerializable {
 	@Nullable
@@ -77,21 +83,19 @@ public class LikeDocument implements JsonpSerializable {
 	private LikeDocument(Builder builder) {
 
 		this.doc = builder.doc;
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 		this.id = builder.id;
 		this.type = builder.type;
 		this.index = builder.index;
-		this.perFieldAnalyzer = ModelTypeHelper.unmodifiable(builder.perFieldAnalyzer);
+		this.perFieldAnalyzer = ApiTypeHelper.unmodifiable(builder.perFieldAnalyzer);
 		this.routing = builder.routing;
 		this.version = builder.version;
 		this.versionType = builder.versionType;
 
 	}
 
-	public static LikeDocument of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static LikeDocument of(Function<Builder, ObjectBuilder<LikeDocument>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -180,7 +184,7 @@ public class LikeDocument implements JsonpSerializable {
 			this.doc.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.fields)) {
+		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartArray();
 			for (String item0 : this.fields) {
@@ -205,7 +209,7 @@ public class LikeDocument implements JsonpSerializable {
 			generator.write(this.index);
 
 		}
-		if (ModelTypeHelper.isDefined(this.perFieldAnalyzer)) {
+		if (ApiTypeHelper.isDefined(this.perFieldAnalyzer)) {
 			generator.writeKey("per_field_analyzer");
 			generator.writeStartObject();
 			for (Map.Entry<String, String> item0 : this.perFieldAnalyzer.entrySet()) {
@@ -238,6 +242,7 @@ public class LikeDocument implements JsonpSerializable {
 	/**
 	 * Builder for {@link LikeDocument}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<LikeDocument> {
 		@Nullable
 		private JsonData doc;
@@ -276,17 +281,21 @@ public class LikeDocument implements JsonpSerializable {
 
 		/**
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fields</code>.
 		 */
-		public final Builder fields(@Nullable List<String> value) {
-			this.fields = value;
+		public final Builder fields(List<String> list) {
+			this.fields = _listAddAll(this.fields, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds one or more values to <code>fields</code>.
 		 */
-		public final Builder fields(String... value) {
-			this.fields = Arrays.asList(value);
+		public final Builder fields(String value, String... values) {
+			this.fields = _listAdd(this.fields, value, values);
 			return this;
 		}
 
@@ -316,9 +325,21 @@ public class LikeDocument implements JsonpSerializable {
 
 		/**
 		 * API name: {@code per_field_analyzer}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>perFieldAnalyzer</code>.
 		 */
-		public final Builder perFieldAnalyzer(@Nullable Map<String, String> value) {
-			this.perFieldAnalyzer = value;
+		public final Builder perFieldAnalyzer(Map<String, String> map) {
+			this.perFieldAnalyzer = _mapPutAll(this.perFieldAnalyzer, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code per_field_analyzer}
+		 * <p>
+		 * Adds an entry to <code>perFieldAnalyzer</code>.
+		 */
+		public final Builder perFieldAnalyzer(String key, String value) {
+			this.perFieldAnalyzer = _mapPut(this.perFieldAnalyzer, key, value);
 			return this;
 		}
 

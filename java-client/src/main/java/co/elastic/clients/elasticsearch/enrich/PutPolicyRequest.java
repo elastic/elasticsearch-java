@@ -33,17 +33,25 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: enrich.put_policy.Request
+
+/**
+ * Creates a new enrich policy.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/enrich/put_policy/PutEnrichPolicyRequest.ts#L24-L37">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutPolicyRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -60,14 +68,12 @@ public class PutPolicyRequest extends RequestBase implements JsonpSerializable {
 
 		this.geoMatch = builder.geoMatch;
 		this.match = builder.match;
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
-	public static PutPolicyRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PutPolicyRequest of(Function<Builder, ObjectBuilder<PutPolicyRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -124,6 +130,7 @@ public class PutPolicyRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link PutPolicyRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutPolicyRequest> {
 		@Nullable
 		private EnrichPolicy geoMatch;
@@ -144,10 +151,8 @@ public class PutPolicyRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code geo_match}
 		 */
-		public final Builder geoMatch(Consumer<EnrichPolicy.Builder> fn) {
-			EnrichPolicy.Builder builder = new EnrichPolicy.Builder();
-			fn.accept(builder);
-			return this.geoMatch(builder.build());
+		public final Builder geoMatch(Function<EnrichPolicy.Builder, ObjectBuilder<EnrichPolicy>> fn) {
+			return this.geoMatch(fn.apply(new EnrichPolicy.Builder()).build());
 		}
 
 		/**
@@ -161,10 +166,8 @@ public class PutPolicyRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code match}
 		 */
-		public final Builder match(Consumer<EnrichPolicy.Builder> fn) {
-			EnrichPolicy.Builder builder = new EnrichPolicy.Builder();
-			fn.accept(builder);
-			return this.match(builder.build());
+		public final Builder match(Function<EnrichPolicy.Builder, ObjectBuilder<EnrichPolicy>> fn) {
+			return this.match(fn.apply(new EnrichPolicy.Builder()).build());
 		}
 
 		/**

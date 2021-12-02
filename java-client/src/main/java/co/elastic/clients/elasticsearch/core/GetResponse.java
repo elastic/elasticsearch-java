@@ -32,10 +32,17 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 // typedef: _global.get.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/get/GetResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetResponse<TDocument> extends GetResult<TDocument> {
 	// ---------------------------------------------------------------------------------------------
@@ -45,10 +52,9 @@ public class GetResponse<TDocument> extends GetResult<TDocument> {
 
 	}
 
-	public static <TDocument> GetResponse<TDocument> of(Consumer<Builder<TDocument>> fn) {
-		Builder<TDocument> builder = new Builder<>();
-		fn.accept(builder);
-		return builder.build();
+	public static <TDocument> GetResponse<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<GetResponse<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -56,6 +62,7 @@ public class GetResponse<TDocument> extends GetResult<TDocument> {
 	/**
 	 * Builder for {@link GetResponse}.
 	 */
+
 	public static class Builder<TDocument> extends GetResult.AbstractBuilder<TDocument, Builder<TDocument>>
 			implements
 				ObjectBuilder<GetResponse<TDocument>> {
@@ -80,7 +87,7 @@ public class GetResponse<TDocument> extends GetResult<TDocument> {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for GetResponse
+	 * Create a JSON deserializer for GetResponse
 	 */
 	public static <TDocument> JsonpDeserializer<GetResponse<TDocument>> createGetResponseDeserializer(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {

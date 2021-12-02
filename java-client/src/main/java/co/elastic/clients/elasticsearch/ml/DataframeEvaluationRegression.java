@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationRegression
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/DataframeEvaluation.ts#L55-L62">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeEvaluationRegression implements DataframeEvaluationVariant, JsonpSerializable {
 	private final String actualField;
@@ -52,16 +59,14 @@ public class DataframeEvaluationRegression implements DataframeEvaluationVariant
 
 	private DataframeEvaluationRegression(Builder builder) {
 
-		this.actualField = ModelTypeHelper.requireNonNull(builder.actualField, this, "actualField");
-		this.predictedField = ModelTypeHelper.requireNonNull(builder.predictedField, this, "predictedField");
+		this.actualField = ApiTypeHelper.requireNonNull(builder.actualField, this, "actualField");
+		this.predictedField = ApiTypeHelper.requireNonNull(builder.predictedField, this, "predictedField");
 		this.metrics = builder.metrics;
 
 	}
 
-	public static DataframeEvaluationRegression of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DataframeEvaluationRegression of(Function<Builder, ObjectBuilder<DataframeEvaluationRegression>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -134,6 +139,7 @@ public class DataframeEvaluationRegression implements DataframeEvaluationVariant
 	/**
 	 * Builder for {@link DataframeEvaluationRegression}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframeEvaluationRegression> {
 		private String actualField;
 
@@ -183,10 +189,9 @@ public class DataframeEvaluationRegression implements DataframeEvaluationVariant
 		 * <p>
 		 * API name: {@code metrics}
 		 */
-		public final Builder metrics(Consumer<DataframeEvaluationRegressionMetrics.Builder> fn) {
-			DataframeEvaluationRegressionMetrics.Builder builder = new DataframeEvaluationRegressionMetrics.Builder();
-			fn.accept(builder);
-			return this.metrics(builder.build());
+		public final Builder metrics(
+				Function<DataframeEvaluationRegressionMetrics.Builder, ObjectBuilder<DataframeEvaluationRegressionMetrics>> fn) {
+			return this.metrics(fn.apply(new DataframeEvaluationRegressionMetrics.Builder()).build());
 		}
 
 		/**

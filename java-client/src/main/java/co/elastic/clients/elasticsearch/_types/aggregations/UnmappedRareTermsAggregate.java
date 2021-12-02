@@ -31,9 +31,18 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Void;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.aggregations.UnmappedRareTermsAggregate
+
+/**
+ * Result of a <code>rare_terms</code> aggregation when the field is unmapped.
+ * <code>buckets</code> is always empty.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L437-L443">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class UnmappedRareTermsAggregate extends MultiBucketAggregateBase<Void> implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -43,10 +52,8 @@ public class UnmappedRareTermsAggregate extends MultiBucketAggregateBase<Void> i
 
 	}
 
-	public static UnmappedRareTermsAggregate of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static UnmappedRareTermsAggregate of(Function<Builder, ObjectBuilder<UnmappedRareTermsAggregate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -62,6 +69,7 @@ public class UnmappedRareTermsAggregate extends MultiBucketAggregateBase<Void> i
 	/**
 	 * Builder for {@link UnmappedRareTermsAggregate}.
 	 */
+
 	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<Void, Builder>
 			implements
 				ObjectBuilder<UnmappedRareTermsAggregate> {

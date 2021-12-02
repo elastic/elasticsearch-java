@@ -31,20 +31,27 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: security.clear_api_key_cache.Request
+
+/**
+ * Clear a subset or all entries from the API key cache.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/clear_api_key_cache/SecurityClearApiKeyCacheRequest.ts#L23-L32">API
+ *      specification</a>
+ */
 
 public class ClearApiKeyCacheRequest extends RequestBase {
 	private final List<String> ids;
@@ -53,14 +60,12 @@ public class ClearApiKeyCacheRequest extends RequestBase {
 
 	private ClearApiKeyCacheRequest(Builder builder) {
 
-		this.ids = ModelTypeHelper.unmodifiableRequired(builder.ids, this, "ids");
+		this.ids = ApiTypeHelper.unmodifiableRequired(builder.ids, this, "ids");
 
 	}
 
-	public static ClearApiKeyCacheRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ClearApiKeyCacheRequest of(Function<Builder, ObjectBuilder<ClearApiKeyCacheRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -77,6 +82,7 @@ public class ClearApiKeyCacheRequest extends RequestBase {
 	/**
 	 * Builder for {@link ClearApiKeyCacheRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClearApiKeyCacheRequest> {
 		private List<String> ids;
 
@@ -84,9 +90,11 @@ public class ClearApiKeyCacheRequest extends RequestBase {
 		 * Required - A comma-separated list of IDs of API keys to clear from the cache
 		 * <p>
 		 * API name: {@code ids}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>ids</code>.
 		 */
-		public final Builder ids(List<String> value) {
-			this.ids = value;
+		public final Builder ids(List<String> list) {
+			this.ids = _listAddAll(this.ids, list);
 			return this;
 		}
 
@@ -94,9 +102,11 @@ public class ClearApiKeyCacheRequest extends RequestBase {
 		 * Required - A comma-separated list of IDs of API keys to clear from the cache
 		 * <p>
 		 * API name: {@code ids}
+		 * <p>
+		 * Adds one or more values to <code>ids</code>.
 		 */
-		public final Builder ids(String... value) {
-			this.ids = Arrays.asList(value);
+		public final Builder ids(String value, String... values) {
+			this.ids = _listAdd(this.ids, value, values);
 			return this;
 		}
 

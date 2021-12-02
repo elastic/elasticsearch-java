@@ -28,18 +28,26 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.LongTermsBucket
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L390-L393">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class LongTermsBucket extends TermsBucketBase {
-	private final String key;
+	private final long key;
 
 	@Nullable
 	private final String keyAsString;
@@ -49,21 +57,19 @@ public class LongTermsBucket extends TermsBucketBase {
 	private LongTermsBucket(Builder builder) {
 		super(builder);
 
-		this.key = ModelTypeHelper.requireNonNull(builder.key, this, "key");
+		this.key = ApiTypeHelper.requireNonNull(builder.key, this, "key");
 		this.keyAsString = builder.keyAsString;
 
 	}
 
-	public static LongTermsBucket of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static LongTermsBucket of(Function<Builder, ObjectBuilder<LongTermsBucket>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code key}
 	 */
-	public final String key() {
+	public final long key() {
 		return this.key;
 	}
 
@@ -94,10 +100,11 @@ public class LongTermsBucket extends TermsBucketBase {
 	/**
 	 * Builder for {@link LongTermsBucket}.
 	 */
+
 	public static class Builder extends TermsBucketBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<LongTermsBucket> {
-		private String key;
+		private Long key;
 
 		@Nullable
 		private String keyAsString;
@@ -105,7 +112,7 @@ public class LongTermsBucket extends TermsBucketBase {
 		/**
 		 * Required - API name: {@code key}
 		 */
-		public final Builder key(String value) {
+		public final Builder key(long value) {
 			this.key = value;
 			return this;
 		}
@@ -146,7 +153,7 @@ public class LongTermsBucket extends TermsBucketBase {
 
 	protected static void setupLongTermsBucketDeserializer(ObjectDeserializer<LongTermsBucket.Builder> op) {
 		TermsBucketBase.setupTermsBucketBaseDeserializer(op);
-		op.add(Builder::key, JsonpDeserializer.stringDeserializer(), "key");
+		op.add(Builder::key, JsonpDeserializer.longDeserializer(), "key");
 		op.add(Builder::keyAsString, JsonpDeserializer.stringDeserializer(), "key_as_string");
 
 	}

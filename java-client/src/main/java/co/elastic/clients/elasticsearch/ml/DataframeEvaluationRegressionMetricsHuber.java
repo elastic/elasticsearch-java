@@ -34,10 +34,17 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationRegressionMetricsHuber
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/DataframeEvaluation.ts#L117-L120">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeEvaluationRegressionMetricsHuber implements JsonpSerializable {
 	@Nullable
@@ -51,10 +58,9 @@ public class DataframeEvaluationRegressionMetricsHuber implements JsonpSerializa
 
 	}
 
-	public static DataframeEvaluationRegressionMetricsHuber of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DataframeEvaluationRegressionMetricsHuber of(
+			Function<Builder, ObjectBuilder<DataframeEvaluationRegressionMetricsHuber>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -93,6 +99,7 @@ public class DataframeEvaluationRegressionMetricsHuber implements JsonpSerializa
 	/**
 	 * Builder for {@link DataframeEvaluationRegressionMetricsHuber}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase
 			implements
 				ObjectBuilder<DataframeEvaluationRegressionMetricsHuber> {

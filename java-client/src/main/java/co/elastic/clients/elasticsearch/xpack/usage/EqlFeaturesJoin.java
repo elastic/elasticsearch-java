@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.EqlFeaturesJoin
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L99-L105">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class EqlFeaturesJoin implements JsonpSerializable {
 	private final Number joinQueriesTwo;
@@ -55,19 +62,17 @@ public class EqlFeaturesJoin implements JsonpSerializable {
 
 	private EqlFeaturesJoin(Builder builder) {
 
-		this.joinQueriesTwo = ModelTypeHelper.requireNonNull(builder.joinQueriesTwo, this, "joinQueriesTwo");
-		this.joinQueriesThree = ModelTypeHelper.requireNonNull(builder.joinQueriesThree, this, "joinQueriesThree");
-		this.joinUntil = ModelTypeHelper.requireNonNull(builder.joinUntil, this, "joinUntil");
-		this.joinQueriesFiveOrMore = ModelTypeHelper.requireNonNull(builder.joinQueriesFiveOrMore, this,
+		this.joinQueriesTwo = ApiTypeHelper.requireNonNull(builder.joinQueriesTwo, this, "joinQueriesTwo");
+		this.joinQueriesThree = ApiTypeHelper.requireNonNull(builder.joinQueriesThree, this, "joinQueriesThree");
+		this.joinUntil = ApiTypeHelper.requireNonNull(builder.joinUntil, this, "joinUntil");
+		this.joinQueriesFiveOrMore = ApiTypeHelper.requireNonNull(builder.joinQueriesFiveOrMore, this,
 				"joinQueriesFiveOrMore");
-		this.joinQueriesFour = ModelTypeHelper.requireNonNull(builder.joinQueriesFour, this, "joinQueriesFour");
+		this.joinQueriesFour = ApiTypeHelper.requireNonNull(builder.joinQueriesFour, this, "joinQueriesFour");
 
 	}
 
-	public static EqlFeaturesJoin of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static EqlFeaturesJoin of(Function<Builder, ObjectBuilder<EqlFeaturesJoin>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -138,6 +143,7 @@ public class EqlFeaturesJoin implements JsonpSerializable {
 	/**
 	 * Builder for {@link EqlFeaturesJoin}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<EqlFeaturesJoin> {
 		private Number joinQueriesTwo;
 

@@ -29,19 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: logstash.get_pipeline.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/logstash/get_pipeline/LogstashGetPipelineResponse.ts#L24-L26">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetPipelineResponse implements JsonpSerializable {
 	private final Map<String, Pipeline> valueBody;
@@ -50,14 +55,12 @@ public class GetPipelineResponse implements JsonpSerializable {
 
 	private GetPipelineResponse(Builder builder) {
 
-		this.valueBody = ModelTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
+		this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
 
 	}
 
-	public static GetPipelineResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetPipelineResponse of(Function<Builder, ObjectBuilder<GetPipelineResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -88,6 +91,7 @@ public class GetPipelineResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetPipelineResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetPipelineResponse> {
 		private Map<String, Pipeline> valueBody;
 
@@ -95,15 +99,35 @@ public class GetPipelineResponse implements JsonpSerializable {
 		 * Required - Response value.
 		 * <p>
 		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>valueBody</code>.
 		 */
-		public final Builder valueBody(Map<String, Pipeline> value) {
-			this.valueBody = value;
+		public final Builder valueBody(Map<String, Pipeline> map) {
+			this.valueBody = _mapPutAll(this.valueBody, map);
 			return this;
 		}
 
-		public final Builder valueBody(
-				Function<MapBuilder<String, Pipeline, Pipeline.Builder>, ObjectBuilder<Map<String, Pipeline>>> fn) {
-			return valueBody(fn.apply(new MapBuilder<>(Pipeline.Builder::new)).build());
+		/**
+		 * Required - Response value.
+		 * <p>
+		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds an entry to <code>valueBody</code>.
+		 */
+		public final Builder valueBody(String key, Pipeline value) {
+			this.valueBody = _mapPut(this.valueBody, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - Response value.
+		 * <p>
+		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds an entry to <code>valueBody</code> using a builder lambda.
+		 */
+		public final Builder valueBody(String key, Function<Pipeline.Builder, ObjectBuilder<Pipeline>> fn) {
+			return valueBody(key, fn.apply(new Pipeline.Builder()).build());
 		}
 
 		/**

@@ -32,10 +32,17 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.StringStatsAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/metric.ts#L138-L140">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class StringStatsAggregation extends MetricAggregationBase implements AggregationVariant {
 	@Nullable
@@ -50,10 +57,8 @@ public class StringStatsAggregation extends MetricAggregationBase implements Agg
 
 	}
 
-	public static StringStatsAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static StringStatsAggregation of(Function<Builder, ObjectBuilder<StringStatsAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -88,6 +93,7 @@ public class StringStatsAggregation extends MetricAggregationBase implements Agg
 	/**
 	 * Builder for {@link StringStatsAggregation}.
 	 */
+
 	public static class Builder extends MetricAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<StringStatsAggregation> {

@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.TermQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/term.ts#L116-L121">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TermQuery extends QueryBase implements QueryVariant {
 	// Single key dictionary
@@ -53,17 +60,15 @@ public class TermQuery extends QueryBase implements QueryVariant {
 
 	private TermQuery(Builder builder) {
 		super(builder);
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
-		this.value = ModelTypeHelper.requireNonNull(builder.value, this, "value");
+		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
 		this.caseInsensitive = builder.caseInsensitive;
 
 	}
 
-	public static TermQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TermQuery of(Function<Builder, ObjectBuilder<TermQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -118,6 +123,7 @@ public class TermQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link TermQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<TermQuery> {
 		private String field;
 
@@ -145,10 +151,8 @@ public class TermQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - API name: {@code value}
 		 */
-		public final Builder value(Consumer<FieldValue.Builder> fn) {
-			FieldValue.Builder builder = new FieldValue.Builder();
-			fn.accept(builder);
-			return this.value(builder.build());
+		public final Builder value(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
+			return this.value(fn.apply(new FieldValue.Builder()).build());
 		}
 
 		/**

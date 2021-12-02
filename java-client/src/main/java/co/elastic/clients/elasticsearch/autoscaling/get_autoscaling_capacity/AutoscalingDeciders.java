@@ -29,22 +29,25 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.MapBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: autoscaling.get_autoscaling_capacity.AutoscalingDeciders
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/autoscaling/get_autoscaling_capacity/GetAutoscalingCapacityResponse.ts#L31-L36">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AutoscalingDeciders implements JsonpSerializable {
 	private final AutoscalingCapacity requiredCapacity;
@@ -59,17 +62,15 @@ public class AutoscalingDeciders implements JsonpSerializable {
 
 	private AutoscalingDeciders(Builder builder) {
 
-		this.requiredCapacity = ModelTypeHelper.requireNonNull(builder.requiredCapacity, this, "requiredCapacity");
-		this.currentCapacity = ModelTypeHelper.requireNonNull(builder.currentCapacity, this, "currentCapacity");
-		this.currentNodes = ModelTypeHelper.unmodifiableRequired(builder.currentNodes, this, "currentNodes");
-		this.deciders = ModelTypeHelper.unmodifiableRequired(builder.deciders, this, "deciders");
+		this.requiredCapacity = ApiTypeHelper.requireNonNull(builder.requiredCapacity, this, "requiredCapacity");
+		this.currentCapacity = ApiTypeHelper.requireNonNull(builder.currentCapacity, this, "currentCapacity");
+		this.currentNodes = ApiTypeHelper.unmodifiableRequired(builder.currentNodes, this, "currentNodes");
+		this.deciders = ApiTypeHelper.unmodifiableRequired(builder.deciders, this, "deciders");
 
 	}
 
-	public static AutoscalingDeciders of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static AutoscalingDeciders of(Function<Builder, ObjectBuilder<AutoscalingDeciders>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -117,7 +118,7 @@ public class AutoscalingDeciders implements JsonpSerializable {
 		generator.writeKey("current_capacity");
 		this.currentCapacity.serialize(generator, mapper);
 
-		if (ModelTypeHelper.isDefined(this.currentNodes)) {
+		if (ApiTypeHelper.isDefined(this.currentNodes)) {
 			generator.writeKey("current_nodes");
 			generator.writeStartArray();
 			for (AutoscalingNode item0 : this.currentNodes) {
@@ -127,7 +128,7 @@ public class AutoscalingDeciders implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.deciders)) {
+		if (ApiTypeHelper.isDefined(this.deciders)) {
 			generator.writeKey("deciders");
 			generator.writeStartObject();
 			for (Map.Entry<String, AutoscalingDecider> item0 : this.deciders.entrySet()) {
@@ -146,6 +147,7 @@ public class AutoscalingDeciders implements JsonpSerializable {
 	/**
 	 * Builder for {@link AutoscalingDeciders}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AutoscalingDeciders> {
 		private AutoscalingCapacity requiredCapacity;
 
@@ -166,10 +168,9 @@ public class AutoscalingDeciders implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code required_capacity}
 		 */
-		public final Builder requiredCapacity(Consumer<AutoscalingCapacity.Builder> fn) {
-			AutoscalingCapacity.Builder builder = new AutoscalingCapacity.Builder();
-			fn.accept(builder);
-			return this.requiredCapacity(builder.build());
+		public final Builder requiredCapacity(
+				Function<AutoscalingCapacity.Builder, ObjectBuilder<AutoscalingCapacity>> fn) {
+			return this.requiredCapacity(fn.apply(new AutoscalingCapacity.Builder()).build());
 		}
 
 		/**
@@ -183,47 +184,68 @@ public class AutoscalingDeciders implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code current_capacity}
 		 */
-		public final Builder currentCapacity(Consumer<AutoscalingCapacity.Builder> fn) {
-			AutoscalingCapacity.Builder builder = new AutoscalingCapacity.Builder();
-			fn.accept(builder);
-			return this.currentCapacity(builder.build());
+		public final Builder currentCapacity(
+				Function<AutoscalingCapacity.Builder, ObjectBuilder<AutoscalingCapacity>> fn) {
+			return this.currentCapacity(fn.apply(new AutoscalingCapacity.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code current_nodes}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>currentNodes</code>.
 		 */
-		public final Builder currentNodes(List<AutoscalingNode> value) {
-			this.currentNodes = value;
+		public final Builder currentNodes(List<AutoscalingNode> list) {
+			this.currentNodes = _listAddAll(this.currentNodes, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code current_nodes}
+		 * <p>
+		 * Adds one or more values to <code>currentNodes</code>.
 		 */
-		public final Builder currentNodes(AutoscalingNode... value) {
-			this.currentNodes = Arrays.asList(value);
+		public final Builder currentNodes(AutoscalingNode value, AutoscalingNode... values) {
+			this.currentNodes = _listAdd(this.currentNodes, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code current_nodes}
+		 * <p>
+		 * Adds a value to <code>currentNodes</code> using a builder lambda.
 		 */
-		public final Builder currentNodes(
-				Function<ListBuilder<AutoscalingNode, AutoscalingNode.Builder>, ObjectBuilder<List<AutoscalingNode>>> fn) {
-			return currentNodes(fn.apply(new ListBuilder<>(AutoscalingNode.Builder::new)).build());
+		public final Builder currentNodes(Function<AutoscalingNode.Builder, ObjectBuilder<AutoscalingNode>> fn) {
+			return currentNodes(fn.apply(new AutoscalingNode.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code deciders}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>deciders</code>.
 		 */
-		public final Builder deciders(Map<String, AutoscalingDecider> value) {
-			this.deciders = value;
+		public final Builder deciders(Map<String, AutoscalingDecider> map) {
+			this.deciders = _mapPutAll(this.deciders, map);
 			return this;
 		}
 
-		public final Builder deciders(
-				Function<MapBuilder<String, AutoscalingDecider, AutoscalingDecider.Builder>, ObjectBuilder<Map<String, AutoscalingDecider>>> fn) {
-			return deciders(fn.apply(new MapBuilder<>(AutoscalingDecider.Builder::new)).build());
+		/**
+		 * Required - API name: {@code deciders}
+		 * <p>
+		 * Adds an entry to <code>deciders</code>.
+		 */
+		public final Builder deciders(String key, AutoscalingDecider value) {
+			this.deciders = _mapPut(this.deciders, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code deciders}
+		 * <p>
+		 * Adds an entry to <code>deciders</code> using a builder lambda.
+		 */
+		public final Builder deciders(String key,
+				Function<AutoscalingDecider.Builder, ObjectBuilder<AutoscalingDecider>> fn) {
+			return deciders(key, fn.apply(new AutoscalingDecider.Builder()).build());
 		}
 
 		/**

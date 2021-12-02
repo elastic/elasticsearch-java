@@ -31,9 +31,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.analysis.ReverseTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L302-L304">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ReverseTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -43,10 +50,8 @@ public class ReverseTokenFilter extends TokenFilterBase implements TokenFilterDe
 
 	}
 
-	public static ReverseTokenFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ReverseTokenFilter of(Function<Builder, ObjectBuilder<ReverseTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -69,6 +74,7 @@ public class ReverseTokenFilter extends TokenFilterBase implements TokenFilterDe
 	/**
 	 * Builder for {@link ReverseTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ReverseTokenFilter> {

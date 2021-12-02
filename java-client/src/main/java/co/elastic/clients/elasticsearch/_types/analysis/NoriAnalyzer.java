@@ -29,18 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.NoriAnalyzer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/analyzers.ts#L66-L72">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NoriAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	@Nullable
@@ -60,15 +66,13 @@ public class NoriAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
 		this.version = builder.version;
 		this.decompoundMode = builder.decompoundMode;
-		this.stoptags = ModelTypeHelper.unmodifiable(builder.stoptags);
+		this.stoptags = ApiTypeHelper.unmodifiable(builder.stoptags);
 		this.userDictionary = builder.userDictionary;
 
 	}
 
-	public static NoriAnalyzer of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NoriAnalyzer of(Function<Builder, ObjectBuilder<NoriAnalyzer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -132,7 +136,7 @@ public class NoriAnalyzer implements AnalyzerVariant, JsonpSerializable {
 			generator.writeKey("decompound_mode");
 			this.decompoundMode.serialize(generator, mapper);
 		}
-		if (ModelTypeHelper.isDefined(this.stoptags)) {
+		if (ApiTypeHelper.isDefined(this.stoptags)) {
 			generator.writeKey("stoptags");
 			generator.writeStartArray();
 			for (String item0 : this.stoptags) {
@@ -155,6 +159,7 @@ public class NoriAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	/**
 	 * Builder for {@link NoriAnalyzer}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NoriAnalyzer> {
 		@Nullable
 		private String version;
@@ -186,17 +191,21 @@ public class NoriAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
 		/**
 		 * API name: {@code stoptags}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>stoptags</code>.
 		 */
-		public final Builder stoptags(@Nullable List<String> value) {
-			this.stoptags = value;
+		public final Builder stoptags(List<String> list) {
+			this.stoptags = _listAddAll(this.stoptags, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code stoptags}
+		 * <p>
+		 * Adds one or more values to <code>stoptags</code>.
 		 */
-		public final Builder stoptags(String... value) {
-			this.stoptags = Arrays.asList(value);
+		public final Builder stoptags(String value, String... values) {
+			this.stoptags = _listAdd(this.stoptags, value, values);
 			return this;
 		}
 

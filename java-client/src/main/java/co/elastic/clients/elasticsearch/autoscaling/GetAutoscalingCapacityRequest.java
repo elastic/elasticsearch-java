@@ -38,6 +38,16 @@ import java.util.Objects;
 
 // typedef: autoscaling.get_autoscaling_capacity.Request
 
+/**
+ * Gets the current autoscaling capacity based on the configured autoscaling
+ * policy. Designed for indirect use by ECE/ESS and ECK. Direct use is not
+ * supported.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/autoscaling/get_autoscaling_capacity/GetAutoscalingCapacityRequest.ts#L22-L27">API
+ *      specification</a>
+ */
+
 public class GetAutoscalingCapacityRequest extends RequestBase {
 	public GetAutoscalingCapacityRequest() {
 	}

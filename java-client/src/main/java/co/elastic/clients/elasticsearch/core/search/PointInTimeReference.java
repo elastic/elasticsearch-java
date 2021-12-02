@@ -30,16 +30,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.PointInTimeReference
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/PointInTimeReference.ts#L23-L26">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PointInTimeReference implements JsonpSerializable {
 	private final String id;
@@ -51,15 +58,13 @@ public class PointInTimeReference implements JsonpSerializable {
 
 	private PointInTimeReference(Builder builder) {
 
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.keepAlive = builder.keepAlive;
 
 	}
 
-	public static PointInTimeReference of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PointInTimeReference of(Function<Builder, ObjectBuilder<PointInTimeReference>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -104,6 +109,7 @@ public class PointInTimeReference implements JsonpSerializable {
 	/**
 	 * Builder for {@link PointInTimeReference}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PointInTimeReference> {
 		private String id;
 
@@ -129,10 +135,8 @@ public class PointInTimeReference implements JsonpSerializable {
 		/**
 		 * API name: {@code keep_alive}
 		 */
-		public final Builder keepAlive(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.keepAlive(builder.build());
+		public final Builder keepAlive(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.keepAlive(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

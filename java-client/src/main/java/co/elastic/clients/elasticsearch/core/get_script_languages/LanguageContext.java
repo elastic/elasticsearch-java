@@ -29,18 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.get_script_languages.LanguageContext
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/get_script_languages/types.ts#L22-L25">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class LanguageContext implements JsonpSerializable {
 	private final List<String> contexts;
@@ -51,15 +57,13 @@ public class LanguageContext implements JsonpSerializable {
 
 	private LanguageContext(Builder builder) {
 
-		this.contexts = ModelTypeHelper.unmodifiableRequired(builder.contexts, this, "contexts");
-		this.language = ModelTypeHelper.requireNonNull(builder.language, this, "language");
+		this.contexts = ApiTypeHelper.unmodifiableRequired(builder.contexts, this, "contexts");
+		this.language = ApiTypeHelper.requireNonNull(builder.language, this, "language");
 
 	}
 
-	public static LanguageContext of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static LanguageContext of(Function<Builder, ObjectBuilder<LanguageContext>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -87,7 +91,7 @@ public class LanguageContext implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.contexts)) {
+		if (ApiTypeHelper.isDefined(this.contexts)) {
 			generator.writeKey("contexts");
 			generator.writeStartArray();
 			for (String item0 : this.contexts) {
@@ -107,6 +111,7 @@ public class LanguageContext implements JsonpSerializable {
 	/**
 	 * Builder for {@link LanguageContext}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<LanguageContext> {
 		private List<String> contexts;
 
@@ -114,17 +119,21 @@ public class LanguageContext implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code contexts}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>contexts</code>.
 		 */
-		public final Builder contexts(List<String> value) {
-			this.contexts = value;
+		public final Builder contexts(List<String> list) {
+			this.contexts = _listAddAll(this.contexts, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code contexts}
+		 * <p>
+		 * Adds one or more values to <code>contexts</code>.
 		 */
-		public final Builder contexts(String... value) {
-			this.contexts = Arrays.asList(value);
+		public final Builder contexts(String value, String... values) {
+			this.contexts = _listAdd(this.contexts, value, values);
 			return this;
 		}
 

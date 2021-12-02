@@ -34,10 +34,17 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.segments.SegmentsRecord
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/segments/types.ts#L22-L96">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SegmentsRecord implements JsonpSerializable {
 	@Nullable
@@ -107,10 +114,8 @@ public class SegmentsRecord implements JsonpSerializable {
 
 	}
 
-	public static SegmentsRecord of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SegmentsRecord of(Function<Builder, ObjectBuilder<SegmentsRecord>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -357,6 +362,7 @@ public class SegmentsRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link SegmentsRecord}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SegmentsRecord> {
 		@Nullable
 		private String index;

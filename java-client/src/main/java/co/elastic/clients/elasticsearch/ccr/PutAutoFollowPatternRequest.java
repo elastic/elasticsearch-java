@@ -35,21 +35,30 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr.put_auto_follow_pattern.Request
+
+/**
+ * Creates a new named collection of auto-follow patterns against a specified
+ * remote cluster. Newly created indices on the remote cluster matching any of
+ * the specified patterns will be automatically configured as follower indices.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ccr/put_auto_follow_pattern/PutAutoFollowPatternRequest.ts#L27-L112">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -100,8 +109,8 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 	private PutAutoFollowPatternRequest(Builder builder) {
 
 		this.followIndexPattern = builder.followIndexPattern;
-		this.leaderIndexExclusionPatterns = ModelTypeHelper.unmodifiable(builder.leaderIndexExclusionPatterns);
-		this.leaderIndexPatterns = ModelTypeHelper.unmodifiable(builder.leaderIndexPatterns);
+		this.leaderIndexExclusionPatterns = ApiTypeHelper.unmodifiable(builder.leaderIndexExclusionPatterns);
+		this.leaderIndexPatterns = ApiTypeHelper.unmodifiable(builder.leaderIndexPatterns);
 		this.maxOutstandingReadRequests = builder.maxOutstandingReadRequests;
 		this.maxOutstandingWriteRequests = builder.maxOutstandingWriteRequests;
 		this.maxReadRequestOperationCount = builder.maxReadRequestOperationCount;
@@ -111,17 +120,15 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 		this.maxWriteBufferSize = builder.maxWriteBufferSize;
 		this.maxWriteRequestOperationCount = builder.maxWriteRequestOperationCount;
 		this.maxWriteRequestSize = builder.maxWriteRequestSize;
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.readPollTimeout = builder.readPollTimeout;
-		this.remoteCluster = ModelTypeHelper.requireNonNull(builder.remoteCluster, this, "remoteCluster");
-		this.settings = ModelTypeHelper.unmodifiable(builder.settings);
+		this.remoteCluster = ApiTypeHelper.requireNonNull(builder.remoteCluster, this, "remoteCluster");
+		this.settings = ApiTypeHelper.unmodifiable(builder.settings);
 
 	}
 
-	public static PutAutoFollowPatternRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PutAutoFollowPatternRequest of(Function<Builder, ObjectBuilder<PutAutoFollowPatternRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -315,7 +322,7 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 			generator.write(this.followIndexPattern);
 
 		}
-		if (ModelTypeHelper.isDefined(this.leaderIndexExclusionPatterns)) {
+		if (ApiTypeHelper.isDefined(this.leaderIndexExclusionPatterns)) {
 			generator.writeKey("leader_index_exclusion_patterns");
 			generator.writeStartArray();
 			for (String item0 : this.leaderIndexExclusionPatterns) {
@@ -325,7 +332,7 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.leaderIndexPatterns)) {
+		if (ApiTypeHelper.isDefined(this.leaderIndexPatterns)) {
 			generator.writeKey("leader_index_patterns");
 			generator.writeStartArray();
 			for (String item0 : this.leaderIndexPatterns) {
@@ -388,7 +395,7 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 		generator.writeKey("remote_cluster");
 		generator.write(this.remoteCluster);
 
-		if (ModelTypeHelper.isDefined(this.settings)) {
+		if (ApiTypeHelper.isDefined(this.settings)) {
 			generator.writeKey("settings");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.settings.entrySet()) {
@@ -407,6 +414,7 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 	/**
 	 * Builder for {@link PutAutoFollowPatternRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutAutoFollowPatternRequest> {
 		@Nullable
 		private String followIndexPattern;
@@ -474,9 +482,12 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 		 * leader_index_exclusion_patterns won’t be followed.
 		 * <p>
 		 * API name: {@code leader_index_exclusion_patterns}
+		 * <p>
+		 * Adds all elements of <code>list</code> to
+		 * <code>leaderIndexExclusionPatterns</code>.
 		 */
-		public final Builder leaderIndexExclusionPatterns(@Nullable List<String> value) {
-			this.leaderIndexExclusionPatterns = value;
+		public final Builder leaderIndexExclusionPatterns(List<String> list) {
+			this.leaderIndexExclusionPatterns = _listAddAll(this.leaderIndexExclusionPatterns, list);
 			return this;
 		}
 
@@ -487,9 +498,11 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 		 * leader_index_exclusion_patterns won’t be followed.
 		 * <p>
 		 * API name: {@code leader_index_exclusion_patterns}
+		 * <p>
+		 * Adds one or more values to <code>leaderIndexExclusionPatterns</code>.
 		 */
-		public final Builder leaderIndexExclusionPatterns(String... value) {
-			this.leaderIndexExclusionPatterns = Arrays.asList(value);
+		public final Builder leaderIndexExclusionPatterns(String value, String... values) {
+			this.leaderIndexExclusionPatterns = _listAdd(this.leaderIndexExclusionPatterns, value, values);
 			return this;
 		}
 
@@ -498,9 +511,11 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 		 * cluster specified by the remote_cluster field.
 		 * <p>
 		 * API name: {@code leader_index_patterns}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>leaderIndexPatterns</code>.
 		 */
-		public final Builder leaderIndexPatterns(@Nullable List<String> value) {
-			this.leaderIndexPatterns = value;
+		public final Builder leaderIndexPatterns(List<String> list) {
+			this.leaderIndexPatterns = _listAddAll(this.leaderIndexPatterns, list);
 			return this;
 		}
 
@@ -509,9 +524,11 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 		 * cluster specified by the remote_cluster field.
 		 * <p>
 		 * API name: {@code leader_index_patterns}
+		 * <p>
+		 * Adds one or more values to <code>leaderIndexPatterns</code>.
 		 */
-		public final Builder leaderIndexPatterns(String... value) {
-			this.leaderIndexPatterns = Arrays.asList(value);
+		public final Builder leaderIndexPatterns(String value, String... values) {
+			this.leaderIndexPatterns = _listAdd(this.leaderIndexPatterns, value, values);
 			return this;
 		}
 
@@ -573,10 +590,8 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code max_retry_delay}
 		 */
-		public final Builder maxRetryDelay(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.maxRetryDelay(builder.build());
+		public final Builder maxRetryDelay(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.maxRetryDelay(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -658,10 +673,8 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code read_poll_timeout}
 		 */
-		public final Builder readPollTimeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.readPollTimeout(builder.build());
+		public final Builder readPollTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.readPollTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -679,9 +692,24 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 		 * not be overrode (e.g., index.number_of_shards).
 		 * <p>
 		 * API name: {@code settings}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>settings</code>.
 		 */
-		public final Builder settings(@Nullable Map<String, JsonData> value) {
-			this.settings = value;
+		public final Builder settings(Map<String, JsonData> map) {
+			this.settings = _mapPutAll(this.settings, map);
+			return this;
+		}
+
+		/**
+		 * Settings to override from the leader index. Note that certain settings can
+		 * not be overrode (e.g., index.number_of_shards).
+		 * <p>
+		 * API name: {@code settings}
+		 * <p>
+		 * Adds an entry to <code>settings</code>.
+		 */
+		public final Builder settings(String key, JsonData value) {
+			this.settings = _mapPut(this.settings, key, value);
 			return this;
 		}
 

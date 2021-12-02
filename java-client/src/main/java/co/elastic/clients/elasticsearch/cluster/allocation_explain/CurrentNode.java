@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -37,10 +37,17 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.CurrentNode
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/allocation_explain/types.ts#L78-L84">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CurrentNode implements JsonpSerializable {
 	private final String id;
@@ -57,18 +64,16 @@ public class CurrentNode implements JsonpSerializable {
 
 	private CurrentNode(Builder builder) {
 
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
-		this.attributes = ModelTypeHelper.unmodifiableRequired(builder.attributes, this, "attributes");
-		this.transportAddress = ModelTypeHelper.requireNonNull(builder.transportAddress, this, "transportAddress");
-		this.weightRanking = ModelTypeHelper.requireNonNull(builder.weightRanking, this, "weightRanking");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.attributes = ApiTypeHelper.unmodifiableRequired(builder.attributes, this, "attributes");
+		this.transportAddress = ApiTypeHelper.requireNonNull(builder.transportAddress, this, "transportAddress");
+		this.weightRanking = ApiTypeHelper.requireNonNull(builder.weightRanking, this, "weightRanking");
 
 	}
 
-	public static CurrentNode of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CurrentNode of(Function<Builder, ObjectBuilder<CurrentNode>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -123,7 +128,7 @@ public class CurrentNode implements JsonpSerializable {
 		generator.writeKey("name");
 		generator.write(this.name);
 
-		if (ModelTypeHelper.isDefined(this.attributes)) {
+		if (ApiTypeHelper.isDefined(this.attributes)) {
 			generator.writeKey("attributes");
 			generator.writeStartObject();
 			for (Map.Entry<String, String> item0 : this.attributes.entrySet()) {
@@ -147,6 +152,7 @@ public class CurrentNode implements JsonpSerializable {
 	/**
 	 * Builder for {@link CurrentNode}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CurrentNode> {
 		private String id;
 
@@ -176,9 +182,21 @@ public class CurrentNode implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code attributes}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>attributes</code>.
 		 */
-		public final Builder attributes(Map<String, String> value) {
-			this.attributes = value;
+		public final Builder attributes(Map<String, String> map) {
+			this.attributes = _mapPutAll(this.attributes, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code attributes}
+		 * <p>
+		 * Adds an entry to <code>attributes</code>.
+		 */
+		public final Builder attributes(String key, String value) {
+			this.attributes = _mapPut(this.attributes, key, value);
 			return this;
 		}
 

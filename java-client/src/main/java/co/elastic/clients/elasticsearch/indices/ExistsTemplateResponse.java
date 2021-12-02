@@ -33,6 +33,13 @@ import java.util.Objects;
 
 // typedef: indices.exists_template.Response
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/exists_template/IndicesExistsTemplateResponse.ts#L22-L24">API
+ *      specification</a>
+ */
+
 public class ExistsTemplateResponse {
 	public ExistsTemplateResponse() {
 	}

@@ -32,9 +32,16 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: slm.get_lifecycle.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/slm/get_lifecycle/GetSnapshotLifecycleResponse.ts#L24-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetLifecycleResponse extends DictionaryResponse<String, SnapshotLifecycle> {
 	// ---------------------------------------------------------------------------------------------
@@ -44,10 +51,8 @@ public class GetLifecycleResponse extends DictionaryResponse<String, SnapshotLif
 
 	}
 
-	public static GetLifecycleResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetLifecycleResponse of(Function<Builder, ObjectBuilder<GetLifecycleResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -55,6 +60,7 @@ public class GetLifecycleResponse extends DictionaryResponse<String, SnapshotLif
 	/**
 	 * Builder for {@link GetLifecycleResponse}.
 	 */
+
 	public static class Builder extends DictionaryResponse.AbstractBuilder<String, SnapshotLifecycle, Builder>
 			implements
 				ObjectBuilder<GetLifecycleResponse> {

@@ -30,9 +30,18 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.aggregations.LongTermsAggregate
+
+/**
+ * Result of a <code>terms</code> aggregation when the field is some kind of
+ * whole number like a integer, long, or a date.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L383-L388">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class LongTermsAggregate extends TermsAggregateBase<LongTermsBucket> implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -42,10 +51,8 @@ public class LongTermsAggregate extends TermsAggregateBase<LongTermsBucket> impl
 
 	}
 
-	public static LongTermsAggregate of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static LongTermsAggregate of(Function<Builder, ObjectBuilder<LongTermsAggregate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,6 +68,7 @@ public class LongTermsAggregate extends TermsAggregateBase<LongTermsBucket> impl
 	/**
 	 * Builder for {@link LongTermsAggregate}.
 	 */
+
 	public static class Builder extends TermsAggregateBase.AbstractBuilder<LongTermsBucket, Builder>
 			implements
 				ObjectBuilder<LongTermsAggregate> {

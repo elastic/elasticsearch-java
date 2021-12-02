@@ -29,19 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.get_component_template.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/get_component_template/ClusterGetComponentTemplateResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetComponentTemplateResponse implements JsonpSerializable {
 	private final List<ComponentTemplate> componentTemplates;
@@ -50,15 +54,13 @@ public class GetComponentTemplateResponse implements JsonpSerializable {
 
 	private GetComponentTemplateResponse(Builder builder) {
 
-		this.componentTemplates = ModelTypeHelper.unmodifiableRequired(builder.componentTemplates, this,
+		this.componentTemplates = ApiTypeHelper.unmodifiableRequired(builder.componentTemplates, this,
 				"componentTemplates");
 
 	}
 
-	public static GetComponentTemplateResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetComponentTemplateResponse of(Function<Builder, ObjectBuilder<GetComponentTemplateResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -79,7 +81,7 @@ public class GetComponentTemplateResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.componentTemplates)) {
+		if (ApiTypeHelper.isDefined(this.componentTemplates)) {
 			generator.writeKey("component_templates");
 			generator.writeStartArray();
 			for (ComponentTemplate item0 : this.componentTemplates) {
@@ -97,31 +99,38 @@ public class GetComponentTemplateResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetComponentTemplateResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetComponentTemplateResponse> {
 		private List<ComponentTemplate> componentTemplates;
 
 		/**
 		 * Required - API name: {@code component_templates}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>componentTemplates</code>.
 		 */
-		public final Builder componentTemplates(List<ComponentTemplate> value) {
-			this.componentTemplates = value;
+		public final Builder componentTemplates(List<ComponentTemplate> list) {
+			this.componentTemplates = _listAddAll(this.componentTemplates, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code component_templates}
+		 * <p>
+		 * Adds one or more values to <code>componentTemplates</code>.
 		 */
-		public final Builder componentTemplates(ComponentTemplate... value) {
-			this.componentTemplates = Arrays.asList(value);
+		public final Builder componentTemplates(ComponentTemplate value, ComponentTemplate... values) {
+			this.componentTemplates = _listAdd(this.componentTemplates, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code component_templates}
+		 * <p>
+		 * Adds a value to <code>componentTemplates</code> using a builder lambda.
 		 */
 		public final Builder componentTemplates(
-				Function<ListBuilder<ComponentTemplate, ComponentTemplate.Builder>, ObjectBuilder<List<ComponentTemplate>>> fn) {
-			return componentTemplates(fn.apply(new ListBuilder<>(ComponentTemplate.Builder::new)).build());
+				Function<ComponentTemplate.Builder, ObjectBuilder<ComponentTemplate>> fn) {
+			return componentTemplates(fn.apply(new ComponentTemplate.Builder()).build());
 		}
 
 		/**

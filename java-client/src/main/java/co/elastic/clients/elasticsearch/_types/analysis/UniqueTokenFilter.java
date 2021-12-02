@@ -32,10 +32,17 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.UniqueTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L331-L334">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class UniqueTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	@Nullable
@@ -50,10 +57,8 @@ public class UniqueTokenFilter extends TokenFilterBase implements TokenFilterDef
 
 	}
 
-	public static UniqueTokenFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static UniqueTokenFilter of(Function<Builder, ObjectBuilder<UniqueTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -89,6 +94,7 @@ public class UniqueTokenFilter extends TokenFilterBase implements TokenFilterDef
 	/**
 	 * Builder for {@link UniqueTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<UniqueTokenFilter> {

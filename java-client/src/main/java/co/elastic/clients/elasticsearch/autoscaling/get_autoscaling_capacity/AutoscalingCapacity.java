@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: autoscaling.get_autoscaling_capacity.AutoscalingCapacity
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/autoscaling/get_autoscaling_capacity/GetAutoscalingCapacityResponse.ts#L38-L41">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AutoscalingCapacity implements JsonpSerializable {
 	private final AutoscalingResources node;
@@ -48,15 +55,13 @@ public class AutoscalingCapacity implements JsonpSerializable {
 
 	private AutoscalingCapacity(Builder builder) {
 
-		this.node = ModelTypeHelper.requireNonNull(builder.node, this, "node");
-		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
+		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
 
 	}
 
-	public static AutoscalingCapacity of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static AutoscalingCapacity of(Function<Builder, ObjectBuilder<AutoscalingCapacity>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -97,6 +102,7 @@ public class AutoscalingCapacity implements JsonpSerializable {
 	/**
 	 * Builder for {@link AutoscalingCapacity}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AutoscalingCapacity> {
 		private AutoscalingResources node;
 
@@ -113,10 +119,8 @@ public class AutoscalingCapacity implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code node}
 		 */
-		public final Builder node(Consumer<AutoscalingResources.Builder> fn) {
-			AutoscalingResources.Builder builder = new AutoscalingResources.Builder();
-			fn.accept(builder);
-			return this.node(builder.build());
+		public final Builder node(Function<AutoscalingResources.Builder, ObjectBuilder<AutoscalingResources>> fn) {
+			return this.node(fn.apply(new AutoscalingResources.Builder()).build());
 		}
 
 		/**
@@ -130,10 +134,8 @@ public class AutoscalingCapacity implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total}
 		 */
-		public final Builder total(Consumer<AutoscalingResources.Builder> fn) {
-			AutoscalingResources.Builder builder = new AutoscalingResources.Builder();
-			fn.accept(builder);
-			return this.total(builder.build());
+		public final Builder total(Function<AutoscalingResources.Builder, ObjectBuilder<AutoscalingResources>> fn) {
+			return this.total(fn.apply(new AutoscalingResources.Builder()).build());
 		}
 
 		/**

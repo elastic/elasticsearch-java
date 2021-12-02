@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -37,10 +37,17 @@ import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.QueryWatch
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Watch.ts#L58-L64">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class QueryWatch implements JsonpSerializable {
 	private final String id;
@@ -61,7 +68,7 @@ public class QueryWatch implements JsonpSerializable {
 
 	private QueryWatch(Builder builder) {
 
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.status = builder.status;
 		this.watch = builder.watch;
 		this.primaryTerm = builder.primaryTerm;
@@ -69,10 +76,8 @@ public class QueryWatch implements JsonpSerializable {
 
 	}
 
-	public static QueryWatch of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static QueryWatch of(Function<Builder, ObjectBuilder<QueryWatch>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -156,6 +161,7 @@ public class QueryWatch implements JsonpSerializable {
 	/**
 	 * Builder for {@link QueryWatch}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<QueryWatch> {
 		private String id;
 
@@ -190,10 +196,8 @@ public class QueryWatch implements JsonpSerializable {
 		/**
 		 * API name: {@code status}
 		 */
-		public final Builder status(Consumer<WatchStatus.Builder> fn) {
-			WatchStatus.Builder builder = new WatchStatus.Builder();
-			fn.accept(builder);
-			return this.status(builder.build());
+		public final Builder status(Function<WatchStatus.Builder, ObjectBuilder<WatchStatus>> fn) {
+			return this.status(fn.apply(new WatchStatus.Builder()).build());
 		}
 
 		/**
@@ -207,10 +211,8 @@ public class QueryWatch implements JsonpSerializable {
 		/**
 		 * API name: {@code watch}
 		 */
-		public final Builder watch(Consumer<Watch.Builder> fn) {
-			Watch.Builder builder = new Watch.Builder();
-			fn.accept(builder);
-			return this.watch(builder.build());
+		public final Builder watch(Function<Watch.Builder, ObjectBuilder<Watch>> fn) {
+			return this.watch(fn.apply(new Watch.Builder()).build());
 		}
 
 		/**

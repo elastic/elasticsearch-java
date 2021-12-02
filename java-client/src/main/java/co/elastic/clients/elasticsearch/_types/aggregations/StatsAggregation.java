@@ -30,9 +30,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.aggregations.StatsAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/metric.ts#L136-L136">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class StatsAggregation extends FormatMetricAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -42,10 +49,8 @@ public class StatsAggregation extends FormatMetricAggregationBase implements Agg
 
 	}
 
-	public static StatsAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static StatsAggregation of(Function<Builder, ObjectBuilder<StatsAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,6 +66,7 @@ public class StatsAggregation extends FormatMetricAggregationBase implements Agg
 	/**
 	 * Builder for {@link StatsAggregation}.
 	 */
+
 	public static class Builder extends FormatMetricAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<StatsAggregation> {

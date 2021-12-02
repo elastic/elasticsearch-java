@@ -31,9 +31,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.mapping.BinaryProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/core.ts#L91-L93">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class BinaryProperty extends DocValuesPropertyBase implements PropertyVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -43,10 +50,8 @@ public class BinaryProperty extends DocValuesPropertyBase implements PropertyVar
 
 	}
 
-	public static BinaryProperty of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static BinaryProperty of(Function<Builder, ObjectBuilder<BinaryProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -69,6 +74,7 @@ public class BinaryProperty extends DocValuesPropertyBase implements PropertyVar
 	/**
 	 * Builder for {@link BinaryProperty}.
 	 */
+
 	public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<BinaryProperty> {

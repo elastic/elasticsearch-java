@@ -30,9 +30,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _global.bulk.DeleteOperation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/bulk/types.ts#L78-L78">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DeleteOperation extends BulkOperationBase implements BulkOperationVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -42,10 +49,8 @@ public class DeleteOperation extends BulkOperationBase implements BulkOperationV
 
 	}
 
-	public static DeleteOperation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DeleteOperation of(Function<Builder, ObjectBuilder<DeleteOperation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,6 +66,7 @@ public class DeleteOperation extends BulkOperationBase implements BulkOperationV
 	/**
 	 * Builder for {@link DeleteOperation}.
 	 */
+
 	public static class Builder extends BulkOperationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeleteOperation> {

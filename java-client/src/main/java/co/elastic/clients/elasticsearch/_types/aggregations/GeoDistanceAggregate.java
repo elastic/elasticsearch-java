@@ -30,9 +30,18 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.aggregations.GeoDistanceAggregate
+
+/**
+ * Result of a <code>geo_distance</code> aggregation. The unit for
+ * <code>from</code> and <code>to</code> is meters by default.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L516-L520">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GeoDistanceAggregate extends RangeAggregate implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -42,10 +51,8 @@ public class GeoDistanceAggregate extends RangeAggregate implements AggregateVar
 
 	}
 
-	public static GeoDistanceAggregate of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GeoDistanceAggregate of(Function<Builder, ObjectBuilder<GeoDistanceAggregate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,6 +68,7 @@ public class GeoDistanceAggregate extends RangeAggregate implements AggregateVar
 	/**
 	 * Builder for {@link GeoDistanceAggregate}.
 	 */
+
 	public static class Builder extends RangeAggregate.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<GeoDistanceAggregate> {

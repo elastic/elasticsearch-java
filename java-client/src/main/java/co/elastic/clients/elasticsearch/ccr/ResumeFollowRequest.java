@@ -34,7 +34,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,10 +42,18 @@ import java.lang.Long;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr.resume_follow.Request
+
+/**
+ * Resumes a follower index that has been paused
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ccr/resume_follow/ResumeFollowIndexRequest.ts#L25-L46">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ResumeFollowRequest extends RequestBase implements JsonpSerializable {
 	private final String index;
@@ -84,7 +92,7 @@ public class ResumeFollowRequest extends RequestBase implements JsonpSerializabl
 
 	private ResumeFollowRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.maxOutstandingReadRequests = builder.maxOutstandingReadRequests;
 		this.maxOutstandingWriteRequests = builder.maxOutstandingWriteRequests;
 		this.maxReadRequestOperationCount = builder.maxReadRequestOperationCount;
@@ -98,10 +106,8 @@ public class ResumeFollowRequest extends RequestBase implements JsonpSerializabl
 
 	}
 
-	public static ResumeFollowRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ResumeFollowRequest of(Function<Builder, ObjectBuilder<ResumeFollowRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -262,6 +268,7 @@ public class ResumeFollowRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Builder for {@link ResumeFollowRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ResumeFollowRequest> {
 		private String index;
 
@@ -348,10 +355,8 @@ public class ResumeFollowRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code max_retry_delay}
 		 */
-		public final Builder maxRetryDelay(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.maxRetryDelay(builder.build());
+		public final Builder maxRetryDelay(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.maxRetryDelay(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -397,10 +402,8 @@ public class ResumeFollowRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code read_poll_timeout}
 		 */
-		public final Builder readPollTimeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.readPollTimeout(builder.build());
+		public final Builder readPollTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.readPollTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

@@ -38,6 +38,14 @@ import java.util.Objects;
 
 // typedef: _global.get_script_languages.Request
 
+/**
+ * Returns available script types, languages and contexts
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/get_script_languages/GetScriptLanguagesRequest.ts#L22-L27">API
+ *      specification</a>
+ */
+
 public class GetScriptLanguagesRequest extends RequestBase {
 	public GetScriptLanguagesRequest() {
 	}

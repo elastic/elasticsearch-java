@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: cluster.stats.OperatingSystemMemoryInfo
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/stats/types.ts#L278-L284">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class OperatingSystemMemoryInfo implements JsonpSerializable {
 	private final long freeInBytes;
@@ -55,18 +62,16 @@ public class OperatingSystemMemoryInfo implements JsonpSerializable {
 
 	private OperatingSystemMemoryInfo(Builder builder) {
 
-		this.freeInBytes = ModelTypeHelper.requireNonNull(builder.freeInBytes, this, "freeInBytes");
-		this.freePercent = ModelTypeHelper.requireNonNull(builder.freePercent, this, "freePercent");
-		this.totalInBytes = ModelTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes");
-		this.usedInBytes = ModelTypeHelper.requireNonNull(builder.usedInBytes, this, "usedInBytes");
-		this.usedPercent = ModelTypeHelper.requireNonNull(builder.usedPercent, this, "usedPercent");
+		this.freeInBytes = ApiTypeHelper.requireNonNull(builder.freeInBytes, this, "freeInBytes");
+		this.freePercent = ApiTypeHelper.requireNonNull(builder.freePercent, this, "freePercent");
+		this.totalInBytes = ApiTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes");
+		this.usedInBytes = ApiTypeHelper.requireNonNull(builder.usedInBytes, this, "usedInBytes");
+		this.usedPercent = ApiTypeHelper.requireNonNull(builder.usedPercent, this, "usedPercent");
 
 	}
 
-	public static OperatingSystemMemoryInfo of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static OperatingSystemMemoryInfo of(Function<Builder, ObjectBuilder<OperatingSystemMemoryInfo>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -137,6 +142,7 @@ public class OperatingSystemMemoryInfo implements JsonpSerializable {
 	/**
 	 * Builder for {@link OperatingSystemMemoryInfo}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<OperatingSystemMemoryInfo> {
 		private Long freeInBytes;
 

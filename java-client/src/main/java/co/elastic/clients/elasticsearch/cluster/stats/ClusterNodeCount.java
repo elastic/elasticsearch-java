@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterNodeCount
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/stats/types.ts#L175-L191">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ClusterNodeCount implements JsonpSerializable {
 	private final int coordinatingOnly;
@@ -74,28 +81,26 @@ public class ClusterNodeCount implements JsonpSerializable {
 
 	private ClusterNodeCount(Builder builder) {
 
-		this.coordinatingOnly = ModelTypeHelper.requireNonNull(builder.coordinatingOnly, this, "coordinatingOnly");
-		this.data = ModelTypeHelper.requireNonNull(builder.data, this, "data");
-		this.ingest = ModelTypeHelper.requireNonNull(builder.ingest, this, "ingest");
-		this.master = ModelTypeHelper.requireNonNull(builder.master, this, "master");
-		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
-		this.votingOnly = ModelTypeHelper.requireNonNull(builder.votingOnly, this, "votingOnly");
-		this.dataCold = ModelTypeHelper.requireNonNull(builder.dataCold, this, "dataCold");
+		this.coordinatingOnly = ApiTypeHelper.requireNonNull(builder.coordinatingOnly, this, "coordinatingOnly");
+		this.data = ApiTypeHelper.requireNonNull(builder.data, this, "data");
+		this.ingest = ApiTypeHelper.requireNonNull(builder.ingest, this, "ingest");
+		this.master = ApiTypeHelper.requireNonNull(builder.master, this, "master");
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+		this.votingOnly = ApiTypeHelper.requireNonNull(builder.votingOnly, this, "votingOnly");
+		this.dataCold = ApiTypeHelper.requireNonNull(builder.dataCold, this, "dataCold");
 		this.dataFrozen = builder.dataFrozen;
-		this.dataContent = ModelTypeHelper.requireNonNull(builder.dataContent, this, "dataContent");
-		this.dataWarm = ModelTypeHelper.requireNonNull(builder.dataWarm, this, "dataWarm");
-		this.dataHot = ModelTypeHelper.requireNonNull(builder.dataHot, this, "dataHot");
-		this.ml = ModelTypeHelper.requireNonNull(builder.ml, this, "ml");
-		this.remoteClusterClient = ModelTypeHelper.requireNonNull(builder.remoteClusterClient, this,
+		this.dataContent = ApiTypeHelper.requireNonNull(builder.dataContent, this, "dataContent");
+		this.dataWarm = ApiTypeHelper.requireNonNull(builder.dataWarm, this, "dataWarm");
+		this.dataHot = ApiTypeHelper.requireNonNull(builder.dataHot, this, "dataHot");
+		this.ml = ApiTypeHelper.requireNonNull(builder.ml, this, "ml");
+		this.remoteClusterClient = ApiTypeHelper.requireNonNull(builder.remoteClusterClient, this,
 				"remoteClusterClient");
-		this.transform = ModelTypeHelper.requireNonNull(builder.transform, this, "transform");
+		this.transform = ApiTypeHelper.requireNonNull(builder.transform, this, "transform");
 
 	}
 
-	public static ClusterNodeCount of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ClusterNodeCount of(Function<Builder, ObjectBuilder<ClusterNodeCount>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -259,6 +264,7 @@ public class ClusterNodeCount implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClusterNodeCount}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterNodeCount> {
 		private Integer coordinatingOnly;
 

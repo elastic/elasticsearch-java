@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.UnionDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
@@ -39,11 +39,19 @@ import java.lang.Number;
 import java.lang.Object;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.GeoHashPrecision
-// union type: Union[]
+
+/**
+ * A precision that can be expressed as a geohash length between 1 and 12, or a
+ * distance measure like &quot;1km&quot;, &quot;10m&quot;.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Geo.ts#L76-L80">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GeoHashPrecision implements TaggedUnion<GeoHashPrecision.Kind, Object>, JsonpSerializable {
 
@@ -84,15 +92,13 @@ public class GeoHashPrecision implements TaggedUnion<GeoHashPrecision.Kind, Obje
 
 	private GeoHashPrecision(Builder builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static GeoHashPrecision of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GeoHashPrecision of(Function<Builder, ObjectBuilder<GeoHashPrecision>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**

@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.SlackResult
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Actions.ts#L75-L78">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SlackResult implements JsonpSerializable {
 	@Nullable
@@ -51,14 +58,12 @@ public class SlackResult implements JsonpSerializable {
 	private SlackResult(Builder builder) {
 
 		this.account = builder.account;
-		this.message = ModelTypeHelper.requireNonNull(builder.message, this, "message");
+		this.message = ApiTypeHelper.requireNonNull(builder.message, this, "message");
 
 	}
 
-	public static SlackResult of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SlackResult of(Function<Builder, ObjectBuilder<SlackResult>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -102,6 +107,7 @@ public class SlackResult implements JsonpSerializable {
 	/**
 	 * Builder for {@link SlackResult}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SlackResult> {
 		@Nullable
 		private String account;
@@ -127,10 +133,8 @@ public class SlackResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code message}
 		 */
-		public final Builder message(Consumer<SlackMessage.Builder> fn) {
-			SlackMessage.Builder builder = new SlackMessage.Builder();
-			fn.accept(builder);
-			return this.message(builder.build());
+		public final Builder message(Function<SlackMessage.Builder, ObjectBuilder<SlackMessage>> fn) {
+			return this.message(fn.apply(new SlackMessage.Builder()).build());
 		}
 
 		/**

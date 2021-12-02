@@ -33,9 +33,16 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: indices.recovery.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/recovery/IndicesRecoveryResponse.ts#L24-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RecoveryResponse extends DictionaryResponse<String, RecoveryStatus> {
 	// ---------------------------------------------------------------------------------------------
@@ -45,10 +52,8 @@ public class RecoveryResponse extends DictionaryResponse<String, RecoveryStatus>
 
 	}
 
-	public static RecoveryResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RecoveryResponse of(Function<Builder, ObjectBuilder<RecoveryResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -56,6 +61,7 @@ public class RecoveryResponse extends DictionaryResponse<String, RecoveryStatus>
 	/**
 	 * Builder for {@link RecoveryResponse}.
 	 */
+
 	public static class Builder extends DictionaryResponse.AbstractBuilder<String, RecoveryStatus, Builder>
 			implements
 				ObjectBuilder<RecoveryResponse> {

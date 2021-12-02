@@ -29,20 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_datafeeds.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_datafeeds/MlGetDatafeedsResponse.ts#L23-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetDatafeedsResponse implements JsonpSerializable {
 	private final long count;
@@ -53,15 +57,13 @@ public class GetDatafeedsResponse implements JsonpSerializable {
 
 	private GetDatafeedsResponse(Builder builder) {
 
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
-		this.datafeeds = ModelTypeHelper.unmodifiableRequired(builder.datafeeds, this, "datafeeds");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.datafeeds = ApiTypeHelper.unmodifiableRequired(builder.datafeeds, this, "datafeeds");
 
 	}
 
-	public static GetDatafeedsResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetDatafeedsResponse of(Function<Builder, ObjectBuilder<GetDatafeedsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -92,7 +94,7 @@ public class GetDatafeedsResponse implements JsonpSerializable {
 		generator.writeKey("count");
 		generator.write(this.count);
 
-		if (ModelTypeHelper.isDefined(this.datafeeds)) {
+		if (ApiTypeHelper.isDefined(this.datafeeds)) {
 			generator.writeKey("datafeeds");
 			generator.writeStartArray();
 			for (Datafeed item0 : this.datafeeds) {
@@ -110,6 +112,7 @@ public class GetDatafeedsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetDatafeedsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetDatafeedsResponse> {
 		private Long count;
 
@@ -125,26 +128,31 @@ public class GetDatafeedsResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code datafeeds}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>datafeeds</code>.
 		 */
-		public final Builder datafeeds(List<Datafeed> value) {
-			this.datafeeds = value;
+		public final Builder datafeeds(List<Datafeed> list) {
+			this.datafeeds = _listAddAll(this.datafeeds, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code datafeeds}
+		 * <p>
+		 * Adds one or more values to <code>datafeeds</code>.
 		 */
-		public final Builder datafeeds(Datafeed... value) {
-			this.datafeeds = Arrays.asList(value);
+		public final Builder datafeeds(Datafeed value, Datafeed... values) {
+			this.datafeeds = _listAdd(this.datafeeds, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code datafeeds}
+		 * <p>
+		 * Adds a value to <code>datafeeds</code> using a builder lambda.
 		 */
-		public final Builder datafeeds(
-				Function<ListBuilder<Datafeed, Datafeed.Builder>, ObjectBuilder<List<Datafeed>>> fn) {
-			return datafeeds(fn.apply(new ListBuilder<>(Datafeed.Builder::new)).build());
+		public final Builder datafeeds(Function<Datafeed.Builder, ObjectBuilder<Datafeed>> fn) {
+			return datafeeds(fn.apply(new Datafeed.Builder()).build());
 		}
 
 		/**

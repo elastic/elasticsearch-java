@@ -29,19 +29,25 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.SignificantTermsAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/bucket.ts#L305-L320">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SignificantTermsAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
@@ -96,7 +102,7 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 		this.executionHint = builder.executionHint;
 		this.field = builder.field;
 		this.gnd = builder.gnd;
-		this.include = ModelTypeHelper.unmodifiable(builder.include);
+		this.include = ApiTypeHelper.unmodifiable(builder.include);
 		this.minDocCount = builder.minDocCount;
 		this.mutualInformation = builder.mutualInformation;
 		this.percentage = builder.percentage;
@@ -107,10 +113,8 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 
 	}
 
-	public static SignificantTermsAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SignificantTermsAggregation of(Function<Builder, ObjectBuilder<SignificantTermsAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -264,7 +268,7 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 			this.gnd.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.include)) {
+		if (ApiTypeHelper.isDefined(this.include)) {
 			generator.writeKey("include");
 			generator.writeStartArray();
 			for (String item0 : this.include) {
@@ -317,6 +321,7 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 	/**
 	 * Builder for {@link SignificantTermsAggregation}.
 	 */
+
 	public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<SignificantTermsAggregation> {
@@ -373,10 +378,8 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 		/**
 		 * API name: {@code background_filter}
 		 */
-		public final Builder backgroundFilter(Consumer<Query.Builder> fn) {
-			Query.Builder builder = new Query.Builder();
-			fn.accept(builder);
-			return this.backgroundFilter(builder.build());
+		public final Builder backgroundFilter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.backgroundFilter(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
@@ -390,10 +393,8 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 		/**
 		 * API name: {@code chi_square}
 		 */
-		public final Builder chiSquare(Consumer<ChiSquareHeuristic.Builder> fn) {
-			ChiSquareHeuristic.Builder builder = new ChiSquareHeuristic.Builder();
-			fn.accept(builder);
-			return this.chiSquare(builder.build());
+		public final Builder chiSquare(Function<ChiSquareHeuristic.Builder, ObjectBuilder<ChiSquareHeuristic>> fn) {
+			return this.chiSquare(fn.apply(new ChiSquareHeuristic.Builder()).build());
 		}
 
 		/**
@@ -407,10 +408,8 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 		/**
 		 * API name: {@code exclude}
 		 */
-		public final Builder exclude(Consumer<TermsExclude.Builder> fn) {
-			TermsExclude.Builder builder = new TermsExclude.Builder();
-			fn.accept(builder);
-			return this.exclude(builder.build());
+		public final Builder exclude(Function<TermsExclude.Builder, ObjectBuilder<TermsExclude>> fn) {
+			return this.exclude(fn.apply(new TermsExclude.Builder()).build());
 		}
 
 		/**
@@ -440,25 +439,28 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 		/**
 		 * API name: {@code gnd}
 		 */
-		public final Builder gnd(Consumer<GoogleNormalizedDistanceHeuristic.Builder> fn) {
-			GoogleNormalizedDistanceHeuristic.Builder builder = new GoogleNormalizedDistanceHeuristic.Builder();
-			fn.accept(builder);
-			return this.gnd(builder.build());
+		public final Builder gnd(
+				Function<GoogleNormalizedDistanceHeuristic.Builder, ObjectBuilder<GoogleNormalizedDistanceHeuristic>> fn) {
+			return this.gnd(fn.apply(new GoogleNormalizedDistanceHeuristic.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code include}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>include</code>.
 		 */
-		public final Builder include(@Nullable List<String> value) {
-			this.include = value;
+		public final Builder include(List<String> list) {
+			this.include = _listAddAll(this.include, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code include}
+		 * <p>
+		 * Adds one or more values to <code>include</code>.
 		 */
-		public final Builder include(String... value) {
-			this.include = Arrays.asList(value);
+		public final Builder include(String value, String... values) {
+			this.include = _listAdd(this.include, value, values);
 			return this;
 		}
 
@@ -481,10 +483,9 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 		/**
 		 * API name: {@code mutual_information}
 		 */
-		public final Builder mutualInformation(Consumer<MutualInformationHeuristic.Builder> fn) {
-			MutualInformationHeuristic.Builder builder = new MutualInformationHeuristic.Builder();
-			fn.accept(builder);
-			return this.mutualInformation(builder.build());
+		public final Builder mutualInformation(
+				Function<MutualInformationHeuristic.Builder, ObjectBuilder<MutualInformationHeuristic>> fn) {
+			return this.mutualInformation(fn.apply(new MutualInformationHeuristic.Builder()).build());
 		}
 
 		/**
@@ -498,10 +499,9 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 		/**
 		 * API name: {@code percentage}
 		 */
-		public final Builder percentage(Consumer<PercentageScoreHeuristic.Builder> fn) {
-			PercentageScoreHeuristic.Builder builder = new PercentageScoreHeuristic.Builder();
-			fn.accept(builder);
-			return this.percentage(builder.build());
+		public final Builder percentage(
+				Function<PercentageScoreHeuristic.Builder, ObjectBuilder<PercentageScoreHeuristic>> fn) {
+			return this.percentage(fn.apply(new PercentageScoreHeuristic.Builder()).build());
 		}
 
 		/**
@@ -515,10 +515,8 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 		/**
 		 * API name: {@code script_heuristic}
 		 */
-		public final Builder scriptHeuristic(Consumer<ScriptedHeuristic.Builder> fn) {
-			ScriptedHeuristic.Builder builder = new ScriptedHeuristic.Builder();
-			fn.accept(builder);
-			return this.scriptHeuristic(builder.build());
+		public final Builder scriptHeuristic(Function<ScriptedHeuristic.Builder, ObjectBuilder<ScriptedHeuristic>> fn) {
+			return this.scriptHeuristic(fn.apply(new ScriptedHeuristic.Builder()).build());
 		}
 
 		/**

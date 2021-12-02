@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
@@ -38,14 +38,23 @@ import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.TriggerContainer
-// union type: Container[]
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Trigger.ts#L23-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Trigger implements TaggedUnion<Trigger.Kind, Object>, JsonpSerializable {
 
+	/**
+	 * {@link Trigger} variant kinds.
+	 */
 	/**
 	 * {@link Trigger} variant kinds.
 	 */
@@ -82,22 +91,20 @@ public class Trigger implements TaggedUnion<Trigger.Kind, Object>, JsonpSerializ
 
 	public Trigger(TriggerVariant value) {
 
-		this._kind = ModelTypeHelper.requireNonNull(value._triggerKind(), this, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(value._triggerKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
 	private Trigger(Builder builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static Trigger of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Trigger of(Function<Builder, ObjectBuilder<Trigger>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -142,10 +149,8 @@ public class Trigger implements TaggedUnion<Trigger.Kind, Object>, JsonpSerializ
 			return this;
 		}
 
-		public ObjectBuilder<Trigger> schedule(Consumer<Schedule.Builder> fn) {
-			Schedule.Builder builder = new Schedule.Builder();
-			fn.accept(builder);
-			return this.schedule(builder.build());
+		public ObjectBuilder<Trigger> schedule(Function<Schedule.Builder, ObjectBuilder<Schedule>> fn) {
+			return this.schedule(fn.apply(new Schedule.Builder()).build());
 		}
 
 		public Trigger build() {

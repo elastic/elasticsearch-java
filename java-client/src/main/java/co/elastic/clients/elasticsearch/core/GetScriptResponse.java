@@ -30,17 +30,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.get_script.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/get_script/GetScriptResponse.ts#L23-L29">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetScriptResponse implements JsonpSerializable {
 	private final String id;
@@ -54,16 +61,14 @@ public class GetScriptResponse implements JsonpSerializable {
 
 	private GetScriptResponse(Builder builder) {
 
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
-		this.found = ModelTypeHelper.requireNonNull(builder.found, this, "found");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found");
 		this.script = builder.script;
 
 	}
 
-	public static GetScriptResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetScriptResponse of(Function<Builder, ObjectBuilder<GetScriptResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -118,6 +123,7 @@ public class GetScriptResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetScriptResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetScriptResponse> {
 		private String id;
 
@@ -153,10 +159,8 @@ public class GetScriptResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code script}
 		 */
-		public final Builder script(Consumer<StoredScript.Builder> fn) {
-			StoredScript.Builder builder = new StoredScript.Builder();
-			fn.accept(builder);
-			return this.script(builder.build());
+		public final Builder script(Function<StoredScript.Builder, ObjectBuilder<StoredScript>> fn) {
+			return this.script(fn.apply(new StoredScript.Builder()).build());
 		}
 
 		/**

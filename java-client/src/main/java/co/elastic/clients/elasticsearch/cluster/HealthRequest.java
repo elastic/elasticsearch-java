@@ -37,22 +37,29 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: cluster.health.Request
+
+/**
+ * Returns basic information about the health of the cluster.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/health/ClusterHealthRequest.ts#L31-L95">API
+ *      specification</a>
+ */
 
 public class HealthRequest extends RequestBase {
 	private final List<ExpandWildcard> expandWildcards;
@@ -93,8 +100,8 @@ public class HealthRequest extends RequestBase {
 
 	private HealthRequest(Builder builder) {
 
-		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
+		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
+		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.level = builder.level;
 		this.local = builder.local;
 		this.masterTimeout = builder.masterTimeout;
@@ -108,10 +115,8 @@ public class HealthRequest extends RequestBase {
 
 	}
 
-	public static HealthRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static HealthRequest of(Function<Builder, ObjectBuilder<HealthRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -254,6 +259,7 @@ public class HealthRequest extends RequestBase {
 	/**
 	 * Builder for {@link HealthRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HealthRequest> {
 		@Nullable
 		private List<ExpandWildcard> expandWildcards;
@@ -296,9 +302,11 @@ public class HealthRequest extends RequestBase {
 		 * closed or both.
 		 * <p>
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
 		 */
-		public final Builder expandWildcards(@Nullable List<ExpandWildcard> value) {
-			this.expandWildcards = value;
+		public final Builder expandWildcards(List<ExpandWildcard> list) {
+			this.expandWildcards = _listAddAll(this.expandWildcards, list);
 			return this;
 		}
 
@@ -307,9 +315,11 @@ public class HealthRequest extends RequestBase {
 		 * closed or both.
 		 * <p>
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds one or more values to <code>expandWildcards</code>.
 		 */
-		public final Builder expandWildcards(ExpandWildcard... value) {
-			this.expandWildcards = Arrays.asList(value);
+		public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
+			this.expandWildcards = _listAdd(this.expandWildcards, value, values);
 			return this;
 		}
 
@@ -319,9 +329,11 @@ public class HealthRequest extends RequestBase {
 		 * streams and indices in a cluster, omit this parameter or use _all or *.
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 */
-		public final Builder index(@Nullable List<String> value) {
-			this.index = value;
+		public final Builder index(List<String> list) {
+			this.index = _listAddAll(this.index, list);
 			return this;
 		}
 
@@ -331,9 +343,11 @@ public class HealthRequest extends RequestBase {
 		 * streams and indices in a cluster, omit this parameter or use _all or *.
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds one or more values to <code>index</code>.
 		 */
-		public final Builder index(String... value) {
-			this.index = Arrays.asList(value);
+		public final Builder index(String value, String... values) {
+			this.index = _listAdd(this.index, value, values);
 			return this;
 		}
 
@@ -376,10 +390,8 @@ public class HealthRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.masterTimeout(builder.build());
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -399,10 +411,8 @@ public class HealthRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.timeout(builder.build());
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -422,10 +432,9 @@ public class HealthRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
-		public final Builder waitForActiveShards(Consumer<WaitForActiveShards.Builder> fn) {
-			WaitForActiveShards.Builder builder = new WaitForActiveShards.Builder();
-			fn.accept(builder);
-			return this.waitForActiveShards(builder.build());
+		public final Builder waitForActiveShards(
+				Function<WaitForActiveShards.Builder, ObjectBuilder<WaitForActiveShards>> fn) {
+			return this.waitForActiveShards(fn.apply(new WaitForActiveShards.Builder()).build());
 		}
 
 		/**
@@ -520,7 +529,7 @@ public class HealthRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (ModelTypeHelper.isDefined(request.index()))
+				if (ApiTypeHelper.isDefined(request.index()))
 					propsSet |= _index;
 
 				if (propsSet == 0) {
@@ -547,7 +556,7 @@ public class HealthRequest extends RequestBase {
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
-				if (ModelTypeHelper.isDefined(request.expandWildcards)) {
+				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}

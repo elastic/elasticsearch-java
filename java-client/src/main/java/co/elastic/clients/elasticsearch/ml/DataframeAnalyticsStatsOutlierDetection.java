@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsStatsOutlierDetection
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/DataframeAnalytics.ts#L384-L388">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeAnalyticsStatsOutlierDetection implements DataframeAnalyticsStatsVariant, JsonpSerializable {
 	private final OutlierDetectionParameters parameters;
@@ -51,16 +58,15 @@ public class DataframeAnalyticsStatsOutlierDetection implements DataframeAnalyti
 
 	private DataframeAnalyticsStatsOutlierDetection(Builder builder) {
 
-		this.parameters = ModelTypeHelper.requireNonNull(builder.parameters, this, "parameters");
-		this.timestamp = ModelTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
-		this.timingStats = ModelTypeHelper.requireNonNull(builder.timingStats, this, "timingStats");
+		this.parameters = ApiTypeHelper.requireNonNull(builder.parameters, this, "parameters");
+		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+		this.timingStats = ApiTypeHelper.requireNonNull(builder.timingStats, this, "timingStats");
 
 	}
 
-	public static DataframeAnalyticsStatsOutlierDetection of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DataframeAnalyticsStatsOutlierDetection of(
+			Function<Builder, ObjectBuilder<DataframeAnalyticsStatsOutlierDetection>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -119,6 +125,7 @@ public class DataframeAnalyticsStatsOutlierDetection implements DataframeAnalyti
 	/**
 	 * Builder for {@link DataframeAnalyticsStatsOutlierDetection}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase
 			implements
 				ObjectBuilder<DataframeAnalyticsStatsOutlierDetection> {
@@ -139,10 +146,9 @@ public class DataframeAnalyticsStatsOutlierDetection implements DataframeAnalyti
 		/**
 		 * Required - API name: {@code parameters}
 		 */
-		public final Builder parameters(Consumer<OutlierDetectionParameters.Builder> fn) {
-			OutlierDetectionParameters.Builder builder = new OutlierDetectionParameters.Builder();
-			fn.accept(builder);
-			return this.parameters(builder.build());
+		public final Builder parameters(
+				Function<OutlierDetectionParameters.Builder, ObjectBuilder<OutlierDetectionParameters>> fn) {
+			return this.parameters(fn.apply(new OutlierDetectionParameters.Builder()).build());
 		}
 
 		/**
@@ -164,10 +170,8 @@ public class DataframeAnalyticsStatsOutlierDetection implements DataframeAnalyti
 		/**
 		 * Required - API name: {@code timing_stats}
 		 */
-		public final Builder timingStats(Consumer<TimingStats.Builder> fn) {
-			TimingStats.Builder builder = new TimingStats.Builder();
-			fn.accept(builder);
-			return this.timingStats(builder.build());
+		public final Builder timingStats(Function<TimingStats.Builder, ObjectBuilder<TimingStats>> fn) {
+			return this.timingStats(fn.apply(new TimingStats.Builder()).build());
 		}
 
 		/**

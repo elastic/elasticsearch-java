@@ -34,10 +34,17 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.Page
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/Page.ts#L22-L33">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Page implements JsonpSerializable {
 	@Nullable
@@ -55,10 +62,8 @@ public class Page implements JsonpSerializable {
 
 	}
 
-	public static Page of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Page of(Function<Builder, ObjectBuilder<Page>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -110,6 +115,7 @@ public class Page implements JsonpSerializable {
 	/**
 	 * Builder for {@link Page}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Page> {
 		@Nullable
 		private Integer from;

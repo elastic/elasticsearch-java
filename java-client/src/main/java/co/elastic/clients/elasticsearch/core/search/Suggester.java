@@ -29,8 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,11 +37,17 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.Suggester
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/suggester.ts#L42-L45">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Suggester implements JsonpSerializable {
 	private final Map<String, FieldSuggester> suggesters;
@@ -54,16 +59,14 @@ public class Suggester implements JsonpSerializable {
 
 	private Suggester(Builder builder) {
 
-		this.suggesters = ModelTypeHelper.unmodifiable(builder.suggesters);
+		this.suggesters = ApiTypeHelper.unmodifiable(builder.suggesters);
 
 		this.text = builder.text;
 
 	}
 
-	public static Suggester of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Suggester of(Function<Builder, ObjectBuilder<Suggester>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -114,21 +117,39 @@ public class Suggester implements JsonpSerializable {
 	/**
 	 * Builder for {@link Suggester}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Suggester> {
 		@Nullable
 		private Map<String, FieldSuggester> suggesters = new HashMap<>();
 
 		/**
 		 * The named suggesters
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>suggesters</code>.
 		 */
-		public final Builder suggesters(@Nullable Map<String, FieldSuggester> value) {
-			this.suggesters = value;
+		public final Builder suggesters(Map<String, FieldSuggester> map) {
+			this.suggesters = _mapPutAll(this.suggesters, map);
 			return this;
 		}
 
-		public final Builder suggesters(
-				Function<MapBuilder<String, FieldSuggester, FieldSuggester.Builder>, ObjectBuilder<Map<String, FieldSuggester>>> fn) {
-			return suggesters(fn.apply(new MapBuilder<>(FieldSuggester.Builder::new)).build());
+		/**
+		 * The named suggesters
+		 * <p>
+		 * Adds an entry to <code>suggesters</code>.
+		 */
+		public final Builder suggesters(String key, FieldSuggester value) {
+			this.suggesters = _mapPut(this.suggesters, key, value);
+			return this;
+		}
+
+		/**
+		 * The named suggesters
+		 * <p>
+		 * Adds an entry to <code>suggesters</code> using a builder lambda.
+		 */
+		public final Builder suggesters(String key,
+				Function<FieldSuggester.Builder, ObjectBuilder<FieldSuggester>> fn) {
+			return suggesters(key, fn.apply(new FieldSuggester.Builder()).build());
 		}
 
 		@Nullable

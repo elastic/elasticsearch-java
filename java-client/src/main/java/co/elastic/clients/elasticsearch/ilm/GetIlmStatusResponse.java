@@ -30,15 +30,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm.get_status.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ilm/get_status/GetIlmStatusResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetIlmStatusResponse implements JsonpSerializable {
 	private final LifecycleOperationMode operationMode;
@@ -47,14 +54,12 @@ public class GetIlmStatusResponse implements JsonpSerializable {
 
 	private GetIlmStatusResponse(Builder builder) {
 
-		this.operationMode = ModelTypeHelper.requireNonNull(builder.operationMode, this, "operationMode");
+		this.operationMode = ApiTypeHelper.requireNonNull(builder.operationMode, this, "operationMode");
 
 	}
 
-	public static GetIlmStatusResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetIlmStatusResponse of(Function<Builder, ObjectBuilder<GetIlmStatusResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -85,6 +90,7 @@ public class GetIlmStatusResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetIlmStatusResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetIlmStatusResponse> {
 		private LifecycleOperationMode operationMode;
 

@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.data_streams_stats.DataStreamsStatsItem
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/data_streams_stats/IndicesDataStreamsStatsResponse.ts#L35-L41">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataStreamsStatsItem implements JsonpSerializable {
 	private final int backingIndices;
@@ -57,18 +64,16 @@ public class DataStreamsStatsItem implements JsonpSerializable {
 
 	private DataStreamsStatsItem(Builder builder) {
 
-		this.backingIndices = ModelTypeHelper.requireNonNull(builder.backingIndices, this, "backingIndices");
-		this.dataStream = ModelTypeHelper.requireNonNull(builder.dataStream, this, "dataStream");
+		this.backingIndices = ApiTypeHelper.requireNonNull(builder.backingIndices, this, "backingIndices");
+		this.dataStream = ApiTypeHelper.requireNonNull(builder.dataStream, this, "dataStream");
 		this.storeSize = builder.storeSize;
-		this.storeSizeBytes = ModelTypeHelper.requireNonNull(builder.storeSizeBytes, this, "storeSizeBytes");
-		this.maximumTimestamp = ModelTypeHelper.requireNonNull(builder.maximumTimestamp, this, "maximumTimestamp");
+		this.storeSizeBytes = ApiTypeHelper.requireNonNull(builder.storeSizeBytes, this, "storeSizeBytes");
+		this.maximumTimestamp = ApiTypeHelper.requireNonNull(builder.maximumTimestamp, this, "maximumTimestamp");
 
 	}
 
-	public static DataStreamsStatsItem of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DataStreamsStatsItem of(Function<Builder, ObjectBuilder<DataStreamsStatsItem>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -142,6 +147,7 @@ public class DataStreamsStatsItem implements JsonpSerializable {
 	/**
 	 * Builder for {@link DataStreamsStatsItem}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataStreamsStatsItem> {
 		private Integer backingIndices;
 

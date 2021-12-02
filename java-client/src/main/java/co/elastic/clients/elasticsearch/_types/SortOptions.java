@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
@@ -40,14 +40,26 @@ import jakarta.json.stream.JsonParser;
 import java.lang.Object;
 import java.util.EnumSet;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.SortOptions
-// union type: Container[]
+
+/**
+ *
+ * @see <a href=
+ *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/sort-search-results.html">Documentation
+ *      on elastic.co</a>
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/sort.ts#L80-L89">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SortOptions implements TaggedUnion<SortOptions.Kind, Object>, JsonpSerializable {
 
+	/**
+	 * {@link SortOptions} variant kinds.
+	 */
 	/**
 	 * {@link SortOptions} variant kinds.
 	 */
@@ -92,22 +104,20 @@ public class SortOptions implements TaggedUnion<SortOptions.Kind, Object>, Jsonp
 
 	public SortOptions(SortOptionsVariant value) {
 
-		this._kind = ModelTypeHelper.requireNonNull(value._sortOptionsKind(), this, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(value._sortOptionsKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
 	private SortOptions(Builder builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static SortOptions of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SortOptions of(Function<Builder, ObjectBuilder<SortOptions>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -223,10 +233,8 @@ public class SortOptions implements TaggedUnion<SortOptions.Kind, Object>, Jsonp
 			return this;
 		}
 
-		public ObjectBuilder<SortOptions> score(Consumer<ScoreSort.Builder> fn) {
-			ScoreSort.Builder builder = new ScoreSort.Builder();
-			fn.accept(builder);
-			return this.score(builder.build());
+		public ObjectBuilder<SortOptions> score(Function<ScoreSort.Builder, ObjectBuilder<ScoreSort>> fn) {
+			return this.score(fn.apply(new ScoreSort.Builder()).build());
 		}
 
 		public ObjectBuilder<SortOptions> doc(ScoreSort v) {
@@ -235,10 +243,8 @@ public class SortOptions implements TaggedUnion<SortOptions.Kind, Object>, Jsonp
 			return this;
 		}
 
-		public ObjectBuilder<SortOptions> doc(Consumer<ScoreSort.Builder> fn) {
-			ScoreSort.Builder builder = new ScoreSort.Builder();
-			fn.accept(builder);
-			return this.doc(builder.build());
+		public ObjectBuilder<SortOptions> doc(Function<ScoreSort.Builder, ObjectBuilder<ScoreSort>> fn) {
+			return this.doc(fn.apply(new ScoreSort.Builder()).build());
 		}
 
 		public ObjectBuilder<SortOptions> geoDistance(GeoDistanceSort v) {
@@ -247,10 +253,9 @@ public class SortOptions implements TaggedUnion<SortOptions.Kind, Object>, Jsonp
 			return this;
 		}
 
-		public ObjectBuilder<SortOptions> geoDistance(Consumer<GeoDistanceSort.Builder> fn) {
-			GeoDistanceSort.Builder builder = new GeoDistanceSort.Builder();
-			fn.accept(builder);
-			return this.geoDistance(builder.build());
+		public ObjectBuilder<SortOptions> geoDistance(
+				Function<GeoDistanceSort.Builder, ObjectBuilder<GeoDistanceSort>> fn) {
+			return this.geoDistance(fn.apply(new GeoDistanceSort.Builder()).build());
 		}
 
 		public ObjectBuilder<SortOptions> script(ScriptSort v) {
@@ -259,10 +264,8 @@ public class SortOptions implements TaggedUnion<SortOptions.Kind, Object>, Jsonp
 			return this;
 		}
 
-		public ObjectBuilder<SortOptions> script(Consumer<ScriptSort.Builder> fn) {
-			ScriptSort.Builder builder = new ScriptSort.Builder();
-			fn.accept(builder);
-			return this.script(builder.build());
+		public ObjectBuilder<SortOptions> script(Function<ScriptSort.Builder, ObjectBuilder<ScriptSort>> fn) {
+			return this.script(fn.apply(new ScriptSort.Builder()).build());
 		}
 
 		public ObjectBuilder<SortOptions> field(FieldSort v) {
@@ -271,10 +274,8 @@ public class SortOptions implements TaggedUnion<SortOptions.Kind, Object>, Jsonp
 			return this;
 		}
 
-		public ObjectBuilder<SortOptions> field(Consumer<FieldSort.Builder> fn) {
-			FieldSort.Builder builder = new FieldSort.Builder();
-			fn.accept(builder);
-			return this.field(builder.build());
+		public ObjectBuilder<SortOptions> field(Function<FieldSort.Builder, ObjectBuilder<FieldSort>> fn) {
+			return this.field(fn.apply(new FieldSort.Builder()).build());
 		}
 
 		public SortOptions build() {
@@ -292,12 +293,10 @@ public class SortOptions implements TaggedUnion<SortOptions.Kind, Object>, Jsonp
 				if (event == JsonParser.Event.VALUE_STRING) {
 					switch (parser.getString()) {
 						case "_score" :
-							b.score(s -> {
-							});
+							b.score(s -> s);
 							break;
 						case "_doc" :
-							b.doc(d -> {
-							});
+							b.doc(d -> d);
 							break;
 						default :
 							b.field(f -> f.field(parser.getString()));

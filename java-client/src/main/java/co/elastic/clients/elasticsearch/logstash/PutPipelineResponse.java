@@ -33,6 +33,13 @@ import java.util.Objects;
 
 // typedef: logstash.put_pipeline.Response
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/logstash/put_pipeline/LogstashPutPipelineResponse.ts#L22-L24">API
+ *      specification</a>
+ */
+
 public class PutPipelineResponse {
 	public PutPipelineResponse() {
 	}

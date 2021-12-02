@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -41,10 +41,18 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform.stop_transform.Request
+
+/**
+ * Stops one or more transforms.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/transform/stop_transform/StopTransformRequest.ts#L24-L40">API
+ *      specification</a>
+ */
 
 public class StopTransformRequest extends RequestBase {
 	@Nullable
@@ -71,16 +79,14 @@ public class StopTransformRequest extends RequestBase {
 		this.allowNoMatch = builder.allowNoMatch;
 		this.force = builder.force;
 		this.timeout = builder.timeout;
-		this.transformId = ModelTypeHelper.requireNonNull(builder.transformId, this, "transformId");
+		this.transformId = ApiTypeHelper.requireNonNull(builder.transformId, this, "transformId");
 		this.waitForCheckpoint = builder.waitForCheckpoint;
 		this.waitForCompletion = builder.waitForCompletion;
 
 	}
 
-	public static StopTransformRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static StopTransformRequest of(Function<Builder, ObjectBuilder<StopTransformRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -151,6 +157,7 @@ public class StopTransformRequest extends RequestBase {
 	/**
 	 * Builder for {@link StopTransformRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StopTransformRequest> {
 		@Nullable
 		private Boolean allowNoMatch;
@@ -207,10 +214,8 @@ public class StopTransformRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.timeout(builder.build());
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

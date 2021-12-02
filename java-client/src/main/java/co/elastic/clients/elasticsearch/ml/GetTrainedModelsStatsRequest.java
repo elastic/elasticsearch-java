@@ -40,10 +40,20 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_trained_models_stats.Request
+
+/**
+ * Retrieves usage information for trained models. You can get usage information
+ * for multiple trained models in a single API request by using a
+ * comma-separated list of model IDs or a wildcard expression.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_trained_models_stats/MlGetTrainedModelStatsRequest.ts#L24-L65">API
+ *      specification</a>
+ */
 
 public class GetTrainedModelsStatsRequest extends RequestBase {
 	@Nullable
@@ -69,10 +79,8 @@ public class GetTrainedModelsStatsRequest extends RequestBase {
 
 	}
 
-	public static GetTrainedModelsStatsRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetTrainedModelsStatsRequest of(Function<Builder, ObjectBuilder<GetTrainedModelsStatsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -128,6 +136,7 @@ public class GetTrainedModelsStatsRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetTrainedModelsStatsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetTrainedModelsStatsRequest> {
 		@Nullable
 		private Boolean allowNoMatch;

@@ -38,10 +38,17 @@ import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.HistogramAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/bucket.ts#L202-L214">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class HistogramAggregation extends BucketAggregationBase implements AggregationVariant, PivotGroupByVariant {
 	@Nullable
@@ -96,10 +103,8 @@ public class HistogramAggregation extends BucketAggregationBase implements Aggre
 
 	}
 
-	public static HistogramAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static HistogramAggregation of(Function<Builder, ObjectBuilder<HistogramAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -272,6 +277,7 @@ public class HistogramAggregation extends BucketAggregationBase implements Aggre
 	/**
 	 * Builder for {@link HistogramAggregation}.
 	 */
+
 	public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<HistogramAggregation> {
@@ -319,10 +325,9 @@ public class HistogramAggregation extends BucketAggregationBase implements Aggre
 		/**
 		 * API name: {@code extended_bounds}
 		 */
-		public final Builder extendedBounds(Consumer<ExtendedBounds.Builder<Double>> fn) {
-			ExtendedBounds.Builder<Double> builder = new ExtendedBounds.Builder<Double>();
-			fn.accept(builder);
-			return this.extendedBounds(builder.build());
+		public final Builder extendedBounds(
+				Function<ExtendedBounds.Builder<Double>, ObjectBuilder<ExtendedBounds<Double>>> fn) {
+			return this.extendedBounds(fn.apply(new ExtendedBounds.Builder<Double>()).build());
 		}
 
 		/**
@@ -336,10 +341,9 @@ public class HistogramAggregation extends BucketAggregationBase implements Aggre
 		/**
 		 * API name: {@code hard_bounds}
 		 */
-		public final Builder hardBounds(Consumer<ExtendedBounds.Builder<Double>> fn) {
-			ExtendedBounds.Builder<Double> builder = new ExtendedBounds.Builder<Double>();
-			fn.accept(builder);
-			return this.hardBounds(builder.build());
+		public final Builder hardBounds(
+				Function<ExtendedBounds.Builder<Double>, ObjectBuilder<ExtendedBounds<Double>>> fn) {
+			return this.hardBounds(fn.apply(new ExtendedBounds.Builder<Double>()).build());
 		}
 
 		/**
@@ -393,10 +397,8 @@ public class HistogramAggregation extends BucketAggregationBase implements Aggre
 		/**
 		 * API name: {@code order}
 		 */
-		public final Builder order(Consumer<HistogramOrder.Builder> fn) {
-			HistogramOrder.Builder builder = new HistogramOrder.Builder();
-			fn.accept(builder);
-			return this.order(builder.build());
+		public final Builder order(Function<HistogramOrder.Builder, ObjectBuilder<HistogramOrder>> fn) {
+			return this.order(fn.apply(new HistogramOrder.Builder()).build());
 		}
 
 		/**
@@ -410,10 +412,8 @@ public class HistogramAggregation extends BucketAggregationBase implements Aggre
 		/**
 		 * API name: {@code script}
 		 */
-		public final Builder script(Consumer<Script.Builder> fn) {
-			Script.Builder builder = new Script.Builder();
-			fn.accept(builder);
-			return this.script(builder.build());
+		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
 		/**

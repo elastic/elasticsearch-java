@@ -30,19 +30,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.close.CloseShardResult
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/close/CloseIndexResponse.ts#L37-L39">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CloseShardResult implements JsonpSerializable {
 	private final List<ShardFailure> failures;
@@ -51,14 +55,12 @@ public class CloseShardResult implements JsonpSerializable {
 
 	private CloseShardResult(Builder builder) {
 
-		this.failures = ModelTypeHelper.unmodifiableRequired(builder.failures, this, "failures");
+		this.failures = ApiTypeHelper.unmodifiableRequired(builder.failures, this, "failures");
 
 	}
 
-	public static CloseShardResult of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CloseShardResult of(Function<Builder, ObjectBuilder<CloseShardResult>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -79,7 +81,7 @@ public class CloseShardResult implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.failures)) {
+		if (ApiTypeHelper.isDefined(this.failures)) {
 			generator.writeKey("failures");
 			generator.writeStartArray();
 			for (ShardFailure item0 : this.failures) {
@@ -97,31 +99,37 @@ public class CloseShardResult implements JsonpSerializable {
 	/**
 	 * Builder for {@link CloseShardResult}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CloseShardResult> {
 		private List<ShardFailure> failures;
 
 		/**
 		 * Required - API name: {@code failures}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>failures</code>.
 		 */
-		public final Builder failures(List<ShardFailure> value) {
-			this.failures = value;
+		public final Builder failures(List<ShardFailure> list) {
+			this.failures = _listAddAll(this.failures, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code failures}
+		 * <p>
+		 * Adds one or more values to <code>failures</code>.
 		 */
-		public final Builder failures(ShardFailure... value) {
-			this.failures = Arrays.asList(value);
+		public final Builder failures(ShardFailure value, ShardFailure... values) {
+			this.failures = _listAdd(this.failures, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code failures}
+		 * <p>
+		 * Adds a value to <code>failures</code> using a builder lambda.
 		 */
-		public final Builder failures(
-				Function<ListBuilder<ShardFailure, ShardFailure.Builder>, ObjectBuilder<List<ShardFailure>>> fn) {
-			return failures(fn.apply(new ListBuilder<>(ShardFailure.Builder::new)).build());
+		public final Builder failures(Function<ShardFailure.Builder, ObjectBuilder<ShardFailure>> fn) {
+			return failures(fn.apply(new ShardFailure.Builder()).build());
 		}
 
 		/**

@@ -30,15 +30,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.cleanup_repository.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/snapshot/cleanup_repository/SnapshotCleanupRepositoryResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CleanupRepositoryResponse implements JsonpSerializable {
 	private final CleanupRepositoryResults results;
@@ -47,14 +54,12 @@ public class CleanupRepositoryResponse implements JsonpSerializable {
 
 	private CleanupRepositoryResponse(Builder builder) {
 
-		this.results = ModelTypeHelper.requireNonNull(builder.results, this, "results");
+		this.results = ApiTypeHelper.requireNonNull(builder.results, this, "results");
 
 	}
 
-	public static CleanupRepositoryResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CleanupRepositoryResponse of(Function<Builder, ObjectBuilder<CleanupRepositoryResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -85,6 +90,7 @@ public class CleanupRepositoryResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link CleanupRepositoryResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CleanupRepositoryResponse> {
 		private CleanupRepositoryResults results;
 
@@ -99,10 +105,9 @@ public class CleanupRepositoryResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code results}
 		 */
-		public final Builder results(Consumer<CleanupRepositoryResults.Builder> fn) {
-			CleanupRepositoryResults.Builder builder = new CleanupRepositoryResults.Builder();
-			fn.accept(builder);
-			return this.results(builder.build());
+		public final Builder results(
+				Function<CleanupRepositoryResults.Builder, ObjectBuilder<CleanupRepositoryResults>> fn) {
+			return this.results(fn.apply(new CleanupRepositoryResults.Builder()).build());
 		}
 
 		/**

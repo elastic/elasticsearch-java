@@ -31,9 +31,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.mapping.IntegerRangeProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/range.ts#L50-L52">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IntegerRangeProperty extends RangePropertyBase implements PropertyVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -43,10 +50,8 @@ public class IntegerRangeProperty extends RangePropertyBase implements PropertyV
 
 	}
 
-	public static IntegerRangeProperty of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IntegerRangeProperty of(Function<Builder, ObjectBuilder<IntegerRangeProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -69,6 +74,7 @@ public class IntegerRangeProperty extends RangePropertyBase implements PropertyV
 	/**
 	 * Builder for {@link IntegerRangeProperty}.
 	 */
+
 	public static class Builder extends RangePropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<IntegerRangeProperty> {

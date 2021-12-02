@@ -38,6 +38,14 @@ import java.util.Objects;
 
 // typedef: ilm.get_status.Request
 
+/**
+ * Retrieves the current index lifecycle management (ILM) status.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ilm/get_status/GetIlmStatusRequest.ts#L22-L27">API
+ *      specification</a>
+ */
+
 public class GetIlmStatusRequest extends RequestBase {
 	public GetIlmStatusRequest() {
 	}

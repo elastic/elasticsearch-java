@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
@@ -38,14 +38,23 @@ import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ConditionContainer
-// union type: Container[]
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Conditions.ts#L51-L60">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Condition implements TaggedUnion<Condition.Kind, Object>, JsonpSerializable {
 
+	/**
+	 * {@link Condition} variant kinds.
+	 */
 	/**
 	 * {@link Condition} variant kinds.
 	 */
@@ -90,22 +99,20 @@ public class Condition implements TaggedUnion<Condition.Kind, Object>, JsonpSeri
 
 	public Condition(ConditionVariant value) {
 
-		this._kind = ModelTypeHelper.requireNonNull(value._conditionKind(), this, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(value._conditionKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
 	private Condition(Builder builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static Condition of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Condition of(Function<Builder, ObjectBuilder<Condition>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -218,10 +225,8 @@ public class Condition implements TaggedUnion<Condition.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<Condition> always(Consumer<AlwaysCondition.Builder> fn) {
-			AlwaysCondition.Builder builder = new AlwaysCondition.Builder();
-			fn.accept(builder);
-			return this.always(builder.build());
+		public ObjectBuilder<Condition> always(Function<AlwaysCondition.Builder, ObjectBuilder<AlwaysCondition>> fn) {
+			return this.always(fn.apply(new AlwaysCondition.Builder()).build());
 		}
 
 		public ObjectBuilder<Condition> arrayCompare(ArrayCompareCondition v) {
@@ -230,10 +235,9 @@ public class Condition implements TaggedUnion<Condition.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<Condition> arrayCompare(Consumer<ArrayCompareCondition.Builder> fn) {
-			ArrayCompareCondition.Builder builder = new ArrayCompareCondition.Builder();
-			fn.accept(builder);
-			return this.arrayCompare(builder.build());
+		public ObjectBuilder<Condition> arrayCompare(
+				Function<ArrayCompareCondition.Builder, ObjectBuilder<ArrayCompareCondition>> fn) {
+			return this.arrayCompare(fn.apply(new ArrayCompareCondition.Builder()).build());
 		}
 
 		public ObjectBuilder<Condition> compare(CompareCondition v) {
@@ -242,10 +246,9 @@ public class Condition implements TaggedUnion<Condition.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<Condition> compare(Consumer<CompareCondition.Builder> fn) {
-			CompareCondition.Builder builder = new CompareCondition.Builder();
-			fn.accept(builder);
-			return this.compare(builder.build());
+		public ObjectBuilder<Condition> compare(
+				Function<CompareCondition.Builder, ObjectBuilder<CompareCondition>> fn) {
+			return this.compare(fn.apply(new CompareCondition.Builder()).build());
 		}
 
 		public ObjectBuilder<Condition> never(NeverCondition v) {
@@ -254,10 +257,8 @@ public class Condition implements TaggedUnion<Condition.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<Condition> never(Consumer<NeverCondition.Builder> fn) {
-			NeverCondition.Builder builder = new NeverCondition.Builder();
-			fn.accept(builder);
-			return this.never(builder.build());
+		public ObjectBuilder<Condition> never(Function<NeverCondition.Builder, ObjectBuilder<NeverCondition>> fn) {
+			return this.never(fn.apply(new NeverCondition.Builder()).build());
 		}
 
 		public ObjectBuilder<Condition> script(ScriptCondition v) {
@@ -266,10 +267,8 @@ public class Condition implements TaggedUnion<Condition.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<Condition> script(Consumer<ScriptCondition.Builder> fn) {
-			ScriptCondition.Builder builder = new ScriptCondition.Builder();
-			fn.accept(builder);
-			return this.script(builder.build());
+		public ObjectBuilder<Condition> script(Function<ScriptCondition.Builder, ObjectBuilder<ScriptCondition>> fn) {
+			return this.script(fn.apply(new ScriptCondition.Builder()).build());
 		}
 
 		public Condition build() {

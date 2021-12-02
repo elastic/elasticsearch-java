@@ -31,17 +31,27 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.delete_filter.Request
+
+/**
+ * Deletes a filter. If an anomaly detection job references the filter, you
+ * cannot delete the filter. You must update or delete the job before you can
+ * delete the filter.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/delete_filter/MlDeleteFilterRequest.ts#L23-L39">API
+ *      specification</a>
+ */
 
 public class DeleteFilterRequest extends RequestBase {
 	private final String filterId;
@@ -50,14 +60,12 @@ public class DeleteFilterRequest extends RequestBase {
 
 	private DeleteFilterRequest(Builder builder) {
 
-		this.filterId = ModelTypeHelper.requireNonNull(builder.filterId, this, "filterId");
+		this.filterId = ApiTypeHelper.requireNonNull(builder.filterId, this, "filterId");
 
 	}
 
-	public static DeleteFilterRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DeleteFilterRequest of(Function<Builder, ObjectBuilder<DeleteFilterRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -74,6 +82,7 @@ public class DeleteFilterRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteFilterRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteFilterRequest> {
 		private String filterId;
 

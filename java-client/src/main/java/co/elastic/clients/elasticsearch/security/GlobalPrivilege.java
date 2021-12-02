@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security._types.GlobalPrivilege
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/_types/Privileges.ts#L123-L125">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GlobalPrivilege implements JsonpSerializable {
 	private final ApplicationGlobalUserPrivileges application;
@@ -46,14 +53,12 @@ public class GlobalPrivilege implements JsonpSerializable {
 
 	private GlobalPrivilege(Builder builder) {
 
-		this.application = ModelTypeHelper.requireNonNull(builder.application, this, "application");
+		this.application = ApiTypeHelper.requireNonNull(builder.application, this, "application");
 
 	}
 
-	public static GlobalPrivilege of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GlobalPrivilege of(Function<Builder, ObjectBuilder<GlobalPrivilege>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -84,6 +89,7 @@ public class GlobalPrivilege implements JsonpSerializable {
 	/**
 	 * Builder for {@link GlobalPrivilege}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GlobalPrivilege> {
 		private ApplicationGlobalUserPrivileges application;
 
@@ -98,10 +104,9 @@ public class GlobalPrivilege implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code application}
 		 */
-		public final Builder application(Consumer<ApplicationGlobalUserPrivileges.Builder> fn) {
-			ApplicationGlobalUserPrivileges.Builder builder = new ApplicationGlobalUserPrivileges.Builder();
-			fn.accept(builder);
-			return this.application(builder.build());
+		public final Builder application(
+				Function<ApplicationGlobalUserPrivileges.Builder, ObjectBuilder<ApplicationGlobalUserPrivileges>> fn) {
+			return this.application(fn.apply(new ApplicationGlobalUserPrivileges.Builder()).build());
 		}
 
 		/**

@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.AdaptiveSelection
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/_types/Stats.ts#L67-L75">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AdaptiveSelection implements JsonpSerializable {
 	private final long avgQueueSize;
@@ -60,20 +67,18 @@ public class AdaptiveSelection implements JsonpSerializable {
 
 	private AdaptiveSelection(Builder builder) {
 
-		this.avgQueueSize = ModelTypeHelper.requireNonNull(builder.avgQueueSize, this, "avgQueueSize");
-		this.avgResponseTime = ModelTypeHelper.requireNonNull(builder.avgResponseTime, this, "avgResponseTime");
-		this.avgResponseTimeNs = ModelTypeHelper.requireNonNull(builder.avgResponseTimeNs, this, "avgResponseTimeNs");
-		this.avgServiceTime = ModelTypeHelper.requireNonNull(builder.avgServiceTime, this, "avgServiceTime");
-		this.avgServiceTimeNs = ModelTypeHelper.requireNonNull(builder.avgServiceTimeNs, this, "avgServiceTimeNs");
-		this.outgoingSearches = ModelTypeHelper.requireNonNull(builder.outgoingSearches, this, "outgoingSearches");
-		this.rank = ModelTypeHelper.requireNonNull(builder.rank, this, "rank");
+		this.avgQueueSize = ApiTypeHelper.requireNonNull(builder.avgQueueSize, this, "avgQueueSize");
+		this.avgResponseTime = ApiTypeHelper.requireNonNull(builder.avgResponseTime, this, "avgResponseTime");
+		this.avgResponseTimeNs = ApiTypeHelper.requireNonNull(builder.avgResponseTimeNs, this, "avgResponseTimeNs");
+		this.avgServiceTime = ApiTypeHelper.requireNonNull(builder.avgServiceTime, this, "avgServiceTime");
+		this.avgServiceTimeNs = ApiTypeHelper.requireNonNull(builder.avgServiceTimeNs, this, "avgServiceTimeNs");
+		this.outgoingSearches = ApiTypeHelper.requireNonNull(builder.outgoingSearches, this, "outgoingSearches");
+		this.rank = ApiTypeHelper.requireNonNull(builder.rank, this, "rank");
 
 	}
 
-	public static AdaptiveSelection of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static AdaptiveSelection of(Function<Builder, ObjectBuilder<AdaptiveSelection>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -164,6 +169,7 @@ public class AdaptiveSelection implements JsonpSerializable {
 	/**
 	 * Builder for {@link AdaptiveSelection}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AdaptiveSelection> {
 		private Long avgQueueSize;
 

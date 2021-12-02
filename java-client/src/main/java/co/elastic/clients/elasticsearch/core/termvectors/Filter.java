@@ -34,10 +34,17 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.termvectors.Filter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/termvectors/types.ts#L49-L57">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Filter implements JsonpSerializable {
 	@Nullable
@@ -75,10 +82,8 @@ public class Filter implements JsonpSerializable {
 
 	}
 
-	public static Filter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Filter of(Function<Builder, ObjectBuilder<Filter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -191,6 +196,7 @@ public class Filter implements JsonpSerializable {
 	/**
 	 * Builder for {@link Filter}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Filter> {
 		@Nullable
 		private Integer maxDocFreq;

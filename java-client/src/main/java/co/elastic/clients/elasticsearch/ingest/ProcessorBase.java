@@ -29,20 +29,25 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.ProcessorBase
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/_types/Processors.ts#L68-L73">API
+ *      specification</a>
+ */
 
 public abstract class ProcessorBase implements JsonpSerializable {
 	@Nullable
@@ -62,7 +67,7 @@ public abstract class ProcessorBase implements JsonpSerializable {
 
 		this.if_ = builder.if_;
 		this.ignoreFailure = builder.ignoreFailure;
-		this.onFailure = ModelTypeHelper.unmodifiable(builder.onFailure);
+		this.onFailure = ApiTypeHelper.unmodifiable(builder.onFailure);
 		this.tag = builder.tag;
 
 	}
@@ -119,7 +124,7 @@ public abstract class ProcessorBase implements JsonpSerializable {
 			generator.write(this.ignoreFailure);
 
 		}
-		if (ModelTypeHelper.isDefined(this.onFailure)) {
+		if (ApiTypeHelper.isDefined(this.onFailure)) {
 			generator.writeKey("on_failure");
 			generator.writeStartArray();
 			for (Processor item0 : this.onFailure) {
@@ -170,26 +175,31 @@ public abstract class ProcessorBase implements JsonpSerializable {
 
 		/**
 		 * API name: {@code on_failure}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>onFailure</code>.
 		 */
-		public final BuilderT onFailure(@Nullable List<Processor> value) {
-			this.onFailure = value;
+		public final BuilderT onFailure(List<Processor> list) {
+			this.onFailure = _listAddAll(this.onFailure, list);
 			return self();
 		}
 
 		/**
 		 * API name: {@code on_failure}
+		 * <p>
+		 * Adds one or more values to <code>onFailure</code>.
 		 */
-		public final BuilderT onFailure(Processor... value) {
-			this.onFailure = Arrays.asList(value);
+		public final BuilderT onFailure(Processor value, Processor... values) {
+			this.onFailure = _listAdd(this.onFailure, value, values);
 			return self();
 		}
 
 		/**
 		 * API name: {@code on_failure}
+		 * <p>
+		 * Adds a value to <code>onFailure</code> using a builder lambda.
 		 */
-		public final BuilderT onFailure(
-				Function<ListBuilder<Processor, Processor.Builder>, ObjectBuilder<List<Processor>>> fn) {
-			return onFailure(fn.apply(new ListBuilder<>(Processor.Builder::new)).build());
+		public final BuilderT onFailure(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {
+			return onFailure(fn.apply(new Processor.Builder()).build());
 		}
 
 		/**

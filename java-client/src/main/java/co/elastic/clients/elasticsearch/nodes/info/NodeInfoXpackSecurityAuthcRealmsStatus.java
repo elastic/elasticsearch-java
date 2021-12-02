@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoXpackSecurityAuthcRealmsStatus
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L253-L256">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeInfoXpackSecurityAuthcRealmsStatus implements JsonpSerializable {
 	@Nullable
@@ -51,14 +58,13 @@ public class NodeInfoXpackSecurityAuthcRealmsStatus implements JsonpSerializable
 	private NodeInfoXpackSecurityAuthcRealmsStatus(Builder builder) {
 
 		this.enabled = builder.enabled;
-		this.order = ModelTypeHelper.requireNonNull(builder.order, this, "order");
+		this.order = ApiTypeHelper.requireNonNull(builder.order, this, "order");
 
 	}
 
-	public static NodeInfoXpackSecurityAuthcRealmsStatus of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodeInfoXpackSecurityAuthcRealmsStatus of(
+			Function<Builder, ObjectBuilder<NodeInfoXpackSecurityAuthcRealmsStatus>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -102,6 +108,7 @@ public class NodeInfoXpackSecurityAuthcRealmsStatus implements JsonpSerializable
 	/**
 	 * Builder for {@link NodeInfoXpackSecurityAuthcRealmsStatus}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase
 			implements
 				ObjectBuilder<NodeInfoXpackSecurityAuthcRealmsStatus> {

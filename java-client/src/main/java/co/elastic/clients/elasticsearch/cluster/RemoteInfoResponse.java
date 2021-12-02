@@ -33,9 +33,16 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: cluster.remote_info.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/remote_info/ClusterRemoteInfoResponse.ts#L24-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RemoteInfoResponse extends DictionaryResponse<String, ClusterRemoteInfo> {
 	// ---------------------------------------------------------------------------------------------
@@ -45,10 +52,8 @@ public class RemoteInfoResponse extends DictionaryResponse<String, ClusterRemote
 
 	}
 
-	public static RemoteInfoResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RemoteInfoResponse of(Function<Builder, ObjectBuilder<RemoteInfoResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -56,6 +61,7 @@ public class RemoteInfoResponse extends DictionaryResponse<String, ClusterRemote
 	/**
 	 * Builder for {@link RemoteInfoResponse}.
 	 */
+
 	public static class Builder extends DictionaryResponse.AbstractBuilder<String, ClusterRemoteInfo, Builder>
 			implements
 				ObjectBuilder<RemoteInfoResponse> {

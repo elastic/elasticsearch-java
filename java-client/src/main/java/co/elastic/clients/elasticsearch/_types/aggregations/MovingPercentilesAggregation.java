@@ -33,10 +33,17 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MovingPercentilesAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/pipeline.ts#L183-L187">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MovingPercentilesAggregation extends PipelineAggregationBase implements AggregationVariant {
 	@Nullable
@@ -59,10 +66,8 @@ public class MovingPercentilesAggregation extends PipelineAggregationBase implem
 
 	}
 
-	public static MovingPercentilesAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static MovingPercentilesAggregation of(Function<Builder, ObjectBuilder<MovingPercentilesAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -123,6 +128,7 @@ public class MovingPercentilesAggregation extends PipelineAggregationBase implem
 	/**
 	 * Builder for {@link MovingPercentilesAggregation}.
 	 */
+
 	public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<MovingPercentilesAggregation> {

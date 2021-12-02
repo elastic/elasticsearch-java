@@ -37,10 +37,19 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.get_rollup_caps.Request
+
+/**
+ * Returns the capabilities of any rollup jobs that have been configured for a
+ * specific index or index pattern.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/rollup/get_rollup_caps/GetRollupCapabilitiesRequest.ts#L23-L32">API
+ *      specification</a>
+ */
 
 public class GetRollupCapsRequest extends RequestBase {
 	@Nullable
@@ -54,10 +63,8 @@ public class GetRollupCapsRequest extends RequestBase {
 
 	}
 
-	public static GetRollupCapsRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetRollupCapsRequest of(Function<Builder, ObjectBuilder<GetRollupCapsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -76,6 +83,7 @@ public class GetRollupCapsRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetRollupCapsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetRollupCapsRequest> {
 		@Nullable
 		private String id;

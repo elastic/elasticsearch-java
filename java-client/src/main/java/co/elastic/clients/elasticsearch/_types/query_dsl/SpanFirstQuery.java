@@ -28,15 +28,22 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SpanFirstQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/span.ts#L35-L38">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SpanFirstQuery extends QueryBase implements SpanQueryVariant, QueryVariant {
 	private final int end;
@@ -48,15 +55,13 @@ public class SpanFirstQuery extends QueryBase implements SpanQueryVariant, Query
 	private SpanFirstQuery(Builder builder) {
 		super(builder);
 
-		this.end = ModelTypeHelper.requireNonNull(builder.end, this, "end");
-		this.match = ModelTypeHelper.requireNonNull(builder.match, this, "match");
+		this.end = ApiTypeHelper.requireNonNull(builder.end, this, "end");
+		this.match = ApiTypeHelper.requireNonNull(builder.match, this, "match");
 
 	}
 
-	public static SpanFirstQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SpanFirstQuery of(Function<Builder, ObjectBuilder<SpanFirstQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -105,6 +110,7 @@ public class SpanFirstQuery extends QueryBase implements SpanQueryVariant, Query
 	/**
 	 * Builder for {@link SpanFirstQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<SpanFirstQuery> {
 		private Integer end;
 
@@ -129,10 +135,8 @@ public class SpanFirstQuery extends QueryBase implements SpanQueryVariant, Query
 		/**
 		 * Required - API name: {@code match}
 		 */
-		public final Builder match(Consumer<SpanQuery.Builder> fn) {
-			SpanQuery.Builder builder = new SpanQuery.Builder();
-			fn.accept(builder);
-			return this.match(builder.build());
+		public final Builder match(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
+			return this.match(fn.apply(new SpanQuery.Builder()).build());
 		}
 
 		@Override

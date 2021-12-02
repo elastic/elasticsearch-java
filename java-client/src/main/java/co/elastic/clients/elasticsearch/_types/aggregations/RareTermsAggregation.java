@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
+import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -34,10 +35,17 @@ import java.lang.Double;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.RareTermsAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/bucket.ts#L267-L275">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RareTermsAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
@@ -53,7 +61,7 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 	private final Long maxDocCount;
 
 	@Nullable
-	private final String missing;
+	private final FieldValue missing;
 
 	@Nullable
 	private final Double precision;
@@ -76,10 +84,8 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 
 	}
 
-	public static RareTermsAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RareTermsAggregation of(Function<Builder, ObjectBuilder<RareTermsAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -126,7 +132,7 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 	 * API name: {@code missing}
 	 */
 	@Nullable
-	public final String missing() {
+	public final FieldValue missing() {
 		return this.missing;
 	}
 
@@ -171,7 +177,7 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 		}
 		if (this.missing != null) {
 			generator.writeKey("missing");
-			generator.write(this.missing);
+			this.missing.serialize(generator, mapper);
 
 		}
 		if (this.precision != null) {
@@ -192,6 +198,7 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 	/**
 	 * Builder for {@link RareTermsAggregation}.
 	 */
+
 	public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<RareTermsAggregation> {
@@ -208,7 +215,7 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 		private Long maxDocCount;
 
 		@Nullable
-		private String missing;
+		private FieldValue missing;
 
 		@Nullable
 		private Double precision;
@@ -227,10 +234,8 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 		/**
 		 * API name: {@code exclude}
 		 */
-		public final Builder exclude(Consumer<TermsExclude.Builder> fn) {
-			TermsExclude.Builder builder = new TermsExclude.Builder();
-			fn.accept(builder);
-			return this.exclude(builder.build());
+		public final Builder exclude(Function<TermsExclude.Builder, ObjectBuilder<TermsExclude>> fn) {
+			return this.exclude(fn.apply(new TermsExclude.Builder()).build());
 		}
 
 		/**
@@ -252,10 +257,8 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 		/**
 		 * API name: {@code include}
 		 */
-		public final Builder include(Consumer<TermsInclude.Builder> fn) {
-			TermsInclude.Builder builder = new TermsInclude.Builder();
-			fn.accept(builder);
-			return this.include(builder.build());
+		public final Builder include(Function<TermsInclude.Builder, ObjectBuilder<TermsInclude>> fn) {
+			return this.include(fn.apply(new TermsInclude.Builder()).build());
 		}
 
 		/**
@@ -269,9 +272,16 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 		/**
 		 * API name: {@code missing}
 		 */
-		public final Builder missing(@Nullable String value) {
+		public final Builder missing(@Nullable FieldValue value) {
 			this.missing = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code missing}
+		 */
+		public final Builder missing(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
+			return this.missing(fn.apply(new FieldValue.Builder()).build());
 		}
 
 		/**
@@ -322,7 +332,7 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::include, TermsInclude._DESERIALIZER, "include");
 		op.add(Builder::maxDocCount, JsonpDeserializer.longDeserializer(), "max_doc_count");
-		op.add(Builder::missing, JsonpDeserializer.stringDeserializer(), "missing");
+		op.add(Builder::missing, FieldValue._DESERIALIZER, "missing");
 		op.add(Builder::precision, JsonpDeserializer.doubleDeserializer(), "precision");
 		op.add(Builder::valueType, JsonpDeserializer.stringDeserializer(), "value_type");
 

@@ -29,19 +29,25 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.StandardAnalyzer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/analyzers.ts#L95-L99">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class StandardAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	@Nullable
@@ -54,14 +60,12 @@ public class StandardAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	private StandardAnalyzer(Builder builder) {
 
 		this.maxTokenLength = builder.maxTokenLength;
-		this.stopwords = ModelTypeHelper.unmodifiable(builder.stopwords);
+		this.stopwords = ApiTypeHelper.unmodifiable(builder.stopwords);
 
 	}
 
-	public static StandardAnalyzer of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static StandardAnalyzer of(Function<Builder, ObjectBuilder<StandardAnalyzer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -105,7 +109,7 @@ public class StandardAnalyzer implements AnalyzerVariant, JsonpSerializable {
 			generator.write(this.maxTokenLength);
 
 		}
-		if (ModelTypeHelper.isDefined(this.stopwords)) {
+		if (ApiTypeHelper.isDefined(this.stopwords)) {
 			generator.writeKey("stopwords");
 			generator.writeStartArray();
 			for (String item0 : this.stopwords) {
@@ -123,6 +127,7 @@ public class StandardAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	/**
 	 * Builder for {@link StandardAnalyzer}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StandardAnalyzer> {
 		@Nullable
 		private Integer maxTokenLength;
@@ -140,17 +145,21 @@ public class StandardAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
 		/**
 		 * API name: {@code stopwords}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>stopwords</code>.
 		 */
-		public final Builder stopwords(@Nullable List<String> value) {
-			this.stopwords = value;
+		public final Builder stopwords(List<String> list) {
+			this.stopwords = _listAddAll(this.stopwords, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code stopwords}
+		 * <p>
+		 * Adds one or more values to <code>stopwords</code>.
 		 */
-		public final Builder stopwords(String... value) {
-			this.stopwords = Arrays.asList(value);
+		public final Builder stopwords(String value, String... values) {
+			this.stopwords = _listAdd(this.stopwords, value, values);
 			return this;
 		}
 

@@ -29,8 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,13 +37,19 @@ import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysis
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/DataframeAnalytics.ts#L133-L212">API
+ *      specification</a>
+ */
 
 public abstract class DataframeAnalysisBase implements JsonpSerializable {
 	@Nullable
@@ -104,13 +109,13 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 	protected DataframeAnalysisBase(AbstractBuilder<?> builder) {
 
 		this.alpha = builder.alpha;
-		this.dependentVariable = ModelTypeHelper.requireNonNull(builder.dependentVariable, this, "dependentVariable");
+		this.dependentVariable = ApiTypeHelper.requireNonNull(builder.dependentVariable, this, "dependentVariable");
 		this.downsampleFactor = builder.downsampleFactor;
 		this.earlyStoppingEnabled = builder.earlyStoppingEnabled;
 		this.eta = builder.eta;
 		this.etaGrowthRatePerTree = builder.etaGrowthRatePerTree;
 		this.featureBagFraction = builder.featureBagFraction;
-		this.featureProcessors = ModelTypeHelper.unmodifiable(builder.featureProcessors);
+		this.featureProcessors = ApiTypeHelper.unmodifiable(builder.featureProcessors);
 		this.gamma = builder.gamma;
 		this.lambda = builder.lambda;
 		this.maxOptimizationRoundsPerHyperparameter = builder.maxOptimizationRoundsPerHyperparameter;
@@ -426,7 +431,7 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 			generator.write(this.featureBagFraction);
 
 		}
-		if (ModelTypeHelper.isDefined(this.featureProcessors)) {
+		if (ApiTypeHelper.isDefined(this.featureProcessors)) {
 			generator.writeKey("feature_processors");
 			generator.writeStartArray();
 			for (DataframeAnalysisFeatureProcessor item0 : this.featureProcessors) {
@@ -660,9 +665,11 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 		 * of the specified fields.
 		 * <p>
 		 * API name: {@code feature_processors}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>featureProcessors</code>.
 		 */
-		public final BuilderT featureProcessors(@Nullable List<DataframeAnalysisFeatureProcessor> value) {
-			this.featureProcessors = value;
+		public final BuilderT featureProcessors(List<DataframeAnalysisFeatureProcessor> list) {
+			this.featureProcessors = _listAddAll(this.featureProcessors, list);
 			return self();
 		}
 
@@ -678,9 +685,12 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 		 * of the specified fields.
 		 * <p>
 		 * API name: {@code feature_processors}
+		 * <p>
+		 * Adds one or more values to <code>featureProcessors</code>.
 		 */
-		public final BuilderT featureProcessors(DataframeAnalysisFeatureProcessor... value) {
-			this.featureProcessors = Arrays.asList(value);
+		public final BuilderT featureProcessors(DataframeAnalysisFeatureProcessor value,
+				DataframeAnalysisFeatureProcessor... values) {
+			this.featureProcessors = _listAdd(this.featureProcessors, value, values);
 			return self();
 		}
 
@@ -696,11 +706,12 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 		 * of the specified fields.
 		 * <p>
 		 * API name: {@code feature_processors}
+		 * <p>
+		 * Adds a value to <code>featureProcessors</code> using a builder lambda.
 		 */
 		public final BuilderT featureProcessors(
-				Function<ListBuilder<DataframeAnalysisFeatureProcessor, DataframeAnalysisFeatureProcessor.Builder>, ObjectBuilder<List<DataframeAnalysisFeatureProcessor>>> fn) {
-			return featureProcessors(
-					fn.apply(new ListBuilder<>(DataframeAnalysisFeatureProcessor.Builder::new)).build());
+				Function<DataframeAnalysisFeatureProcessor.Builder, ObjectBuilder<DataframeAnalysisFeatureProcessor>> fn) {
+			return featureProcessors(fn.apply(new DataframeAnalysisFeatureProcessor.Builder()).build());
 		}
 
 		/**

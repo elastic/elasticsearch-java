@@ -31,19 +31,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.segments.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/segments/IndicesSegmentsResponse.ts#L24-L29">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SegmentsResponse implements JsonpSerializable {
 	private final Map<String, IndexSegment> indices;
@@ -54,15 +59,13 @@ public class SegmentsResponse implements JsonpSerializable {
 
 	private SegmentsResponse(Builder builder) {
 
-		this.indices = ModelTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
-		this.shards = ModelTypeHelper.requireNonNull(builder.shards, this, "shards");
+		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
+		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
 
 	}
 
-	public static SegmentsResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SegmentsResponse of(Function<Builder, ObjectBuilder<SegmentsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -90,7 +93,7 @@ public class SegmentsResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.indices)) {
+		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartObject();
 			for (Map.Entry<String, IndexSegment> item0 : this.indices.entrySet()) {
@@ -111,6 +114,7 @@ public class SegmentsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link SegmentsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SegmentsResponse> {
 		private Map<String, IndexSegment> indices;
 
@@ -118,15 +122,31 @@ public class SegmentsResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>indices</code>.
 		 */
-		public final Builder indices(Map<String, IndexSegment> value) {
-			this.indices = value;
+		public final Builder indices(Map<String, IndexSegment> map) {
+			this.indices = _mapPutAll(this.indices, map);
 			return this;
 		}
 
-		public final Builder indices(
-				Function<MapBuilder<String, IndexSegment, IndexSegment.Builder>, ObjectBuilder<Map<String, IndexSegment>>> fn) {
-			return indices(fn.apply(new MapBuilder<>(IndexSegment.Builder::new)).build());
+		/**
+		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds an entry to <code>indices</code>.
+		 */
+		public final Builder indices(String key, IndexSegment value) {
+			this.indices = _mapPut(this.indices, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds an entry to <code>indices</code> using a builder lambda.
+		 */
+		public final Builder indices(String key, Function<IndexSegment.Builder, ObjectBuilder<IndexSegment>> fn) {
+			return indices(key, fn.apply(new IndexSegment.Builder()).build());
 		}
 
 		/**
@@ -140,10 +160,8 @@ public class SegmentsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _shards}
 		 */
-		public final Builder shards(Consumer<ShardStatistics.Builder> fn) {
-			ShardStatistics.Builder builder = new ShardStatistics.Builder();
-			fn.accept(builder);
-			return this.shards(builder.build());
+		public final Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
 		/**

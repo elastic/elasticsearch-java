@@ -37,10 +37,17 @@ import java.lang.Integer;
 import java.lang.Number;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GeoTileGridAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/bucket.ts#L187-L193">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GeoTileGridAggregation extends BucketAggregationBase implements AggregationVariant, PivotGroupByVariant {
 	@Nullable
@@ -71,10 +78,8 @@ public class GeoTileGridAggregation extends BucketAggregationBase implements Agg
 
 	}
 
-	public static GeoTileGridAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GeoTileGridAggregation of(Function<Builder, ObjectBuilder<GeoTileGridAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -169,6 +174,7 @@ public class GeoTileGridAggregation extends BucketAggregationBase implements Agg
 	/**
 	 * Builder for {@link GeoTileGridAggregation}.
 	 */
+
 	public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<GeoTileGridAggregation> {
@@ -230,10 +236,8 @@ public class GeoTileGridAggregation extends BucketAggregationBase implements Agg
 		/**
 		 * API name: {@code bounds}
 		 */
-		public final Builder bounds(Consumer<GeoBounds.Builder> fn) {
-			GeoBounds.Builder builder = new GeoBounds.Builder();
-			fn.accept(builder);
-			return this.bounds(builder.build());
+		public final Builder bounds(Function<GeoBounds.Builder, ObjectBuilder<GeoBounds>> fn) {
+			return this.bounds(fn.apply(new GeoBounds.Builder()).build());
 		}
 
 		@Override

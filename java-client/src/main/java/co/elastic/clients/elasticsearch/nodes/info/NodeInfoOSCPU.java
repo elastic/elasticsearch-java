@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoOSCPU
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L324-L333">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeInfoOSCPU implements JsonpSerializable {
 	private final String cacheSize;
@@ -62,21 +69,19 @@ public class NodeInfoOSCPU implements JsonpSerializable {
 
 	private NodeInfoOSCPU(Builder builder) {
 
-		this.cacheSize = ModelTypeHelper.requireNonNull(builder.cacheSize, this, "cacheSize");
-		this.cacheSizeInBytes = ModelTypeHelper.requireNonNull(builder.cacheSizeInBytes, this, "cacheSizeInBytes");
-		this.coresPerSocket = ModelTypeHelper.requireNonNull(builder.coresPerSocket, this, "coresPerSocket");
-		this.mhz = ModelTypeHelper.requireNonNull(builder.mhz, this, "mhz");
-		this.model = ModelTypeHelper.requireNonNull(builder.model, this, "model");
-		this.totalCores = ModelTypeHelper.requireNonNull(builder.totalCores, this, "totalCores");
-		this.totalSockets = ModelTypeHelper.requireNonNull(builder.totalSockets, this, "totalSockets");
-		this.vendor = ModelTypeHelper.requireNonNull(builder.vendor, this, "vendor");
+		this.cacheSize = ApiTypeHelper.requireNonNull(builder.cacheSize, this, "cacheSize");
+		this.cacheSizeInBytes = ApiTypeHelper.requireNonNull(builder.cacheSizeInBytes, this, "cacheSizeInBytes");
+		this.coresPerSocket = ApiTypeHelper.requireNonNull(builder.coresPerSocket, this, "coresPerSocket");
+		this.mhz = ApiTypeHelper.requireNonNull(builder.mhz, this, "mhz");
+		this.model = ApiTypeHelper.requireNonNull(builder.model, this, "model");
+		this.totalCores = ApiTypeHelper.requireNonNull(builder.totalCores, this, "totalCores");
+		this.totalSockets = ApiTypeHelper.requireNonNull(builder.totalSockets, this, "totalSockets");
+		this.vendor = ApiTypeHelper.requireNonNull(builder.vendor, this, "vendor");
 
 	}
 
-	public static NodeInfoOSCPU of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodeInfoOSCPU of(Function<Builder, ObjectBuilder<NodeInfoOSCPU>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -177,6 +182,7 @@ public class NodeInfoOSCPU implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoOSCPU}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoOSCPU> {
 		private String cacheSize;
 

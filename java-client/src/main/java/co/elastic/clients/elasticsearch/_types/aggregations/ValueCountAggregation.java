@@ -30,9 +30,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.aggregations.ValueCountAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/metric.ts#L187-L187">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ValueCountAggregation extends FormattableMetricAggregation implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -42,10 +49,8 @@ public class ValueCountAggregation extends FormattableMetricAggregation implemen
 
 	}
 
-	public static ValueCountAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ValueCountAggregation of(Function<Builder, ObjectBuilder<ValueCountAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,6 +66,7 @@ public class ValueCountAggregation extends FormattableMetricAggregation implemen
 	/**
 	 * Builder for {@link ValueCountAggregation}.
 	 */
+
 	public static class Builder extends FormattableMetricAggregation.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ValueCountAggregation> {

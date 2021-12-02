@@ -35,10 +35,17 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm._types.Phase
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ilm/_types/Phase.ts#L25-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Phase implements JsonpSerializable {
 	@Nullable
@@ -56,10 +63,8 @@ public class Phase implements JsonpSerializable {
 
 	}
 
-	public static Phase of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Phase of(Function<Builder, ObjectBuilder<Phase>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -107,6 +112,7 @@ public class Phase implements JsonpSerializable {
 	/**
 	 * Builder for {@link Phase}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Phase> {
 		@Nullable
 		private JsonData actions;
@@ -133,10 +139,8 @@ public class Phase implements JsonpSerializable {
 		/**
 		 * API name: {@code min_age}
 		 */
-		public final Builder minAge(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.minAge(builder.build());
+		public final Builder minAge(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.minAge(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

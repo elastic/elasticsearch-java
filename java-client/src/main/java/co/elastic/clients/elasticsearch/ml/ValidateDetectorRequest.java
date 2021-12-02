@@ -33,16 +33,24 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.validate_detector.Request
+
+/**
+ * Validates an anomaly detection detector.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/validate_detector/MlValidateDetectorRequest.ts#L23-L32">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ValidateDetectorRequest extends RequestBase implements JsonpSerializable {
 	private final Detector detector;
@@ -51,14 +59,12 @@ public class ValidateDetectorRequest extends RequestBase implements JsonpSeriali
 
 	private ValidateDetectorRequest(Builder builder) {
 
-		this.detector = ModelTypeHelper.requireNonNull(builder.detector, this, "detector");
+		this.detector = ApiTypeHelper.requireNonNull(builder.detector, this, "detector");
 
 	}
 
-	public static ValidateDetectorRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ValidateDetectorRequest of(Function<Builder, ObjectBuilder<ValidateDetectorRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -83,6 +89,7 @@ public class ValidateDetectorRequest extends RequestBase implements JsonpSeriali
 	/**
 	 * Builder for {@link ValidateDetectorRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ValidateDetectorRequest> {
 		private Detector detector;
 
@@ -101,10 +108,8 @@ public class ValidateDetectorRequest extends RequestBase implements JsonpSeriali
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public final Builder detector(Consumer<Detector.Builder> fn) {
-			Detector.Builder builder = new Detector.Builder();
-			fn.accept(builder);
-			return this.detector(builder.build());
+		public final Builder detector(Function<Detector.Builder, ObjectBuilder<Detector>> fn) {
+			return this.detector(fn.apply(new Detector.Builder()).build());
 		}
 
 		/**

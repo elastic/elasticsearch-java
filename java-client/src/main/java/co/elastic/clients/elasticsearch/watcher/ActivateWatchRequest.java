@@ -31,17 +31,25 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.activate_watch.Request
+
+/**
+ * Activates a currently inactive watch.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/activate_watch/WatcherActivateWatchRequest.ts#L23-L32">API
+ *      specification</a>
+ */
 
 public class ActivateWatchRequest extends RequestBase {
 	private final String watchId;
@@ -50,14 +58,12 @@ public class ActivateWatchRequest extends RequestBase {
 
 	private ActivateWatchRequest(Builder builder) {
 
-		this.watchId = ModelTypeHelper.requireNonNull(builder.watchId, this, "watchId");
+		this.watchId = ApiTypeHelper.requireNonNull(builder.watchId, this, "watchId");
 
 	}
 
-	public static ActivateWatchRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ActivateWatchRequest of(Function<Builder, ObjectBuilder<ActivateWatchRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -74,6 +80,7 @@ public class ActivateWatchRequest extends RequestBase {
 	/**
 	 * Builder for {@link ActivateWatchRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ActivateWatchRequest> {
 		private String watchId;
 

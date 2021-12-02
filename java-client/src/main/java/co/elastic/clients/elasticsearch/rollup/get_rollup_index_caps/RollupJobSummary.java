@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -37,10 +37,17 @@ import java.lang.String;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.get_rollup_index_caps.RollupJobSummary
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/rollup/get_rollup_index_caps/types.ts#L28-L33">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RollupJobSummary implements JsonpSerializable {
 	private final Map<String, List<RollupJobSummaryField>> fields;
@@ -55,17 +62,15 @@ public class RollupJobSummary implements JsonpSerializable {
 
 	private RollupJobSummary(Builder builder) {
 
-		this.fields = ModelTypeHelper.unmodifiableRequired(builder.fields, this, "fields");
-		this.indexPattern = ModelTypeHelper.requireNonNull(builder.indexPattern, this, "indexPattern");
-		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
-		this.rollupIndex = ModelTypeHelper.requireNonNull(builder.rollupIndex, this, "rollupIndex");
+		this.fields = ApiTypeHelper.unmodifiableRequired(builder.fields, this, "fields");
+		this.indexPattern = ApiTypeHelper.requireNonNull(builder.indexPattern, this, "indexPattern");
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.rollupIndex = ApiTypeHelper.requireNonNull(builder.rollupIndex, this, "rollupIndex");
 
 	}
 
-	public static RollupJobSummary of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RollupJobSummary of(Function<Builder, ObjectBuilder<RollupJobSummary>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -107,7 +112,7 @@ public class RollupJobSummary implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.fields)) {
+		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartObject();
 			for (Map.Entry<String, List<RollupJobSummaryField>> item0 : this.fields.entrySet()) {
@@ -141,6 +146,7 @@ public class RollupJobSummary implements JsonpSerializable {
 	/**
 	 * Builder for {@link RollupJobSummary}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RollupJobSummary> {
 		private Map<String, List<RollupJobSummaryField>> fields;
 
@@ -152,9 +158,21 @@ public class RollupJobSummary implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code fields}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>fields</code>.
 		 */
-		public final Builder fields(Map<String, List<RollupJobSummaryField>> value) {
-			this.fields = value;
+		public final Builder fields(Map<String, List<RollupJobSummaryField>> map) {
+			this.fields = _mapPutAll(this.fields, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code fields}
+		 * <p>
+		 * Adds an entry to <code>fields</code>.
+		 */
+		public final Builder fields(String key, List<RollupJobSummaryField> value) {
+			this.fields = _mapPut(this.fields, key, value);
 			return this;
 		}
 

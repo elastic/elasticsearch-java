@@ -37,10 +37,18 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_role.Request
+
+/**
+ * Retrieves roles in the native realm.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_role/SecurityGetRoleRequest.ts#L23-L32">API
+ *      specification</a>
+ */
 
 public class GetRoleRequest extends RequestBase {
 	@Nullable
@@ -54,10 +62,8 @@ public class GetRoleRequest extends RequestBase {
 
 	}
 
-	public static GetRoleRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetRoleRequest of(Function<Builder, ObjectBuilder<GetRoleRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -75,6 +81,7 @@ public class GetRoleRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetRoleRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetRoleRequest> {
 		@Nullable
 		private String name;

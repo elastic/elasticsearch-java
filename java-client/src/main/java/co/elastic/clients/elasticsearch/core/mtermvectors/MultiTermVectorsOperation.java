@@ -32,20 +32,26 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.mtermvectors.Operation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/mtermvectors/types.ts#L35-L49">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MultiTermVectorsOperation implements JsonpSerializable {
 	private final String id;
@@ -89,10 +95,10 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 
 	private MultiTermVectorsOperation(Builder builder) {
 
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.index = builder.index;
 		this.doc = builder.doc;
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 		this.fieldStatistics = builder.fieldStatistics;
 		this.filter = builder.filter;
 		this.offsets = builder.offsets;
@@ -105,10 +111,8 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 
 	}
 
-	public static MultiTermVectorsOperation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static MultiTermVectorsOperation of(Function<Builder, ObjectBuilder<MultiTermVectorsOperation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -237,7 +241,7 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 			this.doc.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.fields)) {
+		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartArray();
 			for (String item0 : this.fields) {
@@ -299,6 +303,7 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 	/**
 	 * Builder for {@link MultiTermVectorsOperation}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MultiTermVectorsOperation> {
 		private String id;
 
@@ -364,17 +369,21 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 
 		/**
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fields</code>.
 		 */
-		public final Builder fields(@Nullable List<String> value) {
-			this.fields = value;
+		public final Builder fields(List<String> list) {
+			this.fields = _listAddAll(this.fields, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds one or more values to <code>fields</code>.
 		 */
-		public final Builder fields(String... value) {
-			this.fields = Arrays.asList(value);
+		public final Builder fields(String value, String... values) {
+			this.fields = _listAdd(this.fields, value, values);
 			return this;
 		}
 
@@ -397,10 +406,8 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 		/**
 		 * API name: {@code filter}
 		 */
-		public final Builder filter(Consumer<Filter.Builder> fn) {
-			Filter.Builder builder = new Filter.Builder();
-			fn.accept(builder);
-			return this.filter(builder.build());
+		public final Builder filter(Function<Filter.Builder, ObjectBuilder<Filter>> fn) {
+			return this.filter(fn.apply(new Filter.Builder()).build());
 		}
 
 		/**

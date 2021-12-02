@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -37,10 +37,17 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.CommandAllocatePrimaryAction
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/reroute/types.ts#L80-L86">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CommandAllocatePrimaryAction implements JsonpSerializable {
 	private final String index;
@@ -55,17 +62,15 @@ public class CommandAllocatePrimaryAction implements JsonpSerializable {
 
 	private CommandAllocatePrimaryAction(Builder builder) {
 
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
-		this.shard = ModelTypeHelper.requireNonNull(builder.shard, this, "shard");
-		this.node = ModelTypeHelper.requireNonNull(builder.node, this, "node");
-		this.acceptDataLoss = ModelTypeHelper.requireNonNull(builder.acceptDataLoss, this, "acceptDataLoss");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard");
+		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
+		this.acceptDataLoss = ApiTypeHelper.requireNonNull(builder.acceptDataLoss, this, "acceptDataLoss");
 
 	}
 
-	public static CommandAllocatePrimaryAction of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CommandAllocatePrimaryAction of(Function<Builder, ObjectBuilder<CommandAllocatePrimaryAction>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -131,6 +136,7 @@ public class CommandAllocatePrimaryAction implements JsonpSerializable {
 	/**
 	 * Builder for {@link CommandAllocatePrimaryAction}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CommandAllocatePrimaryAction> {
 		private String index;
 

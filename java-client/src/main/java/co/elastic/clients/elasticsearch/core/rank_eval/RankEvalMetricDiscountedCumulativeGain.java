@@ -32,10 +32,21 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.RankEvalMetricDiscountedCumulativeGain
+
+/**
+ * Discounted cumulative gain (DCG)
+ * 
+ * @see <a href=
+ *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-rank-eval.html#_discounted_cumulative_gain_dcg">Documentation
+ *      on elastic.co</a>
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/rank_eval/types.ts#L66-L77">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RankEvalMetricDiscountedCumulativeGain extends RankEvalMetricBase {
 	@Nullable
@@ -50,10 +61,9 @@ public class RankEvalMetricDiscountedCumulativeGain extends RankEvalMetricBase {
 
 	}
 
-	public static RankEvalMetricDiscountedCumulativeGain of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RankEvalMetricDiscountedCumulativeGain of(
+			Function<Builder, ObjectBuilder<RankEvalMetricDiscountedCumulativeGain>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -82,6 +92,7 @@ public class RankEvalMetricDiscountedCumulativeGain extends RankEvalMetricBase {
 	/**
 	 * Builder for {@link RankEvalMetricDiscountedCumulativeGain}.
 	 */
+
 	public static class Builder extends RankEvalMetricBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<RankEvalMetricDiscountedCumulativeGain> {

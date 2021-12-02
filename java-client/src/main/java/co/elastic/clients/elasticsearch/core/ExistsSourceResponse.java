@@ -33,6 +33,13 @@ import java.util.Objects;
 
 // typedef: _global.exists_source.Response
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/exists_source/SourceExistsResponse.ts#L22-L24">API
+ *      specification</a>
+ */
+
 public class ExistsSourceResponse {
 	public ExistsSourceResponse() {
 	}

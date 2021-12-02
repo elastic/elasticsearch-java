@@ -29,19 +29,25 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.preview_data_frame_analytics.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/preview_data_frame_analytics/MlPreviewDataFrameAnalyticsResponse.ts#L23-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PreviewDataFrameAnalyticsResponse implements JsonpSerializable {
 	private final List<Map<String, String>> featureValues;
@@ -50,14 +56,13 @@ public class PreviewDataFrameAnalyticsResponse implements JsonpSerializable {
 
 	private PreviewDataFrameAnalyticsResponse(Builder builder) {
 
-		this.featureValues = ModelTypeHelper.unmodifiableRequired(builder.featureValues, this, "featureValues");
+		this.featureValues = ApiTypeHelper.unmodifiableRequired(builder.featureValues, this, "featureValues");
 
 	}
 
-	public static PreviewDataFrameAnalyticsResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PreviewDataFrameAnalyticsResponse of(
+			Function<Builder, ObjectBuilder<PreviewDataFrameAnalyticsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -82,7 +87,7 @@ public class PreviewDataFrameAnalyticsResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.featureValues)) {
+		if (ApiTypeHelper.isDefined(this.featureValues)) {
 			generator.writeKey("feature_values");
 			generator.writeStartArray();
 			for (Map<String, String> item0 : this.featureValues) {
@@ -108,6 +113,7 @@ public class PreviewDataFrameAnalyticsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link PreviewDataFrameAnalyticsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PreviewDataFrameAnalyticsResponse> {
 		private List<Map<String, String>> featureValues;
 
@@ -117,9 +123,11 @@ public class PreviewDataFrameAnalyticsResponse implements JsonpSerializable {
 		 * training.
 		 * <p>
 		 * API name: {@code feature_values}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>featureValues</code>.
 		 */
-		public final Builder featureValues(List<Map<String, String>> value) {
-			this.featureValues = value;
+		public final Builder featureValues(List<Map<String, String>> list) {
+			this.featureValues = _listAddAll(this.featureValues, list);
 			return this;
 		}
 
@@ -129,9 +137,11 @@ public class PreviewDataFrameAnalyticsResponse implements JsonpSerializable {
 		 * training.
 		 * <p>
 		 * API name: {@code feature_values}
+		 * <p>
+		 * Adds one or more values to <code>featureValues</code>.
 		 */
-		public final Builder featureValues(Map<String, String>... value) {
-			this.featureValues = Arrays.asList(value);
+		public final Builder featureValues(Map<String, String> value, Map<String, String>... values) {
+			this.featureValues = _listAdd(this.featureValues, value, values);
 			return this;
 		}
 

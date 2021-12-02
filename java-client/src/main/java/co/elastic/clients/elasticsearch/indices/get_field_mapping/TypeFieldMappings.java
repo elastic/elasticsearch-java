@@ -30,15 +30,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_field_mapping.TypeFieldMappings
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/get_field_mapping/types.ts#L24-L26">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TypeFieldMappings implements JsonpSerializable {
 	private final FieldMapping mappings;
@@ -47,14 +54,12 @@ public class TypeFieldMappings implements JsonpSerializable {
 
 	private TypeFieldMappings(Builder builder) {
 
-		this.mappings = ModelTypeHelper.requireNonNull(builder.mappings, this, "mappings");
+		this.mappings = ApiTypeHelper.requireNonNull(builder.mappings, this, "mappings");
 
 	}
 
-	public static TypeFieldMappings of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TypeFieldMappings of(Function<Builder, ObjectBuilder<TypeFieldMappings>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -85,6 +90,7 @@ public class TypeFieldMappings implements JsonpSerializable {
 	/**
 	 * Builder for {@link TypeFieldMappings}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TypeFieldMappings> {
 		private FieldMapping mappings;
 
@@ -99,10 +105,8 @@ public class TypeFieldMappings implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code mappings}
 		 */
-		public final Builder mappings(Consumer<FieldMapping.Builder> fn) {
-			FieldMapping.Builder builder = new FieldMapping.Builder();
-			fn.accept(builder);
-			return this.mappings(builder.build());
+		public final Builder mappings(Function<FieldMapping.Builder, ObjectBuilder<FieldMapping>> fn) {
+			return this.mappings(fn.apply(new FieldMapping.Builder()).build());
 		}
 
 		/**

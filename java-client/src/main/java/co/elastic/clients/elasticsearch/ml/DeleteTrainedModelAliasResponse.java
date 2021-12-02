@@ -31,9 +31,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: ml.delete_trained_model_alias.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/delete_trained_model_alias/MlDeleteTrainedModelAliasResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DeleteTrainedModelAliasResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
@@ -43,10 +50,9 @@ public class DeleteTrainedModelAliasResponse extends AcknowledgedResponseBase {
 
 	}
 
-	public static DeleteTrainedModelAliasResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DeleteTrainedModelAliasResponse of(
+			Function<Builder, ObjectBuilder<DeleteTrainedModelAliasResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -54,6 +60,7 @@ public class DeleteTrainedModelAliasResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link DeleteTrainedModelAliasResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeleteTrainedModelAliasResponse> {

@@ -29,14 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: xpack.usage.Counter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L33-L36">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Counter implements JsonpSerializable {
 	private final long active;
@@ -47,9 +55,13 @@ public class Counter implements JsonpSerializable {
 
 	protected Counter(AbstractBuilder<?> builder) {
 
-		this.active = ModelTypeHelper.requireNonNull(builder.active, this, "active");
-		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
+		this.active = ApiTypeHelper.requireNonNull(builder.active, this, "active");
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
 
+	}
+
+	public static Counter counterOf(Function<Builder, ObjectBuilder<Counter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -90,6 +102,7 @@ public class Counter implements JsonpSerializable {
 	/**
 	 * Builder for {@link Counter}.
 	 */
+
 	public static class Builder extends Counter.AbstractBuilder<Builder> implements ObjectBuilder<Counter> {
 		@Override
 		protected Builder self() {

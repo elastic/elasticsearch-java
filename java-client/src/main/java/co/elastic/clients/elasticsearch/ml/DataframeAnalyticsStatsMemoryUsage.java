@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsStatsMemoryUsage
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/DataframeAnalytics.ts#L345-L354">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeAnalyticsStatsMemoryUsage implements JsonpSerializable {
 	@Nullable
@@ -57,16 +64,15 @@ public class DataframeAnalyticsStatsMemoryUsage implements JsonpSerializable {
 	private DataframeAnalyticsStatsMemoryUsage(Builder builder) {
 
 		this.memoryReestimateBytes = builder.memoryReestimateBytes;
-		this.peakUsageBytes = ModelTypeHelper.requireNonNull(builder.peakUsageBytes, this, "peakUsageBytes");
-		this.status = ModelTypeHelper.requireNonNull(builder.status, this, "status");
+		this.peakUsageBytes = ApiTypeHelper.requireNonNull(builder.peakUsageBytes, this, "peakUsageBytes");
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 		this.timestamp = builder.timestamp;
 
 	}
 
-	public static DataframeAnalyticsStatsMemoryUsage of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DataframeAnalyticsStatsMemoryUsage of(
+			Function<Builder, ObjectBuilder<DataframeAnalyticsStatsMemoryUsage>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -143,6 +149,7 @@ public class DataframeAnalyticsStatsMemoryUsage implements JsonpSerializable {
 	/**
 	 * Builder for {@link DataframeAnalyticsStatsMemoryUsage}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframeAnalyticsStatsMemoryUsage> {
 		@Nullable
 		private Long memoryReestimateBytes;

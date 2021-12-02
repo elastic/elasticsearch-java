@@ -31,9 +31,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.analysis.RemoveDuplicatesTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L298-L300">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RemoveDuplicatesTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -43,10 +50,8 @@ public class RemoveDuplicatesTokenFilter extends TokenFilterBase implements Toke
 
 	}
 
-	public static RemoveDuplicatesTokenFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RemoveDuplicatesTokenFilter of(Function<Builder, ObjectBuilder<RemoveDuplicatesTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -69,6 +74,7 @@ public class RemoveDuplicatesTokenFilter extends TokenFilterBase implements Toke
 	/**
 	 * Builder for {@link RemoveDuplicatesTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<RemoveDuplicatesTokenFilter> {

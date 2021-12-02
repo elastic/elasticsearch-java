@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Float;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.ScriptScoreQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/specialized.ts#L170-L174">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ScriptScoreQuery extends QueryBase implements QueryVariant {
 	@Nullable
@@ -53,15 +60,13 @@ public class ScriptScoreQuery extends QueryBase implements QueryVariant {
 		super(builder);
 
 		this.minScore = builder.minScore;
-		this.query = ModelTypeHelper.requireNonNull(builder.query, this, "query");
-		this.script = ModelTypeHelper.requireNonNull(builder.script, this, "script");
+		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
+		this.script = ApiTypeHelper.requireNonNull(builder.script, this, "script");
 
 	}
 
-	public static ScriptScoreQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ScriptScoreQuery of(Function<Builder, ObjectBuilder<ScriptScoreQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -115,6 +120,7 @@ public class ScriptScoreQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link ScriptScoreQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<ScriptScoreQuery> {
 		@Nullable
 		private Float minScore;
@@ -142,10 +148,8 @@ public class ScriptScoreQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - API name: {@code query}
 		 */
-		public final Builder query(Consumer<Query.Builder> fn) {
-			Query.Builder builder = new Query.Builder();
-			fn.accept(builder);
-			return this.query(builder.build());
+		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
@@ -159,10 +163,8 @@ public class ScriptScoreQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - API name: {@code script}
 		 */
-		public final Builder script(Consumer<Script.Builder> fn) {
-			Script.Builder builder = new Script.Builder();
-			fn.accept(builder);
-			return this.script(builder.build());
+		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
 		@Override

@@ -33,10 +33,17 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Double;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.ScaledFloatNumberProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/core.ts#L201-L206">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ScaledFloatNumberProperty extends NumberPropertyBase implements PropertyVariant {
 	@Nullable
@@ -59,10 +66,8 @@ public class ScaledFloatNumberProperty extends NumberPropertyBase implements Pro
 
 	}
 
-	public static ScaledFloatNumberProperty of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ScaledFloatNumberProperty of(Function<Builder, ObjectBuilder<ScaledFloatNumberProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -124,6 +129,7 @@ public class ScaledFloatNumberProperty extends NumberPropertyBase implements Pro
 	/**
 	 * Builder for {@link ScaledFloatNumberProperty}.
 	 */
+
 	public static class Builder extends NumberPropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ScaledFloatNumberProperty> {

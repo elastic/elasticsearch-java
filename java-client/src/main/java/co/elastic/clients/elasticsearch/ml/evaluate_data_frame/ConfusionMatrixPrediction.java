@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.ConfusionMatrixPrediction
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/evaluate_data_frame/types.ts#L91-L94">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ConfusionMatrixPrediction implements JsonpSerializable {
 	private final String predictedClass;
@@ -50,15 +57,13 @@ public class ConfusionMatrixPrediction implements JsonpSerializable {
 
 	private ConfusionMatrixPrediction(Builder builder) {
 
-		this.predictedClass = ModelTypeHelper.requireNonNull(builder.predictedClass, this, "predictedClass");
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
+		this.predictedClass = ApiTypeHelper.requireNonNull(builder.predictedClass, this, "predictedClass");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
 
 	}
 
-	public static ConfusionMatrixPrediction of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ConfusionMatrixPrediction of(Function<Builder, ObjectBuilder<ConfusionMatrixPrediction>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -99,6 +104,7 @@ public class ConfusionMatrixPrediction implements JsonpSerializable {
 	/**
 	 * Builder for {@link ConfusionMatrixPrediction}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ConfusionMatrixPrediction> {
 		private String predictedClass;
 

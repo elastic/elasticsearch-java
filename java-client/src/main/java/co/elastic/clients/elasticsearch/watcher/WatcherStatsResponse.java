@@ -31,21 +31,25 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.stats.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/stats/WatcherStatsResponse.ts#L24-L32">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class WatcherStatsResponse implements JsonpSerializable {
 	private final NodeStatistics nodeStats;
@@ -60,17 +64,15 @@ public class WatcherStatsResponse implements JsonpSerializable {
 
 	private WatcherStatsResponse(Builder builder) {
 
-		this.nodeStats = ModelTypeHelper.requireNonNull(builder.nodeStats, this, "nodeStats");
-		this.clusterName = ModelTypeHelper.requireNonNull(builder.clusterName, this, "clusterName");
-		this.manuallyStopped = ModelTypeHelper.requireNonNull(builder.manuallyStopped, this, "manuallyStopped");
-		this.stats = ModelTypeHelper.unmodifiableRequired(builder.stats, this, "stats");
+		this.nodeStats = ApiTypeHelper.requireNonNull(builder.nodeStats, this, "nodeStats");
+		this.clusterName = ApiTypeHelper.requireNonNull(builder.clusterName, this, "clusterName");
+		this.manuallyStopped = ApiTypeHelper.requireNonNull(builder.manuallyStopped, this, "manuallyStopped");
+		this.stats = ApiTypeHelper.unmodifiableRequired(builder.stats, this, "stats");
 
 	}
 
-	public static WatcherStatsResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static WatcherStatsResponse of(Function<Builder, ObjectBuilder<WatcherStatsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -121,7 +123,7 @@ public class WatcherStatsResponse implements JsonpSerializable {
 		generator.writeKey("manually_stopped");
 		generator.write(this.manuallyStopped);
 
-		if (ModelTypeHelper.isDefined(this.stats)) {
+		if (ApiTypeHelper.isDefined(this.stats)) {
 			generator.writeKey("stats");
 			generator.writeStartArray();
 			for (WatcherNodeStats item0 : this.stats) {
@@ -139,6 +141,7 @@ public class WatcherStatsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link WatcherStatsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WatcherStatsResponse> {
 		private NodeStatistics nodeStats;
 
@@ -159,10 +162,8 @@ public class WatcherStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _nodes}
 		 */
-		public final Builder nodeStats(Consumer<NodeStatistics.Builder> fn) {
-			NodeStatistics.Builder builder = new NodeStatistics.Builder();
-			fn.accept(builder);
-			return this.nodeStats(builder.build());
+		public final Builder nodeStats(Function<NodeStatistics.Builder, ObjectBuilder<NodeStatistics>> fn) {
+			return this.nodeStats(fn.apply(new NodeStatistics.Builder()).build());
 		}
 
 		/**
@@ -183,26 +184,31 @@ public class WatcherStatsResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code stats}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>stats</code>.
 		 */
-		public final Builder stats(List<WatcherNodeStats> value) {
-			this.stats = value;
+		public final Builder stats(List<WatcherNodeStats> list) {
+			this.stats = _listAddAll(this.stats, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code stats}
+		 * <p>
+		 * Adds one or more values to <code>stats</code>.
 		 */
-		public final Builder stats(WatcherNodeStats... value) {
-			this.stats = Arrays.asList(value);
+		public final Builder stats(WatcherNodeStats value, WatcherNodeStats... values) {
+			this.stats = _listAdd(this.stats, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code stats}
+		 * <p>
+		 * Adds a value to <code>stats</code> using a builder lambda.
 		 */
-		public final Builder stats(
-				Function<ListBuilder<WatcherNodeStats, WatcherNodeStats.Builder>, ObjectBuilder<List<WatcherNodeStats>>> fn) {
-			return stats(fn.apply(new ListBuilder<>(WatcherNodeStats.Builder::new)).build());
+		public final Builder stats(Function<WatcherNodeStats.Builder, ObjectBuilder<WatcherNodeStats>> fn) {
+			return stats(fn.apply(new WatcherNodeStats.Builder()).build());
 		}
 
 		/**

@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
@@ -38,14 +38,23 @@ import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform._types.RetentionPolicyContainer
-// union type: Container[]
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/transform/_types/Transform.ts#L68-L74">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RetentionPolicy implements TaggedUnion<RetentionPolicy.Kind, Object>, JsonpSerializable {
 
+	/**
+	 * {@link RetentionPolicy} variant kinds.
+	 */
 	/**
 	 * {@link RetentionPolicy} variant kinds.
 	 */
@@ -82,22 +91,20 @@ public class RetentionPolicy implements TaggedUnion<RetentionPolicy.Kind, Object
 
 	public RetentionPolicy(RetentionPolicyVariant value) {
 
-		this._kind = ModelTypeHelper.requireNonNull(value._retentionPolicyKind(), this, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(value._retentionPolicyKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
 	private RetentionPolicy(Builder builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static RetentionPolicy of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RetentionPolicy of(Function<Builder, ObjectBuilder<RetentionPolicy>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -142,10 +149,9 @@ public class RetentionPolicy implements TaggedUnion<RetentionPolicy.Kind, Object
 			return this;
 		}
 
-		public ObjectBuilder<RetentionPolicy> time(Consumer<TimeRetentionPolicy.Builder> fn) {
-			TimeRetentionPolicy.Builder builder = new TimeRetentionPolicy.Builder();
-			fn.accept(builder);
-			return this.time(builder.build());
+		public ObjectBuilder<RetentionPolicy> time(
+				Function<TimeRetentionPolicy.Builder, ObjectBuilder<TimeRetentionPolicy>> fn) {
+			return this.time(fn.apply(new TimeRetentionPolicy.Builder()).build());
 		}
 
 		public RetentionPolicy build() {

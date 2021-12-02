@@ -30,8 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,14 +38,19 @@ import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.OverallBucket
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/Bucket.ts#L114-L127">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class OverallBucket implements JsonpSerializable {
 	private final long bucketSpan;
@@ -65,19 +69,17 @@ public class OverallBucket implements JsonpSerializable {
 
 	private OverallBucket(Builder builder) {
 
-		this.bucketSpan = ModelTypeHelper.requireNonNull(builder.bucketSpan, this, "bucketSpan");
-		this.isInterim = ModelTypeHelper.requireNonNull(builder.isInterim, this, "isInterim");
-		this.jobs = ModelTypeHelper.unmodifiableRequired(builder.jobs, this, "jobs");
-		this.overallScore = ModelTypeHelper.requireNonNull(builder.overallScore, this, "overallScore");
-		this.resultType = ModelTypeHelper.requireNonNull(builder.resultType, this, "resultType");
-		this.timestamp = ModelTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+		this.bucketSpan = ApiTypeHelper.requireNonNull(builder.bucketSpan, this, "bucketSpan");
+		this.isInterim = ApiTypeHelper.requireNonNull(builder.isInterim, this, "isInterim");
+		this.jobs = ApiTypeHelper.unmodifiableRequired(builder.jobs, this, "jobs");
+		this.overallScore = ApiTypeHelper.requireNonNull(builder.overallScore, this, "overallScore");
+		this.resultType = ApiTypeHelper.requireNonNull(builder.resultType, this, "resultType");
+		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
 
 	}
 
-	public static OverallBucket of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static OverallBucket of(Function<Builder, ObjectBuilder<OverallBucket>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -154,7 +156,7 @@ public class OverallBucket implements JsonpSerializable {
 		generator.writeKey("is_interim");
 		generator.write(this.isInterim);
 
-		if (ModelTypeHelper.isDefined(this.jobs)) {
+		if (ApiTypeHelper.isDefined(this.jobs)) {
 			generator.writeKey("jobs");
 			generator.writeStartArray();
 			for (OverallBucketJob item0 : this.jobs) {
@@ -180,6 +182,7 @@ public class OverallBucket implements JsonpSerializable {
 	/**
 	 * Builder for {@link OverallBucket}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<OverallBucket> {
 		private Long bucketSpan;
 
@@ -219,9 +222,11 @@ public class OverallBucket implements JsonpSerializable {
 		 * Required - An array of objects that contain the max_anomaly_score per job_id.
 		 * <p>
 		 * API name: {@code jobs}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>jobs</code>.
 		 */
-		public final Builder jobs(List<OverallBucketJob> value) {
-			this.jobs = value;
+		public final Builder jobs(List<OverallBucketJob> list) {
+			this.jobs = _listAddAll(this.jobs, list);
 			return this;
 		}
 
@@ -229,9 +234,11 @@ public class OverallBucket implements JsonpSerializable {
 		 * Required - An array of objects that contain the max_anomaly_score per job_id.
 		 * <p>
 		 * API name: {@code jobs}
+		 * <p>
+		 * Adds one or more values to <code>jobs</code>.
 		 */
-		public final Builder jobs(OverallBucketJob... value) {
-			this.jobs = Arrays.asList(value);
+		public final Builder jobs(OverallBucketJob value, OverallBucketJob... values) {
+			this.jobs = _listAdd(this.jobs, value, values);
 			return this;
 		}
 
@@ -239,10 +246,11 @@ public class OverallBucket implements JsonpSerializable {
 		 * Required - An array of objects that contain the max_anomaly_score per job_id.
 		 * <p>
 		 * API name: {@code jobs}
+		 * <p>
+		 * Adds a value to <code>jobs</code> using a builder lambda.
 		 */
-		public final Builder jobs(
-				Function<ListBuilder<OverallBucketJob, OverallBucketJob.Builder>, ObjectBuilder<List<OverallBucketJob>>> fn) {
-			return jobs(fn.apply(new ListBuilder<>(OverallBucketJob.Builder::new)).build());
+		public final Builder jobs(Function<OverallBucketJob.Builder, ObjectBuilder<OverallBucketJob>> fn) {
+			return jobs(fn.apply(new OverallBucketJob.Builder()).build());
 		}
 
 		/**
@@ -282,10 +290,8 @@ public class OverallBucket implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code timestamp}
 		 */
-		public final Builder timestamp(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.timestamp(builder.build());
+		public final Builder timestamp(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timestamp(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

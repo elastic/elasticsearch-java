@@ -34,7 +34,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
@@ -42,14 +42,23 @@ import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform._types.PivotGroupByContainer
-// union type: Container[]
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/transform/_types/Transform.ts#L58-L66">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PivotGroupBy implements TaggedUnion<PivotGroupBy.Kind, Object>, JsonpSerializable {
 
+	/**
+	 * {@link PivotGroupBy} variant kinds.
+	 */
 	/**
 	 * {@link PivotGroupBy} variant kinds.
 	 */
@@ -92,22 +101,20 @@ public class PivotGroupBy implements TaggedUnion<PivotGroupBy.Kind, Object>, Jso
 
 	public PivotGroupBy(PivotGroupByVariant value) {
 
-		this._kind = ModelTypeHelper.requireNonNull(value._pivotGroupByKind(), this, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(value._pivotGroupByKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
 	private PivotGroupBy(Builder builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static PivotGroupBy of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PivotGroupBy of(Function<Builder, ObjectBuilder<PivotGroupBy>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -203,10 +210,9 @@ public class PivotGroupBy implements TaggedUnion<PivotGroupBy.Kind, Object>, Jso
 			return this;
 		}
 
-		public ObjectBuilder<PivotGroupBy> dateHistogram(Consumer<DateHistogramAggregation.Builder> fn) {
-			DateHistogramAggregation.Builder builder = new DateHistogramAggregation.Builder();
-			fn.accept(builder);
-			return this.dateHistogram(builder.build());
+		public ObjectBuilder<PivotGroupBy> dateHistogram(
+				Function<DateHistogramAggregation.Builder, ObjectBuilder<DateHistogramAggregation>> fn) {
+			return this.dateHistogram(fn.apply(new DateHistogramAggregation.Builder()).build());
 		}
 
 		public ObjectBuilder<PivotGroupBy> geotileGrid(GeoTileGridAggregation v) {
@@ -215,10 +221,9 @@ public class PivotGroupBy implements TaggedUnion<PivotGroupBy.Kind, Object>, Jso
 			return this;
 		}
 
-		public ObjectBuilder<PivotGroupBy> geotileGrid(Consumer<GeoTileGridAggregation.Builder> fn) {
-			GeoTileGridAggregation.Builder builder = new GeoTileGridAggregation.Builder();
-			fn.accept(builder);
-			return this.geotileGrid(builder.build());
+		public ObjectBuilder<PivotGroupBy> geotileGrid(
+				Function<GeoTileGridAggregation.Builder, ObjectBuilder<GeoTileGridAggregation>> fn) {
+			return this.geotileGrid(fn.apply(new GeoTileGridAggregation.Builder()).build());
 		}
 
 		public ObjectBuilder<PivotGroupBy> histogram(HistogramAggregation v) {
@@ -227,10 +232,9 @@ public class PivotGroupBy implements TaggedUnion<PivotGroupBy.Kind, Object>, Jso
 			return this;
 		}
 
-		public ObjectBuilder<PivotGroupBy> histogram(Consumer<HistogramAggregation.Builder> fn) {
-			HistogramAggregation.Builder builder = new HistogramAggregation.Builder();
-			fn.accept(builder);
-			return this.histogram(builder.build());
+		public ObjectBuilder<PivotGroupBy> histogram(
+				Function<HistogramAggregation.Builder, ObjectBuilder<HistogramAggregation>> fn) {
+			return this.histogram(fn.apply(new HistogramAggregation.Builder()).build());
 		}
 
 		public ObjectBuilder<PivotGroupBy> terms(TermsAggregation v) {
@@ -239,10 +243,9 @@ public class PivotGroupBy implements TaggedUnion<PivotGroupBy.Kind, Object>, Jso
 			return this;
 		}
 
-		public ObjectBuilder<PivotGroupBy> terms(Consumer<TermsAggregation.Builder> fn) {
-			TermsAggregation.Builder builder = new TermsAggregation.Builder();
-			fn.accept(builder);
-			return this.terms(builder.build());
+		public ObjectBuilder<PivotGroupBy> terms(
+				Function<TermsAggregation.Builder, ObjectBuilder<TermsAggregation>> fn) {
+			return this.terms(fn.apply(new TermsAggregation.Builder()).build());
 		}
 
 		public PivotGroupBy build() {

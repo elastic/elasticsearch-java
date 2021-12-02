@@ -28,17 +28,23 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.PercentilesBucketAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/pipeline.ts#L203-L205">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PercentilesBucketAggregation extends PipelineAggregationBase implements AggregationVariant {
 	private final List<Double> percents;
@@ -48,14 +54,12 @@ public class PercentilesBucketAggregation extends PipelineAggregationBase implem
 	private PercentilesBucketAggregation(Builder builder) {
 		super(builder);
 
-		this.percents = ModelTypeHelper.unmodifiable(builder.percents);
+		this.percents = ApiTypeHelper.unmodifiable(builder.percents);
 
 	}
 
-	public static PercentilesBucketAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PercentilesBucketAggregation of(Function<Builder, ObjectBuilder<PercentilesBucketAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -76,7 +80,7 @@ public class PercentilesBucketAggregation extends PipelineAggregationBase implem
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.percents)) {
+		if (ApiTypeHelper.isDefined(this.percents)) {
 			generator.writeKey("percents");
 			generator.writeStartArray();
 			for (Double item0 : this.percents) {
@@ -94,6 +98,7 @@ public class PercentilesBucketAggregation extends PipelineAggregationBase implem
 	/**
 	 * Builder for {@link PercentilesBucketAggregation}.
 	 */
+
 	public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PercentilesBucketAggregation> {
@@ -102,17 +107,21 @@ public class PercentilesBucketAggregation extends PipelineAggregationBase implem
 
 		/**
 		 * API name: {@code percents}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>percents</code>.
 		 */
-		public final Builder percents(@Nullable List<Double> value) {
-			this.percents = value;
+		public final Builder percents(List<Double> list) {
+			this.percents = _listAddAll(this.percents, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code percents}
+		 * <p>
+		 * Adds one or more values to <code>percents</code>.
 		 */
-		public final Builder percents(Double... value) {
-			this.percents = Arrays.asList(value);
+		public final Builder percents(Double value, Double... values) {
+			this.percents = _listAdd(this.percents, value, values);
 			return this;
 		}
 

@@ -30,9 +30,18 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.aggregations.SumAggregate
+
+/**
+ * Sum aggregation result. <code>value</code> is always present and is zero if
+ * there were no values to process.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L189-L193">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SumAggregate extends SingleMetricAggregateBase implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -42,10 +51,8 @@ public class SumAggregate extends SingleMetricAggregateBase implements Aggregate
 
 	}
 
-	public static SumAggregate of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SumAggregate of(Function<Builder, ObjectBuilder<SumAggregate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,6 +68,7 @@ public class SumAggregate extends SingleMetricAggregateBase implements Aggregate
 	/**
 	 * Builder for {@link SumAggregate}.
 	 */
+
 	public static class Builder extends SingleMetricAggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<SumAggregate> {

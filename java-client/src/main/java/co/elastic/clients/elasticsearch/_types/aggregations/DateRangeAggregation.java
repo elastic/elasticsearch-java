@@ -23,25 +23,30 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
+import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.DateRangeAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/bucket.ts#L126-L133">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DateRangeAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
@@ -51,7 +56,7 @@ public class DateRangeAggregation extends BucketAggregationBase implements Aggre
 	private final String format;
 
 	@Nullable
-	private final String missing;
+	private final FieldValue missing;
 
 	private final List<DateRangeExpression> ranges;
 
@@ -69,16 +74,14 @@ public class DateRangeAggregation extends BucketAggregationBase implements Aggre
 		this.field = builder.field;
 		this.format = builder.format;
 		this.missing = builder.missing;
-		this.ranges = ModelTypeHelper.unmodifiable(builder.ranges);
+		this.ranges = ApiTypeHelper.unmodifiable(builder.ranges);
 		this.timeZone = builder.timeZone;
 		this.keyed = builder.keyed;
 
 	}
 
-	public static DateRangeAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DateRangeAggregation of(Function<Builder, ObjectBuilder<DateRangeAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -109,7 +112,7 @@ public class DateRangeAggregation extends BucketAggregationBase implements Aggre
 	 * API name: {@code missing}
 	 */
 	@Nullable
-	public final String missing() {
+	public final FieldValue missing() {
 		return this.missing;
 	}
 
@@ -151,10 +154,10 @@ public class DateRangeAggregation extends BucketAggregationBase implements Aggre
 		}
 		if (this.missing != null) {
 			generator.writeKey("missing");
-			generator.write(this.missing);
+			this.missing.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.ranges)) {
+		if (ApiTypeHelper.isDefined(this.ranges)) {
 			generator.writeKey("ranges");
 			generator.writeStartArray();
 			for (DateRangeExpression item0 : this.ranges) {
@@ -182,6 +185,7 @@ public class DateRangeAggregation extends BucketAggregationBase implements Aggre
 	/**
 	 * Builder for {@link DateRangeAggregation}.
 	 */
+
 	public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DateRangeAggregation> {
@@ -192,7 +196,7 @@ public class DateRangeAggregation extends BucketAggregationBase implements Aggre
 		private String format;
 
 		@Nullable
-		private String missing;
+		private FieldValue missing;
 
 		@Nullable
 		private List<DateRangeExpression> ranges;
@@ -222,33 +226,45 @@ public class DateRangeAggregation extends BucketAggregationBase implements Aggre
 		/**
 		 * API name: {@code missing}
 		 */
-		public final Builder missing(@Nullable String value) {
+		public final Builder missing(@Nullable FieldValue value) {
 			this.missing = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code ranges}
+		 * API name: {@code missing}
 		 */
-		public final Builder ranges(@Nullable List<DateRangeExpression> value) {
-			this.ranges = value;
+		public final Builder missing(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
+			return this.missing(fn.apply(new FieldValue.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code ranges}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>ranges</code>.
+		 */
+		public final Builder ranges(List<DateRangeExpression> list) {
+			this.ranges = _listAddAll(this.ranges, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code ranges}
+		 * <p>
+		 * Adds one or more values to <code>ranges</code>.
 		 */
-		public final Builder ranges(DateRangeExpression... value) {
-			this.ranges = Arrays.asList(value);
+		public final Builder ranges(DateRangeExpression value, DateRangeExpression... values) {
+			this.ranges = _listAdd(this.ranges, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code ranges}
+		 * <p>
+		 * Adds a value to <code>ranges</code> using a builder lambda.
 		 */
-		public final Builder ranges(
-				Function<ListBuilder<DateRangeExpression, DateRangeExpression.Builder>, ObjectBuilder<List<DateRangeExpression>>> fn) {
-			return ranges(fn.apply(new ListBuilder<>(DateRangeExpression.Builder::new)).build());
+		public final Builder ranges(Function<DateRangeExpression.Builder, ObjectBuilder<DateRangeExpression>> fn) {
+			return ranges(fn.apply(new DateRangeExpression.Builder()).build());
 		}
 
 		/**
@@ -297,7 +313,7 @@ public class DateRangeAggregation extends BucketAggregationBase implements Aggre
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
-		op.add(Builder::missing, JsonpDeserializer.stringDeserializer(), "missing");
+		op.add(Builder::missing, FieldValue._DESERIALIZER, "missing");
 		op.add(Builder::ranges, JsonpDeserializer.arrayDeserializer(DateRangeExpression._DESERIALIZER), "ranges");
 		op.add(Builder::timeZone, JsonpDeserializer.stringDeserializer(), "time_zone");
 		op.add(Builder::keyed, JsonpDeserializer.booleanDeserializer(), "keyed");

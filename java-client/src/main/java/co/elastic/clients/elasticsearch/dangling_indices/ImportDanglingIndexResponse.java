@@ -31,9 +31,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: dangling_indices.import_dangling_index.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/dangling_indices/import_dangling_index/ImportDanglingIndexResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ImportDanglingIndexResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
@@ -43,10 +50,8 @@ public class ImportDanglingIndexResponse extends AcknowledgedResponseBase {
 
 	}
 
-	public static ImportDanglingIndexResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ImportDanglingIndexResponse of(Function<Builder, ObjectBuilder<ImportDanglingIndexResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -54,6 +59,7 @@ public class ImportDanglingIndexResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link ImportDanglingIndexResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ImportDanglingIndexResponse> {

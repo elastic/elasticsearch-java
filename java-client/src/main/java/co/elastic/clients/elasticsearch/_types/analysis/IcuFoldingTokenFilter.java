@@ -28,15 +28,22 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.IcuFoldingTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/icu-plugin.ts#L46-L49">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IcuFoldingTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final String unicodeSetFilter;
@@ -46,14 +53,12 @@ public class IcuFoldingTokenFilter extends TokenFilterBase implements TokenFilte
 	private IcuFoldingTokenFilter(Builder builder) {
 		super(builder);
 
-		this.unicodeSetFilter = ModelTypeHelper.requireNonNull(builder.unicodeSetFilter, this, "unicodeSetFilter");
+		this.unicodeSetFilter = ApiTypeHelper.requireNonNull(builder.unicodeSetFilter, this, "unicodeSetFilter");
 
 	}
 
-	public static IcuFoldingTokenFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IcuFoldingTokenFilter of(Function<Builder, ObjectBuilder<IcuFoldingTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -85,6 +90,7 @@ public class IcuFoldingTokenFilter extends TokenFilterBase implements TokenFilte
 	/**
 	 * Builder for {@link IcuFoldingTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<IcuFoldingTokenFilter> {

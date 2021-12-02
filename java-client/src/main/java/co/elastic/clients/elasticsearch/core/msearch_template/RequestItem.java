@@ -31,14 +31,14 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.NdJsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.msearch_template.RequestItem
@@ -52,15 +52,13 @@ public class RequestItem implements NdJsonpSerializable, JsonpSerializable {
 
 	private RequestItem(Builder builder) {
 
-		this.header = ModelTypeHelper.requireNonNull(builder.header, this, "header");
-		this.body = ModelTypeHelper.requireNonNull(builder.body, this, "body");
+		this.header = ApiTypeHelper.requireNonNull(builder.header, this, "header");
+		this.body = ApiTypeHelper.requireNonNull(builder.body, this, "body");
 
 	}
 
-	public static RequestItem of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RequestItem of(Function<Builder, ObjectBuilder<RequestItem>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	@Override
@@ -106,6 +104,7 @@ public class RequestItem implements NdJsonpSerializable, JsonpSerializable {
 	/**
 	 * Builder for {@link RequestItem}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RequestItem> {
 		private MultisearchHeader header;
 
@@ -122,10 +121,8 @@ public class RequestItem implements NdJsonpSerializable, JsonpSerializable {
 		/**
 		 * Required - API name: {@code header}
 		 */
-		public final Builder header(Consumer<MultisearchHeader.Builder> fn) {
-			MultisearchHeader.Builder builder = new MultisearchHeader.Builder();
-			fn.accept(builder);
-			return this.header(builder.build());
+		public final Builder header(Function<MultisearchHeader.Builder, ObjectBuilder<MultisearchHeader>> fn) {
+			return this.header(fn.apply(new MultisearchHeader.Builder()).build());
 		}
 
 		/**
@@ -139,10 +136,8 @@ public class RequestItem implements NdJsonpSerializable, JsonpSerializable {
 		/**
 		 * Required - API name: {@code body}
 		 */
-		public final Builder body(Consumer<TemplateConfig.Builder> fn) {
-			TemplateConfig.Builder builder = new TemplateConfig.Builder();
-			fn.accept(builder);
-			return this.body(builder.build());
+		public final Builder body(Function<TemplateConfig.Builder, ObjectBuilder<TemplateConfig>> fn) {
+			return this.body(fn.apply(new TemplateConfig.Builder()).build());
 		}
 
 		/**

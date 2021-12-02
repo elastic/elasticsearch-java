@@ -28,16 +28,23 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.SplitProcessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/_types/Processors.ts#L327-L333">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SplitProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
@@ -58,18 +65,16 @@ public class SplitProcessor extends ProcessorBase implements ProcessorVariant {
 	private SplitProcessor(Builder builder) {
 		super(builder);
 
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.ignoreMissing = builder.ignoreMissing;
 		this.preserveTrailing = builder.preserveTrailing;
-		this.separator = ModelTypeHelper.requireNonNull(builder.separator, this, "separator");
+		this.separator = ApiTypeHelper.requireNonNull(builder.separator, this, "separator");
 		this.targetField = builder.targetField;
 
 	}
 
-	public static SplitProcessor of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SplitProcessor of(Function<Builder, ObjectBuilder<SplitProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -150,6 +155,7 @@ public class SplitProcessor extends ProcessorBase implements ProcessorVariant {
 	/**
 	 * Builder for {@link SplitProcessor}.
 	 */
+
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<SplitProcessor> {

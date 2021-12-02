@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.UnionDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
@@ -38,11 +38,22 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.Like
-// union type: Union[]
+
+/**
+ * Text that we want similar documents for or a lookup to a document's field for
+ * the text.
+ * 
+ * @see <a href=
+ *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-mlt-query.html#_document_input_parameters">Documentation
+ *      on elastic.co</a>
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/specialized.ts#L105-L110">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Like implements TaggedUnion<Like.Kind, Object>, JsonpSerializable {
 
@@ -71,15 +82,13 @@ public class Like implements TaggedUnion<Like.Kind, Object>, JsonpSerializable {
 
 	private Like(Builder builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static Like of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Like of(Function<Builder, ObjectBuilder<Like>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -141,10 +150,8 @@ public class Like implements TaggedUnion<Like.Kind, Object>, JsonpSerializable {
 			return this;
 		}
 
-		public ObjectBuilder<Like> document(Consumer<LikeDocument.Builder> fn) {
-			LikeDocument.Builder builder = new LikeDocument.Builder();
-			fn.accept(builder);
-			return this.document(builder.build());
+		public ObjectBuilder<Like> document(Function<LikeDocument.Builder, ObjectBuilder<LikeDocument>> fn) {
+			return this.document(fn.apply(new LikeDocument.Builder()).build());
 		}
 
 		public ObjectBuilder<Like> text(String v) {

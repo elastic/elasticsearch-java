@@ -32,16 +32,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.info.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/info/MlInfoResponse.ts#L22-L29">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MlInfoResponse implements JsonpSerializable {
 	private final Defaults defaults;
@@ -56,17 +63,15 @@ public class MlInfoResponse implements JsonpSerializable {
 
 	private MlInfoResponse(Builder builder) {
 
-		this.defaults = ModelTypeHelper.requireNonNull(builder.defaults, this, "defaults");
-		this.limits = ModelTypeHelper.requireNonNull(builder.limits, this, "limits");
-		this.upgradeMode = ModelTypeHelper.requireNonNull(builder.upgradeMode, this, "upgradeMode");
-		this.nativeCode = ModelTypeHelper.requireNonNull(builder.nativeCode, this, "nativeCode");
+		this.defaults = ApiTypeHelper.requireNonNull(builder.defaults, this, "defaults");
+		this.limits = ApiTypeHelper.requireNonNull(builder.limits, this, "limits");
+		this.upgradeMode = ApiTypeHelper.requireNonNull(builder.upgradeMode, this, "upgradeMode");
+		this.nativeCode = ApiTypeHelper.requireNonNull(builder.nativeCode, this, "nativeCode");
 
 	}
 
-	public static MlInfoResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static MlInfoResponse of(Function<Builder, ObjectBuilder<MlInfoResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -127,6 +132,7 @@ public class MlInfoResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link MlInfoResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MlInfoResponse> {
 		private Defaults defaults;
 
@@ -147,10 +153,8 @@ public class MlInfoResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code defaults}
 		 */
-		public final Builder defaults(Consumer<Defaults.Builder> fn) {
-			Defaults.Builder builder = new Defaults.Builder();
-			fn.accept(builder);
-			return this.defaults(builder.build());
+		public final Builder defaults(Function<Defaults.Builder, ObjectBuilder<Defaults>> fn) {
+			return this.defaults(fn.apply(new Defaults.Builder()).build());
 		}
 
 		/**
@@ -164,10 +168,8 @@ public class MlInfoResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code limits}
 		 */
-		public final Builder limits(Consumer<Limits.Builder> fn) {
-			Limits.Builder builder = new Limits.Builder();
-			fn.accept(builder);
-			return this.limits(builder.build());
+		public final Builder limits(Function<Limits.Builder, ObjectBuilder<Limits>> fn) {
+			return this.limits(fn.apply(new Limits.Builder()).build());
 		}
 
 		/**
@@ -189,10 +191,8 @@ public class MlInfoResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code native_code}
 		 */
-		public final Builder nativeCode(Consumer<NativeCode.Builder> fn) {
-			NativeCode.Builder builder = new NativeCode.Builder();
-			fn.accept(builder);
-			return this.nativeCode(builder.build());
+		public final Builder nativeCode(Function<NativeCode.Builder, ObjectBuilder<NativeCode>> fn) {
+			return this.nativeCode(fn.apply(new NativeCode.Builder()).build());
 		}
 
 		/**

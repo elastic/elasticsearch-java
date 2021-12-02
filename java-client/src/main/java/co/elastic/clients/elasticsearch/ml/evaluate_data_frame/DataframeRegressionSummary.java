@@ -33,10 +33,17 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.DataframeRegressionSummary
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/evaluate_data_frame/types.ts#L39-L44">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeRegressionSummary implements JsonpSerializable {
 	@Nullable
@@ -62,10 +69,8 @@ public class DataframeRegressionSummary implements JsonpSerializable {
 
 	}
 
-	public static DataframeRegressionSummary of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DataframeRegressionSummary of(Function<Builder, ObjectBuilder<DataframeRegressionSummary>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -139,6 +144,7 @@ public class DataframeRegressionSummary implements JsonpSerializable {
 	/**
 	 * Builder for {@link DataframeRegressionSummary}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframeRegressionSummary> {
 		@Nullable
 		private DataframeEvaluationValue huber;
@@ -163,10 +169,9 @@ public class DataframeRegressionSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code huber}
 		 */
-		public final Builder huber(Consumer<DataframeEvaluationValue.Builder> fn) {
-			DataframeEvaluationValue.Builder builder = new DataframeEvaluationValue.Builder();
-			fn.accept(builder);
-			return this.huber(builder.build());
+		public final Builder huber(
+				Function<DataframeEvaluationValue.Builder, ObjectBuilder<DataframeEvaluationValue>> fn) {
+			return this.huber(fn.apply(new DataframeEvaluationValue.Builder()).build());
 		}
 
 		/**
@@ -180,10 +185,9 @@ public class DataframeRegressionSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code mse}
 		 */
-		public final Builder mse(Consumer<DataframeEvaluationValue.Builder> fn) {
-			DataframeEvaluationValue.Builder builder = new DataframeEvaluationValue.Builder();
-			fn.accept(builder);
-			return this.mse(builder.build());
+		public final Builder mse(
+				Function<DataframeEvaluationValue.Builder, ObjectBuilder<DataframeEvaluationValue>> fn) {
+			return this.mse(fn.apply(new DataframeEvaluationValue.Builder()).build());
 		}
 
 		/**
@@ -197,10 +201,9 @@ public class DataframeRegressionSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code msle}
 		 */
-		public final Builder msle(Consumer<DataframeEvaluationValue.Builder> fn) {
-			DataframeEvaluationValue.Builder builder = new DataframeEvaluationValue.Builder();
-			fn.accept(builder);
-			return this.msle(builder.build());
+		public final Builder msle(
+				Function<DataframeEvaluationValue.Builder, ObjectBuilder<DataframeEvaluationValue>> fn) {
+			return this.msle(fn.apply(new DataframeEvaluationValue.Builder()).build());
 		}
 
 		/**
@@ -214,10 +217,9 @@ public class DataframeRegressionSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code r_squared}
 		 */
-		public final Builder rSquared(Consumer<DataframeEvaluationValue.Builder> fn) {
-			DataframeEvaluationValue.Builder builder = new DataframeEvaluationValue.Builder();
-			fn.accept(builder);
-			return this.rSquared(builder.build());
+		public final Builder rSquared(
+				Function<DataframeEvaluationValue.Builder, ObjectBuilder<DataframeEvaluationValue>> fn) {
+			return this.rSquared(fn.apply(new DataframeEvaluationValue.Builder()).build());
 		}
 
 		/**

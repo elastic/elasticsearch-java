@@ -29,20 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.DataframeClassificationSummaryRecall
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/evaluate_data_frame/types.ts#L65-L68">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeClassificationSummaryRecall implements JsonpSerializable {
 	private final List<DataframeEvaluationClass> classes;
@@ -53,15 +57,14 @@ public class DataframeClassificationSummaryRecall implements JsonpSerializable {
 
 	private DataframeClassificationSummaryRecall(Builder builder) {
 
-		this.classes = ModelTypeHelper.unmodifiableRequired(builder.classes, this, "classes");
-		this.avgRecall = ModelTypeHelper.requireNonNull(builder.avgRecall, this, "avgRecall");
+		this.classes = ApiTypeHelper.unmodifiableRequired(builder.classes, this, "classes");
+		this.avgRecall = ApiTypeHelper.requireNonNull(builder.avgRecall, this, "avgRecall");
 
 	}
 
-	public static DataframeClassificationSummaryRecall of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DataframeClassificationSummaryRecall of(
+			Function<Builder, ObjectBuilder<DataframeClassificationSummaryRecall>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -89,7 +92,7 @@ public class DataframeClassificationSummaryRecall implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.classes)) {
+		if (ApiTypeHelper.isDefined(this.classes)) {
 			generator.writeKey("classes");
 			generator.writeStartArray();
 			for (DataframeEvaluationClass item0 : this.classes) {
@@ -109,6 +112,7 @@ public class DataframeClassificationSummaryRecall implements JsonpSerializable {
 	/**
 	 * Builder for {@link DataframeClassificationSummaryRecall}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase
 			implements
 				ObjectBuilder<DataframeClassificationSummaryRecall> {
@@ -118,26 +122,32 @@ public class DataframeClassificationSummaryRecall implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code classes}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>classes</code>.
 		 */
-		public final Builder classes(List<DataframeEvaluationClass> value) {
-			this.classes = value;
+		public final Builder classes(List<DataframeEvaluationClass> list) {
+			this.classes = _listAddAll(this.classes, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code classes}
+		 * <p>
+		 * Adds one or more values to <code>classes</code>.
 		 */
-		public final Builder classes(DataframeEvaluationClass... value) {
-			this.classes = Arrays.asList(value);
+		public final Builder classes(DataframeEvaluationClass value, DataframeEvaluationClass... values) {
+			this.classes = _listAdd(this.classes, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code classes}
+		 * <p>
+		 * Adds a value to <code>classes</code> using a builder lambda.
 		 */
 		public final Builder classes(
-				Function<ListBuilder<DataframeEvaluationClass, DataframeEvaluationClass.Builder>, ObjectBuilder<List<DataframeEvaluationClass>>> fn) {
-			return classes(fn.apply(new ListBuilder<>(DataframeEvaluationClass.Builder::new)).build());
+				Function<DataframeEvaluationClass.Builder, ObjectBuilder<DataframeEvaluationClass>> fn) {
+			return classes(fn.apply(new DataframeEvaluationClass.Builder()).build());
 		}
 
 		/**

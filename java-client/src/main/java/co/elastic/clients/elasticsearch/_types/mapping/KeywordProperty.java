@@ -34,10 +34,17 @@ import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.KeywordProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/core.ts#L130-L142">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class KeywordProperty extends DocValuesPropertyBase implements PropertyVariant {
 	@Nullable
@@ -84,10 +91,8 @@ public class KeywordProperty extends DocValuesPropertyBase implements PropertyVa
 
 	}
 
-	public static KeywordProperty of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static KeywordProperty of(Function<Builder, ObjectBuilder<KeywordProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -229,6 +234,7 @@ public class KeywordProperty extends DocValuesPropertyBase implements PropertyVa
 	/**
 	 * Builder for {@link KeywordProperty}.
 	 */
+
 	public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<KeywordProperty> {

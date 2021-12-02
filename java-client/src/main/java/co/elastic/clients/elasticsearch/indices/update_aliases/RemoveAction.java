@@ -29,19 +29,25 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.update_aliases.RemoveAction
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/update_aliases/types.ts#L44-L51">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RemoveAction implements ActionVariant, JsonpSerializable {
 	@Nullable
@@ -62,17 +68,15 @@ public class RemoveAction implements ActionVariant, JsonpSerializable {
 	private RemoveAction(Builder builder) {
 
 		this.alias = builder.alias;
-		this.aliases = ModelTypeHelper.unmodifiable(builder.aliases);
+		this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
 		this.index = builder.index;
-		this.indices = ModelTypeHelper.unmodifiable(builder.indices);
+		this.indices = ApiTypeHelper.unmodifiable(builder.indices);
 		this.mustExist = builder.mustExist;
 
 	}
 
-	public static RemoveAction of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RemoveAction of(Function<Builder, ObjectBuilder<RemoveAction>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -137,7 +141,7 @@ public class RemoveAction implements ActionVariant, JsonpSerializable {
 			generator.write(this.alias);
 
 		}
-		if (ModelTypeHelper.isDefined(this.aliases)) {
+		if (ApiTypeHelper.isDefined(this.aliases)) {
 			generator.writeKey("aliases");
 			generator.writeStartArray();
 			for (String item0 : this.aliases) {
@@ -152,7 +156,7 @@ public class RemoveAction implements ActionVariant, JsonpSerializable {
 			generator.write(this.index);
 
 		}
-		if (ModelTypeHelper.isDefined(this.indices)) {
+		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartArray();
 			for (String item0 : this.indices) {
@@ -175,6 +179,7 @@ public class RemoveAction implements ActionVariant, JsonpSerializable {
 	/**
 	 * Builder for {@link RemoveAction}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RemoveAction> {
 		@Nullable
 		private String alias;
@@ -201,17 +206,21 @@ public class RemoveAction implements ActionVariant, JsonpSerializable {
 
 		/**
 		 * API name: {@code aliases}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>aliases</code>.
 		 */
-		public final Builder aliases(@Nullable List<String> value) {
-			this.aliases = value;
+		public final Builder aliases(List<String> list) {
+			this.aliases = _listAddAll(this.aliases, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code aliases}
+		 * <p>
+		 * Adds one or more values to <code>aliases</code>.
 		 */
-		public final Builder aliases(String... value) {
-			this.aliases = Arrays.asList(value);
+		public final Builder aliases(String value, String... values) {
+			this.aliases = _listAdd(this.aliases, value, values);
 			return this;
 		}
 
@@ -225,17 +234,21 @@ public class RemoveAction implements ActionVariant, JsonpSerializable {
 
 		/**
 		 * API name: {@code indices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 */
-		public final Builder indices(@Nullable List<String> value) {
-			this.indices = value;
+		public final Builder indices(List<String> list) {
+			this.indices = _listAddAll(this.indices, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code indices}
+		 * <p>
+		 * Adds one or more values to <code>indices</code>.
 		 */
-		public final Builder indices(String... value) {
-			this.indices = Arrays.asList(value);
+		public final Builder indices(String value, String... values) {
+			this.indices = _listAdd(this.indices, value, values);
 			return this;
 		}
 

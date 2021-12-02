@@ -30,16 +30,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: slm._types.Retention
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/slm/_types/SnapshotLifecycle.ts#L78-L91">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Retention implements JsonpSerializable {
 	private final Time expireAfter;
@@ -52,16 +59,14 @@ public class Retention implements JsonpSerializable {
 
 	private Retention(Builder builder) {
 
-		this.expireAfter = ModelTypeHelper.requireNonNull(builder.expireAfter, this, "expireAfter");
-		this.maxCount = ModelTypeHelper.requireNonNull(builder.maxCount, this, "maxCount");
-		this.minCount = ModelTypeHelper.requireNonNull(builder.minCount, this, "minCount");
+		this.expireAfter = ApiTypeHelper.requireNonNull(builder.expireAfter, this, "expireAfter");
+		this.maxCount = ApiTypeHelper.requireNonNull(builder.maxCount, this, "maxCount");
+		this.minCount = ApiTypeHelper.requireNonNull(builder.minCount, this, "minCount");
 
 	}
 
-	public static Retention of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Retention of(Function<Builder, ObjectBuilder<Retention>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -124,6 +129,7 @@ public class Retention implements JsonpSerializable {
 	/**
 	 * Builder for {@link Retention}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Retention> {
 		private Time expireAfter;
 
@@ -150,10 +156,8 @@ public class Retention implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code expire_after}
 		 */
-		public final Builder expireAfter(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.expireAfter(builder.build());
+		public final Builder expireAfter(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.expireAfter(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: snapshot._types.ShardsStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/snapshot/_types/SnapshotShardsStats.ts#L22-L29">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ShardsStats implements JsonpSerializable {
 	private final long done;
@@ -56,19 +63,17 @@ public class ShardsStats implements JsonpSerializable {
 
 	private ShardsStats(Builder builder) {
 
-		this.done = ModelTypeHelper.requireNonNull(builder.done, this, "done");
-		this.failed = ModelTypeHelper.requireNonNull(builder.failed, this, "failed");
-		this.finalizing = ModelTypeHelper.requireNonNull(builder.finalizing, this, "finalizing");
-		this.initializing = ModelTypeHelper.requireNonNull(builder.initializing, this, "initializing");
-		this.started = ModelTypeHelper.requireNonNull(builder.started, this, "started");
-		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
+		this.done = ApiTypeHelper.requireNonNull(builder.done, this, "done");
+		this.failed = ApiTypeHelper.requireNonNull(builder.failed, this, "failed");
+		this.finalizing = ApiTypeHelper.requireNonNull(builder.finalizing, this, "finalizing");
+		this.initializing = ApiTypeHelper.requireNonNull(builder.initializing, this, "initializing");
+		this.started = ApiTypeHelper.requireNonNull(builder.started, this, "started");
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
 
 	}
 
-	public static ShardsStats of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ShardsStats of(Function<Builder, ObjectBuilder<ShardsStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -149,6 +154,7 @@ public class ShardsStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardsStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardsStats> {
 		private Long done;
 

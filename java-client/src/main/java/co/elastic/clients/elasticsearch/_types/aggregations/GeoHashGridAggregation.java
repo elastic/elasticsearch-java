@@ -35,10 +35,17 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GeoHashGridAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/bucket.ts#L179-L185">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GeoHashGridAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
@@ -69,10 +76,8 @@ public class GeoHashGridAggregation extends BucketAggregationBase implements Agg
 
 	}
 
-	public static GeoHashGridAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GeoHashGridAggregation of(Function<Builder, ObjectBuilder<GeoHashGridAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -159,6 +164,7 @@ public class GeoHashGridAggregation extends BucketAggregationBase implements Agg
 	/**
 	 * Builder for {@link GeoHashGridAggregation}.
 	 */
+
 	public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<GeoHashGridAggregation> {
@@ -188,10 +194,8 @@ public class GeoHashGridAggregation extends BucketAggregationBase implements Agg
 		/**
 		 * API name: {@code bounds}
 		 */
-		public final Builder bounds(Consumer<GeoBounds.Builder> fn) {
-			GeoBounds.Builder builder = new GeoBounds.Builder();
-			fn.accept(builder);
-			return this.bounds(builder.build());
+		public final Builder bounds(Function<GeoBounds.Builder, ObjectBuilder<GeoBounds>> fn) {
+			return this.bounds(fn.apply(new GeoBounds.Builder()).build());
 		}
 
 		/**
@@ -213,10 +217,8 @@ public class GeoHashGridAggregation extends BucketAggregationBase implements Agg
 		/**
 		 * API name: {@code precision}
 		 */
-		public final Builder precision(Consumer<GeoHashPrecision.Builder> fn) {
-			GeoHashPrecision.Builder builder = new GeoHashPrecision.Builder();
-			fn.accept(builder);
-			return this.precision(builder.build());
+		public final Builder precision(Function<GeoHashPrecision.Builder, ObjectBuilder<GeoHashPrecision>> fn) {
+			return this.precision(fn.apply(new GeoHashPrecision.Builder()).build());
 		}
 
 		/**

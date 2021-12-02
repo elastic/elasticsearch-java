@@ -29,19 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.CharFilterTypes
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/stats/types.ts#L125-L134">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CharFilterTypes implements JsonpSerializable {
 	private final List<FieldTypes> charFilterTypes;
@@ -64,24 +68,21 @@ public class CharFilterTypes implements JsonpSerializable {
 
 	private CharFilterTypes(Builder builder) {
 
-		this.charFilterTypes = ModelTypeHelper.unmodifiableRequired(builder.charFilterTypes, this, "charFilterTypes");
-		this.tokenizerTypes = ModelTypeHelper.unmodifiableRequired(builder.tokenizerTypes, this, "tokenizerTypes");
-		this.filterTypes = ModelTypeHelper.unmodifiableRequired(builder.filterTypes, this, "filterTypes");
-		this.analyzerTypes = ModelTypeHelper.unmodifiableRequired(builder.analyzerTypes, this, "analyzerTypes");
-		this.builtInCharFilters = ModelTypeHelper.unmodifiableRequired(builder.builtInCharFilters, this,
+		this.charFilterTypes = ApiTypeHelper.unmodifiableRequired(builder.charFilterTypes, this, "charFilterTypes");
+		this.tokenizerTypes = ApiTypeHelper.unmodifiableRequired(builder.tokenizerTypes, this, "tokenizerTypes");
+		this.filterTypes = ApiTypeHelper.unmodifiableRequired(builder.filterTypes, this, "filterTypes");
+		this.analyzerTypes = ApiTypeHelper.unmodifiableRequired(builder.analyzerTypes, this, "analyzerTypes");
+		this.builtInCharFilters = ApiTypeHelper.unmodifiableRequired(builder.builtInCharFilters, this,
 				"builtInCharFilters");
-		this.builtInTokenizers = ModelTypeHelper.unmodifiableRequired(builder.builtInTokenizers, this,
+		this.builtInTokenizers = ApiTypeHelper.unmodifiableRequired(builder.builtInTokenizers, this,
 				"builtInTokenizers");
-		this.builtInFilters = ModelTypeHelper.unmodifiableRequired(builder.builtInFilters, this, "builtInFilters");
-		this.builtInAnalyzers = ModelTypeHelper.unmodifiableRequired(builder.builtInAnalyzers, this,
-				"builtInAnalyzers");
+		this.builtInFilters = ApiTypeHelper.unmodifiableRequired(builder.builtInFilters, this, "builtInFilters");
+		this.builtInAnalyzers = ApiTypeHelper.unmodifiableRequired(builder.builtInAnalyzers, this, "builtInAnalyzers");
 
 	}
 
-	public static CharFilterTypes of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CharFilterTypes of(Function<Builder, ObjectBuilder<CharFilterTypes>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -151,7 +152,7 @@ public class CharFilterTypes implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.charFilterTypes)) {
+		if (ApiTypeHelper.isDefined(this.charFilterTypes)) {
 			generator.writeKey("char_filter_types");
 			generator.writeStartArray();
 			for (FieldTypes item0 : this.charFilterTypes) {
@@ -161,7 +162,7 @@ public class CharFilterTypes implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.tokenizerTypes)) {
+		if (ApiTypeHelper.isDefined(this.tokenizerTypes)) {
 			generator.writeKey("tokenizer_types");
 			generator.writeStartArray();
 			for (FieldTypes item0 : this.tokenizerTypes) {
@@ -171,7 +172,7 @@ public class CharFilterTypes implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.filterTypes)) {
+		if (ApiTypeHelper.isDefined(this.filterTypes)) {
 			generator.writeKey("filter_types");
 			generator.writeStartArray();
 			for (FieldTypes item0 : this.filterTypes) {
@@ -181,7 +182,7 @@ public class CharFilterTypes implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.analyzerTypes)) {
+		if (ApiTypeHelper.isDefined(this.analyzerTypes)) {
 			generator.writeKey("analyzer_types");
 			generator.writeStartArray();
 			for (FieldTypes item0 : this.analyzerTypes) {
@@ -191,7 +192,7 @@ public class CharFilterTypes implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.builtInCharFilters)) {
+		if (ApiTypeHelper.isDefined(this.builtInCharFilters)) {
 			generator.writeKey("built_in_char_filters");
 			generator.writeStartArray();
 			for (FieldTypes item0 : this.builtInCharFilters) {
@@ -201,7 +202,7 @@ public class CharFilterTypes implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.builtInTokenizers)) {
+		if (ApiTypeHelper.isDefined(this.builtInTokenizers)) {
 			generator.writeKey("built_in_tokenizers");
 			generator.writeStartArray();
 			for (FieldTypes item0 : this.builtInTokenizers) {
@@ -211,7 +212,7 @@ public class CharFilterTypes implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.builtInFilters)) {
+		if (ApiTypeHelper.isDefined(this.builtInFilters)) {
 			generator.writeKey("built_in_filters");
 			generator.writeStartArray();
 			for (FieldTypes item0 : this.builtInFilters) {
@@ -221,7 +222,7 @@ public class CharFilterTypes implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.builtInAnalyzers)) {
+		if (ApiTypeHelper.isDefined(this.builtInAnalyzers)) {
 			generator.writeKey("built_in_analyzers");
 			generator.writeStartArray();
 			for (FieldTypes item0 : this.builtInAnalyzers) {
@@ -239,6 +240,7 @@ public class CharFilterTypes implements JsonpSerializable {
 	/**
 	 * Builder for {@link CharFilterTypes}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CharFilterTypes> {
 		private List<FieldTypes> charFilterTypes;
 
@@ -258,194 +260,234 @@ public class CharFilterTypes implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code char_filter_types}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>charFilterTypes</code>.
 		 */
-		public final Builder charFilterTypes(List<FieldTypes> value) {
-			this.charFilterTypes = value;
+		public final Builder charFilterTypes(List<FieldTypes> list) {
+			this.charFilterTypes = _listAddAll(this.charFilterTypes, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code char_filter_types}
+		 * <p>
+		 * Adds one or more values to <code>charFilterTypes</code>.
 		 */
-		public final Builder charFilterTypes(FieldTypes... value) {
-			this.charFilterTypes = Arrays.asList(value);
+		public final Builder charFilterTypes(FieldTypes value, FieldTypes... values) {
+			this.charFilterTypes = _listAdd(this.charFilterTypes, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code char_filter_types}
+		 * <p>
+		 * Adds a value to <code>charFilterTypes</code> using a builder lambda.
 		 */
-		public final Builder charFilterTypes(
-				Function<ListBuilder<FieldTypes, FieldTypes.Builder>, ObjectBuilder<List<FieldTypes>>> fn) {
-			return charFilterTypes(fn.apply(new ListBuilder<>(FieldTypes.Builder::new)).build());
+		public final Builder charFilterTypes(Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>> fn) {
+			return charFilterTypes(fn.apply(new FieldTypes.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code tokenizer_types}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>tokenizerTypes</code>.
 		 */
-		public final Builder tokenizerTypes(List<FieldTypes> value) {
-			this.tokenizerTypes = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code tokenizer_types}
-		 */
-		public final Builder tokenizerTypes(FieldTypes... value) {
-			this.tokenizerTypes = Arrays.asList(value);
+		public final Builder tokenizerTypes(List<FieldTypes> list) {
+			this.tokenizerTypes = _listAddAll(this.tokenizerTypes, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code tokenizer_types}
+		 * <p>
+		 * Adds one or more values to <code>tokenizerTypes</code>.
 		 */
-		public final Builder tokenizerTypes(
-				Function<ListBuilder<FieldTypes, FieldTypes.Builder>, ObjectBuilder<List<FieldTypes>>> fn) {
-			return tokenizerTypes(fn.apply(new ListBuilder<>(FieldTypes.Builder::new)).build());
+		public final Builder tokenizerTypes(FieldTypes value, FieldTypes... values) {
+			this.tokenizerTypes = _listAdd(this.tokenizerTypes, value, values);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code tokenizer_types}
+		 * <p>
+		 * Adds a value to <code>tokenizerTypes</code> using a builder lambda.
+		 */
+		public final Builder tokenizerTypes(Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>> fn) {
+			return tokenizerTypes(fn.apply(new FieldTypes.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code filter_types}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>filterTypes</code>.
 		 */
-		public final Builder filterTypes(List<FieldTypes> value) {
-			this.filterTypes = value;
+		public final Builder filterTypes(List<FieldTypes> list) {
+			this.filterTypes = _listAddAll(this.filterTypes, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code filter_types}
+		 * <p>
+		 * Adds one or more values to <code>filterTypes</code>.
 		 */
-		public final Builder filterTypes(FieldTypes... value) {
-			this.filterTypes = Arrays.asList(value);
+		public final Builder filterTypes(FieldTypes value, FieldTypes... values) {
+			this.filterTypes = _listAdd(this.filterTypes, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code filter_types}
+		 * <p>
+		 * Adds a value to <code>filterTypes</code> using a builder lambda.
 		 */
-		public final Builder filterTypes(
-				Function<ListBuilder<FieldTypes, FieldTypes.Builder>, ObjectBuilder<List<FieldTypes>>> fn) {
-			return filterTypes(fn.apply(new ListBuilder<>(FieldTypes.Builder::new)).build());
+		public final Builder filterTypes(Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>> fn) {
+			return filterTypes(fn.apply(new FieldTypes.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code analyzer_types}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>analyzerTypes</code>.
 		 */
-		public final Builder analyzerTypes(List<FieldTypes> value) {
-			this.analyzerTypes = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code analyzer_types}
-		 */
-		public final Builder analyzerTypes(FieldTypes... value) {
-			this.analyzerTypes = Arrays.asList(value);
+		public final Builder analyzerTypes(List<FieldTypes> list) {
+			this.analyzerTypes = _listAddAll(this.analyzerTypes, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code analyzer_types}
+		 * <p>
+		 * Adds one or more values to <code>analyzerTypes</code>.
 		 */
-		public final Builder analyzerTypes(
-				Function<ListBuilder<FieldTypes, FieldTypes.Builder>, ObjectBuilder<List<FieldTypes>>> fn) {
-			return analyzerTypes(fn.apply(new ListBuilder<>(FieldTypes.Builder::new)).build());
+		public final Builder analyzerTypes(FieldTypes value, FieldTypes... values) {
+			this.analyzerTypes = _listAdd(this.analyzerTypes, value, values);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code analyzer_types}
+		 * <p>
+		 * Adds a value to <code>analyzerTypes</code> using a builder lambda.
+		 */
+		public final Builder analyzerTypes(Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>> fn) {
+			return analyzerTypes(fn.apply(new FieldTypes.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code built_in_char_filters}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>builtInCharFilters</code>.
 		 */
-		public final Builder builtInCharFilters(List<FieldTypes> value) {
-			this.builtInCharFilters = value;
+		public final Builder builtInCharFilters(List<FieldTypes> list) {
+			this.builtInCharFilters = _listAddAll(this.builtInCharFilters, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code built_in_char_filters}
+		 * <p>
+		 * Adds one or more values to <code>builtInCharFilters</code>.
 		 */
-		public final Builder builtInCharFilters(FieldTypes... value) {
-			this.builtInCharFilters = Arrays.asList(value);
+		public final Builder builtInCharFilters(FieldTypes value, FieldTypes... values) {
+			this.builtInCharFilters = _listAdd(this.builtInCharFilters, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code built_in_char_filters}
+		 * <p>
+		 * Adds a value to <code>builtInCharFilters</code> using a builder lambda.
 		 */
-		public final Builder builtInCharFilters(
-				Function<ListBuilder<FieldTypes, FieldTypes.Builder>, ObjectBuilder<List<FieldTypes>>> fn) {
-			return builtInCharFilters(fn.apply(new ListBuilder<>(FieldTypes.Builder::new)).build());
+		public final Builder builtInCharFilters(Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>> fn) {
+			return builtInCharFilters(fn.apply(new FieldTypes.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code built_in_tokenizers}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>builtInTokenizers</code>.
 		 */
-		public final Builder builtInTokenizers(List<FieldTypes> value) {
-			this.builtInTokenizers = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code built_in_tokenizers}
-		 */
-		public final Builder builtInTokenizers(FieldTypes... value) {
-			this.builtInTokenizers = Arrays.asList(value);
+		public final Builder builtInTokenizers(List<FieldTypes> list) {
+			this.builtInTokenizers = _listAddAll(this.builtInTokenizers, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code built_in_tokenizers}
+		 * <p>
+		 * Adds one or more values to <code>builtInTokenizers</code>.
 		 */
-		public final Builder builtInTokenizers(
-				Function<ListBuilder<FieldTypes, FieldTypes.Builder>, ObjectBuilder<List<FieldTypes>>> fn) {
-			return builtInTokenizers(fn.apply(new ListBuilder<>(FieldTypes.Builder::new)).build());
+		public final Builder builtInTokenizers(FieldTypes value, FieldTypes... values) {
+			this.builtInTokenizers = _listAdd(this.builtInTokenizers, value, values);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code built_in_tokenizers}
+		 * <p>
+		 * Adds a value to <code>builtInTokenizers</code> using a builder lambda.
+		 */
+		public final Builder builtInTokenizers(Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>> fn) {
+			return builtInTokenizers(fn.apply(new FieldTypes.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code built_in_filters}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>builtInFilters</code>.
 		 */
-		public final Builder builtInFilters(List<FieldTypes> value) {
-			this.builtInFilters = value;
+		public final Builder builtInFilters(List<FieldTypes> list) {
+			this.builtInFilters = _listAddAll(this.builtInFilters, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code built_in_filters}
+		 * <p>
+		 * Adds one or more values to <code>builtInFilters</code>.
 		 */
-		public final Builder builtInFilters(FieldTypes... value) {
-			this.builtInFilters = Arrays.asList(value);
+		public final Builder builtInFilters(FieldTypes value, FieldTypes... values) {
+			this.builtInFilters = _listAdd(this.builtInFilters, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code built_in_filters}
+		 * <p>
+		 * Adds a value to <code>builtInFilters</code> using a builder lambda.
 		 */
-		public final Builder builtInFilters(
-				Function<ListBuilder<FieldTypes, FieldTypes.Builder>, ObjectBuilder<List<FieldTypes>>> fn) {
-			return builtInFilters(fn.apply(new ListBuilder<>(FieldTypes.Builder::new)).build());
+		public final Builder builtInFilters(Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>> fn) {
+			return builtInFilters(fn.apply(new FieldTypes.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code built_in_analyzers}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>builtInAnalyzers</code>.
 		 */
-		public final Builder builtInAnalyzers(List<FieldTypes> value) {
-			this.builtInAnalyzers = value;
+		public final Builder builtInAnalyzers(List<FieldTypes> list) {
+			this.builtInAnalyzers = _listAddAll(this.builtInAnalyzers, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code built_in_analyzers}
+		 * <p>
+		 * Adds one or more values to <code>builtInAnalyzers</code>.
 		 */
-		public final Builder builtInAnalyzers(FieldTypes... value) {
-			this.builtInAnalyzers = Arrays.asList(value);
+		public final Builder builtInAnalyzers(FieldTypes value, FieldTypes... values) {
+			this.builtInAnalyzers = _listAdd(this.builtInAnalyzers, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code built_in_analyzers}
+		 * <p>
+		 * Adds a value to <code>builtInAnalyzers</code> using a builder lambda.
 		 */
-		public final Builder builtInAnalyzers(
-				Function<ListBuilder<FieldTypes, FieldTypes.Builder>, ObjectBuilder<List<FieldTypes>>> fn) {
-			return builtInAnalyzers(fn.apply(new ListBuilder<>(FieldTypes.Builder::new)).build());
+		public final Builder builtInAnalyzers(Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>> fn) {
+			return builtInAnalyzers(fn.apply(new FieldTypes.Builder()).build());
 		}
 
 		/**

@@ -31,20 +31,24 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: eql._types.HitsSequence
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/eql/_types/EqlHits.ts#L51-L59">API
+ *      specification</a>
+ */
 
 public class HitsSequence<TEvent> implements JsonpSerializable {
 	private final List<HitsEvent<TEvent>> events;
@@ -58,16 +62,14 @@ public class HitsSequence<TEvent> implements JsonpSerializable {
 
 	private HitsSequence(Builder<TEvent> builder) {
 
-		this.events = ModelTypeHelper.unmodifiableRequired(builder.events, this, "events");
-		this.joinKeys = ModelTypeHelper.unmodifiableRequired(builder.joinKeys, this, "joinKeys");
+		this.events = ApiTypeHelper.unmodifiableRequired(builder.events, this, "events");
+		this.joinKeys = ApiTypeHelper.unmodifiableRequired(builder.joinKeys, this, "joinKeys");
 		this.tEventSerializer = builder.tEventSerializer;
 
 	}
 
-	public static <TEvent> HitsSequence<TEvent> of(Consumer<Builder<TEvent>> fn) {
-		Builder<TEvent> builder = new Builder<>();
-		fn.accept(builder);
-		return builder.build();
+	public static <TEvent> HitsSequence<TEvent> of(Function<Builder<TEvent>, ObjectBuilder<HitsSequence<TEvent>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
@@ -101,7 +103,7 @@ public class HitsSequence<TEvent> implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.events)) {
+		if (ApiTypeHelper.isDefined(this.events)) {
 			generator.writeKey("events");
 			generator.writeStartArray();
 			for (HitsEvent<TEvent> item0 : this.events) {
@@ -111,7 +113,7 @@ public class HitsSequence<TEvent> implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.joinKeys)) {
+		if (ApiTypeHelper.isDefined(this.joinKeys)) {
 			generator.writeKey("join_keys");
 			generator.writeStartArray();
 			for (JsonData item0 : this.joinKeys) {
@@ -129,6 +131,7 @@ public class HitsSequence<TEvent> implements JsonpSerializable {
 	/**
 	 * Builder for {@link HitsSequence}.
 	 */
+
 	public static class Builder<TEvent> extends ObjectBuilderBase implements ObjectBuilder<HitsSequence<TEvent>> {
 		private List<HitsEvent<TEvent>> events;
 
@@ -142,9 +145,11 @@ public class HitsSequence<TEvent> implements JsonpSerializable {
 		 * matching event.
 		 * <p>
 		 * API name: {@code events}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>events</code>.
 		 */
-		public final Builder<TEvent> events(List<HitsEvent<TEvent>> value) {
-			this.events = value;
+		public final Builder<TEvent> events(List<HitsEvent<TEvent>> list) {
+			this.events = _listAddAll(this.events, list);
 			return this;
 		}
 
@@ -153,9 +158,11 @@ public class HitsSequence<TEvent> implements JsonpSerializable {
 		 * matching event.
 		 * <p>
 		 * API name: {@code events}
+		 * <p>
+		 * Adds one or more values to <code>events</code>.
 		 */
-		public final Builder<TEvent> events(HitsEvent<TEvent>... value) {
-			this.events = Arrays.asList(value);
+		public final Builder<TEvent> events(HitsEvent<TEvent> value, HitsEvent<TEvent>... values) {
+			this.events = _listAdd(this.events, value, values);
 			return this;
 		}
 
@@ -164,10 +171,11 @@ public class HitsSequence<TEvent> implements JsonpSerializable {
 		 * matching event.
 		 * <p>
 		 * API name: {@code events}
+		 * <p>
+		 * Adds a value to <code>events</code> using a builder lambda.
 		 */
-		public final Builder<TEvent> events(
-				Function<ListBuilder<HitsEvent<TEvent>, HitsEvent.Builder<TEvent>>, ObjectBuilder<List<HitsEvent<TEvent>>>> fn) {
-			return events(fn.apply(new ListBuilder<>(HitsEvent.Builder<TEvent>::new)).build());
+		public final Builder<TEvent> events(Function<HitsEvent.Builder<TEvent>, ObjectBuilder<HitsEvent<TEvent>>> fn) {
+			return events(fn.apply(new HitsEvent.Builder<TEvent>()).build());
 		}
 
 		/**
@@ -175,9 +183,11 @@ public class HitsSequence<TEvent> implements JsonpSerializable {
 		 * These are defined using the by keyword in the EQL query syntax.
 		 * <p>
 		 * API name: {@code join_keys}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>joinKeys</code>.
 		 */
-		public final Builder<TEvent> joinKeys(List<JsonData> value) {
-			this.joinKeys = value;
+		public final Builder<TEvent> joinKeys(List<JsonData> list) {
+			this.joinKeys = _listAddAll(this.joinKeys, list);
 			return this;
 		}
 
@@ -186,9 +196,11 @@ public class HitsSequence<TEvent> implements JsonpSerializable {
 		 * These are defined using the by keyword in the EQL query syntax.
 		 * <p>
 		 * API name: {@code join_keys}
+		 * <p>
+		 * Adds one or more values to <code>joinKeys</code>.
 		 */
-		public final Builder<TEvent> joinKeys(JsonData... value) {
-			this.joinKeys = Arrays.asList(value);
+		public final Builder<TEvent> joinKeys(JsonData value, JsonData... values) {
+			this.joinKeys = _listAdd(this.joinKeys, value, values);
 			return this;
 		}
 
@@ -217,7 +229,7 @@ public class HitsSequence<TEvent> implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for HitsSequence
+	 * Create a JSON deserializer for HitsSequence
 	 */
 	public static <TEvent> JsonpDeserializer<HitsSequence<TEvent>> createHitsSequenceDeserializer(
 			JsonpDeserializer<TEvent> tEventDeserializer) {

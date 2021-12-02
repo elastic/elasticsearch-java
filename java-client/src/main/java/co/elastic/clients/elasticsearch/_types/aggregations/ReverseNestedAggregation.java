@@ -32,10 +32,17 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ReverseNestedAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/bucket.ts#L277-L279">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ReverseNestedAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
@@ -50,10 +57,8 @@ public class ReverseNestedAggregation extends BucketAggregationBase implements A
 
 	}
 
-	public static ReverseNestedAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ReverseNestedAggregation of(Function<Builder, ObjectBuilder<ReverseNestedAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -88,6 +93,7 @@ public class ReverseNestedAggregation extends BucketAggregationBase implements A
 	/**
 	 * Builder for {@link ReverseNestedAggregation}.
 	 */
+
 	public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ReverseNestedAggregation> {

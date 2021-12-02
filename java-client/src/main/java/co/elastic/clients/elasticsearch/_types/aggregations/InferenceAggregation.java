@@ -28,15 +28,22 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.InferenceAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/pipeline.ts#L73-L76">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class InferenceAggregation extends PipelineAggregationBase implements AggregationVariant {
 	private final String modelId;
@@ -49,15 +56,13 @@ public class InferenceAggregation extends PipelineAggregationBase implements Agg
 	private InferenceAggregation(Builder builder) {
 		super(builder);
 
-		this.modelId = ModelTypeHelper.requireNonNull(builder.modelId, this, "modelId");
+		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
 		this.inferenceConfig = builder.inferenceConfig;
 
 	}
 
-	public static InferenceAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static InferenceAggregation of(Function<Builder, ObjectBuilder<InferenceAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -102,6 +107,7 @@ public class InferenceAggregation extends PipelineAggregationBase implements Agg
 	/**
 	 * Builder for {@link InferenceAggregation}.
 	 */
+
 	public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<InferenceAggregation> {
@@ -129,10 +135,8 @@ public class InferenceAggregation extends PipelineAggregationBase implements Agg
 		/**
 		 * API name: {@code inference_config}
 		 */
-		public final Builder inferenceConfig(Consumer<InferenceConfig.Builder> fn) {
-			InferenceConfig.Builder builder = new InferenceConfig.Builder();
-			fn.accept(builder);
-			return this.inferenceConfig(builder.build());
+		public final Builder inferenceConfig(Function<InferenceConfig.Builder, ObjectBuilder<InferenceConfig>> fn) {
+			return this.inferenceConfig(fn.apply(new InferenceConfig.Builder()).build());
 		}
 
 		@Override

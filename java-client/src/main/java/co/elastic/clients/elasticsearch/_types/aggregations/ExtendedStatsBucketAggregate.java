@@ -30,9 +30,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.aggregations.ExtendedStatsBucketAggregate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L282-L283">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ExtendedStatsBucketAggregate extends ExtendedStatsAggregate implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -42,10 +49,8 @@ public class ExtendedStatsBucketAggregate extends ExtendedStatsAggregate impleme
 
 	}
 
-	public static ExtendedStatsBucketAggregate of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ExtendedStatsBucketAggregate of(Function<Builder, ObjectBuilder<ExtendedStatsBucketAggregate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,6 +66,7 @@ public class ExtendedStatsBucketAggregate extends ExtendedStatsAggregate impleme
 	/**
 	 * Builder for {@link ExtendedStatsBucketAggregate}.
 	 */
+
 	public static class Builder extends ExtendedStatsAggregate.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ExtendedStatsBucketAggregate> {

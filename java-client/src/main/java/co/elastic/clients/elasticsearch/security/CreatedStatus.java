@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: security._types.CreatedStatus
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/_types/CreatedStatus.ts#L20-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CreatedStatus implements JsonpSerializable {
 	private final boolean created;
@@ -46,14 +53,12 @@ public class CreatedStatus implements JsonpSerializable {
 
 	private CreatedStatus(Builder builder) {
 
-		this.created = ModelTypeHelper.requireNonNull(builder.created, this, "created");
+		this.created = ApiTypeHelper.requireNonNull(builder.created, this, "created");
 
 	}
 
-	public static CreatedStatus of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CreatedStatus of(Function<Builder, ObjectBuilder<CreatedStatus>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -84,6 +89,7 @@ public class CreatedStatus implements JsonpSerializable {
 	/**
 	 * Builder for {@link CreatedStatus}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CreatedStatus> {
 		private Boolean created;
 

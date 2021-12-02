@@ -28,16 +28,23 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.IcuCollationTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/icu-plugin.ts#L51-L64">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IcuCollationTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final IcuCollationAlternate alternate;
@@ -68,25 +75,23 @@ public class IcuCollationTokenFilter extends TokenFilterBase implements TokenFil
 	private IcuCollationTokenFilter(Builder builder) {
 		super(builder);
 
-		this.alternate = ModelTypeHelper.requireNonNull(builder.alternate, this, "alternate");
-		this.casefirst = ModelTypeHelper.requireNonNull(builder.casefirst, this, "casefirst");
-		this.caselevel = ModelTypeHelper.requireNonNull(builder.caselevel, this, "caselevel");
-		this.country = ModelTypeHelper.requireNonNull(builder.country, this, "country");
-		this.decomposition = ModelTypeHelper.requireNonNull(builder.decomposition, this, "decomposition");
-		this.hiraganaquaternarymode = ModelTypeHelper.requireNonNull(builder.hiraganaquaternarymode, this,
+		this.alternate = ApiTypeHelper.requireNonNull(builder.alternate, this, "alternate");
+		this.casefirst = ApiTypeHelper.requireNonNull(builder.casefirst, this, "casefirst");
+		this.caselevel = ApiTypeHelper.requireNonNull(builder.caselevel, this, "caselevel");
+		this.country = ApiTypeHelper.requireNonNull(builder.country, this, "country");
+		this.decomposition = ApiTypeHelper.requireNonNull(builder.decomposition, this, "decomposition");
+		this.hiraganaquaternarymode = ApiTypeHelper.requireNonNull(builder.hiraganaquaternarymode, this,
 				"hiraganaquaternarymode");
-		this.language = ModelTypeHelper.requireNonNull(builder.language, this, "language");
-		this.numeric = ModelTypeHelper.requireNonNull(builder.numeric, this, "numeric");
-		this.strength = ModelTypeHelper.requireNonNull(builder.strength, this, "strength");
+		this.language = ApiTypeHelper.requireNonNull(builder.language, this, "language");
+		this.numeric = ApiTypeHelper.requireNonNull(builder.numeric, this, "numeric");
+		this.strength = ApiTypeHelper.requireNonNull(builder.strength, this, "strength");
 		this.variabletop = builder.variabletop;
-		this.variant = ModelTypeHelper.requireNonNull(builder.variant, this, "variant");
+		this.variant = ApiTypeHelper.requireNonNull(builder.variant, this, "variant");
 
 	}
 
-	public static IcuCollationTokenFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IcuCollationTokenFilter of(Function<Builder, ObjectBuilder<IcuCollationTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -217,6 +222,7 @@ public class IcuCollationTokenFilter extends TokenFilterBase implements TokenFil
 	/**
 	 * Builder for {@link IcuCollationTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<IcuCollationTokenFilter> {

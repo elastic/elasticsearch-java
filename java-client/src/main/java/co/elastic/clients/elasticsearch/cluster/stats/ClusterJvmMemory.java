@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: cluster.stats.ClusterJvmMemory
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/stats/types.ts#L155-L158">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ClusterJvmMemory implements JsonpSerializable {
 	private final long heapMaxInBytes;
@@ -48,15 +55,13 @@ public class ClusterJvmMemory implements JsonpSerializable {
 
 	private ClusterJvmMemory(Builder builder) {
 
-		this.heapMaxInBytes = ModelTypeHelper.requireNonNull(builder.heapMaxInBytes, this, "heapMaxInBytes");
-		this.heapUsedInBytes = ModelTypeHelper.requireNonNull(builder.heapUsedInBytes, this, "heapUsedInBytes");
+		this.heapMaxInBytes = ApiTypeHelper.requireNonNull(builder.heapMaxInBytes, this, "heapMaxInBytes");
+		this.heapUsedInBytes = ApiTypeHelper.requireNonNull(builder.heapUsedInBytes, this, "heapUsedInBytes");
 
 	}
 
-	public static ClusterJvmMemory of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ClusterJvmMemory of(Function<Builder, ObjectBuilder<ClusterJvmMemory>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -97,6 +102,7 @@ public class ClusterJvmMemory implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClusterJvmMemory}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterJvmMemory> {
 		private Long heapMaxInBytes;
 

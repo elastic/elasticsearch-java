@@ -33,10 +33,17 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.CompositeAggregationSource
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/bucket.ts#L82-L87">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CompositeAggregationSource implements JsonpSerializable {
 	@Nullable
@@ -62,10 +69,8 @@ public class CompositeAggregationSource implements JsonpSerializable {
 
 	}
 
-	public static CompositeAggregationSource of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CompositeAggregationSource of(Function<Builder, ObjectBuilder<CompositeAggregationSource>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -139,6 +144,7 @@ public class CompositeAggregationSource implements JsonpSerializable {
 	/**
 	 * Builder for {@link CompositeAggregationSource}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CompositeAggregationSource> {
 		@Nullable
 		private TermsAggregation terms;
@@ -163,10 +169,8 @@ public class CompositeAggregationSource implements JsonpSerializable {
 		/**
 		 * API name: {@code terms}
 		 */
-		public final Builder terms(Consumer<TermsAggregation.Builder> fn) {
-			TermsAggregation.Builder builder = new TermsAggregation.Builder();
-			fn.accept(builder);
-			return this.terms(builder.build());
+		public final Builder terms(Function<TermsAggregation.Builder, ObjectBuilder<TermsAggregation>> fn) {
+			return this.terms(fn.apply(new TermsAggregation.Builder()).build());
 		}
 
 		/**
@@ -180,10 +184,8 @@ public class CompositeAggregationSource implements JsonpSerializable {
 		/**
 		 * API name: {@code histogram}
 		 */
-		public final Builder histogram(Consumer<HistogramAggregation.Builder> fn) {
-			HistogramAggregation.Builder builder = new HistogramAggregation.Builder();
-			fn.accept(builder);
-			return this.histogram(builder.build());
+		public final Builder histogram(Function<HistogramAggregation.Builder, ObjectBuilder<HistogramAggregation>> fn) {
+			return this.histogram(fn.apply(new HistogramAggregation.Builder()).build());
 		}
 
 		/**
@@ -197,10 +199,9 @@ public class CompositeAggregationSource implements JsonpSerializable {
 		/**
 		 * API name: {@code date_histogram}
 		 */
-		public final Builder dateHistogram(Consumer<DateHistogramAggregation.Builder> fn) {
-			DateHistogramAggregation.Builder builder = new DateHistogramAggregation.Builder();
-			fn.accept(builder);
-			return this.dateHistogram(builder.build());
+		public final Builder dateHistogram(
+				Function<DateHistogramAggregation.Builder, ObjectBuilder<DateHistogramAggregation>> fn) {
+			return this.dateHistogram(fn.apply(new DateHistogramAggregation.Builder()).build());
 		}
 
 		/**
@@ -214,10 +215,9 @@ public class CompositeAggregationSource implements JsonpSerializable {
 		/**
 		 * API name: {@code geotile_grid}
 		 */
-		public final Builder geotileGrid(Consumer<GeoTileGridAggregation.Builder> fn) {
-			GeoTileGridAggregation.Builder builder = new GeoTileGridAggregation.Builder();
-			fn.accept(builder);
-			return this.geotileGrid(builder.build());
+		public final Builder geotileGrid(
+				Function<GeoTileGridAggregation.Builder, ObjectBuilder<GeoTileGridAggregation>> fn) {
+			return this.geotileGrid(fn.apply(new GeoTileGridAggregation.Builder()).build());
 		}
 
 		/**

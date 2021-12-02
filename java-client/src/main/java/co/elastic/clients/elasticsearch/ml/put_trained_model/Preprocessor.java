@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
@@ -38,14 +38,23 @@ import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.Preprocessor
-// union type: Container[]
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/put_trained_model/types.ts#L31-L36">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Preprocessor implements TaggedUnion<Preprocessor.Kind, Object>, JsonpSerializable {
 
+	/**
+	 * {@link Preprocessor} variant kinds.
+	 */
 	/**
 	 * {@link Preprocessor} variant kinds.
 	 */
@@ -86,22 +95,20 @@ public class Preprocessor implements TaggedUnion<Preprocessor.Kind, Object>, Jso
 
 	public Preprocessor(PreprocessorVariant value) {
 
-		this._kind = ModelTypeHelper.requireNonNull(value._preprocessorKind(), this, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(value, this, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(value._preprocessorKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
 	private Preprocessor(Builder builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static Preprocessor of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Preprocessor of(Function<Builder, ObjectBuilder<Preprocessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -183,10 +190,9 @@ public class Preprocessor implements TaggedUnion<Preprocessor.Kind, Object>, Jso
 			return this;
 		}
 
-		public ObjectBuilder<Preprocessor> frequencyEncoding(Consumer<FrequencyEncodingPreprocessor.Builder> fn) {
-			FrequencyEncodingPreprocessor.Builder builder = new FrequencyEncodingPreprocessor.Builder();
-			fn.accept(builder);
-			return this.frequencyEncoding(builder.build());
+		public ObjectBuilder<Preprocessor> frequencyEncoding(
+				Function<FrequencyEncodingPreprocessor.Builder, ObjectBuilder<FrequencyEncodingPreprocessor>> fn) {
+			return this.frequencyEncoding(fn.apply(new FrequencyEncodingPreprocessor.Builder()).build());
 		}
 
 		public ObjectBuilder<Preprocessor> oneHotEncoding(OneHotEncodingPreprocessor v) {
@@ -195,10 +201,9 @@ public class Preprocessor implements TaggedUnion<Preprocessor.Kind, Object>, Jso
 			return this;
 		}
 
-		public ObjectBuilder<Preprocessor> oneHotEncoding(Consumer<OneHotEncodingPreprocessor.Builder> fn) {
-			OneHotEncodingPreprocessor.Builder builder = new OneHotEncodingPreprocessor.Builder();
-			fn.accept(builder);
-			return this.oneHotEncoding(builder.build());
+		public ObjectBuilder<Preprocessor> oneHotEncoding(
+				Function<OneHotEncodingPreprocessor.Builder, ObjectBuilder<OneHotEncodingPreprocessor>> fn) {
+			return this.oneHotEncoding(fn.apply(new OneHotEncodingPreprocessor.Builder()).build());
 		}
 
 		public ObjectBuilder<Preprocessor> targetMeanEncoding(TargetMeanEncodingPreprocessor v) {
@@ -207,10 +212,9 @@ public class Preprocessor implements TaggedUnion<Preprocessor.Kind, Object>, Jso
 			return this;
 		}
 
-		public ObjectBuilder<Preprocessor> targetMeanEncoding(Consumer<TargetMeanEncodingPreprocessor.Builder> fn) {
-			TargetMeanEncodingPreprocessor.Builder builder = new TargetMeanEncodingPreprocessor.Builder();
-			fn.accept(builder);
-			return this.targetMeanEncoding(builder.build());
+		public ObjectBuilder<Preprocessor> targetMeanEncoding(
+				Function<TargetMeanEncodingPreprocessor.Builder, ObjectBuilder<TargetMeanEncodingPreprocessor>> fn) {
+			return this.targetMeanEncoding(fn.apply(new TargetMeanEncodingPreprocessor.Builder()).build());
 		}
 
 		public Preprocessor build() {

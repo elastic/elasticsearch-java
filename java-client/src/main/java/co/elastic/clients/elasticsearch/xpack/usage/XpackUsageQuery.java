@@ -34,10 +34,17 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Query
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L214-L219">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class XpackUsageQuery implements JsonpSerializable {
 	@Nullable
@@ -63,10 +70,8 @@ public class XpackUsageQuery implements JsonpSerializable {
 
 	}
 
-	public static XpackUsageQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static XpackUsageQuery of(Function<Builder, ObjectBuilder<XpackUsageQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -140,6 +145,7 @@ public class XpackUsageQuery implements JsonpSerializable {
 	/**
 	 * Builder for {@link XpackUsageQuery}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<XpackUsageQuery> {
 		@Nullable
 		private Integer count;

@@ -29,14 +29,21 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: indices.unfreeze.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/unfreeze/IndicesUnfreezeResponse.ts#L22-L26">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class UnfreezeResponse extends AcknowledgedResponseBase {
 	private final boolean shardsAcknowledged;
@@ -46,15 +53,12 @@ public class UnfreezeResponse extends AcknowledgedResponseBase {
 	private UnfreezeResponse(Builder builder) {
 		super(builder);
 
-		this.shardsAcknowledged = ModelTypeHelper.requireNonNull(builder.shardsAcknowledged, this,
-				"shardsAcknowledged");
+		this.shardsAcknowledged = ApiTypeHelper.requireNonNull(builder.shardsAcknowledged, this, "shardsAcknowledged");
 
 	}
 
-	public static UnfreezeResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static UnfreezeResponse of(Function<Builder, ObjectBuilder<UnfreezeResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -77,6 +81,7 @@ public class UnfreezeResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link UnfreezeResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<UnfreezeResponse> {

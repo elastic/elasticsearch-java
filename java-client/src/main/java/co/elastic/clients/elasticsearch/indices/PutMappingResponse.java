@@ -31,9 +31,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: indices.put_mapping.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/put_mapping/IndicesPutMappingResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutMappingResponse extends IndicesResponseBase {
 	// ---------------------------------------------------------------------------------------------
@@ -43,10 +50,8 @@ public class PutMappingResponse extends IndicesResponseBase {
 
 	}
 
-	public static PutMappingResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PutMappingResponse of(Function<Builder, ObjectBuilder<PutMappingResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -54,6 +59,7 @@ public class PutMappingResponse extends IndicesResponseBase {
 	/**
 	 * Builder for {@link PutMappingResponse}.
 	 */
+
 	public static class Builder extends IndicesResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PutMappingResponse> {

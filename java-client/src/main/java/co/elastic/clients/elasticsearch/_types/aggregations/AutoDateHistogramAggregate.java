@@ -28,15 +28,22 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.AutoDateHistogramAggregate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L340-L344">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AutoDateHistogramAggregate extends MultiBucketAggregateBase<DateHistogramBucket>
 		implements
@@ -48,14 +55,12 @@ public class AutoDateHistogramAggregate extends MultiBucketAggregateBase<DateHis
 	private AutoDateHistogramAggregate(Builder builder) {
 		super(builder);
 
-		this.interval = ModelTypeHelper.requireNonNull(builder.interval, this, "interval");
+		this.interval = ApiTypeHelper.requireNonNull(builder.interval, this, "interval");
 
 	}
 
-	public static AutoDateHistogramAggregate of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static AutoDateHistogramAggregate of(Function<Builder, ObjectBuilder<AutoDateHistogramAggregate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -86,6 +91,7 @@ public class AutoDateHistogramAggregate extends MultiBucketAggregateBase<DateHis
 	/**
 	 * Builder for {@link AutoDateHistogramAggregate}.
 	 */
+
 	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<DateHistogramBucket, Builder>
 			implements
 				ObjectBuilder<AutoDateHistogramAggregate> {

@@ -31,17 +31,25 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm.remove_policy.Request
+
+/**
+ * Removes the assigned lifecycle policy and stops managing the specified index
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ilm/remove_policy/RemovePolicyRequest.ts#L23-L32">API
+ *      specification</a>
+ */
 
 public class RemovePolicyRequest extends RequestBase {
 	private final String index;
@@ -50,14 +58,12 @@ public class RemovePolicyRequest extends RequestBase {
 
 	private RemovePolicyRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 
 	}
 
-	public static RemovePolicyRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RemovePolicyRequest of(Function<Builder, ObjectBuilder<RemovePolicyRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -74,6 +80,7 @@ public class RemovePolicyRequest extends RequestBase {
 	/**
 	 * Builder for {@link RemovePolicyRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RemovePolicyRequest> {
 		private String index;
 

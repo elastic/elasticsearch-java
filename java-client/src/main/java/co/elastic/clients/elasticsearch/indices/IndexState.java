@@ -30,19 +30,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexState
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/_types/IndexState.ts#L26-L33">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IndexState implements JsonpSerializable {
 	private final Map<String, Alias> aliases;
@@ -63,7 +68,7 @@ public class IndexState implements JsonpSerializable {
 
 	private IndexState(Builder builder) {
 
-		this.aliases = ModelTypeHelper.unmodifiable(builder.aliases);
+		this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
 		this.mappings = builder.mappings;
 		this.settings = builder.settings;
 		this.defaults = builder.defaults;
@@ -71,10 +76,8 @@ public class IndexState implements JsonpSerializable {
 
 	}
 
-	public static IndexState of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IndexState of(Function<Builder, ObjectBuilder<IndexState>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -130,7 +133,7 @@ public class IndexState implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.aliases)) {
+		if (ApiTypeHelper.isDefined(this.aliases)) {
 			generator.writeKey("aliases");
 			generator.writeStartObject();
 			for (Map.Entry<String, Alias> item0 : this.aliases.entrySet()) {
@@ -169,6 +172,7 @@ public class IndexState implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexState}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexState> {
 		@Nullable
 		private Map<String, Alias> aliases;
@@ -187,15 +191,31 @@ public class IndexState implements JsonpSerializable {
 
 		/**
 		 * API name: {@code aliases}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>aliases</code>.
 		 */
-		public final Builder aliases(@Nullable Map<String, Alias> value) {
-			this.aliases = value;
+		public final Builder aliases(Map<String, Alias> map) {
+			this.aliases = _mapPutAll(this.aliases, map);
 			return this;
 		}
 
-		public final Builder aliases(
-				Function<MapBuilder<String, Alias, Alias.Builder>, ObjectBuilder<Map<String, Alias>>> fn) {
-			return aliases(fn.apply(new MapBuilder<>(Alias.Builder::new)).build());
+		/**
+		 * API name: {@code aliases}
+		 * <p>
+		 * Adds an entry to <code>aliases</code>.
+		 */
+		public final Builder aliases(String key, Alias value) {
+			this.aliases = _mapPut(this.aliases, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code aliases}
+		 * <p>
+		 * Adds an entry to <code>aliases</code> using a builder lambda.
+		 */
+		public final Builder aliases(String key, Function<Alias.Builder, ObjectBuilder<Alias>> fn) {
+			return aliases(key, fn.apply(new Alias.Builder()).build());
 		}
 
 		/**
@@ -209,10 +229,8 @@ public class IndexState implements JsonpSerializable {
 		/**
 		 * API name: {@code mappings}
 		 */
-		public final Builder mappings(Consumer<TypeMapping.Builder> fn) {
-			TypeMapping.Builder builder = new TypeMapping.Builder();
-			fn.accept(builder);
-			return this.mappings(builder.build());
+		public final Builder mappings(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
+			return this.mappings(fn.apply(new TypeMapping.Builder()).build());
 		}
 
 		/**
@@ -226,10 +244,8 @@ public class IndexState implements JsonpSerializable {
 		/**
 		 * API name: {@code settings}
 		 */
-		public final Builder settings(Consumer<IndexSettings.Builder> fn) {
-			IndexSettings.Builder builder = new IndexSettings.Builder();
-			fn.accept(builder);
-			return this.settings(builder.build());
+		public final Builder settings(Function<IndexSettings.Builder, ObjectBuilder<IndexSettings>> fn) {
+			return this.settings(fn.apply(new IndexSettings.Builder()).build());
 		}
 
 		/**
@@ -249,10 +265,8 @@ public class IndexState implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code defaults}
 		 */
-		public final Builder defaults(Consumer<IndexSettings.Builder> fn) {
-			IndexSettings.Builder builder = new IndexSettings.Builder();
-			fn.accept(builder);
-			return this.defaults(builder.build());
+		public final Builder defaults(Function<IndexSettings.Builder, ObjectBuilder<IndexSettings>> fn) {
+			return this.defaults(fn.apply(new IndexSettings.Builder()).build());
 		}
 
 		/**

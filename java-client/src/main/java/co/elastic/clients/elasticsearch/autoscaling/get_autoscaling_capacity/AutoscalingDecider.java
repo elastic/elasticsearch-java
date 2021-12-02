@@ -30,16 +30,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: autoscaling.get_autoscaling_capacity.AutoscalingDecider
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/autoscaling/get_autoscaling_capacity/GetAutoscalingCapacityResponse.ts#L52-L56">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AutoscalingDecider implements JsonpSerializable {
 	private final AutoscalingCapacity requiredCapacity;
@@ -54,16 +61,14 @@ public class AutoscalingDecider implements JsonpSerializable {
 
 	private AutoscalingDecider(Builder builder) {
 
-		this.requiredCapacity = ModelTypeHelper.requireNonNull(builder.requiredCapacity, this, "requiredCapacity");
+		this.requiredCapacity = ApiTypeHelper.requireNonNull(builder.requiredCapacity, this, "requiredCapacity");
 		this.reasonSummary = builder.reasonSummary;
 		this.reasonDetails = builder.reasonDetails;
 
 	}
 
-	public static AutoscalingDecider of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static AutoscalingDecider of(Function<Builder, ObjectBuilder<AutoscalingDecider>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -121,6 +126,7 @@ public class AutoscalingDecider implements JsonpSerializable {
 	/**
 	 * Builder for {@link AutoscalingDecider}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AutoscalingDecider> {
 		private AutoscalingCapacity requiredCapacity;
 
@@ -141,10 +147,9 @@ public class AutoscalingDecider implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code required_capacity}
 		 */
-		public final Builder requiredCapacity(Consumer<AutoscalingCapacity.Builder> fn) {
-			AutoscalingCapacity.Builder builder = new AutoscalingCapacity.Builder();
-			fn.accept(builder);
-			return this.requiredCapacity(builder.build());
+		public final Builder requiredCapacity(
+				Function<AutoscalingCapacity.Builder, ObjectBuilder<AutoscalingCapacity>> fn) {
+			return this.requiredCapacity(fn.apply(new AutoscalingCapacity.Builder()).build());
 		}
 
 		/**

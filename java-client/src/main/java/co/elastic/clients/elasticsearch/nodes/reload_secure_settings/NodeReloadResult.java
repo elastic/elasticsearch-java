@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.UnionDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
@@ -38,11 +38,17 @@ import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.reload_secure_settings.NodeReloadResult
-// union type: Union[]
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/reload_secure_settings/types.ts#L29-L30">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeReloadResult implements TaggedUnion<NodeReloadResult.Kind, Object>, JsonpSerializable {
 
@@ -71,15 +77,13 @@ public class NodeReloadResult implements TaggedUnion<NodeReloadResult.Kind, Obje
 
 	private NodeReloadResult(Builder builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static NodeReloadResult of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodeReloadResult of(Function<Builder, ObjectBuilder<NodeReloadResult>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -134,10 +138,8 @@ public class NodeReloadResult implements TaggedUnion<NodeReloadResult.Kind, Obje
 			return this;
 		}
 
-		public ObjectBuilder<NodeReloadResult> stats(Consumer<Stats.Builder> fn) {
-			Stats.Builder builder = new Stats.Builder();
-			fn.accept(builder);
-			return this.stats(builder.build());
+		public ObjectBuilder<NodeReloadResult> stats(Function<Stats.Builder, ObjectBuilder<Stats>> fn) {
+			return this.stats(fn.apply(new Stats.Builder()).build());
 		}
 
 		public ObjectBuilder<NodeReloadResult> error(NodeReloadError v) {
@@ -146,10 +148,9 @@ public class NodeReloadResult implements TaggedUnion<NodeReloadResult.Kind, Obje
 			return this;
 		}
 
-		public ObjectBuilder<NodeReloadResult> error(Consumer<NodeReloadError.Builder> fn) {
-			NodeReloadError.Builder builder = new NodeReloadError.Builder();
-			fn.accept(builder);
-			return this.error(builder.build());
+		public ObjectBuilder<NodeReloadResult> error(
+				Function<NodeReloadError.Builder, ObjectBuilder<NodeReloadError>> fn) {
+			return this.error(fn.apply(new NodeReloadError.Builder()).build());
 		}
 
 		public NodeReloadResult build() {

@@ -30,15 +30,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.SearchInputRequestBody
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Input.ts#L129-L131">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SearchInputRequestBody implements JsonpSerializable {
 	private final Query query;
@@ -47,14 +54,12 @@ public class SearchInputRequestBody implements JsonpSerializable {
 
 	private SearchInputRequestBody(Builder builder) {
 
-		this.query = ModelTypeHelper.requireNonNull(builder.query, this, "query");
+		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 
 	}
 
-	public static SearchInputRequestBody of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SearchInputRequestBody of(Function<Builder, ObjectBuilder<SearchInputRequestBody>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -85,6 +90,7 @@ public class SearchInputRequestBody implements JsonpSerializable {
 	/**
 	 * Builder for {@link SearchInputRequestBody}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SearchInputRequestBody> {
 		private Query query;
 
@@ -99,10 +105,8 @@ public class SearchInputRequestBody implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code query}
 		 */
-		public final Builder query(Consumer<Query.Builder> fn) {
-			Query.Builder builder = new Query.Builder();
-			fn.accept(builder);
-			return this.query(builder.build());
+		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**

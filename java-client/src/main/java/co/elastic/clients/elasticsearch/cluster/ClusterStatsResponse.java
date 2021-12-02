@@ -32,16 +32,23 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/stats/ClusterStatsResponse.ts#L25-L55">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ClusterStatsResponse extends NodesResponseBase {
 	private final String clusterName;
@@ -61,19 +68,17 @@ public class ClusterStatsResponse extends NodesResponseBase {
 	private ClusterStatsResponse(Builder builder) {
 		super(builder);
 
-		this.clusterName = ModelTypeHelper.requireNonNull(builder.clusterName, this, "clusterName");
-		this.clusterUuid = ModelTypeHelper.requireNonNull(builder.clusterUuid, this, "clusterUuid");
-		this.indices = ModelTypeHelper.requireNonNull(builder.indices, this, "indices");
-		this.nodes = ModelTypeHelper.requireNonNull(builder.nodes, this, "nodes");
-		this.status = ModelTypeHelper.requireNonNull(builder.status, this, "status");
-		this.timestamp = ModelTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+		this.clusterName = ApiTypeHelper.requireNonNull(builder.clusterName, this, "clusterName");
+		this.clusterUuid = ApiTypeHelper.requireNonNull(builder.clusterUuid, this, "clusterUuid");
+		this.indices = ApiTypeHelper.requireNonNull(builder.indices, this, "indices");
+		this.nodes = ApiTypeHelper.requireNonNull(builder.nodes, this, "nodes");
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
+		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
 
 	}
 
-	public static ClusterStatsResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ClusterStatsResponse of(Function<Builder, ObjectBuilder<ClusterStatsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -161,6 +166,7 @@ public class ClusterStatsResponse extends NodesResponseBase {
 	/**
 	 * Builder for {@link ClusterStatsResponse}.
 	 */
+
 	public static class Builder extends NodesResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ClusterStatsResponse> {
@@ -213,10 +219,8 @@ public class ClusterStatsResponse extends NodesResponseBase {
 		 * <p>
 		 * API name: {@code indices}
 		 */
-		public final Builder indices(Consumer<ClusterIndices.Builder> fn) {
-			ClusterIndices.Builder builder = new ClusterIndices.Builder();
-			fn.accept(builder);
-			return this.indices(builder.build());
+		public final Builder indices(Function<ClusterIndices.Builder, ObjectBuilder<ClusterIndices>> fn) {
+			return this.indices(fn.apply(new ClusterIndices.Builder()).build());
 		}
 
 		/**
@@ -236,10 +240,8 @@ public class ClusterStatsResponse extends NodesResponseBase {
 		 * <p>
 		 * API name: {@code nodes}
 		 */
-		public final Builder nodes(Consumer<ClusterNodes.Builder> fn) {
-			ClusterNodes.Builder builder = new ClusterNodes.Builder();
-			fn.accept(builder);
-			return this.nodes(builder.build());
+		public final Builder nodes(Function<ClusterNodes.Builder, ObjectBuilder<ClusterNodes>> fn) {
+			return this.nodes(fn.apply(new ClusterNodes.Builder()).build());
 		}
 
 		/**

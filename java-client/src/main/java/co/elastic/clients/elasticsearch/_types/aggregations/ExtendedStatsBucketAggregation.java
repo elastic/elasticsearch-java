@@ -32,10 +32,17 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ExtendedStatsBucketAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/pipeline.ts#L69-L71">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ExtendedStatsBucketAggregation extends PipelineAggregationBase implements AggregationVariant {
 	@Nullable
@@ -50,10 +57,9 @@ public class ExtendedStatsBucketAggregation extends PipelineAggregationBase impl
 
 	}
 
-	public static ExtendedStatsBucketAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ExtendedStatsBucketAggregation of(
+			Function<Builder, ObjectBuilder<ExtendedStatsBucketAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -88,6 +94,7 @@ public class ExtendedStatsBucketAggregation extends PipelineAggregationBase impl
 	/**
 	 * Builder for {@link ExtendedStatsBucketAggregation}.
 	 */
+
 	public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ExtendedStatsBucketAggregation> {

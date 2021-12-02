@@ -30,15 +30,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.promote_data_stream.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/promote_data_stream/IndicesPromoteDataStreamResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PromoteDataStreamResponse implements JsonpSerializable {
 	private final JsonData valueBody;
@@ -47,14 +54,12 @@ public class PromoteDataStreamResponse implements JsonpSerializable {
 
 	private PromoteDataStreamResponse(Builder builder) {
 
-		this.valueBody = ModelTypeHelper.requireNonNull(builder.valueBody, this, "valueBody");
+		this.valueBody = ApiTypeHelper.requireNonNull(builder.valueBody, this, "valueBody");
 
 	}
 
-	public static PromoteDataStreamResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PromoteDataStreamResponse of(Function<Builder, ObjectBuilder<PromoteDataStreamResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -79,6 +84,7 @@ public class PromoteDataStreamResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link PromoteDataStreamResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PromoteDataStreamResponse> {
 		private JsonData valueBody;
 

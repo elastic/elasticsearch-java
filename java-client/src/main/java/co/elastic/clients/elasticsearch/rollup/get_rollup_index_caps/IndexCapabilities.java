@@ -29,19 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.get_rollup_index_caps.IndexCapabilities
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/rollup/get_rollup_index_caps/types.ts#L24-L26">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IndexCapabilities implements JsonpSerializable {
 	private final List<RollupJobSummary> rollupJobs;
@@ -50,14 +54,12 @@ public class IndexCapabilities implements JsonpSerializable {
 
 	private IndexCapabilities(Builder builder) {
 
-		this.rollupJobs = ModelTypeHelper.unmodifiableRequired(builder.rollupJobs, this, "rollupJobs");
+		this.rollupJobs = ApiTypeHelper.unmodifiableRequired(builder.rollupJobs, this, "rollupJobs");
 
 	}
 
-	public static IndexCapabilities of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IndexCapabilities of(Function<Builder, ObjectBuilder<IndexCapabilities>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -78,7 +80,7 @@ public class IndexCapabilities implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.rollupJobs)) {
+		if (ApiTypeHelper.isDefined(this.rollupJobs)) {
 			generator.writeKey("rollup_jobs");
 			generator.writeStartArray();
 			for (RollupJobSummary item0 : this.rollupJobs) {
@@ -96,31 +98,37 @@ public class IndexCapabilities implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexCapabilities}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexCapabilities> {
 		private List<RollupJobSummary> rollupJobs;
 
 		/**
 		 * Required - API name: {@code rollup_jobs}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>rollupJobs</code>.
 		 */
-		public final Builder rollupJobs(List<RollupJobSummary> value) {
-			this.rollupJobs = value;
+		public final Builder rollupJobs(List<RollupJobSummary> list) {
+			this.rollupJobs = _listAddAll(this.rollupJobs, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code rollup_jobs}
+		 * <p>
+		 * Adds one or more values to <code>rollupJobs</code>.
 		 */
-		public final Builder rollupJobs(RollupJobSummary... value) {
-			this.rollupJobs = Arrays.asList(value);
+		public final Builder rollupJobs(RollupJobSummary value, RollupJobSummary... values) {
+			this.rollupJobs = _listAdd(this.rollupJobs, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code rollup_jobs}
+		 * <p>
+		 * Adds a value to <code>rollupJobs</code> using a builder lambda.
 		 */
-		public final Builder rollupJobs(
-				Function<ListBuilder<RollupJobSummary, RollupJobSummary.Builder>, ObjectBuilder<List<RollupJobSummary>>> fn) {
-			return rollupJobs(fn.apply(new ListBuilder<>(RollupJobSummary.Builder::new)).build());
+		public final Builder rollupJobs(Function<RollupJobSummary.Builder, ObjectBuilder<RollupJobSummary>> fn) {
+			return rollupJobs(fn.apply(new RollupJobSummary.Builder()).build());
 		}
 
 		/**

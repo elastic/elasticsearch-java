@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationOutlierDetection
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/DataframeEvaluation.ts#L46-L53">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeEvaluationOutlierDetection implements DataframeEvaluationVariant, JsonpSerializable {
 	private final String actualField;
@@ -52,17 +59,16 @@ public class DataframeEvaluationOutlierDetection implements DataframeEvaluationV
 
 	private DataframeEvaluationOutlierDetection(Builder builder) {
 
-		this.actualField = ModelTypeHelper.requireNonNull(builder.actualField, this, "actualField");
-		this.predictedProbabilityField = ModelTypeHelper.requireNonNull(builder.predictedProbabilityField, this,
+		this.actualField = ApiTypeHelper.requireNonNull(builder.actualField, this, "actualField");
+		this.predictedProbabilityField = ApiTypeHelper.requireNonNull(builder.predictedProbabilityField, this,
 				"predictedProbabilityField");
 		this.metrics = builder.metrics;
 
 	}
 
-	public static DataframeEvaluationOutlierDetection of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DataframeEvaluationOutlierDetection of(
+			Function<Builder, ObjectBuilder<DataframeEvaluationOutlierDetection>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -135,6 +141,7 @@ public class DataframeEvaluationOutlierDetection implements DataframeEvaluationV
 	/**
 	 * Builder for {@link DataframeEvaluationOutlierDetection}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase
 			implements
 				ObjectBuilder<DataframeEvaluationOutlierDetection> {
@@ -184,10 +191,9 @@ public class DataframeEvaluationOutlierDetection implements DataframeEvaluationV
 		 * <p>
 		 * API name: {@code metrics}
 		 */
-		public final Builder metrics(Consumer<DataframeEvaluationOutlierDetectionMetrics.Builder> fn) {
-			DataframeEvaluationOutlierDetectionMetrics.Builder builder = new DataframeEvaluationOutlierDetectionMetrics.Builder();
-			fn.accept(builder);
-			return this.metrics(builder.build());
+		public final Builder metrics(
+				Function<DataframeEvaluationOutlierDetectionMetrics.Builder, ObjectBuilder<DataframeEvaluationOutlierDetectionMetrics>> fn) {
+			return this.metrics(fn.apply(new DataframeEvaluationOutlierDetectionMetrics.Builder()).build());
 		}
 
 		/**

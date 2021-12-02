@@ -29,16 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.MemoryStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/_types/Stats.ts#L116-L126">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MemoryStats implements JsonpSerializable {
 	@Nullable
@@ -75,10 +83,14 @@ public class MemoryStats implements JsonpSerializable {
 		this.shareInBytes = builder.shareInBytes;
 		this.totalVirtual = builder.totalVirtual;
 		this.totalVirtualInBytes = builder.totalVirtualInBytes;
-		this.totalInBytes = ModelTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes");
-		this.freeInBytes = ModelTypeHelper.requireNonNull(builder.freeInBytes, this, "freeInBytes");
-		this.usedInBytes = ModelTypeHelper.requireNonNull(builder.usedInBytes, this, "usedInBytes");
+		this.totalInBytes = ApiTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes");
+		this.freeInBytes = ApiTypeHelper.requireNonNull(builder.freeInBytes, this, "freeInBytes");
+		this.usedInBytes = ApiTypeHelper.requireNonNull(builder.usedInBytes, this, "usedInBytes");
 
+	}
+
+	public static MemoryStats memoryStatsOf(Function<Builder, ObjectBuilder<MemoryStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -207,6 +219,7 @@ public class MemoryStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link MemoryStats}.
 	 */
+
 	public static class Builder extends MemoryStats.AbstractBuilder<Builder> implements ObjectBuilder<MemoryStats> {
 		@Override
 		protected Builder self() {

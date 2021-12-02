@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.ClusterStatistics
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Stats.ts#L26-L30">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ClusterStatistics implements JsonpSerializable {
 	private final int skipped;
@@ -50,16 +57,14 @@ public class ClusterStatistics implements JsonpSerializable {
 
 	private ClusterStatistics(Builder builder) {
 
-		this.skipped = ModelTypeHelper.requireNonNull(builder.skipped, this, "skipped");
-		this.successful = ModelTypeHelper.requireNonNull(builder.successful, this, "successful");
-		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
+		this.skipped = ApiTypeHelper.requireNonNull(builder.skipped, this, "skipped");
+		this.successful = ApiTypeHelper.requireNonNull(builder.successful, this, "successful");
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
 
 	}
 
-	public static ClusterStatistics of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ClusterStatistics of(Function<Builder, ObjectBuilder<ClusterStatistics>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -110,6 +115,7 @@ public class ClusterStatistics implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClusterStatistics}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterStatistics> {
 		private Integer skipped;
 

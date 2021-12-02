@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationClassification
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/DataframeEvaluation.ts#L35-L44">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeEvaluationClassification implements DataframeEvaluationVariant, JsonpSerializable {
 	private final String actualField;
@@ -56,17 +63,16 @@ public class DataframeEvaluationClassification implements DataframeEvaluationVar
 
 	private DataframeEvaluationClassification(Builder builder) {
 
-		this.actualField = ModelTypeHelper.requireNonNull(builder.actualField, this, "actualField");
+		this.actualField = ApiTypeHelper.requireNonNull(builder.actualField, this, "actualField");
 		this.predictedField = builder.predictedField;
 		this.topClassesField = builder.topClassesField;
 		this.metrics = builder.metrics;
 
 	}
 
-	public static DataframeEvaluationClassification of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DataframeEvaluationClassification of(
+			Function<Builder, ObjectBuilder<DataframeEvaluationClassification>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -158,6 +164,7 @@ public class DataframeEvaluationClassification implements DataframeEvaluationVar
 	/**
 	 * Builder for {@link DataframeEvaluationClassification}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframeEvaluationClassification> {
 		private String actualField;
 
@@ -220,10 +227,9 @@ public class DataframeEvaluationClassification implements DataframeEvaluationVar
 		 * <p>
 		 * API name: {@code metrics}
 		 */
-		public final Builder metrics(Consumer<DataframeEvaluationClassificationMetrics.Builder> fn) {
-			DataframeEvaluationClassificationMetrics.Builder builder = new DataframeEvaluationClassificationMetrics.Builder();
-			fn.accept(builder);
-			return this.metrics(builder.build());
+		public final Builder metrics(
+				Function<DataframeEvaluationClassificationMetrics.Builder, ObjectBuilder<DataframeEvaluationClassificationMetrics>> fn) {
+			return this.metrics(fn.apply(new DataframeEvaluationClassificationMetrics.Builder()).build());
 		}
 
 		/**

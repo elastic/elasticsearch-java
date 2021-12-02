@@ -30,15 +30,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.SearchTransform
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Transform.ts#L45-L48">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SearchTransform implements TransformVariant, JsonpSerializable {
 	private final SearchInputRequestDefinition request;
@@ -49,15 +56,13 @@ public class SearchTransform implements TransformVariant, JsonpSerializable {
 
 	private SearchTransform(Builder builder) {
 
-		this.request = ModelTypeHelper.requireNonNull(builder.request, this, "request");
-		this.timeout = ModelTypeHelper.requireNonNull(builder.timeout, this, "timeout");
+		this.request = ApiTypeHelper.requireNonNull(builder.request, this, "request");
+		this.timeout = ApiTypeHelper.requireNonNull(builder.timeout, this, "timeout");
 
 	}
 
-	public static SearchTransform of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SearchTransform of(Function<Builder, ObjectBuilder<SearchTransform>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -106,6 +111,7 @@ public class SearchTransform implements TransformVariant, JsonpSerializable {
 	/**
 	 * Builder for {@link SearchTransform}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SearchTransform> {
 		private SearchInputRequestDefinition request;
 
@@ -122,10 +128,9 @@ public class SearchTransform implements TransformVariant, JsonpSerializable {
 		/**
 		 * Required - API name: {@code request}
 		 */
-		public final Builder request(Consumer<SearchInputRequestDefinition.Builder> fn) {
-			SearchInputRequestDefinition.Builder builder = new SearchInputRequestDefinition.Builder();
-			fn.accept(builder);
-			return this.request(builder.build());
+		public final Builder request(
+				Function<SearchInputRequestDefinition.Builder, ObjectBuilder<SearchInputRequestDefinition>> fn) {
+			return this.request(fn.apply(new SearchInputRequestDefinition.Builder()).build());
 		}
 
 		/**
@@ -139,10 +144,8 @@ public class SearchTransform implements TransformVariant, JsonpSerializable {
 		/**
 		 * Required - API name: {@code timeout}
 		 */
-		public final Builder timeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.timeout(builder.build());
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

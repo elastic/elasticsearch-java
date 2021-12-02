@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,10 +38,17 @@ import java.lang.Long;
 import java.lang.Number;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DatafeedTimingStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/Datafeed.ts#L137-L144">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DatafeedTimingStats implements JsonpSerializable {
 	private final long bucketCount;
@@ -60,21 +67,19 @@ public class DatafeedTimingStats implements JsonpSerializable {
 
 	private DatafeedTimingStats(Builder builder) {
 
-		this.bucketCount = ModelTypeHelper.requireNonNull(builder.bucketCount, this, "bucketCount");
-		this.exponentialAverageSearchTimePerHourMs = ModelTypeHelper.requireNonNull(
+		this.bucketCount = ApiTypeHelper.requireNonNull(builder.bucketCount, this, "bucketCount");
+		this.exponentialAverageSearchTimePerHourMs = ApiTypeHelper.requireNonNull(
 				builder.exponentialAverageSearchTimePerHourMs, this, "exponentialAverageSearchTimePerHourMs");
-		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
-		this.searchCount = ModelTypeHelper.requireNonNull(builder.searchCount, this, "searchCount");
-		this.totalSearchTimeMs = ModelTypeHelper.requireNonNull(builder.totalSearchTimeMs, this, "totalSearchTimeMs");
-		this.averageSearchTimePerBucketMs = ModelTypeHelper.requireNonNull(builder.averageSearchTimePerBucketMs, this,
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.searchCount = ApiTypeHelper.requireNonNull(builder.searchCount, this, "searchCount");
+		this.totalSearchTimeMs = ApiTypeHelper.requireNonNull(builder.totalSearchTimeMs, this, "totalSearchTimeMs");
+		this.averageSearchTimePerBucketMs = ApiTypeHelper.requireNonNull(builder.averageSearchTimePerBucketMs, this,
 				"averageSearchTimePerBucketMs");
 
 	}
 
-	public static DatafeedTimingStats of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DatafeedTimingStats of(Function<Builder, ObjectBuilder<DatafeedTimingStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -155,6 +160,7 @@ public class DatafeedTimingStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link DatafeedTimingStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DatafeedTimingStats> {
 		private Long bucketCount;
 

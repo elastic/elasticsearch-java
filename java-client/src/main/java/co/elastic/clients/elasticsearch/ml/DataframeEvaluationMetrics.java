@@ -30,17 +30,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationMetrics
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/DataframeEvaluation.ts#L64-L71">API
+ *      specification</a>
+ */
 
 public abstract class DataframeEvaluationMetrics implements JsonpSerializable {
 	@Nullable
@@ -55,8 +62,8 @@ public abstract class DataframeEvaluationMetrics implements JsonpSerializable {
 	protected DataframeEvaluationMetrics(AbstractBuilder<?> builder) {
 
 		this.aucRoc = builder.aucRoc;
-		this.precision = ModelTypeHelper.unmodifiable(builder.precision);
-		this.recall = ModelTypeHelper.unmodifiable(builder.recall);
+		this.precision = ApiTypeHelper.unmodifiable(builder.precision);
+		this.recall = ApiTypeHelper.unmodifiable(builder.recall);
 
 	}
 
@@ -106,7 +113,7 @@ public abstract class DataframeEvaluationMetrics implements JsonpSerializable {
 			this.aucRoc.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.precision)) {
+		if (ApiTypeHelper.isDefined(this.precision)) {
 			generator.writeKey("precision");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.precision.entrySet()) {
@@ -117,7 +124,7 @@ public abstract class DataframeEvaluationMetrics implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.recall)) {
+		if (ApiTypeHelper.isDefined(this.recall)) {
 			generator.writeKey("recall");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.recall.entrySet()) {
@@ -162,19 +169,32 @@ public abstract class DataframeEvaluationMetrics implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code auc_roc}
 		 */
-		public final BuilderT aucRoc(Consumer<DataframeEvaluationClassificationMetricsAucRoc.Builder> fn) {
-			DataframeEvaluationClassificationMetricsAucRoc.Builder builder = new DataframeEvaluationClassificationMetricsAucRoc.Builder();
-			fn.accept(builder);
-			return this.aucRoc(builder.build());
+		public final BuilderT aucRoc(
+				Function<DataframeEvaluationClassificationMetricsAucRoc.Builder, ObjectBuilder<DataframeEvaluationClassificationMetricsAucRoc>> fn) {
+			return this.aucRoc(fn.apply(new DataframeEvaluationClassificationMetricsAucRoc.Builder()).build());
 		}
 
 		/**
 		 * Precision of predictions (per-class and average).
 		 * <p>
 		 * API name: {@code precision}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>precision</code>.
 		 */
-		public final BuilderT precision(@Nullable Map<String, JsonData> value) {
-			this.precision = value;
+		public final BuilderT precision(Map<String, JsonData> map) {
+			this.precision = _mapPutAll(this.precision, map);
+			return self();
+		}
+
+		/**
+		 * Precision of predictions (per-class and average).
+		 * <p>
+		 * API name: {@code precision}
+		 * <p>
+		 * Adds an entry to <code>precision</code>.
+		 */
+		public final BuilderT precision(String key, JsonData value) {
+			this.precision = _mapPut(this.precision, key, value);
 			return self();
 		}
 
@@ -182,9 +202,23 @@ public abstract class DataframeEvaluationMetrics implements JsonpSerializable {
 		 * Recall of predictions (per-class and average).
 		 * <p>
 		 * API name: {@code recall}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>recall</code>.
 		 */
-		public final BuilderT recall(@Nullable Map<String, JsonData> value) {
-			this.recall = value;
+		public final BuilderT recall(Map<String, JsonData> map) {
+			this.recall = _mapPutAll(this.recall, map);
+			return self();
+		}
+
+		/**
+		 * Recall of predictions (per-class and average).
+		 * <p>
+		 * API name: {@code recall}
+		 * <p>
+		 * Adds an entry to <code>recall</code>.
+		 */
+		public final BuilderT recall(String key, JsonData value) {
+			this.recall = _mapPut(this.recall, key, value);
 			return self();
 		}
 

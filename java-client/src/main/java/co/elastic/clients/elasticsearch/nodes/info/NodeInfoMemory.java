@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoMemory
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L308-L311">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeInfoMemory implements JsonpSerializable {
 	private final String total;
@@ -50,15 +57,13 @@ public class NodeInfoMemory implements JsonpSerializable {
 
 	private NodeInfoMemory(Builder builder) {
 
-		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
-		this.totalInBytes = ModelTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes");
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+		this.totalInBytes = ApiTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes");
 
 	}
 
-	public static NodeInfoMemory of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodeInfoMemory of(Function<Builder, ObjectBuilder<NodeInfoMemory>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -99,6 +104,7 @@ public class NodeInfoMemory implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoMemory}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoMemory> {
 		private String total;
 

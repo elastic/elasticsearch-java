@@ -30,17 +30,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_token.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_token/GetUserAccessTokenResponse.ts#L23-L33">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetTokenResponse implements JsonpSerializable {
 	private final String accessToken;
@@ -63,20 +70,18 @@ public class GetTokenResponse implements JsonpSerializable {
 
 	private GetTokenResponse(Builder builder) {
 
-		this.accessToken = ModelTypeHelper.requireNonNull(builder.accessToken, this, "accessToken");
-		this.expiresIn = ModelTypeHelper.requireNonNull(builder.expiresIn, this, "expiresIn");
+		this.accessToken = ApiTypeHelper.requireNonNull(builder.accessToken, this, "accessToken");
+		this.expiresIn = ApiTypeHelper.requireNonNull(builder.expiresIn, this, "expiresIn");
 		this.scope = builder.scope;
-		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
-		this.refreshToken = ModelTypeHelper.requireNonNull(builder.refreshToken, this, "refreshToken");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.refreshToken = ApiTypeHelper.requireNonNull(builder.refreshToken, this, "refreshToken");
 		this.kerberosAuthenticationResponseToken = builder.kerberosAuthenticationResponseToken;
-		this.authentication = ModelTypeHelper.requireNonNull(builder.authentication, this, "authentication");
+		this.authentication = ApiTypeHelper.requireNonNull(builder.authentication, this, "authentication");
 
 	}
 
-	public static GetTokenResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetTokenResponse of(Function<Builder, ObjectBuilder<GetTokenResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -173,6 +178,7 @@ public class GetTokenResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetTokenResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetTokenResponse> {
 		private String accessToken;
 
@@ -249,10 +255,8 @@ public class GetTokenResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code authentication}
 		 */
-		public final Builder authentication(Consumer<AuthenticatedUser.Builder> fn) {
-			AuthenticatedUser.Builder builder = new AuthenticatedUser.Builder();
-			fn.accept(builder);
-			return this.authentication(builder.build());
+		public final Builder authentication(Function<AuthenticatedUser.Builder, ObjectBuilder<AuthenticatedUser>> fn) {
+			return this.authentication(fn.apply(new AuthenticatedUser.Builder()).build());
 		}
 
 		/**

@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: nodes.info.NodeProcessInfo
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L376-L383">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeProcessInfo implements JsonpSerializable {
 	private final long id;
@@ -51,17 +58,15 @@ public class NodeProcessInfo implements JsonpSerializable {
 
 	private NodeProcessInfo(Builder builder) {
 
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
-		this.mlockall = ModelTypeHelper.requireNonNull(builder.mlockall, this, "mlockall");
-		this.refreshIntervalInMillis = ModelTypeHelper.requireNonNull(builder.refreshIntervalInMillis, this,
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.mlockall = ApiTypeHelper.requireNonNull(builder.mlockall, this, "mlockall");
+		this.refreshIntervalInMillis = ApiTypeHelper.requireNonNull(builder.refreshIntervalInMillis, this,
 				"refreshIntervalInMillis");
 
 	}
 
-	public static NodeProcessInfo of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodeProcessInfo of(Function<Builder, ObjectBuilder<NodeProcessInfo>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -119,6 +124,7 @@ public class NodeProcessInfo implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeProcessInfo}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeProcessInfo> {
 		private Long id;
 

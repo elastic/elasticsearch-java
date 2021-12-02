@@ -37,10 +37,19 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr.get_auto_follow_pattern.Request
+
+/**
+ * Gets configured auto-follow patterns. Returns the specified auto-follow
+ * pattern collection.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ccr/get_auto_follow_pattern/GetAutoFollowPatternRequest.ts#L23-L33">API
+ *      specification</a>
+ */
 
 public class GetAutoFollowPatternRequest extends RequestBase {
 	@Nullable
@@ -54,10 +63,8 @@ public class GetAutoFollowPatternRequest extends RequestBase {
 
 	}
 
-	public static GetAutoFollowPatternRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetAutoFollowPatternRequest of(Function<Builder, ObjectBuilder<GetAutoFollowPatternRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -76,6 +83,7 @@ public class GetAutoFollowPatternRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetAutoFollowPatternRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetAutoFollowPatternRequest> {
 		@Nullable
 		private String name;

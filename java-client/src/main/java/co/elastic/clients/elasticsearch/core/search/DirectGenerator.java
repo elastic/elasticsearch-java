@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,10 +38,17 @@ import java.lang.Float;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.DirectGenerator
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/suggester.ts#L135-L147">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DirectGenerator implements JsonpSerializable {
 	private final String field;
@@ -80,7 +87,7 @@ public class DirectGenerator implements JsonpSerializable {
 
 	private DirectGenerator(Builder builder) {
 
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.maxEdits = builder.maxEdits;
 		this.maxInspections = builder.maxInspections;
 		this.maxTermFreq = builder.maxTermFreq;
@@ -94,10 +101,8 @@ public class DirectGenerator implements JsonpSerializable {
 
 	}
 
-	public static DirectGenerator of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DirectGenerator of(Function<Builder, ObjectBuilder<DirectGenerator>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -258,6 +263,7 @@ public class DirectGenerator implements JsonpSerializable {
 	/**
 	 * Builder for {@link DirectGenerator}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DirectGenerator> {
 		private String field;
 

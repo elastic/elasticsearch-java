@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: license.post_start_trial.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/license/post_start_trial/StartTrialLicenseResponse.ts#L23-L29">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PostStartTrialResponse extends AcknowledgedResponseBase {
 	@Nullable
@@ -54,15 +61,13 @@ public class PostStartTrialResponse extends AcknowledgedResponseBase {
 		super(builder);
 
 		this.errorMessage = builder.errorMessage;
-		this.trialWasStarted = ModelTypeHelper.requireNonNull(builder.trialWasStarted, this, "trialWasStarted");
-		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
+		this.trialWasStarted = ApiTypeHelper.requireNonNull(builder.trialWasStarted, this, "trialWasStarted");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 
-	public static PostStartTrialResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PostStartTrialResponse of(Function<Builder, ObjectBuilder<PostStartTrialResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -108,6 +113,7 @@ public class PostStartTrialResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link PostStartTrialResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PostStartTrialResponse> {

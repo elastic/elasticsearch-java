@@ -31,19 +31,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest.geo_ip_stats.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/geo_ip_stats/IngestGeoIpStatsResponse.ts#L24-L31">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GeoIpStatsResponse implements JsonpSerializable {
 	private final GeoIpDownloadStatistics stats;
@@ -54,15 +59,13 @@ public class GeoIpStatsResponse implements JsonpSerializable {
 
 	private GeoIpStatsResponse(Builder builder) {
 
-		this.stats = ModelTypeHelper.requireNonNull(builder.stats, this, "stats");
-		this.nodes = ModelTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
+		this.stats = ApiTypeHelper.requireNonNull(builder.stats, this, "stats");
+		this.nodes = ApiTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
 
 	}
 
-	public static GeoIpStatsResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GeoIpStatsResponse of(Function<Builder, ObjectBuilder<GeoIpStatsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -97,7 +100,7 @@ public class GeoIpStatsResponse implements JsonpSerializable {
 		generator.writeKey("stats");
 		this.stats.serialize(generator, mapper);
 
-		if (ModelTypeHelper.isDefined(this.nodes)) {
+		if (ApiTypeHelper.isDefined(this.nodes)) {
 			generator.writeKey("nodes");
 			generator.writeStartObject();
 			for (Map.Entry<String, GeoIpNodeDatabases> item0 : this.nodes.entrySet()) {
@@ -116,6 +119,7 @@ public class GeoIpStatsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GeoIpStatsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GeoIpStatsResponse> {
 		private GeoIpDownloadStatistics stats;
 
@@ -136,25 +140,45 @@ public class GeoIpStatsResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code stats}
 		 */
-		public final Builder stats(Consumer<GeoIpDownloadStatistics.Builder> fn) {
-			GeoIpDownloadStatistics.Builder builder = new GeoIpDownloadStatistics.Builder();
-			fn.accept(builder);
-			return this.stats(builder.build());
+		public final Builder stats(
+				Function<GeoIpDownloadStatistics.Builder, ObjectBuilder<GeoIpDownloadStatistics>> fn) {
+			return this.stats(fn.apply(new GeoIpDownloadStatistics.Builder()).build());
 		}
 
 		/**
 		 * Required - Downloaded GeoIP2 databases for each node.
 		 * <p>
 		 * API name: {@code nodes}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>nodes</code>.
 		 */
-		public final Builder nodes(Map<String, GeoIpNodeDatabases> value) {
-			this.nodes = value;
+		public final Builder nodes(Map<String, GeoIpNodeDatabases> map) {
+			this.nodes = _mapPutAll(this.nodes, map);
 			return this;
 		}
 
-		public final Builder nodes(
-				Function<MapBuilder<String, GeoIpNodeDatabases, GeoIpNodeDatabases.Builder>, ObjectBuilder<Map<String, GeoIpNodeDatabases>>> fn) {
-			return nodes(fn.apply(new MapBuilder<>(GeoIpNodeDatabases.Builder::new)).build());
+		/**
+		 * Required - Downloaded GeoIP2 databases for each node.
+		 * <p>
+		 * API name: {@code nodes}
+		 * <p>
+		 * Adds an entry to <code>nodes</code>.
+		 */
+		public final Builder nodes(String key, GeoIpNodeDatabases value) {
+			this.nodes = _mapPut(this.nodes, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - Downloaded GeoIP2 databases for each node.
+		 * <p>
+		 * API name: {@code nodes}
+		 * <p>
+		 * Adds an entry to <code>nodes</code> using a builder lambda.
+		 */
+		public final Builder nodes(String key,
+				Function<GeoIpNodeDatabases.Builder, ObjectBuilder<GeoIpNodeDatabases>> fn) {
+			return nodes(key, fn.apply(new GeoIpNodeDatabases.Builder()).build());
 		}
 
 		/**

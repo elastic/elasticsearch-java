@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.DocStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Stats.ts#L63-L66">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DocStats implements JsonpSerializable {
 	private final long count;
@@ -48,15 +55,13 @@ public class DocStats implements JsonpSerializable {
 
 	private DocStats(Builder builder) {
 
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
-		this.deleted = ModelTypeHelper.requireNonNull(builder.deleted, this, "deleted");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.deleted = ApiTypeHelper.requireNonNull(builder.deleted, this, "deleted");
 
 	}
 
-	public static DocStats of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DocStats of(Function<Builder, ObjectBuilder<DocStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -97,6 +102,7 @@ public class DocStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link DocStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DocStats> {
 		private Long count;
 

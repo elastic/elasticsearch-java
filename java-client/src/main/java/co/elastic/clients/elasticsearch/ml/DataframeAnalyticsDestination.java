@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsDestination
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/DataframeAnalytics.ts#L76-L81">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeAnalyticsDestination implements JsonpSerializable {
 	private final String index;
@@ -50,15 +57,13 @@ public class DataframeAnalyticsDestination implements JsonpSerializable {
 
 	private DataframeAnalyticsDestination(Builder builder) {
 
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.resultsField = builder.resultsField;
 
 	}
 
-	public static DataframeAnalyticsDestination of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DataframeAnalyticsDestination of(Function<Builder, ObjectBuilder<DataframeAnalyticsDestination>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -109,6 +114,7 @@ public class DataframeAnalyticsDestination implements JsonpSerializable {
 	/**
 	 * Builder for {@link DataframeAnalyticsDestination}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframeAnalyticsDestination> {
 		private String index;
 

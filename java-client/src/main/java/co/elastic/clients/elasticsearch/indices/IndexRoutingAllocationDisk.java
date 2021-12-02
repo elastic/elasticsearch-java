@@ -34,10 +34,17 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexRoutingAllocationDisk
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/_types/IndexRouting.ts#L62-L64">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IndexRoutingAllocationDisk implements JsonpSerializable {
 	@Nullable
@@ -51,10 +58,8 @@ public class IndexRoutingAllocationDisk implements JsonpSerializable {
 
 	}
 
-	public static IndexRoutingAllocationDisk of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IndexRoutingAllocationDisk of(Function<Builder, ObjectBuilder<IndexRoutingAllocationDisk>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -89,6 +94,7 @@ public class IndexRoutingAllocationDisk implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexRoutingAllocationDisk}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexRoutingAllocationDisk> {
 		@Nullable
 		private Boolean thresholdEnabled;

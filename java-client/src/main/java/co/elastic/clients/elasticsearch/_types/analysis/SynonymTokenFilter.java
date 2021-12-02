@@ -28,18 +28,24 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.SynonymTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L120-L129">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SynonymTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	@Nullable
@@ -70,17 +76,15 @@ public class SynonymTokenFilter extends TokenFilterBase implements TokenFilterDe
 		this.expand = builder.expand;
 		this.format = builder.format;
 		this.lenient = builder.lenient;
-		this.synonyms = ModelTypeHelper.unmodifiable(builder.synonyms);
+		this.synonyms = ApiTypeHelper.unmodifiable(builder.synonyms);
 		this.synonymsPath = builder.synonymsPath;
 		this.tokenizer = builder.tokenizer;
 		this.updateable = builder.updateable;
 
 	}
 
-	public static SynonymTokenFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SynonymTokenFilter of(Function<Builder, ObjectBuilder<SynonymTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -164,7 +168,7 @@ public class SynonymTokenFilter extends TokenFilterBase implements TokenFilterDe
 			generator.write(this.lenient);
 
 		}
-		if (ModelTypeHelper.isDefined(this.synonyms)) {
+		if (ApiTypeHelper.isDefined(this.synonyms)) {
 			generator.writeKey("synonyms");
 			generator.writeStartArray();
 			for (String item0 : this.synonyms) {
@@ -197,6 +201,7 @@ public class SynonymTokenFilter extends TokenFilterBase implements TokenFilterDe
 	/**
 	 * Builder for {@link SynonymTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<SynonymTokenFilter> {
@@ -247,17 +252,21 @@ public class SynonymTokenFilter extends TokenFilterBase implements TokenFilterDe
 
 		/**
 		 * API name: {@code synonyms}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>synonyms</code>.
 		 */
-		public final Builder synonyms(@Nullable List<String> value) {
-			this.synonyms = value;
+		public final Builder synonyms(List<String> list) {
+			this.synonyms = _listAddAll(this.synonyms, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code synonyms}
+		 * <p>
+		 * Adds one or more values to <code>synonyms</code>.
 		 */
-		public final Builder synonyms(String... value) {
-			this.synonyms = Arrays.asList(value);
+		public final Builder synonyms(String value, String... values) {
+			this.synonyms = _listAdd(this.synonyms, value, values);
 			return this;
 		}
 

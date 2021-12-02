@@ -36,24 +36,30 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.MapBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: _global.field_caps.Request
+
+/**
+ * Returns the information about the capabilities of fields among multiple
+ * indices.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/field_caps/FieldCapabilitiesRequest.ts#L25-L46">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -81,20 +87,18 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 	private FieldCapsRequest(Builder builder) {
 
 		this.allowNoIndices = builder.allowNoIndices;
-		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
+		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.includeUnmapped = builder.includeUnmapped;
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
+		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.indexFilter = builder.indexFilter;
-		this.runtimeMappings = ModelTypeHelper.unmodifiable(builder.runtimeMappings);
+		this.runtimeMappings = ApiTypeHelper.unmodifiable(builder.runtimeMappings);
 
 	}
 
-	public static FieldCapsRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static FieldCapsRequest of(Function<Builder, ObjectBuilder<FieldCapsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -190,7 +194,7 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 			this.indexFilter.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.runtimeMappings)) {
+		if (ApiTypeHelper.isDefined(this.runtimeMappings)) {
 			generator.writeKey("runtime_mappings");
 			generator.writeStartObject();
 			for (Map.Entry<String, RuntimeField> item0 : this.runtimeMappings.entrySet()) {
@@ -209,6 +213,7 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link FieldCapsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldCapsRequest> {
 		@Nullable
 		private Boolean allowNoIndices;
@@ -251,9 +256,11 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		 * closed or both.
 		 * <p>
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
 		 */
-		public final Builder expandWildcards(@Nullable List<ExpandWildcard> value) {
-			this.expandWildcards = value;
+		public final Builder expandWildcards(List<ExpandWildcard> list) {
+			this.expandWildcards = _listAddAll(this.expandWildcards, list);
 			return this;
 		}
 
@@ -262,9 +269,11 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		 * closed or both.
 		 * <p>
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds one or more values to <code>expandWildcards</code>.
 		 */
-		public final Builder expandWildcards(ExpandWildcard... value) {
-			this.expandWildcards = Arrays.asList(value);
+		public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
+			this.expandWildcards = _listAdd(this.expandWildcards, value, values);
 			return this;
 		}
 
@@ -272,9 +281,11 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		 * A comma-separated list of field names
 		 * <p>
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fields</code>.
 		 */
-		public final Builder fields(@Nullable List<String> value) {
-			this.fields = value;
+		public final Builder fields(List<String> list) {
+			this.fields = _listAddAll(this.fields, list);
 			return this;
 		}
 
@@ -282,9 +293,11 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		 * A comma-separated list of field names
 		 * <p>
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds one or more values to <code>fields</code>.
 		 */
-		public final Builder fields(String... value) {
-			this.fields = Arrays.asList(value);
+		public final Builder fields(String value, String... values) {
+			this.fields = _listAdd(this.fields, value, values);
 			return this;
 		}
 
@@ -314,9 +327,11 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		 * to perform the operation on all indices
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 */
-		public final Builder index(@Nullable List<String> value) {
-			this.index = value;
+		public final Builder index(List<String> list) {
+			this.index = _listAddAll(this.index, list);
 			return this;
 		}
 
@@ -325,9 +340,11 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		 * to perform the operation on all indices
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds one or more values to <code>index</code>.
 		 */
-		public final Builder index(String... value) {
-			this.index = Arrays.asList(value);
+		public final Builder index(String value, String... values) {
+			this.index = _listAdd(this.index, value, values);
 			return this;
 		}
 
@@ -342,23 +359,38 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code index_filter}
 		 */
-		public final Builder indexFilter(Consumer<Query.Builder> fn) {
-			Query.Builder builder = new Query.Builder();
-			fn.accept(builder);
-			return this.indexFilter(builder.build());
+		public final Builder indexFilter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.indexFilter(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code runtime_mappings}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>runtimeMappings</code>.
 		 */
-		public final Builder runtimeMappings(@Nullable Map<String, RuntimeField> value) {
-			this.runtimeMappings = value;
+		public final Builder runtimeMappings(Map<String, RuntimeField> map) {
+			this.runtimeMappings = _mapPutAll(this.runtimeMappings, map);
 			return this;
 		}
 
-		public final Builder runtimeMappings(
-				Function<MapBuilder<String, RuntimeField, RuntimeField.Builder>, ObjectBuilder<Map<String, RuntimeField>>> fn) {
-			return runtimeMappings(fn.apply(new MapBuilder<>(RuntimeField.Builder::new)).build());
+		/**
+		 * API name: {@code runtime_mappings}
+		 * <p>
+		 * Adds an entry to <code>runtimeMappings</code>.
+		 */
+		public final Builder runtimeMappings(String key, RuntimeField value) {
+			this.runtimeMappings = _mapPut(this.runtimeMappings, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code runtime_mappings}
+		 * <p>
+		 * Adds an entry to <code>runtimeMappings</code> using a builder lambda.
+		 */
+		public final Builder runtimeMappings(String key,
+				Function<RuntimeField.Builder, ObjectBuilder<RuntimeField>> fn) {
+			return runtimeMappings(key, fn.apply(new RuntimeField.Builder()).build());
 		}
 
 		/**
@@ -410,7 +442,7 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 
 				int propsSet = 0;
 
-				if (ModelTypeHelper.isDefined(request.index()))
+				if (ApiTypeHelper.isDefined(request.index()))
 					propsSet |= _index;
 
 				if (propsSet == 0) {
@@ -432,7 +464,7 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (ModelTypeHelper.isDefined(request.expandWildcards)) {
+				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
@@ -442,7 +474,7 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 				if (request.allowNoIndices != null) {
 					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
-				if (ModelTypeHelper.isDefined(request.fields)) {
+				if (ApiTypeHelper.isDefined(request.fields)) {
 					params.put("fields", request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.includeUnmapped != null) {

@@ -34,10 +34,17 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.HistogramOrder
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/bucket.ts#L216-L219">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class HistogramOrder implements JsonpSerializable {
 	@Nullable
@@ -55,10 +62,8 @@ public class HistogramOrder implements JsonpSerializable {
 
 	}
 
-	public static HistogramOrder of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static HistogramOrder of(Function<Builder, ObjectBuilder<HistogramOrder>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -104,6 +109,7 @@ public class HistogramOrder implements JsonpSerializable {
 	/**
 	 * Builder for {@link HistogramOrder}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HistogramOrder> {
 		@Nullable
 		private SortOrder count;

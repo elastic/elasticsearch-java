@@ -30,22 +30,26 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr._types.ShardStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ccr/_types/FollowIndexStats.ts#L35-L65">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ShardStats implements JsonpSerializable {
 	private final long bytesRead;
@@ -111,60 +115,56 @@ public class ShardStats implements JsonpSerializable {
 
 	private ShardStats(Builder builder) {
 
-		this.bytesRead = ModelTypeHelper.requireNonNull(builder.bytesRead, this, "bytesRead");
-		this.failedReadRequests = ModelTypeHelper.requireNonNull(builder.failedReadRequests, this,
-				"failedReadRequests");
-		this.failedWriteRequests = ModelTypeHelper.requireNonNull(builder.failedWriteRequests, this,
+		this.bytesRead = ApiTypeHelper.requireNonNull(builder.bytesRead, this, "bytesRead");
+		this.failedReadRequests = ApiTypeHelper.requireNonNull(builder.failedReadRequests, this, "failedReadRequests");
+		this.failedWriteRequests = ApiTypeHelper.requireNonNull(builder.failedWriteRequests, this,
 				"failedWriteRequests");
 		this.fatalException = builder.fatalException;
-		this.followerAliasesVersion = ModelTypeHelper.requireNonNull(builder.followerAliasesVersion, this,
+		this.followerAliasesVersion = ApiTypeHelper.requireNonNull(builder.followerAliasesVersion, this,
 				"followerAliasesVersion");
-		this.followerGlobalCheckpoint = ModelTypeHelper.requireNonNull(builder.followerGlobalCheckpoint, this,
+		this.followerGlobalCheckpoint = ApiTypeHelper.requireNonNull(builder.followerGlobalCheckpoint, this,
 				"followerGlobalCheckpoint");
-		this.followerIndex = ModelTypeHelper.requireNonNull(builder.followerIndex, this, "followerIndex");
-		this.followerMappingVersion = ModelTypeHelper.requireNonNull(builder.followerMappingVersion, this,
+		this.followerIndex = ApiTypeHelper.requireNonNull(builder.followerIndex, this, "followerIndex");
+		this.followerMappingVersion = ApiTypeHelper.requireNonNull(builder.followerMappingVersion, this,
 				"followerMappingVersion");
-		this.followerMaxSeqNo = ModelTypeHelper.requireNonNull(builder.followerMaxSeqNo, this, "followerMaxSeqNo");
-		this.followerSettingsVersion = ModelTypeHelper.requireNonNull(builder.followerSettingsVersion, this,
+		this.followerMaxSeqNo = ApiTypeHelper.requireNonNull(builder.followerMaxSeqNo, this, "followerMaxSeqNo");
+		this.followerSettingsVersion = ApiTypeHelper.requireNonNull(builder.followerSettingsVersion, this,
 				"followerSettingsVersion");
-		this.lastRequestedSeqNo = ModelTypeHelper.requireNonNull(builder.lastRequestedSeqNo, this,
-				"lastRequestedSeqNo");
-		this.leaderGlobalCheckpoint = ModelTypeHelper.requireNonNull(builder.leaderGlobalCheckpoint, this,
+		this.lastRequestedSeqNo = ApiTypeHelper.requireNonNull(builder.lastRequestedSeqNo, this, "lastRequestedSeqNo");
+		this.leaderGlobalCheckpoint = ApiTypeHelper.requireNonNull(builder.leaderGlobalCheckpoint, this,
 				"leaderGlobalCheckpoint");
-		this.leaderIndex = ModelTypeHelper.requireNonNull(builder.leaderIndex, this, "leaderIndex");
-		this.leaderMaxSeqNo = ModelTypeHelper.requireNonNull(builder.leaderMaxSeqNo, this, "leaderMaxSeqNo");
-		this.operationsRead = ModelTypeHelper.requireNonNull(builder.operationsRead, this, "operationsRead");
-		this.operationsWritten = ModelTypeHelper.requireNonNull(builder.operationsWritten, this, "operationsWritten");
-		this.outstandingReadRequests = ModelTypeHelper.requireNonNull(builder.outstandingReadRequests, this,
+		this.leaderIndex = ApiTypeHelper.requireNonNull(builder.leaderIndex, this, "leaderIndex");
+		this.leaderMaxSeqNo = ApiTypeHelper.requireNonNull(builder.leaderMaxSeqNo, this, "leaderMaxSeqNo");
+		this.operationsRead = ApiTypeHelper.requireNonNull(builder.operationsRead, this, "operationsRead");
+		this.operationsWritten = ApiTypeHelper.requireNonNull(builder.operationsWritten, this, "operationsWritten");
+		this.outstandingReadRequests = ApiTypeHelper.requireNonNull(builder.outstandingReadRequests, this,
 				"outstandingReadRequests");
-		this.outstandingWriteRequests = ModelTypeHelper.requireNonNull(builder.outstandingWriteRequests, this,
+		this.outstandingWriteRequests = ApiTypeHelper.requireNonNull(builder.outstandingWriteRequests, this,
 				"outstandingWriteRequests");
-		this.readExceptions = ModelTypeHelper.unmodifiableRequired(builder.readExceptions, this, "readExceptions");
-		this.remoteCluster = ModelTypeHelper.requireNonNull(builder.remoteCluster, this, "remoteCluster");
-		this.shardId = ModelTypeHelper.requireNonNull(builder.shardId, this, "shardId");
-		this.successfulReadRequests = ModelTypeHelper.requireNonNull(builder.successfulReadRequests, this,
+		this.readExceptions = ApiTypeHelper.unmodifiableRequired(builder.readExceptions, this, "readExceptions");
+		this.remoteCluster = ApiTypeHelper.requireNonNull(builder.remoteCluster, this, "remoteCluster");
+		this.shardId = ApiTypeHelper.requireNonNull(builder.shardId, this, "shardId");
+		this.successfulReadRequests = ApiTypeHelper.requireNonNull(builder.successfulReadRequests, this,
 				"successfulReadRequests");
-		this.successfulWriteRequests = ModelTypeHelper.requireNonNull(builder.successfulWriteRequests, this,
+		this.successfulWriteRequests = ApiTypeHelper.requireNonNull(builder.successfulWriteRequests, this,
 				"successfulWriteRequests");
-		this.timeSinceLastReadMillis = ModelTypeHelper.requireNonNull(builder.timeSinceLastReadMillis, this,
+		this.timeSinceLastReadMillis = ApiTypeHelper.requireNonNull(builder.timeSinceLastReadMillis, this,
 				"timeSinceLastReadMillis");
-		this.totalReadRemoteExecTimeMillis = ModelTypeHelper.requireNonNull(builder.totalReadRemoteExecTimeMillis, this,
+		this.totalReadRemoteExecTimeMillis = ApiTypeHelper.requireNonNull(builder.totalReadRemoteExecTimeMillis, this,
 				"totalReadRemoteExecTimeMillis");
-		this.totalReadTimeMillis = ModelTypeHelper.requireNonNull(builder.totalReadTimeMillis, this,
+		this.totalReadTimeMillis = ApiTypeHelper.requireNonNull(builder.totalReadTimeMillis, this,
 				"totalReadTimeMillis");
-		this.totalWriteTimeMillis = ModelTypeHelper.requireNonNull(builder.totalWriteTimeMillis, this,
+		this.totalWriteTimeMillis = ApiTypeHelper.requireNonNull(builder.totalWriteTimeMillis, this,
 				"totalWriteTimeMillis");
-		this.writeBufferOperationCount = ModelTypeHelper.requireNonNull(builder.writeBufferOperationCount, this,
+		this.writeBufferOperationCount = ApiTypeHelper.requireNonNull(builder.writeBufferOperationCount, this,
 				"writeBufferOperationCount");
-		this.writeBufferSizeInBytes = ModelTypeHelper.requireNonNull(builder.writeBufferSizeInBytes, this,
+		this.writeBufferSizeInBytes = ApiTypeHelper.requireNonNull(builder.writeBufferSizeInBytes, this,
 				"writeBufferSizeInBytes");
 
 	}
 
-	public static ShardStats of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ShardStats of(Function<Builder, ObjectBuilder<ShardStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -438,7 +438,7 @@ public class ShardStats implements JsonpSerializable {
 		generator.writeKey("outstanding_write_requests");
 		generator.write(this.outstandingWriteRequests);
 
-		if (ModelTypeHelper.isDefined(this.readExceptions)) {
+		if (ApiTypeHelper.isDefined(this.readExceptions)) {
 			generator.writeKey("read_exceptions");
 			generator.writeStartArray();
 			for (ReadException item0 : this.readExceptions) {
@@ -485,6 +485,7 @@ public class ShardStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardStats> {
 		private Long bytesRead;
 
@@ -580,10 +581,8 @@ public class ShardStats implements JsonpSerializable {
 		/**
 		 * API name: {@code fatal_exception}
 		 */
-		public final Builder fatalException(Consumer<ErrorCause.Builder> fn) {
-			ErrorCause.Builder builder = new ErrorCause.Builder();
-			fn.accept(builder);
-			return this.fatalException(builder.build());
+		public final Builder fatalException(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+			return this.fatalException(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		/**
@@ -700,26 +699,31 @@ public class ShardStats implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code read_exceptions}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>readExceptions</code>.
 		 */
-		public final Builder readExceptions(List<ReadException> value) {
-			this.readExceptions = value;
+		public final Builder readExceptions(List<ReadException> list) {
+			this.readExceptions = _listAddAll(this.readExceptions, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code read_exceptions}
+		 * <p>
+		 * Adds one or more values to <code>readExceptions</code>.
 		 */
-		public final Builder readExceptions(ReadException... value) {
-			this.readExceptions = Arrays.asList(value);
+		public final Builder readExceptions(ReadException value, ReadException... values) {
+			this.readExceptions = _listAdd(this.readExceptions, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code read_exceptions}
+		 * <p>
+		 * Adds a value to <code>readExceptions</code> using a builder lambda.
 		 */
-		public final Builder readExceptions(
-				Function<ListBuilder<ReadException, ReadException.Builder>, ObjectBuilder<List<ReadException>>> fn) {
-			return readExceptions(fn.apply(new ListBuilder<>(ReadException.Builder::new)).build());
+		public final Builder readExceptions(Function<ReadException.Builder, ObjectBuilder<ReadException>> fn) {
+			return readExceptions(fn.apply(new ReadException.Builder()).build());
 		}
 
 		/**

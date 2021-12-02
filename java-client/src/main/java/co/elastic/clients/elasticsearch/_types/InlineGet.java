@@ -32,7 +32,7 @@ import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,11 +42,18 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: _types.InlineGet
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/common.ts#L277-L286">API
+ *      specification</a>
+ */
 
 public class InlineGet<TDocument> implements JsonpSerializable {
 	private final Map<String, JsonData> metadata;
@@ -73,22 +80,21 @@ public class InlineGet<TDocument> implements JsonpSerializable {
 
 	private InlineGet(Builder<TDocument> builder) {
 
-		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
+		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
 
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
-		this.found = ModelTypeHelper.requireNonNull(builder.found, this, "found");
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
+		this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found");
 		this.seqNo = builder.seqNo;
 		this.primaryTerm = builder.primaryTerm;
 		this.routing = builder.routing;
-		this.source = ModelTypeHelper.requireNonNull(builder.source, this, "source");
+		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}
 
-	public static <TDocument> InlineGet<TDocument> of(Consumer<Builder<TDocument>> fn) {
-		Builder<TDocument> builder = new Builder<>();
-		fn.accept(builder);
-		return builder.build();
+	public static <TDocument> InlineGet<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<InlineGet<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
@@ -160,7 +166,7 @@ public class InlineGet<TDocument> implements JsonpSerializable {
 
 		}
 
-		if (ModelTypeHelper.isDefined(this.fields)) {
+		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.fields.entrySet()) {
@@ -199,15 +205,28 @@ public class InlineGet<TDocument> implements JsonpSerializable {
 	/**
 	 * Builder for {@link InlineGet}.
 	 */
+
 	public static class Builder<TDocument> extends ObjectBuilderBase implements ObjectBuilder<InlineGet<TDocument>> {
 		@Nullable
 		private Map<String, JsonData> metadata = new HashMap<>();
 
 		/**
 		 * Document metadata
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>metadata</code>.
 		 */
-		public final Builder<TDocument> metadata(@Nullable Map<String, JsonData> value) {
-			this.metadata = value;
+		public final Builder<TDocument> metadata(Map<String, JsonData> map) {
+			this.metadata = _mapPutAll(this.metadata, map);
+			return this;
+		}
+
+		/**
+		 * Document metadata
+		 * <p>
+		 * Adds an entry to <code>metadata</code>.
+		 */
+		public final Builder<TDocument> metadata(String key, JsonData value) {
+			this.metadata = _mapPut(this.metadata, key, value);
 			return this;
 		}
 
@@ -232,9 +251,21 @@ public class InlineGet<TDocument> implements JsonpSerializable {
 
 		/**
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>fields</code>.
 		 */
-		public final Builder<TDocument> fields(@Nullable Map<String, JsonData> value) {
-			this.fields = value;
+		public final Builder<TDocument> fields(Map<String, JsonData> map) {
+			this.fields = _mapPutAll(this.fields, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code fields}
+		 * <p>
+		 * Adds an entry to <code>fields</code>.
+		 */
+		public final Builder<TDocument> fields(String key, JsonData value) {
+			this.fields = _mapPut(this.fields, key, value);
 			return this;
 		}
 
@@ -303,7 +334,7 @@ public class InlineGet<TDocument> implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for InlineGet
+	 * Create a JSON deserializer for InlineGet
 	 */
 	public static <TDocument> JsonpDeserializer<InlineGet<TDocument>> createInlineGetDeserializer(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {

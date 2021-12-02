@@ -36,26 +36,31 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: _global.msearch_template.Request
+
+/**
+ * Allows to execute several search template operations in one request.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/msearch_template/MultiSearchTemplateRequest.ts#L25-L44">API
+ *      specification</a>
+ */
 
 public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerializable, JsonpSerializable {
 	@Nullable
@@ -76,17 +81,15 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 	private MsearchTemplateRequest(Builder builder) {
 
 		this.ccsMinimizeRoundtrips = builder.ccsMinimizeRoundtrips;
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
+		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.maxConcurrentSearches = builder.maxConcurrentSearches;
 		this.searchType = builder.searchType;
-		this.searchTemplates = ModelTypeHelper.unmodifiableRequired(builder.searchTemplates, this, "searchTemplates");
+		this.searchTemplates = ApiTypeHelper.unmodifiableRequired(builder.searchTemplates, this, "searchTemplates");
 
 	}
 
-	public static MsearchTemplateRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static MsearchTemplateRequest of(Function<Builder, ObjectBuilder<MsearchTemplateRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	@Override
@@ -161,6 +164,7 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 	/**
 	 * Builder for {@link MsearchTemplateRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MsearchTemplateRequest> {
 		@Nullable
 		private Boolean ccsMinimizeRoundtrips;
@@ -191,9 +195,11 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 		 * A comma-separated list of index names to use as default
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 */
-		public final Builder index(@Nullable List<String> value) {
-			this.index = value;
+		public final Builder index(List<String> list) {
+			this.index = _listAddAll(this.index, list);
 			return this;
 		}
 
@@ -201,9 +207,11 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 		 * A comma-separated list of index names to use as default
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds one or more values to <code>index</code>.
 		 */
-		public final Builder index(String... value) {
-			this.index = Arrays.asList(value);
+		public final Builder index(String value, String... values) {
+			this.index = _listAdd(this.index, value, values);
 			return this;
 		}
 
@@ -232,9 +240,11 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 		 * Required - Request body.
 		 * <p>
 		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>searchTemplates</code>.
 		 */
-		public final Builder searchTemplates(List<RequestItem> value) {
-			this.searchTemplates = value;
+		public final Builder searchTemplates(List<RequestItem> list) {
+			this.searchTemplates = _listAddAll(this.searchTemplates, list);
 			return this;
 		}
 
@@ -242,9 +252,11 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 		 * Required - Request body.
 		 * <p>
 		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds one or more values to <code>searchTemplates</code>.
 		 */
-		public final Builder searchTemplates(RequestItem... value) {
-			this.searchTemplates = Arrays.asList(value);
+		public final Builder searchTemplates(RequestItem value, RequestItem... values) {
+			this.searchTemplates = _listAdd(this.searchTemplates, value, values);
 			return this;
 		}
 
@@ -252,10 +264,11 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 		 * Required - Request body.
 		 * <p>
 		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds a value to <code>searchTemplates</code> using a builder lambda.
 		 */
-		public final Builder searchTemplates(
-				Function<ListBuilder<RequestItem, RequestItem.Builder>, ObjectBuilder<List<RequestItem>>> fn) {
-			return searchTemplates(fn.apply(new ListBuilder<>(RequestItem.Builder::new)).build());
+		public final Builder searchTemplates(Function<RequestItem.Builder, ObjectBuilder<RequestItem>> fn) {
+			return searchTemplates(fn.apply(new RequestItem.Builder()).build());
 		}
 
 		/**
@@ -291,7 +304,7 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 
 				int propsSet = 0;
 
-				if (ModelTypeHelper.isDefined(request.index()))
+				if (ApiTypeHelper.isDefined(request.index()))
 					propsSet |= _index;
 
 				if (propsSet == 0) {

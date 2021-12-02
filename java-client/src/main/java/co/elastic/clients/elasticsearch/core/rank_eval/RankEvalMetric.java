@@ -33,10 +33,17 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.RankEvalMetric
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/rank_eval/types.ts#L90-L96">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RankEvalMetric implements JsonpSerializable {
 	@Nullable
@@ -66,10 +73,8 @@ public class RankEvalMetric implements JsonpSerializable {
 
 	}
 
-	public static RankEvalMetric of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RankEvalMetric of(Function<Builder, ObjectBuilder<RankEvalMetric>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -156,6 +161,7 @@ public class RankEvalMetric implements JsonpSerializable {
 	/**
 	 * Builder for {@link RankEvalMetric}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RankEvalMetric> {
 		@Nullable
 		private RankEvalMetricPrecision precision;
@@ -183,10 +189,9 @@ public class RankEvalMetric implements JsonpSerializable {
 		/**
 		 * API name: {@code precision}
 		 */
-		public final Builder precision(Consumer<RankEvalMetricPrecision.Builder> fn) {
-			RankEvalMetricPrecision.Builder builder = new RankEvalMetricPrecision.Builder();
-			fn.accept(builder);
-			return this.precision(builder.build());
+		public final Builder precision(
+				Function<RankEvalMetricPrecision.Builder, ObjectBuilder<RankEvalMetricPrecision>> fn) {
+			return this.precision(fn.apply(new RankEvalMetricPrecision.Builder()).build());
 		}
 
 		/**
@@ -200,10 +205,8 @@ public class RankEvalMetric implements JsonpSerializable {
 		/**
 		 * API name: {@code recall}
 		 */
-		public final Builder recall(Consumer<RankEvalMetricRecall.Builder> fn) {
-			RankEvalMetricRecall.Builder builder = new RankEvalMetricRecall.Builder();
-			fn.accept(builder);
-			return this.recall(builder.build());
+		public final Builder recall(Function<RankEvalMetricRecall.Builder, ObjectBuilder<RankEvalMetricRecall>> fn) {
+			return this.recall(fn.apply(new RankEvalMetricRecall.Builder()).build());
 		}
 
 		/**
@@ -217,10 +220,9 @@ public class RankEvalMetric implements JsonpSerializable {
 		/**
 		 * API name: {@code mean_reciprocal_rank}
 		 */
-		public final Builder meanReciprocalRank(Consumer<RankEvalMetricMeanReciprocalRank.Builder> fn) {
-			RankEvalMetricMeanReciprocalRank.Builder builder = new RankEvalMetricMeanReciprocalRank.Builder();
-			fn.accept(builder);
-			return this.meanReciprocalRank(builder.build());
+		public final Builder meanReciprocalRank(
+				Function<RankEvalMetricMeanReciprocalRank.Builder, ObjectBuilder<RankEvalMetricMeanReciprocalRank>> fn) {
+			return this.meanReciprocalRank(fn.apply(new RankEvalMetricMeanReciprocalRank.Builder()).build());
 		}
 
 		/**
@@ -234,10 +236,9 @@ public class RankEvalMetric implements JsonpSerializable {
 		/**
 		 * API name: {@code dcg}
 		 */
-		public final Builder dcg(Consumer<RankEvalMetricDiscountedCumulativeGain.Builder> fn) {
-			RankEvalMetricDiscountedCumulativeGain.Builder builder = new RankEvalMetricDiscountedCumulativeGain.Builder();
-			fn.accept(builder);
-			return this.dcg(builder.build());
+		public final Builder dcg(
+				Function<RankEvalMetricDiscountedCumulativeGain.Builder, ObjectBuilder<RankEvalMetricDiscountedCumulativeGain>> fn) {
+			return this.dcg(fn.apply(new RankEvalMetricDiscountedCumulativeGain.Builder()).build());
 		}
 
 		/**
@@ -251,10 +252,9 @@ public class RankEvalMetric implements JsonpSerializable {
 		/**
 		 * API name: {@code expected_reciprocal_rank}
 		 */
-		public final Builder expectedReciprocalRank(Consumer<RankEvalMetricExpectedReciprocalRank.Builder> fn) {
-			RankEvalMetricExpectedReciprocalRank.Builder builder = new RankEvalMetricExpectedReciprocalRank.Builder();
-			fn.accept(builder);
-			return this.expectedReciprocalRank(builder.build());
+		public final Builder expectedReciprocalRank(
+				Function<RankEvalMetricExpectedReciprocalRank.Builder, ObjectBuilder<RankEvalMetricExpectedReciprocalRank>> fn) {
+			return this.expectedReciprocalRank(fn.apply(new RankEvalMetricExpectedReciprocalRank.Builder()).build());
 		}
 
 		/**

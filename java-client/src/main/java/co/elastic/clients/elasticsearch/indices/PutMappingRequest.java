@@ -43,24 +43,29 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.MapBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: indices.put_mapping.Request
+
+/**
+ * Updates the index mappings.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/put_mapping/IndicesPutMappingRequest.ts#L37-L112">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutMappingRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -118,31 +123,29 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 	private PutMappingRequest(Builder builder) {
 
 		this.fieldNames = builder.fieldNames;
-		this.meta = ModelTypeHelper.unmodifiable(builder.meta);
+		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 		this.routing = builder.routing;
 		this.source = builder.source;
 		this.allowNoIndices = builder.allowNoIndices;
 		this.dateDetection = builder.dateDetection;
 		this.dynamic = builder.dynamic;
-		this.dynamicDateFormats = ModelTypeHelper.unmodifiable(builder.dynamicDateFormats);
-		this.dynamicTemplates = ModelTypeHelper.unmodifiable(builder.dynamicTemplates);
-		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
+		this.dynamicDateFormats = ApiTypeHelper.unmodifiable(builder.dynamicDateFormats);
+		this.dynamicTemplates = ApiTypeHelper.unmodifiable(builder.dynamicTemplates);
+		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.includeTypeName = builder.includeTypeName;
-		this.index = ModelTypeHelper.unmodifiableRequired(builder.index, this, "index");
+		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
 		this.masterTimeout = builder.masterTimeout;
 		this.numericDetection = builder.numericDetection;
-		this.properties = ModelTypeHelper.unmodifiable(builder.properties);
-		this.runtime = ModelTypeHelper.unmodifiable(builder.runtime);
+		this.properties = ApiTypeHelper.unmodifiable(builder.properties);
+		this.runtime = ApiTypeHelper.unmodifiable(builder.runtime);
 		this.timeout = builder.timeout;
 		this.writeIndexOnly = builder.writeIndexOnly;
 
 	}
 
-	public static PutMappingRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PutMappingRequest of(Function<Builder, ObjectBuilder<PutMappingRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -358,7 +361,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 			this.fieldNames.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.meta)) {
+		if (ApiTypeHelper.isDefined(this.meta)) {
 			generator.writeKey("_meta");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
@@ -388,7 +391,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 			generator.writeKey("dynamic");
 			this.dynamic.serialize(generator, mapper);
 		}
-		if (ModelTypeHelper.isDefined(this.dynamicDateFormats)) {
+		if (ApiTypeHelper.isDefined(this.dynamicDateFormats)) {
 			generator.writeKey("dynamic_date_formats");
 			generator.writeStartArray();
 			for (String item0 : this.dynamicDateFormats) {
@@ -398,7 +401,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.dynamicTemplates)) {
+		if (ApiTypeHelper.isDefined(this.dynamicTemplates)) {
 			generator.writeKey("dynamic_templates");
 			generator.writeStartArray();
 			for (Map<String, DynamicTemplate> item0 : this.dynamicTemplates) {
@@ -421,7 +424,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 			generator.write(this.numericDetection);
 
 		}
-		if (ModelTypeHelper.isDefined(this.properties)) {
+		if (ApiTypeHelper.isDefined(this.properties)) {
 			generator.writeKey("properties");
 			generator.writeStartObject();
 			for (Map.Entry<String, Property> item0 : this.properties.entrySet()) {
@@ -432,7 +435,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.runtime)) {
+		if (ApiTypeHelper.isDefined(this.runtime)) {
 			generator.writeKey("runtime");
 			generator.writeStartObject();
 			for (Map.Entry<String, RuntimeField> item0 : this.runtime.entrySet()) {
@@ -451,6 +454,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 	/**
 	 * Builder for {@link PutMappingRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutMappingRequest> {
 		@Nullable
 		private FieldNamesField fieldNames;
@@ -523,10 +527,8 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		 * <p>
 		 * API name: {@code _field_names}
 		 */
-		public final Builder fieldNames(Consumer<FieldNamesField.Builder> fn) {
-			FieldNamesField.Builder builder = new FieldNamesField.Builder();
-			fn.accept(builder);
-			return this.fieldNames(builder.build());
+		public final Builder fieldNames(Function<FieldNamesField.Builder, ObjectBuilder<FieldNamesField>> fn) {
+			return this.fieldNames(fn.apply(new FieldNamesField.Builder()).build());
 		}
 
 		/**
@@ -535,9 +537,25 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		 * metadata.
 		 * <p>
 		 * API name: {@code _meta}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>meta</code>.
 		 */
-		public final Builder meta(@Nullable Map<String, JsonData> value) {
-			this.meta = value;
+		public final Builder meta(Map<String, JsonData> map) {
+			this.meta = _mapPutAll(this.meta, map);
+			return this;
+		}
+
+		/**
+		 * A mapping type can have custom meta data associated with it. These are not
+		 * used at all by Elasticsearch, but can be used to store application-specific
+		 * metadata.
+		 * <p>
+		 * API name: {@code _meta}
+		 * <p>
+		 * Adds an entry to <code>meta</code>.
+		 */
+		public final Builder meta(String key, JsonData value) {
+			this.meta = _mapPut(this.meta, key, value);
 			return this;
 		}
 
@@ -556,10 +574,8 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		 * <p>
 		 * API name: {@code _routing}
 		 */
-		public final Builder routing(Consumer<RoutingField.Builder> fn) {
-			RoutingField.Builder builder = new RoutingField.Builder();
-			fn.accept(builder);
-			return this.routing(builder.build());
+		public final Builder routing(Function<RoutingField.Builder, ObjectBuilder<RoutingField>> fn) {
+			return this.routing(fn.apply(new RoutingField.Builder()).build());
 		}
 
 		/**
@@ -577,10 +593,8 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		 * <p>
 		 * API name: {@code _source}
 		 */
-		public final Builder source(Consumer<SourceField.Builder> fn) {
-			SourceField.Builder builder = new SourceField.Builder();
-			fn.accept(builder);
-			return this.source(builder.build());
+		public final Builder source(Function<SourceField.Builder, ObjectBuilder<SourceField>> fn) {
+			return this.source(fn.apply(new SourceField.Builder()).build());
 		}
 
 		/**
@@ -621,9 +635,11 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		 * added instead of string.
 		 * <p>
 		 * API name: {@code dynamic_date_formats}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>dynamicDateFormats</code>.
 		 */
-		public final Builder dynamicDateFormats(@Nullable List<String> value) {
-			this.dynamicDateFormats = value;
+		public final Builder dynamicDateFormats(List<String> list) {
+			this.dynamicDateFormats = _listAddAll(this.dynamicDateFormats, list);
 			return this;
 		}
 
@@ -633,9 +649,11 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		 * added instead of string.
 		 * <p>
 		 * API name: {@code dynamic_date_formats}
+		 * <p>
+		 * Adds one or more values to <code>dynamicDateFormats</code>.
 		 */
-		public final Builder dynamicDateFormats(String... value) {
-			this.dynamicDateFormats = Arrays.asList(value);
+		public final Builder dynamicDateFormats(String value, String... values) {
+			this.dynamicDateFormats = _listAdd(this.dynamicDateFormats, value, values);
 			return this;
 		}
 
@@ -643,9 +661,11 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		 * Specify dynamic templates for the mapping.
 		 * <p>
 		 * API name: {@code dynamic_templates}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>dynamicTemplates</code>.
 		 */
-		public final Builder dynamicTemplates(@Nullable List<Map<String, DynamicTemplate>> value) {
-			this.dynamicTemplates = value;
+		public final Builder dynamicTemplates(List<Map<String, DynamicTemplate>> list) {
+			this.dynamicTemplates = _listAddAll(this.dynamicTemplates, list);
 			return this;
 		}
 
@@ -653,9 +673,12 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		 * Specify dynamic templates for the mapping.
 		 * <p>
 		 * API name: {@code dynamic_templates}
+		 * <p>
+		 * Adds one or more values to <code>dynamicTemplates</code>.
 		 */
-		public final Builder dynamicTemplates(Map<String, DynamicTemplate>... value) {
-			this.dynamicTemplates = Arrays.asList(value);
+		public final Builder dynamicTemplates(Map<String, DynamicTemplate> value,
+				Map<String, DynamicTemplate>... values) {
+			this.dynamicTemplates = _listAdd(this.dynamicTemplates, value, values);
 			return this;
 		}
 
@@ -664,9 +687,11 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		 * closed or both.
 		 * <p>
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
 		 */
-		public final Builder expandWildcards(@Nullable List<ExpandWildcard> value) {
-			this.expandWildcards = value;
+		public final Builder expandWildcards(List<ExpandWildcard> list) {
+			this.expandWildcards = _listAddAll(this.expandWildcards, list);
 			return this;
 		}
 
@@ -675,9 +700,11 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		 * closed or both.
 		 * <p>
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds one or more values to <code>expandWildcards</code>.
 		 */
-		public final Builder expandWildcards(ExpandWildcard... value) {
-			this.expandWildcards = Arrays.asList(value);
+		public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
+			this.expandWildcards = _listAdd(this.expandWildcards, value, values);
 			return this;
 		}
 
@@ -706,9 +733,11 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		 * all indices.
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 */
-		public final Builder index(List<String> value) {
-			this.index = value;
+		public final Builder index(List<String> list) {
+			this.index = _listAddAll(this.index, list);
 			return this;
 		}
 
@@ -718,9 +747,11 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		 * all indices.
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds one or more values to <code>index</code>.
 		 */
-		public final Builder index(String... value) {
-			this.index = Arrays.asList(value);
+		public final Builder index(String value, String... values) {
+			this.index = _listAdd(this.index, value, values);
 			return this;
 		}
 
@@ -739,10 +770,8 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.masterTimeout(builder.build());
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -764,30 +793,80 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		 * </ul>
 		 * <p>
 		 * API name: {@code properties}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>properties</code>.
 		 */
-		public final Builder properties(@Nullable Map<String, Property> value) {
-			this.properties = value;
+		public final Builder properties(Map<String, Property> map) {
+			this.properties = _mapPutAll(this.properties, map);
 			return this;
 		}
 
-		public final Builder properties(
-				Function<MapBuilder<String, Property, Property.Builder>, ObjectBuilder<Map<String, Property>>> fn) {
-			return properties(fn.apply(new MapBuilder<>(Property.Builder::new)).build());
+		/**
+		 * Mapping for a field. For new fields, this mapping can include:
+		 * <ul>
+		 * <li>Field name</li>
+		 * <li>Field data type</li>
+		 * <li>Mapping parameters</li>
+		 * </ul>
+		 * <p>
+		 * API name: {@code properties}
+		 * <p>
+		 * Adds an entry to <code>properties</code>.
+		 */
+		public final Builder properties(String key, Property value) {
+			this.properties = _mapPut(this.properties, key, value);
+			return this;
+		}
+
+		/**
+		 * Mapping for a field. For new fields, this mapping can include:
+		 * <ul>
+		 * <li>Field name</li>
+		 * <li>Field data type</li>
+		 * <li>Mapping parameters</li>
+		 * </ul>
+		 * <p>
+		 * API name: {@code properties}
+		 * <p>
+		 * Adds an entry to <code>properties</code> using a builder lambda.
+		 */
+		public final Builder properties(String key, Function<Property.Builder, ObjectBuilder<Property>> fn) {
+			return properties(key, fn.apply(new Property.Builder()).build());
 		}
 
 		/**
 		 * Mapping of runtime fields for the index.
 		 * <p>
 		 * API name: {@code runtime}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>runtime</code>.
 		 */
-		public final Builder runtime(@Nullable Map<String, RuntimeField> value) {
-			this.runtime = value;
+		public final Builder runtime(Map<String, RuntimeField> map) {
+			this.runtime = _mapPutAll(this.runtime, map);
 			return this;
 		}
 
-		public final Builder runtime(
-				Function<MapBuilder<String, RuntimeField, RuntimeField.Builder>, ObjectBuilder<Map<String, RuntimeField>>> fn) {
-			return runtime(fn.apply(new MapBuilder<>(RuntimeField.Builder::new)).build());
+		/**
+		 * Mapping of runtime fields for the index.
+		 * <p>
+		 * API name: {@code runtime}
+		 * <p>
+		 * Adds an entry to <code>runtime</code>.
+		 */
+		public final Builder runtime(String key, RuntimeField value) {
+			this.runtime = _mapPut(this.runtime, key, value);
+			return this;
+		}
+
+		/**
+		 * Mapping of runtime fields for the index.
+		 * <p>
+		 * API name: {@code runtime}
+		 * <p>
+		 * Adds an entry to <code>runtime</code> using a builder lambda.
+		 */
+		public final Builder runtime(String key, Function<RuntimeField.Builder, ObjectBuilder<RuntimeField>> fn) {
+			return runtime(key, fn.apply(new RuntimeField.Builder()).build());
 		}
 
 		/**
@@ -805,10 +884,8 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.timeout(builder.build());
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -903,7 +980,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 				if (request.includeTypeName != null) {
 					params.put("include_type_name", String.valueOf(request.includeTypeName));
 				}
-				if (ModelTypeHelper.isDefined(request.expandWildcards)) {
+				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}

@@ -31,21 +31,29 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: cat.allocation.Request
+
+/**
+ * Provides a snapshot of how many shards are allocated to each data node and
+ * how much disk space they are using.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/allocation/CatAllocationRequest.ts#L23-L35">API
+ *      specification</a>
+ */
 
 public class AllocationRequest extends CatRequestBase {
 	@Nullable
@@ -58,14 +66,12 @@ public class AllocationRequest extends CatRequestBase {
 	private AllocationRequest(Builder builder) {
 
 		this.bytes = builder.bytes;
-		this.nodeId = ModelTypeHelper.unmodifiable(builder.nodeId);
+		this.nodeId = ApiTypeHelper.unmodifiable(builder.nodeId);
 
 	}
 
-	public static AllocationRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static AllocationRequest of(Function<Builder, ObjectBuilder<AllocationRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -92,6 +98,7 @@ public class AllocationRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link AllocationRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AllocationRequest> {
 		@Nullable
 		private Bytes bytes;
@@ -113,9 +120,11 @@ public class AllocationRequest extends CatRequestBase {
 		 * A comma-separated list of node IDs or names to limit the returned information
 		 * <p>
 		 * API name: {@code node_id}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>nodeId</code>.
 		 */
-		public final Builder nodeId(@Nullable List<String> value) {
-			this.nodeId = value;
+		public final Builder nodeId(List<String> list) {
+			this.nodeId = _listAddAll(this.nodeId, list);
 			return this;
 		}
 
@@ -123,9 +132,11 @@ public class AllocationRequest extends CatRequestBase {
 		 * A comma-separated list of node IDs or names to limit the returned information
 		 * <p>
 		 * API name: {@code node_id}
+		 * <p>
+		 * Adds one or more values to <code>nodeId</code>.
 		 */
-		public final Builder nodeId(String... value) {
-			this.nodeId = Arrays.asList(value);
+		public final Builder nodeId(String value, String... values) {
+			this.nodeId = _listAdd(this.nodeId, value, values);
 			return this;
 		}
 
@@ -162,7 +173,7 @@ public class AllocationRequest extends CatRequestBase {
 
 				int propsSet = 0;
 
-				if (ModelTypeHelper.isDefined(request.nodeId()))
+				if (ApiTypeHelper.isDefined(request.nodeId()))
 					propsSet |= _nodeId;
 
 				if (propsSet == 0) {

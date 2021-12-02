@@ -34,10 +34,17 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GoogleNormalizedDistanceHeuristic
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/bucket.ts#L290-L292">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GoogleNormalizedDistanceHeuristic implements JsonpSerializable {
 	@Nullable
@@ -51,10 +58,9 @@ public class GoogleNormalizedDistanceHeuristic implements JsonpSerializable {
 
 	}
 
-	public static GoogleNormalizedDistanceHeuristic of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GoogleNormalizedDistanceHeuristic of(
+			Function<Builder, ObjectBuilder<GoogleNormalizedDistanceHeuristic>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -89,6 +95,7 @@ public class GoogleNormalizedDistanceHeuristic implements JsonpSerializable {
 	/**
 	 * Builder for {@link GoogleNormalizedDistanceHeuristic}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GoogleNormalizedDistanceHeuristic> {
 		@Nullable
 		private Boolean backgroundIsSuperset;

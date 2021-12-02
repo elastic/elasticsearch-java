@@ -30,19 +30,24 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.msearch.MultiSearchResult
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/msearch/types.ts#L61-L64">API
+ *      specification</a>
+ */
 
 public abstract class MultiSearchResult<TDocument> implements JsonpSerializable {
 	private final long took;
@@ -56,8 +61,8 @@ public abstract class MultiSearchResult<TDocument> implements JsonpSerializable 
 
 	protected MultiSearchResult(AbstractBuilder<TDocument, ?> builder) {
 
-		this.took = ModelTypeHelper.requireNonNull(builder.took, this, "took");
-		this.responses = ModelTypeHelper.unmodifiableRequired(builder.responses, this, "responses");
+		this.took = ApiTypeHelper.requireNonNull(builder.took, this, "took");
+		this.responses = ApiTypeHelper.unmodifiableRequired(builder.responses, this, "responses");
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}
@@ -90,7 +95,7 @@ public abstract class MultiSearchResult<TDocument> implements JsonpSerializable 
 		generator.writeKey("took");
 		generator.write(this.took);
 
-		if (ModelTypeHelper.isDefined(this.responses)) {
+		if (ApiTypeHelper.isDefined(this.responses)) {
 			generator.writeKey("responses");
 			generator.writeStartArray();
 			for (MultiSearchResponseItem<TDocument> item0 : this.responses) {
@@ -123,26 +128,33 @@ public abstract class MultiSearchResult<TDocument> implements JsonpSerializable 
 
 		/**
 		 * Required - API name: {@code responses}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>responses</code>.
 		 */
-		public final BuilderT responses(List<MultiSearchResponseItem<TDocument>> value) {
-			this.responses = value;
+		public final BuilderT responses(List<MultiSearchResponseItem<TDocument>> list) {
+			this.responses = _listAddAll(this.responses, list);
 			return self();
 		}
 
 		/**
 		 * Required - API name: {@code responses}
+		 * <p>
+		 * Adds one or more values to <code>responses</code>.
 		 */
-		public final BuilderT responses(MultiSearchResponseItem<TDocument>... value) {
-			this.responses = Arrays.asList(value);
+		public final BuilderT responses(MultiSearchResponseItem<TDocument> value,
+				MultiSearchResponseItem<TDocument>... values) {
+			this.responses = _listAdd(this.responses, value, values);
 			return self();
 		}
 
 		/**
 		 * Required - API name: {@code responses}
+		 * <p>
+		 * Adds a value to <code>responses</code> using a builder lambda.
 		 */
 		public final BuilderT responses(
-				Function<ListBuilder<MultiSearchResponseItem<TDocument>, MultiSearchResponseItem.Builder<TDocument>>, ObjectBuilder<List<MultiSearchResponseItem<TDocument>>>> fn) {
-			return responses(fn.apply(new ListBuilder<>(MultiSearchResponseItem.Builder<TDocument>::new)).build());
+				Function<MultiSearchResponseItem.Builder<TDocument>, ObjectBuilder<MultiSearchResponseItem<TDocument>>> fn) {
+			return responses(fn.apply(new MultiSearchResponseItem.Builder<TDocument>()).build());
 		}
 
 		/**

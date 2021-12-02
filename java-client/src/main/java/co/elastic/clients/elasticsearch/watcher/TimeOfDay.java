@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.UnionDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
@@ -38,11 +38,17 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.TimeOfDay
-// union type: Union[]
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Schedule.ts#L103-L104">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TimeOfDay implements TaggedUnion<TimeOfDay.Kind, Object>, JsonpSerializable {
 
@@ -71,15 +77,13 @@ public class TimeOfDay implements TaggedUnion<TimeOfDay.Kind, Object>, JsonpSeri
 
 	private TimeOfDay(Builder builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static TimeOfDay of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TimeOfDay of(Function<Builder, ObjectBuilder<TimeOfDay>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -147,10 +151,8 @@ public class TimeOfDay implements TaggedUnion<TimeOfDay.Kind, Object>, JsonpSeri
 			return this;
 		}
 
-		public ObjectBuilder<TimeOfDay> hourMinute(Consumer<HourAndMinute.Builder> fn) {
-			HourAndMinute.Builder builder = new HourAndMinute.Builder();
-			fn.accept(builder);
-			return this.hourMinute(builder.build());
+		public ObjectBuilder<TimeOfDay> hourMinute(Function<HourAndMinute.Builder, ObjectBuilder<HourAndMinute>> fn) {
+			return this.hourMinute(fn.apply(new HourAndMinute.Builder()).build());
 		}
 
 		public TimeOfDay build() {

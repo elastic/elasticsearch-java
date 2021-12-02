@@ -30,8 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,14 +38,19 @@ import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.BucketSummary
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/Bucket.ts#L24-L66">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class BucketSummary implements JsonpSerializable {
 	private final double anomalyScore;
@@ -73,25 +77,23 @@ public class BucketSummary implements JsonpSerializable {
 
 	private BucketSummary(Builder builder) {
 
-		this.anomalyScore = ModelTypeHelper.requireNonNull(builder.anomalyScore, this, "anomalyScore");
-		this.bucketInfluencers = ModelTypeHelper.unmodifiableRequired(builder.bucketInfluencers, this,
+		this.anomalyScore = ApiTypeHelper.requireNonNull(builder.anomalyScore, this, "anomalyScore");
+		this.bucketInfluencers = ApiTypeHelper.unmodifiableRequired(builder.bucketInfluencers, this,
 				"bucketInfluencers");
-		this.bucketSpan = ModelTypeHelper.requireNonNull(builder.bucketSpan, this, "bucketSpan");
-		this.eventCount = ModelTypeHelper.requireNonNull(builder.eventCount, this, "eventCount");
-		this.initialAnomalyScore = ModelTypeHelper.requireNonNull(builder.initialAnomalyScore, this,
+		this.bucketSpan = ApiTypeHelper.requireNonNull(builder.bucketSpan, this, "bucketSpan");
+		this.eventCount = ApiTypeHelper.requireNonNull(builder.eventCount, this, "eventCount");
+		this.initialAnomalyScore = ApiTypeHelper.requireNonNull(builder.initialAnomalyScore, this,
 				"initialAnomalyScore");
-		this.isInterim = ModelTypeHelper.requireNonNull(builder.isInterim, this, "isInterim");
-		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
-		this.processingTimeMs = ModelTypeHelper.requireNonNull(builder.processingTimeMs, this, "processingTimeMs");
-		this.resultType = ModelTypeHelper.requireNonNull(builder.resultType, this, "resultType");
-		this.timestamp = ModelTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+		this.isInterim = ApiTypeHelper.requireNonNull(builder.isInterim, this, "isInterim");
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.processingTimeMs = ApiTypeHelper.requireNonNull(builder.processingTimeMs, this, "processingTimeMs");
+		this.resultType = ApiTypeHelper.requireNonNull(builder.resultType, this, "resultType");
+		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
 
 	}
 
-	public static BucketSummary of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static BucketSummary of(Function<Builder, ObjectBuilder<BucketSummary>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -206,7 +208,7 @@ public class BucketSummary implements JsonpSerializable {
 		generator.writeKey("anomaly_score");
 		generator.write(this.anomalyScore);
 
-		if (ModelTypeHelper.isDefined(this.bucketInfluencers)) {
+		if (ApiTypeHelper.isDefined(this.bucketInfluencers)) {
 			generator.writeKey("bucket_influencers");
 			generator.writeStartArray();
 			for (BucketInfluencer item0 : this.bucketInfluencers) {
@@ -247,6 +249,7 @@ public class BucketSummary implements JsonpSerializable {
 	/**
 	 * Builder for {@link BucketSummary}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<BucketSummary> {
 		private Double anomalyScore;
 
@@ -283,26 +286,31 @@ public class BucketSummary implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code bucket_influencers}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>bucketInfluencers</code>.
 		 */
-		public final Builder bucketInfluencers(List<BucketInfluencer> value) {
-			this.bucketInfluencers = value;
+		public final Builder bucketInfluencers(List<BucketInfluencer> list) {
+			this.bucketInfluencers = _listAddAll(this.bucketInfluencers, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code bucket_influencers}
+		 * <p>
+		 * Adds one or more values to <code>bucketInfluencers</code>.
 		 */
-		public final Builder bucketInfluencers(BucketInfluencer... value) {
-			this.bucketInfluencers = Arrays.asList(value);
+		public final Builder bucketInfluencers(BucketInfluencer value, BucketInfluencer... values) {
+			this.bucketInfluencers = _listAdd(this.bucketInfluencers, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code bucket_influencers}
+		 * <p>
+		 * Adds a value to <code>bucketInfluencers</code> using a builder lambda.
 		 */
-		public final Builder bucketInfluencers(
-				Function<ListBuilder<BucketInfluencer, BucketInfluencer.Builder>, ObjectBuilder<List<BucketInfluencer>>> fn) {
-			return bucketInfluencers(fn.apply(new ListBuilder<>(BucketInfluencer.Builder::new)).build());
+		public final Builder bucketInfluencers(Function<BucketInfluencer.Builder, ObjectBuilder<BucketInfluencer>> fn) {
+			return bucketInfluencers(fn.apply(new BucketInfluencer.Builder()).build());
 		}
 
 		/**
@@ -322,10 +330,8 @@ public class BucketSummary implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code bucket_span}
 		 */
-		public final Builder bucketSpan(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.bucketSpan(builder.build());
+		public final Builder bucketSpan(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.bucketSpan(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -411,10 +417,8 @@ public class BucketSummary implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code timestamp}
 		 */
-		public final Builder timestamp(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.timestamp(builder.build());
+		public final Builder timestamp(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timestamp(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

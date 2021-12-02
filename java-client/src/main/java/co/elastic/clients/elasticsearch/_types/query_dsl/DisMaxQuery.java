@@ -28,19 +28,23 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.DisMaxQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/compound.ts#L46-L50">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DisMaxQuery extends QueryBase implements QueryVariant {
 	private final List<Query> queries;
@@ -53,15 +57,13 @@ public class DisMaxQuery extends QueryBase implements QueryVariant {
 	private DisMaxQuery(Builder builder) {
 		super(builder);
 
-		this.queries = ModelTypeHelper.unmodifiableRequired(builder.queries, this, "queries");
+		this.queries = ApiTypeHelper.unmodifiableRequired(builder.queries, this, "queries");
 		this.tieBreaker = builder.tieBreaker;
 
 	}
 
-	public static DisMaxQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DisMaxQuery of(Function<Builder, ObjectBuilder<DisMaxQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -90,7 +92,7 @@ public class DisMaxQuery extends QueryBase implements QueryVariant {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.queries)) {
+		if (ApiTypeHelper.isDefined(this.queries)) {
 			generator.writeKey("queries");
 			generator.writeStartArray();
 			for (Query item0 : this.queries) {
@@ -113,6 +115,7 @@ public class DisMaxQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link DisMaxQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<DisMaxQuery> {
 		private List<Query> queries;
 
@@ -121,25 +124,31 @@ public class DisMaxQuery extends QueryBase implements QueryVariant {
 
 		/**
 		 * Required - API name: {@code queries}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>queries</code>.
 		 */
-		public final Builder queries(List<Query> value) {
-			this.queries = value;
+		public final Builder queries(List<Query> list) {
+			this.queries = _listAddAll(this.queries, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code queries}
+		 * <p>
+		 * Adds one or more values to <code>queries</code>.
 		 */
-		public final Builder queries(Query... value) {
-			this.queries = Arrays.asList(value);
+		public final Builder queries(Query value, Query... values) {
+			this.queries = _listAdd(this.queries, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code queries}
+		 * <p>
+		 * Adds a value to <code>queries</code> using a builder lambda.
 		 */
-		public final Builder queries(Function<ListBuilder<Query, Query.Builder>, ObjectBuilder<List<Query>>> fn) {
-			return queries(fn.apply(new ListBuilder<>(Query.Builder::new)).build());
+		public final Builder queries(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return queries(fn.apply(new Query.Builder()).build());
 		}
 
 		/**

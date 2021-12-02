@@ -31,20 +31,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.get.SnapshotResponseItem
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/snapshot/get/SnapshotGetResponse.ts#L42-L46">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SnapshotResponseItem implements JsonpSerializable {
 	private final String repository;
@@ -58,16 +62,14 @@ public class SnapshotResponseItem implements JsonpSerializable {
 
 	private SnapshotResponseItem(Builder builder) {
 
-		this.repository = ModelTypeHelper.requireNonNull(builder.repository, this, "repository");
-		this.snapshots = ModelTypeHelper.unmodifiable(builder.snapshots);
+		this.repository = ApiTypeHelper.requireNonNull(builder.repository, this, "repository");
+		this.snapshots = ApiTypeHelper.unmodifiable(builder.snapshots);
 		this.error = builder.error;
 
 	}
 
-	public static SnapshotResponseItem of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SnapshotResponseItem of(Function<Builder, ObjectBuilder<SnapshotResponseItem>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -106,7 +108,7 @@ public class SnapshotResponseItem implements JsonpSerializable {
 		generator.writeKey("repository");
 		generator.write(this.repository);
 
-		if (ModelTypeHelper.isDefined(this.snapshots)) {
+		if (ApiTypeHelper.isDefined(this.snapshots)) {
 			generator.writeKey("snapshots");
 			generator.writeStartArray();
 			for (SnapshotInfo item0 : this.snapshots) {
@@ -129,6 +131,7 @@ public class SnapshotResponseItem implements JsonpSerializable {
 	/**
 	 * Builder for {@link SnapshotResponseItem}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SnapshotResponseItem> {
 		private String repository;
 
@@ -148,26 +151,31 @@ public class SnapshotResponseItem implements JsonpSerializable {
 
 		/**
 		 * API name: {@code snapshots}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>snapshots</code>.
 		 */
-		public final Builder snapshots(@Nullable List<SnapshotInfo> value) {
-			this.snapshots = value;
+		public final Builder snapshots(List<SnapshotInfo> list) {
+			this.snapshots = _listAddAll(this.snapshots, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code snapshots}
+		 * <p>
+		 * Adds one or more values to <code>snapshots</code>.
 		 */
-		public final Builder snapshots(SnapshotInfo... value) {
-			this.snapshots = Arrays.asList(value);
+		public final Builder snapshots(SnapshotInfo value, SnapshotInfo... values) {
+			this.snapshots = _listAdd(this.snapshots, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code snapshots}
+		 * <p>
+		 * Adds a value to <code>snapshots</code> using a builder lambda.
 		 */
-		public final Builder snapshots(
-				Function<ListBuilder<SnapshotInfo, SnapshotInfo.Builder>, ObjectBuilder<List<SnapshotInfo>>> fn) {
-			return snapshots(fn.apply(new ListBuilder<>(SnapshotInfo.Builder::new)).build());
+		public final Builder snapshots(Function<SnapshotInfo.Builder, ObjectBuilder<SnapshotInfo>> fn) {
+			return snapshots(fn.apply(new SnapshotInfo.Builder()).build());
 		}
 
 		/**
@@ -181,10 +189,8 @@ public class SnapshotResponseItem implements JsonpSerializable {
 		/**
 		 * API name: {@code error}
 		 */
-		public final Builder error(Consumer<ErrorCause.Builder> fn) {
-			ErrorCause.Builder builder = new ErrorCause.Builder();
-			fn.accept(builder);
-			return this.error(builder.build());
+		public final Builder error(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+			return this.error(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		/**

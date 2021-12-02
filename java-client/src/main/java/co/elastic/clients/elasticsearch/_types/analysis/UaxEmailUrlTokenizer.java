@@ -32,10 +32,17 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.UaxEmailUrlTokenizer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/tokenizers.ts#L109-L112">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class UaxEmailUrlTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
 	@Nullable
@@ -50,10 +57,8 @@ public class UaxEmailUrlTokenizer extends TokenizerBase implements TokenizerDefi
 
 	}
 
-	public static UaxEmailUrlTokenizer of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static UaxEmailUrlTokenizer of(Function<Builder, ObjectBuilder<UaxEmailUrlTokenizer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -89,6 +94,7 @@ public class UaxEmailUrlTokenizer extends TokenizerBase implements TokenizerDefi
 	/**
 	 * Builder for {@link UaxEmailUrlTokenizer}.
 	 */
+
 	public static class Builder extends TokenizerBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<UaxEmailUrlTokenizer> {

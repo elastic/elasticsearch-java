@@ -30,16 +30,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.info.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/info/RootNodeInfoResponse.ts#L23-L31">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class InfoResponse implements JsonpSerializable {
 	private final String clusterName;
@@ -56,18 +63,16 @@ public class InfoResponse implements JsonpSerializable {
 
 	private InfoResponse(Builder builder) {
 
-		this.clusterName = ModelTypeHelper.requireNonNull(builder.clusterName, this, "clusterName");
-		this.clusterUuid = ModelTypeHelper.requireNonNull(builder.clusterUuid, this, "clusterUuid");
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
-		this.tagline = ModelTypeHelper.requireNonNull(builder.tagline, this, "tagline");
-		this.version = ModelTypeHelper.requireNonNull(builder.version, this, "version");
+		this.clusterName = ApiTypeHelper.requireNonNull(builder.clusterName, this, "clusterName");
+		this.clusterUuid = ApiTypeHelper.requireNonNull(builder.clusterUuid, this, "clusterUuid");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.tagline = ApiTypeHelper.requireNonNull(builder.tagline, this, "tagline");
+		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
 
 	}
 
-	public static InfoResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static InfoResponse of(Function<Builder, ObjectBuilder<InfoResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -138,6 +143,7 @@ public class InfoResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link InfoResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<InfoResponse> {
 		private String clusterName;
 
@@ -192,10 +198,9 @@ public class InfoResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code version}
 		 */
-		public final Builder version(Consumer<ElasticsearchVersionInfo.Builder> fn) {
-			ElasticsearchVersionInfo.Builder builder = new ElasticsearchVersionInfo.Builder();
-			fn.accept(builder);
-			return this.version(builder.build());
+		public final Builder version(
+				Function<ElasticsearchVersionInfo.Builder, ObjectBuilder<ElasticsearchVersionInfo>> fn) {
+			return this.version(fn.apply(new ElasticsearchVersionInfo.Builder()).build());
 		}
 
 		/**

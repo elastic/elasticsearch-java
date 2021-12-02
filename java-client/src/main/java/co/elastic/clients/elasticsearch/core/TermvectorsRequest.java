@@ -37,24 +37,32 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: _global.termvectors.Request
+
+/**
+ * Returns information and statistics about terms in the fields of a particular
+ * document.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/termvectors/TermVectorsRequest.ts#L33-L61">API
+ *      specification</a>
+ */
 
 public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -111,13 +119,13 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 
 		this.doc = builder.doc;
 		this.fieldStatistics = builder.fieldStatistics;
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 		this.filter = builder.filter;
 		this.id = builder.id;
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.offsets = builder.offsets;
 		this.payloads = builder.payloads;
-		this.perFieldAnalyzer = ModelTypeHelper.unmodifiable(builder.perFieldAnalyzer);
+		this.perFieldAnalyzer = ApiTypeHelper.unmodifiable(builder.perFieldAnalyzer);
 		this.positions = builder.positions;
 		this.preference = builder.preference;
 		this.realtime = builder.realtime;
@@ -129,10 +137,9 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 
 	}
 
-	public static <TDocument> TermvectorsRequest<TDocument> of(Consumer<Builder<TDocument>> fn) {
-		Builder<TDocument> builder = new Builder<>();
-		fn.accept(builder);
-		return builder.build();
+	public static <TDocument> TermvectorsRequest<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<TermvectorsRequest<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
@@ -310,7 +317,7 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 			this.filter.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.perFieldAnalyzer)) {
+		if (ApiTypeHelper.isDefined(this.perFieldAnalyzer)) {
 			generator.writeKey("per_field_analyzer");
 			generator.writeStartObject();
 			for (Map.Entry<String, String> item0 : this.perFieldAnalyzer.entrySet()) {
@@ -329,6 +336,7 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 	/**
 	 * Builder for {@link TermvectorsRequest}.
 	 */
+
 	public static class Builder<TDocument> extends ObjectBuilderBase
 			implements
 				ObjectBuilder<TermvectorsRequest<TDocument>> {
@@ -405,9 +413,11 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 		 * A comma-separated list of fields to return.
 		 * <p>
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fields</code>.
 		 */
-		public final Builder<TDocument> fields(@Nullable List<String> value) {
-			this.fields = value;
+		public final Builder<TDocument> fields(List<String> list) {
+			this.fields = _listAddAll(this.fields, list);
 			return this;
 		}
 
@@ -415,9 +425,11 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 		 * A comma-separated list of fields to return.
 		 * <p>
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds one or more values to <code>fields</code>.
 		 */
-		public final Builder<TDocument> fields(String... value) {
-			this.fields = Arrays.asList(value);
+		public final Builder<TDocument> fields(String value, String... values) {
+			this.fields = _listAdd(this.fields, value, values);
 			return this;
 		}
 
@@ -432,10 +444,8 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 		/**
 		 * API name: {@code filter}
 		 */
-		public final Builder<TDocument> filter(Consumer<Filter.Builder> fn) {
-			Filter.Builder builder = new Filter.Builder();
-			fn.accept(builder);
-			return this.filter(builder.build());
+		public final Builder<TDocument> filter(Function<Filter.Builder, ObjectBuilder<Filter>> fn) {
+			return this.filter(fn.apply(new Filter.Builder()).build());
 		}
 
 		/**
@@ -480,9 +490,21 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 
 		/**
 		 * API name: {@code per_field_analyzer}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>perFieldAnalyzer</code>.
 		 */
-		public final Builder<TDocument> perFieldAnalyzer(@Nullable Map<String, String> value) {
-			this.perFieldAnalyzer = value;
+		public final Builder<TDocument> perFieldAnalyzer(Map<String, String> map) {
+			this.perFieldAnalyzer = _mapPutAll(this.perFieldAnalyzer, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code per_field_analyzer}
+		 * <p>
+		 * Adds an entry to <code>perFieldAnalyzer</code>.
+		 */
+		public final Builder<TDocument> perFieldAnalyzer(String key, String value) {
+			this.perFieldAnalyzer = _mapPut(this.perFieldAnalyzer, key, value);
 			return this;
 		}
 
@@ -583,7 +605,7 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for TermvectorsRequest
+	 * Create a JSON deserializer for TermvectorsRequest
 	 */
 	public static <TDocument> JsonpDeserializer<TermvectorsRequest<TDocument>> createTermvectorsRequestDeserializer(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
@@ -677,7 +699,7 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 				if (request.fieldStatistics != null) {
 					params.put("field_statistics", String.valueOf(request.fieldStatistics));
 				}
-				if (ModelTypeHelper.isDefined(request.fields)) {
+				if (ApiTypeHelper.isDefined(request.fields)) {
 					params.put("fields", request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.version != null) {

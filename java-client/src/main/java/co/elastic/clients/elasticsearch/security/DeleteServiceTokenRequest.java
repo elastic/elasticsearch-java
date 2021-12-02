@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,10 +40,18 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.delete_service_token.Request
+
+/**
+ * Deletes a service account token.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/delete_service_token/DeleteServiceTokenRequest.ts#L23-L37">API
+ *      specification</a>
+ */
 
 public class DeleteServiceTokenRequest extends RequestBase {
 	private final String name;
@@ -59,17 +67,15 @@ public class DeleteServiceTokenRequest extends RequestBase {
 
 	private DeleteServiceTokenRequest(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
-		this.namespace = ModelTypeHelper.requireNonNull(builder.namespace, this, "namespace");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.namespace = ApiTypeHelper.requireNonNull(builder.namespace, this, "namespace");
 		this.refresh = builder.refresh;
-		this.service = ModelTypeHelper.requireNonNull(builder.service, this, "service");
+		this.service = ApiTypeHelper.requireNonNull(builder.service, this, "service");
 
 	}
 
-	public static DeleteServiceTokenRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DeleteServiceTokenRequest of(Function<Builder, ObjectBuilder<DeleteServiceTokenRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -117,6 +123,7 @@ public class DeleteServiceTokenRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteServiceTokenRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteServiceTokenRequest> {
 		private String name;
 

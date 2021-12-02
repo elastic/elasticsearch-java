@@ -28,14 +28,21 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.SnowballTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L306-L309">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SnowballTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final SnowballLanguage language;
@@ -45,14 +52,12 @@ public class SnowballTokenFilter extends TokenFilterBase implements TokenFilterD
 	private SnowballTokenFilter(Builder builder) {
 		super(builder);
 
-		this.language = ModelTypeHelper.requireNonNull(builder.language, this, "language");
+		this.language = ApiTypeHelper.requireNonNull(builder.language, this, "language");
 
 	}
 
-	public static SnowballTokenFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SnowballTokenFilter of(Function<Builder, ObjectBuilder<SnowballTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -84,6 +89,7 @@ public class SnowballTokenFilter extends TokenFilterBase implements TokenFilterD
 	/**
 	 * Builder for {@link SnowballTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<SnowballTokenFilter> {

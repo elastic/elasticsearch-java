@@ -32,10 +32,17 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.ObjectProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/complex.ts#L45-L48">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ObjectProperty extends CorePropertyBase implements PropertyVariant {
 	@Nullable
@@ -50,10 +57,8 @@ public class ObjectProperty extends CorePropertyBase implements PropertyVariant 
 
 	}
 
-	public static ObjectProperty of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ObjectProperty of(Function<Builder, ObjectBuilder<ObjectProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -89,6 +94,7 @@ public class ObjectProperty extends CorePropertyBase implements PropertyVariant 
 	/**
 	 * Builder for {@link ObjectProperty}.
 	 */
+
 	public static class Builder extends CorePropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ObjectProperty> {

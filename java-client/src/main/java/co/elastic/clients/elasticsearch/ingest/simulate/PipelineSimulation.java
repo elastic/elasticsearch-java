@@ -30,20 +30,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest.simulate.PipelineSimulation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/simulate/types.ts#L31-L37">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PipelineSimulation implements JsonpSerializable {
 	@Nullable
@@ -65,17 +69,15 @@ public class PipelineSimulation implements JsonpSerializable {
 	private PipelineSimulation(Builder builder) {
 
 		this.doc = builder.doc;
-		this.processorResults = ModelTypeHelper.unmodifiable(builder.processorResults);
+		this.processorResults = ApiTypeHelper.unmodifiable(builder.processorResults);
 		this.tag = builder.tag;
 		this.processorType = builder.processorType;
 		this.status = builder.status;
 
 	}
 
-	public static PipelineSimulation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PipelineSimulation of(Function<Builder, ObjectBuilder<PipelineSimulation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -133,7 +135,7 @@ public class PipelineSimulation implements JsonpSerializable {
 			this.doc.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.processorResults)) {
+		if (ApiTypeHelper.isDefined(this.processorResults)) {
 			generator.writeKey("processor_results");
 			generator.writeStartArray();
 			for (PipelineSimulation item0 : this.processorResults) {
@@ -165,6 +167,7 @@ public class PipelineSimulation implements JsonpSerializable {
 	/**
 	 * Builder for {@link PipelineSimulation}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PipelineSimulation> {
 		@Nullable
 		private DocumentSimulation doc;
@@ -192,34 +195,38 @@ public class PipelineSimulation implements JsonpSerializable {
 		/**
 		 * API name: {@code doc}
 		 */
-		public final Builder doc(Consumer<DocumentSimulation.Builder> fn) {
-			DocumentSimulation.Builder builder = new DocumentSimulation.Builder();
-			fn.accept(builder);
-			return this.doc(builder.build());
+		public final Builder doc(Function<DocumentSimulation.Builder, ObjectBuilder<DocumentSimulation>> fn) {
+			return this.doc(fn.apply(new DocumentSimulation.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code processor_results}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>processorResults</code>.
 		 */
-		public final Builder processorResults(@Nullable List<PipelineSimulation> value) {
-			this.processorResults = value;
+		public final Builder processorResults(List<PipelineSimulation> list) {
+			this.processorResults = _listAddAll(this.processorResults, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code processor_results}
+		 * <p>
+		 * Adds one or more values to <code>processorResults</code>.
 		 */
-		public final Builder processorResults(PipelineSimulation... value) {
-			this.processorResults = Arrays.asList(value);
+		public final Builder processorResults(PipelineSimulation value, PipelineSimulation... values) {
+			this.processorResults = _listAdd(this.processorResults, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code processor_results}
+		 * <p>
+		 * Adds a value to <code>processorResults</code> using a builder lambda.
 		 */
 		public final Builder processorResults(
-				Function<ListBuilder<PipelineSimulation, PipelineSimulation.Builder>, ObjectBuilder<List<PipelineSimulation>>> fn) {
-			return processorResults(fn.apply(new ListBuilder<>(PipelineSimulation.Builder::new)).build());
+				Function<PipelineSimulation.Builder, ObjectBuilder<PipelineSimulation>> fn) {
+			return processorResults(fn.apply(new PipelineSimulation.Builder()).build());
 		}
 
 		/**

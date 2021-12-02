@@ -36,6 +36,13 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.FormattableMetricAggregation
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/metric.ts#L44-L46">API
+ *      specification</a>
+ */
+
 public abstract class FormattableMetricAggregation extends MetricAggregationBase {
 	@Nullable
 	private final String format;

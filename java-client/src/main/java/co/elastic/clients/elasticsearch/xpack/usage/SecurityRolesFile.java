@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: xpack.usage.SecurityRolesFile
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L273-L277">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SecurityRolesFile implements JsonpSerializable {
 	private final boolean dls;
@@ -51,16 +58,14 @@ public class SecurityRolesFile implements JsonpSerializable {
 
 	private SecurityRolesFile(Builder builder) {
 
-		this.dls = ModelTypeHelper.requireNonNull(builder.dls, this, "dls");
-		this.fls = ModelTypeHelper.requireNonNull(builder.fls, this, "fls");
-		this.size = ModelTypeHelper.requireNonNull(builder.size, this, "size");
+		this.dls = ApiTypeHelper.requireNonNull(builder.dls, this, "dls");
+		this.fls = ApiTypeHelper.requireNonNull(builder.fls, this, "fls");
+		this.size = ApiTypeHelper.requireNonNull(builder.size, this, "size");
 
 	}
 
-	public static SecurityRolesFile of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SecurityRolesFile of(Function<Builder, ObjectBuilder<SecurityRolesFile>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -111,6 +116,7 @@ public class SecurityRolesFile implements JsonpSerializable {
 	/**
 	 * Builder for {@link SecurityRolesFile}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SecurityRolesFile> {
 		private Boolean dls;
 

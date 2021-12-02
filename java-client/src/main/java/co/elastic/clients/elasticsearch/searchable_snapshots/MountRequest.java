@@ -35,21 +35,28 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: searchable_snapshots.mount.Request
+
+/**
+ * Mount a snapshot as a searchable index.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/searchable_snapshots/mount/SearchableSnapshotsMountRequest.ts#L26-L50">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MountRequest extends RequestBase implements JsonpSerializable {
 	private final List<String> ignoreIndexSettings;
@@ -78,22 +85,20 @@ public class MountRequest extends RequestBase implements JsonpSerializable {
 
 	private MountRequest(Builder builder) {
 
-		this.ignoreIndexSettings = ModelTypeHelper.unmodifiable(builder.ignoreIndexSettings);
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
-		this.indexSettings = ModelTypeHelper.unmodifiable(builder.indexSettings);
+		this.ignoreIndexSettings = ApiTypeHelper.unmodifiable(builder.ignoreIndexSettings);
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.indexSettings = ApiTypeHelper.unmodifiable(builder.indexSettings);
 		this.masterTimeout = builder.masterTimeout;
 		this.renamedIndex = builder.renamedIndex;
-		this.repository = ModelTypeHelper.requireNonNull(builder.repository, this, "repository");
-		this.snapshot = ModelTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
+		this.repository = ApiTypeHelper.requireNonNull(builder.repository, this, "repository");
+		this.snapshot = ApiTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
 		this.storage = builder.storage;
 		this.waitForCompletion = builder.waitForCompletion;
 
 	}
 
-	public static MountRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static MountRequest of(Function<Builder, ObjectBuilder<MountRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -186,7 +191,7 @@ public class MountRequest extends RequestBase implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.ignoreIndexSettings)) {
+		if (ApiTypeHelper.isDefined(this.ignoreIndexSettings)) {
 			generator.writeKey("ignore_index_settings");
 			generator.writeStartArray();
 			for (String item0 : this.ignoreIndexSettings) {
@@ -199,7 +204,7 @@ public class MountRequest extends RequestBase implements JsonpSerializable {
 		generator.writeKey("index");
 		generator.write(this.index);
 
-		if (ModelTypeHelper.isDefined(this.indexSettings)) {
+		if (ApiTypeHelper.isDefined(this.indexSettings)) {
 			generator.writeKey("index_settings");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.indexSettings.entrySet()) {
@@ -223,6 +228,7 @@ public class MountRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link MountRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MountRequest> {
 		@Nullable
 		private List<String> ignoreIndexSettings;
@@ -250,17 +256,21 @@ public class MountRequest extends RequestBase implements JsonpSerializable {
 
 		/**
 		 * API name: {@code ignore_index_settings}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>ignoreIndexSettings</code>.
 		 */
-		public final Builder ignoreIndexSettings(@Nullable List<String> value) {
-			this.ignoreIndexSettings = value;
+		public final Builder ignoreIndexSettings(List<String> list) {
+			this.ignoreIndexSettings = _listAddAll(this.ignoreIndexSettings, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code ignore_index_settings}
+		 * <p>
+		 * Adds one or more values to <code>ignoreIndexSettings</code>.
 		 */
-		public final Builder ignoreIndexSettings(String... value) {
-			this.ignoreIndexSettings = Arrays.asList(value);
+		public final Builder ignoreIndexSettings(String value, String... values) {
+			this.ignoreIndexSettings = _listAdd(this.ignoreIndexSettings, value, values);
 			return this;
 		}
 
@@ -274,9 +284,21 @@ public class MountRequest extends RequestBase implements JsonpSerializable {
 
 		/**
 		 * API name: {@code index_settings}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>indexSettings</code>.
 		 */
-		public final Builder indexSettings(@Nullable Map<String, JsonData> value) {
-			this.indexSettings = value;
+		public final Builder indexSettings(Map<String, JsonData> map) {
+			this.indexSettings = _mapPutAll(this.indexSettings, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code index_settings}
+		 * <p>
+		 * Adds an entry to <code>indexSettings</code>.
+		 */
+		public final Builder indexSettings(String key, JsonData value) {
+			this.indexSettings = _mapPut(this.indexSettings, key, value);
 			return this;
 		}
 
@@ -295,10 +317,8 @@ public class MountRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.masterTimeout(builder.build());
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

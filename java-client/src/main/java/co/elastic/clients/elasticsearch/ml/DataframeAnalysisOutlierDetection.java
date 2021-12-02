@@ -37,10 +37,17 @@ import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisOutlierDetection
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/DataframeAnalytics.ts#L102-L131">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeAnalysisOutlierDetection implements DataframeAnalysisVariant, JsonpSerializable {
 	@Nullable
@@ -74,10 +81,9 @@ public class DataframeAnalysisOutlierDetection implements DataframeAnalysisVaria
 
 	}
 
-	public static DataframeAnalysisOutlierDetection of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DataframeAnalysisOutlierDetection of(
+			Function<Builder, ObjectBuilder<DataframeAnalysisOutlierDetection>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -210,6 +216,7 @@ public class DataframeAnalysisOutlierDetection implements DataframeAnalysisVaria
 	/**
 	 * Builder for {@link DataframeAnalysisOutlierDetection}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframeAnalysisOutlierDetection> {
 		@Nullable
 		private Boolean computeFeatureInfluence;

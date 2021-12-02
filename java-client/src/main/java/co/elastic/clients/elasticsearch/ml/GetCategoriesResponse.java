@@ -29,20 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_categories.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_categories/MlGetCategoriesResponse.ts#L23-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetCategoriesResponse implements JsonpSerializable {
 	private final List<Category> categories;
@@ -53,15 +57,13 @@ public class GetCategoriesResponse implements JsonpSerializable {
 
 	private GetCategoriesResponse(Builder builder) {
 
-		this.categories = ModelTypeHelper.unmodifiableRequired(builder.categories, this, "categories");
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
+		this.categories = ApiTypeHelper.unmodifiableRequired(builder.categories, this, "categories");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
 
 	}
 
-	public static GetCategoriesResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetCategoriesResponse of(Function<Builder, ObjectBuilder<GetCategoriesResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -89,7 +91,7 @@ public class GetCategoriesResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.categories)) {
+		if (ApiTypeHelper.isDefined(this.categories)) {
 			generator.writeKey("categories");
 			generator.writeStartArray();
 			for (Category item0 : this.categories) {
@@ -109,6 +111,7 @@ public class GetCategoriesResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetCategoriesResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetCategoriesResponse> {
 		private List<Category> categories;
 
@@ -116,26 +119,31 @@ public class GetCategoriesResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code categories}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>categories</code>.
 		 */
-		public final Builder categories(List<Category> value) {
-			this.categories = value;
+		public final Builder categories(List<Category> list) {
+			this.categories = _listAddAll(this.categories, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code categories}
+		 * <p>
+		 * Adds one or more values to <code>categories</code>.
 		 */
-		public final Builder categories(Category... value) {
-			this.categories = Arrays.asList(value);
+		public final Builder categories(Category value, Category... values) {
+			this.categories = _listAdd(this.categories, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code categories}
+		 * <p>
+		 * Adds a value to <code>categories</code> using a builder lambda.
 		 */
-		public final Builder categories(
-				Function<ListBuilder<Category, Category.Builder>, ObjectBuilder<List<Category>>> fn) {
-			return categories(fn.apply(new ListBuilder<>(Category.Builder::new)).build());
+		public final Builder categories(Function<Category.Builder, ObjectBuilder<Category>> fn) {
+			return categories(fn.apply(new Category.Builder()).build());
 		}
 
 		/**

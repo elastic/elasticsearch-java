@@ -33,22 +33,29 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_settings.Request
+
+/**
+ * Returns settings for one or more indices.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/get_settings/IndicesGetSettingsRequest.ts#L24-L43">API
+ *      specification</a>
+ */
 
 public class GetIndicesSettingsRequest extends RequestBase {
 	@Nullable
@@ -80,21 +87,19 @@ public class GetIndicesSettingsRequest extends RequestBase {
 	private GetIndicesSettingsRequest(Builder builder) {
 
 		this.allowNoIndices = builder.allowNoIndices;
-		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
+		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.flatSettings = builder.flatSettings;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.includeDefaults = builder.includeDefaults;
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
+		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.local = builder.local;
 		this.masterTimeout = builder.masterTimeout;
-		this.name = ModelTypeHelper.unmodifiable(builder.name);
+		this.name = ApiTypeHelper.unmodifiable(builder.name);
 
 	}
 
-	public static GetIndicesSettingsRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetIndicesSettingsRequest of(Function<Builder, ObjectBuilder<GetIndicesSettingsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -195,6 +200,7 @@ public class GetIndicesSettingsRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetIndicesSettingsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetIndicesSettingsRequest> {
 		@Nullable
 		private Boolean allowNoIndices;
@@ -240,9 +246,11 @@ public class GetIndicesSettingsRequest extends RequestBase {
 		 * closed or both.
 		 * <p>
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
 		 */
-		public final Builder expandWildcards(@Nullable List<ExpandWildcard> value) {
-			this.expandWildcards = value;
+		public final Builder expandWildcards(List<ExpandWildcard> list) {
+			this.expandWildcards = _listAddAll(this.expandWildcards, list);
 			return this;
 		}
 
@@ -251,9 +259,11 @@ public class GetIndicesSettingsRequest extends RequestBase {
 		 * closed or both.
 		 * <p>
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds one or more values to <code>expandWildcards</code>.
 		 */
-		public final Builder expandWildcards(ExpandWildcard... value) {
-			this.expandWildcards = Arrays.asList(value);
+		public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
+			this.expandWildcards = _listAdd(this.expandWildcards, value, values);
 			return this;
 		}
 
@@ -293,9 +303,11 @@ public class GetIndicesSettingsRequest extends RequestBase {
 		 * to perform the operation on all indices
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 */
-		public final Builder index(@Nullable List<String> value) {
-			this.index = value;
+		public final Builder index(List<String> list) {
+			this.index = _listAddAll(this.index, list);
 			return this;
 		}
 
@@ -304,9 +316,11 @@ public class GetIndicesSettingsRequest extends RequestBase {
 		 * to perform the operation on all indices
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds one or more values to <code>index</code>.
 		 */
-		public final Builder index(String... value) {
-			this.index = Arrays.asList(value);
+		public final Builder index(String value, String... values) {
+			this.index = _listAdd(this.index, value, values);
 			return this;
 		}
 
@@ -336,19 +350,19 @@ public class GetIndicesSettingsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.masterTimeout(builder.build());
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
 		 * The name of the settings that should be included
 		 * <p>
 		 * API name: {@code name}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>name</code>.
 		 */
-		public final Builder name(@Nullable List<String> value) {
-			this.name = value;
+		public final Builder name(List<String> list) {
+			this.name = _listAddAll(this.name, list);
 			return this;
 		}
 
@@ -356,9 +370,11 @@ public class GetIndicesSettingsRequest extends RequestBase {
 		 * The name of the settings that should be included
 		 * <p>
 		 * API name: {@code name}
+		 * <p>
+		 * Adds one or more values to <code>name</code>.
 		 */
-		public final Builder name(String... value) {
-			this.name = Arrays.asList(value);
+		public final Builder name(String value, String... values) {
+			this.name = _listAdd(this.name, value, values);
 			return this;
 		}
 
@@ -396,9 +412,9 @@ public class GetIndicesSettingsRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (ModelTypeHelper.isDefined(request.name()))
+				if (ApiTypeHelper.isDefined(request.name()))
 					propsSet |= _name;
-				if (ModelTypeHelper.isDefined(request.index()))
+				if (ApiTypeHelper.isDefined(request.index()))
 					propsSet |= _index;
 
 				if (propsSet == 0) {
@@ -442,7 +458,7 @@ public class GetIndicesSettingsRequest extends RequestBase {
 				if (request.flatSettings != null) {
 					params.put("flat_settings", String.valueOf(request.flatSettings));
 				}
-				if (ModelTypeHelper.isDefined(request.expandWildcards)) {
+				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}

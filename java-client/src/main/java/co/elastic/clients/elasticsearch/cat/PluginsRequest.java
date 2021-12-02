@@ -38,6 +38,14 @@ import java.util.Objects;
 
 // typedef: cat.plugins.Request
 
+/**
+ * Returns information about installed plugins across nodes node.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/plugins/CatPluginsRequest.ts#L22-L27">API
+ *      specification</a>
+ */
+
 public class PluginsRequest extends CatRequestBase {
 	public PluginsRequest() {
 	}

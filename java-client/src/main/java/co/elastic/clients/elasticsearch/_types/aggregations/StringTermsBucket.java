@@ -28,15 +28,22 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.StringTermsBucket
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L379-L381">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class StringTermsBucket extends TermsBucketBase {
 	private final String key;
@@ -46,14 +53,12 @@ public class StringTermsBucket extends TermsBucketBase {
 	private StringTermsBucket(Builder builder) {
 		super(builder);
 
-		this.key = ModelTypeHelper.requireNonNull(builder.key, this, "key");
+		this.key = ApiTypeHelper.requireNonNull(builder.key, this, "key");
 
 	}
 
-	public static StringTermsBucket of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static StringTermsBucket of(Function<Builder, ObjectBuilder<StringTermsBucket>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -76,6 +81,7 @@ public class StringTermsBucket extends TermsBucketBase {
 	/**
 	 * Builder for {@link StringTermsBucket}.
 	 */
+
 	public static class Builder extends TermsBucketBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<StringTermsBucket> {

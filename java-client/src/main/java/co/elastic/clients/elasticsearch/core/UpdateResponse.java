@@ -35,11 +35,18 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: _global.update.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/update/UpdateResponse.ts#L23-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class UpdateResponse<TDocument> extends WriteResponseBase {
 	@Nullable
@@ -58,10 +65,9 @@ public class UpdateResponse<TDocument> extends WriteResponseBase {
 
 	}
 
-	public static <TDocument> UpdateResponse<TDocument> of(Consumer<Builder<TDocument>> fn) {
-		Builder<TDocument> builder = new Builder<>();
-		fn.accept(builder);
-		return builder.build();
+	public static <TDocument> UpdateResponse<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<UpdateResponse<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
@@ -88,6 +94,7 @@ public class UpdateResponse<TDocument> extends WriteResponseBase {
 	/**
 	 * Builder for {@link UpdateResponse}.
 	 */
+
 	public static class Builder<TDocument> extends WriteResponseBase.AbstractBuilder<Builder<TDocument>>
 			implements
 				ObjectBuilder<UpdateResponse<TDocument>> {
@@ -108,10 +115,9 @@ public class UpdateResponse<TDocument> extends WriteResponseBase {
 		/**
 		 * API name: {@code get}
 		 */
-		public final Builder<TDocument> get(Consumer<InlineGet.Builder<TDocument>> fn) {
-			InlineGet.Builder<TDocument> builder = new InlineGet.Builder<TDocument>();
-			fn.accept(builder);
-			return this.get(builder.build());
+		public final Builder<TDocument> get(
+				Function<InlineGet.Builder<TDocument>, ObjectBuilder<InlineGet<TDocument>>> fn) {
+			return this.get(fn.apply(new InlineGet.Builder<TDocument>()).build());
 		}
 
 		/**
@@ -144,7 +150,7 @@ public class UpdateResponse<TDocument> extends WriteResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for UpdateResponse
+	 * Create a JSON deserializer for UpdateResponse
 	 */
 	public static <TDocument> JsonpDeserializer<UpdateResponse<TDocument>> createUpdateResponseDeserializer(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {

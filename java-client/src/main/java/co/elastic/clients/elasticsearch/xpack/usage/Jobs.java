@@ -30,8 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,11 +38,17 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Jobs
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L328-L330">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Jobs implements JsonpSerializable {
 	private final Map<String, Job> jobs;
@@ -55,16 +60,14 @@ public class Jobs implements JsonpSerializable {
 
 	private Jobs(Builder builder) {
 
-		this.jobs = ModelTypeHelper.unmodifiable(builder.jobs);
+		this.jobs = ApiTypeHelper.unmodifiable(builder.jobs);
 
 		this.all = builder.all;
 
 	}
 
-	public static Jobs of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Jobs of(Function<Builder, ObjectBuilder<Jobs>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -112,20 +115,38 @@ public class Jobs implements JsonpSerializable {
 	/**
 	 * Builder for {@link Jobs}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Jobs> {
 		@Nullable
 		private Map<String, Job> jobs = new HashMap<>();
 
 		/**
 		 * Detailed job data
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>jobs</code>.
 		 */
-		public final Builder jobs(@Nullable Map<String, Job> value) {
-			this.jobs = value;
+		public final Builder jobs(Map<String, Job> map) {
+			this.jobs = _mapPutAll(this.jobs, map);
 			return this;
 		}
 
-		public final Builder jobs(Function<MapBuilder<String, Job, Job.Builder>, ObjectBuilder<Map<String, Job>>> fn) {
-			return jobs(fn.apply(new MapBuilder<>(Job.Builder::new)).build());
+		/**
+		 * Detailed job data
+		 * <p>
+		 * Adds an entry to <code>jobs</code>.
+		 */
+		public final Builder jobs(String key, Job value) {
+			this.jobs = _mapPut(this.jobs, key, value);
+			return this;
+		}
+
+		/**
+		 * Detailed job data
+		 * <p>
+		 * Adds an entry to <code>jobs</code> using a builder lambda.
+		 */
+		public final Builder jobs(String key, Function<Job.Builder, ObjectBuilder<Job>> fn) {
+			return jobs(key, fn.apply(new Job.Builder()).build());
 		}
 
 		@Nullable
@@ -142,10 +163,8 @@ public class Jobs implements JsonpSerializable {
 		/**
 		 * API name: {@code _all}
 		 */
-		public final Builder all(Consumer<AllJobs.Builder> fn) {
-			AllJobs.Builder builder = new AllJobs.Builder();
-			fn.accept(builder);
-			return this.all(builder.build());
+		public final Builder all(Function<AllJobs.Builder, ObjectBuilder<AllJobs>> fn) {
+			return this.all(fn.apply(new AllJobs.Builder()).build());
 		}
 
 		/**

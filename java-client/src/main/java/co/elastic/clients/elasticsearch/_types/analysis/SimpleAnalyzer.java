@@ -34,10 +34,17 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.SimpleAnalyzer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/analyzers.ts#L83-L86">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SimpleAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	@Nullable
@@ -51,10 +58,8 @@ public class SimpleAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
 	}
 
-	public static SimpleAnalyzer of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SimpleAnalyzer of(Function<Builder, ObjectBuilder<SimpleAnalyzer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -99,6 +104,7 @@ public class SimpleAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	/**
 	 * Builder for {@link SimpleAnalyzer}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SimpleAnalyzer> {
 		@Nullable
 		private String version;

@@ -29,20 +29,26 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.Number;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.Category
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/Category.ts#L23-L49">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Category implements JsonpSerializable {
 	private final Number categoryId;
@@ -82,27 +88,25 @@ public class Category implements JsonpSerializable {
 
 	private Category(Builder builder) {
 
-		this.categoryId = ModelTypeHelper.requireNonNull(builder.categoryId, this, "categoryId");
-		this.examples = ModelTypeHelper.unmodifiableRequired(builder.examples, this, "examples");
+		this.categoryId = ApiTypeHelper.requireNonNull(builder.categoryId, this, "categoryId");
+		this.examples = ApiTypeHelper.unmodifiableRequired(builder.examples, this, "examples");
 		this.grokPattern = builder.grokPattern;
-		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
-		this.maxMatchingLength = ModelTypeHelper.requireNonNull(builder.maxMatchingLength, this, "maxMatchingLength");
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.maxMatchingLength = ApiTypeHelper.requireNonNull(builder.maxMatchingLength, this, "maxMatchingLength");
 		this.partitionFieldName = builder.partitionFieldName;
 		this.partitionFieldValue = builder.partitionFieldValue;
-		this.regex = ModelTypeHelper.requireNonNull(builder.regex, this, "regex");
-		this.terms = ModelTypeHelper.requireNonNull(builder.terms, this, "terms");
+		this.regex = ApiTypeHelper.requireNonNull(builder.regex, this, "regex");
+		this.terms = ApiTypeHelper.requireNonNull(builder.terms, this, "terms");
 		this.numMatches = builder.numMatches;
-		this.preferredToCategories = ModelTypeHelper.unmodifiable(builder.preferredToCategories);
+		this.preferredToCategories = ApiTypeHelper.unmodifiable(builder.preferredToCategories);
 		this.p = builder.p;
-		this.resultType = ModelTypeHelper.requireNonNull(builder.resultType, this, "resultType");
-		this.mlcategory = ModelTypeHelper.requireNonNull(builder.mlcategory, this, "mlcategory");
+		this.resultType = ApiTypeHelper.requireNonNull(builder.resultType, this, "resultType");
+		this.mlcategory = ApiTypeHelper.requireNonNull(builder.mlcategory, this, "mlcategory");
 
 	}
 
-	public static Category of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Category of(Function<Builder, ObjectBuilder<Category>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -261,7 +265,7 @@ public class Category implements JsonpSerializable {
 		generator.writeKey("category_id");
 		generator.write(this.categoryId.doubleValue());
 
-		if (ModelTypeHelper.isDefined(this.examples)) {
+		if (ApiTypeHelper.isDefined(this.examples)) {
 			generator.writeKey("examples");
 			generator.writeStartArray();
 			for (String item0 : this.examples) {
@@ -303,7 +307,7 @@ public class Category implements JsonpSerializable {
 			generator.write(this.numMatches);
 
 		}
-		if (ModelTypeHelper.isDefined(this.preferredToCategories)) {
+		if (ApiTypeHelper.isDefined(this.preferredToCategories)) {
 			generator.writeKey("preferred_to_categories");
 			generator.writeStartArray();
 			for (String item0 : this.preferredToCategories) {
@@ -331,6 +335,7 @@ public class Category implements JsonpSerializable {
 	/**
 	 * Builder for {@link Category}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Category> {
 		private Number categoryId;
 
@@ -381,9 +386,11 @@ public class Category implements JsonpSerializable {
 		 * Required - A list of examples of actual values that matched the category.
 		 * <p>
 		 * API name: {@code examples}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>examples</code>.
 		 */
-		public final Builder examples(List<String> value) {
-			this.examples = value;
+		public final Builder examples(List<String> list) {
+			this.examples = _listAddAll(this.examples, list);
 			return this;
 		}
 
@@ -391,9 +398,11 @@ public class Category implements JsonpSerializable {
 		 * Required - A list of examples of actual values that matched the category.
 		 * <p>
 		 * API name: {@code examples}
+		 * <p>
+		 * Adds one or more values to <code>examples</code>.
 		 */
-		public final Builder examples(String... value) {
-			this.examples = Arrays.asList(value);
+		public final Builder examples(String value, String... values) {
+			this.examples = _listAdd(this.examples, value, values);
 			return this;
 		}
 
@@ -497,9 +506,11 @@ public class Category implements JsonpSerializable {
 		 * the latest accurate list of categories after a job _flush or _close
 		 * <p>
 		 * API name: {@code preferred_to_categories}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>preferredToCategories</code>.
 		 */
-		public final Builder preferredToCategories(@Nullable List<String> value) {
-			this.preferredToCategories = value;
+		public final Builder preferredToCategories(List<String> list) {
+			this.preferredToCategories = _listAddAll(this.preferredToCategories, list);
 			return this;
 		}
 
@@ -510,9 +521,11 @@ public class Category implements JsonpSerializable {
 		 * the latest accurate list of categories after a job _flush or _close
 		 * <p>
 		 * API name: {@code preferred_to_categories}
+		 * <p>
+		 * Adds one or more values to <code>preferredToCategories</code>.
 		 */
-		public final Builder preferredToCategories(String... value) {
-			this.preferredToCategories = Arrays.asList(value);
+		public final Builder preferredToCategories(String value, String... values) {
+			this.preferredToCategories = _listAdd(this.preferredToCategories, value, values);
 			return this;
 		}
 

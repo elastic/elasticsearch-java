@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: graph._types.VertexInclude
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/graph/_types/Vertex.ts#L39-L42">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class VertexInclude implements JsonpSerializable {
 	private final double boost;
@@ -50,15 +57,13 @@ public class VertexInclude implements JsonpSerializable {
 
 	private VertexInclude(Builder builder) {
 
-		this.boost = ModelTypeHelper.requireNonNull(builder.boost, this, "boost");
-		this.term = ModelTypeHelper.requireNonNull(builder.term, this, "term");
+		this.boost = ApiTypeHelper.requireNonNull(builder.boost, this, "boost");
+		this.term = ApiTypeHelper.requireNonNull(builder.term, this, "term");
 
 	}
 
-	public static VertexInclude of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static VertexInclude of(Function<Builder, ObjectBuilder<VertexInclude>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -99,6 +104,7 @@ public class VertexInclude implements JsonpSerializable {
 	/**
 	 * Builder for {@link VertexInclude}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<VertexInclude> {
 		private Double boost;
 

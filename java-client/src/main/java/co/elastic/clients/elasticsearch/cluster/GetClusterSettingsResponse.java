@@ -30,17 +30,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.get_settings.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/get_settings/ClusterGetSettingsResponse.ts#L23-L29">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetClusterSettingsResponse implements JsonpSerializable {
 	private final Map<String, JsonData> persistent;
@@ -53,16 +60,14 @@ public class GetClusterSettingsResponse implements JsonpSerializable {
 
 	private GetClusterSettingsResponse(Builder builder) {
 
-		this.persistent = ModelTypeHelper.unmodifiableRequired(builder.persistent, this, "persistent");
-		this.transient_ = ModelTypeHelper.unmodifiableRequired(builder.transient_, this, "transient_");
-		this.defaults = ModelTypeHelper.unmodifiable(builder.defaults);
+		this.persistent = ApiTypeHelper.unmodifiableRequired(builder.persistent, this, "persistent");
+		this.transient_ = ApiTypeHelper.unmodifiableRequired(builder.transient_, this, "transient_");
+		this.defaults = ApiTypeHelper.unmodifiable(builder.defaults);
 
 	}
 
-	public static GetClusterSettingsResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetClusterSettingsResponse of(Function<Builder, ObjectBuilder<GetClusterSettingsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -97,7 +102,7 @@ public class GetClusterSettingsResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.persistent)) {
+		if (ApiTypeHelper.isDefined(this.persistent)) {
 			generator.writeKey("persistent");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.persistent.entrySet()) {
@@ -108,7 +113,7 @@ public class GetClusterSettingsResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.transient_)) {
+		if (ApiTypeHelper.isDefined(this.transient_)) {
 			generator.writeKey("transient");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.transient_.entrySet()) {
@@ -119,7 +124,7 @@ public class GetClusterSettingsResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.defaults)) {
+		if (ApiTypeHelper.isDefined(this.defaults)) {
 			generator.writeKey("defaults");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.defaults.entrySet()) {
@@ -138,6 +143,7 @@ public class GetClusterSettingsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetClusterSettingsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetClusterSettingsResponse> {
 		private Map<String, JsonData> persistent;
 
@@ -148,25 +154,61 @@ public class GetClusterSettingsResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code persistent}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>persistent</code>.
 		 */
-		public final Builder persistent(Map<String, JsonData> value) {
-			this.persistent = value;
+		public final Builder persistent(Map<String, JsonData> map) {
+			this.persistent = _mapPutAll(this.persistent, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code persistent}
+		 * <p>
+		 * Adds an entry to <code>persistent</code>.
+		 */
+		public final Builder persistent(String key, JsonData value) {
+			this.persistent = _mapPut(this.persistent, key, value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code transient}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>transient_</code>.
 		 */
-		public final Builder transient_(Map<String, JsonData> value) {
-			this.transient_ = value;
+		public final Builder transient_(Map<String, JsonData> map) {
+			this.transient_ = _mapPutAll(this.transient_, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code transient}
+		 * <p>
+		 * Adds an entry to <code>transient_</code>.
+		 */
+		public final Builder transient_(String key, JsonData value) {
+			this.transient_ = _mapPut(this.transient_, key, value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code defaults}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>defaults</code>.
 		 */
-		public final Builder defaults(@Nullable Map<String, JsonData> value) {
-			this.defaults = value;
+		public final Builder defaults(Map<String, JsonData> map) {
+			this.defaults = _mapPutAll(this.defaults, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code defaults}
+		 * <p>
+		 * Adds an entry to <code>defaults</code>.
+		 */
+		public final Builder defaults(String key, JsonData value) {
+			this.defaults = _mapPut(this.defaults, key, value);
 			return this;
 		}
 

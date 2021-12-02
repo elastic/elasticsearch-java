@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.UnionDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
@@ -38,11 +38,17 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.TokenFilter
-// union type: Union[]
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L340-L342">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TokenFilter implements TaggedUnion<TokenFilter.Kind, Object>, JsonpSerializable {
 
@@ -71,15 +77,13 @@ public class TokenFilter implements TaggedUnion<TokenFilter.Kind, Object>, Jsonp
 
 	private TokenFilter(Builder builder) {
 
-		this._kind = ModelTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ModelTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static TokenFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TokenFilter of(Function<Builder, ObjectBuilder<TokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -141,10 +145,9 @@ public class TokenFilter implements TaggedUnion<TokenFilter.Kind, Object>, Jsonp
 			return this;
 		}
 
-		public ObjectBuilder<TokenFilter> definition(Consumer<TokenFilterDefinition.Builder> fn) {
-			TokenFilterDefinition.Builder builder = new TokenFilterDefinition.Builder();
-			fn.accept(builder);
-			return this.definition(builder.build());
+		public ObjectBuilder<TokenFilter> definition(
+				Function<TokenFilterDefinition.Builder, ObjectBuilder<TokenFilterDefinition>> fn) {
+			return this.definition(fn.apply(new TokenFilterDefinition.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilter> name(String v) {

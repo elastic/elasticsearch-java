@@ -29,20 +29,26 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.field_caps.FieldCapability
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/field_caps/types.ts#L23-L32">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FieldCapability implements JsonpSerializable {
 	private final boolean aggregatable;
@@ -66,21 +72,19 @@ public class FieldCapability implements JsonpSerializable {
 
 	private FieldCapability(Builder builder) {
 
-		this.aggregatable = ModelTypeHelper.requireNonNull(builder.aggregatable, this, "aggregatable");
-		this.indices = ModelTypeHelper.unmodifiable(builder.indices);
-		this.meta = ModelTypeHelper.unmodifiable(builder.meta);
-		this.nonAggregatableIndices = ModelTypeHelper.unmodifiable(builder.nonAggregatableIndices);
-		this.nonSearchableIndices = ModelTypeHelper.unmodifiable(builder.nonSearchableIndices);
-		this.searchable = ModelTypeHelper.requireNonNull(builder.searchable, this, "searchable");
-		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
+		this.aggregatable = ApiTypeHelper.requireNonNull(builder.aggregatable, this, "aggregatable");
+		this.indices = ApiTypeHelper.unmodifiable(builder.indices);
+		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
+		this.nonAggregatableIndices = ApiTypeHelper.unmodifiable(builder.nonAggregatableIndices);
+		this.nonSearchableIndices = ApiTypeHelper.unmodifiable(builder.nonSearchableIndices);
+		this.searchable = ApiTypeHelper.requireNonNull(builder.searchable, this, "searchable");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 		this.metadataField = builder.metadataField;
 
 	}
 
-	public static FieldCapability of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static FieldCapability of(Function<Builder, ObjectBuilder<FieldCapability>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -154,7 +158,7 @@ public class FieldCapability implements JsonpSerializable {
 		generator.writeKey("aggregatable");
 		generator.write(this.aggregatable);
 
-		if (ModelTypeHelper.isDefined(this.indices)) {
+		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartArray();
 			for (String item0 : this.indices) {
@@ -164,7 +168,7 @@ public class FieldCapability implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.meta)) {
+		if (ApiTypeHelper.isDefined(this.meta)) {
 			generator.writeKey("meta");
 			generator.writeStartObject();
 			for (Map.Entry<String, List<String>> item0 : this.meta.entrySet()) {
@@ -182,7 +186,7 @@ public class FieldCapability implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.nonAggregatableIndices)) {
+		if (ApiTypeHelper.isDefined(this.nonAggregatableIndices)) {
 			generator.writeKey("non_aggregatable_indices");
 			generator.writeStartArray();
 			for (String item0 : this.nonAggregatableIndices) {
@@ -192,7 +196,7 @@ public class FieldCapability implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.nonSearchableIndices)) {
+		if (ApiTypeHelper.isDefined(this.nonSearchableIndices)) {
 			generator.writeKey("non_searchable_indices");
 			generator.writeStartArray();
 			for (String item0 : this.nonSearchableIndices) {
@@ -221,6 +225,7 @@ public class FieldCapability implements JsonpSerializable {
 	/**
 	 * Builder for {@link FieldCapability}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldCapability> {
 		private Boolean aggregatable;
 
@@ -253,57 +258,82 @@ public class FieldCapability implements JsonpSerializable {
 
 		/**
 		 * API name: {@code indices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 */
-		public final Builder indices(@Nullable List<String> value) {
-			this.indices = value;
+		public final Builder indices(List<String> list) {
+			this.indices = _listAddAll(this.indices, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code indices}
+		 * <p>
+		 * Adds one or more values to <code>indices</code>.
 		 */
-		public final Builder indices(String... value) {
-			this.indices = Arrays.asList(value);
+		public final Builder indices(String value, String... values) {
+			this.indices = _listAdd(this.indices, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code meta}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>meta</code>.
 		 */
-		public final Builder meta(@Nullable Map<String, List<String>> value) {
-			this.meta = value;
+		public final Builder meta(Map<String, List<String>> map) {
+			this.meta = _mapPutAll(this.meta, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code meta}
+		 * <p>
+		 * Adds an entry to <code>meta</code>.
+		 */
+		public final Builder meta(String key, List<String> value) {
+			this.meta = _mapPut(this.meta, key, value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code non_aggregatable_indices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to
+		 * <code>nonAggregatableIndices</code>.
 		 */
-		public final Builder nonAggregatableIndices(@Nullable List<String> value) {
-			this.nonAggregatableIndices = value;
+		public final Builder nonAggregatableIndices(List<String> list) {
+			this.nonAggregatableIndices = _listAddAll(this.nonAggregatableIndices, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code non_aggregatable_indices}
+		 * <p>
+		 * Adds one or more values to <code>nonAggregatableIndices</code>.
 		 */
-		public final Builder nonAggregatableIndices(String... value) {
-			this.nonAggregatableIndices = Arrays.asList(value);
+		public final Builder nonAggregatableIndices(String value, String... values) {
+			this.nonAggregatableIndices = _listAdd(this.nonAggregatableIndices, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code non_searchable_indices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>nonSearchableIndices</code>.
 		 */
-		public final Builder nonSearchableIndices(@Nullable List<String> value) {
-			this.nonSearchableIndices = value;
+		public final Builder nonSearchableIndices(List<String> list) {
+			this.nonSearchableIndices = _listAddAll(this.nonSearchableIndices, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code non_searchable_indices}
+		 * <p>
+		 * Adds one or more values to <code>nonSearchableIndices</code>.
 		 */
-		public final Builder nonSearchableIndices(String... value) {
-			this.nonSearchableIndices = Arrays.asList(value);
+		public final Builder nonSearchableIndices(String value, String... values) {
+			this.nonSearchableIndices = _listAdd(this.nonSearchableIndices, value, values);
 			return this;
 		}
 

@@ -36,10 +36,17 @@ import java.lang.Float;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.TermSuggester
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/suggester.ts#L221-L234">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TermSuggester extends SuggesterBase implements FieldSuggesterVariant {
 	@Nullable
@@ -98,10 +105,8 @@ public class TermSuggester extends SuggesterBase implements FieldSuggesterVarian
 
 	}
 
-	public static TermSuggester of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TermSuggester of(Function<Builder, ObjectBuilder<TermSuggester>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -276,6 +281,7 @@ public class TermSuggester extends SuggesterBase implements FieldSuggesterVarian
 	/**
 	 * Builder for {@link TermSuggester}.
 	 */
+
 	public static class Builder extends SuggesterBase.AbstractBuilder<Builder> implements ObjectBuilder<TermSuggester> {
 		@Nullable
 		private Boolean lowercaseTerms;

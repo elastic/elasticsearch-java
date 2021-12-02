@@ -35,10 +35,17 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.AggregationProfileDelegateDebugFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/profile.ts#L70-L74">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AggregationProfileDelegateDebugFilter implements JsonpSerializable {
 	@Nullable
@@ -60,10 +67,9 @@ public class AggregationProfileDelegateDebugFilter implements JsonpSerializable 
 
 	}
 
-	public static AggregationProfileDelegateDebugFilter of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static AggregationProfileDelegateDebugFilter of(
+			Function<Builder, ObjectBuilder<AggregationProfileDelegateDebugFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -124,6 +130,7 @@ public class AggregationProfileDelegateDebugFilter implements JsonpSerializable 
 	/**
 	 * Builder for {@link AggregationProfileDelegateDebugFilter}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase
 			implements
 				ObjectBuilder<AggregationProfileDelegateDebugFilter> {

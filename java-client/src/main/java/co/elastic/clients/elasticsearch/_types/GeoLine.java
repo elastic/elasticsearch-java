@@ -29,19 +29,26 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.GeoLine
+
+/**
+ * A GeoJson GeoLine.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Geo.ts#L59-L65">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GeoLine implements JsonpSerializable {
 	private final String type;
@@ -52,15 +59,13 @@ public class GeoLine implements JsonpSerializable {
 
 	private GeoLine(Builder builder) {
 
-		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
-		this.coordinates = ModelTypeHelper.unmodifiableRequired(builder.coordinates, this, "coordinates");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.coordinates = ApiTypeHelper.unmodifiableRequired(builder.coordinates, this, "coordinates");
 
 	}
 
-	public static GeoLine of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GeoLine of(Function<Builder, ObjectBuilder<GeoLine>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -95,7 +100,7 @@ public class GeoLine implements JsonpSerializable {
 		generator.writeKey("type");
 		generator.write(this.type);
 
-		if (ModelTypeHelper.isDefined(this.coordinates)) {
+		if (ApiTypeHelper.isDefined(this.coordinates)) {
 			generator.writeKey("coordinates");
 			generator.writeStartArray();
 			for (List<Double> item0 : this.coordinates) {
@@ -120,6 +125,7 @@ public class GeoLine implements JsonpSerializable {
 	/**
 	 * Builder for {@link GeoLine}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GeoLine> {
 		private String type;
 
@@ -139,9 +145,11 @@ public class GeoLine implements JsonpSerializable {
 		 * Required - Array of <code>[lon, lat]</code> coordinates
 		 * <p>
 		 * API name: {@code coordinates}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>coordinates</code>.
 		 */
-		public final Builder coordinates(List<List<Double>> value) {
-			this.coordinates = value;
+		public final Builder coordinates(List<List<Double>> list) {
+			this.coordinates = _listAddAll(this.coordinates, list);
 			return this;
 		}
 
@@ -149,9 +157,11 @@ public class GeoLine implements JsonpSerializable {
 		 * Required - Array of <code>[lon, lat]</code> coordinates
 		 * <p>
 		 * API name: {@code coordinates}
+		 * <p>
+		 * Adds one or more values to <code>coordinates</code>.
 		 */
-		public final Builder coordinates(List<Double>... value) {
-			this.coordinates = Arrays.asList(value);
+		public final Builder coordinates(List<Double> value, List<Double>... values) {
+			this.coordinates = _listAdd(this.coordinates, value, values);
 			return this;
 		}
 

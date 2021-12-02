@@ -39,10 +39,28 @@ import java.lang.Boolean;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.set_upgrade_mode.Request
+
+/**
+ * Sets a cluster wide upgrade_mode setting that prepares machine learning
+ * indices for an upgrade. When upgrading your cluster, in some circumstances
+ * you must restart your nodes and reindex your machine learning indices. In
+ * those circumstances, there must be no machine learning jobs running. You can
+ * close the machine learning jobs, do the upgrade, then open all the jobs
+ * again. Alternatively, you can use this API to temporarily halt tasks
+ * associated with the jobs and datafeeds and prevent new jobs from opening. You
+ * can also use this API during upgrades that do not require you to reindex your
+ * machine learning indices, though stopping jobs is not a requirement in that
+ * case. You can see the current value for the upgrade_mode setting by using the
+ * get machine learning info API.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/set_upgrade_mode/MlSetUpgradeModeRequest.ts#L23-L56">API
+ *      specification</a>
+ */
 
 public class SetUpgradeModeRequest extends RequestBase {
 	@Nullable
@@ -60,10 +78,8 @@ public class SetUpgradeModeRequest extends RequestBase {
 
 	}
 
-	public static SetUpgradeModeRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SetUpgradeModeRequest of(Function<Builder, ObjectBuilder<SetUpgradeModeRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -93,6 +109,7 @@ public class SetUpgradeModeRequest extends RequestBase {
 	/**
 	 * Builder for {@link SetUpgradeModeRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SetUpgradeModeRequest> {
 		@Nullable
 		private Boolean enabled;
@@ -127,10 +144,8 @@ public class SetUpgradeModeRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.timeout(builder.build());
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

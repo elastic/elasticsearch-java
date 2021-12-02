@@ -39,10 +39,18 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_filters.Request
+
+/**
+ * Retrieves filters. You can get a single filter or all filters.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_filters/MlGetFiltersRequest.ts#L24-L51">API
+ *      specification</a>
+ */
 
 public class GetFiltersRequest extends RequestBase {
 	@Nullable
@@ -64,10 +72,8 @@ public class GetFiltersRequest extends RequestBase {
 
 	}
 
-	public static GetFiltersRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetFiltersRequest of(Function<Builder, ObjectBuilder<GetFiltersRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -105,6 +111,7 @@ public class GetFiltersRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetFiltersRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetFiltersRequest> {
 		@Nullable
 		private String filterId;

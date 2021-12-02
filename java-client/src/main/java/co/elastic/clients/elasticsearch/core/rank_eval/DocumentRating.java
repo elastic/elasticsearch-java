@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.DocumentRating
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/rank_eval/types.ts#L116-L123">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DocumentRating implements JsonpSerializable {
 	private final String id;
@@ -52,16 +59,14 @@ public class DocumentRating implements JsonpSerializable {
 
 	private DocumentRating(Builder builder) {
 
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
-		this.rating = ModelTypeHelper.requireNonNull(builder.rating, this, "rating");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.rating = ApiTypeHelper.requireNonNull(builder.rating, this, "rating");
 
 	}
 
-	public static DocumentRating of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DocumentRating of(Function<Builder, ObjectBuilder<DocumentRating>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -119,6 +124,7 @@ public class DocumentRating implements JsonpSerializable {
 	/**
 	 * Builder for {@link DocumentRating}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DocumentRating> {
 		private String id;
 

@@ -29,22 +29,26 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.Detector
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/Detector.ts#L24-L66">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Detector implements JsonpSerializable {
 	@Nullable
@@ -80,22 +84,20 @@ public class Detector implements JsonpSerializable {
 	private Detector(Builder builder) {
 
 		this.byFieldName = builder.byFieldName;
-		this.customRules = ModelTypeHelper.unmodifiable(builder.customRules);
+		this.customRules = ApiTypeHelper.unmodifiable(builder.customRules);
 		this.detectorDescription = builder.detectorDescription;
 		this.detectorIndex = builder.detectorIndex;
 		this.excludeFrequent = builder.excludeFrequent;
 		this.fieldName = builder.fieldName;
-		this.function = ModelTypeHelper.requireNonNull(builder.function, this, "function");
+		this.function = ApiTypeHelper.requireNonNull(builder.function, this, "function");
 		this.overFieldName = builder.overFieldName;
 		this.partitionFieldName = builder.partitionFieldName;
 		this.useNull = builder.useNull;
 
 	}
 
-	public static Detector of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static Detector of(Function<Builder, ObjectBuilder<Detector>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -230,7 +232,7 @@ public class Detector implements JsonpSerializable {
 			generator.write(this.byFieldName);
 
 		}
-		if (ModelTypeHelper.isDefined(this.customRules)) {
+		if (ApiTypeHelper.isDefined(this.customRules)) {
 			generator.writeKey("custom_rules");
 			generator.writeStartArray();
 			for (DetectionRule item0 : this.customRules) {
@@ -285,6 +287,7 @@ public class Detector implements JsonpSerializable {
 	/**
 	 * Builder for {@link Detector}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Detector> {
 		@Nullable
 		private String byFieldName;
@@ -333,9 +336,11 @@ public class Detector implements JsonpSerializable {
 		 * refers to custom rules as job rules.
 		 * <p>
 		 * API name: {@code custom_rules}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>customRules</code>.
 		 */
-		public final Builder customRules(@Nullable List<DetectionRule> value) {
-			this.customRules = value;
+		public final Builder customRules(List<DetectionRule> list) {
+			this.customRules = _listAddAll(this.customRules, list);
 			return this;
 		}
 
@@ -345,9 +350,11 @@ public class Detector implements JsonpSerializable {
 		 * refers to custom rules as job rules.
 		 * <p>
 		 * API name: {@code custom_rules}
+		 * <p>
+		 * Adds one or more values to <code>customRules</code>.
 		 */
-		public final Builder customRules(DetectionRule... value) {
-			this.customRules = Arrays.asList(value);
+		public final Builder customRules(DetectionRule value, DetectionRule... values) {
+			this.customRules = _listAdd(this.customRules, value, values);
 			return this;
 		}
 
@@ -357,10 +364,11 @@ public class Detector implements JsonpSerializable {
 		 * refers to custom rules as job rules.
 		 * <p>
 		 * API name: {@code custom_rules}
+		 * <p>
+		 * Adds a value to <code>customRules</code> using a builder lambda.
 		 */
-		public final Builder customRules(
-				Function<ListBuilder<DetectionRule, DetectionRule.Builder>, ObjectBuilder<List<DetectionRule>>> fn) {
-			return customRules(fn.apply(new ListBuilder<>(DetectionRule.Builder::new)).build());
+		public final Builder customRules(Function<DetectionRule.Builder, ObjectBuilder<DetectionRule>> fn) {
+			return customRules(fn.apply(new DetectionRule.Builder()).build());
 		}
 
 		/**

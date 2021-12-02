@@ -30,23 +30,30 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.FieldSort
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/sort.ts#L43-L52">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FieldSort implements JsonpSerializable {
 	// Single key dictionary
 	private final String field;
 
 	@Nullable
-	private final String missing;
+	private final FieldValue missing;
 
 	@Nullable
 	private final SortMode mode;
@@ -70,7 +77,7 @@ public class FieldSort implements JsonpSerializable {
 
 	private FieldSort(Builder builder) {
 
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
 		this.missing = builder.missing;
 		this.mode = builder.mode;
@@ -82,10 +89,8 @@ public class FieldSort implements JsonpSerializable {
 
 	}
 
-	public static FieldSort of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static FieldSort of(Function<Builder, ObjectBuilder<FieldSort>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -99,7 +104,7 @@ public class FieldSort implements JsonpSerializable {
 	 * API name: {@code missing}
 	 */
 	@Nullable
-	public final String missing() {
+	public final FieldValue missing() {
 		return this.missing;
 	}
 
@@ -165,7 +170,7 @@ public class FieldSort implements JsonpSerializable {
 
 		if (this.missing != null) {
 			generator.writeKey("missing");
-			generator.write(this.missing);
+			this.missing.serialize(generator, mapper);
 
 		}
 		if (this.mode != null) {
@@ -204,6 +209,7 @@ public class FieldSort implements JsonpSerializable {
 	/**
 	 * Builder for {@link FieldSort}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldSort> {
 		private String field;
 
@@ -216,7 +222,7 @@ public class FieldSort implements JsonpSerializable {
 		}
 
 		@Nullable
-		private String missing;
+		private FieldValue missing;
 
 		@Nullable
 		private SortMode mode;
@@ -239,9 +245,16 @@ public class FieldSort implements JsonpSerializable {
 		/**
 		 * API name: {@code missing}
 		 */
-		public final Builder missing(@Nullable String value) {
+		public final Builder missing(@Nullable FieldValue value) {
 			this.missing = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code missing}
+		 */
+		public final Builder missing(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
+			return this.missing(fn.apply(new FieldValue.Builder()).build());
 		}
 
 		/**
@@ -263,10 +276,8 @@ public class FieldSort implements JsonpSerializable {
 		/**
 		 * API name: {@code nested}
 		 */
-		public final Builder nested(Consumer<NestedSortValue.Builder> fn) {
-			NestedSortValue.Builder builder = new NestedSortValue.Builder();
-			fn.accept(builder);
-			return this.nested(builder.build());
+		public final Builder nested(Function<NestedSortValue.Builder, ObjectBuilder<NestedSortValue>> fn) {
+			return this.nested(fn.apply(new NestedSortValue.Builder()).build());
 		}
 
 		/**
@@ -324,7 +335,7 @@ public class FieldSort implements JsonpSerializable {
 
 	protected static void setupFieldSortDeserializer(ObjectDeserializer<FieldSort.Builder> op) {
 
-		op.add(Builder::missing, JsonpDeserializer.stringDeserializer(), "missing");
+		op.add(Builder::missing, FieldValue._DESERIALIZER, "missing");
 		op.add(Builder::mode, SortMode._DESERIALIZER, "mode");
 		op.add(Builder::nested, NestedSortValue._DESERIALIZER, "nested");
 		op.add(Builder::order, SortOrder._DESERIALIZER, "order");

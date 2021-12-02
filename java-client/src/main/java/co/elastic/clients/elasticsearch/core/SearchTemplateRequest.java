@@ -37,22 +37,29 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: _global.search_template.Request
+
+/**
+ * Allows to use the Mustache language to pre-render a search definition.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search_template/SearchTemplateRequest.ts#L32-L96">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SearchTemplateRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -103,13 +110,13 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 
 		this.allowNoIndices = builder.allowNoIndices;
 		this.ccsMinimizeRoundtrips = builder.ccsMinimizeRoundtrips;
-		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
+		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.explain = builder.explain;
 		this.id = builder.id;
 		this.ignoreThrottled = builder.ignoreThrottled;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
-		this.params = ModelTypeHelper.unmodifiable(builder.params);
+		this.index = ApiTypeHelper.unmodifiable(builder.index);
+		this.params = ApiTypeHelper.unmodifiable(builder.params);
 		this.preference = builder.preference;
 		this.profile = builder.profile;
 		this.routing = builder.routing;
@@ -119,10 +126,8 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 
 	}
 
-	public static SearchTemplateRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SearchTemplateRequest of(Function<Builder, ObjectBuilder<SearchTemplateRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -299,7 +304,7 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 			generator.write(this.id);
 
 		}
-		if (ModelTypeHelper.isDefined(this.params)) {
+		if (ApiTypeHelper.isDefined(this.params)) {
 			generator.writeKey("params");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.params.entrySet()) {
@@ -328,6 +333,7 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Builder for {@link SearchTemplateRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SearchTemplateRequest> {
 		@Nullable
 		private Boolean allowNoIndices;
@@ -402,9 +408,11 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 		 * closed or both.
 		 * <p>
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
 		 */
-		public final Builder expandWildcards(@Nullable List<ExpandWildcard> value) {
-			this.expandWildcards = value;
+		public final Builder expandWildcards(List<ExpandWildcard> list) {
+			this.expandWildcards = _listAddAll(this.expandWildcards, list);
 			return this;
 		}
 
@@ -413,9 +421,11 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 		 * closed or both.
 		 * <p>
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds one or more values to <code>expandWildcards</code>.
 		 */
-		public final Builder expandWildcards(ExpandWildcard... value) {
-			this.expandWildcards = Arrays.asList(value);
+		public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
+			this.expandWildcards = _listAdd(this.expandWildcards, value, values);
 			return this;
 		}
 
@@ -465,9 +475,11 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 		 * Supports wildcards (*).
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 */
-		public final Builder index(@Nullable List<String> value) {
-			this.index = value;
+		public final Builder index(List<String> list) {
+			this.index = _listAddAll(this.index, list);
 			return this;
 		}
 
@@ -476,17 +488,31 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 		 * Supports wildcards (*).
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds one or more values to <code>index</code>.
 		 */
-		public final Builder index(String... value) {
-			this.index = Arrays.asList(value);
+		public final Builder index(String value, String... values) {
+			this.index = _listAdd(this.index, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code params}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>params</code>.
 		 */
-		public final Builder params(@Nullable Map<String, JsonData> value) {
-			this.params = value;
+		public final Builder params(Map<String, JsonData> map) {
+			this.params = _mapPutAll(this.params, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code params}
+		 * <p>
+		 * Adds an entry to <code>params</code>.
+		 */
+		public final Builder params(String key, JsonData value) {
+			this.params = _mapPut(this.params, key, value);
 			return this;
 		}
 
@@ -536,10 +562,8 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code scroll}
 		 */
-		public final Builder scroll(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.scroll(builder.build());
+		public final Builder scroll(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.scroll(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -614,7 +638,7 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 
 				int propsSet = 0;
 
-				if (ModelTypeHelper.isDefined(request.index()))
+				if (ApiTypeHelper.isDefined(request.index()))
 					propsSet |= _index;
 
 				if (propsSet == 0) {
@@ -639,7 +663,7 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				params.put("typed_keys", "true");
-				if (ModelTypeHelper.isDefined(request.expandWildcards)) {
+				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}

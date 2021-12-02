@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ActionStatus
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Action.ts#L102-L107">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ActionStatus implements JsonpSerializable {
 	private final AcknowledgeState ack;
@@ -55,17 +62,15 @@ public class ActionStatus implements JsonpSerializable {
 
 	private ActionStatus(Builder builder) {
 
-		this.ack = ModelTypeHelper.requireNonNull(builder.ack, this, "ack");
+		this.ack = ApiTypeHelper.requireNonNull(builder.ack, this, "ack");
 		this.lastExecution = builder.lastExecution;
 		this.lastSuccessfulExecution = builder.lastSuccessfulExecution;
 		this.lastThrottle = builder.lastThrottle;
 
 	}
 
-	public static ActionStatus of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ActionStatus of(Function<Builder, ObjectBuilder<ActionStatus>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -136,6 +141,7 @@ public class ActionStatus implements JsonpSerializable {
 	/**
 	 * Builder for {@link ActionStatus}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ActionStatus> {
 		private AcknowledgeState ack;
 
@@ -159,10 +165,8 @@ public class ActionStatus implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code ack}
 		 */
-		public final Builder ack(Consumer<AcknowledgeState.Builder> fn) {
-			AcknowledgeState.Builder builder = new AcknowledgeState.Builder();
-			fn.accept(builder);
-			return this.ack(builder.build());
+		public final Builder ack(Function<AcknowledgeState.Builder, ObjectBuilder<AcknowledgeState>> fn) {
+			return this.ack(fn.apply(new AcknowledgeState.Builder()).build());
 		}
 
 		/**
@@ -176,10 +180,8 @@ public class ActionStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code last_execution}
 		 */
-		public final Builder lastExecution(Consumer<ExecutionState.Builder> fn) {
-			ExecutionState.Builder builder = new ExecutionState.Builder();
-			fn.accept(builder);
-			return this.lastExecution(builder.build());
+		public final Builder lastExecution(Function<ExecutionState.Builder, ObjectBuilder<ExecutionState>> fn) {
+			return this.lastExecution(fn.apply(new ExecutionState.Builder()).build());
 		}
 
 		/**
@@ -193,10 +195,9 @@ public class ActionStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code last_successful_execution}
 		 */
-		public final Builder lastSuccessfulExecution(Consumer<ExecutionState.Builder> fn) {
-			ExecutionState.Builder builder = new ExecutionState.Builder();
-			fn.accept(builder);
-			return this.lastSuccessfulExecution(builder.build());
+		public final Builder lastSuccessfulExecution(
+				Function<ExecutionState.Builder, ObjectBuilder<ExecutionState>> fn) {
+			return this.lastSuccessfulExecution(fn.apply(new ExecutionState.Builder()).build());
 		}
 
 		/**
@@ -210,10 +211,8 @@ public class ActionStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code last_throttle}
 		 */
-		public final Builder lastThrottle(Consumer<ThrottleState.Builder> fn) {
-			ThrottleState.Builder builder = new ThrottleState.Builder();
-			fn.accept(builder);
-			return this.lastThrottle(builder.build());
+		public final Builder lastThrottle(Function<ThrottleState.Builder, ObjectBuilder<ThrottleState>> fn) {
+			return this.lastThrottle(fn.apply(new ThrottleState.Builder()).build());
 		}
 
 		/**

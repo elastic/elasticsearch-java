@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.ScriptField
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Scripting.ts#L61-L64">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ScriptField implements JsonpSerializable {
 	private final Script script;
@@ -50,15 +57,13 @@ public class ScriptField implements JsonpSerializable {
 
 	private ScriptField(Builder builder) {
 
-		this.script = ModelTypeHelper.requireNonNull(builder.script, this, "script");
+		this.script = ApiTypeHelper.requireNonNull(builder.script, this, "script");
 		this.ignoreFailure = builder.ignoreFailure;
 
 	}
 
-	public static ScriptField of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ScriptField of(Function<Builder, ObjectBuilder<ScriptField>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -103,6 +108,7 @@ public class ScriptField implements JsonpSerializable {
 	/**
 	 * Builder for {@link ScriptField}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ScriptField> {
 		private Script script;
 
@@ -120,10 +126,8 @@ public class ScriptField implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code script}
 		 */
-		public final Builder script(Consumer<Script.Builder> fn) {
-			Script.Builder builder = new Script.Builder();
-			fn.accept(builder);
-			return this.script(builder.build());
+		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
 		/**

@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DiscoveryNode
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/DiscoveryNode.ts#L24-L30">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DiscoveryNode implements JsonpSerializable {
 	private final Map<String, String> attributes;
@@ -56,18 +63,16 @@ public class DiscoveryNode implements JsonpSerializable {
 
 	private DiscoveryNode(Builder builder) {
 
-		this.attributes = ModelTypeHelper.unmodifiableRequired(builder.attributes, this, "attributes");
-		this.ephemeralId = ModelTypeHelper.requireNonNull(builder.ephemeralId, this, "ephemeralId");
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
-		this.transportAddress = ModelTypeHelper.requireNonNull(builder.transportAddress, this, "transportAddress");
+		this.attributes = ApiTypeHelper.unmodifiableRequired(builder.attributes, this, "attributes");
+		this.ephemeralId = ApiTypeHelper.requireNonNull(builder.ephemeralId, this, "ephemeralId");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.transportAddress = ApiTypeHelper.requireNonNull(builder.transportAddress, this, "transportAddress");
 
 	}
 
-	public static DiscoveryNode of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DiscoveryNode of(Function<Builder, ObjectBuilder<DiscoveryNode>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -116,7 +121,7 @@ public class DiscoveryNode implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.attributes)) {
+		if (ApiTypeHelper.isDefined(this.attributes)) {
 			generator.writeKey("attributes");
 			generator.writeStartObject();
 			for (Map.Entry<String, String> item0 : this.attributes.entrySet()) {
@@ -146,6 +151,7 @@ public class DiscoveryNode implements JsonpSerializable {
 	/**
 	 * Builder for {@link DiscoveryNode}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DiscoveryNode> {
 		private Map<String, String> attributes;
 
@@ -159,9 +165,21 @@ public class DiscoveryNode implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code attributes}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>attributes</code>.
 		 */
-		public final Builder attributes(Map<String, String> value) {
-			this.attributes = value;
+		public final Builder attributes(Map<String, String> map) {
+			this.attributes = _mapPutAll(this.attributes, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code attributes}
+		 * <p>
+		 * Adds an entry to <code>attributes</code>.
+		 */
+		public final Builder attributes(String key, String value) {
+			this.attributes = _mapPut(this.attributes, key, value);
 			return this;
 		}
 

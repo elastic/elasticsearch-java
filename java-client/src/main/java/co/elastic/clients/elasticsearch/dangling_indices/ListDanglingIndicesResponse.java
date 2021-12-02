@@ -30,19 +30,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: dangling_indices.list_dangling_indices.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/dangling_indices/list_dangling_indices/ListDanglingIndicesResponse.ts#L23-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ListDanglingIndicesResponse implements JsonpSerializable {
 	private final List<DanglingIndex> danglingIndices;
@@ -51,14 +55,12 @@ public class ListDanglingIndicesResponse implements JsonpSerializable {
 
 	private ListDanglingIndicesResponse(Builder builder) {
 
-		this.danglingIndices = ModelTypeHelper.unmodifiableRequired(builder.danglingIndices, this, "danglingIndices");
+		this.danglingIndices = ApiTypeHelper.unmodifiableRequired(builder.danglingIndices, this, "danglingIndices");
 
 	}
 
-	public static ListDanglingIndicesResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ListDanglingIndicesResponse of(Function<Builder, ObjectBuilder<ListDanglingIndicesResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -79,7 +81,7 @@ public class ListDanglingIndicesResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.danglingIndices)) {
+		if (ApiTypeHelper.isDefined(this.danglingIndices)) {
 			generator.writeKey("dangling_indices");
 			generator.writeStartArray();
 			for (DanglingIndex item0 : this.danglingIndices) {
@@ -97,31 +99,37 @@ public class ListDanglingIndicesResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link ListDanglingIndicesResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ListDanglingIndicesResponse> {
 		private List<DanglingIndex> danglingIndices;
 
 		/**
 		 * Required - API name: {@code dangling_indices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>danglingIndices</code>.
 		 */
-		public final Builder danglingIndices(List<DanglingIndex> value) {
-			this.danglingIndices = value;
+		public final Builder danglingIndices(List<DanglingIndex> list) {
+			this.danglingIndices = _listAddAll(this.danglingIndices, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code dangling_indices}
+		 * <p>
+		 * Adds one or more values to <code>danglingIndices</code>.
 		 */
-		public final Builder danglingIndices(DanglingIndex... value) {
-			this.danglingIndices = Arrays.asList(value);
+		public final Builder danglingIndices(DanglingIndex value, DanglingIndex... values) {
+			this.danglingIndices = _listAdd(this.danglingIndices, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code dangling_indices}
+		 * <p>
+		 * Adds a value to <code>danglingIndices</code> using a builder lambda.
 		 */
-		public final Builder danglingIndices(
-				Function<ListBuilder<DanglingIndex, DanglingIndex.Builder>, ObjectBuilder<List<DanglingIndex>>> fn) {
-			return danglingIndices(fn.apply(new ListBuilder<>(DanglingIndex.Builder::new)).build());
+		public final Builder danglingIndices(Function<DanglingIndex.Builder, ObjectBuilder<DanglingIndex>> fn) {
+			return danglingIndices(fn.apply(new DanglingIndex.Builder()).build());
 		}
 
 		/**

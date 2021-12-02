@@ -38,6 +38,13 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.TokenizerBase
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/tokenizers.ts#L26-L28">API
+ *      specification</a>
+ */
+
 public abstract class TokenizerBase implements JsonpSerializable {
 	@Nullable
 	private final String version;

@@ -33,9 +33,16 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: security.get_role.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_role/SecurityGetRoleResponse.ts#L23-L23">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetRoleResponse extends DictionaryResponse<String, Role> {
 	// ---------------------------------------------------------------------------------------------
@@ -45,10 +52,8 @@ public class GetRoleResponse extends DictionaryResponse<String, Role> {
 
 	}
 
-	public static GetRoleResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetRoleResponse of(Function<Builder, ObjectBuilder<GetRoleResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -56,6 +61,7 @@ public class GetRoleResponse extends DictionaryResponse<String, Role> {
 	/**
 	 * Builder for {@link GetRoleResponse}.
 	 */
+
 	public static class Builder extends DictionaryResponse.AbstractBuilder<String, Role, Builder>
 			implements
 				ObjectBuilder<GetRoleResponse> {

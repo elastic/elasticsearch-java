@@ -34,10 +34,17 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.CompareContextPayloadCondition
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Conditions.ts#L41-L47">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CompareContextPayloadCondition implements JsonpSerializable {
 	@Nullable
@@ -67,10 +74,9 @@ public class CompareContextPayloadCondition implements JsonpSerializable {
 
 	}
 
-	public static CompareContextPayloadCondition of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CompareContextPayloadCondition of(
+			Function<Builder, ObjectBuilder<CompareContextPayloadCondition>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -157,6 +163,7 @@ public class CompareContextPayloadCondition implements JsonpSerializable {
 	/**
 	 * Builder for {@link CompareContextPayloadCondition}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CompareContextPayloadCondition> {
 		@Nullable
 		private JsonData eq;

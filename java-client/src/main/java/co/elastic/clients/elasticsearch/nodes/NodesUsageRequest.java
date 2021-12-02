@@ -32,21 +32,28 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: nodes.usage.Request
+
+/**
+ * Returns low-level information about REST actions usage on nodes.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/usage/NodesUsageRequest.ts#L24-L37">API
+ *      specification</a>
+ */
 
 public class NodesUsageRequest extends RequestBase {
 	private final List<String> metric;
@@ -60,16 +67,14 @@ public class NodesUsageRequest extends RequestBase {
 
 	private NodesUsageRequest(Builder builder) {
 
-		this.metric = ModelTypeHelper.unmodifiable(builder.metric);
-		this.nodeId = ModelTypeHelper.unmodifiable(builder.nodeId);
+		this.metric = ApiTypeHelper.unmodifiable(builder.metric);
+		this.nodeId = ApiTypeHelper.unmodifiable(builder.nodeId);
 		this.timeout = builder.timeout;
 
 	}
 
-	public static NodesUsageRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodesUsageRequest of(Function<Builder, ObjectBuilder<NodesUsageRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -107,6 +112,7 @@ public class NodesUsageRequest extends RequestBase {
 	/**
 	 * Builder for {@link NodesUsageRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodesUsageRequest> {
 		@Nullable
 		private List<String> metric;
@@ -121,9 +127,11 @@ public class NodesUsageRequest extends RequestBase {
 		 * Limit the information returned to the specified metrics
 		 * <p>
 		 * API name: {@code metric}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>metric</code>.
 		 */
-		public final Builder metric(@Nullable List<String> value) {
-			this.metric = value;
+		public final Builder metric(List<String> list) {
+			this.metric = _listAddAll(this.metric, list);
 			return this;
 		}
 
@@ -131,9 +139,11 @@ public class NodesUsageRequest extends RequestBase {
 		 * Limit the information returned to the specified metrics
 		 * <p>
 		 * API name: {@code metric}
+		 * <p>
+		 * Adds one or more values to <code>metric</code>.
 		 */
-		public final Builder metric(String... value) {
-			this.metric = Arrays.asList(value);
+		public final Builder metric(String value, String... values) {
+			this.metric = _listAdd(this.metric, value, values);
 			return this;
 		}
 
@@ -143,9 +153,11 @@ public class NodesUsageRequest extends RequestBase {
 		 * you're connecting to, leave empty to get information from all nodes
 		 * <p>
 		 * API name: {@code node_id}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>nodeId</code>.
 		 */
-		public final Builder nodeId(@Nullable List<String> value) {
-			this.nodeId = value;
+		public final Builder nodeId(List<String> list) {
+			this.nodeId = _listAddAll(this.nodeId, list);
 			return this;
 		}
 
@@ -155,9 +167,11 @@ public class NodesUsageRequest extends RequestBase {
 		 * you're connecting to, leave empty to get information from all nodes
 		 * <p>
 		 * API name: {@code node_id}
+		 * <p>
+		 * Adds one or more values to <code>nodeId</code>.
 		 */
-		public final Builder nodeId(String... value) {
-			this.nodeId = Arrays.asList(value);
+		public final Builder nodeId(String value, String... values) {
+			this.nodeId = _listAdd(this.nodeId, value, values);
 			return this;
 		}
 
@@ -176,10 +190,8 @@ public class NodesUsageRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.timeout(builder.build());
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -216,9 +228,9 @@ public class NodesUsageRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (ModelTypeHelper.isDefined(request.metric()))
+				if (ApiTypeHelper.isDefined(request.metric()))
 					propsSet |= _metric;
-				if (ModelTypeHelper.isDefined(request.nodeId()))
+				if (ApiTypeHelper.isDefined(request.nodeId()))
 					propsSet |= _nodeId;
 
 				if (propsSet == 0) {

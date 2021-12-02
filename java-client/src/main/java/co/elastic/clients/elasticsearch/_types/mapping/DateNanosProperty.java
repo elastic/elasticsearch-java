@@ -35,10 +35,17 @@ import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.DateNanosProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/core.ts#L115-L123">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DateNanosProperty extends DocValuesPropertyBase implements PropertyVariant {
 	@Nullable
@@ -73,10 +80,8 @@ public class DateNanosProperty extends DocValuesPropertyBase implements Property
 
 	}
 
-	public static DateNanosProperty of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DateNanosProperty of(Function<Builder, ObjectBuilder<DateNanosProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -177,6 +182,7 @@ public class DateNanosProperty extends DocValuesPropertyBase implements Property
 	/**
 	 * Builder for {@link DateNanosProperty}.
 	 */
+
 	public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DateNanosProperty> {

@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataCounts
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/Job.ts#L124-L143">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataCounts implements JsonpSerializable {
 	private final long bucketCount;
@@ -82,39 +89,37 @@ public class DataCounts implements JsonpSerializable {
 
 	private DataCounts(Builder builder) {
 
-		this.bucketCount = ModelTypeHelper.requireNonNull(builder.bucketCount, this, "bucketCount");
-		this.earliestRecordTimestamp = ModelTypeHelper.requireNonNull(builder.earliestRecordTimestamp, this,
+		this.bucketCount = ApiTypeHelper.requireNonNull(builder.bucketCount, this, "bucketCount");
+		this.earliestRecordTimestamp = ApiTypeHelper.requireNonNull(builder.earliestRecordTimestamp, this,
 				"earliestRecordTimestamp");
-		this.emptyBucketCount = ModelTypeHelper.requireNonNull(builder.emptyBucketCount, this, "emptyBucketCount");
-		this.inputBytes = ModelTypeHelper.requireNonNull(builder.inputBytes, this, "inputBytes");
-		this.inputFieldCount = ModelTypeHelper.requireNonNull(builder.inputFieldCount, this, "inputFieldCount");
-		this.inputRecordCount = ModelTypeHelper.requireNonNull(builder.inputRecordCount, this, "inputRecordCount");
-		this.invalidDateCount = ModelTypeHelper.requireNonNull(builder.invalidDateCount, this, "invalidDateCount");
-		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
-		this.lastDataTime = ModelTypeHelper.requireNonNull(builder.lastDataTime, this, "lastDataTime");
-		this.latestEmptyBucketTimestamp = ModelTypeHelper.requireNonNull(builder.latestEmptyBucketTimestamp, this,
+		this.emptyBucketCount = ApiTypeHelper.requireNonNull(builder.emptyBucketCount, this, "emptyBucketCount");
+		this.inputBytes = ApiTypeHelper.requireNonNull(builder.inputBytes, this, "inputBytes");
+		this.inputFieldCount = ApiTypeHelper.requireNonNull(builder.inputFieldCount, this, "inputFieldCount");
+		this.inputRecordCount = ApiTypeHelper.requireNonNull(builder.inputRecordCount, this, "inputRecordCount");
+		this.invalidDateCount = ApiTypeHelper.requireNonNull(builder.invalidDateCount, this, "invalidDateCount");
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.lastDataTime = ApiTypeHelper.requireNonNull(builder.lastDataTime, this, "lastDataTime");
+		this.latestEmptyBucketTimestamp = ApiTypeHelper.requireNonNull(builder.latestEmptyBucketTimestamp, this,
 				"latestEmptyBucketTimestamp");
-		this.latestRecordTimestamp = ModelTypeHelper.requireNonNull(builder.latestRecordTimestamp, this,
+		this.latestRecordTimestamp = ApiTypeHelper.requireNonNull(builder.latestRecordTimestamp, this,
 				"latestRecordTimestamp");
-		this.latestSparseBucketTimestamp = ModelTypeHelper.requireNonNull(builder.latestSparseBucketTimestamp, this,
+		this.latestSparseBucketTimestamp = ApiTypeHelper.requireNonNull(builder.latestSparseBucketTimestamp, this,
 				"latestSparseBucketTimestamp");
-		this.latestBucketTimestamp = ModelTypeHelper.requireNonNull(builder.latestBucketTimestamp, this,
+		this.latestBucketTimestamp = ApiTypeHelper.requireNonNull(builder.latestBucketTimestamp, this,
 				"latestBucketTimestamp");
-		this.missingFieldCount = ModelTypeHelper.requireNonNull(builder.missingFieldCount, this, "missingFieldCount");
-		this.outOfOrderTimestampCount = ModelTypeHelper.requireNonNull(builder.outOfOrderTimestampCount, this,
+		this.missingFieldCount = ApiTypeHelper.requireNonNull(builder.missingFieldCount, this, "missingFieldCount");
+		this.outOfOrderTimestampCount = ApiTypeHelper.requireNonNull(builder.outOfOrderTimestampCount, this,
 				"outOfOrderTimestampCount");
-		this.processedFieldCount = ModelTypeHelper.requireNonNull(builder.processedFieldCount, this,
+		this.processedFieldCount = ApiTypeHelper.requireNonNull(builder.processedFieldCount, this,
 				"processedFieldCount");
-		this.processedRecordCount = ModelTypeHelper.requireNonNull(builder.processedRecordCount, this,
+		this.processedRecordCount = ApiTypeHelper.requireNonNull(builder.processedRecordCount, this,
 				"processedRecordCount");
-		this.sparseBucketCount = ModelTypeHelper.requireNonNull(builder.sparseBucketCount, this, "sparseBucketCount");
+		this.sparseBucketCount = ApiTypeHelper.requireNonNull(builder.sparseBucketCount, this, "sparseBucketCount");
 
 	}
 
-	public static DataCounts of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DataCounts of(Function<Builder, ObjectBuilder<DataCounts>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -315,6 +320,7 @@ public class DataCounts implements JsonpSerializable {
 	/**
 	 * Builder for {@link DataCounts}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataCounts> {
 		private Long bucketCount;
 

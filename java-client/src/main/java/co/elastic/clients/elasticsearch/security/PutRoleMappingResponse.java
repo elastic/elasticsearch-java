@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.put_role_mapping.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/put_role_mapping/SecurityPutRoleMappingResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutRoleMappingResponse implements JsonpSerializable {
 	@Nullable
@@ -51,14 +58,12 @@ public class PutRoleMappingResponse implements JsonpSerializable {
 	private PutRoleMappingResponse(Builder builder) {
 
 		this.created = builder.created;
-		this.roleMapping = ModelTypeHelper.requireNonNull(builder.roleMapping, this, "roleMapping");
+		this.roleMapping = ApiTypeHelper.requireNonNull(builder.roleMapping, this, "roleMapping");
 
 	}
 
-	public static PutRoleMappingResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PutRoleMappingResponse of(Function<Builder, ObjectBuilder<PutRoleMappingResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -102,6 +107,7 @@ public class PutRoleMappingResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link PutRoleMappingResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutRoleMappingResponse> {
 		@Nullable
 		private Boolean created;
@@ -127,10 +133,8 @@ public class PutRoleMappingResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code role_mapping}
 		 */
-		public final Builder roleMapping(Consumer<CreatedStatus.Builder> fn) {
-			CreatedStatus.Builder builder = new CreatedStatus.Builder();
-			fn.accept(builder);
-			return this.roleMapping(builder.build());
+		public final Builder roleMapping(Function<CreatedStatus.Builder, ObjectBuilder<CreatedStatus>> fn) {
+			return this.roleMapping(fn.apply(new CreatedStatus.Builder()).build());
 		}
 
 		/**

@@ -35,10 +35,17 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.snapshots.SnapshotsRecord
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/snapshots/types.ts#L22-L88">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SnapshotsRecord implements JsonpSerializable {
 	@Nullable
@@ -100,10 +107,8 @@ public class SnapshotsRecord implements JsonpSerializable {
 
 	}
 
-	public static SnapshotsRecord of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SnapshotsRecord of(Function<Builder, ObjectBuilder<SnapshotsRecord>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -320,6 +325,7 @@ public class SnapshotsRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link SnapshotsRecord}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SnapshotsRecord> {
 		@Nullable
 		private String id;
@@ -445,10 +451,8 @@ public class SnapshotsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code duration}
 		 */
-		public final Builder duration(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.duration(builder.build());
+		public final Builder duration(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.duration(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

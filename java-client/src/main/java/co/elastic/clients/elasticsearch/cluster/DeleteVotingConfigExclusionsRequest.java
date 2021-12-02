@@ -40,10 +40,18 @@ import java.lang.Boolean;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.delete_voting_config_exclusions.Request
+
+/**
+ * Clears cluster voting config exclusions.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/delete_voting_config_exclusions/ClusterDeleteVotingConfigExclusionsRequest.ts#L22-L40">API
+ *      specification</a>
+ */
 
 public class DeleteVotingConfigExclusionsRequest extends RequestBase {
 	@Nullable
@@ -57,10 +65,9 @@ public class DeleteVotingConfigExclusionsRequest extends RequestBase {
 
 	}
 
-	public static DeleteVotingConfigExclusionsRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DeleteVotingConfigExclusionsRequest of(
+			Function<Builder, ObjectBuilder<DeleteVotingConfigExclusionsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -83,6 +90,7 @@ public class DeleteVotingConfigExclusionsRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteVotingConfigExclusionsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase
 			implements
 				ObjectBuilder<DeleteVotingConfigExclusionsRequest> {

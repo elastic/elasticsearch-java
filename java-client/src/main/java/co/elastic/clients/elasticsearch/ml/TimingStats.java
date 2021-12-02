@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.TimingStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/DataframeAnalytics.ts#L416-L421">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TimingStats implements JsonpSerializable {
 	private final int elapsedTime;
@@ -50,15 +57,13 @@ public class TimingStats implements JsonpSerializable {
 
 	private TimingStats(Builder builder) {
 
-		this.elapsedTime = ModelTypeHelper.requireNonNull(builder.elapsedTime, this, "elapsedTime");
+		this.elapsedTime = ApiTypeHelper.requireNonNull(builder.elapsedTime, this, "elapsedTime");
 		this.iterationTime = builder.iterationTime;
 
 	}
 
-	public static TimingStats of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TimingStats of(Function<Builder, ObjectBuilder<TimingStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -107,6 +112,7 @@ public class TimingStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link TimingStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TimingStats> {
 		private Integer elapsedTime;
 

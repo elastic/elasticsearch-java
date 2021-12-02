@@ -28,16 +28,23 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.PatternTokenizer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/tokenizers.ts#L97-L102">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PatternTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
 	private final String flags;
@@ -51,16 +58,14 @@ public class PatternTokenizer extends TokenizerBase implements TokenizerDefiniti
 	private PatternTokenizer(Builder builder) {
 		super(builder);
 
-		this.flags = ModelTypeHelper.requireNonNull(builder.flags, this, "flags");
-		this.group = ModelTypeHelper.requireNonNull(builder.group, this, "group");
-		this.pattern = ModelTypeHelper.requireNonNull(builder.pattern, this, "pattern");
+		this.flags = ApiTypeHelper.requireNonNull(builder.flags, this, "flags");
+		this.group = ApiTypeHelper.requireNonNull(builder.group, this, "group");
+		this.pattern = ApiTypeHelper.requireNonNull(builder.pattern, this, "pattern");
 
 	}
 
-	public static PatternTokenizer of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PatternTokenizer of(Function<Builder, ObjectBuilder<PatternTokenizer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -112,6 +117,7 @@ public class PatternTokenizer extends TokenizerBase implements TokenizerDefiniti
 	/**
 	 * Builder for {@link PatternTokenizer}.
 	 */
+
 	public static class Builder extends TokenizerBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PatternTokenizer> {

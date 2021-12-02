@@ -28,15 +28,22 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.DecayFunction
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/compound.ts#L107-L112">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DecayFunction extends DecayFunctionBase implements FunctionScoreVariant {
 	private final String field;
@@ -47,15 +54,13 @@ public class DecayFunction extends DecayFunctionBase implements FunctionScoreVar
 
 	private DecayFunction(Builder builder) {
 		super(builder);
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
-		this.placement = ModelTypeHelper.requireNonNull(builder.placement, this, "placement");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.placement = ApiTypeHelper.requireNonNull(builder.placement, this, "placement");
 
 	}
 
-	public static DecayFunction of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DecayFunction of(Function<Builder, ObjectBuilder<DecayFunction>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -93,6 +98,7 @@ public class DecayFunction extends DecayFunctionBase implements FunctionScoreVar
 	/**
 	 * Builder for {@link DecayFunction}.
 	 */
+
 	public static class Builder extends DecayFunctionBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DecayFunction> {
@@ -119,10 +125,8 @@ public class DecayFunction extends DecayFunctionBase implements FunctionScoreVar
 		/**
 		 * Required -
 		 */
-		public final Builder placement(Consumer<DecayPlacement.Builder> fn) {
-			DecayPlacement.Builder builder = new DecayPlacement.Builder();
-			fn.accept(builder);
-			return this.placement(builder.build());
+		public final Builder placement(Function<DecayPlacement.Builder, ObjectBuilder<DecayPlacement>> fn) {
+			return this.placement(fn.apply(new DecayPlacement.Builder()).build());
 		}
 
 		@Override

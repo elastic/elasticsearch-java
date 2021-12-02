@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: slm._types.InProgress
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/slm/_types/SnapshotLifecycle.ts#L125-L130">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class InProgress implements JsonpSerializable {
 	private final String name;
@@ -53,17 +60,15 @@ public class InProgress implements JsonpSerializable {
 
 	private InProgress(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
-		this.startTimeMillis = ModelTypeHelper.requireNonNull(builder.startTimeMillis, this, "startTimeMillis");
-		this.state = ModelTypeHelper.requireNonNull(builder.state, this, "state");
-		this.uuid = ModelTypeHelper.requireNonNull(builder.uuid, this, "uuid");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.startTimeMillis = ApiTypeHelper.requireNonNull(builder.startTimeMillis, this, "startTimeMillis");
+		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
+		this.uuid = ApiTypeHelper.requireNonNull(builder.uuid, this, "uuid");
 
 	}
 
-	public static InProgress of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static InProgress of(Function<Builder, ObjectBuilder<InProgress>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -124,6 +129,7 @@ public class InProgress implements JsonpSerializable {
 	/**
 	 * Builder for {@link InProgress}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<InProgress> {
 		private String name;
 

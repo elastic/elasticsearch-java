@@ -30,19 +30,26 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security._types.User
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/_types/User.ts#L22-L29">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class User implements JsonpSerializable {
 	@Nullable
@@ -65,11 +72,15 @@ public class User implements JsonpSerializable {
 
 		this.email = builder.email;
 		this.fullName = builder.fullName;
-		this.metadata = ModelTypeHelper.unmodifiableRequired(builder.metadata, this, "metadata");
-		this.roles = ModelTypeHelper.unmodifiableRequired(builder.roles, this, "roles");
-		this.username = ModelTypeHelper.requireNonNull(builder.username, this, "username");
-		this.enabled = ModelTypeHelper.requireNonNull(builder.enabled, this, "enabled");
+		this.metadata = ApiTypeHelper.unmodifiableRequired(builder.metadata, this, "metadata");
+		this.roles = ApiTypeHelper.unmodifiableRequired(builder.roles, this, "roles");
+		this.username = ApiTypeHelper.requireNonNull(builder.username, this, "username");
+		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
 
+	}
+
+	public static User userOf(Function<Builder, ObjectBuilder<User>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -137,7 +148,7 @@ public class User implements JsonpSerializable {
 			generator.write(this.fullName);
 
 		}
-		if (ModelTypeHelper.isDefined(this.metadata)) {
+		if (ApiTypeHelper.isDefined(this.metadata)) {
 			generator.writeKey("metadata");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
@@ -148,7 +159,7 @@ public class User implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.roles)) {
+		if (ApiTypeHelper.isDefined(this.roles)) {
 			generator.writeKey("roles");
 			generator.writeStartArray();
 			for (String item0 : this.roles) {
@@ -171,6 +182,7 @@ public class User implements JsonpSerializable {
 	/**
 	 * Builder for {@link User}.
 	 */
+
 	public static class Builder extends User.AbstractBuilder<Builder> implements ObjectBuilder<User> {
 		@Override
 		protected Builder self() {
@@ -225,25 +237,41 @@ public class User implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code metadata}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>metadata</code>.
 		 */
-		public final BuilderT metadata(Map<String, JsonData> value) {
-			this.metadata = value;
+		public final BuilderT metadata(Map<String, JsonData> map) {
+			this.metadata = _mapPutAll(this.metadata, map);
+			return self();
+		}
+
+		/**
+		 * Required - API name: {@code metadata}
+		 * <p>
+		 * Adds an entry to <code>metadata</code>.
+		 */
+		public final BuilderT metadata(String key, JsonData value) {
+			this.metadata = _mapPut(this.metadata, key, value);
 			return self();
 		}
 
 		/**
 		 * Required - API name: {@code roles}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>roles</code>.
 		 */
-		public final BuilderT roles(List<String> value) {
-			this.roles = value;
+		public final BuilderT roles(List<String> list) {
+			this.roles = _listAddAll(this.roles, list);
 			return self();
 		}
 
 		/**
 		 * Required - API name: {@code roles}
+		 * <p>
+		 * Adds one or more values to <code>roles</code>.
 		 */
-		public final BuilderT roles(String... value) {
-			this.roles = Arrays.asList(value);
+		public final BuilderT roles(String value, String... values) {
+			this.roles = _listAdd(this.roles, value, values);
 			return self();
 		}
 

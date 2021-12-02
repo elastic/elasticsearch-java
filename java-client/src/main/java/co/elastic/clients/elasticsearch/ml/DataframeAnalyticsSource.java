@@ -31,21 +31,25 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsSource
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/DataframeAnalytics.ts#L38-L52">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DataframeAnalyticsSource implements JsonpSerializable {
 	private final List<String> index;
@@ -62,17 +66,15 @@ public class DataframeAnalyticsSource implements JsonpSerializable {
 
 	private DataframeAnalyticsSource(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiableRequired(builder.index, this, "index");
+		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
 		this.query = builder.query;
-		this.runtimeMappings = ModelTypeHelper.unmodifiable(builder.runtimeMappings);
+		this.runtimeMappings = ApiTypeHelper.unmodifiable(builder.runtimeMappings);
 		this.source = builder.source;
 
 	}
 
-	public static DataframeAnalyticsSource of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DataframeAnalyticsSource of(Function<Builder, ObjectBuilder<DataframeAnalyticsSource>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -134,7 +136,7 @@ public class DataframeAnalyticsSource implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.index)) {
+		if (ApiTypeHelper.isDefined(this.index)) {
 			generator.writeKey("index");
 			generator.writeStartArray();
 			for (String item0 : this.index) {
@@ -149,7 +151,7 @@ public class DataframeAnalyticsSource implements JsonpSerializable {
 			this.query.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.runtimeMappings)) {
+		if (ApiTypeHelper.isDefined(this.runtimeMappings)) {
 			generator.writeKey("runtime_mappings");
 			generator.writeStartObject();
 			for (Map.Entry<String, RuntimeField> item0 : this.runtimeMappings.entrySet()) {
@@ -173,6 +175,7 @@ public class DataframeAnalyticsSource implements JsonpSerializable {
 	/**
 	 * Builder for {@link DataframeAnalyticsSource}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframeAnalyticsSource> {
 		private List<String> index;
 
@@ -192,9 +195,11 @@ public class DataframeAnalyticsSource implements JsonpSerializable {
 		 * document that is indexed last appears in the destination index.
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 */
-		public final Builder index(List<String> value) {
-			this.index = value;
+		public final Builder index(List<String> list) {
+			this.index = _listAddAll(this.index, list);
 			return this;
 		}
 
@@ -205,9 +210,11 @@ public class DataframeAnalyticsSource implements JsonpSerializable {
 		 * document that is indexed last appears in the destination index.
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds one or more values to <code>index</code>.
 		 */
-		public final Builder index(String... value) {
-			this.index = Arrays.asList(value);
+		public final Builder index(String value, String... values) {
+			this.index = _listAdd(this.index, value, values);
 			return this;
 		}
 
@@ -234,10 +241,8 @@ public class DataframeAnalyticsSource implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code query}
 		 */
-		public final Builder query(Consumer<Query.Builder> fn) {
-			Query.Builder builder = new Query.Builder();
-			fn.accept(builder);
-			return this.query(builder.build());
+		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
@@ -245,15 +250,38 @@ public class DataframeAnalyticsSource implements JsonpSerializable {
 		 * destination index.
 		 * <p>
 		 * API name: {@code runtime_mappings}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>runtimeMappings</code>.
 		 */
-		public final Builder runtimeMappings(@Nullable Map<String, RuntimeField> value) {
-			this.runtimeMappings = value;
+		public final Builder runtimeMappings(Map<String, RuntimeField> map) {
+			this.runtimeMappings = _mapPutAll(this.runtimeMappings, map);
 			return this;
 		}
 
-		public final Builder runtimeMappings(
-				Function<MapBuilder<String, RuntimeField, RuntimeField.Builder>, ObjectBuilder<Map<String, RuntimeField>>> fn) {
-			return runtimeMappings(fn.apply(new MapBuilder<>(RuntimeField.Builder::new)).build());
+		/**
+		 * Definitions of runtime fields that will become part of the mapping of the
+		 * destination index.
+		 * <p>
+		 * API name: {@code runtime_mappings}
+		 * <p>
+		 * Adds an entry to <code>runtimeMappings</code>.
+		 */
+		public final Builder runtimeMappings(String key, RuntimeField value) {
+			this.runtimeMappings = _mapPut(this.runtimeMappings, key, value);
+			return this;
+		}
+
+		/**
+		 * Definitions of runtime fields that will become part of the mapping of the
+		 * destination index.
+		 * <p>
+		 * API name: {@code runtime_mappings}
+		 * <p>
+		 * Adds an entry to <code>runtimeMappings</code> using a builder lambda.
+		 */
+		public final Builder runtimeMappings(String key,
+				Function<RuntimeField.Builder, ObjectBuilder<RuntimeField>> fn) {
+			return runtimeMappings(key, fn.apply(new RuntimeField.Builder()).build());
 		}
 
 		/**
@@ -275,10 +303,9 @@ public class DataframeAnalyticsSource implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _source}
 		 */
-		public final Builder source(Consumer<DataframeAnalysisAnalyzedFields.Builder> fn) {
-			DataframeAnalysisAnalyzedFields.Builder builder = new DataframeAnalysisAnalyzedFields.Builder();
-			fn.accept(builder);
-			return this.source(builder.build());
+		public final Builder source(
+				Function<DataframeAnalysisAnalyzedFields.Builder, ObjectBuilder<DataframeAnalysisAnalyzedFields>> fn) {
+			return this.source(fn.apply(new DataframeAnalysisAnalyzedFields.Builder()).build());
 		}
 
 		/**

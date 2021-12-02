@@ -29,19 +29,25 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm.remove_policy.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ilm/remove_policy/RemovePolicyResponse.ts#L22-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RemovePolicyResponse implements JsonpSerializable {
 	private final List<String> failedIndexes;
@@ -52,15 +58,13 @@ public class RemovePolicyResponse implements JsonpSerializable {
 
 	private RemovePolicyResponse(Builder builder) {
 
-		this.failedIndexes = ModelTypeHelper.unmodifiableRequired(builder.failedIndexes, this, "failedIndexes");
-		this.hasFailures = ModelTypeHelper.requireNonNull(builder.hasFailures, this, "hasFailures");
+		this.failedIndexes = ApiTypeHelper.unmodifiableRequired(builder.failedIndexes, this, "failedIndexes");
+		this.hasFailures = ApiTypeHelper.requireNonNull(builder.hasFailures, this, "hasFailures");
 
 	}
 
-	public static RemovePolicyResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RemovePolicyResponse of(Function<Builder, ObjectBuilder<RemovePolicyResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -88,7 +92,7 @@ public class RemovePolicyResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.failedIndexes)) {
+		if (ApiTypeHelper.isDefined(this.failedIndexes)) {
 			generator.writeKey("failed_indexes");
 			generator.writeStartArray();
 			for (String item0 : this.failedIndexes) {
@@ -108,6 +112,7 @@ public class RemovePolicyResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link RemovePolicyResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RemovePolicyResponse> {
 		private List<String> failedIndexes;
 
@@ -115,17 +120,21 @@ public class RemovePolicyResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code failed_indexes}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>failedIndexes</code>.
 		 */
-		public final Builder failedIndexes(List<String> value) {
-			this.failedIndexes = value;
+		public final Builder failedIndexes(List<String> list) {
+			this.failedIndexes = _listAddAll(this.failedIndexes, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code failed_indexes}
+		 * <p>
+		 * Adds one or more values to <code>failedIndexes</code>.
 		 */
-		public final Builder failedIndexes(String... value) {
-			this.failedIndexes = Arrays.asList(value);
+		public final Builder failedIndexes(String value, String... values) {
+			this.failedIndexes = _listAdd(this.failedIndexes, value, values);
 			return this;
 		}
 

@@ -33,10 +33,17 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.StandardNumberProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/core.ts#L155-L159">API
+ *      specification</a>
+ */
 
 public abstract class StandardNumberProperty extends NumberPropertyBase {
 	@Nullable
@@ -134,10 +141,8 @@ public abstract class StandardNumberProperty extends NumberPropertyBase {
 		/**
 		 * API name: {@code script}
 		 */
-		public final BuilderT script(Consumer<Script.Builder> fn) {
-			Script.Builder builder = new Script.Builder();
-			fn.accept(builder);
-			return this.script(builder.build());
+		public final BuilderT script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
 		/**

@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.rollover.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/rollover/IndicesRolloverResponse.ts#L23-L32">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RolloverResponse extends AcknowledgedResponseBase {
 	private final Map<String, Boolean> conditions;
@@ -59,20 +66,17 @@ public class RolloverResponse extends AcknowledgedResponseBase {
 	private RolloverResponse(Builder builder) {
 		super(builder);
 
-		this.conditions = ModelTypeHelper.unmodifiableRequired(builder.conditions, this, "conditions");
-		this.dryRun = ModelTypeHelper.requireNonNull(builder.dryRun, this, "dryRun");
-		this.newIndex = ModelTypeHelper.requireNonNull(builder.newIndex, this, "newIndex");
-		this.oldIndex = ModelTypeHelper.requireNonNull(builder.oldIndex, this, "oldIndex");
-		this.rolledOver = ModelTypeHelper.requireNonNull(builder.rolledOver, this, "rolledOver");
-		this.shardsAcknowledged = ModelTypeHelper.requireNonNull(builder.shardsAcknowledged, this,
-				"shardsAcknowledged");
+		this.conditions = ApiTypeHelper.unmodifiableRequired(builder.conditions, this, "conditions");
+		this.dryRun = ApiTypeHelper.requireNonNull(builder.dryRun, this, "dryRun");
+		this.newIndex = ApiTypeHelper.requireNonNull(builder.newIndex, this, "newIndex");
+		this.oldIndex = ApiTypeHelper.requireNonNull(builder.oldIndex, this, "oldIndex");
+		this.rolledOver = ApiTypeHelper.requireNonNull(builder.rolledOver, this, "rolledOver");
+		this.shardsAcknowledged = ApiTypeHelper.requireNonNull(builder.shardsAcknowledged, this, "shardsAcknowledged");
 
 	}
 
-	public static RolloverResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RolloverResponse of(Function<Builder, ObjectBuilder<RolloverResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -120,7 +124,7 @@ public class RolloverResponse extends AcknowledgedResponseBase {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (ModelTypeHelper.isDefined(this.conditions)) {
+		if (ApiTypeHelper.isDefined(this.conditions)) {
 			generator.writeKey("conditions");
 			generator.writeStartObject();
 			for (Map.Entry<String, Boolean> item0 : this.conditions.entrySet()) {
@@ -153,6 +157,7 @@ public class RolloverResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link RolloverResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<RolloverResponse> {
@@ -170,9 +175,21 @@ public class RolloverResponse extends AcknowledgedResponseBase {
 
 		/**
 		 * Required - API name: {@code conditions}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>conditions</code>.
 		 */
-		public final Builder conditions(Map<String, Boolean> value) {
-			this.conditions = value;
+		public final Builder conditions(Map<String, Boolean> map) {
+			this.conditions = _mapPutAll(this.conditions, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code conditions}
+		 * <p>
+		 * Adds an entry to <code>conditions</code>.
+		 */
+		public final Builder conditions(String key, Boolean value) {
+			this.conditions = _mapPut(this.conditions, key, value);
 			return this;
 		}
 

@@ -35,24 +35,29 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.update_job.Request
+
+/**
+ * Updates certain properties of an anomaly detection job.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/update_job/MlUpdateJobRequest.ts#L33-L137">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -102,13 +107,13 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 		this.allowLazyOpen = builder.allowLazyOpen;
 		this.analysisLimits = builder.analysisLimits;
 		this.backgroundPersistInterval = builder.backgroundPersistInterval;
-		this.categorizationFilters = ModelTypeHelper.unmodifiable(builder.categorizationFilters);
-		this.customSettings = ModelTypeHelper.unmodifiable(builder.customSettings);
+		this.categorizationFilters = ApiTypeHelper.unmodifiable(builder.categorizationFilters);
+		this.customSettings = ApiTypeHelper.unmodifiable(builder.customSettings);
 		this.dailyModelSnapshotRetentionAfterDays = builder.dailyModelSnapshotRetentionAfterDays;
 		this.description = builder.description;
-		this.detectors = ModelTypeHelper.unmodifiable(builder.detectors);
-		this.groups = ModelTypeHelper.unmodifiable(builder.groups);
-		this.jobId = ModelTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.detectors = ApiTypeHelper.unmodifiable(builder.detectors);
+		this.groups = ApiTypeHelper.unmodifiable(builder.groups);
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.modelPlotConfig = builder.modelPlotConfig;
 		this.modelSnapshotRetentionDays = builder.modelSnapshotRetentionDays;
 		this.perPartitionCategorization = builder.perPartitionCategorization;
@@ -117,10 +122,8 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 
 	}
 
-	public static UpdateJobRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static UpdateJobRequest of(Function<Builder, ObjectBuilder<UpdateJobRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -319,7 +322,7 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 			this.backgroundPersistInterval.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.categorizationFilters)) {
+		if (ApiTypeHelper.isDefined(this.categorizationFilters)) {
 			generator.writeKey("categorization_filters");
 			generator.writeStartArray();
 			for (String item0 : this.categorizationFilters) {
@@ -329,7 +332,7 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.customSettings)) {
+		if (ApiTypeHelper.isDefined(this.customSettings)) {
 			generator.writeKey("custom_settings");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.customSettings.entrySet()) {
@@ -350,7 +353,7 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 			generator.write(this.description);
 
 		}
-		if (ModelTypeHelper.isDefined(this.detectors)) {
+		if (ApiTypeHelper.isDefined(this.detectors)) {
 			generator.writeKey("detectors");
 			generator.writeStartArray();
 			for (Detector item0 : this.detectors) {
@@ -360,7 +363,7 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.groups)) {
+		if (ApiTypeHelper.isDefined(this.groups)) {
 			generator.writeKey("groups");
 			generator.writeStartArray();
 			for (String item0 : this.groups) {
@@ -403,6 +406,7 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Builder for {@link UpdateJobRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UpdateJobRequest> {
 		@Nullable
 		private Boolean allowLazyOpen;
@@ -477,10 +481,9 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code analysis_limits}
 		 */
-		public final Builder analysisLimits(Consumer<AnalysisMemoryLimit.Builder> fn) {
-			AnalysisMemoryLimit.Builder builder = new AnalysisMemoryLimit.Builder();
-			fn.accept(builder);
-			return this.analysisLimits(builder.build());
+		public final Builder analysisLimits(
+				Function<AnalysisMemoryLimit.Builder, ObjectBuilder<AnalysisMemoryLimit>> fn) {
+			return this.analysisLimits(fn.apply(new AnalysisMemoryLimit.Builder()).build());
 		}
 
 		/**
@@ -510,25 +513,27 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code background_persist_interval}
 		 */
-		public final Builder backgroundPersistInterval(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.backgroundPersistInterval(builder.build());
+		public final Builder backgroundPersistInterval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.backgroundPersistInterval(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code categorization_filters}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>categorizationFilters</code>.
 		 */
-		public final Builder categorizationFilters(@Nullable List<String> value) {
-			this.categorizationFilters = value;
+		public final Builder categorizationFilters(List<String> list) {
+			this.categorizationFilters = _listAddAll(this.categorizationFilters, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code categorization_filters}
+		 * <p>
+		 * Adds one or more values to <code>categorizationFilters</code>.
 		 */
-		public final Builder categorizationFilters(String... value) {
-			this.categorizationFilters = Arrays.asList(value);
+		public final Builder categorizationFilters(String value, String... values) {
+			this.categorizationFilters = _listAdd(this.categorizationFilters, value, values);
 			return this;
 		}
 
@@ -538,9 +543,25 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 		 * to machine learning results.
 		 * <p>
 		 * API name: {@code custom_settings}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>customSettings</code>.
 		 */
-		public final Builder customSettings(@Nullable Map<String, JsonData> value) {
-			this.customSettings = value;
+		public final Builder customSettings(Map<String, JsonData> map) {
+			this.customSettings = _mapPutAll(this.customSettings, map);
+			return this;
+		}
+
+		/**
+		 * Advanced configuration option. Contains custom meta data about the job. For
+		 * example, it can contain custom URL information as shown in Adding custom URLs
+		 * to machine learning results.
+		 * <p>
+		 * API name: {@code custom_settings}
+		 * <p>
+		 * Adds an entry to <code>customSettings</code>.
+		 */
+		public final Builder customSettings(String key, JsonData value) {
+			this.customSettings = _mapPut(this.customSettings, key, value);
 			return this;
 		}
 
@@ -574,9 +595,11 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 		 * An array of detector update objects.
 		 * <p>
 		 * API name: {@code detectors}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>detectors</code>.
 		 */
-		public final Builder detectors(@Nullable List<Detector> value) {
-			this.detectors = value;
+		public final Builder detectors(List<Detector> list) {
+			this.detectors = _listAddAll(this.detectors, list);
 			return this;
 		}
 
@@ -584,9 +607,11 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 		 * An array of detector update objects.
 		 * <p>
 		 * API name: {@code detectors}
+		 * <p>
+		 * Adds one or more values to <code>detectors</code>.
 		 */
-		public final Builder detectors(Detector... value) {
-			this.detectors = Arrays.asList(value);
+		public final Builder detectors(Detector value, Detector... values) {
+			this.detectors = _listAdd(this.detectors, value, values);
 			return this;
 		}
 
@@ -594,19 +619,22 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 		 * An array of detector update objects.
 		 * <p>
 		 * API name: {@code detectors}
+		 * <p>
+		 * Adds a value to <code>detectors</code> using a builder lambda.
 		 */
-		public final Builder detectors(
-				Function<ListBuilder<Detector, Detector.Builder>, ObjectBuilder<List<Detector>>> fn) {
-			return detectors(fn.apply(new ListBuilder<>(Detector.Builder::new)).build());
+		public final Builder detectors(Function<Detector.Builder, ObjectBuilder<Detector>> fn) {
+			return detectors(fn.apply(new Detector.Builder()).build());
 		}
 
 		/**
 		 * A list of job groups. A job can belong to no groups or many.
 		 * <p>
 		 * API name: {@code groups}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>groups</code>.
 		 */
-		public final Builder groups(@Nullable List<String> value) {
-			this.groups = value;
+		public final Builder groups(List<String> list) {
+			this.groups = _listAddAll(this.groups, list);
 			return this;
 		}
 
@@ -614,9 +642,11 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 		 * A list of job groups. A job can belong to no groups or many.
 		 * <p>
 		 * API name: {@code groups}
+		 * <p>
+		 * Adds one or more values to <code>groups</code>.
 		 */
-		public final Builder groups(String... value) {
-			this.groups = Arrays.asList(value);
+		public final Builder groups(String value, String... values) {
+			this.groups = _listAdd(this.groups, value, values);
 			return this;
 		}
 
@@ -641,10 +671,8 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code model_plot_config}
 		 */
-		public final Builder modelPlotConfig(Consumer<ModelPlotConfig.Builder> fn) {
-			ModelPlotConfig.Builder builder = new ModelPlotConfig.Builder();
-			fn.accept(builder);
-			return this.modelPlotConfig(builder.build());
+		public final Builder modelPlotConfig(Function<ModelPlotConfig.Builder, ObjectBuilder<ModelPlotConfig>> fn) {
+			return this.modelPlotConfig(fn.apply(new ModelPlotConfig.Builder()).build());
 		}
 
 		/**
@@ -675,10 +703,9 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code per_partition_categorization}
 		 */
-		public final Builder perPartitionCategorization(Consumer<PerPartitionCategorization.Builder> fn) {
-			PerPartitionCategorization.Builder builder = new PerPartitionCategorization.Builder();
-			fn.accept(builder);
-			return this.perPartitionCategorization(builder.build());
+		public final Builder perPartitionCategorization(
+				Function<PerPartitionCategorization.Builder, ObjectBuilder<PerPartitionCategorization>> fn) {
+			return this.perPartitionCategorization(fn.apply(new PerPartitionCategorization.Builder()).build());
 		}
 
 		/**

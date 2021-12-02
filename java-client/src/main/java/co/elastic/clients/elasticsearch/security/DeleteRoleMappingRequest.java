@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,10 +40,18 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.delete_role_mapping.Request
+
+/**
+ * Removes role mappings.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/delete_role_mapping/SecurityDeleteRoleMappingRequest.ts#L23-L35">API
+ *      specification</a>
+ */
 
 public class DeleteRoleMappingRequest extends RequestBase {
 	private final String name;
@@ -55,15 +63,13 @@ public class DeleteRoleMappingRequest extends RequestBase {
 
 	private DeleteRoleMappingRequest(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.refresh = builder.refresh;
 
 	}
 
-	public static DeleteRoleMappingRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DeleteRoleMappingRequest of(Function<Builder, ObjectBuilder<DeleteRoleMappingRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -93,6 +99,7 @@ public class DeleteRoleMappingRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteRoleMappingRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteRoleMappingRequest> {
 		private String name;
 

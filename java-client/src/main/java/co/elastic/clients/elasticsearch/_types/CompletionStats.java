@@ -29,8 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,11 +37,17 @@ import java.lang.Long;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.CompletionStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Stats.ts#L52-L56">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CompletionStats implements JsonpSerializable {
 	private final long sizeInBytes;
@@ -56,16 +61,14 @@ public class CompletionStats implements JsonpSerializable {
 
 	private CompletionStats(Builder builder) {
 
-		this.sizeInBytes = ModelTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
+		this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
 		this.size = builder.size;
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 
 	}
 
-	public static CompletionStats of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CompletionStats of(Function<Builder, ObjectBuilder<CompletionStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -109,7 +112,7 @@ public class CompletionStats implements JsonpSerializable {
 			generator.write(this.size);
 
 		}
-		if (ModelTypeHelper.isDefined(this.fields)) {
+		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartObject();
 			for (Map.Entry<String, FieldSizeUsage> item0 : this.fields.entrySet()) {
@@ -128,6 +131,7 @@ public class CompletionStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link CompletionStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CompletionStats> {
 		private Long sizeInBytes;
 
@@ -155,15 +159,31 @@ public class CompletionStats implements JsonpSerializable {
 
 		/**
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>fields</code>.
 		 */
-		public final Builder fields(@Nullable Map<String, FieldSizeUsage> value) {
-			this.fields = value;
+		public final Builder fields(Map<String, FieldSizeUsage> map) {
+			this.fields = _mapPutAll(this.fields, map);
 			return this;
 		}
 
-		public final Builder fields(
-				Function<MapBuilder<String, FieldSizeUsage, FieldSizeUsage.Builder>, ObjectBuilder<Map<String, FieldSizeUsage>>> fn) {
-			return fields(fn.apply(new MapBuilder<>(FieldSizeUsage.Builder::new)).build());
+		/**
+		 * API name: {@code fields}
+		 * <p>
+		 * Adds an entry to <code>fields</code>.
+		 */
+		public final Builder fields(String key, FieldSizeUsage value) {
+			this.fields = _mapPut(this.fields, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code fields}
+		 * <p>
+		 * Adds an entry to <code>fields</code> using a builder lambda.
+		 */
+		public final Builder fields(String key, Function<FieldSizeUsage.Builder, ObjectBuilder<FieldSizeUsage>> fn) {
+			return fields(key, fn.apply(new FieldSizeUsage.Builder()).build());
 		}
 
 		/**

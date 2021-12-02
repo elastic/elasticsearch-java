@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.SecurityRolesDls
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L263-L265">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SecurityRolesDls implements JsonpSerializable {
 	private final SecurityRolesDlsBitSetCache bitSetCache;
@@ -46,14 +53,12 @@ public class SecurityRolesDls implements JsonpSerializable {
 
 	private SecurityRolesDls(Builder builder) {
 
-		this.bitSetCache = ModelTypeHelper.requireNonNull(builder.bitSetCache, this, "bitSetCache");
+		this.bitSetCache = ApiTypeHelper.requireNonNull(builder.bitSetCache, this, "bitSetCache");
 
 	}
 
-	public static SecurityRolesDls of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SecurityRolesDls of(Function<Builder, ObjectBuilder<SecurityRolesDls>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -84,6 +89,7 @@ public class SecurityRolesDls implements JsonpSerializable {
 	/**
 	 * Builder for {@link SecurityRolesDls}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SecurityRolesDls> {
 		private SecurityRolesDlsBitSetCache bitSetCache;
 
@@ -98,10 +104,9 @@ public class SecurityRolesDls implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code bit_set_cache}
 		 */
-		public final Builder bitSetCache(Consumer<SecurityRolesDlsBitSetCache.Builder> fn) {
-			SecurityRolesDlsBitSetCache.Builder builder = new SecurityRolesDlsBitSetCache.Builder();
-			fn.accept(builder);
-			return this.bitSetCache(builder.build());
+		public final Builder bitSetCache(
+				Function<SecurityRolesDlsBitSetCache.Builder, ObjectBuilder<SecurityRolesDlsBitSetCache>> fn) {
+			return this.bitSetCache(fn.apply(new SecurityRolesDlsBitSetCache.Builder()).build());
 		}
 
 		/**

@@ -28,19 +28,25 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.AttachmentProcessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/_types/Processors.ts#L94-L102">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AttachmentProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
@@ -67,20 +73,18 @@ public class AttachmentProcessor extends ProcessorBase implements ProcessorVaria
 	private AttachmentProcessor(Builder builder) {
 		super(builder);
 
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.ignoreMissing = builder.ignoreMissing;
 		this.indexedChars = builder.indexedChars;
 		this.indexedCharsField = builder.indexedCharsField;
-		this.properties = ModelTypeHelper.unmodifiable(builder.properties);
+		this.properties = ApiTypeHelper.unmodifiable(builder.properties);
 		this.targetField = builder.targetField;
 		this.resourceName = builder.resourceName;
 
 	}
 
-	public static AttachmentProcessor of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static AttachmentProcessor of(Function<Builder, ObjectBuilder<AttachmentProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -166,7 +170,7 @@ public class AttachmentProcessor extends ProcessorBase implements ProcessorVaria
 			generator.write(this.indexedCharsField);
 
 		}
-		if (ModelTypeHelper.isDefined(this.properties)) {
+		if (ApiTypeHelper.isDefined(this.properties)) {
 			generator.writeKey("properties");
 			generator.writeStartArray();
 			for (String item0 : this.properties) {
@@ -194,6 +198,7 @@ public class AttachmentProcessor extends ProcessorBase implements ProcessorVaria
 	/**
 	 * Builder for {@link AttachmentProcessor}.
 	 */
+
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<AttachmentProcessor> {
@@ -251,17 +256,21 @@ public class AttachmentProcessor extends ProcessorBase implements ProcessorVaria
 
 		/**
 		 * API name: {@code properties}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>properties</code>.
 		 */
-		public final Builder properties(@Nullable List<String> value) {
-			this.properties = value;
+		public final Builder properties(List<String> list) {
+			this.properties = _listAddAll(this.properties, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code properties}
+		 * <p>
+		 * Adds one or more values to <code>properties</code>.
 		 */
-		public final Builder properties(String... value) {
-			this.properties = Arrays.asList(value);
+		public final Builder properties(String value, String... values) {
+			this.properties = _listAdd(this.properties, value, values);
 			return this;
 		}
 

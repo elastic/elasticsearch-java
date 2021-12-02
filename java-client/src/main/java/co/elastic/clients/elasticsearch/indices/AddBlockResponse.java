@@ -30,19 +30,23 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.add_block.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/add_block/IndicesAddBlockResponse.ts#L23-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class AddBlockResponse extends AcknowledgedResponseBase {
 	private final boolean shardsAcknowledged;
@@ -54,16 +58,13 @@ public class AddBlockResponse extends AcknowledgedResponseBase {
 	private AddBlockResponse(Builder builder) {
 		super(builder);
 
-		this.shardsAcknowledged = ModelTypeHelper.requireNonNull(builder.shardsAcknowledged, this,
-				"shardsAcknowledged");
-		this.indices = ModelTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
+		this.shardsAcknowledged = ApiTypeHelper.requireNonNull(builder.shardsAcknowledged, this, "shardsAcknowledged");
+		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
 
 	}
 
-	public static AddBlockResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static AddBlockResponse of(Function<Builder, ObjectBuilder<AddBlockResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -86,7 +87,7 @@ public class AddBlockResponse extends AcknowledgedResponseBase {
 		generator.writeKey("shards_acknowledged");
 		generator.write(this.shardsAcknowledged);
 
-		if (ModelTypeHelper.isDefined(this.indices)) {
+		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartArray();
 			for (IndicesBlockStatus item0 : this.indices) {
@@ -104,6 +105,7 @@ public class AddBlockResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link AddBlockResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<AddBlockResponse> {
@@ -121,26 +123,31 @@ public class AddBlockResponse extends AcknowledgedResponseBase {
 
 		/**
 		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 */
-		public final Builder indices(List<IndicesBlockStatus> value) {
-			this.indices = value;
+		public final Builder indices(List<IndicesBlockStatus> list) {
+			this.indices = _listAddAll(this.indices, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds one or more values to <code>indices</code>.
 		 */
-		public final Builder indices(IndicesBlockStatus... value) {
-			this.indices = Arrays.asList(value);
+		public final Builder indices(IndicesBlockStatus value, IndicesBlockStatus... values) {
+			this.indices = _listAdd(this.indices, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds a value to <code>indices</code> using a builder lambda.
 		 */
-		public final Builder indices(
-				Function<ListBuilder<IndicesBlockStatus, IndicesBlockStatus.Builder>, ObjectBuilder<List<IndicesBlockStatus>>> fn) {
-			return indices(fn.apply(new ListBuilder<>(IndicesBlockStatus.Builder::new)).build());
+		public final Builder indices(Function<IndicesBlockStatus.Builder, ObjectBuilder<IndicesBlockStatus>> fn) {
+			return indices(fn.apply(new IndicesBlockStatus.Builder()).build());
 		}
 
 		@Override

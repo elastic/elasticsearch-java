@@ -33,20 +33,27 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.invalidate_api_key.Request
+
+/**
+ * Invalidates one or more API keys.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/invalidate_api_key/SecurityInvalidateApiKeyRequest.ts#L23-L37">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class InvalidateApiKeyRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -71,7 +78,7 @@ public class InvalidateApiKeyRequest extends RequestBase implements JsonpSeriali
 	private InvalidateApiKeyRequest(Builder builder) {
 
 		this.id = builder.id;
-		this.ids = ModelTypeHelper.unmodifiable(builder.ids);
+		this.ids = ApiTypeHelper.unmodifiable(builder.ids);
 		this.name = builder.name;
 		this.owner = builder.owner;
 		this.realmName = builder.realmName;
@@ -79,10 +86,8 @@ public class InvalidateApiKeyRequest extends RequestBase implements JsonpSeriali
 
 	}
 
-	public static InvalidateApiKeyRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static InvalidateApiKeyRequest of(Function<Builder, ObjectBuilder<InvalidateApiKeyRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -148,7 +153,7 @@ public class InvalidateApiKeyRequest extends RequestBase implements JsonpSeriali
 			generator.write(this.id);
 
 		}
-		if (ModelTypeHelper.isDefined(this.ids)) {
+		if (ApiTypeHelper.isDefined(this.ids)) {
 			generator.writeKey("ids");
 			generator.writeStartArray();
 			for (String item0 : this.ids) {
@@ -186,6 +191,7 @@ public class InvalidateApiKeyRequest extends RequestBase implements JsonpSeriali
 	/**
 	 * Builder for {@link InvalidateApiKeyRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<InvalidateApiKeyRequest> {
 		@Nullable
 		private String id;
@@ -215,17 +221,21 @@ public class InvalidateApiKeyRequest extends RequestBase implements JsonpSeriali
 
 		/**
 		 * API name: {@code ids}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>ids</code>.
 		 */
-		public final Builder ids(@Nullable List<String> value) {
-			this.ids = value;
+		public final Builder ids(List<String> list) {
+			this.ids = _listAddAll(this.ids, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code ids}
+		 * <p>
+		 * Adds one or more values to <code>ids</code>.
 		 */
-		public final Builder ids(String... value) {
-			this.ids = Arrays.asList(value);
+		public final Builder ids(String value, String... values) {
+			this.ids = _listAdd(this.ids, value, values);
 			return this;
 		}
 

@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: xpack.usage.MlInferenceTrainedModelsCount
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L202-L208">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MlInferenceTrainedModelsCount implements JsonpSerializable {
 	private final long total;
@@ -54,18 +61,16 @@ public class MlInferenceTrainedModelsCount implements JsonpSerializable {
 
 	private MlInferenceTrainedModelsCount(Builder builder) {
 
-		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
-		this.prepackaged = ModelTypeHelper.requireNonNull(builder.prepackaged, this, "prepackaged");
-		this.other = ModelTypeHelper.requireNonNull(builder.other, this, "other");
-		this.regression = ModelTypeHelper.requireNonNull(builder.regression, this, "regression");
-		this.classification = ModelTypeHelper.requireNonNull(builder.classification, this, "classification");
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+		this.prepackaged = ApiTypeHelper.requireNonNull(builder.prepackaged, this, "prepackaged");
+		this.other = ApiTypeHelper.requireNonNull(builder.other, this, "other");
+		this.regression = ApiTypeHelper.requireNonNull(builder.regression, this, "regression");
+		this.classification = ApiTypeHelper.requireNonNull(builder.classification, this, "classification");
 
 	}
 
-	public static MlInferenceTrainedModelsCount of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static MlInferenceTrainedModelsCount of(Function<Builder, ObjectBuilder<MlInferenceTrainedModelsCount>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -136,6 +141,7 @@ public class MlInferenceTrainedModelsCount implements JsonpSerializable {
 	/**
 	 * Builder for {@link MlInferenceTrainedModelsCount}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MlInferenceTrainedModelsCount> {
 		private Long total;
 

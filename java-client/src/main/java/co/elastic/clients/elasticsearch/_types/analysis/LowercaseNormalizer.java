@@ -33,9 +33,16 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: _types.analysis.LowercaseNormalizer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/normalizers.ts#L26-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class LowercaseNormalizer implements NormalizerVariant, JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
@@ -44,10 +51,8 @@ public class LowercaseNormalizer implements NormalizerVariant, JsonpSerializable
 
 	}
 
-	public static LowercaseNormalizer of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static LowercaseNormalizer of(Function<Builder, ObjectBuilder<LowercaseNormalizer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -78,6 +83,7 @@ public class LowercaseNormalizer implements NormalizerVariant, JsonpSerializable
 	/**
 	 * Builder for {@link LowercaseNormalizer}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<LowercaseNormalizer> {
 
 		/**

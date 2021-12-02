@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,10 +38,17 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.PhraseSuggestCollate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/suggester.ts#L149-L153">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PhraseSuggestCollate implements JsonpSerializable {
 	private final Map<String, JsonData> params;
@@ -55,16 +62,14 @@ public class PhraseSuggestCollate implements JsonpSerializable {
 
 	private PhraseSuggestCollate(Builder builder) {
 
-		this.params = ModelTypeHelper.unmodifiable(builder.params);
+		this.params = ApiTypeHelper.unmodifiable(builder.params);
 		this.prune = builder.prune;
-		this.query = ModelTypeHelper.requireNonNull(builder.query, this, "query");
+		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 
 	}
 
-	public static PhraseSuggestCollate of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PhraseSuggestCollate of(Function<Builder, ObjectBuilder<PhraseSuggestCollate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -100,7 +105,7 @@ public class PhraseSuggestCollate implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.params)) {
+		if (ApiTypeHelper.isDefined(this.params)) {
 			generator.writeKey("params");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.params.entrySet()) {
@@ -126,6 +131,7 @@ public class PhraseSuggestCollate implements JsonpSerializable {
 	/**
 	 * Builder for {@link PhraseSuggestCollate}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PhraseSuggestCollate> {
 		@Nullable
 		private Map<String, JsonData> params;
@@ -137,9 +143,21 @@ public class PhraseSuggestCollate implements JsonpSerializable {
 
 		/**
 		 * API name: {@code params}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>params</code>.
 		 */
-		public final Builder params(@Nullable Map<String, JsonData> value) {
-			this.params = value;
+		public final Builder params(Map<String, JsonData> map) {
+			this.params = _mapPutAll(this.params, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code params}
+		 * <p>
+		 * Adds an entry to <code>params</code>.
+		 */
+		public final Builder params(String key, JsonData value) {
+			this.params = _mapPut(this.params, key, value);
 			return this;
 		}
 
@@ -162,10 +180,9 @@ public class PhraseSuggestCollate implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code query}
 		 */
-		public final Builder query(Consumer<PhraseSuggestCollateQuery.Builder> fn) {
-			PhraseSuggestCollateQuery.Builder builder = new PhraseSuggestCollateQuery.Builder();
-			fn.accept(builder);
-			return this.query(builder.build());
+		public final Builder query(
+				Function<PhraseSuggestCollateQuery.Builder, ObjectBuilder<PhraseSuggestCollateQuery>> fn) {
+			return this.query(fn.apply(new PhraseSuggestCollateQuery.Builder()).build());
 		}
 
 		/**

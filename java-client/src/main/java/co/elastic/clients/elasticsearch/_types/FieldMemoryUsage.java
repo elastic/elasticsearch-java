@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.FieldMemoryUsage
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Stats.ts#L75-L78">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FieldMemoryUsage implements JsonpSerializable {
 	@Nullable
@@ -52,14 +59,12 @@ public class FieldMemoryUsage implements JsonpSerializable {
 	private FieldMemoryUsage(Builder builder) {
 
 		this.memorySize = builder.memorySize;
-		this.memorySizeInBytes = ModelTypeHelper.requireNonNull(builder.memorySizeInBytes, this, "memorySizeInBytes");
+		this.memorySizeInBytes = ApiTypeHelper.requireNonNull(builder.memorySizeInBytes, this, "memorySizeInBytes");
 
 	}
 
-	public static FieldMemoryUsage of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static FieldMemoryUsage of(Function<Builder, ObjectBuilder<FieldMemoryUsage>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -103,6 +108,7 @@ public class FieldMemoryUsage implements JsonpSerializable {
 	/**
 	 * Builder for {@link FieldMemoryUsage}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldMemoryUsage> {
 		@Nullable
 		private String memorySize;

@@ -30,9 +30,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: ingest._types.DropProcessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/_types/Processors.ts#L198-L198">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class DropProcessor extends ProcessorBase implements ProcessorVariant {
 	// ---------------------------------------------------------------------------------------------
@@ -42,10 +49,8 @@ public class DropProcessor extends ProcessorBase implements ProcessorVariant {
 
 	}
 
-	public static DropProcessor of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static DropProcessor of(Function<Builder, ObjectBuilder<DropProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,6 +66,7 @@ public class DropProcessor extends ProcessorBase implements ProcessorVariant {
 	/**
 	 * Builder for {@link DropProcessor}.
 	 */
+
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder> implements ObjectBuilder<DropProcessor> {
 		@Override
 		protected Builder self() {

@@ -32,19 +32,25 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.SearchInputRequestDefinition
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Input.ts#L120-L127">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SearchInputRequestDefinition implements JsonpSerializable {
 	@Nullable
@@ -69,7 +75,7 @@ public class SearchInputRequestDefinition implements JsonpSerializable {
 	private SearchInputRequestDefinition(Builder builder) {
 
 		this.body = builder.body;
-		this.indices = ModelTypeHelper.unmodifiable(builder.indices);
+		this.indices = ApiTypeHelper.unmodifiable(builder.indices);
 		this.indicesOptions = builder.indicesOptions;
 		this.searchType = builder.searchType;
 		this.template = builder.template;
@@ -77,10 +83,8 @@ public class SearchInputRequestDefinition implements JsonpSerializable {
 
 	}
 
-	public static SearchInputRequestDefinition of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SearchInputRequestDefinition of(Function<Builder, ObjectBuilder<SearchInputRequestDefinition>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -146,7 +150,7 @@ public class SearchInputRequestDefinition implements JsonpSerializable {
 			this.body.serialize(generator, mapper);
 
 		}
-		if (ModelTypeHelper.isDefined(this.indices)) {
+		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartArray();
 			for (String item0 : this.indices) {
@@ -183,6 +187,7 @@ public class SearchInputRequestDefinition implements JsonpSerializable {
 	/**
 	 * Builder for {@link SearchInputRequestDefinition}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SearchInputRequestDefinition> {
 		@Nullable
 		private SearchInputRequestBody body;
@@ -213,25 +218,27 @@ public class SearchInputRequestDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code body}
 		 */
-		public final Builder body(Consumer<SearchInputRequestBody.Builder> fn) {
-			SearchInputRequestBody.Builder builder = new SearchInputRequestBody.Builder();
-			fn.accept(builder);
-			return this.body(builder.build());
+		public final Builder body(Function<SearchInputRequestBody.Builder, ObjectBuilder<SearchInputRequestBody>> fn) {
+			return this.body(fn.apply(new SearchInputRequestBody.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code indices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 */
-		public final Builder indices(@Nullable List<String> value) {
-			this.indices = value;
+		public final Builder indices(List<String> list) {
+			this.indices = _listAddAll(this.indices, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code indices}
+		 * <p>
+		 * Adds one or more values to <code>indices</code>.
 		 */
-		public final Builder indices(String... value) {
-			this.indices = Arrays.asList(value);
+		public final Builder indices(String value, String... values) {
+			this.indices = _listAdd(this.indices, value, values);
 			return this;
 		}
 
@@ -246,10 +253,8 @@ public class SearchInputRequestDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code indices_options}
 		 */
-		public final Builder indicesOptions(Consumer<IndicesOptions.Builder> fn) {
-			IndicesOptions.Builder builder = new IndicesOptions.Builder();
-			fn.accept(builder);
-			return this.indicesOptions(builder.build());
+		public final Builder indicesOptions(Function<IndicesOptions.Builder, ObjectBuilder<IndicesOptions>> fn) {
+			return this.indicesOptions(fn.apply(new IndicesOptions.Builder()).build());
 		}
 
 		/**
@@ -271,10 +276,9 @@ public class SearchInputRequestDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code template}
 		 */
-		public final Builder template(Consumer<SearchTemplateRequest.Builder> fn) {
-			SearchTemplateRequest.Builder builder = new SearchTemplateRequest.Builder();
-			fn.accept(builder);
-			return this.template(builder.build());
+		public final Builder template(
+				Function<SearchTemplateRequest.Builder, ObjectBuilder<SearchTemplateRequest>> fn) {
+			return this.template(fn.apply(new SearchTemplateRequest.Builder()).build());
 		}
 
 		/**

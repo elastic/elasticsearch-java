@@ -40,10 +40,18 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.preview_data_frame_analytics.Request
+
+/**
+ * Previews the extracted features used by a data frame analytics config.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/preview_data_frame_analytics/MlPreviewDataFrameAnalyticsRequest.ts#L24-L47">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PreviewDataFrameAnalyticsRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
@@ -61,10 +69,9 @@ public class PreviewDataFrameAnalyticsRequest extends RequestBase implements Jso
 
 	}
 
-	public static PreviewDataFrameAnalyticsRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PreviewDataFrameAnalyticsRequest of(
+			Function<Builder, ObjectBuilder<PreviewDataFrameAnalyticsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -113,6 +120,7 @@ public class PreviewDataFrameAnalyticsRequest extends RequestBase implements Jso
 	/**
 	 * Builder for {@link PreviewDataFrameAnalyticsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PreviewDataFrameAnalyticsRequest> {
 		@Nullable
 		private DataframePreviewConfig config;
@@ -139,10 +147,9 @@ public class PreviewDataFrameAnalyticsRequest extends RequestBase implements Jso
 		 * <p>
 		 * API name: {@code config}
 		 */
-		public final Builder config(Consumer<DataframePreviewConfig.Builder> fn) {
-			DataframePreviewConfig.Builder builder = new DataframePreviewConfig.Builder();
-			fn.accept(builder);
-			return this.config(builder.build());
+		public final Builder config(
+				Function<DataframePreviewConfig.Builder, ObjectBuilder<DataframePreviewConfig>> fn) {
+			return this.config(fn.apply(new DataframePreviewConfig.Builder()).build());
 		}
 
 		/**

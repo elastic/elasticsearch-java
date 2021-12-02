@@ -28,14 +28,21 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SpanContainingQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/span.ts#L25-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SpanContainingQuery extends QueryBase implements SpanQueryVariant, QueryVariant {
 	private final SpanQuery big;
@@ -47,15 +54,13 @@ public class SpanContainingQuery extends QueryBase implements SpanQueryVariant, 
 	private SpanContainingQuery(Builder builder) {
 		super(builder);
 
-		this.big = ModelTypeHelper.requireNonNull(builder.big, this, "big");
-		this.little = ModelTypeHelper.requireNonNull(builder.little, this, "little");
+		this.big = ApiTypeHelper.requireNonNull(builder.big, this, "big");
+		this.little = ApiTypeHelper.requireNonNull(builder.little, this, "little");
 
 	}
 
-	public static SpanContainingQuery of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SpanContainingQuery of(Function<Builder, ObjectBuilder<SpanContainingQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -104,6 +109,7 @@ public class SpanContainingQuery extends QueryBase implements SpanQueryVariant, 
 	/**
 	 * Builder for {@link SpanContainingQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<SpanContainingQuery> {
@@ -122,10 +128,8 @@ public class SpanContainingQuery extends QueryBase implements SpanQueryVariant, 
 		/**
 		 * Required - API name: {@code big}
 		 */
-		public final Builder big(Consumer<SpanQuery.Builder> fn) {
-			SpanQuery.Builder builder = new SpanQuery.Builder();
-			fn.accept(builder);
-			return this.big(builder.build());
+		public final Builder big(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
+			return this.big(fn.apply(new SpanQuery.Builder()).build());
 		}
 
 		/**
@@ -139,10 +143,8 @@ public class SpanContainingQuery extends QueryBase implements SpanQueryVariant, 
 		/**
 		 * Required - API name: {@code little}
 		 */
-		public final Builder little(Consumer<SpanQuery.Builder> fn) {
-			SpanQuery.Builder builder = new SpanQuery.Builder();
-			fn.accept(builder);
-			return this.little(builder.build());
+		public final Builder little(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
+			return this.little(fn.apply(new SpanQuery.Builder()).build());
 		}
 
 		@Override

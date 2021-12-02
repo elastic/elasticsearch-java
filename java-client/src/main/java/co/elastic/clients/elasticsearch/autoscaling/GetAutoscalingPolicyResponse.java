@@ -30,9 +30,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: autoscaling.get_autoscaling_policy.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/autoscaling/get_autoscaling_policy/GetAutoscalingPolicyResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetAutoscalingPolicyResponse extends AutoscalingPolicy {
 	// ---------------------------------------------------------------------------------------------
@@ -42,10 +49,8 @@ public class GetAutoscalingPolicyResponse extends AutoscalingPolicy {
 
 	}
 
-	public static GetAutoscalingPolicyResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetAutoscalingPolicyResponse of(Function<Builder, ObjectBuilder<GetAutoscalingPolicyResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +58,7 @@ public class GetAutoscalingPolicyResponse extends AutoscalingPolicy {
 	/**
 	 * Builder for {@link GetAutoscalingPolicyResponse}.
 	 */
+
 	public static class Builder extends AutoscalingPolicy.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<GetAutoscalingPolicyResponse> {

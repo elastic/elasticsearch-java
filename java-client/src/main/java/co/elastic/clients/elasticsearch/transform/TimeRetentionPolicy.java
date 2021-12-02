@@ -30,16 +30,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform._types.RetentionPolicy
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/transform/_types/Transform.ts#L76-L81">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TimeRetentionPolicy implements RetentionPolicyVariant, JsonpSerializable {
 	private final String field;
@@ -50,15 +57,13 @@ public class TimeRetentionPolicy implements RetentionPolicyVariant, JsonpSeriali
 
 	private TimeRetentionPolicy(Builder builder) {
 
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
-		this.maxAge = ModelTypeHelper.requireNonNull(builder.maxAge, this, "maxAge");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.maxAge = ApiTypeHelper.requireNonNull(builder.maxAge, this, "maxAge");
 
 	}
 
-	public static TimeRetentionPolicy of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TimeRetentionPolicy of(Function<Builder, ObjectBuilder<TimeRetentionPolicy>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -113,6 +118,7 @@ public class TimeRetentionPolicy implements RetentionPolicyVariant, JsonpSeriali
 	/**
 	 * Builder for {@link TimeRetentionPolicy}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TimeRetentionPolicy> {
 		private String field;
 
@@ -147,10 +153,8 @@ public class TimeRetentionPolicy implements RetentionPolicyVariant, JsonpSeriali
 		 * <p>
 		 * API name: {@code max_age}
 		 */
-		public final Builder maxAge(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.maxAge(builder.build());
+		public final Builder maxAge(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.maxAge(fn.apply(new Time.Builder()).build());
 		}
 
 		/**

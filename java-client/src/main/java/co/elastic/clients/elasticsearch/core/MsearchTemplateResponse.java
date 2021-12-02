@@ -32,10 +32,17 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 // typedef: _global.msearch_template.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/msearch_template/MultiSearchTemplateResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class MsearchTemplateResponse<TDocument> extends MultiSearchResult<TDocument> {
 	// ---------------------------------------------------------------------------------------------
@@ -45,10 +52,9 @@ public class MsearchTemplateResponse<TDocument> extends MultiSearchResult<TDocum
 
 	}
 
-	public static <TDocument> MsearchTemplateResponse<TDocument> of(Consumer<Builder<TDocument>> fn) {
-		Builder<TDocument> builder = new Builder<>();
-		fn.accept(builder);
-		return builder.build();
+	public static <TDocument> MsearchTemplateResponse<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<MsearchTemplateResponse<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -56,6 +62,7 @@ public class MsearchTemplateResponse<TDocument> extends MultiSearchResult<TDocum
 	/**
 	 * Builder for {@link MsearchTemplateResponse}.
 	 */
+
 	public static class Builder<TDocument> extends MultiSearchResult.AbstractBuilder<TDocument, Builder<TDocument>>
 			implements
 				ObjectBuilder<MsearchTemplateResponse<TDocument>> {
@@ -80,7 +87,7 @@ public class MsearchTemplateResponse<TDocument> extends MultiSearchResult<TDocum
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for MsearchTemplateResponse
+	 * Create a JSON deserializer for MsearchTemplateResponse
 	 */
 	public static <TDocument> JsonpDeserializer<MsearchTemplateResponse<TDocument>> createMsearchTemplateResponseDeserializer(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {

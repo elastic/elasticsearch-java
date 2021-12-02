@@ -29,7 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -37,10 +37,17 @@ import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.WriteResponseBase
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Base.ts#L37-L47">API
+ *      specification</a>
+ */
 
 public abstract class WriteResponseBase implements JsonpSerializable {
 	private final String id;
@@ -67,14 +74,14 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 
 	protected WriteResponseBase(AbstractBuilder<?> builder) {
 
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
-		this.primaryTerm = ModelTypeHelper.requireNonNull(builder.primaryTerm, this, "primaryTerm");
-		this.result = ModelTypeHelper.requireNonNull(builder.result, this, "result");
-		this.seqNo = ModelTypeHelper.requireNonNull(builder.seqNo, this, "seqNo");
-		this.shards = ModelTypeHelper.requireNonNull(builder.shards, this, "shards");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.primaryTerm = ApiTypeHelper.requireNonNull(builder.primaryTerm, this, "primaryTerm");
+		this.result = ApiTypeHelper.requireNonNull(builder.result, this, "result");
+		this.seqNo = ApiTypeHelper.requireNonNull(builder.seqNo, this, "seqNo");
+		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
 		this.type = builder.type;
-		this.version = ModelTypeHelper.requireNonNull(builder.version, this, "version");
+		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
 		this.forcedRefresh = builder.forcedRefresh;
 
 	}
@@ -262,10 +269,8 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _shards}
 		 */
-		public final BuilderT shards(Consumer<ShardStatistics.Builder> fn) {
-			ShardStatistics.Builder builder = new ShardStatistics.Builder();
-			fn.accept(builder);
-			return this.shards(builder.build());
+		public final BuilderT shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
 		/**

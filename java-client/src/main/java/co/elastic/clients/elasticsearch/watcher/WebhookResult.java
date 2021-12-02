@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.WebhookResult
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Actions.ts#L198-L201">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class WebhookResult implements JsonpSerializable {
 	private final HttpInputRequestResult request;
@@ -49,15 +56,13 @@ public class WebhookResult implements JsonpSerializable {
 
 	private WebhookResult(Builder builder) {
 
-		this.request = ModelTypeHelper.requireNonNull(builder.request, this, "request");
+		this.request = ApiTypeHelper.requireNonNull(builder.request, this, "request");
 		this.response = builder.response;
 
 	}
 
-	public static WebhookResult of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static WebhookResult of(Function<Builder, ObjectBuilder<WebhookResult>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -102,6 +107,7 @@ public class WebhookResult implements JsonpSerializable {
 	/**
 	 * Builder for {@link WebhookResult}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WebhookResult> {
 		private HttpInputRequestResult request;
 
@@ -119,10 +125,9 @@ public class WebhookResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code request}
 		 */
-		public final Builder request(Consumer<HttpInputRequestResult.Builder> fn) {
-			HttpInputRequestResult.Builder builder = new HttpInputRequestResult.Builder();
-			fn.accept(builder);
-			return this.request(builder.build());
+		public final Builder request(
+				Function<HttpInputRequestResult.Builder, ObjectBuilder<HttpInputRequestResult>> fn) {
+			return this.request(fn.apply(new HttpInputRequestResult.Builder()).build());
 		}
 
 		/**
@@ -136,10 +141,9 @@ public class WebhookResult implements JsonpSerializable {
 		/**
 		 * API name: {@code response}
 		 */
-		public final Builder response(Consumer<HttpInputResponseResult.Builder> fn) {
-			HttpInputResponseResult.Builder builder = new HttpInputResponseResult.Builder();
-			fn.accept(builder);
-			return this.response(builder.build());
+		public final Builder response(
+				Function<HttpInputResponseResult.Builder, ObjectBuilder<HttpInputResponseResult>> fn) {
+			return this.response(fn.apply(new HttpInputResponseResult.Builder()).build());
 		}
 
 		/**

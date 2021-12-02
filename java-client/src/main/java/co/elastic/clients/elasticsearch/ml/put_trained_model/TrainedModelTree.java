@@ -29,20 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ListBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.TrainedModelTree
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/put_trained_model/types.ts#L74-L79">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TrainedModelTree implements JsonpSerializable {
 	private final List<String> classificationLabels;
@@ -58,17 +62,15 @@ public class TrainedModelTree implements JsonpSerializable {
 
 	private TrainedModelTree(Builder builder) {
 
-		this.classificationLabels = ModelTypeHelper.unmodifiable(builder.classificationLabels);
-		this.featureNames = ModelTypeHelper.unmodifiableRequired(builder.featureNames, this, "featureNames");
+		this.classificationLabels = ApiTypeHelper.unmodifiable(builder.classificationLabels);
+		this.featureNames = ApiTypeHelper.unmodifiableRequired(builder.featureNames, this, "featureNames");
 		this.targetType = builder.targetType;
-		this.treeStructure = ModelTypeHelper.unmodifiableRequired(builder.treeStructure, this, "treeStructure");
+		this.treeStructure = ApiTypeHelper.unmodifiableRequired(builder.treeStructure, this, "treeStructure");
 
 	}
 
-	public static TrainedModelTree of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static TrainedModelTree of(Function<Builder, ObjectBuilder<TrainedModelTree>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -111,7 +113,7 @@ public class TrainedModelTree implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.classificationLabels)) {
+		if (ApiTypeHelper.isDefined(this.classificationLabels)) {
 			generator.writeKey("classification_labels");
 			generator.writeStartArray();
 			for (String item0 : this.classificationLabels) {
@@ -121,7 +123,7 @@ public class TrainedModelTree implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.featureNames)) {
+		if (ApiTypeHelper.isDefined(this.featureNames)) {
 			generator.writeKey("feature_names");
 			generator.writeStartArray();
 			for (String item0 : this.featureNames) {
@@ -136,7 +138,7 @@ public class TrainedModelTree implements JsonpSerializable {
 			generator.write(this.targetType);
 
 		}
-		if (ModelTypeHelper.isDefined(this.treeStructure)) {
+		if (ApiTypeHelper.isDefined(this.treeStructure)) {
 			generator.writeKey("tree_structure");
 			generator.writeStartArray();
 			for (TrainedModelTreeNode item0 : this.treeStructure) {
@@ -154,6 +156,7 @@ public class TrainedModelTree implements JsonpSerializable {
 	/**
 	 * Builder for {@link TrainedModelTree}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TrainedModelTree> {
 		@Nullable
 		private List<String> classificationLabels;
@@ -167,33 +170,41 @@ public class TrainedModelTree implements JsonpSerializable {
 
 		/**
 		 * API name: {@code classification_labels}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>classificationLabels</code>.
 		 */
-		public final Builder classificationLabels(@Nullable List<String> value) {
-			this.classificationLabels = value;
+		public final Builder classificationLabels(List<String> list) {
+			this.classificationLabels = _listAddAll(this.classificationLabels, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code classification_labels}
+		 * <p>
+		 * Adds one or more values to <code>classificationLabels</code>.
 		 */
-		public final Builder classificationLabels(String... value) {
-			this.classificationLabels = Arrays.asList(value);
+		public final Builder classificationLabels(String value, String... values) {
+			this.classificationLabels = _listAdd(this.classificationLabels, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code feature_names}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>featureNames</code>.
 		 */
-		public final Builder featureNames(List<String> value) {
-			this.featureNames = value;
+		public final Builder featureNames(List<String> list) {
+			this.featureNames = _listAddAll(this.featureNames, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code feature_names}
+		 * <p>
+		 * Adds one or more values to <code>featureNames</code>.
 		 */
-		public final Builder featureNames(String... value) {
-			this.featureNames = Arrays.asList(value);
+		public final Builder featureNames(String value, String... values) {
+			this.featureNames = _listAdd(this.featureNames, value, values);
 			return this;
 		}
 
@@ -207,26 +218,32 @@ public class TrainedModelTree implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code tree_structure}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>treeStructure</code>.
 		 */
-		public final Builder treeStructure(List<TrainedModelTreeNode> value) {
-			this.treeStructure = value;
+		public final Builder treeStructure(List<TrainedModelTreeNode> list) {
+			this.treeStructure = _listAddAll(this.treeStructure, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code tree_structure}
+		 * <p>
+		 * Adds one or more values to <code>treeStructure</code>.
 		 */
-		public final Builder treeStructure(TrainedModelTreeNode... value) {
-			this.treeStructure = Arrays.asList(value);
+		public final Builder treeStructure(TrainedModelTreeNode value, TrainedModelTreeNode... values) {
+			this.treeStructure = _listAdd(this.treeStructure, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code tree_structure}
+		 * <p>
+		 * Adds a value to <code>treeStructure</code> using a builder lambda.
 		 */
 		public final Builder treeStructure(
-				Function<ListBuilder<TrainedModelTreeNode, TrainedModelTreeNode.Builder>, ObjectBuilder<List<TrainedModelTreeNode>>> fn) {
-			return treeStructure(fn.apply(new ListBuilder<>(TrainedModelTreeNode.Builder::new)).build());
+				Function<TrainedModelTreeNode.Builder, ObjectBuilder<TrainedModelTreeNode>> fn) {
+			return treeStructure(fn.apply(new TrainedModelTreeNode.Builder()).build());
 		}
 
 		/**

@@ -32,21 +32,28 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: watcher.stats.Request
+
+/**
+ * Retrieves the current Watcher metrics.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/stats/WatcherStatsRequest.ts#L23-L46">API
+ *      specification</a>
+ */
 
 public class WatcherStatsRequest extends RequestBase {
 	@Nullable
@@ -59,14 +66,12 @@ public class WatcherStatsRequest extends RequestBase {
 	private WatcherStatsRequest(Builder builder) {
 
 		this.emitStacktraces = builder.emitStacktraces;
-		this.metric = ModelTypeHelper.unmodifiable(builder.metric);
+		this.metric = ApiTypeHelper.unmodifiable(builder.metric);
 
 	}
 
-	public static WatcherStatsRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static WatcherStatsRequest of(Function<Builder, ObjectBuilder<WatcherStatsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -93,6 +98,7 @@ public class WatcherStatsRequest extends RequestBase {
 	/**
 	 * Builder for {@link WatcherStatsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WatcherStatsRequest> {
 		@Nullable
 		private Boolean emitStacktraces;
@@ -114,9 +120,11 @@ public class WatcherStatsRequest extends RequestBase {
 		 * Defines which additional metrics are included in the response.
 		 * <p>
 		 * API name: {@code metric}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>metric</code>.
 		 */
-		public final Builder metric(@Nullable List<WatcherMetric> value) {
-			this.metric = value;
+		public final Builder metric(List<WatcherMetric> list) {
+			this.metric = _listAddAll(this.metric, list);
 			return this;
 		}
 
@@ -124,9 +132,11 @@ public class WatcherStatsRequest extends RequestBase {
 		 * Defines which additional metrics are included in the response.
 		 * <p>
 		 * API name: {@code metric}
+		 * <p>
+		 * Adds one or more values to <code>metric</code>.
 		 */
-		public final Builder metric(WatcherMetric... value) {
-			this.metric = Arrays.asList(value);
+		public final Builder metric(WatcherMetric value, WatcherMetric... values) {
+			this.metric = _listAdd(this.metric, value, values);
 			return this;
 		}
 
@@ -163,7 +173,7 @@ public class WatcherStatsRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (ModelTypeHelper.isDefined(request.metric()))
+				if (ApiTypeHelper.isDefined(request.metric()))
 					propsSet |= _metric;
 
 				if (propsSet == 0) {

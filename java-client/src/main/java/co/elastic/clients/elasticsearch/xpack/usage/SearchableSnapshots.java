@@ -28,15 +28,22 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.SearchableSnapshots
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L389-L393">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SearchableSnapshots extends Base {
 	private final int indicesCount;
@@ -52,16 +59,14 @@ public class SearchableSnapshots extends Base {
 	private SearchableSnapshots(Builder builder) {
 		super(builder);
 
-		this.indicesCount = ModelTypeHelper.requireNonNull(builder.indicesCount, this, "indicesCount");
+		this.indicesCount = ApiTypeHelper.requireNonNull(builder.indicesCount, this, "indicesCount");
 		this.fullCopyIndicesCount = builder.fullCopyIndicesCount;
 		this.sharedCacheIndicesCount = builder.sharedCacheIndicesCount;
 
 	}
 
-	public static SearchableSnapshots of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SearchableSnapshots of(Function<Builder, ObjectBuilder<SearchableSnapshots>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -111,6 +116,7 @@ public class SearchableSnapshots extends Base {
 	/**
 	 * Builder for {@link SearchableSnapshots}.
 	 */
+
 	public static class Builder extends Base.AbstractBuilder<Builder> implements ObjectBuilder<SearchableSnapshots> {
 		private Integer indicesCount;
 

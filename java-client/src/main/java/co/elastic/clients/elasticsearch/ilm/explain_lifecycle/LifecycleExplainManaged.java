@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -40,10 +40,17 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm.explain_lifecycle.LifecycleExplainManaged
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ilm/explain_lifecycle/types.ts#L26-L43">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSerializable {
 	private final String action;
@@ -83,29 +90,27 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 
 	private LifecycleExplainManaged(Builder builder) {
 
-		this.action = ModelTypeHelper.requireNonNull(builder.action, this, "action");
-		this.actionTimeMillis = ModelTypeHelper.requireNonNull(builder.actionTimeMillis, this, "actionTimeMillis");
-		this.age = ModelTypeHelper.requireNonNull(builder.age, this, "age");
+		this.action = ApiTypeHelper.requireNonNull(builder.action, this, "action");
+		this.actionTimeMillis = ApiTypeHelper.requireNonNull(builder.actionTimeMillis, this, "actionTimeMillis");
+		this.age = ApiTypeHelper.requireNonNull(builder.age, this, "age");
 		this.failedStep = builder.failedStep;
 		this.failedStepRetryCount = builder.failedStepRetryCount;
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.isAutoRetryableError = builder.isAutoRetryableError;
-		this.lifecycleDateMillis = ModelTypeHelper.requireNonNull(builder.lifecycleDateMillis, this,
+		this.lifecycleDateMillis = ApiTypeHelper.requireNonNull(builder.lifecycleDateMillis, this,
 				"lifecycleDateMillis");
-		this.phase = ModelTypeHelper.requireNonNull(builder.phase, this, "phase");
-		this.phaseTimeMillis = ModelTypeHelper.requireNonNull(builder.phaseTimeMillis, this, "phaseTimeMillis");
-		this.policy = ModelTypeHelper.requireNonNull(builder.policy, this, "policy");
-		this.step = ModelTypeHelper.requireNonNull(builder.step, this, "step");
-		this.stepInfo = ModelTypeHelper.unmodifiable(builder.stepInfo);
-		this.stepTimeMillis = ModelTypeHelper.requireNonNull(builder.stepTimeMillis, this, "stepTimeMillis");
-		this.phaseExecution = ModelTypeHelper.requireNonNull(builder.phaseExecution, this, "phaseExecution");
+		this.phase = ApiTypeHelper.requireNonNull(builder.phase, this, "phase");
+		this.phaseTimeMillis = ApiTypeHelper.requireNonNull(builder.phaseTimeMillis, this, "phaseTimeMillis");
+		this.policy = ApiTypeHelper.requireNonNull(builder.policy, this, "policy");
+		this.step = ApiTypeHelper.requireNonNull(builder.step, this, "step");
+		this.stepInfo = ApiTypeHelper.unmodifiable(builder.stepInfo);
+		this.stepTimeMillis = ApiTypeHelper.requireNonNull(builder.stepTimeMillis, this, "stepTimeMillis");
+		this.phaseExecution = ApiTypeHelper.requireNonNull(builder.phaseExecution, this, "phaseExecution");
 
 	}
 
-	public static LifecycleExplainManaged of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static LifecycleExplainManaged of(Function<Builder, ObjectBuilder<LifecycleExplainManaged>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -279,7 +284,7 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 		generator.writeKey("step");
 		generator.write(this.step);
 
-		if (ModelTypeHelper.isDefined(this.stepInfo)) {
+		if (ApiTypeHelper.isDefined(this.stepInfo)) {
 			generator.writeKey("step_info");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.stepInfo.entrySet()) {
@@ -303,6 +308,7 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 	/**
 	 * Builder for {@link LifecycleExplainManaged}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<LifecycleExplainManaged> {
 		private String action;
 
@@ -365,10 +371,8 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 		/**
 		 * Required - API name: {@code age}
 		 */
-		public final Builder age(Consumer<Time.Builder> fn) {
-			Time.Builder builder = new Time.Builder();
-			fn.accept(builder);
-			return this.age(builder.build());
+		public final Builder age(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.age(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -445,9 +449,21 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 
 		/**
 		 * API name: {@code step_info}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>stepInfo</code>.
 		 */
-		public final Builder stepInfo(@Nullable Map<String, JsonData> value) {
-			this.stepInfo = value;
+		public final Builder stepInfo(Map<String, JsonData> map) {
+			this.stepInfo = _mapPutAll(this.stepInfo, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code step_info}
+		 * <p>
+		 * Adds an entry to <code>stepInfo</code>.
+		 */
+		public final Builder stepInfo(String key, JsonData value) {
+			this.stepInfo = _mapPut(this.stepInfo, key, value);
 			return this;
 		}
 
@@ -470,10 +486,9 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 		/**
 		 * Required - API name: {@code phase_execution}
 		 */
-		public final Builder phaseExecution(Consumer<LifecycleExplainPhaseExecution.Builder> fn) {
-			LifecycleExplainPhaseExecution.Builder builder = new LifecycleExplainPhaseExecution.Builder();
-			fn.accept(builder);
-			return this.phaseExecution(builder.build());
+		public final Builder phaseExecution(
+				Function<LifecycleExplainPhaseExecution.Builder, ObjectBuilder<LifecycleExplainPhaseExecution>> fn) {
+			return this.phaseExecution(fn.apply(new LifecycleExplainPhaseExecution.Builder()).build());
 		}
 
 		/**

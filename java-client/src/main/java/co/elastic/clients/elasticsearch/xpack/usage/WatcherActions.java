@@ -29,19 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.MapBuilder;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.WatcherActions
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L357-L359">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class WatcherActions implements JsonpSerializable {
 	private final Map<String, WatcherActionTotals> actions;
@@ -50,14 +55,12 @@ public class WatcherActions implements JsonpSerializable {
 
 	private WatcherActions(Builder builder) {
 
-		this.actions = ModelTypeHelper.unmodifiableRequired(builder.actions, this, "actions");
+		this.actions = ApiTypeHelper.unmodifiableRequired(builder.actions, this, "actions");
 
 	}
 
-	public static WatcherActions of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static WatcherActions of(Function<Builder, ObjectBuilder<WatcherActions>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -78,7 +81,7 @@ public class WatcherActions implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.actions)) {
+		if (ApiTypeHelper.isDefined(this.actions)) {
 			generator.writeKey("actions");
 			generator.writeStartObject();
 			for (Map.Entry<String, WatcherActionTotals> item0 : this.actions.entrySet()) {
@@ -97,20 +100,38 @@ public class WatcherActions implements JsonpSerializable {
 	/**
 	 * Builder for {@link WatcherActions}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WatcherActions> {
 		private Map<String, WatcherActionTotals> actions;
 
 		/**
 		 * Required - API name: {@code actions}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>actions</code>.
 		 */
-		public final Builder actions(Map<String, WatcherActionTotals> value) {
-			this.actions = value;
+		public final Builder actions(Map<String, WatcherActionTotals> map) {
+			this.actions = _mapPutAll(this.actions, map);
 			return this;
 		}
 
-		public final Builder actions(
-				Function<MapBuilder<String, WatcherActionTotals, WatcherActionTotals.Builder>, ObjectBuilder<Map<String, WatcherActionTotals>>> fn) {
-			return actions(fn.apply(new MapBuilder<>(WatcherActionTotals.Builder::new)).build());
+		/**
+		 * Required - API name: {@code actions}
+		 * <p>
+		 * Adds an entry to <code>actions</code>.
+		 */
+		public final Builder actions(String key, WatcherActionTotals value) {
+			this.actions = _mapPut(this.actions, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code actions}
+		 * <p>
+		 * Adds an entry to <code>actions</code> using a builder lambda.
+		 */
+		public final Builder actions(String key,
+				Function<WatcherActionTotals.Builder, ObjectBuilder<WatcherActionTotals>> fn) {
+			return actions(key, fn.apply(new WatcherActionTotals.Builder()).build());
 		}
 
 		/**

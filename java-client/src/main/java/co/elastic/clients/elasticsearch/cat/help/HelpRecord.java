@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.help.HelpRecord
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/help/types.ts#L20-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class HelpRecord implements JsonpSerializable {
 	private final String endpoint;
@@ -47,14 +54,12 @@ public class HelpRecord implements JsonpSerializable {
 
 	private HelpRecord(Builder builder) {
 
-		this.endpoint = ModelTypeHelper.requireNonNull(builder.endpoint, this, "endpoint");
+		this.endpoint = ApiTypeHelper.requireNonNull(builder.endpoint, this, "endpoint");
 
 	}
 
-	public static HelpRecord of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static HelpRecord of(Function<Builder, ObjectBuilder<HelpRecord>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -85,6 +90,7 @@ public class HelpRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link HelpRecord}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HelpRecord> {
 		private String endpoint;
 

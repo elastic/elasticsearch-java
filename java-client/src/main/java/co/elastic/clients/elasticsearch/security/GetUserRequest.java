@@ -31,20 +31,27 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: security.get_user.Request
+
+/**
+ * Retrieves information about users in the native realm and built-in users.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_user/SecurityGetUserRequest.ts#L23-L33">API
+ *      specification</a>
+ */
 
 public class GetUserRequest extends RequestBase {
 	private final List<String> username;
@@ -53,14 +60,12 @@ public class GetUserRequest extends RequestBase {
 
 	private GetUserRequest(Builder builder) {
 
-		this.username = ModelTypeHelper.unmodifiable(builder.username);
+		this.username = ApiTypeHelper.unmodifiable(builder.username);
 
 	}
 
-	public static GetUserRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetUserRequest of(Function<Builder, ObjectBuilder<GetUserRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -79,6 +84,7 @@ public class GetUserRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetUserRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetUserRequest> {
 		@Nullable
 		private List<String> username;
@@ -89,9 +95,11 @@ public class GetUserRequest extends RequestBase {
 		 * information about all users.
 		 * <p>
 		 * API name: {@code username}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>username</code>.
 		 */
-		public final Builder username(@Nullable List<String> value) {
-			this.username = value;
+		public final Builder username(List<String> list) {
+			this.username = _listAddAll(this.username, list);
 			return this;
 		}
 
@@ -101,9 +109,11 @@ public class GetUserRequest extends RequestBase {
 		 * information about all users.
 		 * <p>
 		 * API name: {@code username}
+		 * <p>
+		 * Adds one or more values to <code>username</code>.
 		 */
-		public final Builder username(String... value) {
-			this.username = Arrays.asList(value);
+		public final Builder username(String value, String... values) {
+			this.username = _listAdd(this.username, value, values);
 			return this;
 		}
 
@@ -140,7 +150,7 @@ public class GetUserRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (ModelTypeHelper.isDefined(request.username()))
+				if (ApiTypeHelper.isDefined(request.username()))
 					propsSet |= _username;
 
 				if (propsSet == (_username)) {

@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GeoCentroidAggregate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L292-L296">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GeoCentroidAggregate extends AggregateBase implements AggregateVariant {
 	private final long count;
@@ -50,15 +57,13 @@ public class GeoCentroidAggregate extends AggregateBase implements AggregateVari
 	private GeoCentroidAggregate(Builder builder) {
 		super(builder);
 
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
 		this.location = builder.location;
 
 	}
 
-	public static GeoCentroidAggregate of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GeoCentroidAggregate of(Function<Builder, ObjectBuilder<GeoCentroidAggregate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -103,6 +108,7 @@ public class GeoCentroidAggregate extends AggregateBase implements AggregateVari
 	/**
 	 * Builder for {@link GeoCentroidAggregate}.
 	 */
+
 	public static class Builder extends AggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<GeoCentroidAggregate> {
@@ -130,10 +136,8 @@ public class GeoCentroidAggregate extends AggregateBase implements AggregateVari
 		/**
 		 * API name: {@code location}
 		 */
-		public final Builder location(Consumer<GeoLocation.Builder> fn) {
-			GeoLocation.Builder builder = new GeoLocation.Builder();
-			fn.accept(builder);
-			return this.location(builder.build());
+		public final Builder location(Function<GeoLocation.Builder, ObjectBuilder<GeoLocation>> fn) {
+			return this.location(fn.apply(new GeoLocation.Builder()).build());
 		}
 
 		@Override

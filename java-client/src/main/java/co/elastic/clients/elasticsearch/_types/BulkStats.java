@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.BulkStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Stats.ts#L40-L50">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class BulkStats implements JsonpSerializable {
 	private final long totalOperations;
@@ -68,22 +75,20 @@ public class BulkStats implements JsonpSerializable {
 
 	private BulkStats(Builder builder) {
 
-		this.totalOperations = ModelTypeHelper.requireNonNull(builder.totalOperations, this, "totalOperations");
+		this.totalOperations = ApiTypeHelper.requireNonNull(builder.totalOperations, this, "totalOperations");
 		this.totalTime = builder.totalTime;
-		this.totalTimeInMillis = ModelTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
+		this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
 		this.totalSize = builder.totalSize;
-		this.totalSizeInBytes = ModelTypeHelper.requireNonNull(builder.totalSizeInBytes, this, "totalSizeInBytes");
+		this.totalSizeInBytes = ApiTypeHelper.requireNonNull(builder.totalSizeInBytes, this, "totalSizeInBytes");
 		this.avgTime = builder.avgTime;
-		this.avgTimeInMillis = ModelTypeHelper.requireNonNull(builder.avgTimeInMillis, this, "avgTimeInMillis");
+		this.avgTimeInMillis = ApiTypeHelper.requireNonNull(builder.avgTimeInMillis, this, "avgTimeInMillis");
 		this.avgSize = builder.avgSize;
-		this.avgSizeInBytes = ModelTypeHelper.requireNonNull(builder.avgSizeInBytes, this, "avgSizeInBytes");
+		this.avgSizeInBytes = ApiTypeHelper.requireNonNull(builder.avgSizeInBytes, this, "avgSizeInBytes");
 
 	}
 
-	public static BulkStats of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static BulkStats of(Function<Builder, ObjectBuilder<BulkStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -206,6 +211,7 @@ public class BulkStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link BulkStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<BulkStats> {
 		private Long totalOperations;
 

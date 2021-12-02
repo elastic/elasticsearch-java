@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: nodes._types.ThreadCount
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/_types/Stats.ts#L212-L219">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ThreadCount implements JsonpSerializable {
 	private final long active;
@@ -56,19 +63,17 @@ public class ThreadCount implements JsonpSerializable {
 
 	private ThreadCount(Builder builder) {
 
-		this.active = ModelTypeHelper.requireNonNull(builder.active, this, "active");
-		this.completed = ModelTypeHelper.requireNonNull(builder.completed, this, "completed");
-		this.largest = ModelTypeHelper.requireNonNull(builder.largest, this, "largest");
-		this.queue = ModelTypeHelper.requireNonNull(builder.queue, this, "queue");
-		this.rejected = ModelTypeHelper.requireNonNull(builder.rejected, this, "rejected");
-		this.threads = ModelTypeHelper.requireNonNull(builder.threads, this, "threads");
+		this.active = ApiTypeHelper.requireNonNull(builder.active, this, "active");
+		this.completed = ApiTypeHelper.requireNonNull(builder.completed, this, "completed");
+		this.largest = ApiTypeHelper.requireNonNull(builder.largest, this, "largest");
+		this.queue = ApiTypeHelper.requireNonNull(builder.queue, this, "queue");
+		this.rejected = ApiTypeHelper.requireNonNull(builder.rejected, this, "rejected");
+		this.threads = ApiTypeHelper.requireNonNull(builder.threads, this, "threads");
 
 	}
 
-	public static ThreadCount of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ThreadCount of(Function<Builder, ObjectBuilder<ThreadCount>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -149,6 +154,7 @@ public class ThreadCount implements JsonpSerializable {
 	/**
 	 * Builder for {@link ThreadCount}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ThreadCount> {
 		private Long active;
 

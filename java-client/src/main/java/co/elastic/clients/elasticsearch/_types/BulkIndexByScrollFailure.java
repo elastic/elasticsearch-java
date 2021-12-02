@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.BulkIndexByScrollFailure
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Errors.ts#L58-L64">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class BulkIndexByScrollFailure implements JsonpSerializable {
 	private final ErrorCause cause;
@@ -56,18 +63,16 @@ public class BulkIndexByScrollFailure implements JsonpSerializable {
 
 	private BulkIndexByScrollFailure(Builder builder) {
 
-		this.cause = ModelTypeHelper.requireNonNull(builder.cause, this, "cause");
-		this.id = ModelTypeHelper.requireNonNull(builder.id, this, "id");
-		this.index = ModelTypeHelper.requireNonNull(builder.index, this, "index");
-		this.status = ModelTypeHelper.requireNonNull(builder.status, this, "status");
-		this.type = ModelTypeHelper.requireNonNull(builder.type, this, "type");
+		this.cause = ApiTypeHelper.requireNonNull(builder.cause, this, "cause");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 
-	public static BulkIndexByScrollFailure of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static BulkIndexByScrollFailure of(Function<Builder, ObjectBuilder<BulkIndexByScrollFailure>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -138,6 +143,7 @@ public class BulkIndexByScrollFailure implements JsonpSerializable {
 	/**
 	 * Builder for {@link BulkIndexByScrollFailure}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<BulkIndexByScrollFailure> {
 		private ErrorCause cause;
 
@@ -160,10 +166,8 @@ public class BulkIndexByScrollFailure implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code cause}
 		 */
-		public final Builder cause(Consumer<ErrorCause.Builder> fn) {
-			ErrorCause.Builder builder = new ErrorCause.Builder();
-			fn.accept(builder);
-			return this.cause(builder.build());
+		public final Builder cause(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+			return this.cause(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		/**

@@ -26,18 +26,30 @@ package co.elastic.clients.elasticsearch._types.aggregations;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.StatsAggregate
+
+/**
+ * Statistics aggregation result. <code>min</code>, <code>max</code> and
+ * <code>avg</code> are missing if there were no values to process
+ * (<code>count</code> is zero).
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L226-L241">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class StatsAggregate extends AggregateBase implements AggregateVariant {
 	private final long count;
@@ -67,16 +79,20 @@ public class StatsAggregate extends AggregateBase implements AggregateVariant {
 	protected StatsAggregate(AbstractBuilder<?> builder) {
 		super(builder);
 
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
-		this.min = ModelTypeHelper.requireNonNull(builder.min, this, "min");
-		this.max = ModelTypeHelper.requireNonNull(builder.max, this, "max");
-		this.avg = ModelTypeHelper.requireNonNull(builder.avg, this, "avg");
-		this.sum = ModelTypeHelper.requireNonNull(builder.sum, this, "sum");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.min = ApiTypeHelper.requireNonNull(builder.min, this, "min");
+		this.max = ApiTypeHelper.requireNonNull(builder.max, this, "max");
+		this.avg = ApiTypeHelper.requireNonNull(builder.avg, this, "avg");
+		this.sum = ApiTypeHelper.requireNonNull(builder.sum, this, "sum");
 		this.minAsString = builder.minAsString;
 		this.maxAsString = builder.maxAsString;
 		this.avgAsString = builder.avgAsString;
 		this.sumAsString = builder.sumAsString;
 
+	}
+
+	public static StatsAggregate statsAggregateOf(Function<Builder, ObjectBuilder<StatsAggregate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -96,6 +112,9 @@ public class StatsAggregate extends AggregateBase implements AggregateVariant {
 
 	/**
 	 * Required - API name: {@code min}
+	 * <p>
+	 * Defaults to {@code Double.POSITIVE_INFINITY} if parsed from a JSON
+	 * {@code null} value.
 	 */
 	public final double min() {
 		return this.min;
@@ -103,6 +122,9 @@ public class StatsAggregate extends AggregateBase implements AggregateVariant {
 
 	/**
 	 * Required - API name: {@code max}
+	 * <p>
+	 * Defaults to {@code Double.NEGATIVE_INFINITY} if parsed from a JSON
+	 * {@code null} value.
 	 */
 	public final double max() {
 		return this.max;
@@ -110,6 +132,8 @@ public class StatsAggregate extends AggregateBase implements AggregateVariant {
 
 	/**
 	 * Required - API name: {@code avg}
+	 * <p>
+	 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
 	 */
 	public final double avg() {
 		return this.avg;
@@ -161,14 +185,11 @@ public class StatsAggregate extends AggregateBase implements AggregateVariant {
 		generator.write(this.count);
 
 		generator.writeKey("min");
-		generator.write(this.min);
-
+		JsonpUtils.serializeDoubleOrNull(generator, this.min, Double.POSITIVE_INFINITY);
 		generator.writeKey("max");
-		generator.write(this.max);
-
+		JsonpUtils.serializeDoubleOrNull(generator, this.max, Double.NEGATIVE_INFINITY);
 		generator.writeKey("avg");
-		generator.write(this.avg);
-
+		JsonpUtils.serializeDoubleOrNull(generator, this.avg, 0);
 		generator.writeKey("sum");
 		generator.write(this.sum);
 
@@ -200,6 +221,7 @@ public class StatsAggregate extends AggregateBase implements AggregateVariant {
 	/**
 	 * Builder for {@link StatsAggregate}.
 	 */
+
 	public static class Builder extends StatsAggregate.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<StatsAggregate> {
@@ -256,6 +278,9 @@ public class StatsAggregate extends AggregateBase implements AggregateVariant {
 
 		/**
 		 * Required - API name: {@code min}
+		 * <p>
+		 * Defaults to {@code Double.POSITIVE_INFINITY} if parsed from a JSON
+		 * {@code null} value.
 		 */
 		public final BuilderT min(double value) {
 			this.min = value;
@@ -264,6 +289,9 @@ public class StatsAggregate extends AggregateBase implements AggregateVariant {
 
 		/**
 		 * Required - API name: {@code max}
+		 * <p>
+		 * Defaults to {@code Double.NEGATIVE_INFINITY} if parsed from a JSON
+		 * {@code null} value.
 		 */
 		public final BuilderT max(double value) {
 			this.max = value;
@@ -272,6 +300,8 @@ public class StatsAggregate extends AggregateBase implements AggregateVariant {
 
 		/**
 		 * Required - API name: {@code avg}
+		 * <p>
+		 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
 		 */
 		public final BuilderT avg(double value) {
 			this.avg = value;
@@ -332,9 +362,9 @@ public class StatsAggregate extends AggregateBase implements AggregateVariant {
 			ObjectDeserializer<BuilderT> op) {
 		AggregateBase.setupAggregateBaseDeserializer(op);
 		op.add(AbstractBuilder::count, JsonpDeserializer.longDeserializer(), "count");
-		op.add(AbstractBuilder::min, JsonpDeserializer.doubleDeserializer(), "min");
-		op.add(AbstractBuilder::max, JsonpDeserializer.doubleDeserializer(), "max");
-		op.add(AbstractBuilder::avg, JsonpDeserializer.doubleDeserializer(), "avg");
+		op.add(AbstractBuilder::min, JsonpDeserializer.doubleOrNullDeserializer(Double.POSITIVE_INFINITY), "min");
+		op.add(AbstractBuilder::max, JsonpDeserializer.doubleOrNullDeserializer(Double.NEGATIVE_INFINITY), "max");
+		op.add(AbstractBuilder::avg, JsonpDeserializer.doubleOrNullDeserializer(0), "avg");
 		op.add(AbstractBuilder::sum, JsonpDeserializer.doubleDeserializer(), "sum");
 		op.add(AbstractBuilder::minAsString, JsonpDeserializer.stringDeserializer(), "min_as_string");
 		op.add(AbstractBuilder::maxAsString, JsonpDeserializer.stringDeserializer(), "max_as_string");

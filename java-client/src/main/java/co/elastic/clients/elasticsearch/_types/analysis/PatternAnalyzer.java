@@ -29,19 +29,25 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.PatternAnalyzer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/analyzers.ts#L74-L81">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PatternAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	@Nullable
@@ -64,15 +70,13 @@ public class PatternAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		this.version = builder.version;
 		this.flags = builder.flags;
 		this.lowercase = builder.lowercase;
-		this.pattern = ModelTypeHelper.requireNonNull(builder.pattern, this, "pattern");
-		this.stopwords = ModelTypeHelper.unmodifiable(builder.stopwords);
+		this.pattern = ApiTypeHelper.requireNonNull(builder.pattern, this, "pattern");
+		this.stopwords = ApiTypeHelper.unmodifiable(builder.stopwords);
 
 	}
 
-	public static PatternAnalyzer of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PatternAnalyzer of(Function<Builder, ObjectBuilder<PatternAnalyzer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -152,7 +156,7 @@ public class PatternAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		generator.writeKey("pattern");
 		generator.write(this.pattern);
 
-		if (ModelTypeHelper.isDefined(this.stopwords)) {
+		if (ApiTypeHelper.isDefined(this.stopwords)) {
 			generator.writeKey("stopwords");
 			generator.writeStartArray();
 			for (String item0 : this.stopwords) {
@@ -170,6 +174,7 @@ public class PatternAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	/**
 	 * Builder for {@link PatternAnalyzer}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PatternAnalyzer> {
 		@Nullable
 		private String version;
@@ -219,17 +224,21 @@ public class PatternAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
 		/**
 		 * API name: {@code stopwords}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>stopwords</code>.
 		 */
-		public final Builder stopwords(@Nullable List<String> value) {
-			this.stopwords = value;
+		public final Builder stopwords(List<String> list) {
+			this.stopwords = _listAddAll(this.stopwords, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code stopwords}
+		 * <p>
+		 * Adds one or more values to <code>stopwords</code>.
 		 */
-		public final Builder stopwords(String... value) {
-			this.stopwords = Arrays.asList(value);
+		public final Builder stopwords(String value, String... values) {
+			this.stopwords = _listAdd(this.stopwords, value, values);
 			return this;
 		}
 

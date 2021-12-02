@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: enrich.stats.CacheStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/enrich/stats/types.ts#L37-L43">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CacheStats implements JsonpSerializable {
 	private final String nodeId;
@@ -56,18 +63,16 @@ public class CacheStats implements JsonpSerializable {
 
 	private CacheStats(Builder builder) {
 
-		this.nodeId = ModelTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
-		this.count = ModelTypeHelper.requireNonNull(builder.count, this, "count");
-		this.hits = ModelTypeHelper.requireNonNull(builder.hits, this, "hits");
-		this.misses = ModelTypeHelper.requireNonNull(builder.misses, this, "misses");
-		this.evictions = ModelTypeHelper.requireNonNull(builder.evictions, this, "evictions");
+		this.nodeId = ApiTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.hits = ApiTypeHelper.requireNonNull(builder.hits, this, "hits");
+		this.misses = ApiTypeHelper.requireNonNull(builder.misses, this, "misses");
+		this.evictions = ApiTypeHelper.requireNonNull(builder.evictions, this, "evictions");
 
 	}
 
-	public static CacheStats of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CacheStats of(Function<Builder, ObjectBuilder<CacheStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -138,6 +143,7 @@ public class CacheStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link CacheStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CacheStats> {
 		private String nodeId;
 

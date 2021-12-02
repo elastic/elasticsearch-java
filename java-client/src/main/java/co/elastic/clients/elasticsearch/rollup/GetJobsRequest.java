@@ -37,10 +37,18 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.get_jobs.Request
+
+/**
+ * Retrieves the configuration, stats, and status of rollup jobs.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/rollup/get_jobs/GetRollupJobRequest.ts#L23-L32">API
+ *      specification</a>
+ */
 
 public class GetJobsRequest extends RequestBase {
 	@Nullable
@@ -54,10 +62,8 @@ public class GetJobsRequest extends RequestBase {
 
 	}
 
-	public static GetJobsRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetJobsRequest of(Function<Builder, ObjectBuilder<GetJobsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -76,6 +82,7 @@ public class GetJobsRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetJobsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetJobsRequest> {
 		@Nullable
 		private String id;

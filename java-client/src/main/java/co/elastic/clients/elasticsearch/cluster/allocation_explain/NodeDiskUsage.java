@@ -29,16 +29,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.NodeDiskUsage
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/allocation_explain/types.ts#L56-L60">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeDiskUsage implements JsonpSerializable {
 	private final String nodeName;
@@ -51,16 +58,14 @@ public class NodeDiskUsage implements JsonpSerializable {
 
 	private NodeDiskUsage(Builder builder) {
 
-		this.nodeName = ModelTypeHelper.requireNonNull(builder.nodeName, this, "nodeName");
-		this.leastAvailable = ModelTypeHelper.requireNonNull(builder.leastAvailable, this, "leastAvailable");
-		this.mostAvailable = ModelTypeHelper.requireNonNull(builder.mostAvailable, this, "mostAvailable");
+		this.nodeName = ApiTypeHelper.requireNonNull(builder.nodeName, this, "nodeName");
+		this.leastAvailable = ApiTypeHelper.requireNonNull(builder.leastAvailable, this, "leastAvailable");
+		this.mostAvailable = ApiTypeHelper.requireNonNull(builder.mostAvailable, this, "mostAvailable");
 
 	}
 
-	public static NodeDiskUsage of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodeDiskUsage of(Function<Builder, ObjectBuilder<NodeDiskUsage>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -111,6 +116,7 @@ public class NodeDiskUsage implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeDiskUsage}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeDiskUsage> {
 		private String nodeName;
 
@@ -137,10 +143,8 @@ public class NodeDiskUsage implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code least_available}
 		 */
-		public final Builder leastAvailable(Consumer<DiskUsage.Builder> fn) {
-			DiskUsage.Builder builder = new DiskUsage.Builder();
-			fn.accept(builder);
-			return this.leastAvailable(builder.build());
+		public final Builder leastAvailable(Function<DiskUsage.Builder, ObjectBuilder<DiskUsage>> fn) {
+			return this.leastAvailable(fn.apply(new DiskUsage.Builder()).build());
 		}
 
 		/**
@@ -154,10 +158,8 @@ public class NodeDiskUsage implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code most_available}
 		 */
-		public final Builder mostAvailable(Consumer<DiskUsage.Builder> fn) {
-			DiskUsage.Builder builder = new DiskUsage.Builder();
-			fn.accept(builder);
-			return this.mostAvailable(builder.build());
+		public final Builder mostAvailable(Function<DiskUsage.Builder, ObjectBuilder<DiskUsage>> fn) {
+			return this.mostAvailable(fn.apply(new DiskUsage.Builder()).build());
 		}
 
 		/**

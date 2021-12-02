@@ -31,10 +31,17 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 // typedef: async_search.get.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/async_search/get/AsyncSearchGetResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class GetAsyncSearchResponse<TDocument> extends AsyncSearchDocumentResponseBase<TDocument> {
 	// ---------------------------------------------------------------------------------------------
@@ -44,10 +51,9 @@ public class GetAsyncSearchResponse<TDocument> extends AsyncSearchDocumentRespon
 
 	}
 
-	public static <TDocument> GetAsyncSearchResponse<TDocument> of(Consumer<Builder<TDocument>> fn) {
-		Builder<TDocument> builder = new Builder<>();
-		fn.accept(builder);
-		return builder.build();
+	public static <TDocument> GetAsyncSearchResponse<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<GetAsyncSearchResponse<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -55,6 +61,7 @@ public class GetAsyncSearchResponse<TDocument> extends AsyncSearchDocumentRespon
 	/**
 	 * Builder for {@link GetAsyncSearchResponse}.
 	 */
+
 	public static class Builder<TDocument>
 			extends
 				AsyncSearchDocumentResponseBase.AbstractBuilder<TDocument, Builder<TDocument>>
@@ -81,7 +88,7 @@ public class GetAsyncSearchResponse<TDocument> extends AsyncSearchDocumentRespon
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for GetAsyncSearchResponse
+	 * Create a JSON deserializer for GetAsyncSearchResponse
 	 */
 	public static <TDocument> JsonpDeserializer<GetAsyncSearchResponse<TDocument>> createGetAsyncSearchResponseDeserializer(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {

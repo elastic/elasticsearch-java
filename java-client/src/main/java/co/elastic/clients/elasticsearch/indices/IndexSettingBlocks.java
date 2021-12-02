@@ -34,10 +34,17 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexSettingBlocks
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/_types/IndexSettings.ts#L275-L281">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class IndexSettingBlocks implements JsonpSerializable {
 	@Nullable
@@ -67,10 +74,8 @@ public class IndexSettingBlocks implements JsonpSerializable {
 
 	}
 
-	public static IndexSettingBlocks of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static IndexSettingBlocks of(Function<Builder, ObjectBuilder<IndexSettingBlocks>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -157,6 +162,7 @@ public class IndexSettingBlocks implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexSettingBlocks}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexSettingBlocks> {
 		@Nullable
 		private Boolean readOnly;

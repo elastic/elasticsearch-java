@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: indices.stats.ShardsTotalStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/stats/types.ts#L158-L160">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ShardsTotalStats implements JsonpSerializable {
 	private final long totalCount;
@@ -46,14 +53,12 @@ public class ShardsTotalStats implements JsonpSerializable {
 
 	private ShardsTotalStats(Builder builder) {
 
-		this.totalCount = ModelTypeHelper.requireNonNull(builder.totalCount, this, "totalCount");
+		this.totalCount = ApiTypeHelper.requireNonNull(builder.totalCount, this, "totalCount");
 
 	}
 
-	public static ShardsTotalStats of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ShardsTotalStats of(Function<Builder, ObjectBuilder<ShardsTotalStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -84,6 +89,7 @@ public class ShardsTotalStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardsTotalStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardsTotalStats> {
 		private Long totalCount;
 

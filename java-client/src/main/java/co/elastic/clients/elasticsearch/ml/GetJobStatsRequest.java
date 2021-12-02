@@ -39,10 +39,18 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_job_stats.Request
+
+/**
+ * Retrieves usage information for anomaly detection jobs.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_job_stats/MlGetJobStatsRequest.ts#L23-L56">API
+ *      specification</a>
+ */
 
 public class GetJobStatsRequest extends RequestBase {
 	@Nullable
@@ -60,10 +68,8 @@ public class GetJobStatsRequest extends RequestBase {
 
 	}
 
-	public static GetJobStatsRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static GetJobStatsRequest of(Function<Builder, ObjectBuilder<GetJobStatsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -104,6 +110,7 @@ public class GetJobStatsRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetJobStatsRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetJobStatsRequest> {
 		@Nullable
 		private Boolean allowNoMatch;

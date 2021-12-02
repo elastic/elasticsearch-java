@@ -28,18 +28,24 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Double;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.PercentilesAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/metric.ts#L103-L108">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PercentilesAggregation extends FormatMetricAggregationBase implements AggregationVariant {
 	@Nullable
@@ -59,16 +65,14 @@ public class PercentilesAggregation extends FormatMetricAggregationBase implemen
 		super(builder);
 
 		this.keyed = builder.keyed;
-		this.percents = ModelTypeHelper.unmodifiable(builder.percents);
+		this.percents = ApiTypeHelper.unmodifiable(builder.percents);
 		this.hdr = builder.hdr;
 		this.tdigest = builder.tdigest;
 
 	}
 
-	public static PercentilesAggregation of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PercentilesAggregation of(Function<Builder, ObjectBuilder<PercentilesAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -118,7 +122,7 @@ public class PercentilesAggregation extends FormatMetricAggregationBase implemen
 			generator.write(this.keyed);
 
 		}
-		if (ModelTypeHelper.isDefined(this.percents)) {
+		if (ApiTypeHelper.isDefined(this.percents)) {
 			generator.writeKey("percents");
 			generator.writeStartArray();
 			for (Double item0 : this.percents) {
@@ -146,6 +150,7 @@ public class PercentilesAggregation extends FormatMetricAggregationBase implemen
 	/**
 	 * Builder for {@link PercentilesAggregation}.
 	 */
+
 	public static class Builder extends FormatMetricAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PercentilesAggregation> {
@@ -171,17 +176,21 @@ public class PercentilesAggregation extends FormatMetricAggregationBase implemen
 
 		/**
 		 * API name: {@code percents}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>percents</code>.
 		 */
-		public final Builder percents(@Nullable List<Double> value) {
-			this.percents = value;
+		public final Builder percents(List<Double> list) {
+			this.percents = _listAddAll(this.percents, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code percents}
+		 * <p>
+		 * Adds one or more values to <code>percents</code>.
 		 */
-		public final Builder percents(Double... value) {
-			this.percents = Arrays.asList(value);
+		public final Builder percents(Double value, Double... values) {
+			this.percents = _listAdd(this.percents, value, values);
 			return this;
 		}
 
@@ -196,10 +205,8 @@ public class PercentilesAggregation extends FormatMetricAggregationBase implemen
 		/**
 		 * API name: {@code hdr}
 		 */
-		public final Builder hdr(Consumer<HdrMethod.Builder> fn) {
-			HdrMethod.Builder builder = new HdrMethod.Builder();
-			fn.accept(builder);
-			return this.hdr(builder.build());
+		public final Builder hdr(Function<HdrMethod.Builder, ObjectBuilder<HdrMethod>> fn) {
+			return this.hdr(fn.apply(new HdrMethod.Builder()).build());
 		}
 
 		/**
@@ -213,10 +220,8 @@ public class PercentilesAggregation extends FormatMetricAggregationBase implemen
 		/**
 		 * API name: {@code tdigest}
 		 */
-		public final Builder tdigest(Consumer<TDigest.Builder> fn) {
-			TDigest.Builder builder = new TDigest.Builder();
-			fn.accept(builder);
-			return this.tdigest(builder.build());
+		public final Builder tdigest(Function<TDigest.Builder, ObjectBuilder<TDigest>> fn) {
+			return this.tdigest(fn.apply(new TDigest.Builder()).build());
 		}
 
 		@Override

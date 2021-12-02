@@ -32,16 +32,23 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.info.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/info/XPackInfoResponse.ts#L22-L29">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class XpackInfoResponse implements JsonpSerializable {
 	private final BuildInformation build;
@@ -56,17 +63,15 @@ public class XpackInfoResponse implements JsonpSerializable {
 
 	private XpackInfoResponse(Builder builder) {
 
-		this.build = ModelTypeHelper.requireNonNull(builder.build, this, "build");
-		this.features = ModelTypeHelper.requireNonNull(builder.features, this, "features");
-		this.license = ModelTypeHelper.requireNonNull(builder.license, this, "license");
-		this.tagline = ModelTypeHelper.requireNonNull(builder.tagline, this, "tagline");
+		this.build = ApiTypeHelper.requireNonNull(builder.build, this, "build");
+		this.features = ApiTypeHelper.requireNonNull(builder.features, this, "features");
+		this.license = ApiTypeHelper.requireNonNull(builder.license, this, "license");
+		this.tagline = ApiTypeHelper.requireNonNull(builder.tagline, this, "tagline");
 
 	}
 
-	public static XpackInfoResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static XpackInfoResponse of(Function<Builder, ObjectBuilder<XpackInfoResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -127,6 +132,7 @@ public class XpackInfoResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link XpackInfoResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<XpackInfoResponse> {
 		private BuildInformation build;
 
@@ -147,10 +153,8 @@ public class XpackInfoResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code build}
 		 */
-		public final Builder build(Consumer<BuildInformation.Builder> fn) {
-			BuildInformation.Builder builder = new BuildInformation.Builder();
-			fn.accept(builder);
-			return this.build(builder.build());
+		public final Builder build(Function<BuildInformation.Builder, ObjectBuilder<BuildInformation>> fn) {
+			return this.build(fn.apply(new BuildInformation.Builder()).build());
 		}
 
 		/**
@@ -164,10 +168,8 @@ public class XpackInfoResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code features}
 		 */
-		public final Builder features(Consumer<Features.Builder> fn) {
-			Features.Builder builder = new Features.Builder();
-			fn.accept(builder);
-			return this.features(builder.build());
+		public final Builder features(Function<Features.Builder, ObjectBuilder<Features>> fn) {
+			return this.features(fn.apply(new Features.Builder()).build());
 		}
 
 		/**
@@ -181,10 +183,9 @@ public class XpackInfoResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code license}
 		 */
-		public final Builder license(Consumer<MinimalLicenseInformation.Builder> fn) {
-			MinimalLicenseInformation.Builder builder = new MinimalLicenseInformation.Builder();
-			fn.accept(builder);
-			return this.license(builder.build());
+		public final Builder license(
+				Function<MinimalLicenseInformation.Builder, ObjectBuilder<MinimalLicenseInformation>> fn) {
+			return this.license(fn.apply(new MinimalLicenseInformation.Builder()).build());
 		}
 
 		/**

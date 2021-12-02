@@ -29,18 +29,24 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.CsvProcessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/_types/Processors.ts#L152-L161">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class CsvProcessor extends ProcessorBase implements ProcessorVariant {
 	private final JsonData emptyValue;
@@ -68,21 +74,19 @@ public class CsvProcessor extends ProcessorBase implements ProcessorVariant {
 	private CsvProcessor(Builder builder) {
 		super(builder);
 
-		this.emptyValue = ModelTypeHelper.requireNonNull(builder.emptyValue, this, "emptyValue");
+		this.emptyValue = ApiTypeHelper.requireNonNull(builder.emptyValue, this, "emptyValue");
 		this.description = builder.description;
-		this.field = ModelTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.ignoreMissing = builder.ignoreMissing;
 		this.quote = builder.quote;
 		this.separator = builder.separator;
-		this.targetFields = ModelTypeHelper.unmodifiableRequired(builder.targetFields, this, "targetFields");
-		this.trim = ModelTypeHelper.requireNonNull(builder.trim, this, "trim");
+		this.targetFields = ApiTypeHelper.unmodifiableRequired(builder.targetFields, this, "targetFields");
+		this.trim = ApiTypeHelper.requireNonNull(builder.trim, this, "trim");
 
 	}
 
-	public static CsvProcessor of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static CsvProcessor of(Function<Builder, ObjectBuilder<CsvProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -182,7 +186,7 @@ public class CsvProcessor extends ProcessorBase implements ProcessorVariant {
 			generator.write(this.separator);
 
 		}
-		if (ModelTypeHelper.isDefined(this.targetFields)) {
+		if (ApiTypeHelper.isDefined(this.targetFields)) {
 			generator.writeKey("target_fields");
 			generator.writeStartArray();
 			for (String item0 : this.targetFields) {
@@ -202,6 +206,7 @@ public class CsvProcessor extends ProcessorBase implements ProcessorVariant {
 	/**
 	 * Builder for {@link CsvProcessor}.
 	 */
+
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder> implements ObjectBuilder<CsvProcessor> {
 		private JsonData emptyValue;
 
@@ -273,17 +278,21 @@ public class CsvProcessor extends ProcessorBase implements ProcessorVariant {
 
 		/**
 		 * Required - API name: {@code target_fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>targetFields</code>.
 		 */
-		public final Builder targetFields(List<String> value) {
-			this.targetFields = value;
+		public final Builder targetFields(List<String> list) {
+			this.targetFields = _listAddAll(this.targetFields, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code target_fields}
+		 * <p>
+		 * Adds one or more values to <code>targetFields</code>.
 		 */
-		public final Builder targetFields(String... value) {
-			this.targetFields = Arrays.asList(value);
+		public final Builder targetFields(String value, String... values) {
+			this.targetFields = _listAdd(this.targetFields, value, values);
 			return this;
 		}
 

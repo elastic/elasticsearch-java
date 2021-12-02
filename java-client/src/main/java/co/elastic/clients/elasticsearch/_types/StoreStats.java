@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.StoreStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Stats.ts#L228-L235">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class StoreStats implements JsonpSerializable {
 	@Nullable
@@ -63,18 +70,16 @@ public class StoreStats implements JsonpSerializable {
 	private StoreStats(Builder builder) {
 
 		this.size = builder.size;
-		this.sizeInBytes = ModelTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
+		this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
 		this.reserved = builder.reserved;
-		this.reservedInBytes = ModelTypeHelper.requireNonNull(builder.reservedInBytes, this, "reservedInBytes");
+		this.reservedInBytes = ApiTypeHelper.requireNonNull(builder.reservedInBytes, this, "reservedInBytes");
 		this.totalDataSetSize = builder.totalDataSetSize;
 		this.totalDataSetSizeInBytes = builder.totalDataSetSizeInBytes;
 
 	}
 
-	public static StoreStats of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static StoreStats of(Function<Builder, ObjectBuilder<StoreStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -168,6 +173,7 @@ public class StoreStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link StoreStats}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StoreStats> {
 		@Nullable
 		private String size;

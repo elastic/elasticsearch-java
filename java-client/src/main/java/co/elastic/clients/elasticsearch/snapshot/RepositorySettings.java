@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot._types.RepositorySettings
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/snapshot/_types/SnapshotRepository.ts#L29-L38">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class RepositorySettings implements JsonpSerializable {
 	@Nullable
@@ -63,15 +70,13 @@ public class RepositorySettings implements JsonpSerializable {
 		this.chunkSize = builder.chunkSize;
 		this.compress = builder.compress;
 		this.concurrentStreams = builder.concurrentStreams;
-		this.location = ModelTypeHelper.requireNonNull(builder.location, this, "location");
+		this.location = ApiTypeHelper.requireNonNull(builder.location, this, "location");
 		this.readOnly = builder.readOnly;
 
 	}
 
-	public static RepositorySettings of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static RepositorySettings of(Function<Builder, ObjectBuilder<RepositorySettings>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -155,6 +160,7 @@ public class RepositorySettings implements JsonpSerializable {
 	/**
 	 * Builder for {@link RepositorySettings}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RepositorySettings> {
 		@Nullable
 		private String chunkSize;

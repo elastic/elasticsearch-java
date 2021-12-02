@@ -30,15 +30,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: searchable_snapshots.stats.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/searchable_snapshots/stats/SearchableSnapshotsStatsResponse.ts#L22-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class SearchableSnapshotsStatsResponse implements JsonpSerializable {
 	private final JsonData stats;
@@ -49,15 +56,14 @@ public class SearchableSnapshotsStatsResponse implements JsonpSerializable {
 
 	private SearchableSnapshotsStatsResponse(Builder builder) {
 
-		this.stats = ModelTypeHelper.requireNonNull(builder.stats, this, "stats");
-		this.total = ModelTypeHelper.requireNonNull(builder.total, this, "total");
+		this.stats = ApiTypeHelper.requireNonNull(builder.stats, this, "stats");
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
 
 	}
 
-	public static SearchableSnapshotsStatsResponse of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static SearchableSnapshotsStatsResponse of(
+			Function<Builder, ObjectBuilder<SearchableSnapshotsStatsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -98,6 +104,7 @@ public class SearchableSnapshotsStatsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link SearchableSnapshotsStatsResponse}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SearchableSnapshotsStatsResponse> {
 		private JsonData stats;
 

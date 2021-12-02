@@ -28,13 +28,20 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
 
 // typedef: _types.aggregations.SingleBucketAggregateBase
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L457-L459">API
+ *      specification</a>
+ */
 
 public abstract class SingleBucketAggregateBase extends AggregateBase {
 	private final long docCount;
@@ -44,7 +51,7 @@ public abstract class SingleBucketAggregateBase extends AggregateBase {
 	protected SingleBucketAggregateBase(AbstractBuilder<?> builder) {
 		super(builder);
 
-		this.docCount = ModelTypeHelper.requireNonNull(builder.docCount, this, "docCount");
+		this.docCount = ApiTypeHelper.requireNonNull(builder.docCount, this, "docCount");
 
 	}
 

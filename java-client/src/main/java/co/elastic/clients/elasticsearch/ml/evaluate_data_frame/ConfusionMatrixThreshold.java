@@ -29,15 +29,22 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 // typedef: ml.evaluate_data_frame.ConfusionMatrixThreshold
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/evaluate_data_frame/types.ts#L96-L117">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class ConfusionMatrixThreshold implements JsonpSerializable {
 	private final int truePositive;
@@ -52,17 +59,15 @@ public class ConfusionMatrixThreshold implements JsonpSerializable {
 
 	private ConfusionMatrixThreshold(Builder builder) {
 
-		this.truePositive = ModelTypeHelper.requireNonNull(builder.truePositive, this, "truePositive");
-		this.falsePositive = ModelTypeHelper.requireNonNull(builder.falsePositive, this, "falsePositive");
-		this.trueNegative = ModelTypeHelper.requireNonNull(builder.trueNegative, this, "trueNegative");
-		this.falseNegative = ModelTypeHelper.requireNonNull(builder.falseNegative, this, "falseNegative");
+		this.truePositive = ApiTypeHelper.requireNonNull(builder.truePositive, this, "truePositive");
+		this.falsePositive = ApiTypeHelper.requireNonNull(builder.falsePositive, this, "falsePositive");
+		this.trueNegative = ApiTypeHelper.requireNonNull(builder.trueNegative, this, "trueNegative");
+		this.falseNegative = ApiTypeHelper.requireNonNull(builder.falseNegative, this, "falseNegative");
 
 	}
 
-	public static ConfusionMatrixThreshold of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static ConfusionMatrixThreshold of(Function<Builder, ObjectBuilder<ConfusionMatrixThreshold>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -131,6 +136,7 @@ public class ConfusionMatrixThreshold implements JsonpSerializable {
 	/**
 	 * Builder for {@link ConfusionMatrixThreshold}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ConfusionMatrixThreshold> {
 		private Integer truePositive;
 

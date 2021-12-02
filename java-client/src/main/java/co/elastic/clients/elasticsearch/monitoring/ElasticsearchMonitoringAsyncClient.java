@@ -34,7 +34,7 @@ import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 /**
@@ -86,11 +86,9 @@ public class ElasticsearchMonitoringAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<BulkResponse> bulk(Consumer<BulkRequest.Builder> fn)
+	public final CompletableFuture<BulkResponse> bulk(Function<BulkRequest.Builder, ObjectBuilder<BulkRequest>> fn)
 			throws IOException, ElasticsearchException {
-		BulkRequest.Builder builder = new BulkRequest.Builder();
-		fn.accept(builder);
-		return bulk(builder.build());
+		return bulk(fn.apply(new BulkRequest.Builder()).build());
 	}
 
 }

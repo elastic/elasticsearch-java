@@ -34,10 +34,17 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.fielddata.FielddataRecord
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/fielddata/types.ts#L20-L48">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FielddataRecord implements JsonpSerializable {
 	@Nullable
@@ -71,10 +78,8 @@ public class FielddataRecord implements JsonpSerializable {
 
 	}
 
-	public static FielddataRecord of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static FielddataRecord of(Function<Builder, ObjectBuilder<FielddataRecord>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -186,6 +191,7 @@ public class FielddataRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link FielddataRecord}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FielddataRecord> {
 		@Nullable
 		private String id;

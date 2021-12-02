@@ -33,17 +33,26 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: autoscaling.put_autoscaling_policy.Request
+
+/**
+ * Creates a new autoscaling policy. Designed for indirect use by ECE/ESS and
+ * ECK. Direct use is not supported.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/autoscaling/put_autoscaling_policy/PutAutoscalingPolicyRequest.ts#L24-L35">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PutAutoscalingPolicyRequest extends RequestBase implements JsonpSerializable {
 	private final String name;
@@ -54,15 +63,13 @@ public class PutAutoscalingPolicyRequest extends RequestBase implements JsonpSer
 
 	private PutAutoscalingPolicyRequest(Builder builder) {
 
-		this.name = ModelTypeHelper.requireNonNull(builder.name, this, "name");
-		this.policy = ModelTypeHelper.requireNonNull(builder.policy, this, "policy");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.policy = ApiTypeHelper.requireNonNull(builder.policy, this, "policy");
 
 	}
 
-	public static PutAutoscalingPolicyRequest of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static PutAutoscalingPolicyRequest of(Function<Builder, ObjectBuilder<PutAutoscalingPolicyRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -96,6 +103,7 @@ public class PutAutoscalingPolicyRequest extends RequestBase implements JsonpSer
 	/**
 	 * Builder for {@link PutAutoscalingPolicyRequest}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutAutoscalingPolicyRequest> {
 		private String name;
 
@@ -126,10 +134,8 @@ public class PutAutoscalingPolicyRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public final Builder policy(Consumer<AutoscalingPolicy.Builder> fn) {
-			AutoscalingPolicy.Builder builder = new AutoscalingPolicy.Builder();
-			fn.accept(builder);
-			return this.policy(builder.build());
+		public final Builder policy(Function<AutoscalingPolicy.Builder, ObjectBuilder<AutoscalingPolicy>> fn) {
+			return this.policy(fn.apply(new AutoscalingPolicy.Builder()).build());
 		}
 
 		/**

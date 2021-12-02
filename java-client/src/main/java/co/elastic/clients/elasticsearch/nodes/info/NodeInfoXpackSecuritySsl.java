@@ -29,17 +29,24 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoXpackSecuritySsl
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L234-L236">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NodeInfoXpackSecuritySsl implements JsonpSerializable {
 	private final Map<String, String> ssl;
@@ -48,14 +55,12 @@ public class NodeInfoXpackSecuritySsl implements JsonpSerializable {
 
 	private NodeInfoXpackSecuritySsl(Builder builder) {
 
-		this.ssl = ModelTypeHelper.unmodifiableRequired(builder.ssl, this, "ssl");
+		this.ssl = ApiTypeHelper.unmodifiableRequired(builder.ssl, this, "ssl");
 
 	}
 
-	public static NodeInfoXpackSecuritySsl of(Consumer<Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
+	public static NodeInfoXpackSecuritySsl of(Function<Builder, ObjectBuilder<NodeInfoXpackSecuritySsl>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -76,7 +81,7 @@ public class NodeInfoXpackSecuritySsl implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ModelTypeHelper.isDefined(this.ssl)) {
+		if (ApiTypeHelper.isDefined(this.ssl)) {
 			generator.writeKey("ssl");
 			generator.writeStartObject();
 			for (Map.Entry<String, String> item0 : this.ssl.entrySet()) {
@@ -95,14 +100,27 @@ public class NodeInfoXpackSecuritySsl implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoXpackSecuritySsl}.
 	 */
+
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoXpackSecuritySsl> {
 		private Map<String, String> ssl;
 
 		/**
 		 * Required - API name: {@code ssl}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>ssl</code>.
 		 */
-		public final Builder ssl(Map<String, String> value) {
-			this.ssl = value;
+		public final Builder ssl(Map<String, String> map) {
+			this.ssl = _mapPutAll(this.ssl, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code ssl}
+		 * <p>
+		 * Adds an entry to <code>ssl</code>.
+		 */
+		public final Builder ssl(String key, String value) {
+			this.ssl = _mapPut(this.ssl, key, value);
 			return this;
 		}
 
