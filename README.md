@@ -20,7 +20,7 @@ The `docs/design` folder contains records of the major decisions in the design o
 
 ## Getting started
 
-Please refer to [the full documentation on elastic.co](https://www.elasticco/guide/en/elasticsearch/client/java-api-client/current/index.html) for comprehensive information.
+Please refer to [the full documentation on elastic.co](https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/index.html) for comprehensive information.
 
 ### Installing the library
 
