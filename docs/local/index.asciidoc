@@ -1,0 +1,4 @@
+
+:elasticsearch-root: {docdir}/elasticsearch
+
+include::../index.asciidoc[]

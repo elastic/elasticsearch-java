@@ -3,9 +3,18 @@
 :branch: master
 include::{asciidoc-dir}/../../shared/attributes.asciidoc[]
 
+:version: 7.16.0
+:java-client: Java API Client
+:doc-tests: {docdir}/../../java-client/src/test/java/co/elastic/clients/documentation
+
 include::introduction.asciidoc[]
 include::installation.asciidoc[]
 include::connecting.asciidoc[]
 include::migrate.asciidoc[]
 include::api-conventions.asciidoc[]
+
+:version!:
+:java-client!:
+:doc-tests!:
+
 include::{elasticsearch-root}/docs/java-rest/low-level/index.asciidoc[]

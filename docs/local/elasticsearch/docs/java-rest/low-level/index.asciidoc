@@ -1,0 +1,4 @@
+[[java-rest-low]]
+== Java Low Level REST Client
+
+This is a stub for the Java Low Level REST Client.

@@ -1,9 +1,7 @@
 [[connecting]]
 == Connecting
 
-beta[]
-
-The Java client is structured around three main components:
+The {java-client} is structured around three main components:
 
 * **API client classes**. These provide strongly typed data structures and 
 methods for {es} APIs. Since the {es} API is large, it is structured in feature 
@@ -18,16 +16,7 @@ This code snippet creates and wires together these three components:
 
 ["source","java"]
 --------------------------------------------------
-// Create the low-level client
-RestClient restClient = RestClient.builder(
-    new HttpHost("localhost", 9200)).build();
-
-// Create the transport with a Jackson mapper
-Transport transport = new RestClientTransport(
-    restClient, new JacksonJsonpMapper());
-
-// And create the API client
-ElasticsearchClient client = new ElasticsearchClient(transport);
+include-tagged::{doc-tests}/ConnectingTest.java[create-client]
 --------------------------------------------------
 
 Authentication is managed by the <<java-rest-low>>. For further details on 
@@ -46,16 +35,5 @@ concise DSL-like code. This pattern is explained in more detail in
 
 ["source","java"]
 --------------------------------------------------
-SearchResponse<Product> search = client.search(s -> s
-    .index("products")
-    .query(q -> q
-        .term(t -> t
-            .field("name")
-            .value("bicycle")
-    )),
-    Product.class);
-
-for (Hit<AppData> hit: search.hits().hits()) {
-    processAppData(hit.source());
-}
+include-tagged::{doc-tests}/ConnectingTest.java[first-request]
 --------------------------------------------------
