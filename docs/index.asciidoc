@@ -3,7 +3,7 @@
 :branch: master
 include::{asciidoc-dir}/../../shared/attributes.asciidoc[]
 
-:version: 7.16.0
+:version: 7.16.1
 :java-client: Java API Client
 :doc-tests: {docdir}/../java-client/src/test/java/co/elastic/clients/documentation
 

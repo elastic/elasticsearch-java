@@ -115,7 +115,7 @@ publishing {
 }
 
 dependencies {
-    val elasticsearchVersion = "7.15.0"
+    val elasticsearchVersion = "7.16.0"
     val jacksonVersion = "2.12.0"
 
     // Apache 2.0
