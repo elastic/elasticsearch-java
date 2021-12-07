@@ -39,21 +39,5 @@ The code below shows how to initialize both clients with the same HTTP client:
 
 ["source","java"]
 --------------------------------------------------
-// Create the low-level client
-RestClientBuilder httpClientBuilder = RestClient.builder(
-    new HttpHost("localhost", 9200)
-);
-
-// Create the HLRC
-RestHighLevelClient hlrc = new RestHighLevelClient(httpClientBuilder);
-
-// Create the new Java Client with the same low level client
-Transport transport = new RestClientTransport(
-    hlrc.getLowLevelClient(),
-    new JacksonJsonpMapper()
-);
-
-ElasticsearchClient esClient = new ElasticsearchClient(transport);
-
-// hlrc and esClient share the same httpClient
+include-tagged::{doc-tests}/MigrateHlrcTest.java[migrate]
 --------------------------------------------------

@@ -1,0 +1,4 @@
+// Allow building docs locally without a checkout of the Elasticsearch repo
+:elasticsearch-root: {docdir}/local/elasticsearch
+
+include::index.asciidoc[]

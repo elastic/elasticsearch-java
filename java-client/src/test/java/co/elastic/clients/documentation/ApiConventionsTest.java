@@ -21,6 +21,7 @@ package co.elastic.clients.documentation;
 
 import co.elastic.clients.elasticsearch.ElasticsearchAsyncClient;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.elasticsearch._types.NodeStatistics;
 import co.elastic.clients.elasticsearch._types.SortOrder;
 import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
@@ -31,6 +32,7 @@ import co.elastic.clients.elasticsearch.indices.CreateIndexRequest;
 import co.elastic.clients.elasticsearch.indices.CreateIndexResponse;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.TransportException;
+import co.elastic.clients.util.ApiTypeHelper;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -232,6 +234,25 @@ public class ApiConventionsTest extends Assert {
         );
         //end::collections-list
 
+    }
+
+    @Test
+    public void optionalCollections() {
+        //tag::optional-collections
+        NodeStatistics stats = NodeStatistics.of(b -> b
+            .total(1)
+            .failed(0)
+            .successful(1)
+        );
+
+        // The `failures` list was not provided.
+        // - it's not null
+        assertNotNull(stats.failures());
+        // - it's empty
+        assertEquals(0, stats.failures().size());
+        // - and if needed we can know it was actually not defined
+        assertFalse(ApiTypeHelper.isDefined(stats.failures()));
+        //end::optional-collections
     }
 
     private void doSomething(Object... o) {

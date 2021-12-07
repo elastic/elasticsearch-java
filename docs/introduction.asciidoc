@@ -1,8 +1,6 @@
 [[introduction]]
 == Introduction
 
-beta[]
-
 This is the documentation for the official Java API Client for {es}. The client 
 provides strongly typed requests and responses for all {es} APIs.
 
@@ -20,29 +18,32 @@ provides strongly typed requests and responses for all {es} APIs.
   retries, node discovery, and so on.
 
 [discrete]
-=== Beta status
+=== Main changes since version 7.15
 
-The Java API Client is a new product and is still in beta. What this means in 
-concrete terms:
+Version 7.15 of the {java-client} was a beta release. We learned a lot from the
+initial feedback and this led to a few breaking changes in this version:
 
-* Although the general structure will not change, some renaming may happen to 
-  improve ease of use.
-* Some APIs may not be implemented yet. The code for APIs is generated from the 
-  https://github.com/elastic/elasticsearch-specification[{es} API specification] 
-  where complete coverage is targeted for the GA release of the Java client.
-* Some complex API data types are not yet fully supported. This revolves mostly 
-  around union types where the JSON API accepts many different shapes for some 
-  property. These types are currently represented as raw `JsonValue` objects.
-* Some built-in types like dates are represented as primitive strings. 
-  Additional support for standard JDK types will be added for the GA release.
+* the `_core` package that contains top-level {es} APIs has been renamed to `core`.
+* property setters for lists and maps have been revisited.
+* all API data types are now supported, and there are no more raw `JsonValue` properties.
+* the supporting JSON framework and transport classes have been refactored and improved.
+  However the high level APIs used by applications haven't changed so there should be
+  no of very little impact on existing application code.
+
+This version of the {java-client} supports all {es} APIs are implemented except the
+Vector tile search API and the Find structure API.
+
+While this version is considered stable, most of the code is generated from the
+https://github.com/elastic/elasticsearch-specification[{es} API specification] where
+some of the less often used {es} APIs still need to be fully validated. Changes in
+the specification that may impact application code will be clearly identified in later
+versions of the Java API client.
 
 [discrete]
 === Compatibility
 
-The main branch targets the next major release (8.0), the 7.x branch targets the 
-next minor release for the 7.x series. Support is still incomplete as the API 
-code is generated from the {es} Specification that is also still a work in 
-progress.
+The `main` branch targets the next major release (8.0), the `7.x` branch targets the
+next minor release for the `7.x` series.
 
 The {es} Java client is forward compatible; meaning that the client supports 
 communicating with greater or equal minor versions of {es}. {es} language 
