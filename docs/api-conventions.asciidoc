@@ -45,8 +45,7 @@ from their respective names in the {es} JSON API using the standard Java
 * Methods and properties that are part of the framework on which the Java API 
 Client is built, such as `Query._kind()`. These methods and properties are
 prefixed with an underscore to both avoid any naming conflicts with API names,
-and allow to easily distinguish what belongs to the API from what belongs to the
-framework.
+and as an easy way to distinguish the API from the framework.
 
 
 [discrete]
@@ -82,8 +81,8 @@ classes (and even remembering their names) since types are inferred from the
 method parameter signature.
 
 Note in the above example that builder variables are only used to start a chain
-of property setters. Their name therefore doesn't matter much and can be shortened
-to improve readability:
+of property setters. The names of these variables are therefore unimportant and
+can be shortened to improve readability:
 
 ["source","java"]
 --------------------------------------------------
@@ -96,11 +95,12 @@ Builder lambdas become particularly useful with complex nested queries like the
 one below, taken from the
 {ref}/query-dsl-intervals-query.html[intervals query API documentation].
 
-This example also shows a useful naming convention for builder parameters in 
-deeply nested structures: since we have to give them a name to comply with the 
-Java syntax, we name them with an underscore followed by the depth of the item,
-i.e. `_0`, `_1`, and so on. This removes the need for finding names and makes
-the code easier to read by reducing the number of identifiers. Correct indentation
+This example also highlights a useful naming convention for builder parameters in
+deeply nested structures. For lambda expressions with a single argument, Kotlin
+provides the implicit `it` parameter and Scala allows use of `_`. This can be approximated
+in Java by using an underscore prefix followed by a number representing the depth
+level (i.e. `_0`, `_1`, and so on). Not only does this remove the need to create
+throw-away variable names, but it also improves code readability. Correct indentation
 also allows the structure of the query to stand out.
 
 ["source","java"]
@@ -111,15 +111,15 @@ include-tagged::{doc-tests}/ApiConventionsTest.java[builder-intervals]
 <1> Search results will be mapped to `SomeApplicationData` instances to
     be readily available to the application.
 
-When using the {java-client} with Kotlin, all lambda functions can use the implicit
-`it` parameter. Similarly, in Scala they can use the implicit `_` parameter.
-
 [discrete]
 === Lists and maps
 
+[discrete]
+==== Additive builder setters
+
 Properties of type `List` and `Map` are exposed by object builders as a set of overloaded
-methods that _update_ the property value, by appending to lists and adding new entries to maps
-(or replacing existing ones).
+additive-only methods that _update_ the property value, by appending to lists and adding
+new entries to maps (or replacing existing ones).
 
 Object builders create immutable objects, and this also applies to list and map properties
 that are made immutable at object construction time.
@@ -128,6 +128,28 @@ that are made immutable at object construction time.
 --------------------------------------------------
 include-tagged::{doc-tests}/ApiConventionsTest.java[collections]
 --------------------------------------------------
+
+[discrete]
+==== List and map values are never `null`
+
+The {es} API has a lot of optional properties. For single-valued properties, the {java-client}
+represents missing optional values as `null`. Applications therefore have to null-check
+optional values before using them.
+
+For lists and maps however, applications often only care about whether they're empty or not,
+or even just iterate on their content. Using `null` values is then cumbersome. To avoid this,
+{java-client} collection properties are never `null`, and missing optional collections are
+returned as an empty collection.
+
+If you ever need to distinguish between a missing (undefined) optional collection and an
+effectively-empty collection returned by {es}, the `ApiTypeHelper` class provides a utility
+method to distinguish them:
+
+["source","java"]
+--------------------------------------------------
+include-tagged::{doc-tests}/ApiConventionsTest.java[optional-collections]
+--------------------------------------------------
+
 
 [discrete]
 === Variant types
