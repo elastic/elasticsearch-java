@@ -180,7 +180,6 @@ Variant objects also provide information on the variant kind they currently hold
 This information can then be used to navigate down into specific variants after checking
 their actual kind:
 
---
 ["source","java"]
 --------------------------------------------------
 include-tagged::{doc-tests}/ApiConventionsTest.java[variant-kind]
