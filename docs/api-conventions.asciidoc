@@ -187,7 +187,6 @@ include-tagged::{doc-tests}/ApiConventionsTest.java[variant-kind]
 <1> Test if the variant is of a specific kind.
 <2> Test a larger set of variant kinds.
 <3> Get the kind and value held by the variant object.
---
 
 [discrete]
 === Blocking and asynchronous clients
