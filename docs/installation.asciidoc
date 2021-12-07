@@ -1,21 +1,19 @@
 [[installation]]
 == Installation
 
-beta[]
-
 Requirements:
 
 * Java 8 or later.
-* Optionally, a JSON object mapping library to allow seamless integration of
-  your application classes with the Elasticsearch API. The Java client has
-  support for https://github.com/FasterXML/jackson[Jackson] or a
+* A JSON object mapping library to allow seamless integration of
+  your application classes with the Elasticsearch API. The Java client has 
+  support for https://github.com/FasterXML/jackson[Jackson] or a 
   http://json-b.net/[JSON-B] library like 
   https://github.com/eclipse-ee4j/yasson[Eclipse Yasson].
 
 
-Releases are hosted on
-https://search.maven.org/search?q=g:co.elastic.clients[Maven Central]. If you
-are looking for a SNAPSHOT version, the Elastic Maven Snapshot repository is
+Releases are hosted on 
+https://search.maven.org/search?q=g:co.elastic.clients[Maven Central]. If you 
+are looking for a SNAPSHOT version, the Elastic Maven Snapshot repository is 
 available at https://snapshots.elastic.co/maven/.
 
 
@@ -23,10 +21,10 @@ available at https://snapshots.elastic.co/maven/.
 [[gradle]]
 === Installation in a Gradle project by using Jackson
 
-["source","groovy",subs="attributes"]
+["source","groovy",subs="attributes+"]
 --------------------------------------------------
 dependencies {
-    implementation 'co.elastic.clients:elasticsearch-java:7.15.0'
+    implementation 'co.elastic.clients:elasticsearch-java:{version}'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.3'
 }
 --------------------------------------------------
@@ -38,7 +36,7 @@ dependencies {
 In the `pom.xml` of your project, add the following repository definition and 
 dependencies:
 
-["source","xml",subs="attributes"]
+["source","xml",subs="attributes+"]
 --------------------------------------------------
 <project>
 
@@ -46,7 +44,7 @@ dependencies:
     <dependency>
       <groupId>co.elastic.clients</groupId>
       <artifactId>elasticsearch-java</artifactId>
-      <version>7.15.0</version>
+      <version>{version}</version>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
