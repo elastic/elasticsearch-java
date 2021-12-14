@@ -41,14 +41,15 @@ class LazyDeserializer<T> extends DelegatingDeserializer.SameType<T> {
     protected JsonpDeserializer<T> unwrap() {
         // See SEI CERT LCK10-J https://wiki.sei.cmu.edu/confluence/x/6zdGBQ
         JsonpDeserializer<T> d = deserializer;
-        if (d == null) {
+        if (d != null) {
+            return d;
+        } else {
             synchronized (this) {
                 if (deserializer == null) {
-                    d = ctor.get();
-                    deserializer = d;
+                    deserializer = ctor.get();
                 }
             }
+            return deserializer;
         }
-        return d;
     }
 }
